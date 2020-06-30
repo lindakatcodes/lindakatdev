@@ -1,0 +1,18 @@
+:root {
+  --serif: 'Bree Serif', serif;
+  --sansSerif: 'Acme', sans-serif;
+  --darkBasic: #253237;
+  --lightBasic: #F3F6F7;
+  --lightPurple: #D3A9EA;
+  --lightBlue: #95D9E4;
+  --lightYellow: #F9F5AD;
+  --lightPink: #EAA9B6;
+  --lightGreen: #9DE59A;
+  --darkPurple: #632B82;
+  --darkBlue: #2B7582;
+  --darkYellow: #F8E218;
+  --darkPink: #BE3C57;
+  --darkGreen: #277623;
+  --lightGradient: linear-gradient(62.28deg, var(--lightPurple) 0%, var(--lightBlue) 33.44%, var(--lightYellow) 68.33%, var(--lightPink) 100%);
+  --darkGradient: linear-gradient(62.28deg, var(--darkPurple) 0%, var(--darkBlue) 33.44%, var(--darkYellow) 68.33%, var(--darkPink) 100%);  
+}
