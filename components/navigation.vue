@@ -1,25 +1,23 @@
 <template>
   <div class="navigation-container">
     <div class="nav">
-    <nuxt-link to="/" class="home-link link">HOME</nuxt-link>
-    <span class="divider"></span>
-    <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
-    <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
-    <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
-    <nuxt-link to="/contact" class="link contact-link">CONTACT</nuxt-link>
-  </div>
-  <div class="underline"></div>
+      <nuxt-link to="/" class="home-link link">HOME</nuxt-link>
+      <span class="divider"></span>
+      <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
+      <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
+      <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link to="/contact" class="link contact-link">CONTACT</nuxt-link>
+    </div>
+    <div class="underline"></div>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+  export default {};
 </script>
 
 <style scoped>
-  .navigation-container {  
+  .navigation-container {
     position: sticky;
     top: 0;
     height: 55px;

@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
     parser: 'babel-eslint',
@@ -11,20 +11,10 @@ module.exports = {
       impliedStrict: true,
       classes: true,
       sourceType: 'module',
-    }
+    },
   },
-  extends: [
-    '@nuxtjs',
-    'airbnb-base',
-    'plugin:nuxt/recommended',
-    'plugin:vue/recommended',
-    'prettier', 
-    'prettier/vue'
-  ],
-  plugins: [
-    'vue',
-    'prettier'
-  ],
+  extends: ['@nuxtjs', 'airbnb-base', 'plugin:nuxt/recommended', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
+  plugins: ['vue', 'prettier'],
   // add your custom rules here
   rules: {
     'no-debugger': 0,
@@ -37,27 +27,27 @@ module.exports = {
       1,
       {
         vars: 'local',
-        argsIgnorePattern: 'res|next|^err'
-      }
+        argsIgnorePattern: 'res|next|^err',
+      },
     ],
     'prefer-const': [
       'error',
       {
-        destructuring: 'all'
-      }
+        destructuring: 'all',
+      },
     ],
     'arrow-body-style': [2, 'as-needed'],
     'no-unused-expressions': [
       2,
       {
-        allowTaggedTemplates: true
-      }
+        allowTaggedTemplates: true,
+      },
     ],
     'no-param-reassign': [
       2,
       {
-        props: false
-      }
+        props: false,
+      },
     ],
     'no-console': 0,
     'no-plusplus': 0,
@@ -75,58 +65,58 @@ module.exports = {
       2,
       {
         hoist: 'all',
-        allow: ['resolve', 'reject', 'done', 'next', 'err', 'error']
-      }
+        allow: ['resolve', 'reject', 'done', 'next', 'err', 'error'],
+      },
     ],
     quotes: [
       2,
       'single',
       {
         avoidEscape: true,
-        allowTemplateLiterals: true
-      }
+        allowTemplateLiterals: true,
+      },
     ],
     'no-tabs': [
       'error',
       {
-        allowIndentationTabs: true
-      }
+        allowIndentationTabs: true,
+      },
     ],
-  'vue/html-closing-bracket-newline': [
-    'error',
-    {
-      multiline: 'never',
-    },
-  ],
-  'vue/html-closing-bracket-spacing': [
-    'error',
-    {
-      startTag: 'never',
-      endTag: 'never',
-      selfClosingTag: 'always',
-    },
-  ],
-  'vue/max-attributes-per-line': [
-    'error',
-    {
-      singleline: 5,
-    },
-  ],
-  'vue/no-parsing-error': [
-    'error',
-    {
-      'duplicate-attribute': true,
-    },
-  ],
-  'prettier/prettier': [
-    'error',
-    {
-      trailingComma: 'es5',
-      singleQuote: true,
-      printWidth: 130,
-      endOfLine: 'auto',
-      vueIndentScriptAndStyle: true,
-    },
-  ],
-},
+    'vue/html-closing-bracket-newline': [
+      'error',
+      {
+        multiline: 'never',
+      },
+    ],
+    'vue/html-closing-bracket-spacing': [
+      'error',
+      {
+        startTag: 'never',
+        endTag: 'never',
+        selfClosingTag: 'always',
+      },
+    ],
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: 5,
+      },
+    ],
+    'vue/no-parsing-error': [
+      'error',
+      {
+        'duplicate-attribute': true,
+      },
+    ],
+    'prettier/prettier': [
+      'error',
+      {
+        trailingComma: 'es5',
+        singleQuote: true,
+        printWidth: 150,
+        endOfLine: 'auto',
+        vueIndentScriptAndStyle: true,
+      },
+    ],
+  },
 };
