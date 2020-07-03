@@ -18,9 +18,12 @@ module.exports = {
     'airbnb-base',
     'plugin:nuxt/recommended',
     'plugin:vue/recommended',
+    'prettier', 
+    'prettier/vue'
   ],
   plugins: [
-    'vue'
+    'vue',
+    'prettier'
   ],
   // add your custom rules here
   rules: {
@@ -58,13 +61,13 @@ module.exports = {
     ],
     'no-console': 0,
     'no-plusplus': 0,
-    'import/prefer-default-export': 0,
-    import: 0,
+    // import: 0,
+    // 'import/prefer-default-export': 0,
+    // 'import/extensions': 0,
     'func-names': 0,
     'space-before-function-paren': 0,
     'comma-dangle': 0,
     'max-len': 0,
-    'import/extensions': 0,
     'no-underscore-dangle': 0,
     'consistent-return': 0,
     radix: 0,
@@ -88,8 +91,7 @@ module.exports = {
       {
         allowIndentationTabs: true
       }
-    ]
-  },
+    ],
   'vue/html-closing-bracket-newline': [
     'error',
     {
@@ -116,4 +118,15 @@ module.exports = {
       'duplicate-attribute': true,
     },
   ],
+  'prettier/prettier': [
+    'error',
+    {
+      trailingComma: 'es5',
+      singleQuote: true,
+      printWidth: 130,
+      endOfLine: 'auto',
+      vueIndentScriptAndStyle: true,
+    },
+  ],
+},
 };
