@@ -108,6 +108,7 @@ module.exports = {
         'duplicate-attribute': true,
       },
     ],
+    'vue/require-default-prop': 'off',
     'prettier/prettier': [
       'error',
       {

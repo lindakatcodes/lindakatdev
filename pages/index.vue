@@ -15,11 +15,28 @@
         </a>
       </div>
     </section>
+    <section class="featured-projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="title-divider"></div>
+      <div class="project-block">
+        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project"></ProjectCard>
+      </div>
+      <nuxt-link to="/projects.vue" class="section-link-to-all">See All Projects</nuxt-link>
+    </section>
   </div>
 </template>
 
 <script>
-  export default {};
+  export default {
+    async fetch() {
+      this.projects = await this.$content('projects').where({ featured: true }).fetch();
+    },
+    data() {
+      return {
+        projects: [],
+      };
+    },
+  };
 </script>
 
 <style>
@@ -81,5 +98,51 @@
 
   .tw-icon:hover {
     filter: url('~assets/icons/twitter-square.svg#tw-hover-color');
+  }
+
+  /* General section styles - applies to all sections */
+  section {
+    border-bottom: 3px solid var(--lightBasic);
+    margin: 2% 0;
+    position: relative;
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: var(--sansSerif);
+    color: var(--lightBasic);
+    font-size: 2.5rem;
+  }
+
+  .title-divider {
+    height: 4px;
+    width: 25%;
+    background: var(--lightGradient);
+    margin: 0.25% auto 1%;
+  }
+
+  .section-link-to-all {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: 2px solid underline var(--lightBasic);
+    font-size: 1.2rem;
+    position: relative;
+    left: 82%;
+    transition: font-size 0.25s ease-out;
+  }
+
+  .section-link-to-all:hover {
+    font-size: 1.25rem;
+  }
+
+  /* Project styles */
+  .project-block {
+    height: 70vh;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2%;
   }
 </style>

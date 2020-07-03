@@ -1,0 +1,19 @@
+{
+  "name": "Free Code Camp Projects",
+  "images": [
+    "assets/images/projects/randomQuote.png",
+    "assets/images/projects/wikiViewer.jpg"
+  ],
+  "altText": [
+    "A blue background with a white textbox centered inside, which shows a quote from Ratatouille, with a twitter icon in the lower left and a new quote button on the lower right.",
+    "A title of Wiki-Search, with a text box to enter your search and a search button, a link to view a random article, and then a list of search results, each showing the title of the wiki article, a short description of the article, and a link to read the full article."
+  ],
+  "description": "Projects created while working through the Free Code Camp curriculum. Through these projects, I first experienced pulling data from API's & started learning more about styling and testing. During Hactoberfest in 2017 I also improved some of the documentation for Free Code Camp's weather API source.",
+  "tech": "HTML, CSS, JS",
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "",
+    "code": "https://codepen.io/collection/nRGemQ/"
+  }
+}

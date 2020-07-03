@@ -1,0 +1,18 @@
+{
+  "name": "Do I Own This?",
+  "images": [
+    "~assets/images/projects/doIOwnThis.png"
+  ],
+  "altText": [
+    "A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Finally, a link to add something new, and a grid view three across and multiple down showing photos of nail polishes with their name below them."
+  ],
+  "description": "Do I Own This is a personal nail polish inventory tracking site. It's meant to hold information about your collection, so while you're out at a store you can easily see if you already own a polish or not. I built this site to both help my future self, and learn Vue.",
+  "tech": "Vue, Firebase, CSS",
+  "multiPicType": "one",
+  "featured": true,
+  "links": {
+    "demo": "https://bit.ly/doIOwnThis",
+    "site": "https://doiownthis.netlify.app/",
+    "code": "https://github.com/lindakatcodes/doIOwnThis"
+  }
+}

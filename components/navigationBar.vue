@@ -20,8 +20,9 @@
   .navigation-container {
     position: sticky;
     top: 0;
-    height: 55px;
+    height: 50px;
     width: 100%;
+    z-index: 1;
   }
 
   .nav {
@@ -50,13 +51,13 @@
     border-bottom-color: transparent;
     text-decoration: none;
     color: var(--lightBasic);
-    transition: border-bottom-color 0.3s linear, font-size 0.3s linear, color 0.3s linear;
+    transition: border-bottom-color 0.2s linear, font-size 0.2s linear, color 0.2s linear;
     font-size: 1.1rem;
     font-family: var(--sansSerif);
   }
 
   .link:hover {
-    font-size: 1.15rem;
+    font-size: 1.125rem;
   }
 
   .home-link:hover {

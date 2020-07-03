@@ -1,0 +1,20 @@
+{
+  "name": "Complete Node Developer Course",
+  "images": [
+    "assets/images/projects/chatroom.png",
+    "assets/images/projects/cnd-weather.png"
+  ],
+  "altText": [
+    "A dark background sidebar on the left with the current room highlighted, which shows a list of users in the room. A chat section on the right, showing a few messages as well as a text box on the bottom to add messages, a send button, and a button to send your location.",
+    "Title of Super Cool Weather app on top of page, links for weather, about, and help, then a form input to add your zip code, a search button, and the results showing underneath."
+  ],
+  "description": "Projects created while working through the Complete Node Developer course on Udemy. I got a lot of practice writing Node during this course, as well as working with Express, MongoDB, Mongoose, Postman, Socket.io, and Heroku. There were a total of 4 projects, though only two had front ends created during the course.",
+  "tech": "Node, MongoDB, Express, JS, HTML, CSS",
+  "multiPicType": "wide",
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "",
+    "code": "https://github.com/lindakatcodes/node-course-files"
+  }
+}

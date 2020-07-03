@@ -1,0 +1,18 @@
+{
+  "name": "Restaurant Reviews",
+  "images": [
+    "assets/images/projects/restaurantReviews.png"
+  ],
+  "altText": [
+    "Filter bar on top with options for selecting neighborhoods or cuisines, showing three restaurant cards below, each with an image, favorite status, name, neighborhood, address, and a button to view more details"
+  ],
+  "description": "An application created during the Grow with Google / Udacity Mobile Web Specialist Nanodegree course. This site allows users to favorite a restaurant & add reviews, as well as filter by food type or location. During the course, each project built on top of the previous one, improving the site each time to ensure it was responsive to different screen sizes and caches the necessary information to work offline once a user has visited a page.",
+  "tech": "HTML, CSS, JS, Service Workers, IndexedDB / idb",
+  "multiPicType": "one",
+  "featured": true,
+  "links": {
+    "demo": "https://bit.ly/restaurantReviews",
+    "site": "https://mws-reviews-app-lt.netlify.com/",
+    "code": "https://github.com/lindakatcodes/mws-restaurant-project"
+  }
+}
