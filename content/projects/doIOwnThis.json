@@ -1,8 +1,6 @@
 {
   "name": "Do I Own This?",
-  "images": [
-    "doIOwnThis.png"
-  ],
+  "images": "/assets/images/projects/doIOwnThis.png",
   "altText": [
     "A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Finally, a link to add something new, and a grid view three across and multiple down showing photos of nail polishes with their name below them."
   ],

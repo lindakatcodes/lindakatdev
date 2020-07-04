@@ -1,8 +1,8 @@
 {
   "name": "Complete Node Developer Course",
   "images": [
-    "assets/images/projects/chatroom.png",
-    "assets/images/projects/cnd-weather.png"
+    "chatroom",
+    "cnd-weather"
   ],
   "altText": [
     "A dark background sidebar on the left with the current room highlighted, which shows a list of users in the room. A chat section on the right, showing a few messages as well as a text box on the bottom to add messages, a send button, and a button to send your location.",

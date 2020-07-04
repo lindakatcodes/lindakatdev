@@ -1,8 +1,8 @@
 {
   "name": "Free Code Camp Projects",
   "images": [
-    "assets/images/projects/randomQuote.png",
-    "assets/images/projects/wikiViewer.jpg"
+    "randomQuote",
+    "wikiViewer"
   ],
   "altText": [
     "A blue background with a white textbox centered inside, which shows a quote from Ratatouille, with a twitter icon in the lower left and a new quote button on the lower right.",

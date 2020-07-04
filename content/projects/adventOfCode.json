@@ -1,8 +1,8 @@
 {
   "name": "Advent of Code",
   "images": [
-    "assets/images/projects/AoC2017.png",
-    "assets/images/projects/AoC2016.png"
+    "AoC2017",
+    "AoC2016"
   ],
   "altText": [
     "Shows Santa's list of naughty and nice people on top, with the Easter Bunny heading the naughty list and my name leading the nice list. Underneath, the full advent calendar shows, which looks like a circuit board, with the day's number and two gold stars on the right hand side.",

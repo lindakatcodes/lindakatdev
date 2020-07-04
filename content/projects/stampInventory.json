@@ -1,7 +1,7 @@
 {
   "name": "Stamp Inventory",
   "images": [
-    "assets/images/projects/stampTracker.png"
+    "stampTracker"
   ],
   "altText": [
     "A data table with white background and black text, showing the name of each stamp part and it's current available quantity"
