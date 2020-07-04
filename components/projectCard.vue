@@ -1,7 +1,7 @@
 <template>
   <article class="project-wrapper">
     <div class="project-images">
-      <img v-for="(pic, index) in project.images" :key="index" :src="pic" :alt="project.altText[index]" />
+      <img v-for="(pic, index) in project.images" :key="index" :src="picUrl(pic)" :alt="project.altText[index]" />
     </div>
     <h3 class="project-title">{{ project.name }}</h3>
     <div class="project-tech">
@@ -26,6 +26,12 @@
     computed: {
       techList() {
         return this.project.tech.split(', ');
+      },
+    },
+    methods: {
+      picUrl(pic) {
+        const urlString = `~assets/${pic}`;
+        return urlString;
       },
     },
   };
