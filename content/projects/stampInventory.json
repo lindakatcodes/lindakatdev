@@ -6,7 +6,7 @@
   "altText": [
     "A data table with white background and black text, showing the name of each stamp part and it's current available quantity"
   ],
-  "description": "A site created to show the current inventory for self-inking stamp supplies. Using a Google Spreadsheet as the database, the user can use a form to update when supplies are used or received. If an item falls below the quantity threshold, the background of that box will turn red.",
+  "description": "A site created to show the current inventory for self-inking stamp supplies. Using a Google Spreadsheet as the database, the user can use a form to update when supplies are used or received.",
   "tech": "HTML, CSS, JS, Google Sheets API",
   "multiPicType": "one",
   "featured": false,

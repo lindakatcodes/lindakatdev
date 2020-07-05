@@ -10,6 +10,7 @@
   ],
   "description": "Projects created while working through the Free Code Camp curriculum. Through these projects, I first experienced pulling data from API's & started learning more about styling and testing. During Hactoberfest in 2017 I also improved some of the documentation for Free Code Camp's weather API source.",
   "tech": "HTML, CSS, JS",
+  "multiPicType": "wide",
   "featured": false,
   "links": {
     "demo": "",

@@ -1,7 +1,7 @@
 <template>
   <article class="project-wrapper">
-    <div class="project-images">
-      <img :src="imgSrc" :alt="project.altText[0]" />
+    <div class="project-images" :class="{ multiPic: project.multiPicType }">
+      <img v-for="(pic, index) in project.images" :key="index" :src="picUrl(pic)" :alt="project.altText[index]" />
     </div>
     <h3 class="project-title">{{ project.name }}</h3>
     <div class="project-tech">
@@ -31,6 +31,12 @@
         return this.project.tech.split(', ');
       },
     },
+    methods: {
+      picUrl(pic) {
+        // eslint-disable-next-line global-require, import/no-dynamic-require
+        return require(`@/assets/images/projects/${pic}.png`);
+      },
+    },
   };
 </script>
 
@@ -46,6 +52,7 @@
     border-radius: 8px;
     box-shadow: none;
     transition: box-shadow 0.3s, border 0.3s;
+    border: 2px solid green;
   }
 
   .project-wrapper:hover {
@@ -57,12 +64,58 @@
   }
 
   .project-images {
-    display: flex;
     width: 100%;
-    height: 35%;
+    height: 43%;
+    display: flex;
+    justify-content: center;
+    border: 2px solid purple;
   }
 
   .project-images img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: left top;
+    overflow: hidden;
+  }
+
+  .multiPic {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: var(--lightBasic) var(--darkBasic);
+    scrollbar-width: thin;
+  }
+
+  .multiPic::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .multiPic::-webkit-scrollbar-track {
+    background: var(--darkBasic);
+  }
+
+  .multiPic::-webkit-scrollbar-thumb {
+    background-color: var(--lightBasic);
+  }
+
+  .multiPic img {
+    scroll-snap-align: start;
+    width: 25vw;
+    flex-shrink: 0;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    margin-left: 0;
+    margin-right: 3%;
+  }
+
+  .multiPic img:nth-last-child() {
+    margin-left: 3%;
+    margin-right: 0;
   }
 
   .project-title {
@@ -72,10 +125,11 @@
 
   .project-tech {
     width: 100%;
+    height: 7%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
     font-size: 0.7rem;
     text-transform: uppercase;
   }
@@ -98,7 +152,8 @@
   }
 
   .project-description {
-    margin-top: 1.5%;
+    margin-top: 1%;
+    padding-left: 4.5%;
     color: var(--lightBasic);
     font-size: 0.9rem;
     width: 100%;
@@ -116,7 +171,7 @@
   .project-links a {
     text-decoration: none;
     border-radius: 5px;
-    padding: 0.5% 1.5%;
+    padding: 0.5% 2%;
     margin: 0 3%;
     color: var(--lightBasic);
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out;

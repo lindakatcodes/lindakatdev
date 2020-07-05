@@ -1,13 +1,16 @@
 {
   "name": "Daily CSS Images",
-  "images": "./assets/images/projects/cssHobbes.png",
+  "images": [
+    "cssHobbes",
+    "cssElephant"
+  ],
   "altText": [
     "Hobbes the Tiger, from the comic strip Calvin and Hobbes, drawn with HTML and CSS.",
     "A front facing view of a grey elephant, drawn with HTML and CSS."
   ],
   "description": "Images created using CSS, following prompts from a daily email. Through working on these drawings, I started to learn more about positioning items with CSS, as well as flexing the creative side of my mind.",
   "tech": "HTML, CSS",
-  "multiPicType": "tall",
+  "multiPicType": true,
   "featured": true,
   "links": {
     "demo": "https://bit.ly/dailyCSS",
