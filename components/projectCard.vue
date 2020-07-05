@@ -1,7 +1,7 @@
 <template>
   <article class="project-wrapper">
     <div class="project-images">
-      <img :src="`${project.images}`" :alt="project.altText[0]" />
+      <img :src="imgSrc" :alt="project.altText[0]" />
     </div>
     <h3 class="project-title">{{ project.name }}</h3>
     <div class="project-tech">
@@ -21,6 +21,9 @@
     props: {
       project: {
         type: Object,
+      },
+      imgSrc: {
+        type: String,
       },
     },
     computed: {

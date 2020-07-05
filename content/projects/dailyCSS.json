@@ -1,6 +1,6 @@
 {
   "name": "Daily CSS Images",
-  "images": "/assets/images/projects/cssHobbes.png",
+  "images": "./assets/images/projects/cssHobbes.png",
   "altText": [
     "Hobbes the Tiger, from the comic strip Calvin and Hobbes, drawn with HTML and CSS.",
     "A front facing view of a grey elephant, drawn with HTML and CSS."

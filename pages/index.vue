@@ -19,7 +19,7 @@
       <h2 class="section-title">Featured Projects</h2>
       <div class="title-divider"></div>
       <div class="project-block">
-        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project"></ProjectCard>
+        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" :img-src="project.images"></ProjectCard>
       </div>
       <nuxt-link to="/projects.vue" class="section-link-to-all">See All Projects</nuxt-link>
     </section>
