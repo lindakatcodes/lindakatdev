@@ -1,13 +1,13 @@
 <template>
   <div class="navigation-container">
-    <div class="nav">
+    <nav class="nav">
       <nuxt-link to="/" class="home-link link">HOME</nuxt-link>
       <span class="divider"></span>
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
       <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
       <nuxt-link to="/contact" class="link contact-link">CONTACT</nuxt-link>
-    </div>
+    </nav>
     <div class="underline"></div>
   </div>
 </template>
@@ -51,13 +51,11 @@
     border-bottom-color: transparent;
     text-decoration: none;
     color: var(--lightBasic);
-    transition: border-bottom-color 0.2s linear, font-size 0.2s linear, color 0.2s linear;
+    transition: border-bottom-color 0.2s linear, color 0.2s linear;
     font-size: 1.1rem;
     font-family: var(--sansSerif);
-  }
-
-  .link:hover {
-    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.75px;
   }
 
   .home-link:hover {

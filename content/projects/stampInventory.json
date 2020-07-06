@@ -8,7 +8,7 @@
   ],
   "description": "A site created to show the current inventory for self-inking stamp supplies. Using a Google Spreadsheet as the database, the user can use a form to update when supplies are used or received.",
   "tech": "HTML, CSS, JS, Google Sheets API",
-  "multiPicType": "one",
+  "multiPicType": false,
   "featured": false,
   "links": {
     "demo": "https://bit.ly/stampTracker",

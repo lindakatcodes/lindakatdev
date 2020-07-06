@@ -8,10 +8,10 @@
       <hr class="intro-divider" />
       <div class="intro-icons">
         <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub">
-          <img src="~assets/icons/github-square.svg" alt="Link to Linda's GitHub page" class="gh-icon" />
+          <img src="~assets/icons/github-square.svg" alt="GitHub icon" class="gh-icon" />
         </a>
         <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="Twitter">
-          <img src="~assets/icons/twitter-square.svg" alt="Link to Linda's Twitter account" class="tw-icon" />
+          <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
         </a>
       </div>
     </section>
@@ -19,9 +19,17 @@
       <h2 class="section-title">Featured Projects</h2>
       <div class="title-divider"></div>
       <div class="project-block">
-        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" :img-src="project.images"></ProjectCard>
+        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project"></ProjectCard>
       </div>
       <nuxt-link to="/projects.vue" class="section-link-to-all">See All Projects</nuxt-link>
+    </section>
+    <section class="recent-writing">
+      <h2 class="section-title">Recent Writings</h2>
+      <div class="title-divider"></div>
+      <div class="writing-block">
+        <BlogPostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post"></BlogPostBlurb>
+      </div>
+      <nuxt-link to="/writing.vue" class="section-link-to-all">See All Posts</nuxt-link>
     </section>
   </div>
 </template>
@@ -30,10 +38,12 @@
   export default {
     async fetch() {
       this.projects = await this.$content('projects').where({ featured: true }).fetch();
+      this.blogposts = await this.$content('blogPosts').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'asc').limit(8).fetch();
     },
     data() {
       return {
         projects: [],
+        blogposts: [],
       };
     },
   };
@@ -102,14 +112,14 @@
 
   /* General section styles - applies to all sections */
   section {
-    border-bottom: 3px solid var(--lightBasic);
+    /* border-bottom: 3px solid var(--lightBasic); */
     margin: 2% 0;
     position: relative;
   }
 
   .section-title {
     text-align: center;
-    font-family: var(--sansSerif);
+    font-family: var(--serif);
     color: var(--lightBasic);
     font-size: 2.5rem;
   }
@@ -118,7 +128,7 @@
     height: 4px;
     width: 25%;
     background: var(--lightGradient);
-    margin: 0.25% auto 1%;
+    margin: 0.25% auto 2%;
   }
 
   .section-link-to-all {
@@ -128,7 +138,7 @@
     text-decoration: 2px solid underline var(--lightBasic);
     font-size: 1.2rem;
     position: relative;
-    left: 82%;
+    left: 80%;
     transition: font-size 0.25s ease-out;
   }
 
@@ -138,11 +148,21 @@
 
   /* Project styles */
   .project-block {
-    height: 70vh;
-    display: flex;
+    height: 78vh;
+    width: 98%;
+    margin: 0 auto 1%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    grid-gap: 2%;
+    /* display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
-    align-items: center;
-    margin-bottom: 2%;
+    align-items: center; */
+  }
+
+  /* Writing styles */
+  .writing-block {
+    margin: 0 auto 1%;
+    width: 60%;
   }
 </style>

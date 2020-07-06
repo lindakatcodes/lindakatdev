@@ -10,7 +10,7 @@
   ],
   "description": "Advent of Code is a daily puzzle game that happens every December. Each year, there's some problems that deal with mapping, sorting, or searching problem sets, and each year's map creates a different picture. The puzzles are always challenging and feel so good to complete!",
   "tech": "JS",
-  "multiPicType": "tall",
+  "multiPicType": true,
   "featured": false,
   "links": {
     "demo": "",

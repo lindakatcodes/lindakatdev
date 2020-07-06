@@ -6,7 +6,7 @@
   "altText": [
     "Filter bar on top with options for selecting neighborhoods or cuisines, showing three restaurant cards below, each with an image, favorite status, name, neighborhood, address, and a button to view more details"
   ],
-  "description": "An application created during the Grow with Google / Udacity Mobile Web Specialist Nanodegree course. This site allows users to favorite a restaurant & add reviews, as well as filter by food type or location. Accessibility, responsiveness & offline capabilities were the main focus!",
+  "description": "Created during the Udacity Mobile Web Specialist Nanodegree course, this site allows users to favorite a restaurant & add reviews, as well as filter by food type or location. Accessibility, responsiveness & offline capabilities were the main focus!",
   "tech": "HTML, CSS, JS, Service Workers, IndexedDB / idb",
   "multiPicType": false,
   "featured": true,

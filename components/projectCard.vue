@@ -22,9 +22,6 @@
       project: {
         type: Object,
       },
-      imgSrc: {
-        type: String,
-      },
     },
     computed: {
       techList() {
@@ -46,29 +43,23 @@
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    width: 32%;
-    height: 100%;
-    padding: 0.5% 1.5%;
+    width: 99%;
+    height: 53%;
+    padding: 1% 1.5%;
     border-radius: 8px;
     box-shadow: none;
     transition: box-shadow 0.3s, border 0.3s;
-    border: 2px solid green;
   }
 
   .project-wrapper:hover {
-    box-shadow: 0 1px 4px -1px var(--lightPink), 0 2px 5px 0 var(--lightPink), 0 1px 7px 0 var(--lightPink);
-  }
-
-  .project-wrapper:hover:nth-child(even) {
-    box-shadow: 0 1px 4px -1px var(--lightBlue), 0 2px 5px 0 var(--lightBlue), 0 1px 7px 0 var(--lightBlue);
+    box-shadow: 0 1px 4px -1px hsla(195, 20%, 96%, 0.35), 0 2px 5px 0 hsla(195, 20%, 96%, 0.35), 0 1px 7px 0 hsla(195, 20%, 96%, 0.35);
   }
 
   .project-images {
     width: 100%;
-    height: 43%;
+    height: 50%;
     display: flex;
     justify-content: center;
-    border: 2px solid purple;
   }
 
   .project-images img {
@@ -102,8 +93,7 @@
   }
 
   .multiPic img {
-    scroll-snap-align: start;
-    width: 25vw;
+    width: 30vw;
     flex-shrink: 0;
     transform-origin: center center;
     transform: scale(1);
@@ -125,13 +115,15 @@
 
   .project-tech {
     width: 100%;
-    height: 7%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     font-size: 0.7rem;
     text-transform: uppercase;
+    font-family: var(--sansSerif);
+    font-weight: 600;
+    letter-spacing: 0.75px;
   }
 
   .project-tech p {
@@ -153,11 +145,14 @@
 
   .project-description {
     margin-top: 1%;
-    padding-left: 4.5%;
+    padding-left: 2%;
     color: var(--lightBasic);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     width: 100%;
     font-family: var(--sansSerif);
+    letter-spacing: 0.5px;
+    font-weight: 300;
+    line-height: 1rem;
   }
 
   .project-links {
@@ -171,7 +166,7 @@
   .project-links a {
     text-decoration: none;
     border-radius: 5px;
-    padding: 0.5% 2%;
+    padding: 0 2% 1%;
     margin: 0 3%;
     color: var(--lightBasic);
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
