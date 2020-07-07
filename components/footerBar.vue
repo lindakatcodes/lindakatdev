@@ -4,9 +4,7 @@
     <footer class="footer">
       <h2 class="footer-title">Get in Touch!</h2>
       <hr class="title-divider" />
-      <p class="email">
-        You can reach me directly by email: <button type="button" class="email-copy-btn" @click="copyEmail">hello@lindakat.com</button>
-      </p>
+      <p class="email">You can reach me directly by email: <span class="email-copy-action" @click="copyEmail">hello@lindakat.com</span></p>
       <div class="footer-icons">
         <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub" class="gh-icon">
           <figure>
@@ -32,7 +30,7 @@
         <!-- eslint-disable-next-line prettier/prettier -->
         <a href="https://drive.google.com/open?id=1uKiEzc3-9yPJ_2qEVh44E4dPCl7eps7T" rel="noreferrer" target="_blank" tooltip="resume" class="res-icon">
           <figure>
-            <img src="~assets/icons/file-pdf.svg" alt="PDF icon" />
+            <img src="~assets/icons/google-drive.svg" alt="Google Drive icon" />
             <figcaption class="caption">Resume</figcaption>
           </figure>
         </a>
@@ -51,7 +49,16 @@
 <script>
   export default {
     methods: {
-      copyEmail() {},
+      copyEmail() {
+        navigator.clipboard.writeText('hello@lindakat.com').then(
+          () => {
+            console.log('Successfully copied text!');
+          },
+          () => {
+            console.error('Sorry, could not copy text');
+          }
+        );
+      },
     },
   };
 </script>
@@ -82,7 +89,7 @@
     font-family: var(--sansSerif);
   }
 
-  .email-copy-btn {
+  .email-copy-action {
     color: var(--lightBasic);
     background: none;
     border: none;
@@ -92,7 +99,7 @@
     font-size: 1rem;
   }
 
-  .email-copy-btn:hover {
+  .email-copy-action:hover {
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -103,7 +110,7 @@
     width: 50%;
     margin: 1.5% auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     /* border: 2px solid green; */
   }

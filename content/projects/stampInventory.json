@@ -12,7 +12,7 @@
   "featured": false,
   "links": {
     "demo": "https://bit.ly/stampTracker",
-    "site": "",
+    "site": "https://stampTracker.netlify.app",
     "code": "https://github.com/lindakatcodes/StampInventory"
   }
 }

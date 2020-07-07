@@ -44,7 +44,6 @@
     justify-content: space-between;
     align-items: center;
     width: 99%;
-    height: 53%;
     padding: 1% 1.5%;
     border-radius: 8px;
     box-shadow: none;
@@ -63,10 +62,10 @@
   }
 
   .project-images img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     object-fit: cover;
-    object-position: left top;
+    object-position: center top;
     overflow: hidden;
   }
 
