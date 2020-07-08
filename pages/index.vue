@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <main class="container">
     <section class="intro">
       <h1 class="intro-name">Linda Thompson</h1>
       <p class="intro-subtitle">
@@ -21,7 +21,7 @@
       <div class="project-block">
         <ProjectCard v-for="(project, index) in projects" :key="index" :project="project"></ProjectCard>
       </div>
-      <nuxt-link to="/projects.vue" class="section-link-to-all">See All Projects</nuxt-link>
+      <nuxt-link to="/projects" class="section-link-to-all">See All Projects</nuxt-link>
     </section>
     <section class="recent-writing">
       <h2 class="section-title">Recent Writings</h2>
@@ -29,15 +29,15 @@
       <div class="writing-block">
         <BlogPostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post"></BlogPostBlurb>
       </div>
-      <nuxt-link to="/writing.vue" class="section-link-to-all">See All Posts</nuxt-link>
+      <nuxt-link to="/writing" class="section-link-to-all">See All Posts</nuxt-link>
     </section>
-  </div>
+  </main>
 </template>
 
 <script>
   export default {
     async fetch() {
-      this.projects = await this.$content('projects').where({ featured: true }).fetch();
+      this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
       this.blogposts = await this.$content('blogPosts').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'asc').limit(8).fetch();
     },
     data() {
@@ -142,22 +142,14 @@
     transition: font-size 0.25s ease-out;
   }
 
-  .section-link-to-all:hover {
-    font-size: 1.25rem;
-  }
-
   /* Project styles */
   .project-block {
     height: 78vh;
     width: 98%;
     margin: 0 auto 1%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
     grid-gap: 2%;
-    /* display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center; */
   }
 
   /* Writing styles */

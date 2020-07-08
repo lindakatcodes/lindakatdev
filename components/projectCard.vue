@@ -43,7 +43,8 @@
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    width: 99%;
+    width: 98%;
+    height: 100%;
     padding: 1% 1.5%;
     border-radius: 8px;
     box-shadow: none;

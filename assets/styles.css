@@ -16,3 +16,17 @@
   --lightGradient: linear-gradient(62.28deg, var(--lightPurple) 0%, var(--lightBlue) 33.44%, var(--lightYellow) 68.33%, var(--lightPink) 100%);
   --darkGradient: linear-gradient(62.28deg, var(--darkPurple) 0%, var(--darkBlue) 33.44%, var(--darkYellow) 68.33%, var(--darkPink) 100%);  
 }
+
+.tippy-tooltip {
+  background-color: var(--darkBasic);
+  color: var(--lightBasic);
+  font-family: var(--sansSerif);
+  font-size: 0.7rem;
+  padding: .2125rem .4625rem;
+  border: 1px solid var(--lightPurple);
+}
+
+.tippy-popper .tippy-tooltip .tippy-arrow {
+  border-top: 8px solid var(--lightPurple);
+  bottom: -8px;
+}

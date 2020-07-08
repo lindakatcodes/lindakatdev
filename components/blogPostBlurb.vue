@@ -21,7 +21,7 @@
   .blurb-container {
     /* border: 2px solid purple; */
     margin-bottom: 2%;
-    padding-left: 1%;
+    padding: 0 2%;
   }
 
   .blurb-container:nth-last-child() {
@@ -34,6 +34,7 @@
     border-bottom: 1.5px solid;
     border-bottom-color: var(--lightPurple);
     transition: color 0.3s;
+    font-size: 1.2rem;
   }
 
   .post-title:hover {
@@ -66,7 +67,7 @@
 
   .post-blurb {
     font-family: var(--sansSerif);
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: var(--lightBasic);
     margin-left: 1%;
     margin-top: 1%;

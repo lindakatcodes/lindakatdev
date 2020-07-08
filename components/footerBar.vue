@@ -4,7 +4,13 @@
     <footer class="footer">
       <h2 class="footer-title">Get in Touch!</h2>
       <hr class="title-divider" />
-      <p class="email">You can reach me directly by email: <span class="email-copy-action" @click="copyEmail">hello@lindakat.com</span></p>
+
+      <tippy to="email-copy" content="Click to copy!" multiple></tippy>
+      <tippy to="email-copy" content="Email copied!" trigger="click" multiple></tippy>
+
+      <p class="email">
+        You can reach me directly by email: <span name="email-copy" class="email-copy-action" @click="copyEmail">hello@lindakat.com</span>
+      </p>
       <div class="footer-icons">
         <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub" class="gh-icon">
           <figure>
