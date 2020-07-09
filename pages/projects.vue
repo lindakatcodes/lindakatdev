@@ -42,7 +42,7 @@
   }
 
   .projects-wrapper {
-    width: 98%;
+    width: 95%;
     margin: 2% auto;
     padding: 2% 1% 5%;
     display: grid;

@@ -87,6 +87,7 @@
     background: var(--lightGradient);
     height: 4px;
     width: 12%;
+    margin: 0 auto 1%;
   }
 
   .email {

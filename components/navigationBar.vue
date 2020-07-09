@@ -1,12 +1,11 @@
 <template>
   <div class="navigation-container">
     <nav class="nav">
-      <nuxt-link to="/" class="home-link link">HOME</nuxt-link>
+      <nuxt-link to="/" class="home-link link"><img src="/logo72.png" class="home-icon" /></nuxt-link>
       <span class="divider"></span>
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
       <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
-      <nuxt-link to="/contact" class="link contact-link">CONTACT</nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>
@@ -58,9 +57,10 @@
     letter-spacing: 0.75px;
   }
 
-  .home-link:hover {
-    border-bottom-color: var(--lightGreen);
-    color: var(--lightGreen);
+  .home-link {
+    position: sticky;
+    top: 6px;
+    margin-left: 1%;
   }
 
   .projects-link:hover {

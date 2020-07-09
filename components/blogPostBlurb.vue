@@ -69,7 +69,7 @@
     font-family: var(--sansSerif);
     font-size: 1rem;
     color: var(--lightBasic);
-    margin-left: 1%;
+    margin-left: 2%;
     margin-top: 1%;
   }
 </style>

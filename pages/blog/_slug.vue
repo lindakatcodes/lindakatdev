@@ -1,15 +1,17 @@
 <template>
   <div class="container">
-    <nuxt-link to="/writing" class="back">Back to All Posts</nuxt-link>
+    <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
     <article class="full-post">
       <h1 class="title">{{ post.title }}</h1>
       <div class="tag-container">
         <p v-for="tag in post.tags" :key="tag">{{ tag }}</p>
       </div>
-      <nuxt-content :document="post"></nuxt-content>
-      <nuxt-link v-if="prev" to="{ name: 'blog-slug', params: { slug: prev.slug} ">{{ prev.title }}</nuxt-link>
-      <nuxt-link v-if="next" to="{ name: 'blog-slug', params: { slug: next.slug} ">{{ next.title }}</nuxt-link>
+      <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
+    <div class="prev-next">
+      <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
+      <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug } }" class="navigate next">{{ next.title }} →</nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -27,4 +29,129 @@
   };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .container {
+    max-width: 720px;
+    margin: 2% auto;
+  }
+
+  .navigate {
+    color: var(--lightBlue);
+    text-decoration: 2px solid underline var(--lightBasic);
+    font-family: var(--sansSerif);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .navigate:hover {
+    color: var(--lightPink);
+  }
+
+  .full-post {
+    padding: 3%;
+  }
+
+  .title {
+    width: 85%;
+    color: var(--lightBasic);
+    text-align: center;
+    font-size: 2.25rem;
+    padding-bottom: 0.5rem;
+    margin: 0 auto 3%;
+    border: 4px solid;
+    border-image-source: var(--lightGradient);
+    border-image-slice: 0 0 4 0;
+  }
+
+  .tag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4%;
+  }
+
+  .tag-container p {
+    padding: 0.5% 1%;
+    margin: 0 1.5%;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-family: var(--sansSerif);
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    background: var(--lightPurple);
+    color: var(--darkBasic);
+    border-radius: 5px;
+  }
+
+  .tag-container p:nth-child(2n) {
+    background: var(--lightBlue);
+  }
+
+  .tag-container p:nth-child(3n) {
+    background: var(--lightYellow);
+  }
+
+  .tag-container p:nth-child(4n) {
+    background: var(--lightPink);
+  }
+
+  .content {
+    line-height: 1.5;
+    color: var(--lightBasic);
+    font-family: var(--sansSerif);
+  }
+
+  .content hr {
+    width: 60%;
+    height: 4px;
+    border: 0;
+    background: var(--lightGradient);
+  }
+
+  .content p {
+    margin-bottom: 1.5%;
+  }
+
+  .content h1,
+  .content h2 {
+    font-family: var(--serif);
+    color: var(--lightYellow);
+  }
+
+  .content h3,
+  .content h4,
+  .content h5,
+  .content h6 {
+    font-family: var(--serif);
+    color: var(--lightGreen);
+  }
+
+  .content a {
+    color: var(--lightPurple);
+    text-decoration: 1px solid var(--lightYellow);
+  }
+
+  .content a:hover {
+    color: var(--lightGreen);
+  }
+
+  .prev-next {
+    padding: 0 2%;
+    display: grid;
+    grid-template-areas: 'prev next';
+    grid-template-columns: 1fr 1fr;
+    gap: 4%;
+    justify-content: space-between;
+    align-items: space-between;
+  }
+
+  .prev {
+    grid-area: prev;
+    text-align: left;
+  }
+
+  .next {
+    grid-area: next;
+    text-align: right;
+  }
+</style>

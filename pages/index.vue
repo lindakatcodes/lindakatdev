@@ -3,7 +3,7 @@
     <section class="intro">
       <h1 class="intro-name">Linda Thompson</h1>
       <p class="intro-subtitle">
-        Lover of all things JavaScript • Data • Design
+        Web Dev • JavaScript • Data • Design
       </p>
       <hr class="intro-divider" />
       <div class="intro-icons">
@@ -49,7 +49,7 @@
   };
 </script>
 
-<style>
+<style scoped>
   .container {
     margin: 0 auto;
     min-height: 100vh;
@@ -60,7 +60,7 @@
 
   .intro {
     width: 100%;
-    height: 80vh;
+    height: 85vh;
     margin-top: 25px;
     display: flex;
     flex-flow: column;
@@ -85,7 +85,7 @@
   .intro-divider {
     background: var(--lightBasic);
     height: 4px;
-    width: 30%;
+    width: 28%;
     margin-top: 2%;
   }
 
@@ -113,7 +113,7 @@
   /* General section styles - applies to all sections */
   section {
     /* border-bottom: 3px solid var(--lightBasic); */
-    margin: 2% 0;
+    margin: 2% 0 3%;
     position: relative;
   }
 
@@ -136,17 +136,21 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-decoration: 2px solid underline var(--lightBasic);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     position: relative;
-    left: 80%;
-    transition: font-size 0.25s ease-out;
+    left: 44%;
+  }
+
+  .section-link-to-all:hover {
+    text-decoration-color: var(--lightPink);
+    text-decoration-style: double;
   }
 
   /* Project styles */
   .project-block {
     height: 78vh;
-    width: 98%;
-    margin: 0 auto 1%;
+    width: 90%;
+    margin: 0 auto 2%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
     grid-gap: 2%;
@@ -154,7 +158,7 @@
 
   /* Writing styles */
   .writing-block {
-    margin: 0 auto 1%;
+    margin: 0 auto 2%;
     width: 60%;
   }
 </style>

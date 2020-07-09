@@ -21,14 +21,14 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Fira+Sans&family=Bree+Serif&display=swap' },
     ],
   },
   /*
    ** Global CSS
    */
-  css: ['@/assets/styles.css'],
+  css: ['@/assets/css/styles.css'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -59,9 +59,8 @@ export default {
    */
   content: {
     markdown: {
-      rehypePlugins: [['rehype-shiki', { theme: './static/overnight-slumber-italic.json' }]],
       prism: {
-        theme: false,
+        theme: '@/assets/css/prism-theme.css',
       },
     },
   },
