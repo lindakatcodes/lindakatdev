@@ -148,7 +148,7 @@
 
   /* Project styles */
   .project-block {
-    height: 78vh;
+    /* height: 78vh; */
     width: 90%;
     margin: 0 auto 2%;
     display: grid;
