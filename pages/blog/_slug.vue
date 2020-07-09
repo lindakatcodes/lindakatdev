@@ -106,6 +106,7 @@
     height: 4px;
     border: 0;
     background: var(--lightGradient);
+    margin: 0 auto 1.5%;
   }
 
   .content p {
@@ -133,6 +134,11 @@
 
   .content a:hover {
     color: var(--lightGreen);
+  }
+
+  .nuxt-content-highlight {
+    margin-bottom: 1.5%;
+    width: 98%;
   }
 
   .prev-next {

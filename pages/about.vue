@@ -144,7 +144,7 @@
     width: 100%;
     height: 85%;
     border-radius: 10%;
-    border: 2px solid yellow;
+    border: 2px solid var(--lightYellow);
     object-fit: cover;
     object-position: right top;
   }
