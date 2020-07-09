@@ -106,7 +106,7 @@
     height: 4px;
     border: 0;
     background: var(--lightGradient);
-    margin: 0 auto 1.5%;
+    margin: 2.5% auto;
   }
 
   .content p {
@@ -137,7 +137,7 @@
   }
 
   .nuxt-content-highlight {
-    margin-bottom: 1.5%;
+    margin: 2.5% 0;
     width: 98%;
   }
 
