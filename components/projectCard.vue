@@ -198,4 +198,32 @@
     background: var(--lightGreen);
     color: var(--darkBasic);
   }
+
+  @media screen and (max-width: 768px) {
+    .project-wrapper {
+      padding: 2% 1.5% 6%;
+    }
+
+    .multiPic {
+      justify-content: center;
+    }
+
+    .multiPic img {
+      width: 40vw;
+    }
+
+    .project-title {
+      margin-top: 2%;
+      font-size: 1.65rem;
+    }
+
+    .project-tech {
+      font-size: 0.85rem;
+    }
+
+    .project-description {
+      font-size: 0.875rem;
+      padding-bottom: 2%;
+    }
+  }
 </style>

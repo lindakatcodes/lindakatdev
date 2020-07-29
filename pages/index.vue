@@ -3,7 +3,7 @@
     <section class="intro">
       <h1 class="intro-name">Linda Thompson</h1>
       <p class="intro-subtitle">
-        Web Dev • JavaScript • Data • Design
+        Web Developer creating with empathy, enthusiasm, & love for details
       </p>
       <hr class="intro-divider" />
       <div class="intro-icons">
@@ -21,7 +21,9 @@
       <div class="project-block">
         <ProjectCard v-for="(project, index) in projects" :key="index" :project="project"></ProjectCard>
       </div>
-      <nuxt-link to="/projects" class="section-link-to-all">See All Projects</nuxt-link>
+      <div class="section-link-to-all">
+        <nuxt-link to="/projects">See All Projects</nuxt-link>
+      </div>
     </section>
     <section class="recent-writing">
       <h2 class="section-title">Recent Writings</h2>
@@ -29,7 +31,9 @@
       <div class="writing-block">
         <BlogPostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post"></BlogPostBlurb>
       </div>
-      <nuxt-link to="/writing" class="section-link-to-all">See All Posts</nuxt-link>
+      <div class="section-link-to-all">
+        <nuxt-link to="/writing">See All Posts</nuxt-link>
+      </div>
     </section>
   </main>
 </template>
@@ -132,13 +136,16 @@
   }
 
   .section-link-to-all {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-link-to-all a {
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-decoration: 2px solid underline var(--lightBasic);
     font-size: 1.4rem;
-    position: relative;
-    left: 44%;
   }
 
   .section-link-to-all:hover {
@@ -160,5 +167,58 @@
   .writing-block {
     margin: 0 auto 2%;
     width: 60%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .intro-name {
+      font-size: 3.5rem;
+      text-align: center;
+      line-height: 3.5rem;
+    }
+
+    .intro-subtitle {
+      margin-top: 5%;
+      width: 93%;
+    }
+
+    .intro-divider {
+      width: 67%;
+      margin-top: 5%;
+    }
+
+    .intro-icons {
+      width: 50%;
+    }
+
+    .intro-icons img {
+      width: 32vw;
+    }
+
+    section {
+      margin-bottom: 4.5%;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .title-divider {
+      width: 65%;
+      margin: 2% auto 4%;
+    }
+
+    .section-link-to-all {
+      font-size: 1.2rem;
+      left: 29%;
+    }
+
+    .project-block {
+      grid-row-gap: 0;
+      margin-bottom: 3.5%;
+    }
+
+    .writing-block {
+      width: 90%;
+    }
   }
 </style>

@@ -42,7 +42,7 @@
   }
 
   .projects-wrapper {
-    width: 95%;
+    width: 95vw;
     margin: 2% auto;
     padding: 2% 1% 5%;
     display: grid;
@@ -53,5 +53,24 @@
 
   .card:last-child:nth-child(3n - 2) {
     grid-column: 2;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      margin-top: 4%;
+    }
+
+    .title {
+      font-size: 2.15rem;
+    }
+
+    .divider {
+      width: 70%;
+      margin: 1% auto 4%;
+    }
+
+    .projects-wrapper {
+      grid-row-gap: 0;
+    }
   }
 </style>

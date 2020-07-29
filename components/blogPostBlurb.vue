@@ -72,4 +72,15 @@
     margin-left: 2%;
     margin-top: 1%;
   }
+
+  @media screen and (max-width: 768px) {
+    .blurb-container {
+      margin-bottom: 4%;
+    }
+
+    .post-blurb {
+      margin-left: 3.5%;
+      margin-top: 2%;
+    }
+  }
 </style>

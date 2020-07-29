@@ -1,8 +1,8 @@
 <template>
   <div class="navigation-container">
     <nav class="nav">
-      <nuxt-link to="/" class="home-link link"><img src="/logo72.png" class="home-icon" /></nuxt-link>
-      <span class="divider"></span>
+      <nuxt-link to="/" class="home-link link"><img :srcset="srcset" :sizes="sizes" class="home-icon" /></nuxt-link>
+      <span v-if="fullSize" class="divider"></span>
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
       <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
@@ -12,7 +12,22 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    data() {
+      return {
+        srcset: '/logo72.png 72w, /logo48.png 48w',
+        sizes: '(max-width: 768px) 48px, 72px',
+      };
+    },
+    computed: {
+      fullSize() {
+        if (window.innerWidth < 768) {
+          return false;
+        }
+        return true;
+      },
+    },
+  };
 </script>
 
 <style scoped>
@@ -63,23 +78,18 @@
     margin-left: 1%;
   }
 
-  .projects-link:hover {
+  .projects-link:hover .projects-link:focus {
     border-bottom-color: var(--lightPurple);
     color: var(--lightPurple);
   }
 
-  .writing-link:hover {
+  .writing-link:hover .writing-link:focus {
     border-bottom-color: var(--lightBlue);
     color: var(--lightBlue);
   }
 
-  .about-link:hover {
+  .about-link:hover .about-link:focus {
     border-bottom-color: var(--lightYellow);
     color: var(--lightYellow);
-  }
-
-  .contact-link:hover {
-    border-bottom-color: var(--lightPink);
-    color: var(--lightPink);
   }
 </style>

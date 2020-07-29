@@ -12,38 +12,38 @@
         You can reach me directly by email: <span name="email-copy" class="email-copy-action" @click="copyEmail">hello@lindakat.com</span>
       </p>
       <div class="footer-icons">
-        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub" class="gh-icon">
+        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub" class="gh">
           <figure>
-            <img src="~assets/icons/github-square.svg" alt="GitHub icon" />
+            <img src="~assets/icons/github-square.svg" alt="GitHub icon" class="gh-icon" />
             <figcaption class="caption">GitHub</figcaption>
           </figure>
         </a>
 
-        <a href="https://dev.to/lindakatcodes" target="_blank" rel="noreferrer" tooltip="blog" class="dev-icon">
+        <a href="https://dev.to/lindakatcodes" target="_blank" rel="noreferrer" tooltip="blog" class="dev">
           <figure>
-            <img src="~assets/icons/dev.svg" alt="Dev.to icon" />
+            <img src="~assets/icons/dev.svg" alt="Dev.to icon" class="dev-icon" />
             <figcaption class="caption">Dev.To</figcaption>
           </figure>
         </a>
 
-        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="Twitter" class="tw-icon">
+        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="Twitter" class="tw">
           <figure>
-            <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" />
+            <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
             <figcaption class="caption">Twitter</figcaption>
           </figure>
         </a>
 
         <!-- eslint-disable-next-line prettier/prettier -->
-        <a href="https://drive.google.com/open?id=1uKiEzc3-9yPJ_2qEVh44E4dPCl7eps7T" rel="noreferrer" target="_blank" tooltip="resume" class="res-icon">
+        <a href="https://drive.google.com/open?id=1uKiEzc3-9yPJ_2qEVh44E4dPCl7eps7T" rel="noreferrer" target="_blank" tooltip="resume" class="res">
           <figure>
-            <img src="~assets/icons/google-drive.svg" alt="Google Drive icon" />
+            <img src="~assets/icons/google-drive.svg" alt="Google Drive icon" class="res-icon" />
             <figcaption class="caption">Resume</figcaption>
           </figure>
         </a>
 
-        <a href="https://www.linkedin.com/in/linda-thompson-10534847" target="_blank" rel="noreferrer" tooltip="LinkedIn" class="li-icon">
+        <a href="https://www.linkedin.com/in/linda-thompson-10534847" target="_blank" rel="noreferrer" tooltip="LinkedIn" class="li">
           <figure>
-            <img src="~assets/icons/linkedin.svg" alt="LinkedIn icon" />
+            <img src="~assets/icons/linkedin.svg" alt="LinkedIn icon" class="li-icon" />
             <figcaption class="caption">LinkedIn</figcaption>
           </figure>
         </a>
@@ -149,7 +149,7 @@
     filter: url('~assets/icons/github-square.svg#gh-hover-color');
   }
 
-  .gh-icon:hover .caption {
+  .gh:hover .caption {
     color: var(--lightGreen);
   }
 
@@ -157,7 +157,7 @@
     filter: url('~assets/icons/twitter-square.svg#tw-hover-color');
   }
 
-  .tw-icon:hover .caption {
+  .tw:hover .caption {
     color: var(--lightBlue);
   }
 
@@ -165,7 +165,7 @@
     filter: url('~assets/icons/dev.svg#dev-hover-color');
   }
 
-  .dev-icon:hover .caption {
+  .dev:hover .caption {
     color: var(--lightPurple);
   }
 
@@ -173,7 +173,7 @@
     filter: url('~assets/icons/linkedin.svg#li-hover-color');
   }
 
-  .li-icon:hover .caption {
+  .li:hover .caption {
     color: var(--lightPink);
   }
 
@@ -181,7 +181,50 @@
     filter: url('~assets/icons/file-pdf.svg#res-hover-color');
   }
 
-  .res-icon:hover .caption {
+  .res:hover .caption {
     color: var(--lightYellow);
+  }
+
+  @media screen and (max-width: 768px) {
+    .title-divider {
+      width: 43%;
+      margin-bottom: 3%;
+    }
+
+    .footer-icons {
+      width: 80%;
+    }
+
+    .footer-icons img {
+      width: 20vw;
+    }
+
+    .caption {
+      color: var(--lightBasic);
+    }
+
+    .footer-icons a {
+      text-decoration: none;
+    }
+
+    .gh-icon {
+      filter: url('~assets/icons/github-square.svg#gh-hover-color');
+    }
+
+    .tw-icon {
+      filter: url('~assets/icons/twitter-square.svg#tw-hover-color');
+    }
+
+    .dev-icon {
+      filter: url('~assets/icons/dev.svg#dev-hover-color');
+    }
+
+    .li-icon {
+      filter: url('~assets/icons/linkedin.svg#li-hover-color');
+    }
+
+    .res-icon {
+      filter: url('~assets/icons/file-pdf.svg#res-hover-color');
+    }
   }
 </style>
