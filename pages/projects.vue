@@ -74,5 +74,9 @@
       /* grid-template-columns: 1fr; */
       /* grid-template-rows: auto; */
     }
+
+    .card:last-child:nth-child(3n - 2) {
+      grid-column: 1;
+    }
   }
 </style>
