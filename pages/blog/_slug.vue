@@ -190,7 +190,8 @@
     }
 
     .nuxt-content-highlight {
-      word-break: break-word;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
       margin: 5% 0;
     }
   }
