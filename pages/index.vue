@@ -215,6 +215,7 @@
     .project-block {
       grid-row-gap: 0;
       margin-bottom: 3.5%;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 
     .writing-block {

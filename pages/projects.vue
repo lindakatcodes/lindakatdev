@@ -71,8 +71,7 @@
 
     .projects-wrapper {
       grid-row-gap: 0;
-      /* grid-template-columns: 1fr; */
-      /* grid-template-rows: auto; */
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 
     .card:last-child:nth-child(3n - 2) {
