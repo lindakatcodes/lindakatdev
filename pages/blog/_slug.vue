@@ -190,9 +190,12 @@
     }
 
     .nuxt-content-highlight {
+      margin: 5% 0;
+    }
+
+    .nuxt-content-highlight code {
       overflow-wrap: break-word;
       white-space: pre-wrap;
-      margin: 5% 0;
     }
   }
 </style>
