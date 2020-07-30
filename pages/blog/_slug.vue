@@ -146,10 +146,8 @@
     padding: 0 2%;
     display: grid;
     grid-template-areas: 'prev div next';
-    grid-template-columns: 1fr 1fr;
-    gap: 4%;
-    justify-content: space-between;
-    align-items: space-between;
+    grid-template-columns: 1fr 0.15fr 1fr;
+    gap: 15px;
   }
 
   .prev {
@@ -167,6 +165,7 @@
     height: 75%;
     margin: auto 0;
     background: var(--lightBasic);
+    justify-self: center;
   }
 
   @media screen and (max-width: 768px) {

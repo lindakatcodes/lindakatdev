@@ -19,7 +19,7 @@
       <h2 class="section-title">Featured Projects</h2>
       <div class="title-divider"></div>
       <div class="project-block">
-        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project"></ProjectCard>
+        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" class="card"></ProjectCard>
       </div>
       <div class="section-link-to-all">
         <nuxt-link to="/projects">See All Projects</nuxt-link>
@@ -216,6 +216,10 @@
       grid-row-gap: 0;
       margin-bottom: 3.5%;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .card:last-child {
+      border-bottom: none;
     }
 
     .writing-block {

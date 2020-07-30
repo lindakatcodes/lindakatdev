@@ -15,7 +15,7 @@
   export default {
     data() {
       return {
-        srcset: '/logo72.png 72w, /logo48.png 48w',
+        srcset: '/logo48.png 48w, /logo72.png 72w',
         sizes: '(max-width: 768px) 48px, 72px',
       };
     },
@@ -76,6 +76,7 @@
     position: sticky;
     top: 6px;
     margin-left: 1%;
+    border-bottom: none;
   }
 
   .projects-link:hover .projects-link:focus {

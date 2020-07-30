@@ -118,12 +118,12 @@
     margin: 1.5% auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     /* border: 2px solid green; */
   }
 
   .footer-icons img {
-    width: 4.5vw;
+    width: 5vw;
     padding: 0.5rem 1rem 0;
   }
 
@@ -196,7 +196,7 @@
     }
 
     .footer-icons img {
-      width: 20vw;
+      width: 19vw;
     }
 
     .caption {

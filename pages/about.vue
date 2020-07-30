@@ -1,13 +1,14 @@
 <template>
   <main class="container">
     <div class="page-header">
-      <h2 class="page-title">About Linda</h2>
+      <h2 class="page-title">Hi! 👋🏼 Nice to meet you!</h2>
       <div class="title-divider"></div>
     </div>
     <img src="~assets/images/profile/me.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
     <section class="info benefits">
+      <h3 class="section-title">A Few Key Details About Me:</h3>
+      <div class="title-divider about-div"></div>
       <div class="section-details">
-        <p>Hi! 👋 If I had to tell you a few things about myself, this is what I'd mention:</p>
         <ul class="list">
           <li class="item">
             I'm resilient. The process of learning, applying, and improving is a common theme in my life. Frustration & stubbornness can sometimes
@@ -97,6 +98,7 @@
 
 <style scoped>
   .container {
+    position: relative;
     display: grid;
     grid-template-areas:
       'title title title title'
@@ -110,7 +112,7 @@
     align-content: center;
     padding: 1% 2%;
     width: 92%;
-    margin: 2% auto;
+    margin: 25px auto;
     /* border: 2px solid purple; */
   }
 
@@ -123,12 +125,12 @@
     text-align: center;
     font-family: var(--serif);
     color: var(--lightBasic);
-    font-size: 3.25rem;
+    font-size: 2.75rem;
   }
 
   .title-divider {
     height: 4px;
-    width: 25%;
+    width: 39%;
     background: var(--lightGradient);
     margin: 0.25% auto 2%;
   }
@@ -259,5 +261,74 @@
     text-align: center;
     height: 22%;
     padding: 0 2%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      grid-template-areas:
+        'title'
+        'image'
+        'benefits'
+        'goals'
+        'learning'
+        'certs';
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 0.25%;
+      margin: calc(50px + 2%) 0 0 0;
+      width: 100%;
+    }
+
+    .page-title {
+      font-size: 2.3rem;
+      padding: 0 1.5%;
+    }
+
+    .title-divider {
+      width: 64%;
+      margin-top: 2%;
+    }
+
+    .about-div {
+      width: 58%;
+    }
+
+    .photo {
+      width: 90%;
+      height: 90%;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      margin-bottom: 3%;
+    }
+
+    .section-details p {
+      margin-bottom: 4%;
+    }
+
+    .list li {
+      margin-bottom: 4%;
+    }
+
+    .certificates {
+      flex-flow: wrap;
+      margin: 0 auto 10%;
+    }
+
+    .cert-figure {
+      width: 44vw;
+      height: 55vw;
+      margin: 2%;
+    }
+
+    .cert-pic {
+      height: 60%;
+    }
+
+    .cert-caption {
+      padding: 4% 3% 2%;
+      height: 31%;
+    }
   }
 </style>
