@@ -10,6 +10,7 @@
     </article>
     <div class="prev-next">
       <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
+      <span v-if="prev && next" class="pn-div"></span>
       <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug } }" class="navigate next">{{ next.title }} →</nuxt-link>
     </div>
   </div>
@@ -144,7 +145,7 @@
   .prev-next {
     padding: 0 2%;
     display: grid;
-    grid-template-areas: 'prev next';
+    grid-template-areas: 'prev div next';
     grid-template-columns: 1fr 1fr;
     gap: 4%;
     justify-content: space-between;
@@ -159,5 +160,38 @@
   .next {
     grid-area: next;
     text-align: right;
+  }
+
+  .pn-div {
+    width: 2px;
+    height: 75%;
+    margin: auto 0;
+    background: var(--lightBasic);
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      margin: 4% auto;
+      width: 95%;
+    }
+
+    .title {
+      font-size: 2rem;
+      margin-bottom: 6%;
+    }
+
+    .content hr {
+      background: var(--lightGradient);
+      margin: 3.5% auto;
+    }
+
+    .content p {
+      margin-bottom: 3%;
+    }
+
+    .nuxt-content-highlight {
+      word-break: break-word;
+      margin: 5% 0;
+    }
   }
 </style>

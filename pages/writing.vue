@@ -52,4 +52,24 @@
   .post {
     grid-column: span 2;
   }
+
+  @media screen and (max-width: 768px) {
+    .title {
+      font-size: 2.2rem;
+    }
+
+    .divider {
+      width: 70%;
+      margin: 2% auto 4%;
+    }
+
+    .posts-wrapper {
+      grid-template-columns: 1fr;
+      grid-gap: 0;
+    }
+
+    .post {
+      grid-column: 1;
+    }
+  }
 </style>

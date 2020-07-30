@@ -42,7 +42,7 @@
   }
 
   .projects-wrapper {
-    width: 90vw;
+    width: 90%;
     margin: 2% auto;
     padding: 2% 1% 5%;
     display: grid;
@@ -66,16 +66,23 @@
 
     .divider {
       width: 70%;
-      margin: 1% auto 4%;
+      margin: 1% auto 6%;
     }
 
     .projects-wrapper {
+      width: 95%;
+      padding: 0;
+      margin-bottom: 5%;
       grid-row-gap: 0;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 
     .card:last-child:nth-child(3n - 2) {
       grid-column: 1;
+    }
+
+    .card:last-child {
+      border-bottom: none;
     }
   }
 </style>

@@ -44,7 +44,7 @@
     justify-content: space-between;
     align-items: center;
     width: 98%;
-    height: 100%;
+    /* height: 100%; */
     padding: 1% 1.5%;
     border-radius: 8px;
     box-shadow: none;
@@ -201,7 +201,11 @@
 
   @media screen and (max-width: 768px) {
     .project-wrapper {
-      padding: 2% 1.5% 6%;
+      width: 95%;
+      padding: 5% 1.5%;
+      border-bottom: 1px solid var(--lightBasic);
+      border-radius: 0;
+      margin-top: 3%;
     }
 
     .multiPic {
