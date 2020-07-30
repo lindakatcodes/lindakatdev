@@ -42,13 +42,13 @@
   }
 
   .projects-wrapper {
-    width: 95vw;
+    width: 90vw;
     margin: 2% auto;
     padding: 2% 1% 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(min(550px, 100%), 1fr));
-    grid-gap: 2%;
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+    /* grid-template-rows: repeat(auto-fit, minmax(min(550px, 100%), 1fr)); */
+    grid-gap: 20px;
   }
 
   .card:last-child:nth-child(3n - 2) {
@@ -71,6 +71,8 @@
 
     .projects-wrapper {
       grid-row-gap: 0;
+      /* grid-template-columns: 1fr; */
+      /* grid-template-rows: auto; */
     }
   }
 </style>
