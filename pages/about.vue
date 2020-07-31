@@ -1,7 +1,7 @@
 <template>
   <main class="container">
     <div class="page-header">
-      <h2 class="page-title">Hi! 👋🏼 Nice to meet you!</h2>
+      <h2 class="page-title">Hi there - nice to meet you!</h2>
       <div class="title-divider"></div>
     </div>
     <img src="~assets/images/profile/me.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
@@ -155,7 +155,7 @@
     text-align: center;
     font-family: var(--serif);
     color: var(--lightBasic);
-    font-size: 2.25rem;
+    font-size: 2.15rem;
   }
 
   .section-details {
@@ -263,7 +263,7 @@
     padding: 0 2%;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1200px) {
     .container {
       grid-template-areas:
         'title'
@@ -274,11 +274,13 @@
         'certs';
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      gap: 0.25%;
+      gap: 0.35%;
       margin: calc(50px + 2%) 0 0 0;
       width: 100%;
     }
+  }
 
+  @media screen and (max-width: 768px) {
     .page-title {
       font-size: 2.3rem;
       padding: 0 1.5%;
@@ -329,6 +331,36 @@
     .cert-caption {
       padding: 4% 3% 2%;
       height: 31%;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .title-divider {
+      width: 44%;
+    }
+
+    .photo {
+      width: 55%;
+      height: 90%;
+    }
+
+    .certificates {
+      flex-flow: wrap;
+      margin: 0 auto 10%;
+    }
+
+    .cert-figure {
+      width: 28vw;
+      height: 32vw;
+    }
+
+    .cert-pic {
+      height: 63%;
+    }
+
+    .cert-caption {
+      padding: 2% 3%;
+      height: 30%;
     }
   }
 </style>

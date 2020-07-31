@@ -78,6 +78,7 @@
   }
 
   .intro-subtitle {
+    width: 80%;
     font-size: 1.5rem;
     text-align: center;
     background: var(--lightGradient);
@@ -101,8 +102,12 @@
     margin-top: 2%;
   }
 
+  .intro-icons a {
+    width: 45%;
+  }
+
   .intro-icons img {
-    width: 9vw;
+    width: 100%;
     padding: 0.5rem 1.5rem 0;
   }
 
@@ -190,10 +195,6 @@
       width: 50%;
     }
 
-    .intro-icons img {
-      width: 32vw;
-    }
-
     section {
       margin-bottom: 4.5%;
     }
@@ -224,6 +225,16 @@
 
     .writing-block {
       width: 90%;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .intro-icons {
+      width: 35%;
+    }
+
+    .intro-divider {
+      width: 48%;
     }
   }
 </style>

@@ -72,4 +72,20 @@
       grid-column: 1;
     }
   }
+
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .divider {
+      width: 45%;
+    }
+
+    .posts-wrapper {
+      grid-template-columns: 1fr;
+      grid-gap: 0;
+      width: 70%;
+    }
+
+    .post {
+      grid-column: 1;
+    }
+  }
 </style>

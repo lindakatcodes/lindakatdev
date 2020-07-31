@@ -79,17 +79,20 @@
     border-bottom: none;
   }
 
-  .projects-link:hover .projects-link:focus {
+  .projects-link:hover,
+  .projects-link:focus {
     border-bottom-color: var(--lightPurple);
     color: var(--lightPurple);
   }
 
-  .writing-link:hover .writing-link:focus {
+  .writing-link:hover,
+  .writing-link:focus {
     border-bottom-color: var(--lightBlue);
     color: var(--lightBlue);
   }
 
-  .about-link:hover .about-link:focus {
+  .about-link:hover,
+  .about-link:focus {
     border-bottom-color: var(--lightYellow);
     color: var(--lightYellow);
   }

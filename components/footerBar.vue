@@ -114,7 +114,7 @@
   }
 
   .footer-icons {
-    width: 50%;
+    width: 30%;
     margin: 1.5% auto;
     display: flex;
     justify-content: center;
@@ -122,8 +122,12 @@
     /* border: 2px solid green; */
   }
 
+  .footer-icons a {
+    width: calc(100% - 10rem / 5);
+  }
+
   .footer-icons img {
-    width: 5vw;
+    width: 100%;
     padding: 0.5rem 1rem 0;
   }
 
@@ -195,10 +199,6 @@
       width: 80%;
     }
 
-    .footer-icons img {
-      width: 19vw;
-    }
-
     .caption {
       color: var(--lightBasic);
     }
@@ -225,6 +225,16 @@
 
     .res-icon {
       filter: url('~assets/icons/file-pdf.svg#res-hover-color');
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .footer-icons {
+      width: 45%;
+    }
+
+    .title-divider {
+      width: 20%;
     }
   }
 </style>
