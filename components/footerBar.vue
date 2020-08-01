@@ -34,7 +34,7 @@
         </a>
 
         <!-- eslint-disable-next-line prettier/prettier -->
-        <a href="https://drive.google.com/open?id=1uKiEzc3-9yPJ_2qEVh44E4dPCl7eps7T" rel="noreferrer" target="_blank" tooltip="resume" class="res">
+        <a href="https://drive.google.com/file/d/1VPrD-VNHA-gQZOnvadOtQITEZ4ggD8kb" rel="noreferrer" target="_blank" tooltip="resume" class="res">
           <figure>
             <img src="~assets/icons/google-drive.svg" alt="Google Drive icon" class="res-icon" />
             <figcaption class="caption">Resume</figcaption>
@@ -122,10 +122,6 @@
     /* border: 2px solid green; */
   }
 
-  .footer-icons a {
-    width: calc(100% - 10rem / 5);
-  }
-
   .footer-icons img {
     width: 100%;
     padding: 0.5rem 1rem 0;
@@ -143,6 +139,7 @@
     text-decoration: 1.5 px solid underline;
     text-decoration-color: var(--lightBasic);
     transition: text-decoration-color 0.2s;
+    width: calc(100% - 10rem / 5);
   }
 
   .footer-icons a:hover {

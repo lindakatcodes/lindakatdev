@@ -3,7 +3,9 @@
     <section class="intro">
       <h1 class="intro-name">Linda Thompson</h1>
       <p class="intro-subtitle">
-        Web Developer creating with empathy, enthusiasm, & love for details
+        A friendly and analytical web developer
+        <br />
+        building with design, data, and details in mind
       </p>
       <hr class="intro-divider" />
       <div class="intro-icons">
@@ -90,7 +92,7 @@
   .intro-divider {
     background: var(--lightBasic);
     height: 4px;
-    width: 28%;
+    width: 32%;
     margin-top: 2%;
   }
 
@@ -103,7 +105,7 @@
   }
 
   .intro-icons a {
-    width: 45%;
+    width: 35%;
   }
 
   .intro-icons img {
@@ -192,7 +194,7 @@
     }
 
     .intro-icons {
-      width: 50%;
+      width: 75%;
     }
 
     section {
