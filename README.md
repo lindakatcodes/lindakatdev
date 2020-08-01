@@ -1,4 +1,9 @@
-# portfolio2020
+# My Tech Home!
+
+This is the code for my current dev site! It combines my portfolio and tech blog into one place. 
+You can view the live site at www.lindakat.com.
+
+Created using Nuxt and Nuxt Content! CSS styles are my own.
 
 ## Build Setup
 
