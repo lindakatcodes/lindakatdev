@@ -209,7 +209,7 @@
     text-align: center;
     font-family: var(--serif);
     color: var(--lightBasic);
-    font-size: 2.75rem;
+    font-size: 3rem;
   }
 
   .title-divider {
