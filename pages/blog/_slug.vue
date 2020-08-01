@@ -137,6 +137,10 @@
     color: var(--lightGreen);
   }
 
+  .content img {
+    width: 90%;
+  }
+
   .nuxt-content-highlight {
     margin: 2.5% 0;
     width: 98%;

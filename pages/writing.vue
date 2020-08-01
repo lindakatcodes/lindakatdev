@@ -11,7 +11,7 @@
 <script>
   export default {
     async fetch() {
-      this.blogposts = await this.$content('blogPosts').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'asc').fetch();
+      this.blogposts = await this.$content('blogPosts').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'desc').fetch();
     },
     data() {
       return {

@@ -1,6 +1,7 @@
 ---
 title: Do I Own This? A New Project!
 blurb: So I have this idea...and I'm speaking it into existence!
+createdAt: 2020-02-19
 tags:
   - doIOwnThis
   - thoughts

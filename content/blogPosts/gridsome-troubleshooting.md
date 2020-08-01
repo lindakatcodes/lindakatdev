@@ -1,6 +1,7 @@
 ---
 title: Gridsome Troubleshooting & Lessons Learned
 blurb: Adventures in Gridsome! Finding an error & learning how to see it.
+createdAt: 2019-07-19
 tags:
   - Gridsome
   - learning

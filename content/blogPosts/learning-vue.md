@@ -2,6 +2,7 @@
 title: Introductory Thoughts on Vue
 blurb:
   A personal cheat sheet to help solidify my understanding of some Vue basics.
+createdAt: 2020-03-07
 tags:
   - vue
 ---

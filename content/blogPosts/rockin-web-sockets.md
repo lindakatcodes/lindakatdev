@@ -1,6 +1,7 @@
 ---
 title: Rockin' (Web)Sockets!
 blurb: More Node learning - starting a chat app, & Socket.io!
+createdAt: 2019-07-31 
 tags:
   - nodeCourse
   - socketio

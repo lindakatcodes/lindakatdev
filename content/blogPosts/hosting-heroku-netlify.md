@@ -1,6 +1,8 @@
 ---
 title: Hosting an App with Heroku and Netlify (if you've never done it before)
 blurb: The steps I took to post my Udacity final project online
+createdAt: 2018-11-18 
+updatedAt: 2019-08-04
 tags: 
 - tutorial
 - netlify
