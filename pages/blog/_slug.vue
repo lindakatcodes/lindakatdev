@@ -139,6 +139,7 @@
 
   .content img {
     width: 90%;
+    margin: 2% auto;
   }
 
   .nuxt-content-highlight {
