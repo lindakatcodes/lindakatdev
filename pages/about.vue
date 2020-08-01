@@ -227,7 +227,7 @@
     grid-area: image;
     justify-self: center;
     align-self: start;
-    width: 100%;
+    width: 90%;
     border-radius: 10%;
     border: 2px solid var(--lightYellow);
     margin-top: 3%;
