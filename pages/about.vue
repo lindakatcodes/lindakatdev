@@ -190,13 +190,13 @@
       'goals goals benefits benefits'
       'certs certs certs certs';
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 10% 1fr 2fr 30%;
+    grid-template-rows: 0.2fr 1fr 2fr 0.5fr;
     gap: 0.5% 2%;
     justify-content: space-around;
     align-content: center;
     padding: 1% 2%;
     width: 92%;
-    margin: calc(50px + 2%) auto 3%;
+    margin: 50px auto 3%;
     /* border: 2px solid purple; */
   }
 
