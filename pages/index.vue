@@ -166,7 +166,7 @@
     width: 90%;
     margin: 0 auto 2%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     grid-gap: 2%;
   }
 
