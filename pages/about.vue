@@ -216,7 +216,7 @@
     height: 4px;
     width: 25%;
     background: var(--lightGradient);
-    margin: 0.25% auto 2%;
+    margin: 0.25% auto 3%;
   }
 
   .about-div {
@@ -363,9 +363,14 @@
         'certs';
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      gap: 0.35%;
+      gap: 0 0.35%;
       margin: calc(50px + 2%) 0 0 0;
       width: 100%;
+    }
+
+    .certificates {
+      flex-flow: wrap;
+      margin: 0 auto 5%;
     }
   }
 
@@ -377,7 +382,6 @@
 
     .title-divider {
       width: 64%;
-      margin-top: 2%;
     }
 
     .about-div {
@@ -386,12 +390,12 @@
 
     .photo {
       width: 90%;
-      height: 90%;
+      /* height: 90%; */
     }
 
     .section-title {
       font-size: 1.85rem;
-      margin-bottom: 3%;
+      margin-bottom: 2%;
     }
 
     .section-details p {
@@ -402,23 +406,18 @@
       margin-bottom: 4%;
     }
 
-    .certificates {
-      flex-flow: wrap;
-      margin: 0 auto 10%;
-    }
-
     .cert-figure {
       width: 44vw;
-      height: 55vw;
+      height: 50vw;
       margin: 2%;
     }
 
     .cert-pic {
-      height: 60%;
+      height: 67%;
     }
 
     .cert-caption {
-      padding: 4% 3% 2%;
+      padding: 2% 3%;
       height: 31%;
     }
   }
@@ -430,12 +429,8 @@
 
     .photo {
       width: 55%;
-      height: 90%;
-    }
-
-    .certificates {
-      flex-flow: wrap;
-      margin: 0 auto 10%;
+      /* height: 90%; */
+      margin-bottom: 2%;
     }
 
     .cert-figure {

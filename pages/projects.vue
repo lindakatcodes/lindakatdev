@@ -46,7 +46,7 @@
     margin: 2% auto;
     padding: 2% 1% 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     /* grid-template-rows: repeat(auto-fit, minmax(min(550px, 100%), 1fr)); */
     grid-gap: 20px;
     justify-items: center;

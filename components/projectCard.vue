@@ -44,7 +44,6 @@
     justify-content: space-between;
     align-items: center;
     width: 98%;
-    /* height: 100%; */
     padding: 1% 1.5%;
     border-radius: 8px;
     box-shadow: none;
@@ -57,7 +56,7 @@
 
   .project-images {
     width: 100%;
-    height: 50%;
+    height: 20vw;
     display: flex;
     justify-content: center;
   }
@@ -208,12 +207,16 @@
       margin-top: 3%;
     }
 
+    .project-images {
+      height: 50vw;
+    }
+
     .multiPic {
-      justify-content: flex-end;
+      justify-content: center;
     }
 
     .multiPic img {
-      width: 40vw;
+      width: 42vw;
     }
 
     .project-title {

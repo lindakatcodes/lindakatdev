@@ -151,7 +151,7 @@
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-decoration: 2px solid underline var(--lightBasic);
+    text-decoration: solid underline var(--lightBasic);
     font-size: 1.4rem;
   }
 

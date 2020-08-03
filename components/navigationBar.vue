@@ -73,8 +73,8 @@
   }
 
   .home-link {
-    position: sticky;
-    top: 6px;
+    position: relative;
+    top: 18px;
     margin-left: 1%;
     border-bottom: none;
   }
@@ -95,5 +95,11 @@
   .about-link:focus {
     border-bottom-color: var(--lightYellow);
     color: var(--lightYellow);
+  }
+
+  @media screen and (max-width: 768px) {
+    .home-link {
+      top: 20px;
+    }
   }
 </style>

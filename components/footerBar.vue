@@ -101,7 +101,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    text-decoration: 1.5px solid underline var(--lightPurple);
+    text-decoration: solid underline var(--lightPurple);
     font-family: var(--sansSerif);
     font-size: 1rem;
   }
@@ -110,7 +110,7 @@
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-decoration: 1.5px solid underline var(--lightBasic);
+    text-decoration: solid underline var(--lightBasic);
   }
 
   .footer-icons {
