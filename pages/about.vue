@@ -409,12 +409,12 @@
 
     .cert-figure {
       width: 44vw;
-      height: 50vw;
+      height: 56vw;
       margin: 2%;
     }
 
     .cert-pic {
-      height: 67%;
+      height: 63%;
     }
 
     .cert-caption {
