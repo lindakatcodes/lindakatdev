@@ -7,6 +7,17 @@
   </div>
 </template>
 
+<script>
+  window.goatcounter = { no_onload: true };
+
+  window.addEventListener('hashchange', function (e) {
+    window.goatcounter.count({
+      // eslint-disable-next-line no-restricted-globals
+      path: location.pathname + location.search + location.hash,
+    });
+  });
+</script>
+
 <style>
   html {
     font-size: 18px;
