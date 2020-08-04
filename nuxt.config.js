@@ -24,7 +24,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Fira+Sans&family=Bree+Serif&display=swap' },
     ],
-    script: [{ src: '//gc.zgo.at/count.js', async: true, goatcounter: 'https://lktdev.goatcounter.com/count' }],
+    script: [{ src: '//gc.zgo.at/count.js', async: true, data: { goatcounter: 'https://lktdev.goatcounter.com/count' } }],
   },
   /*
    ** Global CSS
