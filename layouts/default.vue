@@ -3,6 +3,7 @@
     <NavigationBar />
     <Nuxt />
     <FooterBar />
+    <script data-goatcounter="https://lktdev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </div>
 </template>
 
