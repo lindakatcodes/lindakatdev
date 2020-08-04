@@ -19,6 +19,9 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'The home for all of the projects and writings of Linda Thompson.' },
+      { property: 'og:type', name: 'og:type', content: 'website' },
+      { property: 'og:image', name: 'og:image', content: 'https://i.imgur.com/s971jmQ.png' },
+      { property: 'og:url', name: 'og:url', content: 'https://www.lindakat.com' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
