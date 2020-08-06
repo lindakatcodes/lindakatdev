@@ -78,15 +78,15 @@ export default {
         const posts = await $content('blog').fetch();
 
         posts.forEach((post) => {
-          const url = `https://www.lindakat.com/${post.path}`;
+          const url = `https://www.lindakat.com/blog/${post.slug}`;
 
           feed.addItem({
             title: post.title,
             id: url,
             link: url,
-            // date: post.createdAt,
             description: post.blurb,
-            content: post.summary,
+            content: post.body,
+            category: post.tags,
           });
         });
       },
