@@ -14,11 +14,15 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: "Linda Thompson's Portfolio and Blog!",
+    title: 'The Online Home of Linda Thompson',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'The home for all of the projects and writings of Linda Thompson.' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'LindaKat Codes - view all projects and tech writings from Linda Thompson',
+      },
       { property: 'og:type', name: 'og:type', content: 'website' },
       { property: 'og:image', name: 'og:image', content: 'https://i.imgur.com/s971jmQ.png' },
       { property: 'og:url', name: 'og:url', content: 'https://www.lindakat.com' },
@@ -55,6 +59,40 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    '@nuxtjs/feed',
+  ],
+
+  feed: [
+    {
+      path: '/feed.xml',
+      async create(feed) {
+        feed.options = {
+          title: 'LindaKat Blogs',
+          description: 'Tech Writings from Linda Thompson',
+          link: 'https://www.lindakat.com/feed.xml',
+        };
+
+        // eslint-disable-next-line global-require
+        const { $content } = require('@nuxt/content');
+
+        const posts = await $content('blogPosts').fetch();
+
+        posts.forEach((post) => {
+          const url = `https://www.lindakat.com/${post.path}`;
+
+          feed.addItem({
+            title: post.title,
+            id: url,
+            link: url,
+            date: post.createdAt,
+            description: post.blurb,
+            content: post.summary,
+          });
+        });
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'rss2',
+    },
   ],
   /*
    ** Content module configuration

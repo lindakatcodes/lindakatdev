@@ -44,7 +44,7 @@
   export default {
     async fetch() {
       this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
-      this.blogposts = await this.$content('blogPosts').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'desc').limit(8).fetch();
+      this.blogposts = await this.$content('blog').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'desc').limit(8).fetch();
     },
     data() {
       return {
