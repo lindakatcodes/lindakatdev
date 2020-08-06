@@ -86,7 +86,12 @@ export default {
             link: url,
             description: post.blurb,
             content: post.body,
-            category: post.tags,
+          });
+
+          const tags = post.tags;
+
+          tags.forEach((tag) => {
+            feed.addCategory(tag);
           });
         });
       },
