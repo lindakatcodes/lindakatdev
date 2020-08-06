@@ -85,7 +85,7 @@ export default {
             id: url,
             link: url,
             description: post.blurb,
-            content: post.body,
+            content: post.content,
           });
         });
       },
