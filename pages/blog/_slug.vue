@@ -3,6 +3,7 @@
     <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
     <article class="full-post">
       <h1 class="title">{{ post.title }}</h1>
+      <p class="timeToRead">{{ post.readingTime }}</p>
       <div class="tag-container">
         <p v-for="tag in post.tags" :key="tag">{{ tag }}</p>
       </div>
@@ -62,6 +63,13 @@
     border: 4px solid;
     border-image-source: var(--lightGradient);
     border-image-slice: 0 0 4 0;
+  }
+
+  .timeToRead {
+    text-align: center;
+    color: var(--lightYellow);
+    font-family: var(--sansSerif);
+    margin-bottom: 2%;
   }
 
   .tag-container {
@@ -182,6 +190,10 @@
     .title {
       font-size: 2rem;
       margin-bottom: 6%;
+    }
+
+    .timeToRead {
+      margin-bottom: 4%;
     }
 
     .content hr {

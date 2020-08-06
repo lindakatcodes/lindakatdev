@@ -85,7 +85,7 @@ export default {
             id: url,
             link: url,
             description: post.blurb,
-            content: post.text,
+            content: post.bodyPlainText,
           });
         });
       },
@@ -97,9 +97,10 @@ export default {
     'content:file:beforeInsert': (document) => {
       if (document.extension === '.md') {
         // eslint-disable-next-line global-require
-        const { time } = require('reading-time')(document.text);
+        const { text } = require('reading-time')(document.text);
 
-        document.readingTime = time;
+        document.readingTime = text;
+        document.bodyPlainText = document.text;
       }
     },
   },
