@@ -85,7 +85,7 @@ export default {
             id: url,
             link: url,
             description: post.blurb,
-            content: post.content,
+            content: post.text,
           });
         });
       },
@@ -93,6 +93,16 @@ export default {
       type: 'rss2',
     },
   ],
+  hooks: {
+    'content:file:beforeInsert': (document) => {
+      if (document.extension === '.md') {
+        // eslint-disable-next-line global-require
+        const { time } = require('reading-time')(document.text);
+
+        document.readingTime = time;
+      }
+    },
+  },
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
