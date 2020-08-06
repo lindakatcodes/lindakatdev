@@ -87,12 +87,6 @@ export default {
             description: post.blurb,
             content: post.body,
           });
-
-          const tags = post.tags;
-
-          tags.forEach((tag) => {
-            feed.addCategory(tag);
-          });
         });
       },
       cacheTime: 1000 * 60 * 15,
