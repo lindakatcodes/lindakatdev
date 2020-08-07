@@ -4,9 +4,10 @@ blurb: The steps I took to post my Udacity final project online
 createdAt: 2018-11-18 
 updatedAt: 2019-08-04
 tags: 
-- tutorial
-- netlify
-- heroku
+  - tutorial
+  - netlify
+  - heroku
+published: true
 ---
 
 Over the past 7 months, I've been hard at work on the Google / Udacity Mobile Web Specialist scholarship program. It's been an intense, and rewarding, experience, and I learned a ton of interesting things!

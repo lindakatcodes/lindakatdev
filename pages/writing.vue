@@ -11,7 +11,11 @@
 <script>
   export default {
     async fetch() {
-      this.blogposts = await this.$content('blog').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'desc').fetch();
+      this.blogposts = await this.$content('blog')
+        .only(['title', 'blurb', 'tags', 'slug'])
+        .where({ published: { $eq: true } })
+        .sortBy('createdAt', 'desc')
+        .fetch();
     },
     data() {
       return {

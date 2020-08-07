@@ -5,6 +5,7 @@ createdAt: 2019-07-31
 tags:
   - nodeCourse
   - socketio
+published: true
 ---
 I started the last project in my [Node course](https://www.udemy.com/the-complete-nodejs-developer-course-2/) - a chat app! I did the groundwork videos yesterday - getting libraries installed and new files/directories set up.
 
