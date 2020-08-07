@@ -46,7 +46,7 @@
       this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
       this.blogposts = await this.$content('blog')
         .only(['title', 'blurb', 'tags', 'slug'])
-        .where({ published: { $eq: true } })
+        .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'desc')
         .limit(8)
         .fetch();

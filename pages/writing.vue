@@ -13,7 +13,7 @@
     async fetch() {
       this.blogposts = await this.$content('blog')
         .only(['title', 'blurb', 'tags', 'slug'])
-        .where({ published: { $eq: true } })
+        .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'desc')
         .fetch();
     },

@@ -5,7 +5,7 @@ createdAt: 2020-02-19
 tags:
   - doIOwnThis
   - thoughts
-published: true
+type: live
 ---
 I have this very first world problem.
 

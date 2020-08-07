@@ -7,7 +7,7 @@ tags:
   - tutorial
   - netlify
   - heroku
-published: true
+type: live
 ---
 
 Over the past 7 months, I've been hard at work on the Google / Udacity Mobile Web Specialist scholarship program. It's been an intense, and rewarding, experience, and I learned a ton of interesting things!

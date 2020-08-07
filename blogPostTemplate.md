@@ -4,5 +4,6 @@ blurb:
 createdAt: 
 tags:
   - 
+type: draft
 ---
 

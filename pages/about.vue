@@ -187,12 +187,12 @@
     display: grid;
     grid-template-areas:
       'title title title title'
-      'image image learning learning'
+      'image learning learning learning'
       'goals goals benefits benefits'
       'certs certs certs certs';
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.2fr 1fr 2fr 0.5fr;
-    gap: 0.5% 2%;
+    grid-template-rows: auto;
+    gap: 1.25% 2%;
     justify-content: space-around;
     align-content: center;
     padding: 1% 2%;
@@ -226,14 +226,14 @@
 
   .photo {
     grid-area: image;
-    justify-self: center;
-    align-self: start;
-    width: 90%;
+    justify-self: start;
+    align-self: stretch;
+    width: 125%;
     border-radius: 10%;
     border: 2px solid var(--lightYellow);
-    margin-top: 3%;
-    /* object-fit: cover;
-    object-position: right top; */
+    object-fit: cover;
+    object-position: right top;
+    margin: 10% 0;
   }
 
   .section-title {
@@ -274,6 +274,13 @@
     margin-left: 4%;
   }
 
+  .learning {
+    grid-area: learning;
+    padding: 1% 3% 2% 5%;
+    justify-self: end;
+    /* border: 2px solid white; */
+  }
+
   .benefits {
     grid-area: benefits;
     /* border: 2px solid red; */
@@ -282,11 +289,6 @@
   .goals {
     grid-area: goals;
     /* border: 2px solid blue; */
-  }
-
-  .learning {
-    grid-area: learning;
-    /* border: 2px solid white; */
   }
 
   .certificates {
@@ -429,9 +431,9 @@
     }
 
     .photo {
-      width: 55%;
-      /* height: 90%; */
+      width: 45%;
       margin-bottom: 2%;
+      justify-self: center;
     }
 
     .cert-figure {

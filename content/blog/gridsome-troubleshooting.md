@@ -5,7 +5,7 @@ createdAt: 2019-07-19
 tags:
   - Gridsome
   - learning
-published: true
+type: live
 ---
 I've uncovered two new things about Gridsome this week!
 
