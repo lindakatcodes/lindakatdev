@@ -46,7 +46,7 @@
   }
 
   .posts-wrapper {
-    margin: 0 auto 9%;
+    margin: 0 auto 6%;
     width: 90%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -90,6 +90,12 @@
 
     .post {
       grid-column: 1;
+    }
+  }
+
+  @media screen and (min-width: 1500px) {
+    .posts-wrapper {
+      margin-bottom: 10%;
     }
   }
 </style>
