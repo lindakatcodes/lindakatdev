@@ -166,7 +166,7 @@
     margin: 2% auto;
   }
 
-  .content > p > code {
+  .content p code {
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
