@@ -46,7 +46,7 @@
   }
 
   .posts-wrapper {
-    margin: 0 auto 6%;
+    margin: 0 auto 9%;
     width: 90%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);

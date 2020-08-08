@@ -297,7 +297,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-bottom: 3%;
+    margin-bottom: 6%;
   }
 
   .cert-figure {
