@@ -132,26 +132,23 @@
     font-family: var(--serif);
   }
 
-  .content h1 {
-    color: var(--lightPurple);
-  }
-
+  .content h1,
   .content h2 {
     color: var(--lightYellow);
   }
 
-  .content h3 {
+  .content h3,
+  .content h4 {
     color: var(--lightGreen);
   }
 
-  .content h4,
   .content h5,
   .content h6 {
-    color: var(--lightBlue);
+    color: var(--lightPink);
   }
 
   .content strong {
-    color: var(--lightPink);
+    color: var(--lightBlue);
     font-size: 1.05rem;
   }
 
@@ -167,6 +164,12 @@
   .content img {
     width: 90%;
     margin: 2% auto;
+  }
+
+  .content code {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .nuxt-content-highlight {
