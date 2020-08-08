@@ -197,7 +197,7 @@
     align-content: center;
     padding: 1% 2%;
     width: 92%;
-    margin: 50px auto 3%;
+    margin: 50px auto 5%;
     /* border: 2px solid purple; */
   }
 
