@@ -123,17 +123,36 @@
   }
 
   .content h1,
-  .content h2 {
-    font-family: var(--serif);
-    color: var(--lightYellow);
-  }
-
+  .content h2,
   .content h3,
   .content h4,
   .content h5,
   .content h6 {
+    margin-bottom: 2%;
     font-family: var(--serif);
+  }
+
+  .content h1 {
+    color: var(--lightPurple);
+  }
+
+  .content h2 {
+    color: var(--lightYellow);
+  }
+
+  .content h3 {
     color: var(--lightGreen);
+  }
+
+  .content h4,
+  .content h5,
+  .content h6 {
+    color: var(--lightBlue);
+  }
+
+  .content strong {
+    color: var(--lightPink);
+    font-size: 1.05rem;
   }
 
   .content a {

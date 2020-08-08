@@ -12,9 +12,13 @@ I like cross posting my blogs to Dev.to - I've got a little bit of community the
 
 It was pretty easy to do with my last blog that was built with Gridsome (another Vue framework), so I figured it shouldn't be too hard to do with Nuxt, which is what I built my current site on. Right? Well, it wasn't the most difficult thing I've done building this site, but it was a little more confusing than I thought! So I figured I'd write out the steps I took to get it to work.
 
+----
+
 ## First - Add the Feed Package to your Project
 
 There is already a [Nuxt package for managing RSS feeds](https://github.com/nuxt-community/feed-module), which is awesome! So I added that to my project with `npm install --save @nuxtjs/feed`. That part was easy. :)
+
+----
 
 ## Second - Configure the Plugin
 
@@ -31,13 +35,19 @@ I had two main problems:
 - I wasn't quite sure *where* to put the code I needed to add, outside of adding the module name.
 - I struggled with getting the actual *body* text of my post, to add it to the feed.
 
+----
+
 ### Part One: Where to Put it
 
 You can put all of the code you need inside the `nuxt.config.js` file. I'll show you the code I ended up with after I cover how to get the data, so it will all make sense.
 
 You'll need to add the `feed-module` package to the modules list, and then there's a feed option where you can add some functions and variables to get the data you need for each post.
 
+----
+
 **Important side note! Make sure you list the `@nuxt/content` module BEFORE you list the `@nuxtjs/feed` module. That way, the feed can access your content.**
+
+----
 
 ### Part Two: Getting the Body of Posts
 
@@ -50,6 +60,8 @@ This is great for displaying the posts - but doesn't work as well for getting th
 The only way to access just the text of the document, before it's converted into JSON, is by using a hook: `content:file:beforeInsert`. Inside that hook, you'll have access to an internal property called `text` that has just the plain text of the document. Content uses an example of this hook [in the advanced section of their docs](https://content.nuxtjs.org/advanced/#contentfilebeforeinsert) to show how you could get the reading time of your posts. (I also did this today, because I love seeing the reading time! But that's another story.)
 
 Conveniently, this piece can also go in your `nuxt.config.js` file! I used this hook to access the `document.text` property, and simply created a new field on my posts called `bodyPlainText`, that I can then access anywhere I can access my posts.
+
+----
 
 ## Third - Putting it All Together
 
