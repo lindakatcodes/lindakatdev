@@ -2,7 +2,7 @@
   "name": "Restaurant Reviews",
   "id": 5,
   "images": [
-    "restaurantReviews"
+    "restaurantReviews-sm"
   ],
   "altText": [
     "Filter bar on top with options for selecting neighborhoods or cuisines, showing three restaurant cards below, each with an image, favorite status, name, neighborhood, address, and a button to view more details"

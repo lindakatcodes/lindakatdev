@@ -4,7 +4,7 @@
       <h2 class="page-title">All About Linda</h2>
       <div class="title-divider"></div>
     </div>
-    <img src="~assets/images/profile/me.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
+    <img src="~assets/images/profile/me-sm.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
     <section class="info learning">
       <h3 class="section-title">Currently Learning</h3>
       <div class="title-divider about-div"></div>
@@ -375,6 +375,11 @@
       flex-flow: wrap;
       margin: 0 auto 5%;
     }
+
+    .photo {
+      justify-self: center;
+      margin-bottom: 2%;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -393,7 +398,6 @@
 
     .photo {
       width: 90%;
-      /* height: 90%; */
     }
 
     .section-title {
@@ -432,8 +436,6 @@
 
     .photo {
       width: 45%;
-      margin-bottom: 2%;
-      justify-self: center;
     }
 
     .cert-figure {
