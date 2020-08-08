@@ -14,14 +14,14 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: 'The Online Home of Linda Thompson',
+    title: 'LindaKat Dev',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'LindaKat Codes - view all projects and tech writings from Linda Thompson',
+        content: 'LindaKat Dev - the online home of all projects and tech writings from Linda Thompson',
       },
       { property: 'og:type', name: 'og:type', content: 'website' },
       { property: 'og:image', name: 'og:image', content: 'https://i.imgur.com/s971jmQ.png' },

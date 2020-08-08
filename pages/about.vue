@@ -297,7 +297,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-bottom: 3%;
+    margin-bottom: 2%;
   }
 
   .cert-figure {
@@ -454,7 +454,7 @@
     }
   }
 
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: 2000px) {
     .certificates {
       margin-bottom: 10%;
     }
