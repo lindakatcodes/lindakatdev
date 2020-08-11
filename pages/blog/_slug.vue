@@ -9,7 +9,7 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <div class="prev-next">
+    <div v-if="post.type === 'live'" class="prev-next">
       <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
       <span v-if="prev && next" class="pn-div"></span>
       <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug } }" class="navigate next">{{ next.title }} →</nuxt-link>
