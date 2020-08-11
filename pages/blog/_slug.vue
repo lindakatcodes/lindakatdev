@@ -177,6 +177,10 @@
     width: 98%;
   }
 
+  .nuxt-content-highlight .comment {
+    color: #8e9ba1;
+  }
+
   .prev-next {
     padding: 0 2%;
     display: grid;
