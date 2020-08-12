@@ -160,7 +160,7 @@
     font-size: 1.4rem;
   }
 
-  .section-link-to-all:hover {
+  .section-link-to-all a:hover {
     text-decoration-color: var(--lightPink);
     text-decoration-style: double;
   }

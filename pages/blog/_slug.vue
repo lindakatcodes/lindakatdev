@@ -39,14 +39,14 @@
 
   .navigate {
     color: var(--lightBlue);
-    text-decoration: 2px solid underline var(--lightBasic);
+    text-decoration: solid underline var(--lightBasic);
     font-family: var(--sansSerif);
     font-size: 1.1rem;
     font-weight: 700;
   }
 
   .navigate:hover {
-    color: var(--lightPink);
+    color: var(--lightGreen);
   }
 
   .full-post {
@@ -153,12 +153,15 @@
   }
 
   .content a {
-    color: var(--lightPurple);
-    text-decoration: 1px solid var(--lightYellow);
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: solid underline var(--lightBasic);
   }
 
   .content a:hover {
-    color: var(--lightGreen);
+    color: var(--lightBasic);
+    text-decoration-color: var(--lightYellow);
   }
 
   .content img {
@@ -167,9 +170,7 @@
   }
 
   .content p code {
-    background: var(--lightGradient);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--lightPurple);
   }
 
   .nuxt-content-highlight {
