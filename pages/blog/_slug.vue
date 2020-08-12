@@ -46,7 +46,7 @@
   }
 
   .navigate:hover {
-    color: var(--lightGreen);
+    color: var(--lightYellow);
   }
 
   .full-post {
@@ -156,12 +156,12 @@
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-decoration: solid underline var(--lightBasic);
+    text-decoration: none;
+    transition: text-decoration 0.3s;
   }
 
   .content a:hover {
-    color: var(--lightBasic);
-    text-decoration-color: var(--lightYellow);
+    text-decoration: solid underline var(--lightBasic);
   }
 
   .content img {
