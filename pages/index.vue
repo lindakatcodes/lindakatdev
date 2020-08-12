@@ -158,6 +158,7 @@
     -webkit-text-fill-color: transparent;
     text-decoration: solid underline var(--lightBasic);
     font-size: 1.4rem;
+    transition: text-decoration 0.3s;
   }
 
   .section-link-to-all a:hover {
