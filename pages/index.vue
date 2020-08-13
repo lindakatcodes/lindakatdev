@@ -28,7 +28,7 @@
       </div>
     </section>
     <section class="recent-writing">
-      <h2 class="section-title">Recent Writings</h2>
+      <h2 class="section-title">Featured Writings</h2>
       <div class="title-divider"></div>
       <div class="writing-block">
         <BlogPostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post"></BlogPostBlurb>
@@ -46,7 +46,10 @@
       this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
       this.blogposts = await this.$content('blog')
         .only(['title', 'blurb', 'tags', 'slug'])
-        .where({ type: { $eq: 'live' } })
+        .where({
+          type: { $eq: 'live' },
+          featured: true,
+        })
         .sortBy('createdAt', 'desc')
         .limit(8)
         .fetch();

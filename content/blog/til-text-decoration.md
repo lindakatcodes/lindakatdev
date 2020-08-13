@@ -5,6 +5,7 @@ createdAt: 2020-08-03
 tags:
   - TIL
 type: live
+featured: true
 ---
 
 While I was testing my new dev site on different browsers today, I noticed that some of my links didn't have their text decoration showing. This was odd to me, since text decoration has been a thing for a long time. So I did a little investigating, and learned a bit about the `text-decoration` shorthand.

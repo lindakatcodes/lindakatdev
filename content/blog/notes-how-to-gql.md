@@ -5,6 +5,7 @@ tags:
   - garden
   - GraphQL
 type: notes
+featured: false
 ---
 
 ## Introduction

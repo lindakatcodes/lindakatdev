@@ -6,6 +6,7 @@ tags:
   - Gridsome
   - learning
 type: live
+featured: true
 ---
 I've uncovered two new things about Gridsome this week!
 
@@ -27,7 +28,7 @@ So I moved the closing comment tag up so that the template tag closed, and learn
 
 So. Dang. **Thankful!** I'm decent enough with trouble shooting, but with a framework I'm not familiar with, that uses a JavaScript framework I'm not familiar with, and with no obvious error message....I was so lost. So glad I found the Discord group and got a response!
 
-<hr>
+----
 
 So the next thing was to learn how the heck I get Vue to show me an error message when something goes wrong, so I can have a better shot at fixing it on my own! The Gridsome docs, in the trouble shooting section, mention a line of code to inject to show errors instead of it failing quietly....but no mention about _where_ that codes goes.
 

@@ -5,6 +5,7 @@ tags:
   - garden
   - JavaScript
 type: notes
+featured: false
 ---
 
 ### Arrays

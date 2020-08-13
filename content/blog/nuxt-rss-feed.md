@@ -6,6 +6,7 @@ tags:
   - Nuxt
   - RSS
 type: live
+featured: true
 ---
 
 I like cross posting my blogs to Dev.to - I've got a little bit of community there already, so being able to have both my own place for my writing and a shared space is nice. Since I just migrated my blog to my new site, I needed to get an RSS feed set up so I could connect it to my Dev account.
