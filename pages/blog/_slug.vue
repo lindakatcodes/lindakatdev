@@ -21,7 +21,12 @@
   export default {
     async asyncData({ $content, params }) {
       const post = await $content('blog', params.slug).fetch();
-      const [prev, next] = await $content('blog').only(['title', 'slug']).sortBy('createdAt', 'asc').surround(params.slug).fetch();
+      const [prev, next] = await $content('blog')
+        .only(['title', 'slug'])
+        .where({ type: { $eq: 'live' } })
+        .sortBy('createdAt', 'asc')
+        .surround(params.slug)
+        .fetch();
       return {
         post,
         prev,
