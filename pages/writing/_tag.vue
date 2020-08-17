@@ -1,55 +1,32 @@
 <template>
   <div class="posts-wrapper">
-    <BlogPostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post" class="post"></BlogPostBlurb>
+    <BlogPostBlurb v-for="(post, index) in selectedPosts" :key="index" :post-blurb="post" class="post"></BlogPostBlurb>
   </div>
 </template>
 
 <script>
   export default {
-    async fetch() {
-      this.blogposts = await this.$content('blog')
-        .only(['title', 'blurb', 'slug'])
-        .where({ type: { $eq: 'live' }, tags: { $contains: this.selectedTag } })
-        .sortBy('createdAt', 'desc')
-        .fetch();
-    },
     data() {
       return {
-        blogposts: [],
         selectedTag: this.$route.params.tag,
+        selectedPosts: [],
       };
+    },
+    computed: {
+      filteredPosts() {
+        return this.$attrs.blogposts.filter((post) => post.tags.includes(this.selectedTag));
+      },
+    },
+    mounted() {
+      this.selectedPosts = this.filteredPosts;
+    },
+    beforeUpdate() {
+      this.selectedPosts = this.filteredPosts;
     },
   };
 </script>
 
 <style scoped>
-  .container {
-    position: relative;
-    margin: 2% 0;
-  }
-
-  .title {
-    text-align: center;
-    font-family: var(--serif);
-    color: var(--lightBasic);
-    font-size: 2.5rem;
-  }
-
-  .divider {
-    height: 4px;
-    width: 20%;
-    background: var(--lightGradient);
-    margin: 0.25% auto 2%;
-  }
-
-  .description {
-    color: var(--lightBasic);
-    font-family: var(--sansSerif);
-    text-align: center;
-    margin-bottom: 1.5%;
-    padding: 0 5%;
-  }
-
   .posts-wrapper {
     margin: 0 auto 4%;
     width: 90%;
@@ -63,15 +40,6 @@
   }
 
   @media screen and (max-width: 768px) {
-    .title {
-      font-size: 2.2rem;
-    }
-
-    .divider {
-      width: 70%;
-      margin: 2% auto 4%;
-    }
-
     .posts-wrapper {
       grid-template-columns: 1fr;
       grid-gap: 0;
@@ -83,10 +51,6 @@
   }
 
   @media screen and (min-width: 769px) and (max-width: 1200px) {
-    .divider {
-      width: 45%;
-    }
-
     .posts-wrapper {
       grid-template-columns: 1fr;
       grid-gap: 0;
@@ -95,12 +59,6 @@
 
     .post {
       grid-column: 1;
-    }
-  }
-
-  @media screen and (min-width: 2000px) {
-    .posts-wrapper {
-      margin-bottom: 10%;
     }
   }
 </style>
