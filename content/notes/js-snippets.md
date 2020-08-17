@@ -1,11 +1,8 @@
 ---
-title: 'Notes: JavaScript Snippets'
+title: 'JavaScript Snippets'
 blurb: My own reference sheet for common, basic JS recipes that I use and/or need to look up often
 tags:
-  - garden
   - JavaScript
-type: notes
-featured: false
 ---
 
 ### Arrays

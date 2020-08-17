@@ -1,24 +1,22 @@
 <template>
-  <main class="container">
-    <h2 class="title">Articles & Thoughts</h2>
-    <div class="divider"></div>
-    <p class="description">View posts by tag:</p>
-    <TagList :tags="tagdata"></TagList>
-    <nuxt-child></nuxt-child>
-  </main>
+  <div class="posts-wrapper">
+    <BlogPostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post" class="post"></BlogPostBlurb>
+  </div>
 </template>
 
 <script>
   export default {
     async fetch() {
-      this.tagdata = await this.$content('blog')
-        .only(['tags'])
-        .where({ type: { $eq: 'live' } })
+      this.blogposts = await this.$content('blog')
+        .only(['title', 'blurb', 'slug'])
+        .where({ type: { $eq: 'live' }, tags: { $contains: this.selectedTag } })
+        .sortBy('createdAt', 'desc')
         .fetch();
     },
     data() {
       return {
-        tagdata: [],
+        blogposts: [],
+        selectedTag: this.$route.params.tag,
       };
     },
   };

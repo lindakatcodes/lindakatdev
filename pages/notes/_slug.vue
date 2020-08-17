@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
+    <nuxt-link to="/garden" class="navigate">← Back to the Note Garden</nuxt-link>
     <article class="full-post">
       <h1 class="title">{{ post.title }}</h1>
       <p class="timeToRead">{{ post.readingTime }}</p>
@@ -9,21 +9,16 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <div class="prev-next">
-      <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
-      <span v-if="prev && next" class="pn-div"></span>
-      <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug } }" class="navigate next">{{ next.title }} →</nuxt-link>
-    </div>
   </div>
 </template>
 
 <script>
   export default {
     async asyncData({ $content, params }) {
-      const post = await $content('blog', params.slug).fetch();
-      const [prev, next] = await $content('blog')
+      const post = await $content('notes', params.slug).fetch();
+      const [prev, next] = await $content('notes')
         .only(['title', 'slug'])
-        .where({ type: { $eq: 'live' } })
+        .where({ type: { $eq: 'notes' } })
         .sortBy('createdAt', 'asc')
         .surround(params.slug)
         .fetch();

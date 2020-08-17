@@ -1,23 +1,24 @@
 <template>
   <main class="container">
-    <h2 class="title">Articles & Thoughts</h2>
+    <h2 class="title">The Note Garden</h2>
     <div class="divider"></div>
-    <p class="description">View posts by tag:</p>
+    <p class="description">Notes from Courses, Conference Talks, etc. View by tag if you'd like!</p>
     <TagList :tags="tagdata"></TagList>
-    <nuxt-child></nuxt-child>
+    <div class="posts-wrapper">
+      <NotePostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" class="post"></NotePostBlurb>
+    </div>
   </main>
 </template>
 
 <script>
   export default {
     async fetch() {
-      this.tagdata = await this.$content('blog')
-        .only(['tags'])
-        .where({ type: { $eq: 'live' } })
-        .fetch();
+      this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'desc').fetch();
+      this.tagdata = await this.$content('notes').only(['tags']).fetch();
     },
     data() {
       return {
+        noteposts: [],
         tagdata: [],
       };
     },

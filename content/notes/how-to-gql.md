@@ -1,12 +1,11 @@
 ---
-title: 'Notes: How to GraphQL Course'
+title: 'How to GraphQL Course'
 blurb: My thoughts and notes while going through the How to GraphQL course with my Party Corgi adventure club!
 tags:
-  - garden
   - GraphQL
-type: notes
-featured: false
 ---
+
+These notes are based off the [How to GraphQL courses](https://www.howtographql.com/) that I'm going through with the Party Corgi adventure club!
 
 ## Introduction
 
