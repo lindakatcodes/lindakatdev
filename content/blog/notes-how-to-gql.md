@@ -147,6 +147,8 @@ type Subscription {
 }
 ```
 
+----
+
 ## Big Picture
 
 Gql is actually only a *specification* - just a long document how a gql server should behave. You have to build the server yourself if you want to use it.
@@ -175,7 +177,7 @@ Gql is actually only a *specification* - just a long document how a gql server s
 
 Resolvers can take either provided arguments or implicit arguments, depending on what data it needs to get it's response.
 
-[Resolver functions with an example](https://i.imgur.com/e1gBEP5.png)
+![Resolver functions with an example](https://i.imgur.com/e1gBEP5.png)
 
 gql is great for front end, as data fetching can be pushed to server side. Don't need to care where data is coming from, so logic can be abstracted away.
 
