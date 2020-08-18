@@ -53,6 +53,8 @@
   @media screen and (min-width: 2000px) {
     .posts-wrapper {
       margin-bottom: 10%;
+      width: 70%;
+      grid-template-columns: repeat(6, 1fr);
     }
   }
 </style>

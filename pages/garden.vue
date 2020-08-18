@@ -3,10 +3,8 @@
     <h2 class="title">The Note Garden</h2>
     <div class="divider"></div>
     <p class="description">Notes from Courses, Conference Talks, etc. View by tag if you'd like!</p>
-    <!-- <TagList :tags="tagdata"></TagList> -->
-    <div class="posts-wrapper">
-      <NotePostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" class="post"></NotePostBlurb>
-    </div>
+    <TagList :tags="tagdata" :all="page"></TagList>
+    <nuxt-child :noteposts="noteposts"></nuxt-child>
   </main>
 </template>
 
@@ -20,6 +18,7 @@
       return {
         noteposts: [],
         tagdata: [],
+        page: 'garden',
       };
     },
   };

@@ -4,9 +4,9 @@ blurb: The steps I took to post my Udacity final project online
 createdAt: 2018-11-18 
 updatedAt: 2019-08-04
 tags: 
-  - tutorial
-  - netlify
-  - heroku
+  - Tutorial
+  - Netlify
+  - Heroku
 type: live
 featured: true
 ---

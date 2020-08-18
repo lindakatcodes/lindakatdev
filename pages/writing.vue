@@ -3,7 +3,7 @@
     <h2 class="title">Articles & Thoughts</h2>
     <div class="divider"></div>
     <p class="description">View posts by tag:</p>
-    <TagList :tags="tagdata"></TagList>
+    <TagList :tags="tagdata" :all="page"></TagList>
     <nuxt-child :blogposts="blogposts"></nuxt-child>
   </main>
 </template>
@@ -25,6 +25,7 @@
       return {
         blogposts: [],
         tagdata: [],
+        page: 'writing',
       };
     },
   };

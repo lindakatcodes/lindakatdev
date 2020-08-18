@@ -2,7 +2,7 @@
 title: Coding Practice - Counting Valleys (Hacker Rank)
 blurb: Solving the Counting Valleys problem on Hacker Rank on the first try!
 tags:
-  - practice
+  - Practice
   - JavaScript
 type: live
 featured: false

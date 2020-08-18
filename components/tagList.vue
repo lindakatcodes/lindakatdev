@@ -2,10 +2,10 @@
   <div class="tag-container">
     <ul class="tags-wrapper">
       <li class="single-tag" :class="{ selected: pageParam === 'all' }">
-        <nuxt-link :to="{ name: 'writing' }">All</nuxt-link>
+        <nuxt-link :to="{ name: all }">All</nuxt-link>
       </li>
       <li v-for="tag in getAllTags" :key="tag" class="single-tag" :class="{ selected: pageParam === tag }">
-        <nuxt-link :to="{ name: 'writing-tag', params: { tag } }">
+        <nuxt-link :to="{ name: singleLink, params: { tag } }">
           {{ tag }}
         </nuxt-link>
       </li>
@@ -18,6 +18,9 @@
     props: {
       tags: {
         type: Array,
+      },
+      all: {
+        type: String,
       },
     },
     computed: {
@@ -44,6 +47,9 @@
       pageParam() {
         return this.$route.params.tag || 'all';
       },
+      singleLink() {
+        return `${this.all}-tag`;
+      },
     },
   };
 </script>
@@ -58,7 +64,6 @@
   .tags-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     padding: 0;
   }
@@ -70,11 +75,11 @@
     border-radius: 5px;
     border: 2px solid var(--lightPurple);
     list-style: none;
+    flex-shrink: 0;
   }
 
   .single-tag a {
     color: var(--darkBasic);
-    text-transform: uppercase;
     text-decoration: none;
     font-size: 1rem;
     font-family: var(--sansSerif);
@@ -145,5 +150,11 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     border-color: transparent;
+  }
+
+  @media screen and (min-width: 2000px) {
+    .tag-container {
+      width: 50%;
+    }
   }
 </style>

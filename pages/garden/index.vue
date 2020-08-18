@@ -1,19 +1,14 @@
 <template>
   <div class="posts-wrapper">
-    <BlogPostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" class="post"></BlogPostBlurb>
+    <NotePostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" class="post"></NotePostBlurb>
   </div>
 </template>
 
 <script>
   export default {
-    data() {
-      return {
-        selectedTag: this.$route.params.tag,
-      };
-    },
-    computed: {
-      filteredPosts() {
-        return this.$attrs.blogposts.filter((post) => post.tags.includes(this.selectedTag));
+    props: {
+      noteposts: {
+        type: Array,
       },
     },
   };
@@ -52,6 +47,14 @@
 
     .post {
       grid-column: 1;
+    }
+  }
+
+  @media screen and (min-width: 2000px) {
+    .posts-wrapper {
+      margin-bottom: 10%;
+      width: 70%;
+      grid-template-columns: repeat(6, 1fr);
     }
   }
 </style>

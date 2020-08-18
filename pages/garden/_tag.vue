@@ -1,6 +1,6 @@
 <template>
   <div class="posts-wrapper">
-    <BlogPostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" class="post"></BlogPostBlurb>
+    <NotePostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" class="post"></NotePostBlurb>
   </div>
 </template>
 
@@ -13,7 +13,7 @@
     },
     computed: {
       filteredPosts() {
-        return this.$attrs.blogposts.filter((post) => post.tags.includes(this.selectedTag));
+        return this.$attrs.noteposts.filter((post) => post.tags.includes(this.selectedTag));
       },
     },
   };
