@@ -1,0 +1,27 @@
+---
+title: 'CSS Snippets'
+blurb: My own CSS reference cheat sheet, when I can't remember how to do things
+tags:
+  - CSS
+---
+
+### Border Radius
+
+Can take 1-4 values, or can add a `/` and add another 1-4 values (number in px/em/rem or percentage)
+
+Breakdown:
+
+- 1 value: will be the same for all 4 corners
+- 2 values: the first specifies top-left & bottom-right, the second is top-right & bottom-left
+- 3 values: first is top-left, second is top-right & bottom-left, third is bottom-right (so splits the first value in a 2-value pair into separate values)
+- 4 values: a number for each corner, in this order: top-left, top-right, bottom-right, bottom-left
+
+**Can add a `/` to get more values!**
+
+The values **before** the slash are for horizontal radius; values **after** the slash are vertical radius. Same value breakdown for both, but only focused on the horizontal or vertical side, depending.
+
+```css
+border-radius: 50%;
+/* or */
+border-radius: 20px 20px 40px 40px / 2em 3em;
+```
