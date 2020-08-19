@@ -20,17 +20,18 @@
     width: 90%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 4% 1.5%;
+    column-gap: 1.5%;
   }
 
   .post {
     grid-column: span 2;
+    margin-bottom: 3%;
   }
 
   @media screen and (max-width: 768px) {
     .posts-wrapper {
       grid-template-columns: 1fr;
-      grid-gap: 0;
+      column-gap: 0;
     }
 
     .post {
@@ -41,7 +42,7 @@
   @media screen and (min-width: 769px) and (max-width: 1200px) {
     .posts-wrapper {
       grid-template-columns: 1fr;
-      grid-gap: 0;
+      column-gap: 0;
       width: 70%;
     }
 

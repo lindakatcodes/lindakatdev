@@ -1,5 +1,5 @@
 ---
-title: 'How to GraphQL Course'
+title: 'How to GraphQL'
 blurb: My thoughts and notes while going through the How to GraphQL course with my Party Corgi adventure club!
 tags:
   - GraphQL

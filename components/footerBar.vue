@@ -12,21 +12,21 @@
         You can reach me directly by email: <span name="email-copy" class="email-copy-action" @click="copyEmail">hello@lindakat.com</span>
       </p>
       <div class="footer-icons">
-        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub" class="gh">
+        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="GitHub" class="gh">
           <figure>
             <img src="~assets/icons/github-square.svg" alt="GitHub icon" class="gh-icon" />
             <figcaption class="caption">GitHub</figcaption>
           </figure>
         </a>
 
-        <a href="https://dev.to/lindakatcodes" target="_blank" rel="noreferrer" tooltip="blog" class="dev">
+        <a href="https://dev.to/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="blog" class="dev">
           <figure>
             <img src="~assets/icons/dev.svg" alt="Dev.to icon" class="dev-icon" />
             <figcaption class="caption">Dev.To</figcaption>
           </figure>
         </a>
 
-        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="Twitter" class="tw">
+        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="Twitter" class="tw">
           <figure>
             <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
             <figcaption class="caption">Twitter</figcaption>
@@ -34,14 +34,14 @@
         </a>
 
         <!-- eslint-disable-next-line prettier/prettier -->
-        <a href="https://drive.google.com/file/d/1VPrD-VNHA-gQZOnvadOtQITEZ4ggD8kb" rel="noreferrer" target="_blank" tooltip="resume" class="res">
+        <a href="https://drive.google.com/file/d/1VPrD-VNHA-gQZOnvadOtQITEZ4ggD8kb" rel="noreferrer noopener" target="_blank" tooltip="resume" class="res">
           <figure>
             <img src="~assets/icons/google-drive.svg" alt="Google Drive icon" class="res-icon" />
             <figcaption class="caption">Resume</figcaption>
           </figure>
         </a>
 
-        <a href="https://www.linkedin.com/in/linda-thompson-10534847" target="_blank" rel="noreferrer" tooltip="LinkedIn" class="li">
+        <a href="https://www.linkedin.com/in/linda-thompson-10534847" target="_blank" rel="noreferrer noopener" tooltip="LinkedIn" class="li">
           <figure>
             <img src="~assets/icons/linkedin.svg" alt="LinkedIn icon" class="li-icon" />
             <figcaption class="caption">LinkedIn</figcaption>

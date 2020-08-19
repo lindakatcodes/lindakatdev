@@ -9,9 +9,9 @@
     </div>
     <p class="project-description">{{ project.description }}</p>
     <div class="project-links">
-      <a v-if="project.links.demo" :href="project.links.demo" class="demo">Demo</a>
-      <a v-if="project.links.site" :href="project.links.site" class="live">Live Site</a>
-      <a v-if="project.links.code" :href="project.links.code" class="code">Code</a>
+      <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
+      <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
+      <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
     </div>
   </article>
 </template>

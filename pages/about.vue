@@ -19,12 +19,13 @@
             knowledge. Also planning to write about my understanding of each concept as I go over it!
           </p>
           <li class="item">
-            Learning React!
+            How to GraphQL
           </li>
           <p class="item-description">
-            While I like Vue a lot, I also want to get a basic understanding of how React works and build something with it. Can't hurt to be able to
-            work with both options! I'm going to start with the tutorial on the React docs, then dig into the options on Free Code Camp. Not sure what
-            I'll build with it just yet, though. I'll update here when I decide!
+            In the Party Corgi Discord group, we recently started a few adventure club / cohort groups. One of them decided to go through the
+            <a href="https://howtographql.com" class="link" target="_blank" rel="noreferrer noopener">How to GraphQL course</a>, and since I've had my
+            eye on this course for awhile - I decided to join in! So I'll be going through this course and building out the project as we go. Super
+            excited to have a group to go through this with!
           </p>
         </ul>
       </div>
@@ -153,7 +154,7 @@
     </section>
     <div class="certificates">
       <figure v-for="(cert, index) in certificates" :key="index" class="cert-figure">
-        <a :href="cert.link" class="cert-link">
+        <a :href="cert.link" class="cert-link" target="_blank" rel="noreferrer noopener">
           <img :src="picUrl(cert.img)" :alt="cert.altText" class="cert-pic" />
         </a>
         <figcaption class="cert-caption">{{ cert.class }}</figcaption>
@@ -272,6 +273,18 @@
 
   .item-description {
     margin-left: 4%;
+  }
+
+  .link {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+  }
+
+  .link:hover {
+    text-decoration: solid underline var(--lightBasic);
   }
 
   .learning {

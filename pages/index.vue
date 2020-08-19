@@ -9,10 +9,10 @@
       </p>
       <hr class="intro-divider" />
       <div class="intro-icons">
-        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="GitHub">
+        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="GitHub">
           <img src="~assets/icons/github-square.svg" alt="GitHub icon" class="gh-icon" />
         </a>
-        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer" tooltip="Twitter">
+        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="Twitter">
           <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
         </a>
       </div>
