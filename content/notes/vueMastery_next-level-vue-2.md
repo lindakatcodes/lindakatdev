@@ -1,4 +1,10 @@
-# Next Level Vue
+---
+title: 'Next Level Vue'
+blurb: Notes on Vue Mastery's Next Level Vue course, second in the series
+tags:
+  - Vue
+  - Vue Mastery
+---
 
 ## Axios Interceptors
 

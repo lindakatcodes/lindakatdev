@@ -1,4 +1,10 @@
-# Interview on Your Terms
+---
+title: 'Interview on Your Terms'
+blurb: Thoughts & Notes from a General Assembly virtual meetup
+tags:
+  - Interviewing
+  - Talks
+---
 
 ## What Makes a Good Interview?
 

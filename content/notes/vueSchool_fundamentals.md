@@ -1,4 +1,10 @@
-# Fundamentals
+---
+title: 'Vue Fundamentals'
+blurb: Notes on Vue School's Vue Fundamentals course
+tags:
+  - Vue
+  - Vue School
+---
 
 ## Template Syntax
 

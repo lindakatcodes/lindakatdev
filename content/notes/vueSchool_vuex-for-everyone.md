@@ -1,4 +1,11 @@
-# Vuex for Everyone
+---
+title: 'Vuex for Everyone'
+blurb: Notes on Vue School's Vuex course
+tags:
+  - Vue
+  - Vuex
+  - Vue School
+---
 
 ## Mutations
 

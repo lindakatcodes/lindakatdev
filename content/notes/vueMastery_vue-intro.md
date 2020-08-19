@@ -1,10 +1,11 @@
 ---
-title: Introductory Thoughts on Vue
+title: A Vue Introduction
 blurb:
-  A personal cheat sheet to help solidify my understanding of some Vue basics.
+  Detailed notes on Vue Mastery's introduction to Vue course
 createdAt: 2020-03-07
 tags:
   - Vue
+  - Vue Mastery
 ---
 
 I've been wanting to learn a framework for a little while now, & it was recently advised to me that it would be smart to do job-wise. So I've finally decided to buckle down & choose one, & decided on Vue!

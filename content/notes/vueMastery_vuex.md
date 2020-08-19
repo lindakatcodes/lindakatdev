@@ -1,4 +1,11 @@
-# Vuex
+---
+title: 'Vuex by VM'
+blurb: Notes on Vue Mastery's Vuex course
+tags:
+  - Vue
+  - Vuex
+  - Vue Mastery
+---
 
 State - data your components depend on & render
 

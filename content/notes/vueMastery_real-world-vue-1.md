@@ -1,4 +1,11 @@
-# Real World Vue
+---
+title: 'Real World Vue'
+blurb: Notes on Vue Mastery's Real World Vue course, first in the series
+tags:
+
+- Vue
+- Vue Mastery
+---
 
 ## Project Breakdown
 
