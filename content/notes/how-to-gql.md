@@ -181,3 +181,153 @@ Resolvers can take either provided arguments or implicit arguments, depending on
 gql is great for front end, as data fetching can be pushed to server side. Don't need to care where data is coming from, so logic can be abstracted away.
 
 Storage of data, request specifics, and all other steps besides describing the data you want and displaying it is handled by the gql server. This is called declarative data fetching. Imperative data fetching is the full process of constructing the HTTP request, parsing the response, storing the data, and then displaying it. Lots of gql client libraries exist to allow you to use declarative fetching and focus on the data itself.
+
+## Clients
+
+You'll often use a client to handle sending the HTTP requests. So instead of using `fetch` or writing it out yourself, you'll just write the query or mutation and send it to the client, and the client will handle the networking part.
+
+Then, when the client gets the server response, depending on what framework you're using, there are ways to update the UI with the data. Works especially well with functional reactive techniques, where the view declares what data it needs and the UI is wired to automatically update it with data.
+
+Caching note - often best to flatten a query result and store that in a local store, that you can reference by id when needed.
+
+Can also help to validate and optimize queries at build time, if the build environment has access to schema. Can go through and parse all the gql queries created and check for typos & optimizing chances during build time.
+
+## Server
+
+Big benefit for the server side is allowing it to focus on describing the data, rather than how the endpoints are implemented.
+
+Basically, when a query is received, the server algorithm goes field by field and executes a resolver for each one.
+
+Every field in a query will have a specific type it's associated with - either a declared type, or the type of data it holds (string, int, etc). This makes it easy for the resolvers to know what they need to run on to find the data. Execution runs breadth-first, so will start at the top, resolve that, then pass te result to it's child, and so on until all the data is collected. Then the algorithm puts it all into the correct shape and returns it.
+
+Lots of server implementations will provide default resolvers, too - so you don't have to specify a resolve for every field if the parent object contains a field with the right name.
+
+This can sometimes be a bit naive and could result in multiple calls of the same data. There are options to batch requests or create functions that wait for all the resolvers to run then only fetch each once.
+
+## More Concepts
+
+Fragments - improve structure and reusability by making a collection of fields from a specific type.
+
+```js
+// if we have this type:
+type User {
+  name: String!
+  age: Int!
+  email: String!
+  street: String!
+  zipcode: String!
+  city: String!
+}
+
+// we can make a fragment for the address like so:
+fragment addressDetails on User {
+  name
+  street
+  zipcode
+  city
+}
+
+// can then refer to the fragment & save to get all that data
+{
+  allUsers {
+    ...addressDetails
+  }
+}
+```
+
+Types can take arguments, and we can specify default values for these if desired.
+
+```js
+type Query {
+  allUsers(olderThan: Int = -1): [User!]!
+}
+```
+
+Named Queries - can assign aliases to queries, so you can send multiple with the same fields but different arguments
+
+```js
+first: User(id: 1) {
+  name
+}
+second: User(id: 2) {
+  name
+}
+```
+
+### Advanced Schema Things
+
+Gql has two different types:
+
+- scalar - concrete units of data; string, int, float, boolean, ID
+- object - composable fields, like `User` and `Post`, objects we create
+
+Can create your own of both types. A common scalar is Date.
+
+Enumeration types (enums) - special kind of scalar type, a way to define semantics of a type that as a fixed set of values (could do a type `Weekday` and list all the days)
+
+Interfaces - specify a set of fields that any type that implements the interface should have.
+
+```js
+interface Node {
+  id: ID!
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+}
+```
+
+Union types - shows a type should be either of a collection of types
+
+```js
+type Adult {
+  name: String!
+  work: String!
+}
+
+type Child {
+  name: String!
+  school: String!
+}
+
+union Person = Adult | Child
+```
+
+If we want to get information on a child but only have a Person type, we can use conditional fragments to see if we can actually access the child type.
+
+```js
+allPersons {
+  name //available for both adult and child
+  ... on Child {
+    school
+  }
+  ... on Adult {
+    work
+  }
+}
+```
+
+## Tooling
+
+**Introspection** - clients can ask server for information about schema. Can query `__schema`, always available on the root of a query. Can show what all `types` exist in the schema, and can go into detail about fields on a specific type.
+
+## Security
+
+**Timeout** - defends against large queries, sets max time allow for a query.
+
+**Max query depth** - can set a max depth, and reject if query goes deeper than that. Typically analyzed statically so won't add load to the server.
+
+**Query complexity** - can restrict queries with a max complexity. Common to set a default of 1, then increase it for more complex fields or based on arguments (more complex to get 5 posts than 1 user)
+
+**Throttling** - For gql, often based on server time (how long it takes the server to complete the query). Can also set throttle based on query complexity.
+
+## Common Questions
+
+- Gql is a query language for API's - not a database. Can be used with any database or even none.
+
+- Also not just for JS or React - can be used anywhere you use an API, with any client language/framework that can use HTTP, and any server that is used to build for the web.
+
+- Auth - Can do Authentication (user login) with common patterns like OAuth. Authorization (permission rules) are best handle in the business logic of your app, not by gql.
+
+- Errors - Successful queries return a data object with your data. it will return an errors object.
