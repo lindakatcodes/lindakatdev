@@ -46,7 +46,7 @@ You'll need to add the `feed-module` package to the modules list, and then there
 
 ----
 
-**Important side note! Make sure you list the `@nuxt/content` module BEFORE you list the `@nuxtjs/feed` module. That way, the feed can access your content.**
+ > Important side note! Make sure you list the `@nuxt/content` module BEFORE you list the `@nuxtjs/feed` module. That way, the feed can access your content.
 
 ----
 
