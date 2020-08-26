@@ -44,11 +44,7 @@ You can put all of the code you need inside the `nuxt.config.js` file. I'll show
 
 You'll need to add the `feed-module` package to the modules list, and then there's a feed option where you can add some functions and variables to get the data you need for each post.
 
-----
-
  > Important side note! Make sure you list the `@nuxt/content` module BEFORE you list the `@nuxtjs/feed` module. That way, the feed can access your content.
-
-----
 
 ### Part Two: Getting the Body of Posts
 

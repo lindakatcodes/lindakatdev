@@ -173,6 +173,19 @@
     color: var(--lightPurple);
   }
 
+  .content blockquote {
+    background-image: var(--lightGradient);
+    border-radius: 5px;
+    padding: 0 1%;
+  }
+
+  .content blockquote p {
+    background-color: #212c31;
+    padding: 2% 1% 2% 3%;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
   .nuxt-content-highlight {
     margin: 2.5% 0;
     width: 98%;
