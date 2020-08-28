@@ -6,7 +6,9 @@ tags:
   - Wes Bos
 ---
 
-## Types
+## The Basics
+
+### Types
 
 7 different types in JS:
 
@@ -18,7 +20,7 @@ tags:
 - Symbol
 - Object
 
-### Strings
+#### Strings
 
 Can use '', "", or ``
 
@@ -28,11 +30,11 @@ To do multi-line strings - will need to add back slashes or line breaks - or use
 
 Back ticks also let you do some nice concatenation with separate strings and variables (interpolation) - ``Hello my name is ${name}, nice to meet you``
 
-### Numbers
+#### Numbers
 
 can subtract, multiply, and divide with numbers or strings - but addition is only possible for numbers.
 
-**If you're getting weird issues with numbers not coming out right, check and make sure you're not mixing numbers and strings!**
+> If you're getting weird issues with numbers not coming out right, check and make sure you're not mixing numbers and strings!
 
 Modulo! `%` - Returns remainder of a division operation
 
@@ -40,15 +42,15 @@ Be careful when adding floats (decimal numbers) - can be inaccurate and give wei
 
 Power - `**`
 
-### Objects
+#### Objects
 
 Everything in JS is an object - used for collections of things
 
-### Symbol
+#### Symbol
 
 Way to do unique properties
 
-### Null & Undefined
+#### Null & Undefined
 
 Both express "nothingness"
 
@@ -57,7 +59,7 @@ a variable that hasn't had a value set to it yet
 
 `null` - a value that is directly set to nothing/null. something that is explicitly set to mean nothing
 
-### Booleans and Equality
+#### Booleans and Equality
 
 True/false values - often used as flags
 
@@ -198,9 +200,9 @@ button.addEventListener('click', function() {console.log('Nice job')})
 setTimeout(() => console.log('Done!'), 1000);
 ```
 
-## Debugging Tools
+### Debugging Tools
 
-### Console methods
+#### Console methods
 
 .log is the most common - writes something to the console
 .info - similar to log, but adds a little i icon to side, provides information
@@ -210,39 +212,41 @@ setTimeout(() => console.log('Done!'), 1000);
 .count - can count every time something runs, can pass variables
 .group - will group multiple logs together, end with .groupEnd and pass same string as initial .group call; .groupCollapsed starts the groups collapsed
 
-### Call stack / stack trace
+#### Call stack / stack trace
 
 Gives information on what is causing the error and where it originated. When it says anonymous at the end, often means it's because it was called from the console. Will list the function call, the file it was in, and what line it was on. First item occurred most recently, then goes backwards.
 
-### Inspecting Elements
+#### Inspecting Elements
 
 Can access elements from the console by highlighting them in elements tab, then going to console and typing `$0`. The 0 means last element clicked, so will update. Can then increase number to get second last element, and so on.
 
 `$` & `$$` - shorthand selector for `document.querySelector` and `document.querySelectorAll` directly in the console.
 
-### Breakpoints
+#### Breakpoints
 
 Can put `debugger;` in your code, and if the console is open in your browser, will pause all JS from running. Sets a breakpoint, and loads into source in console.
 
-### Network Requests
+#### Network Requests
 
 Shows everything loaded when the page loads; can see timing, headers, etc.
 
-### Break on Attribute
+#### Break on Attribute
 
 In console, can right click on element and select break on and attribute modifications - will start debugger where affected JS was called. Can also go into sources tab and pick a break point on event listener or xhr/fetch.
 
-## Scope
+## The Tricky Bits
+
+### Scope
 
 'Where are my variables available to me?' Scope answers this!
 
-### Global Scope
+#### Global Scope
 
 Variables declared in the base of the file are available anywhere in your code.
 
 > `Var` and named functions are attached to the global `window` object in the browser. `Const` and `let` are NOT.
 
-### Function Scope
+#### Function Scope
 
 Variables declared inside a function are only available inside said function, unless we return it.
 
@@ -250,13 +254,13 @@ If variables aren't found in the function, JS will go up a level higher and sear
 
 Can scope functions inside functions as well - inner function will only be available to it's parent.
 
-### Block Scope
+#### Block Scope
 
 `{}` create blocks. Anything created inside them won't be available outside the block. Will often see this as loops (if, for, etc).
 
 > This particularly applies to `const` and `let` variables, as they are specifically block scoped. `Var` is actually function scoped, so does not obey the block scope rule and can be accessed outside of the block.
 
-### Scope Lookup
+#### Scope Lookup
 
 JS is a lexically / statically scoped language. This means variable/scope lookup happens where the function is *defined*, not where it's run.
 
@@ -279,12 +283,60 @@ JS is a lexically / statically scoped language. This means variable/scope lookup
   go();
 ```
 
-**Try not to create global variables - often leads to confusion or weirdness, can accidentally cause issues. When working with modules, becomes very difficult to do unless you create one specifically on the window object.**
+> Try not to create global variables - often leads to confusion or weirdness, can accidentally cause issues. When working with modules, becomes very difficult to do unless you create one specifically on the window object.
 
-## Hoisting
+### Hoisting
 
 Accessing functions and variables *before* they've been created. This is possible because of how JS works! It takes all declarations of functions and variables and puts them at the top of the file, so technically you can call them before they've actually been declared.
 
 One use case for this: Can arrange your files to have calls first, showing what the file does; then declarations after, showing how the file does it. Not super common, but it is possible.
 
-For variables, it will hoist the variable declaration, but not the value! So you can't log the variable before a value is added. But you can declare the variable early, then add a value later on. 
+For variables, it will hoist the variable declaration, but not the value! So you can't log the variable before a value is added. But you can declare the variable early, then add a value later on.
+
+### Closures
+
+The ability to access a parent level scope from a child scope, even after the parent has been terminated.
+
+```js
+function createGreeting(greeting = '') {
+  // say we have a variable here, in our parent scope
+  const myGreet = greeting.toUpperCase();
+  // then we're returning this inner function, which uses the variable from it's parent scope
+  return function (name) {
+    return `${myGreet} ${name}`;
+  }
+}
+
+// we could then assign this function to a few different variables with different arguments passed to it. It will run the whole function, which should clear up all the variables once it's done.
+const sayHello = createGreeting('hello');
+const sayHey = createGreeting('hey');
+// but we can then use the new variables, and still access that variables inside the function. It's called a closure because even though the function run is closed, we can still access the variables inside.
+console.log(sayHello('wes'));
+console.log(sayHey('wes'));
+```
+
+It's a little bit weird wording, but basically it's a way JS allows us to save & use variables from outer scopes, if function calls are nested inside each other. So the scope is preserved for when we need it.
+
+Can also be used to create "private variables" - so can keep multiple, updating instances of a similar variable.
+
+```js
+ function createGame(gameName) {
+   let score = 0;
+   return function win() {
+     score++;
+     return `Your ${gameName} score is ${score}`;
+   }
+ }
+
+// because of closure, when we run these functions it will keep a separate, updated score for each one. Since we stored two instances of our createGame function, each one counts as it's own version, and will stay updated.
+ const hockeyGame = createGame('Hockey');
+ const soccerGame = createGame('Soccer');
+```
+
+## The DOM
+
+Document Object Model - processes HTMl so we can interact with it using JS
+
+We have window, which tells us properties about the entire browser window, including the search bar and tabs and such. And we also have the document, which is just concerned with the actual browser page (so not tabs or search etc). There's also a navigator object, which has info about the device you're on (like geolocation, webcam, audio, battery, etc).
+
+### Selecting Elements
