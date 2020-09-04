@@ -340,3 +340,82 @@ Document Object Model - processes HTMl so we can interact with it using JS
 We have window, which tells us properties about the entire browser window, including the search bar and tabs and such. And we also have the document, which is just concerned with the actual browser page (so not tabs or search etc). There's also a navigator object, which has info about the device you're on (like geolocation, webcam, audio, battery, etc).
 
 ### Selecting Elements
+
+Two main ways to select items - `querySelector` and `querySelectorAll` - one gets the first item, one gets all items matching the provided tag. Most often, you'll see them on `document`, but can also use them on a specific variable as well, to search inside that variable.
+
+### Element Properties and Methods
+
+Can see all the properties of an element using `console.dir`, if needed.
+
+`textContent` and `innerText` are very similar - content is newer, and gets all elements including script and style, where inner only shows the human readable elements for that tag and won't show hidden items.
+
+`innerHTML` and `outerHTML` - inner will return all the HTML inside your provided tag, where outer will also include the selected tag.
+
+`insertAdjacentText` (also element & HTML) - takes position and element/text provided and adds to the indicated position. Positions `beforebegin` and `afterend` will go outside the target element; `afterbegin` and `beforeend` will go inside the target element.
+
+```js
+const pizzaList = document.querySelector('.pizza');
+pizzaList.insertAdjacentText('beforeend', '🍕');
+```
+
+### Working with Classes
+
+`className` will give the name of any classes attached to element - however, often you can use `classList` instead and get a few methods as well.
+
+```js
+const pic = document.querySelector('img');
+
+// add will add a class to the list
+pic.classList.add('open');
+// remove takes a class off the list
+pic.classList.remove('cool');
+// toggle will add or remove the class, depending on if it's already in the list or not
+pic.classList.toggle('change');
+// contains returns a true/false value to check if the name is in the list
+pic.classList.contains('round');
+```
+
+### Data Attributes
+
+Can make custom attributes using the `data-` tag! Better way to add your own attributes, should you need them.
+
+To access those attributes, call `.dataset` - will return an object with whatever data properties you've created.
+
+```js
+const custom = document.querySelector('.custom');
+// if you want the specific property you made, use dot notation
+custom.addEventListener('click', () => {
+  alert(`Welcome ${custom.dataset.name}!`)
+})
+```
+
+### Creating HTML
+
+Standard way - `document.createElement('tag');`
+
+Can then add attributes or classes to item - it's a real item stored in memory.
+
+To then add your new element to the DOM, use `.appendChild()` - will add it to the end of whichever element you add it to.
+
+When you modify the DOM, it causes a reflow, so will actively repaint the DOM for each call. So often best to use as rarely as possible - so add multiple items to each other first, then to the DOM once (or as few times as needed).
+
+Can also use `insertAdjacentElement` to attach to the DOM - works like the text version we used, but attaches to elements.
+
+When making multiple items, can also clone nodes -
+`const item = prevItem.cloneNode()`
+
+If you pass true, it will go "deep" and add in any children already set up as well (so for making a list, can clone a previous `li` item, passing true will also clone the text).
+
+### HTML from Strings
+
+If you've got a long list of items to add, you can use strings with valid HTML to add everything directly.
+
+```js
+const item = document.querySelector('.item');
+
+item.innerHTML = `
+<div>
+  <h1>Hey How are ya?</h1>
+</div>
+`
+```
