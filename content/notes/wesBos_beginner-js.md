@@ -419,3 +419,78 @@ item.innerHTML = `
 </div>
 `
 ```
+
+If using backticks, will work basically like templating in any other language! So can add variables and such into the strings.
+
+Another way is to turn our HTML string into a fragment (will turn the string into DOM elements before we add them to the page), using a range (a collection of HTML elements). Helpful if you'll need to modify or add things to your string created elements.
+
+```js
+const myHTML = `
+  <div class="wrapper">
+    <h2>Cute ${desc}</h2>
+    <img src="${src}" alt="${desc}"/>
+  </div>
+`;
+
+const myFragment = document.createRange().createContextualFragment(myHTML);
+```
+
+Can then use `append` to add it to the DOM.
+
+> **IMPORTANT NOTE:** XSS (cross site scripting) is a thing to consider with this - make sure you sanitize your text inputs, so folks can't put HTML into your page!
+
+### Traversing & Removing Nodes
+
+Difference between node and element - if you select `.children` from an item, you'll get any tags that are listed inside it - these are elements. Everything counts as a node, however, so if you get `.childNodes` from an item, you'll get tags and any text inside.
+
+Other ways to grab **elements** (these are chainable, if needed):
+
+- firstElementChild
+- lastElementChild
+- previousElementSibling (if you have multiple items with the same tag or class, will grab the previous sibling if available)
+- nextElementSibling
+- parentElement
+
+Other ways to grab **nodes** (also chainable):
+
+- firstChild
+- lastChild
+- previousSibling
+- nextSibling
+- parentNode
+
+Nodes will grab text items as well!
+
+If you need to remove something, fairly easy - `.remove()`
+
+Will still have access to item if created in JS as it stays in memory - will be removed from the page, but can still access it programmatically.
+
+## Events
+
+### Event Listener
+
+Go get something, listen for something, do something - essentially how an event listener works ;)
+
+```js
+button.addEventListener('click', function() {
+  console.log('Callback!');
+});
+```
+
+Can pass a named function for the callback as well - does not need the `()` at the end, since you're not actively calling it when describing it.
+
+Can also use `.removeEventListener`! Pass in event you want to stop listening for and function to stop running. Will work best if you're passing in a named function, since remove needs to know what function it's removing.
+
+To listen on multiple items:
+
+```js
+const buyButtons = document.querySelectorAll('button.buy');
+
+function buyItem() {
+  console.log('Buying item');
+}
+
+buyButtons.forEach(function(buyButton) {
+  buyButton.addEventListener('click', buyItem);
+})
+```
