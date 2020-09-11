@@ -494,3 +494,71 @@ buyButtons.forEach(function(buyButton) {
   buyButton.addEventListener('click', buyItem);
 })
 ```
+
+### Targets, Bubbling, Propagation, Capture
+
+In our callbacks, we get access to one parameter - the event that occurred. This gives us tons of information we can use in the callback.
+
+A common one is `event.target` - the specific item the event happened on. Can then access other dataset info or other specific items for that target.
+
+`event.currentTarget` is very similar, but gives the inner element that fired the event - so if you had a strong tag inside your button, `target` would be the button itself, while `currentTarget` would be the strong tag (if that's what you clicked to fire the event).
+
+**Propagation** - events will bubble up, from the item triggered all the way up each item above it to the window, browser, even OS. Sometimes this can be helpful (if your trigger is on a button but you clicked an inner item, for instance), but sometimes you don't want it to bubble all the way up to the window. Can use `.stopPropagation()` to prevent further bubbling.
+
+Can also trigger event listeners to work going down first, instead of up. This chart shows an example of the directions:
+
+![Flow chart from W3C of event flow](https://www.w3.org/TR/uievents/images/eventflow.svg)
+
+So we can have a listener on the window, and pass in `capture` to the listener to have it trigger before our button triggers, and can even use `.stopPropagation()` to stop the button trigger from even happening.
+
+```js
+  window.addEventListener(
+    'click',
+    function(event) {
+      console.log('Window click detected`);
+      // can add the below line to prevent further events from firing
+      // event.stopPropagation();
+    },
+    { capture: true});
+```
+
+### Prevent Default & Form Events
+
+`event.preventDefault()` will stop items that have default actions from performing their default actions.
+
+```js
+  const link = document.querySelector('.link');
+
+  link.addEventListener('click', function(e) {
+    // Bonus! confirm gives a popup with a ok & cancel button
+    const shouldChangePage = confirm('Do you wish to navigate away from this page?');
+    if (!shouldChangePage) {
+      e.preventDefault();
+    }
+  });
+```
+
+Another common default happens on forms - `submit`.
+
+Can grab the form by the name attribute - anytime we want to find an item by it's name in our HTML, can do that like this:
+
+`const signupForm = document.querySelector('[name="signup"]')`
+
+Inside our callback handler, can access form values either directly from `currentTarget` or like above w/ a query selector.
+
+Other events you might see in forms:
+
+- `keyup` - after a key is pressed, when it's released
+- `keydown` - when a key is pressed down
+- `focus` - when an input item is highlighted, focused on
+- `blur` - when an input loses focus
+
+### Accessibility Gotchas & Keyboard Codes
+
+Common concerns with accessibility:
+
+**Buttons** are used to perform actions when clicked. **Links** are used to change the page.
+
+Watch your event listeners! If you're going to do an event on a mouse item, make sure that can also be handled without a mouse.
+
+Example: say we have a photo that we want to enlarge when someone clicks on it. The best option would be to make a button and put the image inside it. But if we didn't do that, we should give our image a `tabindex` of 0, so it will show up in the tab flow. And also we should make a second event listener for `keyup` (will want to check `event.key` for the enter key) so that it triggers the same event as the click when we interact with it.
