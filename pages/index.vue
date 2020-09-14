@@ -187,7 +187,7 @@
 
   @media screen and (max-width: 768px) {
     .intro-name {
-      font-size: 3.5rem;
+      font-size: 3.25rem;
       text-align: center;
       line-height: 3.5rem;
     }
@@ -195,6 +195,7 @@
     .intro-subtitle {
       margin-top: 5%;
       width: 93%;
+      font-size: 1.25rem;
     }
 
     .intro-divider {
@@ -204,6 +205,10 @@
 
     .intro-icons {
       width: 75%;
+    }
+
+    .intro-icons a {
+      width: 40%;
     }
 
     section {
@@ -226,7 +231,7 @@
 
     .project-block {
       grid-row-gap: 0;
-      margin-bottom: 3.5%;
+      margin-bottom: 5%;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 

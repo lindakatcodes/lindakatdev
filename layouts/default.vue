@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavigationBar />
-    <Nuxt />
+    <Nuxt class="main" />
     <FooterBar />
     <script data-goatcounter="https://lktdev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </div>
@@ -21,5 +21,11 @@
   *::after {
     box-sizing: border-box;
     margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .main {
+      margin: 0 3%;
+    }
   }
 </style>

@@ -204,7 +204,7 @@
       padding: 5% 1.5%;
       border-bottom: 1px solid var(--lightBasic);
       border-radius: 0;
-      margin-top: 3%;
+      margin-top: 7%;
     }
 
     .project-images {
@@ -222,6 +222,7 @@
     .project-title {
       margin-top: 2%;
       font-size: 1.65rem;
+      text-align: center;
     }
 
     .project-tech {

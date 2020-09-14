@@ -101,5 +101,9 @@
     .home-link {
       top: 20px;
     }
+
+    .link {
+      font-size: 0.9rem;
+    }
   }
 </style>

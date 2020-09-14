@@ -58,7 +58,7 @@
     }
 
     .title {
-      font-size: 2.15rem;
+      font-size: 2rem;
     }
 
     .divider {

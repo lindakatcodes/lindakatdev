@@ -36,6 +36,7 @@
 
     .post {
       grid-column: 1;
+      margin-bottom: 6%;
     }
   }
 

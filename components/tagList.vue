@@ -152,6 +152,17 @@
     border-color: transparent;
   }
 
+  @media screen and (max-width: 768px) {
+    .tag-container {
+      width: 90%;
+      margin-bottom: 4%;
+    }
+
+    .single-tag a {
+      font-size: 0.8rem;
+    }
+  }
+
   @media screen and (min-width: 2000px) {
     .tag-container {
       width: 50%;

@@ -229,11 +229,15 @@
   @media screen and (max-width: 768px) {
     .container {
       margin: 4% auto;
-      width: 95%;
+      width: 90%;
+    }
+
+    .navigate {
+      font-size: 1rem;
     }
 
     .title {
-      font-size: 2rem;
+      font-size: 1.75rem;
       margin-bottom: 6%;
     }
 
@@ -243,11 +247,20 @@
 
     .content hr {
       background: var(--lightGradient);
-      margin: 3.5% auto;
+      margin: 3.5% auto 5%;
     }
 
     .content p {
-      margin-bottom: 3%;
+      margin-bottom: 5%;
+    }
+
+    .content h1,
+    .content h2,
+    .content h3,
+    .content h4,
+    .content h5,
+    .content h6 {
+      margin-bottom: 5%;
     }
 
     .nuxt-content-highlight {
@@ -257,6 +270,18 @@
     .nuxt-content-highlight code {
       overflow-wrap: break-word;
       white-space: pre-wrap;
+    }
+
+    .content blockquote p {
+      font-size: 1.05rem;
+    }
+
+    .content blockquote {
+      margin-bottom: 5%;
+    }
+
+    .prev-next a {
+      font-size: 0.9rem;
     }
   }
 </style>
