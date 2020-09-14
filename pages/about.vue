@@ -436,15 +436,15 @@
     }
 
     .section-details p {
-      margin-bottom: 4%;
+      margin-bottom: 5%;
     }
 
     .list li {
-      margin-bottom: 4%;
+      margin-bottom: 5%;
     }
 
     .item-description {
-      margin-top: 4%;
+      margin: 4% 0 5%;
     }
 
     .cert-figure {
