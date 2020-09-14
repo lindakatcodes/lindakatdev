@@ -245,6 +245,10 @@
       margin-bottom: 4%;
     }
 
+    .tag-container p {
+      font-size: 0.8rem;
+    }
+
     .content hr {
       background: var(--lightGradient);
       margin: 3.5% auto 5%;
