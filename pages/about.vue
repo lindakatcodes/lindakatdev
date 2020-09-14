@@ -12,21 +12,21 @@
         <ul class="list">
           <li class="item">
             Digging into Basics!
+            <p class="item-description">
+              While working on my most recent Vue project and building this portfolio, I was reminded of a few JavaScript and CSS techniques that
+              regularly trip me up. So I'm going to be going back over some basics and digging into a few specific ideas, to really solidify my
+              knowledge. Also planning to write about my understanding of each concept as I go over it!
+            </p>
           </li>
-          <p class="item-description">
-            While working on my most recent Vue project and building this portfolio, I was reminded of a few JavaScript and CSS techniques that
-            regularly trip me up. So I'm going to be going back over some basics and digging into a few specific ideas, to really solidify my
-            knowledge. Also planning to write about my understanding of each concept as I go over it!
-          </p>
           <li class="item">
             How to GraphQL
+            <p class="item-description">
+              In the Party Corgi Discord group, we recently started a few adventure club / cohort groups. One of them decided to go through the
+              <a href="https://howtographql.com" class="link" target="_blank" rel="noreferrer noopener">How to GraphQL course</a>, and since I've had
+              my eye on this course for awhile - I decided to join in! So I'll be going through this course and building out the project as we go.
+              Super excited to have a group to go through this with!
+            </p>
           </li>
-          <p class="item-description">
-            In the Party Corgi Discord group, we recently started a few adventure club / cohort groups. One of them decided to go through the
-            <a href="https://howtographql.com" class="link" target="_blank" rel="noreferrer noopener">How to GraphQL course</a>, and since I've had my
-            eye on this course for awhile - I decided to join in! So I'll be going through this course and building out the project as we go. Super
-            excited to have a group to go through this with!
-          </p>
         </ul>
       </div>
     </section>
@@ -269,10 +269,26 @@
   .list li::before {
     content: '»';
     margin: 0 0.25rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--lightPurple);
+  }
+
+  .list li:nth-child(2n)::before {
+    color: var(--lightBlue);
+  }
+
+  .list li:nth-child(3n)::before {
+    color: var(--lightYellow);
+  }
+
+  .list li:nth-child(4n)::before {
+    color: var(--lightPink);
   }
 
   .item-description {
-    margin-left: 4%;
+    margin-left: 1%;
+    text-indent: 0;
   }
 
   .link {
@@ -415,7 +431,7 @@
     }
 
     .section-title {
-      font-size: 1.85rem;
+      font-size: 1.75rem;
       margin-bottom: 2%;
     }
 
@@ -425,6 +441,10 @@
 
     .list li {
       margin-bottom: 4%;
+    }
+
+    .item-description {
+      margin-top: 4%;
     }
 
     .cert-figure {
@@ -438,8 +458,9 @@
     }
 
     .cert-caption {
-      padding: 2% 3%;
+      padding: 2% 2%;
       height: 31%;
+      font-size: 0.7rem;
     }
   }
 

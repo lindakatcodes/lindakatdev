@@ -209,6 +209,8 @@
 
     .project-images {
       height: 50vw;
+      flex-direction: column;
+      flex-wrap: wrap;
     }
 
     .multiPic {
@@ -216,7 +218,7 @@
     }
 
     .multiPic img {
-      width: 42vw;
+      width: 85vw;
     }
 
     .project-title {

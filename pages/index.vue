@@ -216,7 +216,7 @@
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 1.85rem;
     }
 
     .title-divider {

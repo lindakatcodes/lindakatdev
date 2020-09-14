@@ -192,8 +192,12 @@
       margin-bottom: 3%;
     }
 
+    .email {
+      width: 95%;
+    }
+
     .footer-icons {
-      width: 80%;
+      width: 95%;
     }
 
     .caption {
