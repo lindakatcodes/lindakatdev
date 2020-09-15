@@ -562,3 +562,13 @@ Common concerns with accessibility:
 Watch your event listeners! If you're going to do an event on a mouse item, make sure that can also be handled without a mouse.
 
 Example: say we have a photo that we want to enlarge when someone clicks on it. The best option would be to make a button and put the image inside it. But if we didn't do that, we should give our image a `tabindex` of 0, so it will show up in the tab flow. And also we should make a second event listener for `keyup` (will want to check `event.key` for the enter key) so that it triggers the same event as the click when we interact with it.
+
+## Etch a Sketch!
+
+Building an Etch-a-Sketch in the browser! A few random notes:
+
+- This project uses the `canvas` tag in HTML, to allow us to draw. The tag itself has a set width and height in the code, and then in the CSS for the page we set the width and height to half that size. This is so, on higher resolution screens, things should come out nice and crisp looking.
+- canvas will have a `context` setting, which is what we'll need to grab to actually draw on the canvas. Canvas is the element - we draw on the context.
+- Default action for arrow keys is to move the page.
+- `hsl` has a hue value that's between 0 and 359. Browsers will automatically handle the re-setting of the hue value if it goes over 359, and wrap back around for us!
+- In the third part of an event listener call, we can pass `once: true` to unbind the event listener after it's done, so it won't keep adding the same listener multiple times.
