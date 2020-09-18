@@ -12,9 +12,10 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@nuxt/content": "^1.5.2",
+    "@jlengstorf/get-share-image": "^0.7.1",
+    "@nuxt/content": "^1.9.0",
     "@nuxtjs/feed": "^2.0.0",
-    "nuxt": "^2.13.0",
+    "nuxt": "^2.14.5",
     "prism-themes": "^1.4.0",
     "reading-time": "^1.2.0",
     "vue-tippy": "^4.4.0"

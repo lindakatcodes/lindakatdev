@@ -18,6 +18,18 @@
 </template>
 
 <script>
+  import { getShareImage } from '@jlengstorf/get-share-image';
+
+  const socialImage = getShareImage({
+    title: this.post.title,
+    tagline: this.post.tags,
+    cloudName: 'lindakatcodes',
+    imagePublicID: 'lkdev/og-image',
+    titleFont: 'Fira Sans',
+    taglineFont: 'Bree Serif',
+    textColor: '#F3F6F7',
+  });
+
   export default {
     async asyncData({ $content, params }) {
       const post = await $content('blog', params.slug).fetch();
@@ -31,6 +43,26 @@
         post,
         prev,
         next,
+      };
+    },
+    head() {
+      return {
+        title: this.post.title,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.post.blurb,
+          },
+          {
+            name: 'image',
+            content: socialImage,
+          },
+          {
+            property: 'og:type',
+            content: 'article',
+          },
+        ],
       };
     },
   };
