@@ -91,8 +91,8 @@
       return {
         meta: [
           {
-            name: 'og:image',
             property: 'og:image',
+            name: 'og:image',
             content: this.socialImage,
           },
         ],
