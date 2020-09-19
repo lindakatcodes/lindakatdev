@@ -74,7 +74,8 @@
             content: this.post.blurb,
           },
           {
-            name: 'image',
+            name: 'og:image',
+            property: 'og:image',
             content: this.socialImage,
           },
           {

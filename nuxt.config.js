@@ -17,6 +17,7 @@ export default {
     title: 'LindaKat Devs',
     meta: [
       { charset: 'utf-8' },
+      { name: 'title', content: 'LindaKat Devs' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',

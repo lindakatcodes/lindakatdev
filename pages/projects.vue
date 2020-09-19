@@ -49,7 +49,8 @@
       return {
         meta: [
           {
-            name: 'image',
+            name: 'og:image',
+            property: 'og:image',
             content: this.socialImage,
           },
         ],
