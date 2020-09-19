@@ -2,7 +2,7 @@
   <div class="navigation-container">
     <nav class="nav">
       <nuxt-link to="/" class="home-link link"><img :srcset="srcset" :sizes="sizes" class="home-icon" /></nuxt-link>
-      <span v-if="fullSize" class="divider"></span>
+      <span v-if="largeScreen" class="divider"></span>
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
       <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
@@ -17,15 +17,11 @@
       return {
         srcset: '/logo48.png 48w, /logo72.png 72w',
         sizes: '(max-width: 768px) 48px, 72px',
+        largeScreen: this.fullSize,
       };
     },
-    mounted: {
-      fullSize() {
-        if (window.innerWidth < 768) {
-          return false;
-        }
-        return true;
-      },
+    mounted() {
+      this.largeScreen = !(window.innerWidth < 768);
     },
   };
 </script>

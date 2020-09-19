@@ -64,16 +64,12 @@
           through gives me such a sense of accomplishment, and helps others in the process!
         </p>
 
-        <p>
-          As for the type of place I'd like to work - I have a few priorities:
-        </p>
+        <p>As for the type of place I'd like to work - I have a few priorities:</p>
         <ul class="list">
           <li class="item">
             An open and communicative office - where everyone is free to ask questions, help each other, and accepts each other as human beings
           </li>
-          <li class="item">
-            Colorado based, or remote
-          </li>
+          <li class="item">Colorado based, or remote</li>
           <li class="item">
             Somewhere I can learn and grow as a developer - mentorship would be amazing, but also being able to pair program with my teammates or
             listen in to conversations would be amazing. I have a lot of growing to do, and I can't wait!
@@ -96,30 +92,14 @@
       <div class="section-details">
         <p><strong>Quick Fire Favorites:</strong></p>
         <ul class="list">
-          <li class="item">
-            Programming Language - JavaScript
-          </li>
-          <li class="item">
-            JavaScript Library - Vue
-          </li>
-          <li class="item">
-            Code Editor - VS Code
-          </li>
-          <li class="item">
-            Current Editor Theme - Overnight Slumber Italic
-          </li>
-          <li class="item">
-            Video Game Series - Ratchet & Clank
-          </li>
-          <li class="item">
-            Musician - Matt Nathanson
-          </li>
-          <li class="item">
-            Coffee Roast - Medium Dark
-          </li>
-          <li class="item">
-            Type of Pet - Cats
-          </li>
+          <li class="item">Programming Language - JavaScript</li>
+          <li class="item">JavaScript Library - Vue</li>
+          <li class="item">Code Editor - VS Code</li>
+          <li class="item">Current Editor Theme - Overnight Slumber Italic</li>
+          <li class="item">Video Game Series - Ratchet & Clank</li>
+          <li class="item">Musician - Matt Nathanson</li>
+          <li class="item">Coffee Roast - Medium Dark</li>
+          <li class="item">Type of Pet - Cats</li>
         </ul>
         <br />
         <p><strong>Personal Traits:</strong></p>
