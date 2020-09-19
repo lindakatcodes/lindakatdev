@@ -4,7 +4,7 @@ blurb: So I have this idea...and I'm speaking it into existence!
 createdAt: 2020-02-19
 tags:
   - Do I Own This
-  - Thoughts
+  - Brainstorming
 type: live
 featured: false
 ---

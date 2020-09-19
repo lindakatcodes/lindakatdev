@@ -164,6 +164,8 @@
 </template>
 
 <script>
+  import getShareImage from '@jlengstorf/get-share-image';
+
   export default {
     async fetch() {
       this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
@@ -173,11 +175,44 @@
         certificates: [],
       };
     },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+    },
     methods: {
       picUrl(pic) {
         // eslint-disable-next-line global-require, import/no-dynamic-require
         return require(`@/assets/images/certificates/${pic}.png`);
       },
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: 'All About LindaKat',
+          tagline: "Everything you want to know about Linda's goals and knowledge",
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Bree Serif',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 450,
+          taglineTopOffset: 350,
+          titleFontSize: 94,
+          taglineFontSize: 50,
+        });
+        return imageLink;
+      },
+    },
+    head() {
+      return {
+        meta: [
+          {
+            name: 'image',
+            content: this.socialImage,
+          },
+        ],
+      };
     },
   };
 </script>

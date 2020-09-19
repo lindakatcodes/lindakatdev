@@ -18,6 +18,8 @@
 </template>
 
 <script>
+  import getShareImage from '@jlengstorf/get-share-image';
+
   export default {
     async asyncData({ $content, params }) {
       const post = await $content('blog', params.slug).fetch();
@@ -31,6 +33,55 @@
         post,
         prev,
         next,
+      };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+      tagLineText() {
+        const tagList = this.post.tags.map((tag) => `#${tag} `);
+        return tagList.join(' ');
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: this.post.title,
+          tagline: this.tagLineText,
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Bree Serif',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 300,
+          taglineTopOffset: 425,
+          titleFontSize: 66,
+          taglineFontSize: 50,
+        });
+        return imageLink;
+      },
+    },
+    head() {
+      return {
+        title: this.post.title,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.post.blurb,
+          },
+          {
+            name: 'image',
+            content: this.socialImage,
+          },
+          {
+            property: 'og:type',
+            content: 'article',
+          },
+        ],
       };
     },
   };

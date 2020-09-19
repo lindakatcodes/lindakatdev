@@ -12,6 +12,7 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    "@jlengstorf/get-share-image": "^0.7.1",
     "@nuxt/content": "^1.5.2",
     "@nuxtjs/feed": "^2.0.0",
     "nuxt": "^2.13.0",

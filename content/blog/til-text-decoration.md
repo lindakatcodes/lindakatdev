@@ -4,6 +4,7 @@ blurb: What is (and isn't) included in the text-decoration shorthand declaration
 createdAt: 2020-08-03
 tags:
   - TIL
+  - CSS
 type: live
 featured: true
 ---
