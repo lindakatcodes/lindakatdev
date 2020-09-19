@@ -83,6 +83,11 @@
             property: 'og:type',
             content: 'article',
           },
+          {
+            hid: 'og:url',
+            property: 'og:url',
+            content: `https://www.lindakat.com${this.post.path}`,
+          },
         ],
       };
     },
