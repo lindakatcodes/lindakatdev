@@ -94,10 +94,6 @@
             property: 'og:image',
             content: this.socialImage,
           },
-          {
-            property: 'og:image:secure_url',
-            content: this.socialImage,
-          },
         ],
       };
     },
