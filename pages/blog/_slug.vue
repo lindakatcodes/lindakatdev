@@ -18,17 +18,7 @@
 </template>
 
 <script>
-  import { getShareImage } from '@jlengstorf/get-share-image';
-
-  const socialImage = getShareImage({
-    title: this.post.title,
-    tagline: this.post.tags,
-    cloudName: 'lindakatcodes',
-    imagePublicID: 'lkdev/og-image',
-    titleFont: 'Fira Sans',
-    taglineFont: 'Bree Serif',
-    textColor: '#F3F6F7',
-  });
+  import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
     async asyncData({ $content, params }) {
@@ -45,6 +35,35 @@
         next,
       };
     },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+      tagLineText() {
+        const tagList = this.post.tags.map((tag) => `#${tag} `);
+        return tagList.join(' ');
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: this.post.title,
+          tagline: this.tagLineText,
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Bree Serif',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 300,
+          taglineTopOffset: 425,
+          titleFontSize: 66,
+          taglineFontSize: 50,
+        });
+        return imageLink;
+      },
+    },
     head() {
       return {
         title: this.post.title,
@@ -56,7 +75,7 @@
           },
           {
             name: 'image',
-            content: socialImage,
+            content: this.socialImage,
           },
           {
             property: 'og:type',

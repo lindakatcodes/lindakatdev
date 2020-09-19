@@ -3,7 +3,7 @@ title: Rockin' (Web)Sockets!
 blurb: More Node learning - starting a chat app, & Socket.io!
 createdAt: 2019-07-31 
 tags:
-  - Node Course
+  - Node.js
   - Socket.io
   - Learning
 type: live

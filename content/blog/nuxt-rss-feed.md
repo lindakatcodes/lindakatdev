@@ -3,8 +3,10 @@ title: Building an RSS Feed in Nuxt with Nuxt/Content
 blurb: How I set up my RSS feed so I can cross post my blogs!
 createdAt: 2020-08-06
 tags:
+  - Tutorial
   - Nuxt
   - RSS
+  - Vue
 type: live
 featured: true
 ---

@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import getShareImage from '@jlengstorf/get-share-image';
+
   export default {
     async fetch() {
       this.projects = await this.$content('projects').sortBy('id', 'desc').fetch();
@@ -16,6 +18,41 @@
     data() {
       return {
         projects: [],
+      };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: 'LindaKat Codes',
+          tagline: 'Code projects from Linda Thompson',
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Bree Serif',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 450,
+          taglineTopOffset: 350,
+          titleFontSize: 94,
+          taglineFontSize: 50,
+        });
+        return imageLink;
+      },
+    },
+    head() {
+      return {
+        meta: [
+          {
+            name: 'image',
+            content: this.socialImage,
+          },
+        ],
       };
     },
   };

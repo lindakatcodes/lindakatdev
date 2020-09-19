@@ -5,6 +5,7 @@ createdAt: 2019-07-19
 tags:
   - Gridsome
   - Learning
+  - Vue
 type: live
 featured: true
 ---
