@@ -75,12 +75,19 @@
             content: this.post.blurb,
           },
           {
+            name: 'og:title',
+            hid: 'og:title',
+            property: 'og:title',
+            content: this.post.title,
+          },
+          {
             name: 'og:image',
             property: 'og:image',
             content: this.socialImage,
           },
           {
             property: 'og:type',
+            hid: 'og:type',
             content: 'article',
           },
           {
