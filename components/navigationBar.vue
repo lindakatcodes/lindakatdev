@@ -19,7 +19,7 @@
         sizes: '(max-width: 768px) 48px, 72px',
       };
     },
-    computed: {
+    mounted: {
       fullSize() {
         if (window.innerWidth < 768) {
           return false;
