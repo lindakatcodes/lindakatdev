@@ -17,15 +17,15 @@ export default {
     title: 'LindaKat Devs',
     meta: [
       { charset: 'utf-8' },
-      { name: 'title', content: 'LindaKat Devs' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
         content: 'The online home of all projects and tech writings from Linda Thompson',
       },
-      { property: 'og:type', name: 'og:type', content: 'website' },
-      { property: 'og:url', name: 'og:url', content: 'https://www.lindakat.com' },
+      { property: 'og:title', content: 'LindaKat Devs' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://www.lindakat.com' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },

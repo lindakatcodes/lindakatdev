@@ -92,7 +92,6 @@
         meta: [
           {
             property: 'og:image',
-            name: 'og:image',
             content: this.socialImage,
           },
         ],
