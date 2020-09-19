@@ -63,6 +63,12 @@
             property: 'og:image',
             content: this.socialImage,
           },
+          {
+            name: 'description',
+            hid: 'description',
+            property: 'og:description',
+            content: 'Tech thoughts from Linda Thompson',
+          },
         ],
       };
     },

@@ -20,6 +20,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
+        property: 'og:description',
         content: 'The online home of all projects and tech writings from Linda Thompson',
       },
       { property: 'og:title', content: 'LindaKat Devs' },

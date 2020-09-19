@@ -71,6 +71,7 @@
           {
             hid: 'description',
             name: 'description',
+            property: 'og:description',
             content: this.post.blurb,
           },
           {

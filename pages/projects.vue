@@ -53,6 +53,12 @@
             property: 'og:image',
             content: this.socialImage,
           },
+          {
+            name: 'description',
+            hid: 'description',
+            property: 'og:description',
+            content: 'Code projects from Linda Thompson',
+          },
         ],
       };
     },
