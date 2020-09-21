@@ -13,18 +13,19 @@
           <li class="item">
             Digging into Basics!
             <p class="item-description">
-              While working on my most recent Vue project and building this portfolio, I was reminded of a few JavaScript and CSS techniques that
-              regularly trip me up. So I'm going to be going back over some basics and digging into a few specific ideas, to really solidify my
-              knowledge. Also planning to write about my understanding of each concept as I go over it!
+              While working through recent projects, I keep coming up against concepts that trip me up and things that haven't fully stuck into my
+              mind yet. So I'm spending some time every day working on basics and reinforcing skills. Right now I'm going through
+              <a href="https://beginnerjavascript.com/" class="link" target="_blank" rel="noreferrer noopener">Wes Bos' beginner JavaScript course</a>
+              for this, and supplimenting when I come across something that intrigues me!
             </p>
           </li>
           <li class="item">
-            How to GraphQL
+            Rustlings!
             <p class="item-description">
-              In the Party Corgi Discord group, we recently started a few adventure club / cohort groups. One of them decided to go through the
-              <a href="https://howtographql.com" class="link" target="_blank" rel="noreferrer noopener">How to GraphQL course</a>, and since I've had
-              my eye on this course for awhile - I decided to join in! So I'll be going through this course and building out the project as we go.
-              Super excited to have a group to go through this with!
+              Recently I've watched and heard some folks talking about getting started with Rust, and it's seemed intriging. A party corgi group just
+              started an adventure club to go through the
+              <a href="https://github.com/rust-lang/rustlings" class="link" target="_blank" rel="noreferrer noopener">rustlings exercises</a>, a set
+              of challenges to start learning Rust. So I'm joining in! It should be really interesting, and I'm excited to learn more about it!
             </p>
           </li>
         </ul>
@@ -412,9 +413,9 @@
       grid-template-areas:
         'title'
         'image'
+        'benefits'
         'learning'
         'goals'
-        'benefits'
         'certs';
       grid-template-columns: 1fr;
       grid-template-rows: auto;
