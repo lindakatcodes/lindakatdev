@@ -6,6 +6,27 @@ tags:
   - Wes Bos
 ---
 
+## Jump to a Section:
+
+- [The Basics](#the-basics)
+- [Functions](#functions)
+- [The Tricky Bits](#the-tricky-bits)
+- [The DOM](#the-dom)
+- [Events](#events)
+- [Serious Practice Exercises](#serious-practice-exercises)
+
+<!-- - [Logic and Flow Control](#logic-and-flow-control)
+- [Data Types](#data-types)
+- [Gettin' Loopy](#gettin-loopy)
+- [Harder Practice Exercises](#harder-practice-exercises)
+- [Prototypes, this, new, and Inheritance](#prototypes-this-new-and-inheritance)
+- [Advanced Flow Control](#advanced-flow-control)
+- [Ajax and Fetching Data](#ajax-and-fetching-data)
+- [ES Modules and Structuring Larger Apps](#es-modules-and-structuring-larger-apps)
+- [Final Round of Exercises](#final-round-of-exercises) -->
+
+----
+
 ## The Basics
 
 ### Types
@@ -563,7 +584,9 @@ Watch your event listeners! If you're going to do an event on a mouse item, make
 
 Example: say we have a photo that we want to enlarge when someone clicks on it. The best option would be to make a button and put the image inside it. But if we didn't do that, we should give our image a `tabindex` of 0, so it will show up in the tab flow. And also we should make a second event listener for `keyup` (will want to check `event.key` for the enter key) so that it triggers the same event as the click when we interact with it.
 
-## Etch a Sketch!
+## Serious Practice Exercises
+
+### Etch a Sketch!
 
 Building an Etch-a-Sketch in the browser! A few random notes:
 
