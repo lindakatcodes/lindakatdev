@@ -124,6 +124,38 @@ Represents a single value. There are 4 primary scalar types:
 
   > `Char` literals are specified with single quotes; `String` literals are specified with double quotes.
 
+### Compound Types
+
+These group multiple values into one type. There's two types - tuples and arrays.
+
+#### Tuples
+
+A general way of grouping together a number of values with various types into one compound type. They have a fixed length: once declared, they can't grow or shrink in size.
+
+```rust
+let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+// to get individual values, we destructure with pattern matching
+let (x, y, z) = tup;
+// or can use dot notation for the index of the item we want
+let one = x.2;
+```
+
+#### Arrays
+
+Will also have a fixed length, but each element must have the same type. Will be a single chunk of memory allocated on the stack.
+
+```rust
+// type is written as [type; # of elements]
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+// if we want each value to be the same, can declare by giving the value then the # of elements
+let b = [3; 5];
+// will access items in the array with [] notation
+let first = a[0];
+```
+
+If you try to access something outside of the array (like with an index that's too long), Rust will check to see if that index is less than the array length. If not, it will panic and end the program. This helps prevent you from allowing memory access that's invalid.
+
 ## Control Flow
 
 ### If Statements
