@@ -27,7 +27,7 @@ fn main() {
 }
 ```
 
-> Semicolons indicate the end of an expression - most lines of Rust code will end with one.
+> Semicolons indicate the end of a statement - most lines of Rust code will end with one.
 
 To compile and run your program in Rust:
 
