@@ -235,11 +235,11 @@
   }
 
   .content img {
-    width: 90%;
+    width: 70%;
     margin: 2% auto;
   }
 
-  .content p > img {
+  .post-image {
     text-align: center;
   }
 
