@@ -59,13 +59,14 @@
       return {
         meta: [
           {
+            hid: 'og:image',
             name: 'og:image',
             property: 'og:image',
             content: this.socialImage,
           },
           {
-            name: 'description',
-            hid: 'description',
+            hid: 'og:description',
+            name: 'og:description',
             property: 'og:description',
             content: 'Tech thoughts from Linda Thompson',
           },

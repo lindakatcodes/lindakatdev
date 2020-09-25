@@ -189,13 +189,14 @@
       return {
         meta: [
           {
+            hid: 'og:image',
             name: 'og:image',
             property: 'og:image',
             content: this.socialImage,
           },
           {
-            name: 'description',
-            hid: 'description',
+            hid: 'og:description',
+            name: 'og:description',
             property: 'og:description',
             content: "Everything you want to know about Linda's goals and knowledge",
           },

@@ -91,12 +91,14 @@
       return {
         meta: [
           {
+            hid: 'og:image',
+            name: 'og:image',
             property: 'og:image',
             content: this.socialImage,
           },
           {
-            name: 'description',
-            hid: 'description',
+            hid: 'og:description',
+            name: 'og:description',
             property: 'og:description',
             content: 'The online home of all projects and tech writings from Linda Thompson',
           },
