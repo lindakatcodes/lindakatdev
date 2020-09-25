@@ -19,7 +19,7 @@ While going through Wes Bos' [Beginner JavaScript](https://beginnerjavascript.co
 
 If you've never heard of or played Snake before, it's an old phone game where you control a snake. You start off small, and you move around the board and try to eat pieces of food. For each piece you eat, your body grows a little bigger. If you hit the side of the game board or your body, the game is over. It sounds simple, but once your body gets long enough it can be tricky!
 
-<span class="post-image" markdown="1">
+<span class="post-image">
 ![Snake being played on a Nokia phone](https://media1.tenor.com/images/14ea3c45f66ec873f5ee9cf1abfd0340/tenor.gif)
 </span>
 
@@ -116,6 +116,6 @@ There's always room for improvement - I might eventually test out the third canv
 
 You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake).
 
-<span class="post-image" markdown="1">
+<span class="post-image">
 ![View of my version of snake](https://i.imgur.com/txjQiqg.png)
 </span>
