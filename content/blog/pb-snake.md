@@ -114,7 +114,7 @@ In all, this took me about 7.5 hours to create. Which...feels like a lot to me, 
 
 There's always room for improvement - I might eventually test out the third canvas idea, and I would like to make it so that once the game starts, the snake moves automatically in the last given direction (like the original does) - but overall, I'm very pleased with how this turned out. :)
 
-You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake).
+You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake). And you can [play my version yourself here!](https://snake-mini.netlify.app/)
 
 <div class="post-image">
   <img src="https://i.imgur.com/txjQiqg.png" alt="View of my version of snake">

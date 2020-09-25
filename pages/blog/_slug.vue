@@ -239,6 +239,10 @@
     margin: 2% auto;
   }
 
+  .post-image img {
+    max-width: 55%;
+  }
+
   .content p code {
     color: var(--lightPurple);
   }
