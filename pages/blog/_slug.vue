@@ -234,13 +234,9 @@
     text-decoration: solid underline var(--lightBasic);
   }
 
-  .content img {
-    width: 70%;
-    margin: 2% auto;
-  }
-
   .post-image {
     text-align: center;
+    margin: 2% auto;
   }
 
   .content p code {
