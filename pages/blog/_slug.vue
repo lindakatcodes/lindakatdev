@@ -95,6 +95,11 @@
             property: 'og:url',
             content: `https://www.lindakat.com${this.post.path}`,
           },
+          {
+            hid: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
         ],
       };
     },
