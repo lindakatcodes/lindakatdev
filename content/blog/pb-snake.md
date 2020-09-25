@@ -15,33 +15,33 @@ TL;DR - I made my own version of Snake! [You can play the game here!](https://sn
 
 ## Background & Setting
 
-While going through Wes Bos' [Beginner JavaScript](https://beginnerjavascript.com) course, the first big project we did was creating an Etch a Sketch! It was so much fun, and gave me an idea - I could create the Snake game in a similar way!
+While going through Wes Bos' [Beginner JavaScript](https://beginnerjavascript.com) course, the first big project we did was creating an Etch a Sketch ([here's my implementation](https://codepen.io/lindakatcodes/pen/ZEWRPMo))! It was so much fun, and gave me an idea - I could create the Snake game in a similar way!
 
-If you've never heard of or played Snake before, it's an old phone game where you control a snake. You start off as a tiny single dot, and you move around the board and try to eat pieces of food. For each piece you eat, your body grows a little bigger. If you hit the side of the game board or your body, the game is over. It sounds simple, but once your body gets long enough it can be tricky!
+If you've never heard of or played Snake before, it's an old phone game where you control a snake. You start off small, and you move around the board and try to eat pieces of food. For each piece you eat, your body grows a little bigger. If you hit the side of the game board or your body, the game is over. It sounds simple, but once your body gets long enough it can be tricky!
 
-![Snake being played on a Nokia phone](https://tenor.com/view/nokia-snake-game-gif-12121001)
+![Snake being played on a Nokia phone](https://media1.tenor.com/images/14ea3c45f66ec873f5ee9cf1abfd0340/tenor.gif)
 
-Since the Etch a Sketch site (a big single-line drawing board, basically) also involves drawing lines on the screen, I figured I could use the same methods to create this game! It's honestly something I've wanted to play with making for awhile, but always seemed like too much work. Going through the course exercise made me realize that maybe it was more do-able than I thought!
+Since the Etch a Sketch also involves drawing lines on the screen, I figured I could use the same methods to create Snake! It's something I've wanted to play with making for awhile, but always seemed like too much work. Going through the course exercise made me realize that maybe it was more do-able than I thought!
 
 ----
 
 ## Tech Used
 
-The real star of this game is the HTML `canvas` element. This is an element that lets you draw complex shapes on the screen. I had heard of the `canvas` element for awhile now but really hadn't had a use case for it. But once we used it in the course exercise, it seemed like the perfect "canvas" (get it?? lol) for building this game! This also uses some fairly straight forward vanilla JavaScript.
+The real star of this game is the HTML `canvas` element. This is an element that lets you draw complex shapes on the screen. I had heard of the `canvas` element before, but really hadn't had a use case for it. But once we used it in the course exercise, it seemed like the perfect "canvas" (get it?? lol) for building this game! This also uses some fairly straight forward vanilla JavaScript.
 
 ----
 
 ## Lessons Learned
 
-I learned a lot while working on this - it turned out to be a bit more difficult than I thought! Here's a few of the little gotchas I ran into.
+Holy buckets, I learned a lot while working on this - it turned out to be a bit more difficult than I thought! Here's a few of the little gotchas I ran into.
 
-### Setting the path lineCap is important
+### Setting the lineCap is important
 
 I thought the food style was a good place to start - it's just a single small square that goes to one spot, then moves to a new spot when the snake triggers it.
 
 I set my `lineWidth` and `fillStyle` for the food, made a little random number function to get a random x and y, and put in the code that (I thought) would show a little square of food on the canvas. Saved and...nothing! This had worked in the Etch a Sketch project - why wasn't it working now?
 
-Turns out, you need to adjust the `lineCap` to be something other than the default for a single small square to show. If you're drawing a full line it will work without the `lineCap` adjustment, but for this single square I had to set it to square, and then it showed up.
+Turns out, you need to adjust the `lineCap` to be something *other* than the default for a single point to show. If you're drawing a full line it will work without the `lineCap` adjustment, but for this single point I had to set it to 'square', and then it showed up.
 
 ```js
 foodCtx.lineWidth = SIZE;
@@ -51,13 +51,13 @@ foodCtx.lineCap = 'square';
 
 ### Making the snake grow properly
 
-For this game, your snake starts as a single spot, then grows as it eats. The body also needs to stay a consistent length, until the food trigger makes it bigger. So it needs to move as a specific length on the screen.
+For this game, your snake starts as a single spot, then grows as it eats. The body also needs to stay a consistent length, until the food trigger makes it bigger. So it needs to move to new spots, and maintain it's length.
 
-Not really sure why it took me a bit to work out, but in the end I decided the best way to track the snake was to keep an array of my recent moves, as well as a variable storing the current length of the snake.
+Not really sure why it took me a bit to work out, but in the end I decided the best way to track the snake was to keep an array of my moves, as well as a variable storing the current length of the snake.
 
-Basically, each time the snake moves, the moves array needs to update. It needs to add the new move to the array, and then, depending on the length, it needs to remove a certain number of old moves from the array. Then, the line can be redrawn from the updated array list. This lets it always show as a certain length, and makes it relatively easy to grow as well!
+Basically, each time the snake moves, the moves array needs to update. It needs to add the new move to the array, and then it needs to remove the oldest move from the array. Then the line can be adjusted from the updated array list. This lets it always show as a certain length, and makes it relatively easy to grow as well!
 
-Also made sure to check the length of the moves array - when we first eat a piece of food, our array isn't going to be as long as the body needs to be yet, so we don't want to remove anything.
+I also made sure to check the length of the moves array - when we first eat a piece of food, our array isn't going to be as long as the new body length needs to be yet, so we don't want to remove anything.
 
 ### Covering the old moves
 
@@ -69,19 +69,19 @@ Though, now that I'm writing this, I'm seeing another option that might work nic
 
 ### Multiple canvases and z index
 
-I had read that separating multiple drawings onto separate canvases and layering them over each other can be better for performance, especially if one needs to be adjusted a lot and one doesn't. I used this technique, putting the food on one canvas, and the snake on another. Since I stored the coordinate values and the canvases were the same size, detecting collisions was still easy.
+I had read that separating multiple drawings onto separate canvases and layering them over each other can be better for performance, especially if one needs to be adjusted a lot and one doesn't. I used this technique, putting the food on one canvas, and the snake on another. Since I stored the coordinate values for both and the canvases were the same size, detecting collisions was still easy.
 
-What I mentioned earlier and didn't think of until now, is that I might have been able to make a third canvas that stored the removed values! Then I could have had that line draw over the removed points in white, and I may not have run into the artifacting issues I had drawing onto an already existing path. Will have to test this out later!
+What I mentioned and didn't think of until now is that I might have been able to make a third canvas that stored the removed values! Then I could have had that line draw over the removed points in white, and I may not have run into the artifacting issues I had drawing on top of an already existing path. I'll have to test this out later!
 
-I also ran into the importance of setting the correct z index for canvases! I accidentally layered the snake canvas over the food canvas at first, and when the snake would run over the edge of the food (if it didn't go directly over it, or if the new food generated next to the tail of the snake), when an old snake body part would be painted over it would also paint over a portion of the food. Setting the food canvas on top prevents this.
+I also ran into the importance of setting the correct z index for canvases. I layered the snake canvas over the food canvas at first, and when the snake would run over the edge of the food (if the new food generated next to the tail of the snake), when an old snake body part would be painted over it would also paint over a portion of the food. Setting the food canvas on top prevents this.
 
 ### Detecting body hits
 
 Detecting if the snake head has run into one of the game board edges was easy - I know the width and height of the board, so I just check for hitting zeroes or hitting the width/height numbers.
 
-Detecting the body hits was also seemingly easy - I had an array of all the locations of the body points, after all. But the thing that always seems to trip me up in JavaScript is searching through objects - because of course I was storing each coordinate as an object of x and y values.
+Detecting the body hits was also seemingly easy - I had an array of all the locations of the body points, after all. But the thing that always seems to trip me up in JavaScript is searching through objects - and naturally, I was storing each coordinate as an object of x and y values.
 
-The `.includes` method on arrays I thought would work great for this - however, it can't read into the objects, so it didn't work. Turns out, what I needed was the `.find` method instead!
+I thought the `.includes` method on arrays would work great for this - however, it can't read into the objects, so it didn't work. Turns out, what I needed was the `.find` method instead!
 
 Using `.find`, you can look at each point in your array, and see if you have a particular key that matches a particular value. Using this, it was actually as easy as I thought to detect if the current head ran into a value in the body array - just had to find the right JavaScript method to do it!
 
@@ -98,16 +98,16 @@ if (body.find(point => point.x === headX && point.y === headY)) {
 
 ### Setting canvas focus
 
-The last issue I ran into was starting a new game. The game starts automatically when you load the page, but once that game ended I wanted a way for people to start again. So I set up a restart button, and disabled it while a game was running. Got the board clearing and the necessary values resetting, so you always start from a score of zero and fresh coordinates.
+The last issue I ran into was starting a new game. The game starts automatically when you load the page, but once that game ended I wanted a way for people to start again. So I set up a restart button, and got the board clearing and the necessary values resetting, so you always start from a score of zero with fresh coordinates.
 
-But...I couldn't get the game to actually show moves on new rounds! It was the weirdest thing to me. And arrow keys, which had the default event prevented (an arrow keys default is to move the viewport around), were moving the screen around. Something wasn't right.
+But...I couldn't get the game to actually show moves on new rounds! It was the weirdest thing to me. And arrow keys, which had the default event prevented, were now not preventing the default (an arrow key's default is to move the viewport around). Something wasn't right.
 
 I stumbled on the answer to this by accident - during one of my attempts, I clicked on the screen, and suddenly the arrow keys were making the snake move! Then I had one of those "ah ha" moments - the canvas must be losing keyboard focus!
 
-Turns out, this was exactly it! In my start game function, I explicitly set the snake canvas to have focus as the last thing. And then everything worked just like I wanted it to. :)
+Turns out, this was exactly it! I adjusted my start game function to explicitly set the snake canvas to have focus as the last thing. And then everything worked just like I wanted it to. :)
 
 ## Final thoughts
 
 In all, this took me about 7.5 hours to create. Which...feels like a lot to me, honestly, but involves a lot of reading of the `canvas` specs, troubleshooting various things, and a little bit of styling, documentation, and code rearranging. So all in all, not that bad - and definitely faster than I could have created it a year ago. :) Progress is progress!
 
-I hope you enjoyed reading a bit about the thought process behind my implementation, and I hope you have fun playing! You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake).
+You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake).
