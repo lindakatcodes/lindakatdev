@@ -5,8 +5,8 @@ tags:
   - JavaScript
   - Games
   - Project Breakdown
-type: draft
-featured: false
+type: live
+featured: true
 ---
 
 TL;DR - I made my own version of Snake! [You can play the game here!](https://snake-mini.netlify.app/)
@@ -110,4 +110,8 @@ Turns out, this was exactly it! I adjusted my start game function to explicitly 
 
 In all, this took me about 7.5 hours to create. Which...feels like a lot to me, honestly, but involves a lot of reading of the `canvas` specs, troubleshooting various things, and a little bit of styling, documentation, and code rearranging. So all in all, not that bad - and definitely faster than I could have created it a year ago. :) Progress is progress!
 
+There's always room for improvement - I might eventually test out the third canvas idea, and I would like to make it so that once the game starts, the snake moves automatically in the last given direction (like the original does) - but overall, I'm very pleased with how this turned out. :)
+
 You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake).
+
+![View of my version of snake](https://i.imgur.com/txjQiqg.png)

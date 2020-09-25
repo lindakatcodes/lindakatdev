@@ -239,6 +239,10 @@
     margin: 2% auto;
   }
 
+  .content p > img {
+    text-align: center;
+  }
+
   .content p code {
     color: var(--lightPurple);
   }
