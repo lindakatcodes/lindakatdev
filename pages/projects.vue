@@ -60,6 +60,12 @@
             property: 'og:description',
             content: 'Code projects from Linda Thompson',
           },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
         ],
       };
     },

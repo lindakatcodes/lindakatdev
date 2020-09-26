@@ -102,6 +102,12 @@
             property: 'og:description',
             content: 'The online home of all projects and tech writings from Linda Thompson',
           },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
         ],
       };
     },

@@ -200,6 +200,12 @@
             property: 'og:description',
             content: "Everything you want to know about Linda's goals and knowledge",
           },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
         ],
       };
     },
