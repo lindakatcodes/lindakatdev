@@ -46,24 +46,36 @@ I didn't have my server code hosted under my own name, so I made a fork of the f
 Alright, this was a tricky part for me. These images should help!
 
 a. Once you're logged into your account, you'll click New in the upper right corner and click Create new app.
-![Create New App Screen](https://cdn2.auth0.com/blog/ultimateguide/create_new_app.png)
+<div class="post-image">
+  <img src="https://cdn2.auth0.com/blog/ultimateguide/create_new_app.png" alt="Create New App Screen">
+</div>
 
 b. You'll give your server a name, and click Create app at the bottom.
-![Name and Create Screen](https://cdn.auth0.com/blog/jsdeploy/herokunewname.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/herokunewname.png" alt="Name and Create Screen">
+</div>
 
 c. This will take you to a page with some options. Because we're hosting a simple site with one contributor, you don't have to worry about pipelines for now (that's how you'd work with a project that's regularly maintained by multiple people, so you can push things through a staging process and do testing and all that goodness).
 
 What you'll want to do next is connect this to your GitHub account, so we can access the back-end code.
-![Connect to GitHub screen](https://cdn.auth0.com/blog/jsdeploy/connectogithub.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/connectogithub.png" alt="Connect to GitHub screen">
+</div>
 
 d. Once you're connected, you can search for the name of your server repository, and click connect so it, as you might guess, connects to that repo.
-![Connect screen](https://cdn.auth0.com/blog/jsdeploy/clickonconnect.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/clickonconnect.png" alt="Connect screen">
+</div>
 
 e. The last thing here is to set up deployment. You'll pick the branch you want it to use (for my case, the master branch is what I wanted), and you'll want to click on Enable Automatic Deploys. (You won't need the 'wait for CI' link checked that shows in this image, unless you have tests set up that you want to run before your code updates.)
-![Automatic Deploys screen](https://cdn.auth0.com/blog/jsdeploy/enableautomaticdeploy.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/enableautomaticdeploy.png" alt="Automatic Deploys screen">
+</div>
 
 f. Then, the part I missed at first: you'll want to run a manual deploy by clicking Deploy Branch, to get your site up and running! Once this completes, there will be a button at the bottom to view your site. Congrats - your server is now up and running!
-![Deploy and view screen](https://cdn.auth0.com/blog/jsdeploy/deployprocess.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/deployprocess.png" alt="Deploy and view screen">
+</div>
 
 ### 4. Test your New Site!
 
@@ -84,13 +96,19 @@ Okay, so now we'll set up an [account on Netlify](https://www.netlify.com).
 Another multi-part step here - this one is easier, though!
 
 a. Once your account is created, you'll click New Site from Git in the upper right corner.
-![Create Site screen](https://cdn.auth0.com/blog/jsdeploy/ncreatesitefromgit.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/ncreatesitefromgit.png" alt="Create Site screen">
+</div>
 
 b. From here, you'll again choose to deploy from GitHub and connect your account.
-![Connect GitHub screen](https://cdn.auth0.com/blog/jsdeploy/nchoosegithub.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/nchoosegithub.png" alt="Connect GitHub screen">
+</div>
 
 c. Then, you'll pick your front-end repository....
-![Pick repo screen](https://cdn.auth0.com/blog/jsdeploy/nselectrepo.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/nselectrepo.png" alt="Pick repo screen">
+</div>
 
 d. ...And choose your settings. I again used my master branch as the main branch for Netlify to read from.
 
@@ -98,14 +116,18 @@ You'll also set up two other things:
 If you have a build step (I used Gulp in my project, to compile my CSS and JS files), then you'll enter in the task that builds your project.
 
 And you'll also set (or create) a folder that Netlify will use as your main / root folder. To my understanding, this is the only folder that Netlify will be able to see, so you'll need all of your files here - HTML, CSS, JS, images, service worker files, manifest.json....anything your front-end site uses to work, you'll want in this folder. I called mine dist like the image does, but you could name it whatever you want.
-![Build commands screen](https://cdn.auth0.com/blog/jsdeploy/netliftyputbuildcommands.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/netliftyputbuildcommands.png" alt="Build commands screen">
+</div>
 
 e. Then click Deploy Site at the bottom and let the process begin!
 
 ### 8. Rename Your Project
 
 Netlify, by default, picks a random name for your site. You can click Site Settings on your dashboard page (pictured below) and change it if you'd like.
-![Deployed screen](https://cdn.auth0.com/blog/jsdeploy/sitedeployinprogress.png)
+<div class="post-image">
+  <img src="https://cdn.auth0.com/blog/jsdeploy/sitedeployinprogress.png" alt="Deployed screen">
+</div>
 
 ### 9. Congrats - the Main Steps are Done!!
 

@@ -49,15 +49,22 @@
       return {
         meta: [
           {
+            hid: 'og:image',
             name: 'og:image',
             property: 'og:image',
             content: this.socialImage,
           },
           {
-            name: 'description',
-            hid: 'description',
+            hid: 'og:description',
+            name: 'og:description',
             property: 'og:description',
             content: 'Code projects from Linda Thompson',
+          },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
           },
         ],
       };

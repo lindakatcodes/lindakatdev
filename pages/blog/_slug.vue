@@ -69,31 +69,40 @@
         title: this.post.title,
         meta: [
           {
-            hid: 'description',
-            name: 'description',
+            hid: 'og:description',
+            name: 'og:description',
             property: 'og:description',
             content: this.post.blurb,
           },
           {
-            name: 'og:title',
             hid: 'og:title',
+            name: 'og:title',
             property: 'og:title',
             content: this.post.title,
           },
           {
+            hid: 'og:image',
             name: 'og:image',
             property: 'og:image',
             content: this.socialImage,
           },
           {
-            property: 'og:type',
             hid: 'og:type',
+            name: 'og:type',
+            property: 'og:type',
             content: 'article',
           },
           {
             hid: 'og:url',
+            name: 'og:name',
             property: 'og:url',
             content: `https://www.lindakat.com${this.post.path}`,
+          },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
           },
         ],
       };
@@ -234,9 +243,13 @@
     text-decoration: solid underline var(--lightBasic);
   }
 
-  .content img {
-    width: 90%;
+  .post-image {
+    text-align: center;
     margin: 2% auto;
+  }
+
+  .post-image img {
+    max-width: 55%;
   }
 
   .content p code {
