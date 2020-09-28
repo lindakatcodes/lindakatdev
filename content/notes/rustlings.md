@@ -14,6 +14,7 @@ tags:
 - [Data Types](#data-types)
 - [Control Flow](#control-flow)
 - [Functions](#functions)
+- [Structs](#strucs)
 
 ----
 
@@ -362,4 +363,116 @@ The slice and range terms we just used also work on arrays.
 ```rust
 let a = [1, 2, 3];
 let slice = &a[0..2];
+```
+
+## Structs
+
+A `struct` is a custom data type that lets us name and package together multiple related values, similar to an object's data attributes. In structs, the keys are called `fields`.
+
+Structs are similar to tuples in that each piece can be a different type. However, in structs each piece is named, making it more flexible than a tuple.
+
+```rust
+struct User {
+  username: String,
+  email: String,
+  sign_in_count: u64,
+  active: bool,
+}
+```
+
+To then use a struct, we simply call it and assign values to store in each field. If we make it a mutable instance, we can also change fields with dot notation.
+
+```rust
+let mut user1 = User {
+  email: String::from("example@test.com"),
+  username: String::from("user124"),
+  active: true,
+  sign_in_count: 1,
+};
+
+user1.email = String::from("newemail@text.com");
+```
+
+Similar to JS, can use a shorthand syntax if the field name and a parameter name in a function use the same name:
+
+```rust
+fn build_user(email: String) -> User {
+  User {
+    email,
+    active: true,
+  }
+}
+```
+
+We can also make new instances based on other instances - so if we want to use most of the same values of an instance, but change a few, we can do that.
+
+```rust
+let user2 = User {
+  email: String::from("another@example.com"),
+  username: String::from("differentuser2"),
+  ..user1
+}
+
+// if we wanted to do this more long hand, it would look like
+// active: user1.active,
+```
+
+> Each struct you define is its own type.
+
+### Tuple Structs
+
+If you've got an instance where you want to name a tuple, and it would be verbose to name the fields, we can make a `tuple struct` - will behave like a tuple, but is named and it's own type, separate from any other tuples.
+
+```rust
+struct Color(i32, i32, i32);
+let black = Color(0, 30, 0);
+```
+
+### Unit Structs
+
+????
+
+### Methods
+
+Methods are similar to functions - they both use `fn`, are named, can have parameters and a return value, & contain code to run. But methods are defined in the context of a struct, & their first parameter is always `self` (the instance of the struct it's called on).
+
+```rust
+struct Rectangle {
+  width: u32,
+  height: u32,
+}
+
+impl Rectangle {
+  fn area(&self) -> u32 {
+    self.width * self.height
+  }
+}
+
+// if we wanted to change the values in self, we would use:
+// fn area(&mut self)...
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+}
+```
+
+> Methods can take ownership of `self`, borrow `self` immutably, or borrow `self` mutably, just as they can with any other parameter.
+
+Can have multiple methods in an `impl` block - helps keep our code easier to read, since any method that can be used on our struct is tied to it and in the same place. (Though you can use multiple `impl` blocks for the same struct if you'd like.)
+
+In `impl` blocks, can also define associated functions, that don't take `self` as a parameter - they won't have an instance of the struct to work with. Often used for constructors that return a new instance of the struct. To call these, we use the `::` syntax (`String::from` is an example of this).
+
+## Errors
+
+```rust
+// if we need our program to panic (print a failure message, unwind and clean up stack, then quit):
+panic!("error message!");
 ```
