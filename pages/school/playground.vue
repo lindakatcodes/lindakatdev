@@ -1,10 +1,10 @@
 <template>
   <main class="container">
-    <h2 class="title">Articles & Thoughts</h2>
+    <h2 class="title">Side Projects & Exercises</h2>
     <div class="divider"></div>
-    <p class="description">View posts by tag:</p>
-    <TagList :tags="tagdata" :all="page"></TagList>
-    <nuxt-child :blogposts="blogposts" :route-name="routeName"></nuxt-child>
+    <div class="projects-wrapper">
+      <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" class="card"></ProjectCard>
+    </div>
   </main>
 </template>
 
@@ -13,22 +13,11 @@
 
   export default {
     async fetch() {
-      this.blogposts = await this.$content('blog')
-        .only(['title', 'blurb', 'tags', 'slug'])
-        .where({ type: { $eq: 'live' } })
-        .sortBy('createdAt', 'desc')
-        .fetch();
-      this.tagdata = await this.$content('blog')
-        .only(['tags'])
-        .where({ type: { $eq: 'live' } })
-        .fetch();
+      this.projects = await this.$content('projects').sortBy('id', 'desc').fetch();
     },
     data() {
       return {
-        blogposts: [],
-        tagdata: [],
-        page: 'writing',
-        routeName: 'blog',
+        projects: [],
       };
     },
     computed: {
@@ -39,8 +28,8 @@
     methods: {
       getImageLink() {
         const imageLink = getShareImage({
-          title: 'LindaKat Writes',
-          tagline: 'Tech thoughts from Linda Thompson',
+          title: 'LindaKat Codes',
+          tagline: 'Code projects from Linda Thompson',
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
           titleFont: 'Bree Serif',
@@ -69,7 +58,7 @@
             hid: 'og:description',
             name: 'og:description',
             property: 'og:description',
-            content: 'Tech thoughts from Linda Thompson',
+            content: 'Code projects from Linda Thompson',
           },
           {
             hid: 'twitter:card',
@@ -103,28 +92,41 @@
     margin: 0.25% auto 2%;
   }
 
-  .description {
-    color: var(--lightBasic);
-    font-family: var(--sansSerif);
-    text-align: center;
-    margin-bottom: 1.5%;
-    padding: 0 5%;
+  .projects-wrapper {
+    width: 90%;
+    margin: 2% auto;
+    padding: 2% 1% 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* grid-template-rows: repeat(auto-fit, minmax(min(550px, 100%), 1fr)); */
+    grid-gap: 20px;
+    justify-items: center;
   }
 
   @media screen and (max-width: 768px) {
+    .container {
+      margin-top: 4%;
+    }
+
     .title {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
 
     .divider {
       width: 70%;
-      margin: 2% auto 4%;
+      margin: 1% auto 6%;
     }
-  }
 
-  @media screen and (min-width: 769px) and (max-width: 1200px) {
-    .divider {
-      width: 45%;
+    .projects-wrapper {
+      width: 95%;
+      padding: 0;
+      margin-bottom: 5%;
+      grid-row-gap: 0;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .card:last-child {
+      border-bottom: none;
     }
   }
 </style>

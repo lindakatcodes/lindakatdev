@@ -4,7 +4,7 @@
     <div class="divider"></div>
     <p class="description">Notes from Courses, Conference Talks, etc. View by tag if you'd like!</p>
     <TagList :tags="tagdata" :all="page"></TagList>
-    <nuxt-child :noteposts="noteposts"></nuxt-child>
+    <nuxt-child :noteposts="noteposts" :route-name="routeName"></nuxt-child>
   </main>
 </template>
 
@@ -19,6 +19,7 @@
         noteposts: [],
         tagdata: [],
         page: 'garden',
+        routeName: 'notes',
       };
     },
   };

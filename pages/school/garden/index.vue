@@ -1,6 +1,6 @@
 <template>
   <div class="posts-wrapper">
-    <NotePostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" class="post"></NotePostBlurb>
+    <PostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" :route-name="routeName" class="post"></PostBlurb>
   </div>
 </template>
 
@@ -9,6 +9,9 @@
     props: {
       noteposts: {
         type: Array,
+      },
+      routeName: {
+        type: String,
       },
     },
   };

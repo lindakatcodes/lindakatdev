@@ -1,6 +1,6 @@
 <template>
   <div class="blurb-container">
-    <nuxt-link :to="{ name: 'blog-slug', params: { slug: postBlurb.slug } }" class="post-title">
+    <nuxt-link :to="{ name: `${routeName}-slug`, params: { slug: postBlurb.slug } }" class="post-title">
       {{ postBlurb.title }}
     </nuxt-link>
     <p class="post-blurb">{{ postBlurb.blurb }}</p>
@@ -12,6 +12,9 @@
     props: {
       postBlurb: {
         type: Object,
+      },
+      routeName: {
+        type: String,
       },
     },
   };

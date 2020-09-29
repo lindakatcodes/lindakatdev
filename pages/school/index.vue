@@ -1,24 +1,13 @@
 <template>
   <main class="container">
     <section class="intro">
-      <h1 class="intro-name">Linda Thompson</h1>
+      <h1 class="intro-name">Learning with Linda!</h1>
       <p class="intro-subtitle">
-        A friendly and analytical web developer
-        <br />
-        building with design, data, and details in mind
+        Notes & fun projects from courses or conferences
       </p>
-      <hr class="intro-divider" />
-      <div class="intro-icons">
-        <a href="https://github.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="GitHub">
-          <img src="~assets/icons/github-square.svg" alt="GitHub icon" class="gh-icon" />
-        </a>
-        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="Twitter">
-          <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
-        </a>
-      </div>
     </section>
     <section class="featured-projects">
-      <h2 class="section-title">Featured Projects</h2>
+      <h2 class="section-title">Favorite Projects</h2>
       <div class="title-divider"></div>
       <div class="project-block">
         <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" class="card"></ProjectCard>
@@ -28,13 +17,13 @@
       </div>
     </section>
     <section class="recent-writing">
-      <h2 class="section-title">Featured Writings</h2>
+      <h2 class="section-title">Recent Course Notes</h2>
       <div class="title-divider"></div>
       <div class="writing-block">
         <PostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post" :route-name="routeName"></PostBlurb>
       </div>
       <div class="section-link-to-all">
-        <nuxt-link to="/writing">See All Posts</nuxt-link>
+        <nuxt-link to="/writing">See All Notes</nuxt-link>
       </div>
     </section>
   </main>
@@ -60,7 +49,7 @@
       return {
         projects: [],
         blogposts: [],
-        routeName: 'blog',
+        routeName: 'notes',
       };
     },
     computed: {

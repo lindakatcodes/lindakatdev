@@ -3,8 +3,8 @@
     <nav class="nav">
       <nuxt-link to="/" class="home-link link"><img :srcset="srcset" :sizes="sizes" class="home-icon" /></nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
-      <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
-      <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
+      <nuxt-link :to="setCodeRoute" class="link projects-link">{{ setCodeName }}</nuxt-link>
+      <nuxt-link :to="setWriteRoute" class="link writing-link">{{ setWriteName }}</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
     </nav>
     <div class="underline"></div>
@@ -13,15 +13,36 @@
 
 <script>
   export default {
+    props: {
+      paths: {
+        type: Array,
+      },
+    },
     data() {
       return {
         srcset: '/logo48.png 48w, /logo72.png 72w',
         sizes: '(max-width: 768px) 48px, 72px',
         largeScreen: this.fullSize,
+        pageType: '',
       };
+    },
+    computed: {
+      setCodeName() {
+        return this.paths[0].toUpperCase();
+      },
+      setCodeRoute() {
+        return `${this.pageType}${this.paths[0]}`;
+      },
+      setWriteName() {
+        return this.paths[1].toUpperCase();
+      },
+      setWriteRoute() {
+        return `${this.pageType}${this.paths[1]}`;
+      },
     },
     mounted() {
       this.largeScreen = !(window.innerWidth < 768);
+      this.pageType = this.$route.path === '/' ? '/' : '/school/';
     },
   };
 </script>
