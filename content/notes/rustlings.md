@@ -15,6 +15,7 @@ tags:
 - [Control Flow](#control-flow)
 - [Functions](#functions)
 - [Structs](#strucs)
+- [Errors](#errors)
 
 ----
 
@@ -363,6 +364,42 @@ The slice and range terms we just used also work on arrays.
 ```rust
 let a = [1, 2, 3];
 let slice = &a[0..2];
+```
+
+## Strings
+
+```rust
+// to create a new empty string we can load data into
+let mut s = String::new();
+// add initial data to a string
+let s = "initial contents".to_string();
+let s = String::from("initial contents");
+// add data to strings
+// push_str takes a string slice (no ownership)
+s.push_str("bar");
+// push takes a single character
+s.push('l');
+// concatenate strings - + and format
+let s1 = String::from("Hello, ");
+let s2 = String::from("world!");
+// s1 will be moved here, so no longer valid
+let s3 = s1 + &s2;
+// or use format for multiple strings - works like println but doesn't print output to screen
+let s = format!("{}-{}-{}", s1, s2, s3);
+```
+
+Rust strings don't support indexing like s[0]. Since strings are stored in UTF-8, indexing like that doesn't always return what we might expect. Instead, Rust has you use a slice with a range, to specifically grab the characters you want.
+
+```rust
+// will grab first 4 bytes of a string - may not always be 4 characters, depending on how the string is encoded (other languages might be more bytes per character)
+let s = &hello[0..4];
+// other ways to access elements
+// to perform operations on individual characters, best to use chars
+for c in "test".chars() {
+  println!("{}", c);
+}
+//  if you want bytes, can use .bytes()
+
 ```
 
 ## Structs
