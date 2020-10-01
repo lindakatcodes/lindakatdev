@@ -1,11 +1,16 @@
 <template>
   <div class="navigation-container">
     <nav class="nav">
-      <nuxt-link to="/" class="home-link link"><img :srcset="srcset" :sizes="sizes" class="home-icon" /></nuxt-link>
+      <nuxt-link v-if="this.$route.path.includes('/school')" to="/school" class="home-link link">
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+      </nuxt-link>
+      <nuxt-link v-else to="/" class="home-link link">
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+      </nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
-      <nuxt-link :to="setCodeRoute" class="link projects-link">{{ setCodeName }}</nuxt-link>
-      <nuxt-link :to="setWriteRoute" class="link writing-link">{{ setWriteName }}</nuxt-link>
-      <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link :to="setCodeRoute()" class="link projects-link">{{ setCodeName }}</nuxt-link>
+      <nuxt-link :to="setWriteRoute()" class="link writing-link">{{ setWriteName }}</nuxt-link>
+      <nuxt-link v-if="!this.$route.path.includes('/school')" to="/about" class="link about-link">ABOUT</nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>
@@ -30,19 +35,21 @@
       setCodeName() {
         return this.paths[0].toUpperCase();
       },
-      setCodeRoute() {
-        return `${this.pageType}${this.paths[0]}`;
-      },
       setWriteName() {
         return this.paths[1].toUpperCase();
-      },
-      setWriteRoute() {
-        return `${this.pageType}${this.paths[1]}`;
       },
     },
     mounted() {
       this.largeScreen = !(window.innerWidth < 768);
       this.pageType = this.$route.path === '/' ? '/' : '/school/';
+    },
+    methods: {
+      setCodeRoute() {
+        return `${this.pageType}${this.paths[0]}`;
+      },
+      setWriteRoute() {
+        return `${this.pageType}${this.paths[1]}`;
+      },
     },
   };
 </script>

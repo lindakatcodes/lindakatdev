@@ -3,7 +3,7 @@
     <h2 class="title">Side Projects & Exercises</h2>
     <div class="divider"></div>
     <div class="projects-wrapper">
-      <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" class="card"></ProjectCard>
+      <ProjectCard v-for="(project, index) in playground" :key="index" :project="project" class="card"></ProjectCard>
     </div>
   </main>
 </template>
@@ -13,11 +13,11 @@
 
   export default {
     async fetch() {
-      this.projects = await this.$content('projects').sortBy('id', 'desc').fetch();
+      this.playground = await this.$content('playground').sortBy('id', 'desc').fetch();
     },
     data() {
       return {
-        projects: [],
+        playground: [],
       };
     },
     computed: {

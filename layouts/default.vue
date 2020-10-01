@@ -1,7 +1,7 @@
 <template>
   <div>
-    <NavigationBar v-if="this.$route.path === '/'" :paths="main" />
-    <NavigationBar v-if="this.$route.path === '/school'" :paths="school" />
+    <NavigationBar v-if="this.$route.path.includes('/school')" :paths="school" />
+    <NavigationBar v-else :paths="main" />
     <Nuxt class="main" />
     <FooterBar />
     <script data-goatcounter="https://lktdev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

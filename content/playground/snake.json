@@ -1,0 +1,19 @@
+{
+  "name": "Snake!",
+  "id": 7,
+  "images": [
+    ""
+  ],
+  "altText": [
+    ""
+  ],
+  "description": "My take on the classic Snake game! Inspired by a project from Wes Bos' Beginner JS course, this uses the canvas element to draw the snake and food. It was good practice for grabbing items from the DOM and updating them as things change!",
+  "tech": "HTML, CSS, JS",
+  "multiPicType": false,
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "https://snake-mini.netlify.app/",
+    "code": "https://github.com/lindakatcodes/minisites/tree/main/snake"
+  }
+}

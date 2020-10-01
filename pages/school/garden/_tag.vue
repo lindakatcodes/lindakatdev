@@ -1,6 +1,6 @@
 <template>
   <div class="posts-wrapper">
-    <NotePostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" class="post"></NotePostBlurb>
+    <PostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" class="post"></PostBlurb>
   </div>
 </template>
 

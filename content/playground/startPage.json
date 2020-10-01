@@ -1,0 +1,19 @@
+{
+  "name": "Home Page",
+  "id": 2,
+  "images": [
+    ""
+  ],
+  "altText": [
+    ""
+  ],
+  "description": "My own personal home page, filled with links I visit regularly. The greeting randomly selects an adjective from a list, and updates morning/afternoon/evening depending on the time of day.",
+  "tech": "HTML, CSS, JS",
+  "multiPicType": false,
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "https://lindakatcodes.github.io/startpage/",
+    "code": "https://github.com/lindakatcodes/startpage"
+  }
+}

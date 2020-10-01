@@ -7,23 +7,23 @@
       </p>
     </section>
     <section class="featured-projects">
-      <h2 class="section-title">Favorite Projects</h2>
+      <h2 class="section-title">Fun Side Projects</h2>
       <div class="title-divider"></div>
       <div class="project-block">
-        <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" class="card"></ProjectCard>
+        <ProjectCard v-for="(project, index) in playground" :key="index" :project="project" class="card"></ProjectCard>
       </div>
       <div class="section-link-to-all">
-        <nuxt-link to="/projects">See All Projects</nuxt-link>
+        <nuxt-link to="/school/playground">See All Side Projects</nuxt-link>
       </div>
     </section>
     <section class="recent-writing">
-      <h2 class="section-title">Recent Course Notes</h2>
+      <h2 class="section-title">Recent Notes</h2>
       <div class="title-divider"></div>
       <div class="writing-block">
-        <PostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post" :route-name="routeName"></PostBlurb>
+        <PostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" :route-name="routeName"></PostBlurb>
       </div>
       <div class="section-link-to-all">
-        <nuxt-link to="/writing">See All Notes</nuxt-link>
+        <nuxt-link to="/school/garden">See All Notes</nuxt-link>
       </div>
     </section>
   </main>
@@ -34,21 +34,13 @@
 
   export default {
     async fetch() {
-      this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
-      this.blogposts = await this.$content('blog')
-        .only(['title', 'blurb', 'tags', 'slug'])
-        .where({
-          type: { $eq: 'live' },
-          featured: true,
-        })
-        .sortBy('createdAt', 'desc')
-        .limit(8)
-        .fetch();
+      this.playground = await this.$content('playground').where({ featured: true }).sortBy('id', 'desc').fetch();
+      this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').limit(5).fetch();
     },
     data() {
       return {
-        projects: [],
-        blogposts: [],
+        playground: [],
+        noteposts: [],
         routeName: 'notes',
       };
     },

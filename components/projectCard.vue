@@ -30,6 +30,10 @@
     },
     methods: {
       picUrl(pic) {
+        if (this.$route.path.includes('/school')) {
+          // eslint-disable-next-line global-require, import/no-dynamic-require
+          return require(`@/assets/images/playground/${pic}.png`);
+        }
         // eslint-disable-next-line global-require, import/no-dynamic-require
         return require(`@/assets/images/projects/${pic}.png`);
       },

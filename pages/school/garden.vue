@@ -11,14 +11,14 @@
 <script>
   export default {
     async fetch() {
-      this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('createdAt', 'desc').fetch();
+      this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
       this.tagdata = await this.$content('notes').only(['tags']).fetch();
     },
     data() {
       return {
         noteposts: [],
         tagdata: [],
-        page: 'garden',
+        page: 'school-garden',
         routeName: 'notes',
       };
     },

@@ -1,0 +1,19 @@
+{
+  "name": "GitHub User Search",
+  "id": 5,
+  "images": [
+    ""
+  ],
+  "altText": [
+    ""
+  ],
+  "description": "Uses the GitHub GraphQL API to search for user profiles! Created for the This Dot Labs job application, but is too neat to only share for that.",
+  "tech": "Vue, GraphQL, HTML, CSS",
+  "multiPicType": false,
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "https://thisdot-githubsearch.netlify.app/",
+    "code": "https://github.com/lindakatcodes/thisDot-ghUserSearch"
+  }
+}

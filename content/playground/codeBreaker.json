@@ -1,0 +1,19 @@
+{
+  "name": "Code Breaker",
+  "id": 1,
+  "images": [
+    ""
+  ],
+  "altText": [
+    ""
+  ],
+  "description": "A simple number guessing game created during a free course weekend on Code School. One of the first little games I programmed!",
+  "tech": "JS",
+  "multiPicType": false,
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "https://lindakatcodes.github.io/CodeBreakerProject/",
+    "code": "https://github.com/lindakatcodes/CodeBreakerProject"
+  }
+}
