@@ -15,6 +15,9 @@ tags:
 - [Control Flow](#control-flow)
 - [Functions](#functions)
 - [Structs](#strucs)
+- [Enums](#enums)
+- [Errors](#errors)
+- [Tests](#tests)
 
 ----
 
@@ -365,6 +368,42 @@ let a = [1, 2, 3];
 let slice = &a[0..2];
 ```
 
+## Strings
+
+```rust
+// to create a new empty string we can load data into
+let mut s = String::new();
+// add initial data to a string
+let s = "initial contents".to_string();
+let s = String::from("initial contents");
+// add data to strings
+// push_str takes a string slice (no ownership)
+s.push_str("bar");
+// push takes a single character
+s.push('l');
+// concatenate strings - + and format
+let s1 = String::from("Hello, ");
+let s2 = String::from("world!");
+// s1 will be moved here, so no longer valid
+let s3 = s1 + &s2;
+// or use format for multiple strings - works like println but doesn't print output to screen
+let s = format!("{}-{}-{}", s1, s2, s3);
+```
+
+Rust strings don't support indexing like s[0]. Since strings are stored in UTF-8, indexing like that doesn't always return what we might expect. Instead, Rust has you use a slice with a range, to specifically grab the characters you want.
+
+```rust
+// will grab first 4 bytes of a string - may not always be 4 characters, depending on how the string is encoded (other languages might be more bytes per character)
+let s = &hello[0..4];
+// other ways to access elements
+// to perform operations on individual characters, best to use chars
+for c in "test".chars() {
+  println!("{}", c);
+}
+//  if you want bytes, can use .bytes()
+
+```
+
 ## Structs
 
 A `struct` is a custom data type that lets us name and package together multiple related values, similar to an object's data attributes. In structs, the keys are called `fields`.
@@ -470,9 +509,114 @@ Can have multiple methods in an `impl` block - helps keep our code easier to rea
 
 In `impl` blocks, can also define associated functions, that don't take `self` as a parameter - they won't have an instance of the struct to work with. Often used for constructors that return a new instance of the struct. To call these, we use the `::` syntax (`String::from` is an example of this).
 
+## Enums
+
+`Enums` (enumerations) allow you to define a type by enumerating it's possible variants. They can encode meaning along with data, and with pattern matching can help in running different code for different values.
+
+```rust
+// This basically makes a custom data type we can use
+enum IpAddrKind {
+  V4,
+  V6
+}
+// Then to create an instance of a variance:
+let four = IpAddrKind::V4;
+// variants are namespaced like this, so that if we want to do something to any IpAddrKind, we can
+fn route(ip_kind: IpAddrKind) {}
+```
+
+We can also set up our `enums` so that they have values associated with each type. Each variant can have different types of data associated with it, as well. Can put any kind of data in an `enum` - strings, numerics, structs, even another enum.
+
+```rust
+enum IpAddr {
+  V4(u8, u8, u8. u8),
+  V6(String),
+}
+
+let home = IpAddr::V4(127, 0, 0, 1);
+```
+
+Can also attach methods to enum. `Self` will be the variant option that we call the method on.
+
+```rust
+impl Message {
+  fn call(&self) {
+    // ...
+  }
+}
+let m = Message::write(String::from("hello"));
+m.call();
+```
+
+### Match Control Flow
+
+`match` compares values against a series of patterns, and executes code depending on the first one it matches.
+
+```rust
+enum Coin {
+  Penny,
+  Nickel,
+  Dime,
+  Quarter(UsState),
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+  match coin {
+    Coin::Penny => 1,
+    Coin::Nickel => 5,
+    Coin::Dime => 10,
+    Coin::Quarter(state) => {
+      println!("State quarter from {:?}!", state);
+      25
+    }
+  }
+}
+```
+
+Looks similar to `if` but can return any value, not just a Boolean. For each arm, it lists the pattern to match (`Coin::Variant`), then the arrow points to the value/code to run if it matches.
+
 ## Errors
 
 ```rust
 // if we need our program to panic (print a failure message, unwind and clean up stack, then quit):
 panic!("error message!");
+```
+
+## Tests
+
+Tests can be written directly in your Rust code, to verify your non-test code is doing what you expect. Typically will perform 3 actions:
+
+- Setup any needed data or state.
+- Run the code you want to test.
+- Assert the results are what you expect.
+
+```rust
+#[cfg(test)]
+mod tests {
+  // will often see this line in test modules - since it's an inner module, we need to bring the code under test in the outer module into the scope of the inner module - this does that
+  use super::*;
+  // to make a function a test, add this line before it:
+  #[test]
+  fn it_works() {
+    assert_eq!(2 + 2, 4);
+  }
+}
+
+// A few different types of tests, and what they do:
+assert! // ensure a condition evaluates to true; does nothing if true, panics if false
+assert_eq! // pass if both values are the same
+assert_ne! // pass if both values are not equal
+// to test that a function should panic, add another attribute
+// can add an expected parameter to check for a certain panic value
+#[test]
+#[should_panic(expected = "Guess value is below 100")]
+// can use Result for a bit more finesse
+#[test]
+fn it_works() -> Result<(), String> {
+  if 2 + 2 == 4 {
+    Ok(())
+  } else {
+    Err(String::From("two plus two does not equal four"))
+  }
+}
 ```

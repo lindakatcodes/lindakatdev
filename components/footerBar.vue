@@ -19,14 +19,14 @@
           </figure>
         </a>
 
-        <a href="https://dev.to/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="blog" class="dev">
+        <a href="https://dev.to/lindakatcodes" target="_blank" rel="noreferrer noopener me" tooltip="blog" class="dev">
           <figure>
             <img src="~assets/icons/dev.svg" alt="Dev.to icon" class="dev-icon" />
             <figcaption class="caption">Dev.To</figcaption>
           </figure>
         </a>
 
-        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer noopener" tooltip="Twitter" class="tw">
+        <a href="https://twitter.com/lindakatcodes" target="_blank" rel="noreferrer noopener me" tooltip="Twitter" class="tw">
           <figure>
             <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
             <figcaption class="caption">Twitter</figcaption>
