@@ -30,6 +30,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Fira+Sans&family=Bree+Serif&display=swap' },
+      { rel: 'webmention', href: 'https://webmention.io/www.lindakat.com/webmention' },
+      { rel: 'pingback', href: 'https://webmention.io/www.lindakat.com/xmlrpc' },
     ],
   },
   /*
