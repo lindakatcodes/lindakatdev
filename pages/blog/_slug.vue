@@ -9,6 +9,17 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
+    <div class="mentions">
+      <h2 class="mentions-title">Webmentions</h2>
+      {{ wm.likes }}
+      {{ wm.shares }}
+      <ul class="mentions-comments">
+        <li v-for="(item, index) in wm.comments" :key="index">
+          {{ item.author }}
+          {{ item.text }}
+        </li>
+      </ul>
+    </div>
     <div class="prev-next">
       <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
       <span v-if="prev && next" class="pn-div"></span>
@@ -29,10 +40,23 @@
         .sortBy('createdAt', 'asc')
         .surround(params.slug)
         .fetch();
+      const webmentions = await fetch('https://webmention.io/api/mentions.jf2?domain=www.lindakat.com&token=J4E1QXsqcA2rdArwtUgh5Q')
+        .then((res) => res.json())
+        .then((feed) => feed.children);
       return {
         post,
         prev,
         next,
+        webmentions,
+      };
+    },
+    data() {
+      return {
+        wm: {
+          likes: 0,
+          shares: 0,
+          comments: [],
+        },
       };
     },
     computed: {
@@ -43,6 +67,9 @@
         const tagList = this.post.tags.map((tag) => `#${tag} `);
         return tagList.join(' ');
       },
+    },
+    created() {
+      this.setMentions();
     },
     methods: {
       getImageLink() {
@@ -62,6 +89,23 @@
           taglineFontSize: 50,
         });
         return imageLink;
+      },
+      setMentions() {
+        this.webmentions.forEach((mention) => {
+          if (mention['wm-property'] === 'like-of') {
+            this.wm.likes += 1;
+          }
+          if (mention['wm-property'] === 'mention-of') {
+            this.wm.shares += 1;
+          }
+          if (mention.content) {
+            const comment = {
+              author: mention.author.name,
+              text: mention.content.text,
+            };
+            this.wm.comments.push(comment);
+          }
+        });
       },
     },
     head() {

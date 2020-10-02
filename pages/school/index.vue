@@ -2,9 +2,7 @@
   <main class="container">
     <section class="intro">
       <h1 class="intro-name">Learning with Linda!</h1>
-      <p class="intro-subtitle">
-        Notes & fun projects from courses or conferences
-      </p>
+      <p class="intro-subtitle">Notes & fun projects from courses or conferences</p>
     </section>
     <section class="featured-projects">
       <h2 class="section-title">Fun Side Projects</h2>
