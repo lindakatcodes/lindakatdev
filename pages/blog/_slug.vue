@@ -10,15 +10,28 @@
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
     <div class="mentions">
-      <h2 class="mentions-title">Webmentions</h2>
-      {{ wm.likes }}
-      {{ wm.shares }}
+      <div class="title-divider"></div>
+      <div class="mentions-info">
+        <h2 class="mentions-title">Webmentions</h2>
+        <span v-if="wm.likes !== 0" class="info-show">
+          <i class="material-icons wm-icon-fav">favorite</i>
+          <span class="wm-count">{{ wm.likes }}</span>
+        </span>
+        <span v-if="wm.shares !== 0" class="info-show">
+          <i class="material-icons wm-icon-rt">repeat</i>
+          <span class="wm-count">{{ wm.shares }}</span>
+        </span>
+        <span v-if="wm.commentCount !== 0" class="info-show">
+          <i class="material-icons wm-icon-com">chat_bubble</i>
+          <span class="wm-count">{{ wm.commentCount }}</span>
+        </span>
+      </div>
       <ul class="mentions-comments">
         <li v-for="(item, index) in wm.comments" :key="index">
-          {{ item.author }}
-          {{ item.text }}
+          <WmCommentCard :comment="item"></WmCommentCard>
         </li>
       </ul>
+      <div class="title-divider"></div>
     </div>
     <div class="prev-next">
       <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
@@ -55,6 +68,7 @@
         wm: {
           likes: 0,
           shares: 0,
+          commentCount: 0,
           comments: [],
         },
       };
@@ -92,18 +106,25 @@
       },
       setMentions() {
         this.webmentions.forEach((mention) => {
-          if (mention['wm-property'] === 'like-of') {
-            this.wm.likes += 1;
-          }
-          if (mention['wm-property'] === 'mention-of') {
-            this.wm.shares += 1;
-          }
-          if (mention.content) {
-            const comment = {
-              author: mention.author.name,
-              text: mention.content.text,
-            };
-            this.wm.comments.push(comment);
+          if (mention.author.url !== 'https://twitter.com/lindakatcodes') {
+            if (mention['wm-target'] === `https://www.lindakat.com${this.$route.fullPath}/`) {
+              if (mention['wm-property'] === 'like-of') {
+                this.wm.likes += 1;
+              }
+              if (mention['wm-property'] === 'mention-of') {
+                this.wm.shares += 1;
+              }
+              if (mention.content) {
+                this.wm.commentCount += 1;
+                const comment = {
+                  author: mention.author.name,
+                  img: mention.author.photo,
+                  text: mention.content.text,
+                  type: mention['wm-property'],
+                };
+                this.wm.comments.push(comment);
+              }
+            }
           }
         });
       },
@@ -174,6 +195,7 @@
 
   .full-post {
     padding: 3%;
+    margin-bottom: 5%;
   }
 
   .title {
@@ -346,6 +368,57 @@
     margin: auto 0;
     background: var(--lightBasic);
     justify-self: center;
+  }
+
+  .title-divider {
+    height: 4px;
+    width: 100%;
+    background: var(--lightGradient);
+    margin: 0 auto 2%;
+  }
+
+  .wm-icon-fav {
+    color: var(--lightPink);
+  }
+
+  .wm-icon-rt {
+    color: var(--lightBlue);
+  }
+
+  .wm-icon-com {
+    color: var(--lightGreen);
+  }
+
+  .mentions-info {
+    display: flex;
+    width: 90%;
+    margin-bottom: 3%;
+  }
+
+  .mentions-title {
+    color: var(--lightBasic);
+    width: 50%;
+    font-size: 2rem;
+    padding-bottom: 1%;
+    margin-right: 6%;
+  }
+
+  .info-show {
+    display: flex;
+    align-items: center;
+    width: 10%;
+    margin-right: 2%;
+  }
+
+  .wm-count {
+    color: var(--lightBasic);
+    font-size: 1.2rem;
+    padding-left: 10%;
+  }
+
+  .mentions-comments {
+    list-style: none;
+    padding-left: 0;
   }
 
   @media screen and (max-width: 768px) {
