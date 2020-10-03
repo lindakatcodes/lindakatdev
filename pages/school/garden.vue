@@ -3,7 +3,7 @@
     <h2 class="title">The Note Garden</h2>
     <div class="divider"></div>
     <p class="description">Notes from Courses, Conference Talks, etc. View by tag if you'd like!</p>
-    <TagList :tags="tagdata" :all="page"></TagList>
+    <TagList :tags="tagdata" :all="page" :route-name="routeName"></TagList>
     <nuxt-child :noteposts="noteposts" :route-name="routeName"></nuxt-child>
   </main>
 </template>

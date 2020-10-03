@@ -2,10 +2,10 @@
   "name": "Home Page",
   "id": 2,
   "images": [
-    ""
+    "startscreen"
   ],
   "altText": [
-    ""
+    "Screen with a greeting title, subtitle, and two lists of resources. The background is a green and pink succulent."
   ],
   "description": "My own personal home page, filled with links I visit regularly. The greeting randomly selects an adjective from a list, and updates morning/afternoon/evening depending on the time of day.",
   "tech": "HTML, CSS, JS",

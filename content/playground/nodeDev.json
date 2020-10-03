@@ -12,10 +12,10 @@
   "description": "Projects created while working through the Complete Node Developer course on Udemy. Using Node, Express, MongoDB,  & others, I created a weather app, built a to-do API, & created a chat room!",
   "tech": "Node, MongoDB, Express, JS, HTML, CSS",
   "multiPicType": true,
-  "featured": true,
+  "featured": false,
   "links": {
     "demo": "",
-    "site": "",
+    "site": "https://katt-weather-app.herokuapp.com/",
     "code": "https://github.com/lindakatcodes/node-course-files"
   }
 }

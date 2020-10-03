@@ -2,17 +2,17 @@
   "name": "GitHub User Search",
   "id": 5,
   "images": [
-    ""
+    "githubsearch"
   ],
   "altText": [
-    ""
+    "Title of GitHub User Search is centered across the top. Below is a search bar, with the query lindakat inside, and a gray search button to the right. Three card options show below in a line - each has a photo, underlined named, follower count, and starred repos. The middle card also has a for hire line, profile description, and shows two linked repositories with a short description and language tags."
   ],
   "description": "Uses the GitHub GraphQL API to search for user profiles! Created for the This Dot Labs job application, but is too neat to only share for that.",
   "tech": "Vue, GraphQL, HTML, CSS",
   "multiPicType": false,
   "featured": false,
   "links": {
-    "demo": "",
+    "demo": "http://bit.ly/lktGithubSearch",
     "site": "https://thisdot-githubsearch.netlify.app/",
     "code": "https://github.com/lindakatcodes/thisDot-ghUserSearch"
   }

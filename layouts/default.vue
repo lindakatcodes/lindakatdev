@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavigationBar v-if="this.$route.path.includes('/school')" :paths="school" />
+    <NavigationBar v-else-if="this.$route.path.includes('/notes')" :paths="school" />
     <NavigationBar v-else :paths="main" />
     <Nuxt class="main" />
     <FooterBar />

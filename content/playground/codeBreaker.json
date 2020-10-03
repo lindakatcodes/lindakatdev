@@ -2,10 +2,10 @@
   "name": "Code Breaker",
   "id": 1,
   "images": [
-    ""
+    "codebreaker"
   ],
   "altText": [
-    ""
+    "On the left side, the title Code Breaker shows, with 4 questions marks underneath. Next is an input box showing 1894, with a blue button to the right saying submit guess. Below this, it says Incorrect, try again, then two columns - the left says Guess with 1894 beneath it, the right says Result with the icons for x, checkmark, switch, and checkmark. To the right side of the screen, it lists the objective and rules for the game."
   ],
   "description": "A simple number guessing game created during a free course weekend on Code School. One of the first little games I programmed!",
   "tech": "JS",

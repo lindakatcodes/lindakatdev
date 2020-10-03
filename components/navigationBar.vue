@@ -4,13 +4,17 @@
       <nuxt-link v-if="this.$route.path.includes('/school')" to="/school" class="home-link link">
         <img :srcset="srcset" :sizes="sizes" class="home-icon" />
       </nuxt-link>
+      <nuxt-link v-else-if="this.$route.path.includes('/notes')" to="/school" class="home-link link">
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+      </nuxt-link>
       <nuxt-link v-else to="/" class="home-link link">
         <img :srcset="srcset" :sizes="sizes" class="home-icon" />
       </nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
       <nuxt-link :to="setCodeRoute()" class="link projects-link">{{ setCodeName }}</nuxt-link>
       <nuxt-link :to="setWriteRoute()" class="link writing-link">{{ setWriteName }}</nuxt-link>
-      <nuxt-link v-if="!this.$route.path.includes('/school')" to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link v-if="this.$route.path === '/'" to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link v-else-if="this.$route.path.includes('/blog')" to="/about" class="link about-link">ABOUT</nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>
