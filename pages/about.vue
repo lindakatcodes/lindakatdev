@@ -6,7 +6,7 @@
     </div>
     <img src="~assets/images/profile/me-sm.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
     <section class="info learning">
-      <h3 class="section-title">Currently Learning</h3>
+      <h3 class="section-title">Currently Learning:</h3>
       <div class="title-divider about-div"></div>
       <div class="section-details">
         <ul class="list">
