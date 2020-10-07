@@ -187,6 +187,7 @@
     },
     head() {
       return {
+        title: 'LindaKat Devs - About',
         meta: [
           {
             hid: 'og:image',
@@ -195,16 +196,16 @@
             content: this.socialImage,
           },
           {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - About',
+          },
+          {
             hid: 'og:description',
             name: 'og:description',
             property: 'og:description',
             content: "Everything you want to know about Linda's goals and knowledge",
-          },
-          {
-            hid: 'twitter:card',
-            name: 'twitter:card',
-            property: 'twitter:card',
-            content: 'summary_large_image',
           },
         ],
       };

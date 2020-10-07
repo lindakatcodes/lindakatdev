@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import getShareImage from '@jlengstorf/get-share-image';
+
   export default {
     async fetch() {
       this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
@@ -20,6 +22,62 @@
         tagdata: [],
         page: 'school-garden',
         routeName: 'notes',
+      };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: 'LindaKat Notes',
+          tagline: 'Course notes and personal cheat sheets',
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Bree Serif',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 450,
+          taglineTopOffset: 350,
+          titleFontSize: 94,
+          taglineFontSize: 50,
+        });
+        return imageLink;
+      },
+    },
+    head() {
+      return {
+        title: 'LindaKat Learns - Garden',
+        meta: [
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'Lindakat Learns - Garden',
+          },
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: 'Course notes and personal cheat sheets',
+          },
+          {
+            hid: 'og:url',
+            name: 'og:url',
+            property: 'og:url',
+            content: 'https://www.lindakat.com/school',
+          },
+        ],
       };
     },
   };

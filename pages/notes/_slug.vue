@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  import getShareImage from '@jlengstorf/get-share-image';
+
   export default {
     async asyncData({ $content, params }) {
       const post = await $content('notes', params.slug).fetch();
@@ -26,6 +28,78 @@
         post,
         prev,
         next,
+      };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+      tagLineText() {
+        const tagList = this.post.tags.map((tag) => `#${tag} `);
+        return tagList.join(' ');
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: this.post.title,
+          tagline: this.tagLineText,
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Bree Serif',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 300,
+          taglineTopOffset: 425,
+          titleFontSize: 66,
+          taglineFontSize: 50,
+        });
+        return imageLink;
+      },
+    },
+    head() {
+      return {
+        title: this.post.title,
+        meta: [
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: this.post.blurb,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: this.post.title,
+          },
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:type',
+            name: 'og:type',
+            property: 'og:type',
+            content: 'article',
+          },
+          {
+            hid: 'og:url',
+            name: 'og:name',
+            property: 'og:url',
+            content: `https://www.lindakat.com${this.post.path}`,
+          },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
+        ],
       };
     },
   };
@@ -130,6 +204,20 @@
   .content h6 {
     margin-bottom: 2%;
     font-family: var(--serif);
+  }
+
+  .content h1::before,
+  .content h2::before,
+  .content h3::before,
+  .content h4::before,
+  .content h5::before,
+  .content h6::before {
+    display: block;
+    content: ' ';
+    margin-top: -50px;
+    height: 50px;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .content h1,

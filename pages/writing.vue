@@ -40,7 +40,7 @@
       getImageLink() {
         const imageLink = getShareImage({
           title: 'LindaKat Writes',
-          tagline: 'Tech thoughts from Linda Thompson',
+          tagline: 'Tech blog posts - sharing, learning, & having fun in public',
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
           titleFont: 'Bree Serif',
@@ -58,6 +58,7 @@
     },
     head() {
       return {
+        title: 'LindaKat Devs - Writing',
         meta: [
           {
             hid: 'og:image',
@@ -66,16 +67,16 @@
             content: this.socialImage,
           },
           {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - Writing',
+          },
+          {
             hid: 'og:description',
             name: 'og:description',
             property: 'og:description',
-            content: 'Tech thoughts from Linda Thompson',
-          },
-          {
-            hid: 'twitter:card',
-            name: 'twitter:card',
-            property: 'twitter:card',
-            content: 'summary_large_image',
+            content: 'Tech blog posts - sharing, learning, & having fun in public',
           },
         ],
       };

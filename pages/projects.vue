@@ -29,7 +29,7 @@
       getImageLink() {
         const imageLink = getShareImage({
           title: 'LindaKat Codes',
-          tagline: 'Code projects from Linda Thompson',
+          tagline: 'A showcase of projects crafted with love and code',
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
           titleFont: 'Bree Serif',
@@ -47,6 +47,7 @@
     },
     head() {
       return {
+        title: 'Lindakat Devs - Projects',
         meta: [
           {
             hid: 'og:image',
@@ -55,16 +56,16 @@
             content: this.socialImage,
           },
           {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - Projects',
+          },
+          {
             hid: 'og:description',
             name: 'og:description',
             property: 'og:description',
-            content: 'Code projects from Linda Thompson',
-          },
-          {
-            hid: 'twitter:card',
-            name: 'twitter:card',
-            property: 'twitter:card',
-            content: 'summary_large_image',
+            content: 'A showcase of projects crafted with love and code',
           },
         ],
       };

@@ -277,6 +277,20 @@
     font-family: var(--serif);
   }
 
+  .content h1::before,
+  .content h2::before,
+  .content h3::before,
+  .content h4::before,
+  .content h5::before,
+  .content h6::before {
+    display: block;
+    content: ' ';
+    margin-top: -50px;
+    height: 50px;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   .content h1,
   .content h2 {
     color: var(--lightYellow);

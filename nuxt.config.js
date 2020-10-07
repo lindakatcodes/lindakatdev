@@ -26,6 +26,12 @@ export default {
       { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'LindaKat Devs' },
       { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://www.lindakat.com' },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        property: 'twitter:card',
+        content: 'summary_large_image',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
