@@ -19,6 +19,7 @@
     "prism-themes": "^1.4.0",
     "reading-time": "^1.2.0",
     "vue-backtotop": "^1.6.1",
+    "vue-scrollto": "^2.18.2",
     "vue-tippy": "^4.7.0"
   },
   "devDependencies": {

@@ -69,6 +69,7 @@ export default {
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
     '@nuxtjs/feed',
+    'vue-scrollto/nuxt',
   ],
 
   feed: [
@@ -107,7 +108,6 @@ export default {
       if (document.extension === '.md') {
         // eslint-disable-next-line global-require
         const { text } = require('reading-time')(document.text);
-
         document.readingTime = text;
         document.bodyPlainText = document.text;
       }

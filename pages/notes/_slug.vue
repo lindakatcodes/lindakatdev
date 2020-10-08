@@ -7,6 +7,12 @@
       <div class="tag-container">
         <p v-for="tag in post.tags" :key="tag">{{ tag }}</p>
       </div>
+      <ul>
+        <h2 class="toc">Jump to a Section:</h2>
+        <li v-for="link of links" :key="link.id" class="toc-link">
+          <NuxtLink v-scroll-to="`#${link.id}`" :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+        </li>
+      </ul>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
     <back-to-top visibleoffset="750" bottom="25px" class="scrollUp">
@@ -31,10 +37,12 @@
         .sortBy('createdAt', 'asc')
         .surround(params.slug)
         .fetch();
+      const links = post.toc.filter((val) => val.depth === 2);
       return {
         post,
         prev,
         next,
+        links,
       };
     },
     computed: {
@@ -184,6 +192,14 @@
 
   .tag-container p:nth-child(4n) {
     background: var(--lightPink);
+  }
+
+  .toc-link {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
   }
 
   .content {
