@@ -200,6 +200,7 @@
     -webkit-text-fill-color: transparent;
     text-decoration: none;
     transition: text-decoration 0.3s;
+    list-style: none;
   }
 
   .content {
