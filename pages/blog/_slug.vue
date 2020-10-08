@@ -8,13 +8,13 @@
         <p v-for="tag in post.tags" :key="tag">{{ tag }}</p>
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
-      <back-to-top visibleoffset="800" class="scrollUp">
-        <button>
-          <i class="material-icons arrow">arrow_upward</i>Back<br />
-          to Top
-        </button>
-      </back-to-top>
     </article>
+    <back-to-top visibleoffset="800" bottom="25px" class="scrollUp">
+      <button>
+        <i class="material-icons arrow">arrow_upward</i>Back<br />
+        to Top
+      </button>
+    </back-to-top>
     <div class="mentions">
       <div class="title-divider"></div>
       <div class="mentions-info">
@@ -449,6 +449,8 @@
     position: sticky;
     display: flex;
     justify-content: flex-end;
+    width: 95%;
+    margin: 0 auto 2%;
   }
 
   .scrollUp button {
@@ -464,7 +466,7 @@
     opacity: 0.5;
   }
 
-  .scrollUp:hover {
+  .scrollUp button:hover {
     opacity: 1;
   }
 
