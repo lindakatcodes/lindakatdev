@@ -8,13 +8,13 @@
         <p v-for="tag in post.tags" :key="tag">{{ tag }}</p>
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
+      <back-to-top visibleoffset="800" class="scrollUp">
+        <button>
+          <i class="material-icons arrow">arrow_upward</i>Back<br />
+          to Top
+        </button>
+      </back-to-top>
     </article>
-    <back-to-top bottom="30px" right="30px" visibleoffset="800">
-      <button class="scrollUp">
-        <i class="material-icons arrow">arrow_upward</i>Back<br />
-        to Top
-      </button>
-    </back-to-top>
   </div>
 </template>
 
@@ -321,13 +321,16 @@
   }
 
   .scrollUp {
+    position: sticky;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .scrollUp button {
     background: var(--darkBasic);
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    position: sticky;
-    bottom: 4%;
-    left: 91%;
     display: flex;
     flex-flow: column;
     align-content: center;
