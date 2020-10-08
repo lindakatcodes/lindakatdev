@@ -9,11 +9,9 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <back-to-top visibleoffset="800" bottom="25px" class="scrollUp">
-      <button>
-        <i class="material-icons arrow">arrow_upward</i>Back<br />
-        to Top
-      </button>
+    <back-to-top visibleoffset="750" bottom="25px" class="scrollUp">
+      <i class="material-icons arrow">arrow_upward</i>Back<br />
+      to Top
     </back-to-top>
   </div>
 </template>
@@ -323,9 +321,18 @@
   .scrollUp {
     position: sticky;
     display: flex;
-    justify-content: flex-end;
-    width: 95%;
-    margin: 0 auto 2%;
+    flex-flow: column;
+    margin: 0 2% 2% 90%;
+    padding: 1%;
+    font-size: 0.8rem;
+    color: var(--lightBasic);
+    background: var(--darkBasic);
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .scrollUp:hover {
+    opacity: 1;
   }
 
   .scrollUp button {

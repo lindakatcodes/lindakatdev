@@ -9,11 +9,9 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <back-to-top visibleoffset="800" bottom="25px" class="scrollUp">
-      <button>
-        <i class="material-icons arrow">arrow_upward</i>Back<br />
-        to Top
-      </button>
+    <back-to-top visibleoffset="750" bottom="25px" class="scrollUp">
+      <i class="material-icons arrow">arrow_upward</i>Back<br />
+      to Top
     </back-to-top>
     <div class="mentions">
       <div class="title-divider"></div>
@@ -448,25 +446,17 @@
   .scrollUp {
     position: sticky;
     display: flex;
-    justify-content: flex-end;
-    width: 95%;
-    margin: 0 auto 2%;
-  }
-
-  .scrollUp button {
-    background: var(--darkBasic);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
     flex-flow: column;
-    align-content: center;
-    font-size: 0.8rem;
+    margin: 0 2% 2% 90%;
+    padding: 1%;
+    font-size: 0.9rem;
     color: var(--lightBasic);
-    opacity: 0.5;
+    background: var(--darkBasic);
+    text-align: center;
+    opacity: 0.7;
   }
 
-  .scrollUp button:hover {
+  .scrollUp:hover {
     opacity: 1;
   }
 
@@ -562,6 +552,10 @@
 
     .wm-count {
       font-size: 1.1rem;
+    }
+
+    .scrollUp {
+      margin-left: 82%;
     }
   }
 </style>
