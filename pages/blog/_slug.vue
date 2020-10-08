@@ -9,6 +9,12 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
+    <back-to-top bottom="30px" right="30px" visibleoffset="800">
+      <button class="scrollUp">
+        <i class="material-icons arrow">arrow_upward</i>Back<br />
+        to Top
+      </button>
+    </back-to-top>
     <div class="mentions">
       <div class="title-divider"></div>
       <div class="mentions-info">
@@ -43,8 +49,10 @@
 
 <script>
   import getShareImage from '@jlengstorf/get-share-image';
+  import BackToTop from 'vue-backtotop';
 
   export default {
+    components: { BackToTop },
     async asyncData({ $content, params }) {
       const post = await $content('blog', params.slug).fetch();
       const [prev, next] = await $content('blog')
@@ -177,7 +185,6 @@
 
 <style scoped>
   .container {
-    max-width: 720px;
     margin: 2% auto;
   }
 
@@ -195,7 +202,8 @@
 
   .full-post {
     padding: 3%;
-    margin-bottom: 5%;
+    margin: 0 auto 5%;
+    max-width: 720px;
   }
 
   .title {
@@ -435,6 +443,32 @@
   .mentions-comments {
     list-style: none;
     padding-left: 0;
+  }
+
+  .scrollUp {
+    background: var(--darkBasic);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: sticky;
+    bottom: 4%;
+    left: 91%;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    font-size: 0.8rem;
+    color: var(--lightBasic);
+    opacity: 0.5;
+  }
+
+  .scrollUp:hover {
+    opacity: 1;
+  }
+
+  .arrow {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   @media screen and (max-width: 768px) {

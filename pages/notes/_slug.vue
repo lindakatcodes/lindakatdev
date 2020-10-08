@@ -9,17 +9,21 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <button class="scrollUp" @click="scrollTop">
-      <i class="material-icons arrow">arrow_upward</i>Back<br />
-      to Top
-    </button>
+    <back-to-top bottom="30px" right="30px" visibleoffset="800">
+      <button class="scrollUp">
+        <i class="material-icons arrow">arrow_upward</i>Back<br />
+        to Top
+      </button>
+    </back-to-top>
   </div>
 </template>
 
 <script>
   import getShareImage from '@jlengstorf/get-share-image';
+  import BackToTop from 'vue-backtotop';
 
   export default {
+    components: { BackToTop },
     async asyncData({ $content, params }) {
       const post = await $content('notes', params.slug).fetch();
       const [prev, next] = await $content('notes')
@@ -61,9 +65,6 @@
           taglineFontSize: 50,
         });
         return imageLink;
-      },
-      scrollTop() {
-        window.scrollTo({ top: 0, behavior: `smooth` });
       },
     },
     head() {
