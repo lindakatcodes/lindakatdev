@@ -9,8 +9,8 @@
       </div>
       <ul>
         <h2 class="toc">Jump to a Section:</h2>
-        <li v-for="link of links" :key="link.id" class="toc-link">
-          <NuxtLink v-scroll-to="`#${link.id}`" :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+        <li v-for="link of links" :key="link.id">
+          <NuxtLink v-scroll-to="`#${link.id}`" to="#" class="toc-link">{{ link.text }}</NuxtLink>
         </li>
       </ul>
       <nuxt-content :document="post" class="content"></nuxt-content>
