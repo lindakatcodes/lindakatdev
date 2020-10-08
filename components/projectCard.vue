@@ -213,11 +213,11 @@
 
     .project-images {
       height: 50vw;
-      flex-direction: column;
-      flex-wrap: wrap;
     }
 
     .multiPic {
+      flex-direction: column;
+      flex-wrap: wrap;
       justify-content: center;
     }
 

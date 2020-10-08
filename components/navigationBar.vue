@@ -4,6 +4,9 @@
       <nuxt-link v-if="mainRoutes.includes(this.$route.path)" to="/" class="home-link link">
         <img :srcset="srcset" :sizes="sizes" class="home-icon" />
       </nuxt-link>
+      <nuxt-link v-else-if="this.$route.path.includes('/blog')" to="/" class="home-link link">
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+      </nuxt-link>
       <nuxt-link v-else to="/school" class="home-link link">
         <img :srcset="srcset" :sizes="sizes" class="home-icon" />
       </nuxt-link>

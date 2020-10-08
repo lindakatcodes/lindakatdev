@@ -95,4 +95,11 @@
     font-size: 3rem;
     margin-top: -4%;
   }
+
+  @media screen and (max-width: 768px) {
+    .comment-wrapper {
+      margin: 0 auto 4%;
+      width: 95%;
+    }
+  }
 </style>

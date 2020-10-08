@@ -537,5 +537,31 @@
     .prev-next a {
       font-size: 0.9rem;
     }
+
+    .post-image img {
+      max-width: 65%;
+    }
+
+    .mentions-info {
+      width: 100%;
+      margin: 0 auto 3%;
+    }
+
+    .mentions-title {
+      width: 55%;
+      font-size: 1.3rem;
+    }
+
+    .info-show {
+      width: 15%;
+    }
+
+    .material-icons {
+      font-size: 20px;
+    }
+
+    .wm-count {
+      font-size: 1.1rem;
+    }
   }
 </style>
