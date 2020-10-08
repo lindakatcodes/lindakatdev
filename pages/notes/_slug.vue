@@ -223,8 +223,8 @@
   .content h6::before {
     display: block;
     content: ' ';
-    margin-top: -50px;
-    height: 50px;
+    margin-top: -55px;
+    height: 55px;
     visibility: hidden;
     pointer-events: none;
     z-index: 0;
