@@ -13,7 +13,7 @@
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </back-to-top>
-    <div class="mentions">
+    <div v-if="haveWms" class="mentions">
       <div class="title-divider"></div>
       <div class="mentions-info">
         <h2 class="mentions-title">Webmentions</h2>
@@ -87,6 +87,9 @@
         const tagList = this.post.tags.map((tag) => `#${tag} `);
         return tagList.join(' ');
       },
+      haveWms() {
+        return this.checkWbStatus();
+      },
     },
     created() {
       this.setMentions();
@@ -133,6 +136,12 @@
             }
           }
         });
+      },
+      checkWbStatus() {
+        if (this.wm.likes === 0 && this.wm.shares === 0 && this.wm.commentCount === 0) {
+          return false;
+        }
+        return true;
       },
     },
     head() {
@@ -559,6 +568,7 @@
 
     .scrollUp {
       margin-left: 82%;
+      font-size: 0.7rem;
     }
   }
 </style>
