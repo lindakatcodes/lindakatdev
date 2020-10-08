@@ -9,6 +9,10 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
+    <button class="scrollUp" @click="scrollTop">
+      <i class="material-icons arrow">arrow_upward</i>Back<br />
+      to Top
+    </button>
   </div>
 </template>
 
@@ -57,6 +61,9 @@
           taglineFontSize: 50,
         });
         return imageLink;
+      },
+      scrollTop() {
+        window.scrollTo({ top: 0, behavior: `smooth` });
       },
     },
     head() {
@@ -107,7 +114,6 @@
 
 <style scoped>
   .container {
-    max-width: 720px;
     margin: 2% auto;
   }
 
@@ -125,6 +131,8 @@
 
   .full-post {
     padding: 3%;
+    max-width: 720px;
+    margin: 0 auto;
   }
 
   .title {
@@ -194,6 +202,7 @@
 
   .content p {
     margin-bottom: 1.5%;
+    z-index: 1;
   }
 
   .content h1,
@@ -218,6 +227,7 @@
     height: 50px;
     visibility: hidden;
     pointer-events: none;
+    z-index: 0;
   }
 
   .content h1,
@@ -307,6 +317,32 @@
     margin: auto 0;
     background: var(--lightBasic);
     justify-self: center;
+  }
+
+  .scrollUp {
+    background: var(--darkBasic);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: sticky;
+    bottom: 4%;
+    left: 91%;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    font-size: 0.8rem;
+    color: var(--lightBasic);
+    opacity: 0.5;
+  }
+
+  .scrollUp:hover {
+    opacity: 1;
+  }
+
+  .arrow {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   @media screen and (max-width: 768px) {

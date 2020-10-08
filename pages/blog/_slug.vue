@@ -265,6 +265,7 @@
 
   .content p {
     margin-bottom: 1.5%;
+    z-index: 1;
   }
 
   .content h1,
@@ -289,6 +290,7 @@
     height: 50px;
     visibility: hidden;
     pointer-events: none;
+    z-index: 0;
   }
 
   .content h1,
