@@ -72,9 +72,9 @@
     data() {
       return {
         wm: {
-          likes: 1,
-          shares: 1,
-          commentCount: 1,
+          likes: 0,
+          shares: 0,
+          commentCount: 0,
           comments: [],
         },
       };
@@ -112,26 +112,26 @@
       },
       setMentions() {
         this.webmentions.forEach((mention) => {
-          // if (mention.author.url !== 'https://twitter.com/lindakatcodes') {
-          if (mention['wm-target'] === `https://www.lindakat.com${this.$route.fullPath}/`) {
-            if (mention['wm-property'] === 'like-of') {
-              this.wm.likes += 1;
-            }
-            if (mention['wm-property'] === 'mention-of') {
-              this.wm.shares += 1;
-            }
-            if (mention.content) {
-              this.wm.commentCount += 1;
-              const comment = {
-                author: mention.author.name,
-                img: mention.author.photo,
-                text: mention.content.text,
-                type: mention['wm-property'],
-              };
-              this.wm.comments.push(comment);
+          if (mention.author.url !== 'https://twitter.com/lindakatcodes') {
+            if (mention['wm-target'] === `https://www.lindakat.com${this.$route.fullPath}/`) {
+              if (mention['wm-property'] === 'like-of') {
+                this.wm.likes += 1;
+              }
+              if (mention['wm-property'] === 'mention-of') {
+                this.wm.shares += 1;
+              }
+              if (mention.content) {
+                this.wm.commentCount += 1;
+                const comment = {
+                  author: mention.author.name,
+                  img: mention.author.photo,
+                  text: mention.content.text,
+                  type: mention['wm-property'],
+                };
+                this.wm.comments.push(comment);
+              }
             }
           }
-          // }
         });
       },
     },
