@@ -12,6 +12,7 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
+    layout: 'school',
     async fetch() {
       this.playground = await this.$content('playground').sortBy('id', 'desc').fetch();
     },

@@ -96,7 +96,7 @@
   }
 
   .multiPic img {
-    width: 30vw;
+    width: 27vw;
     flex-shrink: 0;
     transform-origin: center center;
     transform: scale(1);

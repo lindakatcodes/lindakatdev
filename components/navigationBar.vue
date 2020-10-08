@@ -1,20 +1,21 @@
 <template>
   <div class="navigation-container">
-    <nav class="nav">
-      <nuxt-link v-if="mainRoutes.includes(this.$route.path)" to="/" class="home-link link">
-        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
-      </nuxt-link>
-      <nuxt-link v-else-if="this.$route.path.includes('/blog')" to="/" class="home-link link">
-        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
-      </nuxt-link>
-      <nuxt-link v-else to="/school" class="home-link link">
+    <nav v-if="pageType === 'main'" class="nav">
+      <nuxt-link to="/" class="home-link link">
         <img :srcset="srcset" :sizes="sizes" class="home-icon" />
       </nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
-      <nuxt-link :to="setCodeRoute()" class="link projects-link">{{ setCodeName }}</nuxt-link>
-      <nuxt-link :to="setWriteRoute()" class="link writing-link">{{ setWriteName }}</nuxt-link>
-      <nuxt-link v-if="mainRoutes.includes(this.$route.path)" to="/about" class="link about-link">ABOUT</nuxt-link>
-      <nuxt-link v-else-if="this.$route.path.includes('/blog')" to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
+      <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
+      <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
+    </nav>
+    <nav v-else class="nav">
+      <nuxt-link to="/school" class="home-link link">
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+      </nuxt-link>
+      <span v-if="largeScreen" class="divider"></span>
+      <nuxt-link to="/school/playground" class="link projects-link">PLAYGROUND</nuxt-link>
+      <nuxt-link to="/school/garden" class="link writing-link">GARDEN</nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>
@@ -23,8 +24,8 @@
 <script>
   export default {
     props: {
-      paths: {
-        type: Array,
+      pageType: {
+        type: String,
       },
     },
     data() {
@@ -32,29 +33,10 @@
         srcset: '/logo48.png 48w, /logo72.png 72w',
         sizes: '(max-width: 768px) 48px, 72px',
         largeScreen: this.fullSize,
-        pageType: '',
-        mainRoutes: ['/', '/projects', '/writing', '/about'],
       };
-    },
-    computed: {
-      setCodeName() {
-        return this.paths[0].toUpperCase();
-      },
-      setWriteName() {
-        return this.paths[1].toUpperCase();
-      },
     },
     mounted() {
       this.largeScreen = !(window.innerWidth < 768);
-      this.pageType = this.mainRoutes.includes(this.$route.path) ? '/' : '/school/';
-    },
-    methods: {
-      setCodeRoute() {
-        return `${this.pageType}${this.paths[0]}`;
-      },
-      setWriteRoute() {
-        return `${this.pageType}${this.paths[1]}`;
-      },
     },
   };
 </script>

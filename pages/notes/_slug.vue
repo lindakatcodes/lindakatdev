@@ -21,6 +21,7 @@
   import BackToTop from 'vue-backtotop';
 
   export default {
+    layout: 'school',
     components: { BackToTop },
     async asyncData({ $content, params }) {
       const post = await $content('notes', params.slug).fetch();
