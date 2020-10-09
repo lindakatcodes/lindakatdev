@@ -14,9 +14,11 @@ export default {
    */
   head: {
     title: 'LindaKat Devs',
+    htmlAttrs: {
+      lang: 'en',
+    },
     meta: [
       { charset: 'utf-8' },
-      { lang: 'en' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'og:description',
