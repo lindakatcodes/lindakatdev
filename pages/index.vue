@@ -135,6 +135,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-top: 1%;
+    font-weight: 700;
   }
 
   .intro-divider {
@@ -181,6 +182,7 @@
     font-family: var(--serif);
     color: var(--lightBasic);
     font-size: 2.5rem;
+    font-weight: 900;
   }
 
   .title-divider {
@@ -201,6 +203,7 @@
     -webkit-text-fill-color: transparent;
     text-decoration: solid underline var(--lightBasic);
     font-size: 1.4rem;
+    font-weight: 700;
     transition: text-decoration 0.3s;
   }
 

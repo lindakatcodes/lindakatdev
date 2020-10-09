@@ -70,7 +70,7 @@
 
   .single-tag {
     padding: 0.25% 0.5%;
-    margin: 0.75% 1%;
+    margin: 0.75% 1.25%;
     background: var(--lightPurple);
     border-radius: 5px;
     border: 2px solid var(--lightPurple);
@@ -82,7 +82,7 @@
     color: var(--darkBasic);
     text-decoration: none;
     font-size: 1rem;
-    font-family: var(--sansSerif);
+    /* font-family: var(--sansSerif); */
     font-weight: 700;
     letter-spacing: 0.75px;
   }

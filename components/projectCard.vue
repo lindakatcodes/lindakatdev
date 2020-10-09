@@ -153,14 +153,12 @@
     font-size: 0.8rem;
     width: 100%;
     font-family: var(--sansSerif);
-    letter-spacing: 0.5px;
-    font-weight: 300;
-    line-height: 1rem;
+    line-height: 1.1rem;
   }
 
   .project-links {
     width: 100%;
-    margin: 1% 0;
+    margin: 2% 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,8 +167,9 @@
   .project-links a {
     text-decoration: none;
     border-radius: 5px;
-    padding: 0 2% 1%;
+    padding: 1% 2%;
     margin: 0 3%;
+    font-weight: 700;
     color: var(--lightBasic);
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
   }

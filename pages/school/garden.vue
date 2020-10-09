@@ -95,6 +95,7 @@
     font-family: var(--serif);
     color: var(--lightBasic);
     font-size: 2.5rem;
+    font-weight: 900;
   }
 
   .divider {

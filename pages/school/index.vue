@@ -129,6 +129,7 @@
   .intro-subtitle {
     width: 80%;
     font-size: 1.5rem;
+    font-weight: 700;
     text-align: center;
     background: var(--lightGradient);
     background-clip: text;

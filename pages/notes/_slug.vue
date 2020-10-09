@@ -176,7 +176,6 @@
     margin: 0 1.5%;
     text-transform: uppercase;
     font-size: 0.9rem;
-    font-family: var(--sansSerif);
     font-weight: 700;
     letter-spacing: 0.75px;
     background: var(--lightPurple);
@@ -348,6 +347,11 @@
     color: #8e9ba1;
   }
 
+  .nuxt-content-highlight code {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
   .prev-next {
     padding: 0 2%;
     display: grid;
@@ -448,11 +452,6 @@
 
     .nuxt-content-highlight {
       margin: 5% 0;
-    }
-
-    .nuxt-content-highlight code {
-      overflow-wrap: break-word;
-      white-space: pre-wrap;
     }
   }
 </style>

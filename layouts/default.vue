@@ -16,6 +16,7 @@
     box-sizing: border-box;
     font-family: var(--serif);
     background: var(--darkBasic);
+    letter-spacing: 0.025rem;
   }
 
   *,

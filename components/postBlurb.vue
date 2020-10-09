@@ -38,6 +38,7 @@
     border-bottom-color: var(--lightPurple);
     transition: color 0.3s;
     font-size: 1.2rem;
+    font-weight: 700;
   }
 
   .post-title:hover {

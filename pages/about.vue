@@ -240,9 +240,9 @@
 
   .page-title {
     text-align: center;
-    font-family: var(--serif);
     color: var(--lightBasic);
     font-size: 3rem;
+    font-weight: 900;
   }
 
   .title-divider {
@@ -270,9 +270,9 @@
 
   .section-title {
     text-align: center;
-    font-family: var(--serif);
     color: var(--lightBasic);
     font-size: 2.15rem;
+    font-weight: 900;
   }
 
   .section-details {
@@ -403,9 +403,9 @@
   .cert-caption {
     /* border: 2px solid white; */
     color: var(--lightBasic);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    font-family: var(--sansSerif);
+    /* font-family: var(--sansSerif); */
     letter-spacing: 0.75px;
     font-weight: 700;
     display: flex;

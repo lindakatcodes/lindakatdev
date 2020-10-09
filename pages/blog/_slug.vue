@@ -243,7 +243,6 @@
     margin: 0 1.5%;
     text-transform: uppercase;
     font-size: 0.9rem;
-    font-family: var(--sansSerif);
     font-weight: 700;
     letter-spacing: 0.75px;
     background: var(--lightPurple);
