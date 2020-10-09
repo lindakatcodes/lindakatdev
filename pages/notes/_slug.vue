@@ -18,20 +18,18 @@
       <div class="title-divider"></div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <back-to-top visibleoffset="950" bottom="25px" class="scrollUp">
+    <backToTop visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
-    </back-to-top>
+    </backToTop>
   </div>
 </template>
 
 <script>
   import getShareImage from '@jlengstorf/get-share-image';
-  import BackToTop from 'vue-backtotop';
 
   export default {
     layout: 'school',
-    components: { BackToTop },
     async asyncData({ $content, params }) {
       const post = await $content('notes', params.slug).fetch();
       const [prev, next] = await $content('notes')

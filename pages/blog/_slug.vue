@@ -9,10 +9,10 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <back-to-top visibleoffset="950" bottom="25px" class="scrollUp">
+    <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
-    </back-to-top>
+    </BackToTop>
     <div v-if="haveWms" class="mentions">
       <div class="title-divider"></div>
       <div class="mentions-info">
@@ -47,10 +47,8 @@
 
 <script>
   import getShareImage from '@jlengstorf/get-share-image';
-  import BackToTop from 'vue-backtotop';
 
   export default {
-    components: { BackToTop },
     async asyncData({ $content, params }) {
       const post = await $content('blog', params.slug).fetch();
       const [prev, next] = await $content('blog')

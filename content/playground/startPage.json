@@ -2,7 +2,7 @@
   "name": "Home Page",
   "id": 2,
   "images": [
-    "startscreen"
+    "startscreen-sm"
   ],
   "altText": [
     "Screen with a greeting title, subtitle, and two lists of resources. The background is a green and pink succulent."
