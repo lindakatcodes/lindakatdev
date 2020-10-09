@@ -172,7 +172,7 @@
           tagline: "Everything you want to know about Linda's goals and knowledge",
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
-          titleFont: 'Bree Serif',
+          titleFont: 'Overlock',
           taglineFont: 'Fira Sans',
           textColor: 'F3F6F7',
           textAreaWidth: 850,

@@ -37,7 +37,7 @@
           tagline: 'Course notes and personal cheat sheets',
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
-          titleFont: 'Bree Serif',
+          titleFont: 'Overlock',
           taglineFont: 'Fira Sans',
           textColor: 'F3F6F7',
           textAreaWidth: 850,

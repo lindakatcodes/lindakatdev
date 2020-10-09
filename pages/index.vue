@@ -75,7 +75,7 @@
           tagline: 'The online home of all projects and tech writings from Linda Thompson',
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
-          titleFont: 'Bree Serif',
+          titleFont: 'Overlock',
           taglineFont: 'Fira Sans',
           textColor: 'F3F6F7',
           textAreaWidth: 850,
