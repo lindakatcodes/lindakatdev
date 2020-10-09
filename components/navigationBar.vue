@@ -2,7 +2,7 @@
   <div class="navigation-container">
     <nav v-if="pageType === 'main'" class="nav">
       <nuxt-link to="/" class="home-link link">
-        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" alt="The letters LT crossed over each other in rainbow colors" />
       </nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
@@ -11,7 +11,7 @@
     </nav>
     <nav v-else class="nav">
       <nuxt-link to="/school" class="home-link link">
-        <img :srcset="srcset" :sizes="sizes" class="home-icon" />
+        <img :srcset="srcset" :sizes="sizes" class="home-icon" alt="The letters LT crossed over each other in rainbow colors" />
       </nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
       <nuxt-link to="/school/playground" class="link projects-link">PLAYGROUND</nuxt-link>
