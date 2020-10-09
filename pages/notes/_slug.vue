@@ -18,10 +18,10 @@
       <div class="title-divider"></div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <backToTop visibleoffset="950" bottom="25px" class="scrollUp">
+    <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
-    </backToTop>
+    </BackToTop>
   </div>
 </template>
 
