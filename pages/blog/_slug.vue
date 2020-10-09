@@ -349,6 +349,7 @@
 
   .content p code {
     color: var(--lightPurple);
+    overflow-wrap: break-word;
   }
 
   .content blockquote {
