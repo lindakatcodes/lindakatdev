@@ -108,6 +108,7 @@
           taglineTopOffset: 425,
           titleFontSize: 66,
           taglineFontSize: 50,
+          titleExtraConfig: '_bold',
         });
         return imageLink;
       },
