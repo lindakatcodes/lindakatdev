@@ -9,7 +9,7 @@
       </div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <back-to-top visibleoffset="750" bottom="25px" class="scrollUp">
+    <back-to-top visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </back-to-top>
@@ -193,6 +193,7 @@
 <style scoped>
   .container {
     margin: 2% auto;
+    max-width: 880px;
   }
 
   .navigate {

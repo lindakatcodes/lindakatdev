@@ -9,13 +9,16 @@
       </div>
       <ul>
         <h2 class="toc">Jump to a Section:</h2>
-        <li v-for="link of links" :key="link.id">
-          <NuxtLink v-scroll-to="`#${link.id}`" to="#" class="toc-link">{{ link.text }}</NuxtLink>
+        <li v-for="link of links" :key="link.id" class="toc-link">
+          <NuxtLink v-scroll-to="`#${link.id}`" to="#" :class="{ 'link-h2': link.depth === 2, 'link-h3': link.depth === 3 }">{{
+            link.text
+          }}</NuxtLink>
         </li>
       </ul>
+      <div class="title-divider"></div>
       <nuxt-content :document="post" class="content"></nuxt-content>
     </article>
-    <back-to-top visibleoffset="750" bottom="25px" class="scrollUp">
+    <back-to-top visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </back-to-top>
@@ -37,7 +40,7 @@
         .sortBy('createdAt', 'asc')
         .surround(params.slug)
         .fetch();
-      const links = post.toc.filter((val) => val.depth === 2);
+      const links = post.toc;
       return {
         post,
         prev,
@@ -123,6 +126,7 @@
 <style scoped>
   .container {
     margin: 2% auto;
+    max-width: 880px;
   }
 
   .navigate {
@@ -194,13 +198,49 @@
     background: var(--lightPink);
   }
 
+  .toc {
+    color: var(--lightBasic);
+    font-size: 1.5rem;
+  }
+
   .toc-link {
+    list-style: none;
+    margin: 1% 0;
+  }
+
+  .toc-link:last-of-type {
+    margin-bottom: 3%;
+  }
+
+  .link-h2 {
     background: var(--lightGradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 1.1rem;
     text-decoration: none;
     transition: text-decoration 0.3s;
-    list-style: none;
+  }
+
+  .link-h2:hover,
+  .link-h3:hover {
+    text-decoration: solid double var(--lightBasic);
+  }
+
+  .link-h3 {
+    margin-left: 4%;
+    font-family: var(--sansSerif);
+    font-size: 0.9rem;
+    color: var(--lightBasic);
+    background: none;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+  }
+
+  .title-divider {
+    height: 4px;
+    width: 100%;
+    background: var(--lightGradient);
+    margin: 0 auto 2%;
   }
 
   .content {
@@ -389,6 +429,14 @@
 
     .timeToRead {
       margin-bottom: 4%;
+    }
+
+    .toc {
+      font-size: 1.3rem;
+    }
+
+    .link-h2 {
+      font-size: 1rem;
     }
 
     .content hr {

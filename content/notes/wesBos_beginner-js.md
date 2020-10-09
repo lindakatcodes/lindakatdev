@@ -6,27 +6,6 @@ tags:
   - Wes Bos
 ---
 
-## Jump to a Section:
-
-- [The Basics](#the-basics)
-- [Functions](#functions)
-- [The Tricky Bits](#the-tricky-bits)
-- [The DOM](#the-dom)
-- [Events](#events)
-- [Serious Practice Exercises](#serious-practice-exercises)
-
-<!-- - [Logic and Flow Control](#logic-and-flow-control)
-- [Data Types](#data-types)
-- [Gettin' Loopy](#gettin-loopy)
-- [Harder Practice Exercises](#harder-practice-exercises)
-- [Prototypes, this, new, and Inheritance](#prototypes-this-new-and-inheritance)
-- [Advanced Flow Control](#advanced-flow-control)
-- [Ajax and Fetching Data](#ajax-and-fetching-data)
-- [ES Modules and Structuring Larger Apps](#es-modules-and-structuring-larger-apps)
-- [Final Round of Exercises](#final-round-of-exercises) -->
-
-----
-
 ## The Basics
 
 ### Types

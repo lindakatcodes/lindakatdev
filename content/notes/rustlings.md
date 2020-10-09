@@ -7,20 +7,6 @@ tags:
 
 > Even though compiler errors can be frustrating, they only mean your program isn’t safely doing what you want it to do yet; they do *not* mean that you’re not a good programmer! - The Rust Book
 
-## Jump to a Section
-
-- [Intro Commands](#intro-commands)
-- [Variables](#variables)
-- [Data Types](#data-types)
-- [Control Flow](#control-flow)
-- [Functions](#functions)
-- [Structs](#strucs)
-- [Enums](#enums)
-- [Errors](#errors)
-- [Tests](#tests)
-
-----
-
 ## Intro Commands
 
 Each program in Rust must have a `main` function - it's always the first code run in every program.
