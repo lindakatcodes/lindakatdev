@@ -561,6 +561,67 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 Looks similar to `if` but can return any value, not just a Boolean. For each arm, it lists the pattern to match (`Coin::Variant`), then the arrow points to the value/code to run if it matches.
 
+## Modules
+
+Modules are a way to organize code within a crate into groups, improving readability and reusability. They also control the privacy of items, if they can be used by outside code (public) or internally only (private).
+
+Modules are most useful for grouping related definitions together - can hold other modules, functions, structs, enums, constants, traits, etc.
+
+```rust
+mod hosting {
+  fn add_to_waitlist() {}
+}
+```
+
+To use something inside a module, you'll need to know the path. You can use absolute paths (starting from the crate root), or use the relative path (starting from the current module). Both will use `::` in between identifiers.
+
+Defining something inside a module also makes it more private by default. Items in a parent module can't use private items in their children (though children can use items in their ancestor modules). Making a module public doesn't make its contents public. The `pub` keyword only lets code in its ancestor modules refer to it.
+
+```rust
+// setting pub in front marks this as public
+pub fn eat_at_restaurant() {
+  // absolute path
+  crate::hosting::add_to_waitlist();
+  // relative path
+  hosting::add_to_waitlist();
+}
+```
+
+Can also construct relative paths using `super` - sort of like accessing a file path with `..`.
+
+```rust
+fn serve_order() {}
+
+mod back_of_house {
+  fn fix_incorrect_order() {
+    cook_order();
+    super::serve_order();
+  }
+
+  fn cook_order() {}
+}
+```
+
+Another privacy note in regards to structs and enums: if you use `pub` on a struct it will make the struct public, but it's fields will still be private - you can adjust these individually. Will also need a public associated function that constructs an instance of the struct to use elsewhere, since you won't have access to set any private fields.
+
+With enums, if you make it public all of its variants are public.
+
+`use` allows us to call an item into scope once, and then use it like it's a local item, simplifying the rest of the calls. With modules, you'll often go to the parent scope instead of all the way to a specific item, so it's clear it's not locally defined. With structs, enums, and such you'll often specify the full path in `use`.
+
+If two types have the same name (like a Result field in two different modules), you can either specify down to the parent and then call Result, or you can use the keyword `as` and provide a new local name / alias.
+
+If you bring something into scope with `use`, it be private in the new scope. So if you need the code that calls your function to also use it, you can use `pub use` - this is called re-exporting.
+
+If you need to bring in multiple items from the same library, can use curly brackets around a list.
+
+```rust
+use std::{cmp::Ordering, io};
+// to bring in one complete path and one that goes farther:
+use std::io::{self, Write};
+// or can bring in all public items from a path
+use std::collections::*;
+```
+
 ## Errors
 
 ```rust
@@ -605,4 +666,54 @@ fn it_works() -> Result<(), String> {
     Err(String::From("two plus two does not equal four"))
   }
 }
+```
+
+## Macros
+
+There are declarative macros `macro_rules!` and three kinds of procedural macros:
+
+- custom macros that specify code added with the `derive` attribute used on structs and enums `#[dervive]`
+- attribute-like, define custom attributes usable on any item
+- function-like, look like function calls but operate on tokens specified as their argument
+
+Macros are a way of writing code that write other code (metaprogramming). It lets produce more code than what we write manually. It's similar to functions, but there are some differences:
+
+- function signatures must declare the number & type of parameters - macros can take a variable number of parameters.
+- macros are expanded before the compiler interprets the meaning, so can implement a trait on a type. Functions can't because they're called at runtime.
+- macros are more complex, since you're writing Rust code that writes Rust code, so are generally more difficult to read & maintain.
+- must define macros or bring into scope before you call them; functions can be defined & called anywhere.
+
+### Declarative
+
+Declarative macros act similar to a `match` - they compare against a pattern, and run code depending on matches.
+
+```rust
+// makes macro available whenever the crate it's in is brought into scope
+#[macro_export]
+// start with this line, then the name we want to use
+macro_rules! vec {
+  // similar to a match expression, we have one arm with a pattern, followed by a block of code associated with the pattern
+  // this line will match any Rust expression and assign it to the name $x - the comma says there might be a comma after the expression - the * will match zero or more expressions
+  ( $( $x:expr ),* ) => {
+    {
+      let mut temp_vec = Vec::new();
+      $(
+        temp_vec.push($x);
+      )*
+      temp_vec
+    }
+  };
+}
+```
+
+### Procedural
+
+Procedural macros are more similar to functions - they accept input, operate on it, and produce output.
+
+```rust
+// definitions must reside in their own crate with a special crate type
+use proc_macro;
+
+#[some_attribute]
+pub fn some_name(input: TokenStream) -> TokenStream {}
 ```
