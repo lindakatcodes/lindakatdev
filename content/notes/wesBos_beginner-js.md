@@ -574,3 +574,36 @@ Building an Etch-a-Sketch in the browser! A few random notes:
 - Default action for arrow keys is to move the page.
 - `hsl` has a hue value that's between 0 and 359. Browsers will automatically handle the re-setting of the hue value if it goes over 359, and wrap back around for us!
 - In the third part of an event listener call, we can pass `once: true` to unbind the event listener after it's done, so it won't keep adding the same listener multiple times.
+
+### Click Outside Modal
+
+- One way to hide a modal window before you need it: set `opacity` to 0 and set `pointer-events` to none. Will still be on the screen (just not visibly since no opacity), but will not capture any pointer events, so can click things that might be under it. Then, when you want it to be visible, change the `opacity` and set `pointer-events` to all.
+- If you've got an individual piece of a larger group, and want to grab that specific group it's in, can use `.closest`. Similar to query selector, but goes up instead of down.
+
+```js
+const button = event.currentTarget;
+const card = button.closest('.card');
+```
+
+### Scroll Events & Intersection Observer
+
+Can use scroll event to track how far from the top and the height of the item that's scrolling, but will likely be easier to use intersection observer.
+
+Will make a new instance, which takes a callback and set of options if needed. Then you tell that instance to observe the element you want to watch.
+
+```js
+function obCallback(payload) {
+  if (payload[0].intersectionRatio === 1) {
+    // actions here
+    ...
+    ob.unobserve(terms.lastElementChild);
+  }
+}
+
+const ob = new IntersectionObserver(obCallback, {
+  root: terms,
+  threshold: 1
+});
+
+ob.observe(terms.lastElementChild);
+```
