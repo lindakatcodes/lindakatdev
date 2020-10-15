@@ -97,6 +97,7 @@ export default {
             title: post.title,
             id: url,
             link: url,
+            date: post.createdAt,
             description: post.blurb,
             content: post.bodyPlainText,
           });

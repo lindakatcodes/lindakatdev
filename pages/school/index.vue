@@ -3,6 +3,7 @@
     <section class="intro">
       <h1 class="intro-name">Learning with Linda!</h1>
       <p class="intro-subtitle">Notes & fun projects from courses or conferences</p>
+      <i class="material-icons more-arrow">expand_more</i>
     </section>
     <section class="featured-projects">
       <h2 class="section-title">Fun Side Projects</h2>
@@ -138,36 +139,12 @@
     margin-top: 1%;
   }
 
-  .intro-divider {
-    background: var(--lightBasic);
-    height: 4px;
-    width: 32%;
-    margin-top: 2%;
-  }
-
-  .intro-icons {
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2%;
-  }
-
-  .intro-icons a {
-    width: 35%;
-  }
-
-  .intro-icons img {
-    width: 100%;
-    padding: 0.5rem 1.5rem 0;
-  }
-
-  .gh-icon:hover {
-    filter: url('~assets/icons/github-square.svg#gh-hover-color');
-  }
-
-  .tw-icon:hover {
-    filter: url('~assets/icons/twitter-square.svg#tw-hover-color');
+  .more-arrow {
+    font-size: 3.5rem;
+    color: var(--lightBasic);
+    position: absolute;
+    bottom: 0;
+    left: calc((100% - 3.5rem) / 2);
   }
 
   /* General section styles - applies to all sections */
@@ -241,17 +218,9 @@
       font-size: 1.25rem;
     }
 
-    .intro-divider {
-      width: 67%;
-      margin-top: 5%;
-    }
-
-    .intro-icons {
-      width: 75%;
-    }
-
-    .intro-icons a {
-      width: 40%;
+    .more-arrow {
+      font-size: 2.5rem;
+      left: calc((100% - 2.5rem) / 2);
     }
 
     section {

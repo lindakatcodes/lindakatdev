@@ -18,7 +18,7 @@
     "nuxt": "^2.14.5",
     "prism-themes": "^1.4.0",
     "reading-time": "^1.2.0",
-    "vue-scrollto": "^2.18.2",
+    "vue-scrollto": "^2.19.1",
     "vue-tippy": "^4.7.0"
   },
   "devDependencies": {

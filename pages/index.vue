@@ -16,6 +16,7 @@
           <img src="~assets/icons/twitter-square.svg" alt="Twitter icon" class="tw-icon" />
         </a>
       </div>
+      <i class="material-icons more-arrow">expand_more</i>
     </section>
     <section class="featured-projects">
       <h2 class="section-title">Featured Projects</h2>
@@ -137,6 +138,14 @@
     -webkit-text-fill-color: transparent;
     margin-top: 1%;
     font-weight: 700;
+  }
+
+  .more-arrow {
+    font-size: 2.5rem;
+    color: var(--lightBasic);
+    position: absolute;
+    bottom: 0;
+    left: calc((100% - 2.5rem) / 2);
   }
 
   .intro-divider {
