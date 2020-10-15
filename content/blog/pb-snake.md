@@ -1,6 +1,7 @@
 ---
 title: Project Breakdown - Snake
 blurb: I re-created a version of the classic phone game! Lessons and thoughts from my experience.
+createdAt: 2020-09-25
 tags:
   - JavaScript
   - Games
