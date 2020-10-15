@@ -622,6 +622,73 @@ use std::io::{self, Write};
 use std::collections::*;
 ```
 
+## Vectors
+
+`Vec<T>` - allows you to store multiple values in a single data structure that puts all values next to each other in memory. Values must be of the same type.
+
+```rust
+// create a new, empty vector
+// We put a type in < > so Rust knows what type we intend to store
+let v: Vec<i32> = Vec::new();
+// if we have starting values, Rust can usually infer the type
+let v = vec![1, 2, 3];
+// to add elements, use push (make sure your variable is set to mut)
+v.push(5);
+// Also - if you want a direct copy but don't want to take ownership, can make a clone!
+let v2 = v.clone();
+```
+
+When a vector gets dropped (goes out of scope), all of its contents are also dropped.
+
+To reference values in a vector, there's two ways:
+
+```rust
+let v = vec![1, 2, 3, 4, 5];
+// can use indexing with & - gives a reference
+let third: &i32 = &v[2];
+// or can use get - gives an Option
+match v.get(2) {
+  Some(third) => println!("The third element is {}", third),
+  None => println!("There is no third element."),
+}
+```
+
+There's two ways because there's two methods that might happen if you try to access something past the size of the vector. If you use `[]` and try to grab something outside the range, the program will panic. If you use `get`, it will return `None`.
+
+Will need to remember that you can't have mutable & immutable references in the same scope - so if you store a reference to an indexed value, then add something to the original vector, it will cause an error. Since vectors are all stored in the same memory space, it might need to move the vector to make room for the new item, so the reference is no longer valid.
+
+To access all values in a vector:
+
+```rust
+// immutable - read only
+let v = vec![100, 32, 57];
+for i in &v {
+  println!("{}", i);
+}
+// mutable - if we need to make changes
+let mut v = vec![100, 32, 57];
+for i in &mut v {
+  // * is a dereference operator - grabs the value in i before we make changes
+  *i += 50;
+}
+```
+
+Enums can also be stored in vectors, since they count as the same type! Useful if we need to keep information together that have different individual types.
+
+```rust
+enum SpreadsheetCell {
+  Int(i32),
+  Float(f64),
+  Text(String),
+}
+
+let row = vec![
+  SpreadsheetCell::Int(3),
+  SpreadsheetCell::Text(String::from("blue")),
+  SpreadsheetCell::Float(10.12),
+];
+```
+
 ## Errors
 
 ```rust
