@@ -607,3 +607,58 @@ const ob = new IntersectionObserver(obCallback, {
 
 ob.observe(terms.lastElementChild);
 ```
+
+### Tabs
+
+- In most cases, if a property is listed with a - in HTML, you can use it in JS with camelCase. However, for aria and custom properties, you'll want to use `setAttribute` to have the property update.
+`tab.setAttribute('aria-selected', false);`
+- When possible, you can style things by aria-labels and properties - so instead of having to keep track of classes and labels, you can simply have the accessible labels/properties. Less to update or code!
+
+## Logic and Flow Control
+
+### BEDMAS
+
+ Order of operations!
+
+- **B**rackets (also Parenthesis)
+- **E**xponents
+- **D**ivision
+- **M**ultiplication
+- **A**ddition
+- **S**ubtraction
+
+### Flow Control - If Statements, Function Returns, Truthy, Falsy
+
+**If Statements** - will evaluate a condition to see if it's true or false; if true, will run the code in the provided block. Important to note that it runs top down, so the first if condition that evaluates to true ends the chain (so any other `else if` blocks won't be seen).
+
+**Return** - if you return inside a function, it will stop the rest of the function from running (will often see it instead of an `else` call inside a function).
+
+```js
+function slugify(sentence, lowercase) {
+  let slug = sentence.replace(/\s/g, '-');
+  if (lowercase) {
+    return slug.toLowerCase();
+  }
+  // will only be reachable if the if statement is false
+  return slug;
+}
+```
+
+Can use methods or functions inside `if` statements if they return a boolean.
+
+**Truthy & falsy** - in `if` statements, JS will try to coerce an expression into a boolean. However, some values are not actually true or false, but will evaluate that way in expressions. Often used to check if something exists.
+
+Truthy Values:
+
+- Any number (positive or negative)
+- Any string with a value (even an empty space ' ')
+- Empty array
+- Empty object
+
+Falsy Values:
+
+- 0
+- undefined
+- null
+- NaN
+- empty string ''
