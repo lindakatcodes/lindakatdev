@@ -691,9 +691,78 @@ let row = vec![
 
 ## Errors
 
+### Unrecoverable Errors with Panic
+
 ```rust
 // if we need our program to panic (print a failure message, unwind and clean up stack, then quit):
 panic!("error message!");
+```
+
+### Recoverable Errors with Result
+
+`Result` is an enum with two variants - an `Ok` and an `Err`. Both will have their own type that they expect.
+
+```rust
+enum Result<T, E> {
+  Ok(T),
+  Err(E),
+}
+
+// an example way to use this
+use std::fs::File;
+
+fn main() {
+  let f = File::open("hello.txt");
+
+  let f = match f {
+    Ok(file) => file,
+    Err(error) => panic!("Problem opening the file: {:?}", error),
+  };
+}
+
+//  can also detect different failure reasons
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+  let f = File::open("hello.txt");
+
+  let f = match f {
+    Ok(file) => file,
+    Err(error) => match error.kind() {
+      ErrorKind::NotFound => match File::create("hello.txt") {
+        Ok(fc) => fc,
+        Err(e) => panic!("Problem creating the file: {:?}", e),
+      },
+      other_error => {
+        panic!("Problem opening the file: {:?}", other_error)
+      }
+    }
+  }
+}
+```
+
+the `Result` type has helper methods for various tasks. One is `unwrap` - will work like our first example above, where it will return the file if all goes well, or call `panic!` for us if there's an error. There's also `expect`, which works similarly but lets you provide the error message to return in the `panic!` call, so you can provide more information.
+
+```rust
+let f = File::open("hello.txt").unwrap();
+let f = File::open("hello.txt").expect("Failed to open hello.txt");
+```
+
+Can also return the error to the code that called it, called propagating. You might have more information or other logic in the calling code that can handle the error better. This is common enough that there's a shortcut variable `?` for it. It goes at the end of a line expecting a `Result` value. If the value of `Result` is `Ok`, that value gets returned and we'll continue; if it's an `Err`, that error will be returned as if we'd called `return` on it and the function will end.
+
+```rust
+fn read_username_from_file() -> Result<String, io::Error> {
+  let mut f = File::open("hello.txt")?;
+  let mut s = String::new();
+  f.read_to_string(&mut s)?;
+  Ok(s)
+
+  // Could also chain these and rewrite as:
+  let mut s = String::new();
+  File::open("hello.txt")?.read_to_string(&mut s)?;
+  Ok(s)
+}
 ```
 
 ## Tests
