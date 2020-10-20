@@ -662,3 +662,86 @@ Falsy Values:
 - null
 - NaN
 - empty string ''
+
+### Coercion, Ternaries and Conditional Abuse
+
+**Coercion** - Force something of a different type to be a real boolean - often with `!`. Will be able to check the truthy/falsy-ness of a value and if it exists or not. A single bang (`!`) is the opposite of the truthy/falsy-ness of a variable.
+
+```js
+const name = "wes";
+// !name = false
+// !!name = true
+```
+
+**Ternary** - Shorthand if statement, needs 3 things: a condition, if true, & if false
+
+```js
+const count = 2;
+const word = count === 1 ? 'item' : 'items';
+
+function showAdminBar() {}
+const isAdmin = true;
+// if you want to do nothing, can use null
+isAdmin ? showAdminBar() : null;
+// && trick - since JS will short circuit when it reaches false conditions, can use this to avoid using the null setting
+isAdmin && showAdminBar();
+```
+
+### Case Switch & Animating a Turtle w/ CSS Variables
+
+**Switch statement** - Block with a number of cases where the values are specific - can't do `> 20` or something similar. Will them react on whichever case it matches.
+
+```js
+switch (event.key) {
+  case 'ArrowUp':
+    y = y - 1;
+    break;
+  case 'ArrowDown':
+    y = y + 1;
+    break;
+  default:
+    console.log('Not a valid move');
+    break;
+}
+```
+
+Also - if you need to set a CSS variable in your JS, can use `setAttribute` to access it.
+
+```js
+const turtle = document.querySelector('.turt');
+turtle.setAttribute('style', `
+  --x: ${x * speed}px;
+`)
+```
+
+### Intervals & Timers
+
+To run code once after a certain set of time, you'll use a timer - to run it multiple times after a certain set of time, you'll want an interval.
+
+```js
+setTimeout(function() {
+  // do some code here - this is your callback function, then you'll pass the time to run it after
+}, 500);
+
+// can also pass in defined functions
+// does not run right away - the first run will start after the first timer amount
+setInterval(buzzer, 100);
+
+// You can pass functions as parameters too! So if you wanted something to run immediately, and then at intervals, can make your own function like this:
+function setImmediateInterval(funcToRun, ms) {
+  // by calling the function parameter here, it will call the function you pass in
+  funcToRun();
+  //
+  return setInterval(funcToRun, ms);
+}
+
+setImmediateInterval(buzzer, 2000);
+
+// If we save the reference to the timer, we can then clear it to stop it from running - works with timers and intervals
+const bombTimer = setTimeout(destroy, 5000);
+
+window.addEventListener('click', () => {
+  console.log('You saved the world');
+  clearTimeout(bombTimer); // for intervals - clearInterval(IntToClear);
+})
+```
