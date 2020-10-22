@@ -745,3 +745,123 @@ window.addEventListener('click', () => {
   clearTimeout(bombTimer); // for intervals - clearInterval(IntToClear);
 })
 ```
+
+## Data Types
+
+### Objects
+
+Groups of properties/keys and values. Most used where the order of the properties doesn't matter. Values can be any type.
+
+```js
+const age = 100;
+const person = {
+  name: 'wes',
+  // if you have a variable and key with the same name, can just pass the name
+  age,
+  // can use dashes or spaces if needed, wrap in quotes
+  'really-cool': true,
+  // nested properties
+  clothing: {
+    shirts: 10,
+    pants: 2,
+  }
+  // if you have a function in an object, it's called a method - the this keyword will be bound to the object
+  // can also use shorthand of sayHello(greeting = 'Hey') {}
+  sayHello: function(greeting = 'Hey') {
+    return `${greeting} ${this.name}`;
+  }
+};
+// can also add properties after creation
+person.job = 'web developer';
+// and can update properties
+person.age = 50;
+// another way to access properties - can use strings stored in variables, or for property names with dashes or spaces
+person['really-cool'];
+// to remove a property
+delete person.job;
+// to clear a variable, can set to undefined or null
+```
+
+Even though our object is declared with a `const`, you can update the properties - properties can change, but the actual named object can't be overwritten completely. If you need to freeze the values of an object, call `Object.freeze(person)` - won't affect the initial object, but will create a version that is frozen.
+
+### Object References vs Values
+
+With variables, if you set one value equal to another, it will copy that value into the new variable. If you update the original value, the copy will *not* update.
+
+```js
+let name1 = 'wes';
+let name2 = 'scott';
+
+// if we set name1 to be equal to what's in name2
+name1 = name2;
+// the value in name1 is now the string 'scott' - it copies the value stored in name2 and sets it to be set in name1
+// if we then change the value in name2
+name2 = 'westopher';
+// name1 still equals 'scott', while name2 is now 'westopher'
+```
+
+However, if we're comparing objects, they're checked by reference - so if you have two objects that have the same contents but different variable names, they won't be considered equal - because they're pointing to different objects.
+
+```js
+// so if we make an object
+const person1 = {
+  first: 'wes',
+  last: 'bos',
+}
+// then set a new variable to be pointing to person1 - it will be a reference; it won't copy the values into the new variable, it points to the original
+const person2 = person1;
+// however now, if we update a value in person2 - it will ALSO update the value in person1, since they're both pointing to the same object
+person2.first = 'Larry';
+// now both person2.first and person1.first are both set to 'Larry'
+```
+
+If we want to make a copy of an object (a new version, not a reference to the original), we can use the `spread` operator. It will take an object and *spread* the values into a new object.
+
+`const person3 = { ...person1 };`
+
+A slightly older/original way to do this is:
+`const person3 = Object.assign({}, person1);`
+Still works well, just not quite as popular anymore since `spread`
+
+> Spread is only one level deep (a shallow copy) - so if we have nested values, updating them in our `person3` object will ALSO update the `person1` object.
+
+If you need a deep copy (all the values copied over), you'll likely need a library that provides a function to do that - will need to recursively go through the object to copy everything over.
+
+With `spread`, order matters - if you have properties in multiple objects that use the same name, the last one you spread in will win.
+
+With strings and single values, if you pass them into a function, the original value is not changed - it passes the value into the function, so only the value inside the function is updated. However, if you pass an object into a function, it **WILL** update the original object as well!
+
+### Maps
+
+Maps are similar to objects, but will have a few differences.
+
+```js
+const person1 = {
+  name: 'wes',
+  age: 200,
+}
+
+const myMap = new Map();
+// Map has a few nice syntax things
+// to add entires to our map, use .set()
+myMap.set('name', 'wes');
+// one nice thing is we can use any value for our keys, like numbers or objects
+myMap.set(100, 'this is a number');
+myMap.set(person1, 'Cool person');
+// we can use .get() to grab the value stored in our entries
+myMap.get(person1) // will return the value 'cool person'
+// to delete an entry, use .delete()
+myMap.delete('name');
+// if you need to know if a key exists in a map, use .has()
+myMap.has(100); // will return a boolean
+```
+
+You can use dot notation to add a property, but it will be a property on the map, not an entry.
+
+In maps, order is *guaranteed* - the order we put them in will be the order they stay in. Can also use `myMap.size` similar to length, if we need to know how many entries there are.
+
+Use a map if order is important. However there is no literal - we always need to use the `new` keyword to make a map. If you know what data to pass, you can pass in arrays to set the values.
+
+`new Map(['name', 'wes'], ['age', 49])`
+
+Cannot put functions/methods in maps. Maps also don't currently handle JSON, so can't convert your maps with `json.stringify` - will need to convert it to an object first.
