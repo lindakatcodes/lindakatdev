@@ -73,6 +73,7 @@ export default {
     '@nuxt/content',
     '@nuxtjs/feed',
     'vue-scrollto/nuxt',
+    '@nuxtjs/markdownit',
   ],
 
   feed: [
@@ -82,7 +83,7 @@ export default {
         feed.options = {
           title: 'LindaKat Blogs',
           description: 'Tech Writings from Linda Thompson',
-          link: 'https://www.lindakat.com/feed.xml',
+          link: 'localhost:3000/feed.xml',
         };
 
         // eslint-disable-next-line global-require
@@ -92,14 +93,13 @@ export default {
 
         posts.forEach((post) => {
           const url = `https://www.lindakat.com/blog/${post.slug}`;
-
           feed.addItem({
             title: post.title,
             id: url,
             link: url,
             date: new Date(post.createdAt),
             description: post.blurb,
-            content: post.content,
+            content: post.bodyText,
           });
         });
       },
@@ -109,11 +109,14 @@ export default {
   ],
   hooks: {
     'content:file:beforeInsert': (document) => {
+      // eslint-disable-next-line global-require
+      const md = require('markdown-it')();
       if (document.extension === '.md') {
         // eslint-disable-next-line global-require
         const { text } = require('reading-time')(document.text);
         document.readingTime = text;
-        document.bodyPlainText = document.text;
+        const mdToHtml = md.render(document.text);
+        document.bodyText = mdToHtml;
       }
     },
   },
@@ -127,6 +130,12 @@ export default {
         theme: '@/assets/css/prism-theme.css',
       },
     },
+  },
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: ['markdown-it-div', 'markdown-it-attrs'],
   },
   /*
    ** Build configuration
