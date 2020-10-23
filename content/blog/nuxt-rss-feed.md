@@ -11,6 +11,12 @@ type: live
 featured: true
 ---
 
+**Update!** *Oct. 23, 2020* - Finally decided to look into why I always have to add all the line breaks back into my posts on my Dev account. Turns out, RSS feeds don't actually work well with pure Markdown? They expect the data in HTML. Then, Dev's converter puts it into Markdown. So, it parses the Markdown into, well, Markdown, and doesn't preserve the spacing and line breaks because it's expecting paragraph tags.
+
+The Content module says that it can run the `create` function we make after the markdown is parsed into HTML, but to use it that way you have to set up a false page (so you don't get your header/footer info), read the entire file, and then use that. The work around I found is using a package called [@nuxtjs/markdownit](https://www.npmjs.com/package/@nuxtjs/markdownit), which is used to parse Markdown into HTML in Vue files. It works in our config file, as well, which is where I used it! I don't fully get all the settings, but the defaults worked for me, so I've updated the info below to include this. This will them make your RSS feed have HTML files, so Dev's converter will read it properly and keep the spacing. Horray!
+
+----
+
 I like cross posting my blogs to Dev.to - I've got a little bit of community there already, so being able to have both my own place for my writing and a shared space is nice. Since I just migrated my blog to my new site, I needed to get an RSS feed set up so I could connect it to my Dev account.
 
 It was pretty easy to do with my last blog that was built with Gridsome (another Vue framework), so I figured it shouldn't be too hard to do with Nuxt, which is what I built my current site on. Right? Well, it wasn't the most difficult thing I've done building this site, but it was a little more confusing than I thought! So I figured I'd write out the steps I took to get it to work.
@@ -20,6 +26,8 @@ It was pretty easy to do with my last blog that was built with Gridsome (another
 ## First - Add the Feed Package to your Project
 
 There is already a [Nuxt package for managing RSS feeds](https://github.com/nuxt-community/feed-module), which is awesome! So I added that to my project with `npm install --save @nuxtjs/feed`. That part was easy. :)
+
+**Update** Also, install the [@nuxtjs/markdownit package](https://www.npmjs.com/package/@nuxtjs/markdownit) and save it as well. `npm install --save @nuxtjs/markdownit`
 
 ----
 
@@ -60,6 +68,8 @@ The only way to access just the text of the document, before it's converted into
 
 Conveniently, this piece can also go in your `nuxt.config.js` file! I used this hook to access the `document.text` property, and simply created a new field on my posts called `bodyPlainText`, that I can then access anywhere I can access my posts.
 
+**Update** - I modified this last part - I'm now pulling in the `markdown-it` package in this hook, and passing the `document.text` into the markdown parser, then passing that result into a new field (which I renamed to `bodyText`). You'll see this in the code below.
+
 ----
 
 ## Third - Putting it All Together
@@ -73,6 +83,7 @@ modules: [
   // content listed before feed!
     '@nuxt/content',
     '@nuxtjs/feed',
+    '@nuxtjs/markdownit',
   ],
   // This is a new piece you'll need to add, it won't be in the default file.
 feed: [
@@ -106,8 +117,8 @@ feed: [
           id: url,
           link: url,
           description: post.blurb,
-          // this is what we did in part two! Accessing that plain text
-          content: post.bodyPlainText,
+          // this is what we did in part two! Accessing that body text, that we converted into HTML
+          content: post.bodyText,
         });
       });
     }, // this is the end of the create function
@@ -121,16 +132,28 @@ feed: [
 // This is our hook! We check if the document is a markdown file (meaning it's a blog post in this case), and if so we get the reading time and set it to a property on the document, and also set our plain text of the post to a property.
 hooks: {
   'content:file:beforeInsert': (document) => {
+    // first, we're going to bring in our markdownit file - in JS, it's written as markdown-it, but in the package.json and modules bit, there's no dash - hence the eslint-disable line. It will work fine - it just doesn't get that the package name is written differently
+    // eslint-disable-next-line
+    const md = require('markdown-it')();
     if (document.extension === '.md') {
       // ignoring eslint again :) same warning as earlier
       // eslint-disable-next-line global-require
       const { text } = require('reading-time')(document.text);
-
       document.readingTime = text;
-      document.bodyPlainText = document.text;
+      // Now we pass our post's plain text into the md.render file, which will convert it into HTML
+      // Then we store that value in our bodyText variable on our post
+      const mdToHtml = md.render(document.text);
+      document.bodyText = mdToHtml;
     }
   },
 }, // end of the hook setting
+// We'll also need to add in some default settings for the markdown-it package - this part I don't quite understand yet as far as what everything's doing, they're just the default settings listed on the package's GitHub page
+markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: ['markdown-it-div', 'markdown-it-attrs'],
+  },
 // a few other default options here
 } // end of export
   ```
