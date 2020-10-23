@@ -83,7 +83,7 @@ export default {
         feed.options = {
           title: 'LindaKat Blogs',
           description: 'Tech Writings from Linda Thompson',
-          link: 'localhost:3000/feed.xml',
+          link: 'https://www.lindakat.com/feed.xml',
         };
 
         // eslint-disable-next-line global-require
