@@ -561,6 +561,23 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 Looks similar to `if` but can return any value, not just a Boolean. For each arm, it lists the pattern to match (`Coin::Variant`), then the arrow points to the value/code to run if it matches.
 
+## If Let
+
+```rust
+fn main() {
+    let mut res = 42;
+    let option = Some(12);
+    if let Some(x) = option {
+        res += x;
+    }
+    println!("{}", res);
+}
+```
+
+The `if let` phrasing here is similar to destructuring - it will check to see if the pattern we've provided (in the code above, `Some(x)`) has a match in the variable we've passed. If so, it will run the code inside, assigning the variable value to the `x`. If not, it will not run. Another description here:
+
+![Discord screenshot of how this is similar to destructuring](https://i.imgur.com/msBLWCH.png)
+
 ## Modules
 
 Modules are a way to organize code within a crate into groups, improving readability and reusability. They also control the privacy of items, if they can be used by outside code (public) or internally only (private).
@@ -852,4 +869,240 @@ use proc_macro;
 
 #[some_attribute]
 pub fn some_name(input: TokenStream) -> TokenStream {}
+```
+
+## Loops
+
+Rust has 3 ways to loop over things:
+
+1. **Loop** - Legit just loops through continuously until it reaches a `break` keyword. If there's a value with the `break` call, that will be returned from the function.
+
+```rust
+fn main() {
+  let mut counter = 0;
+
+  let result = loop {
+    counter += 1;
+
+    if counter == 10 {
+      break counter * 2;
+    }
+  };
+}
+```
+
+2. **While** - Similar to JS, will run through the loop while the condition is true, then once it's false will call `break` itself and end the loop.
+
+```rust
+fn main() {
+  let mut number = 3;
+
+  while number != 0 {
+    println!("{}!", number);
+
+    number -= 1;
+  }
+
+  println!("LIFTOFF!");
+}
+```
+
+# 3 **For** - will loop over each item in a collection
+
+```rust
+fn main() {
+  let a = [10, 20, 30, 40, 50];
+
+  for element in a.iter() {
+    println!("the value is: {}", element);
+  }
+}
+```
+
+## Smart Pointers
+
+### Using Box to Point to Data on the Heap
+
+The most straight forward smart pointer is a box - `Box<T>`; they allow you to store data on the heap instead of the stack - all the stack keeps is a pointer to the heap data. Most often, you'll use this in these situations:
+
+- if you have a type whose size can't be known at compile time & you want to use a value of that type in a context that needs an exact size (might be a recursive type, where you won't know the size right away)
+- with large amounts of data where you want to transfer ownership but not copy the data when you do (better for performance to only need to move the pointer & not a large amount of data)
+- when you want to own a value and only care that it's a type w/ a particular trait rather than being a specific type
+
+```rust
+// simple example of how to make a new box
+fn main() {
+  let b = Box::new(5);
+  println!("b = {}", b);
+}
+```
+
+Data is accessed like we've done before, and will also go out of scope (both the box and the data it points to) once main closes.
+
+#### Enabling Recursive Types with Boxes
+
+Rust needs to know how much space a type takes up at compile time. Since recursive functions could go on infinitely, we can't know the exact size at compile time. So we use a box, since it *does* have an exact size.
+
+```rust
+// If we tried to define an enum type like this:
+enum List {
+  Cons(i32, List),
+  Nil.
+}
+// it won't compile. Because we're referencing itself inside it, Rust can't figure out how much space it needs to store this type.
+```
+
+To determine how much space to allocate for a particular type, Rust will go through each variant and see which needs the most space. Since only one variant type will be used at a time, it just needs to know which is the largest and reserve that much space. So we need "indirection", or changing the data structure to store the value indirectly by using a pointer instead. Pointers are always the same size, so we know how much space we need.
+
+```rust
+// so a way that will compile to make a list is like so:
+enum List {
+  Cons(i32, Box<List>),
+  Nil,
+}
+// then to use it, we'd call it like this - we pass in the Nil value when we reach the end of the list we want to make
+fn main() {
+  let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))))
+}
+```
+
+Boxes provide only indirection and heap allocation, no other special capabilities. This means they also don't have any performance overhead, so can be useful when the indirection is what you really need. They implement the `Deref` trait, which allows `Box` values to be treated like references. When a `Box` goes out of scope, the heap data it points to will be cleaned up as well because of the `Drop` trait implementation.
+
+## Fearless Concurrency
+
+### Shared-State Concurrency
+
+Shared memory concurrency is like multiple ownership: multiple threads can access the same memory location at the same time. Naturally, this becomes complex since each owner needs managing. Mutexes are one of the common concurrency primitives for shared memory.
+
+Mutex is short for "mutual exclusion" - it allows only one thread to access some data at any given time. A thread must first signal that it wants access by asking to get the mutex's lock (a data structure that keeps track of who currently has exclusive access to the data). There are two rules with mutexes:
+
+- You must attempt to acquire the lock before using the data
+- When you're done, you must unlock the data so other threads can use it
+
+```rust
+// using a mutex in a single threaded context
+use std::sync::Mutex;
+
+fn main() {
+  let m = Mutex::new(5);
+
+  {
+    // calling lock will block this thread, so we can't do anything else until we get access
+    // we use unwrap because if another thread holding the lock first panics, we'll never get access. this way, this line will panic as well, so we'll know
+    let mut num = m.lock().unwrap();
+    *num = 6;
+  }
+  // the lock will be released automatically when it goes out of scope, so we don't have to implement that ourselves - this is why this call is wrapped in braces
+
+  println!("m = {:?}", m);
+}
+```
+
+Mutex is a smart pointer - the call to `lock` returns a pointer called `MutexGuard`, that's wrapped in a `LockResult` (handled above with unwrap). This implements `deref` to give us access to the data stored inside, and has `drop` so it will release the access automatically once out of scope.
+
+If we have multiple threads that need to access the same data, we'll want to use an `Arc<T>`, or "atomic reference counted" type. They work like primitive types but are safe to share across threads.
+
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
+
+fn main() {
+  let counter = Arc::new(Mutex::new(0));
+  let mut handles = vec![];
+
+  for _ in 0..10 {
+    let counter = Arc::clone(&counter);
+    let handle = thread::spawn(move || {
+      let mut num = counter.lock().unwrap();
+
+      *num += 1;
+    });
+  }
+// this line helps make sure all the threads are finished before we look for the final result
+  for handle in handles {
+    handle.join().unwrap();
+  }
+
+  println!("Result: {}", *counter.lock().unwrap());
+}
+```
+
+Mutex provides interior mutability, meaning we can mutate contents inside of it, even if the variable holding it is not mutable. You also might run into a deadlock situation, where an operation needs locks to two resources, and two threads each have one lock, so they're stuck waiting for the other forever.
+
+## Iterators and Closures
+
+### Iterators
+
+The iterator pattern lets you perform a task on a sequence of items in turn, and determines when the sequence is finished. Iterators are lazy - they have no effect until you call methods that consume the iterator.
+
+```rust
+let v1 = vec![1, 2, 3];
+// the iter is declared here, but doesn't do anything yet
+let v1_iter = v1.iter();
+// now it gets used by the for loop
+for val in v1_iter {
+  println!("Got: {}", val);
+}
+```
+
+All iterators implement a trait named `Iterator`, which defines the type of the item and a `next` method, which returns one item at a time wrapped in `Some`, unless it's done (then it returns `none`).
+
+You can call `next` yourself if you want - however, you'll need to make your `iter()` variable mutable to do so. In for loops, we don't have to worry about that, because the loop handles it for us. Also note - values we get from calls to `next` are immutable references to the value. If we want an iterator that returns owned values, we can call `into_iter` instead. Or, if we want to iterate over mutable references, we can use `iter_mut`.
+
+#### Methods that Consume the Iterator
+
+Methods that call `next` are called consuming adaptors, since calling them uses up the iterator. `sum` is one example - takes ownership of the iterator & goes through the items by repeatedly calling `next`, adds each item to a running total and returns the total when done. `collect` is another - collects resulting values into a collection data type.
+
+```rust
+let v1 = vec![1, 2, 3];
+let v1_iter = v1.iter();
+let total: i32 = v1_iter.sum();
+assert_eq!(total, 6);
+```
+
+#### Methods that Produce other Iterators
+
+Iterator adaptors allow you to change iterators into different kinds of iterators. Can chain multiple calls to iterator adaptors for complex actions. But you have to call a consuming adaptor method to get results from calls. `map` is one of these types - takes a closure to call on each item and performs some action. `filter` is another - will take each item and return a boolean - true if it will be included in the answer, false if not.
+
+```rust
+let v1: Vec<i32> = vec![1, 2, 3];
+let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+assert_eq!(v2, vec![2, 3, 4]);
+```
+
+You can also create your own `Iterator` trait on your own types. The only method you're required to provide a definiton for is the `next` method. After that, you can use all other methods w/ default implementations provided by the `Iterator` trait.
+
+```rust
+// Here we make a new struct, with one field - we keep count private so only Counter instances can change it
+struct Counter {
+  count: u32,
+}
+// then we're going to define a new function so we always start with a default value of 0 in count
+impl Counter {
+  fn new() -> Counter {
+    Counter { count: 0 }
+  }
+}
+
+// now we make the Iterator trait - our next function will check if the value is < 5 - if so, we add 1 and return Some w/ the new value. Once we hit 5, we return None
+impl Iterator for Counter {
+  type Item = u32;
+
+  fn next(&mut self) -> Option<Self::Item> {
+    if self.count < 5 {
+      self.count += 1;
+      Some(self.count)
+    } else {
+      None
+    }
+  }
+}
+
+// to use it, we can make a new Counter instance and call next on it
+fn calling_next_directly() {
+  let mut counter = Counter::new();
+
+  assert_eq!(counter.next(), Some(1));
+  // ... Go until we get None
+}
 ```
