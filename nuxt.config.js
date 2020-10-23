@@ -109,7 +109,7 @@ export default {
   ],
   hooks: {
     'content:file:beforeInsert': (document) => {
-      // eslint-disable-next-line global-require
+      // eslint-disable-next-line
       const md = require('markdown-it')();
       if (document.extension === '.md') {
         // eslint-disable-next-line global-require
