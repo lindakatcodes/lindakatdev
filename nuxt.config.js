@@ -99,7 +99,7 @@ export default {
             link: url,
             date: new Date(post.createdAt),
             description: post.blurb,
-            content: post.bodyPlainText,
+            content: post.content,
           });
         });
       },
