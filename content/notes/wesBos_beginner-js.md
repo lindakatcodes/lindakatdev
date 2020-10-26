@@ -865,3 +865,160 @@ Use a map if order is important. However there is no literal - we always need to
 `new Map(['name', 'wes'], ['age', 49])`
 
 Cannot put functions/methods in maps. Maps also don't currently handle JSON, so can't convert your maps with `json.stringify` - will need to convert it to an object first.
+
+### Arrays
+
+Holds a list of items where the position matters. Arrays have no keys - they use indexes instead. It has the `typeof` object.
+
+```js
+const names = ['wes', 'kait', 'snickers'];
+
+// we use the index of an item (0 based) in square brackets to access it
+console.log(names[0]);
+
+// add items to END of the array
+names.push('lux');
+
+// add to FRONT of the array
+names.unshift('poppy');
+
+// can use spread method if you want to add in the middle
+// if you want to go to the end, can simply only provide a starting index to slice
+const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
+const newBikes = [
+  ...bikes.slice(0, 2),
+  'benotto',
+  ...bikes.slice(2),
+];
+```
+
+`Mutable` methods perform mutations - they change the original version. `Immutable` return a new version that's changed, leaving the original as is.
+
+```js
+// if you need to use a mutable method but DON'T want to change the original, can make a copy of the array to work on
+const numbers = [1, 2, 3, 4, 5, 6];
+const numbersReversed = [...numbers].reverse();
+
+// Two common ones - slice (immutable) and splice (mutable)
+// using slice will leave the original array as is - will grab from the start index up to (but not including) the end index
+const slice = numbers.slice(2, 5); // will return 3, 4, 5
+
+// using splice will change the original array - provide the index to start at and number of items to remove (optional items to add in as well)
+const splice = numbers.splice(1, 2); // will remove 3, 4 from original array
+```
+
+```js
+// find and delete example
+const comments = [
+  { text: 'Cool Beans', id: 123 },
+  { text: 'Love this', id: 133 },
+  { text: 'Neato', id: 233 },
+  { text: 'Good bikes', id: 333 },
+  { text: 'So good', id: 433 },
+];
+
+function deleteComments(id, comments) {
+  // find the index where our comment to remove is - since comment is an object, will use dot notation on the id field
+  const commentIndex = comments.findIndex(comment => comment.id === id);
+  return [
+    ...comments.slice(0, commentIndex),
+    ...comments.slice(commentIndex + 1)
+  ];
+}
+```
+
+### Array Cardio - Static Methods
+
+Static methods are sort of like utilities - they're used with the keyword `Array` and are not specific to a created array.
+
+```js
+// can use .of to create a new array from the values provided
+// if an item has a length, can also spread it into an array
+Array.of('wes', 'kait'); // ['wes', 'kait']
+Array.of(...'wes'); // ['w', 'e', 's']
+
+// can use .for to make an array of a certain length, with a value passed in if desired
+function createRange(start, end) {
+  // will use anything that has a length to determine how many spaces to make
+  const range = Array.from({ length: end - start }, function (item, index) {
+    // this will then put this number into the indexed slot
+    return index + start;
+  });
+  return range;
+}
+
+// use .isArray to see if it is an array
+Array.isArray(myRange);
+
+// A few object static methods that return arrays:
+const meats = {
+  beyond: 10,
+  beef: 5,
+  pork: 7,
+}
+
+// .entries makes each item it's own array and returns all values
+Object.entries(meats); // [['beyond', 10], ['beef', 5], ['pork', 7]]
+// .keys makes an array of just the keys
+Object.keys(meats); // ['beyond', 'beef', 'pork']
+// .values makes an array of just the values
+Object.values(meats); // [10, 5, 7]
+
+// short destructuring example:
+Object.entries(meats).forEach(([meat, qty]) => {
+  // can destructure / "split up" the values either in the parameters, or inside the loop
+  // if inside the loop, would pass entry in the parameters, then do:
+  // const [meat, qty] = entry;
+  console.log(meat, qty);
+})
+```
+
+### Array Cardio - Instance Methods
+
+Instance methods work directly on your specific array (also called prototype methods).
+
+```js
+// make a string from your array with .join
+const buns = ['egg', 'wonder', 'brioche'];
+buns.join(' or '); // 'egg or wonder or brioche'
+
+// string method, can turn a string into an array with .split
+const foodString = 'hot dogs, hamburgers, sausages, corn";
+foodString.split(','); // ['hot dogs', 'hamburgers', 'sausages', 'corn']
+
+// adding and removing items
+const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+
+// .pop and .shift will return the item you removed
+// .push and .unshift will return the new length of the array
+
+// take last item off array
+const lastItem  = toppings.pop();
+// add it back to end
+toppings.push(lastItem);
+// take first item off
+const firstItem = toppings.shift();
+// add it back to beginning
+toppings.unshift(firstItem);
+
+// can also do these in an immutable way
+let newToppings = toppings.slice(0, toppings.length - 1);
+newToppings = [...newToppings, toppings[toppings.length - 1]];
+
+// making copies with slice and spread
+const toppingsCopy = toppings.slice(0);
+const toppingsCopy2 = [...toppings];
+
+// remove items with .splice
+toppingsCopy.splice(3, 5);
+
+// find index of Avocado with .indexOf / .lastIndexOf
+// indexOf will find the FIRST instance; lastIndexOf will find the LAST instance
+const avoIndex = toppings.indexOf('Avocado');
+
+// check if item exists in array with .includes
+const isInToppings = toppings.includes('Hot Sauce');
+
+// reverse the list
+const toppingsReversed = [...toppings].reverse();
+```
