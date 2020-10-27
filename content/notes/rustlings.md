@@ -825,11 +825,11 @@ fn it_works() -> Result<(), String> {
 
 There are declarative macros `macro_rules!` and three kinds of procedural macros:
 
-- custom macros that specify code added with the `derive` attribute used on structs and enums `#[dervive]`
+- custom macros that specify code added with the `derive` attribute used on structs and enums `#[derive]`
 - attribute-like, define custom attributes usable on any item
 - function-like, look like function calls but operate on tokens specified as their argument
 
-Macros are a way of writing code that write other code (metaprogramming). It lets produce more code than what we write manually. It's similar to functions, but there are some differences:
+Macros are a way of writing code that write other code (meta programming). It lets produce more code than what we write manually. It's similar to functions, but there are some differences:
 
 - function signatures must declare the number & type of parameters - macros can take a variable number of parameters.
 - macros are expanded before the compiler interprets the meaning, so can implement a trait on a type. Functions can't because they're called at runtime.
@@ -891,7 +891,7 @@ fn main() {
 }
 ```
 
-2. **While** - Similar to JS, will run through the loop while the condition is true, then once it's false will call `break` itself and end the loop.
+1. **While** - Similar to JS, will run through the loop while the condition is true, then once it's false will call `break` itself and end the loop.
 
 ```rust
 fn main() {
@@ -907,7 +907,7 @@ fn main() {
 }
 ```
 
-# 3 **For** - will loop over each item in a collection
+1. **For** - will loop over each item in a collection
 
 ```rust
 fn main() {
@@ -1070,7 +1070,7 @@ let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
 assert_eq!(v2, vec![2, 3, 4]);
 ```
 
-You can also create your own `Iterator` trait on your own types. The only method you're required to provide a definiton for is the `next` method. After that, you can use all other methods w/ default implementations provided by the `Iterator` trait.
+You can also create your own `Iterator` trait on your own types. The only method you're required to provide a definition for is the `next` method. After that, you can use all other methods w/ default implementations provided by the `Iterator` trait.
 
 ```rust
 // Here we make a new struct, with one field - we keep count private so only Counter instances can change it
@@ -1106,3 +1106,188 @@ fn calling_next_directly() {
   // ... Go until we get None
 }
 ```
+
+## Generic Types, Traits, & Lifetimes
+
+`Generics` are abstract stand-ins for concrete types or properties - similar to how you'll pass parameters to a function. We don't know what specific value or type will be there, but we can express the behavior we want or how they relate to other generics.
+
+Can use generics to create definitions for items like function signatures or structs, which can then be used with different data types.
+
+Say we want to find the largest value in an array. We can make a function for number arrays, and a function for char arrays, that both do the same looping over the list, but have specific types defined. Or, we can use generics to combine those into one function that can work with both types!
+
+To parameterize types in a function, we'll need to name the type parameter - in Rust, `T` is pretty common for this, though you can use any identifier/name you want. You have to declare the type name before we can use it.
+
+```rust
+// function largest is generic over some type T; it has one parameter named list (a slice of values of type T), and returns a reference to a value of the same type T
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+  let mut largest = list[0];
+
+  for &item in list {
+    if item > largest {
+      largest = item;
+    }
+  }
+  largest
+}
+
+// can then use this function on various lists
+fn main() {
+  let number_list = vec![34, 50, 25, 100, 65];
+  let result = largest(&number_list);
+  let char_list = vec!['y', 'm', 'a', 'q'];
+  let result = largest(&char_list);
+}
+```
+
+Can also use generic values in structs, methods, and enums. Rust doesn't run any slower with generics than it would with concrete types. When it compiles, Rust will go through and create specific instances for each use case.
+
+```rust
+// because we use one generic type here, both x and y will have to have the same type when used
+struct Point<T> {
+  x: T,
+  y: T,
+}
+
+// can also use generics in methods - we declare the generic type directly after impl, so it works for any type we pass to our Point
+impl<T> Point<T> {
+  fn x(&self) -> &T {
+    &self.x
+  }
+}
+
+// could also make methods that only work for certain types - so if we pass Point an f32 type, it will have this method, but other uses with different types won't
+impl Point<f32> {
+  fn distance_from_origin(&self) -> f32 {
+    (self.x.powi(2) + self.y.powi(2)).sqrt()
+  }
+}
+
+fn main() {
+  let integer = Point { x: 5, y: 10 };
+}
+
+// if we wanted to allow for multiple types, can use more than one generic - can still have both types be the same, but can also let them be different
+struct Point<T, U> {
+  x: T,
+  y: U,
+}
+
+// can also mix references to generics on the struct, and generics on the method
+impl<T, U> Point<T, U> {
+    fn mixup<V, W>(self, other: Point<V, W>) -> Point<T, W> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+
+fn main() {
+  let both_types = Point { x: 5, y: 4.2 };
+}
+
+// enums work similarly: the standard Option and Result show using one or multiple generics
+enum Option<T> {
+  Some(T),
+  None,
+}
+
+enum Result<T, E> {
+  Ok(T),
+  Err(E),
+}
+```
+
+### Traits: Defining Shared Behavior
+
+A `trait` tells the compiler about functionality a particular type has and can share with other types. Can use bounds to specify that a generic can be any type with a certain behavior.
+
+```rust
+// this declares the trait and it's name. Inside the braces, we declare the method signatures that describe behaviors of types w/ this trait. Each type is responsible for declaring it's behavior for these methods - the trait says what method it expects and what it should return; the calls for each type determine how they implement it
+pub trait Summary {
+  // can simply define the method, like so
+  fn summarize(&self) -> String;
+  // or can define it with a default behavior
+  fn summarize(&self) -> String {
+    String::from("(Read more...)")
+  }
+}
+
+// if we wanted to use the default method, we define it as an empty block
+impl Summary for NewsArticle();
+
+// using it might look like this:
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+// this would overwrite our default value
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
+        format!("{}, by {} ({})", self.headline, self.author, self.location)
+    }
+}
+
+// if instead we wanted to use the default value, would do that here:
+println!("New article available! {}", article.summarize());
+```
+
+Since these are all defined in the same file, they're all in the same scope. If we had our trait is in a library, we'd have to pull in `crate::Summary` before we could use it.
+
+Can implement a trait on a type only if the trait or type is local to our crate. Can't implement external traits on external types - at least one has to be from within our file.
+
+Default implementations can call other methods in the same trait.
+
+```rust
+pub trait Summary {
+  fn summarize_author(&self) -> String;
+
+  fn summarize(&self) -> String {
+    format!("(Read more from {}...)", self.summarize_author())
+  }
+}
+
+impl Summary for Tweet {
+  fn summarize_author (&self) -> String {
+    format!("@{}", self.username)
+  }
+}
+
+println!("1 new tweet: {}", tweet.summarize());
+```
+
+Can use traits to define functions that accept different types. For example, could define a `notify` function that calls `summarize` on a parameter, which is of a type that implements the `Summary` trait. Instead of providing a concrete type, we say it will work for any type that implements the provided trait.
+
+```rust
+pub fn notify(item: &impl Summary) {
+  println!("Breaking news! {}", item.summarize());
+}
+
+// this is syntax sugar for the trait bound:
+notify<T: Summary>(item: &T)
+
+// can specify multiple trait bounds
+notify(item: &(impl Summary + Display))
+notify<T: Summary + Display>(item: &T)
+
+// can also use trait bound in the return spot, to return a value of a type that implements the trait - can only be used if returning a single type
+returns_summarizable() -> impl Summary {}
+```
+
+Using multiple bounds with multiple types can get confusing, so Rust provides a `where` clause:
+
+```rust
+// instead of
+fn some_func<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32
+// we do
+fn some_func<T, U>(t: &T, u: &U) -> i32
+  where T: Display + Clone,
+        U: Clone + Debug
+{}
+```
+
+Traits can be used to conditionally implement methods. So some methods will happen no matter what, and some only if certain conditions are allowed on that type.
+
+Lifetimes ensure references are valid as long as we need them to be.
