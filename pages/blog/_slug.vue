@@ -114,8 +114,10 @@
       },
       setMentions() {
         this.webmentions.forEach((mention) => {
+          const wmPath = mention['wm-target'].toLowerCase();
+          const routePath = this.$route.fullPath.toLowerCase();
           if (mention.author.url !== 'https://twitter.com/lindakatcodes') {
-            if (mention['wm-target'] === `https://www.lindakat.com${this.$route.fullPath}/`) {
+            if (wmPath === `https://www.lindakat.com${routePath}/`) {
               if (mention['wm-property'] === 'like-of') {
                 this.wm.likes += 1;
               }
