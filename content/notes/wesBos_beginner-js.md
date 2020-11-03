@@ -1022,3 +1022,168 @@ const isInToppings = toppings.includes('Hot Sauce');
 // reverse the list
 const toppingsReversed = [...toppings].reverse();
 ```
+
+### Array Cardio - Callback Methods & Function Generation
+
+```js
+  // Can pass callback functions directly, or store in a variable and pass the variable
+  const findBurgRating = (singleFeedback) => singleFeedback.comment.includes('burg');
+
+  const burgRating = feedback.find(findBurgRating);
+
+  // A nice tip - if you have a bunch of helper functions like this, can store them in an object, to keep things organized
+  const util = {
+    findBurgRating: function (singleFeedback) {
+      return singleFEedback.comment.includes('burg');
+    }
+  }
+
+  // High order functions - functions that return other functions
+  // This way, if we want to be able to search for multiple terms, we don't need a function for each word - just the one that will work for all of them
+  function findByWord(word) {
+    return function(singleFeedback) {
+      return singleFeedback.comment.includes(word);
+    }
+  }
+
+  // If working with an object, remember we can use Object.entries/values/keys to turn it into an array
+  const meats = {
+    beyond: 10,
+    beef: 5,
+    pork: 7
+  }
+  // .some will see if at least one of the values meets our criteria
+  const isThereEnoughMeat = Object.values(meats).some(meatValue => meatValue >= 5);
+
+  // .every will make sure all of them meet our criteria
+  const isEnoughOfEveryMeat = Object.values(meats).every(meatValue => meatValue >= 3);
+
+  // Sort orders by turning args into strings, then sorts alphabetically
+  // But can be given a compareFunction, so you can control how it sorts
+  // The function access first value and second value
+  // Returning -1 puts first value first (f < s)
+  // Returning 0 keeps things in the order they're in
+  // Returning 1 puts second value first (s < f)
+  const numbers = [1, 2, 100, 3, 200, 400, 155];
+  const numbersSorted = numbers.sort(function (firstItem, secondItem) {
+    // typically would look like this:
+    // if (firstItem > secondItem) {
+    //   return 1;
+    // } else if (secondItem > firstItem) {
+    //   return -1;
+    // } else {
+    //   return 0;
+    // }
+
+    // however since we're sorting numbers, can just directly use the numbers (as long as you're returning a 0, positive num, or negative num, it will work)
+    return firstItem - secondItem;
+  })
+
+  // Can work with objects too!
+  const prices = {
+    hotDog: 453,
+    corn: 234,
+    sausage: 634,
+    burger: 765
+  }
+
+  const sortedByPrice = Object.entries(prices).sort(function (a, b) {
+    // .entries gives us an array of nested arrays, where each line is [key, value]
+    const aPrice = a[1];
+    const bPrice = b[1];
+    return aPrice - bPrice;
+  });
+  // Then if we wanted that back as an object, can do that
+  console.table(Object.fromEntries(sortedByPrice));
+```
+
+## Gettin' Loopy
+
+### .forEach
+
+`.forEach` will run once for each item in the Array. Does NOT actually return anything - just does whatever work you pass it.
+
+```js
+// .forEach gives us access to the item, it's index, and the full array in our callback
+function logTopping(topping, index, origArray) {
+  console.log(topping);
+  // next topping
+  const nextTopping = origArray[index + 1];
+  nextTopping ? console.log(nextTopping) : null;
+  // prev topping
+  const prevTopping = origArray[index - 1];
+  prevTopping ? console.log(prevTopping) : null;
+  // if last item, say goodbye
+  index === origArray.length - 1
+   ? console.log('goodbye')
+   : console.log('getting next topping')
+}
+
+toppings.forEach(logTopping);
+```
+
+### Mapping
+
+Side effects happen when you're reaching something outside of your function and modifying it (like adding an event listener or putting something on the page). Sometimes, though, you want to simply access your data, modify it, and return that changed data - not reaching outside the function. JS has a few functions that handle this use case.
+
+`.map` works sort of like a machine - it takes data in, does something to it, and returns it. It will always return the same number of values that it takes in - there's no way to return less items. Can chain multiple maps together, since it will always return an array.
+
+```js
+const fullNames = ['wes', 'kait', 'poppy'].map(name => `${name} bos`)
+// can also do multiple things in a chain
+function bosify(name) {
+  return `${name} Bos`;
+}
+
+function capitalize(word) {
+  return `${word[0].toUpperCase()}${word.slice(1)}`;
+}
+
+const fullNames = ['wes', 'kait', 'poppy']
+  .map(capitalize)
+  .map(bosify);
+
+  // A few fun bonus things - .repeat & .fill
+  // using .repeat will add a repeat of whatever it's attached to, x number of times
+  'x'.repeat(3) // returns 'xxx'
+  Array(3).fill('x') // returns ['x', 'x', 'x']
+
+  // Most often, you'll likely need .map when working with objects, to get data into the format you want it
+  const people = [
+      {
+        birthday: 'April 22, 1993',
+        names: {
+          first: 'Keith',
+          last: 'Buckley'
+        }
+      },
+      {
+        birthday: 'January 3, 1975',
+        names: {
+          first: 'Larry',
+          last: 'Heep'
+        }
+      },
+      {
+        birthday: 'February 12, 1944',
+        names: {
+          first: 'Linda',
+          last: 'Bermeer'
+        }
+      }
+    ];
+  
+  const cleanPeople = people.map(function (person) {
+    // passing a string of a date into new Date turns it into a date
+    const birthday = new Date(person.birthday).getTime();
+    const now = Date.now();
+    // we now have birthday and current time in milliseconds - to figure out age, can subtract those two numbers.
+    // Then we'll convert those milliseconds into years (rough guess)
+    // 1000 ms in s * 60 s in m * 60 m in h * 24 h in d * 365 d in y
+    const age = Math.floor((now - birthday) / 31536000000);
+    return {
+      age,
+      name: `${person.names.first} ${person.names.last}`,
+    }
+  })
+```
