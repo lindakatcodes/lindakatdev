@@ -10,7 +10,7 @@
       <ul>
         <h2 class="toc">Jump to a Section:</h2>
         <li v-for="link of links" :key="link.id" class="toc-link">
-          <NuxtLink v-scroll-to="`#${link.id}`" to="#" :class="{ 'link-h2': link.depth === 2, 'link-h3': link.depth === 3 }">{{
+          <NuxtLink v-scroll-to="`#${link.id}`" :to="link.id" :class="{ 'link-h2': link.depth === 2, 'link-h3': link.depth === 3 }">{{
             link.text
           }}</NuxtLink>
         </li>

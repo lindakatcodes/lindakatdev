@@ -39,7 +39,7 @@
       },
       scrollFn: {
         type: Function,
-        default(eventObject) {},
+        default() {},
       },
     },
     data() {
