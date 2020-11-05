@@ -708,7 +708,8 @@ switch (event.key) {
 Also - if you need to set a CSS variable in your JS, can use `setAttribute` to access it.
 
 ```js
-const turtle = document.querySelector('.turt');
+const turtle = document.querySelector('.
+');
 turtle.setAttribute('style', `
   --x: ${x * speed}px;
 `)
@@ -1099,7 +1100,7 @@ const toppingsReversed = [...toppings].reverse();
 
 ## Gettin' Loopy
 
-### .forEach
+### forEach
 
 `.forEach` will run once for each item in the Array. Does NOT actually return anything - just does whatever work you pass it.
 
