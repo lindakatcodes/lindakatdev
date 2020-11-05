@@ -4,7 +4,7 @@ blurb: Notes on Vue School's Vuex course
 tags:
   - Vue
   - Vuex
-  - Vue School
+  - Vue-School
 ---
 
 ## Mutations

@@ -3,7 +3,7 @@ title: Beginner JavaScript
 blurb: Notes and Reminders while going through Wes Bos' Beginner JS course
 tags:
   - JavaScript
-  - Wes Bos
+  - Wes-Bos
 ---
 
 ## The Basics
@@ -22,7 +22,7 @@ tags:
 
 #### Strings
 
-Can use '', "", or ``
+Can use 'single quotes', "double quotes", or `backticks`
 
 Single & double quotes are interchangeable - mostly used when we need to escape out apostrophes
 
@@ -752,7 +752,7 @@ window.addEventListener('click', () => {
 
 ## Data Types
 
-### Objects
+### Objects in Detail
 
 Groups of properties/keys and values. Most used where the order of the properties doesn't matter. Values can be any type.
 
@@ -768,7 +768,7 @@ const person = {
   clothing: {
     shirts: 10,
     pants: 2,
-  }
+  },
   // if you have a function in an object, it's called a method - the this keyword will be bound to the object
   // can also use shorthand of sayHello(greeting = 'Hey') {}
   sayHello: function(greeting = 'Hey') {
@@ -839,7 +839,7 @@ If you need a deep copy (all the values copied over), you'll likely need a libra
 
 With `spread`, order matters - if you have properties in multiple objects that use the same name, the last one you spread in will win.
 
-With strings and single values, if you pass them into a function, the original value is not changed - it passes the value into the function, so only the value inside the function is updated. However, if you pass an object into a function, it **WILL** update the original object as well!
+With strings and single values, if you pass them into a function, the original value is not changed - it passes the value into the function, so only the value inside the function is updated. However, if you pass an object into a function, it **WILL** update the original object as well
 
 ### Maps
 
@@ -849,7 +849,7 @@ Maps are similar to objects, but will have a few differences.
 const person1 = {
   name: 'wes',
   age: 200,
-}
+};
 
 const myMap = new Map();
 // Map has a few nice syntax things
@@ -859,7 +859,7 @@ myMap.set('name', 'wes');
 myMap.set(100, 'this is a number');
 myMap.set(person1, 'Cool person');
 // we can use .get() to grab the value stored in our entries
-myMap.get(person1) // will return the value 'cool person'
+myMap.get(person1); // will return the value 'cool person'
 // to delete an entry, use .delete()
 myMap.delete('name');
 // if you need to know if a key exists in a map, use .has()
@@ -873,7 +873,7 @@ In maps, order is *guaranteed* - the order we put them in will be the order they
 Use a map if order is important. However there is no literal - we always need to use the `new` keyword to make a map. If you know what data to pass, you can pass in arrays to set the values.
 
 ```js
-new Map(['name', 'wes'], ['age', 49])
+new Map(['name', 'wes'], ['age', 49]);
 ```
 
 Cannot put functions/methods in maps. Maps also don't currently handle JSON, so can't convert your maps with `json.stringify` - will need to convert it to an object first.
@@ -957,7 +957,7 @@ function createRange(start, end) {
     return index + start;
   });
   return range;
-}
+};
 
 // use .isArray to see if it is an array
 Array.isArray(myRange);
@@ -967,7 +967,7 @@ const meats = {
   beyond: 10,
   beef: 5,
   pork: 7,
-}
+};
 
 // .entries makes each item it's own array and returns all values
 Object.entries(meats); // [['beyond', 10], ['beef', 5], ['pork', 7]]
@@ -995,7 +995,7 @@ const buns = ['egg', 'wonder', 'brioche'];
 buns.join(' or '); // 'egg or wonder or brioche'
 
 // string method, can turn a string into an array with .split
-const foodString = 'hot dogs, hamburgers, sausages, corn";
+const foodString = 'hot dogs, hamburgers, sausages, corn';
 foodString.split(','); // ['hot dogs', 'hamburgers', 'sausages', 'corn']
 
 // adding and removing items
@@ -1048,7 +1048,7 @@ const toppingsReversed = [...toppings].reverse();
     findBurgRating: function (singleFeedback) {
       return singleFeedback.comment.includes('burg');
     }
-  }
+  };
 
   // High order functions - functions that return other functions
   // This way, if we want to be able to search for multiple terms, we don't need a function for each word - just the one that will work for all of them
@@ -1056,14 +1056,14 @@ const toppingsReversed = [...toppings].reverse();
     return function(singleFeedback) {
       return singleFeedback.comment.includes(word);
     }
-  }
+  };
 
   // If working with an object, remember we can use Object.entries/values/keys to turn it into an array
   const meats = {
     beyond: 10,
     beef: 5,
     pork: 7
-  }
+  };
   // .some will see if at least one of the values meets our criteria
   const isThereEnoughMeat = Object.values(meats).some(meatValue => meatValue >= 5);
 
@@ -1089,7 +1089,7 @@ const toppingsReversed = [...toppings].reverse();
 
     // however since we're sorting numbers, can just directly use the numbers (as long as you're returning a 0, positive num, or negative num, it will work)
     return firstItem - secondItem;
-  })
+  });
 
   // Can work with objects too!
   const prices = {
@@ -1097,7 +1097,7 @@ const toppingsReversed = [...toppings].reverse();
     corn: 234,
     sausage: 634,
     burger: 765
-  }
+  };
 
   const sortedByPrice = Object.entries(prices).sort(function (a, b) {
     // .entries gives us an array of nested arrays, where each line is [key, value]
@@ -1128,8 +1128,8 @@ function logTopping(topping, index, origArray) {
   // if last item, say goodbye
   index === origArray.length - 1
    ? console.log('goodbye')
-   : console.log('getting next topping')
-}
+   : console.log('getting next topping');
+};
 
 toppings.forEach(logTopping);
 ```
@@ -1141,15 +1141,15 @@ Side effects happen when you're reaching something outside of your function and 
 `.map` works sort of like a machine - it takes data in, does something to it, and returns it. It will always return the same number of values that it takes in - there's no way to return less items. Can chain multiple maps together, since it will always return an array.
 
 ```js
-const fullNames = ['wes', 'kait', 'poppy'].map(name => `${name} bos`)
+const fullNames = ['wes', 'kait', 'poppy'].map(name => `${name} bos`);
 // can also do multiple things in a chain
 function bosify(name) {
   return `${name} Bos`;
-}
+};
 
 function capitalize(word) {
   return `${word[0].toUpperCase()}${word.slice(1)}`;
-}
+};
 
 const fullNames = ['wes', 'kait', 'poppy']
   .map(capitalize)
@@ -1157,8 +1157,8 @@ const fullNames = ['wes', 'kait', 'poppy']
 
   // A few fun bonus things - .repeat & .fill
   // using .repeat will add a repeat of whatever it's attached to, x number of times
-  'x'.repeat(3) // returns 'xxx'
-  Array(3).fill('x') // returns ['x', 'x', 'x']
+  'x'.repeat(3); // returns 'xxx'
+  Array(3).fill('x'); // returns ['x', 'x', 'x']
 
   // Most often, you'll likely need .map when working with objects, to get data into the format you want it
   const people = [
@@ -1191,13 +1191,14 @@ const fullNames = ['wes', 'kait', 'poppy']
     const now = Date.now();
     // we now have birthday and current time in milliseconds - to figure out age, can subtract those two numbers.
     // Then we'll convert those milliseconds into years (rough guess)
-    // 1000 ms in s * 60 s in m * 60 m in h * 24 h in d * 365 d in y
+    // 1000 ms in s *60 s in m* 60 m in h *24 h in d* 365 d in y
     const age = Math.floor((now - birthday) / 31536000000);
     return {
       age,
       name: `${person.names.first} ${person.names.last}`,
-    }
-  })
+    };
+  });
+
 ```
 
 ### Filter, Find, and Higher Order Functions
@@ -1209,18 +1210,18 @@ const over40 = cleanPeople.filter(person => person.age > 40);
 // .filter returns an array, so if we wanted to do a check on this we use length - it will be an empty array if there's no data
 if (over40.length) {
   console.log('Yep, some older folks')
-}
+};
 
 // find only finds one item in an array - returns a single item
-const student = students.find(student => student.id === '565a')
+const student = students.find(student => student.id === '565a');
 
 // using higher order functions, we can make this really flexible - can pass in both the property we want, as well as the value
 function findByProp(prop, propWeAreLookingFor) {
   return function isStudent(student) {
     return student[prop] === propWeAreLookingFor;
   }
-}
-const student2 = students.find(findByProp('first_name', 'Micki'))
+};
+const student2 = students.find(findByProp('first_name', 'Micki'));
 ```
 
 ### Reduce
@@ -1234,7 +1235,7 @@ const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
 // whatever you return from the function is what the accumulator is set to on the next pass through
 function tallyNumbers(tally, currentTotal) {
   return tally + currentTotal;
-}
+};
 // this will start from 0, and add up each value in our array to get a total sum
 const allOrders = orderTotals.reduce(tallyNumbers, 0);
 
@@ -1247,7 +1248,7 @@ const inventory = [
   { type: 'pants', price: 2343 },
   { type: 'socks', price: 542 },
   { type: 'pants', price: 123 },
-]
+];
 
 function inventoryReducer(totals, item) {
   // need to see if our prop exists yet - if so, add one to it, otherwise initialize it - can do this two short ways
@@ -1255,16 +1256,16 @@ function inventoryReducer(totals, item) {
   totals[item.type] = totals[item.type] + 1 || 1;
   // or can use a ternary
   // totals[item.type] ? totals[item.type] + 1 : totals[item.type] = 1;
-}
+};
 
-const inventoryCounts = inventory.reduce(inventoryReducer, {})
+const inventoryCounts = inventory.reduce(inventoryReducer, {});
 // will return { shirt: 2, pants: 3, socks: 2 }
 
 // if we're doing simple math, can do this in a one liner
 const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
 ```
 
-Here's a more detailed example using lots of stuff we just covered - grab all the text in a random webpage, get every letter and number in that text, and count how many instances of each value we found. Upper and lower case letters should count for the same (A === a). As a bonus, we'll also sort it so we can see which value is the most popular!
+Here's a more detailed example using lots of stuff we just covered - grab all the text in a random webpage, get every letter and number in that text, and count how many instances of each value we found. Upper and lower case letters should count for the same (A = a). As a bonus, we'll also sort it so we can see which value is the most popular!
 
 ```js
 const text = '...'; // this would be your whole text value
@@ -1272,7 +1273,7 @@ const text = '...'; // this would be your whole text value
 function isValidChar(char) {
   // regular expression to grab anything that's a letter or number - the i makes it case insensitive
   return char.match(/[a-z0-9]/i)
-}
+};
 
 const lowercase = char => char.toLowerCase();
 
@@ -1282,17 +1283,17 @@ function instanceCounter(counts, char) {
     : counts[char] = 1;
   // make sure to return the new counts here - otherwise it will be undefined on the next loop through
   return counts;
-}
+};
 
 function sortByValue(a, b) {
   return b[1] - a[1];
-}
+};
 
 const result = text
   .split('') // split each char into an item of an array
   .filter(isValidChar) // filter so we only get the valid chars
   .map(lowercase) // make them all lowercase
-  .reduce(instanceCounter, {}) // then count instances
+  .reduce(instanceCounter, {}); // then count instances
 
 const sortedResult = Object.entries(result).sort(sortByValue);
 ```
@@ -1304,7 +1305,7 @@ const sortedResult = Object.entries(result).sort(sortByValue);
 ```js
 for (let i = 0; i < numbers.length; i++) {
   console.log(numbers[i])
-}
+};
 ```
 
 `For of` is used for looping over iterables (something with a length). Can use `await` inside here - used often with Promises. Returns the raw value - so if we did `for of` on an array of numbers, we'd get back the value for each number. Don't have access to the index.
@@ -1312,7 +1313,7 @@ for (let i = 0; i < numbers.length; i++) {
 ```js
 for (const num of numbers) {
   console.log(num); // will show 2, 32, 3, 23....
-}
+};
 ```
 
 `For in` is similar, but used most for looping over keys of objects. Specifically will also grab the prototype values for the object (where something like `Object.entries` will only grab properties, not prototype data).
@@ -1320,7 +1321,7 @@ for (const num of numbers) {
 ```js
 for (const num in numbers) {
   console.log(num); // will show 0, 1, 2, 3.... (indexes)
-}
+};
 ```
 
 `While` takes a condition and runs infinitely until that condition is false. `Do While` works similarly, except it will always run at least once before it checks the condition.
@@ -1335,7 +1336,7 @@ while (cool === true) {
   if (i > 100) {
     cool = false;
   }
-}
+};
 
 // layout of a do/while
 do {
@@ -1344,5 +1345,5 @@ do {
   if (i > 100) {
     cool = false;
   }
-} while(cool === true)
+} while(cool === true);
 ```

@@ -4,7 +4,7 @@ blurb: Notes on Vue Mastery's Real World Vue course, first in the series
 tags:
 
 - Vue
-- Vue Mastery
+- Vue-Mastery
 ---
 
 ## Project Breakdown

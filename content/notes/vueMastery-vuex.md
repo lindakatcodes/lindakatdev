@@ -4,7 +4,7 @@ blurb: Notes on Vue Mastery's Vuex course
 tags:
   - Vue
   - Vuex
-  - Vue Mastery
+  - Vue-Mastery
 ---
 
 State - data your components depend on & render

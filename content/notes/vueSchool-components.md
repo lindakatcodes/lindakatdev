@@ -3,7 +3,7 @@ title: 'Vue Components Fundamentals'
 blurb: Notes on Vue School's Vue Components course
 tags:
   - Vue
-  - Vue School
+  - Vue-School
 ---
 
 ## Components are reusable instances with a name
