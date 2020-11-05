@@ -50,7 +50,7 @@ Everything in JS is an object - used for collections of things
 
 Way to do unique properties
 
-#### Null & Undefined
+#### Null and Undefined
 
 Both express "nothingness"
 
@@ -212,7 +212,7 @@ setTimeout(() => console.log('Done!'), 1000);
 .count - can count every time something runs, can pass variables
 .group - will group multiple logs together, end with .groupEnd and pass same string as initial .group call; .groupCollapsed starts the groups collapsed
 
-#### Call stack / stack trace
+#### Call stack and stack trace
 
 Gives information on what is causing the error and where it originated. When it says anonymous at the end, often means it's because it was called from the console. Will list the function call, the file it was in, and what line it was on. First item occurred most recently, then goes backwards.
 
@@ -439,7 +439,7 @@ Can then use `append` to add it to the DOM.
 
 > **IMPORTANT NOTE:** XSS (cross site scripting) is a thing to consider with this - make sure you sanitize your text inputs, so folks can't put HTML into your page!
 
-### Traversing & Removing Nodes
+### Traversing and Removing Nodes
 
 Difference between node and element - if you select `.children` from an item, you'll get any tags that are listed inside it - these are elements. Everything counts as a node, however, so if you get `.childNodes` from an item, you'll get tags and any text inside.
 
@@ -522,7 +522,7 @@ So we can have a listener on the window, and pass in `capture` to the listener t
     { capture: true});
 ```
 
-### Prevent Default & Form Events
+### Prevent Default and Form Events
 
 `event.preventDefault()` will stop items that have default actions from performing their default actions.
 
@@ -542,7 +542,9 @@ Another common default happens on forms - `submit`.
 
 Can grab the form by the name attribute - anytime we want to find an item by it's name in our HTML, can do that like this:
 
-`const signupForm = document.querySelector('[name="signup"]')`
+```js
+const signupForm = document.querySelector('[name="signup"]')
+```
 
 Inside our callback handler, can access form values either directly from `currentTarget` or like above w/ a query selector.
 
@@ -553,7 +555,7 @@ Other events you might see in forms:
 - `focus` - when an input item is highlighted, focused on
 - `blur` - when an input loses focus
 
-### Accessibility Gotchas & Keyboard Codes
+### Accessibility Gotchas and Keyboard Codes
 
 Common concerns with accessibility:
 
@@ -565,7 +567,7 @@ Example: say we have a photo that we want to enlarge when someone clicks on it. 
 
 ## Serious Practice Exercises
 
-### Etch a Sketch!
+### Etch a Sketch
 
 Building an Etch-a-Sketch in the browser! A few random notes:
 
@@ -585,7 +587,7 @@ const button = event.currentTarget;
 const card = button.closest('.card');
 ```
 
-### Scroll Events & Intersection Observer
+### Scroll Events and Intersection Observer
 
 Can use scroll event to track how far from the top and the height of the item that's scrolling, but will likely be easier to use intersection observer.
 
@@ -611,7 +613,11 @@ ob.observe(terms.lastElementChild);
 ### Tabs
 
 - In most cases, if a property is listed with a - in HTML, you can use it in JS with camelCase. However, for aria and custom properties, you'll want to use `setAttribute` to have the property update.
-`tab.setAttribute('aria-selected', false);`
+
+```js
+tab.setAttribute('aria-selected', false);
+```
+
 - When possible, you can style things by aria-labels and properties - so instead of having to keep track of classes and labels, you can simply have the accessible labels/properties. Less to update or code!
 
 ## Logic and Flow Control
@@ -627,7 +633,7 @@ ob.observe(terms.lastElementChild);
 - **A**ddition
 - **S**ubtraction
 
-### Flow Control - If Statements, Function Returns, Truthy, Falsy
+### Flow Control with If Statements, Function Returns, Truthy, Falsy
 
 **If Statements** - will evaluate a condition to see if it's true or false; if true, will run the code in the provided block. Important to note that it runs top down, so the first if condition that evaluates to true ends the chain (so any other `else if` blocks won't be seen).
 
@@ -687,7 +693,7 @@ isAdmin ? showAdminBar() : null;
 isAdmin && showAdminBar();
 ```
 
-### Case Switch & Animating a Turtle w/ CSS Variables
+### Case Switch and Animating a Turtle with CSS Variables
 
 **Switch statement** - Block with a number of cases where the values are specific - can't do `> 20` or something similar. Will them react on whichever case it matches.
 
@@ -708,14 +714,11 @@ switch (event.key) {
 Also - if you need to set a CSS variable in your JS, can use `setAttribute` to access it.
 
 ```js
-const turtle = document.querySelector('.
-');
-turtle.setAttribute('style', `
-  --x: ${x * speed}px;
-`)
+const turtle = document.querySelector('.');
+turtle.setAttribute('style', `--x: ${x * speed}px;`)
 ```
 
-### Intervals & Timers
+### Intervals and Timers
 
 To run code once after a certain set of time, you'll use a timer - to run it multiple times after a certain set of time, you'll want an interval.
 
@@ -818,10 +821,16 @@ person2.first = 'Larry';
 
 If we want to make a copy of an object (a new version, not a reference to the original), we can use the `spread` operator. It will take an object and *spread* the values into a new object.
 
-`const person3 = { ...person1 };`
+```js
+const person3 = { ...person1 };
+```
 
 A slightly older/original way to do this is:
-`const person3 = Object.assign({}, person1);`
+
+```js
+const person3 = Object.assign({}, person1);
+```
+
 Still works well, just not quite as popular anymore since `spread`
 
 > Spread is only one level deep (a shallow copy) - so if we have nested values, updating them in our `person3` object will ALSO update the `person1` object.
@@ -863,7 +872,9 @@ In maps, order is *guaranteed* - the order we put them in will be the order they
 
 Use a map if order is important. However there is no literal - we always need to use the `new` keyword to make a map. If you know what data to pass, you can pass in arrays to set the values.
 
-`new Map(['name', 'wes'], ['age', 49])`
+```js
+new Map(['name', 'wes'], ['age', 49])
+```
 
 Cannot put functions/methods in maps. Maps also don't currently handle JSON, so can't convert your maps with `json.stringify` - will need to convert it to an object first.
 
@@ -928,7 +939,7 @@ function deleteComments(id, comments) {
 }
 ```
 
-### Array Cardio - Static Methods
+### Static Methods
 
 Static methods are sort of like utilities - they're used with the keyword `Array` and are not specific to a created array.
 
@@ -974,7 +985,7 @@ Object.entries(meats).forEach(([meat, qty]) => {
 })
 ```
 
-### Array Cardio - Instance Methods
+### Instance Methods
 
 Instance methods work directly on your specific array (also called prototype methods).
 
@@ -1024,7 +1035,7 @@ const isInToppings = toppings.includes('Hot Sauce');
 const toppingsReversed = [...toppings].reverse();
 ```
 
-### Array Cardio - Callback Methods & Function Generation
+### Callback Methods and Function Generation
 
 ```js
   // Can pass callback functions directly, or store in a variable and pass the variable
@@ -1189,7 +1200,7 @@ const fullNames = ['wes', 'kait', 'poppy']
   })
 ```
 
-### Filter, Find, & Higher Order Functions
+### Filter, Find, and Higher Order Functions
 
 ```js
 // using the cleanPeople object from last section
@@ -1286,7 +1297,7 @@ const result = text
 const sortedResult = Object.entries(result).sort(sortByValue);
 ```
 
-### For, For In, For Of & While Loops
+### For, For In, For Of and While Loops
 
 `For` loops are the most basic variation of this - it takes in an initial expression, a comparison, and an increment expression. Great for looping over something x number of times.
 
