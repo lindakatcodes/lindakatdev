@@ -515,7 +515,7 @@ So we can have a listener on the window, and pass in `capture` to the listener t
   window.addEventListener(
     'click',
     function(event) {
-      console.log('Window click detected`);
+      console.log('Window click detected');
       // can add the below line to prevent further events from firing
       // event.stopPropagation();
     },
@@ -1267,7 +1267,7 @@ const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0)
 Here's a more detailed example using lots of stuff we just covered - grab all the text in a random webpage, get every letter and number in that text, and count how many instances of each value we found. Upper and lower case letters should count for the same (A === a). As a bonus, we'll also sort it so we can see which value is the most popular!
 
 ```js
-const text = `...` // this would be your whole text value
+const text = '...'; // this would be your whole text value
 // We'll make a few helper functions to perform the actual work
 function isValidChar(char) {
   // regular expression to grab anything that's a letter or number - the i makes it case insensitive
