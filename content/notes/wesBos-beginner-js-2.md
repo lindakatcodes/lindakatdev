@@ -244,3 +244,17 @@ do {
   }
 } while(cool === true);
 ```
+
+## Harder Practice Exercises
+
+### Face Detection and Censorship
+
+Covers a lot of things we've done before - working with canvas, and reinforcing ideas.
+
+Most interesting thing was how we did the pixelation! You grab an image from the webcam with the `.drawImage` method on the canvas context to get a tiny picture of the face. Then, you take that tiny image and draw it again, but to the full size of the face!
+
+### Sarcastic Text Generator
+
+Silly exercise changing text to different formats.
+
+Main takeaway here is working with methods stored in an object. Since we have three filter options, we can make a method for each one and store them all in a single object. Then when we need one, we can access them with `objectName[filter]`;
