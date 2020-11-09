@@ -258,3 +258,38 @@ Most interesting thing was how we did the pixelation! You grab an image from the
 Silly exercise changing text to different formats.
 
 Main takeaway here is working with methods stored in an object. Since we have three filter options, we can make a method for each one and store them all in a single object. Then when we need one, we can access them with `objectName[filter]`;
+
+### Shopping Form with Custom Events, Delegation and LocalStorage
+
+A to-do list example, learning with events and storage.
+
+First big thing this deals with is state - a way to keep track of the current "state" of our site. An object or array of data, which will always tell us the current data we have to make our site work.
+
+Also covering custom events - we have a `displayItems` function that we will need to call multiple times. Coupling it too tightly with the `handleSubmit` function makes it so we're super likely to have duplicated calls or code, since we also want the list to update when something's removed, and rendered on a reload. So we can make custom events that anything can listen to.
+
+```js
+// Can dispatch the event from anywhere we want to trigger the event - here, we're calling it in our submit handler, since we just got new data
+function handleSubmit() {
+  // ... other code here
+  // itemsUpdated can be called anything - that's the name we want for our event
+  list.dispatchEvent(new CustomEvent('itemsUpdated'));
+}
+// then we can add the listener to whatever we want - so this will call and fire our display function whenever our custom event is dispatched
+list.addEventListener('itemsUpdated', displayItems);
+```
+
+We're also using localstorage here - basically a mini database that lives in your browser. So anytime a user comes back to the site from the same browser, the data will still be there. Local storage is **text only**, so will need to use `JSON.stringify` on objects to be able to store them.
+
+```js
+function mirrorToLocalStorage() {
+  // add an item into localstorage
+  localStorage.setItem('items', JSON.stringify(items));
+}
+
+function restoreFromLocalStorage() {
+  // then to get it out, we want to parse it back into an object
+  JSON.parse(localStorage.getItem('items'));
+}
+```
+
+One issue we run into here is that we want to listen for button clicks on our items so we can delete an item, but it re-renders the list each time we add a new item. So if we want to listen to events when they might not exist yet, we can add the listener to a parent item that WILL be there all the time. So instead of adding click events for each `li` item, we add the click event to the `ul`.
