@@ -293,3 +293,11 @@ function restoreFromLocalStorage() {
 ```
 
 One issue we run into here is that we want to listen for button clicks on our items so we can delete an item, but it re-renders the list each time we add a new item. So if we want to listen to events when they might not exist yet, we can add the listener to a parent item that WILL be there all the time. So instead of adding click events for each `li` item, we add the click event to the `ul`.
+
+### Building a Gallery Exercise
+
+Nice little image gallery, where you can click the images to open them larger in a modal. Main focus was using closures to be able to contain all the gallery logic so it can be reused for multiple galleries.
+
+### Slider
+
+A simple slide deck! More reinforcement of the same topics we used in the gallery exercise.
