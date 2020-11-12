@@ -301,3 +301,84 @@ Nice little image gallery, where you can click the images to open them larger in
 ### Slider
 
 A simple slide deck! More reinforcement of the same topics we used in the gallery exercise.
+
+## Prototypes, This, New, and Inheritance
+
+### The New Keyword
+
+`new` creates a new instance of whatever object we're calling it on. This gives us a bunch of prototype functions that we can run on it. Some, like arrays and objects, have a literal syntax that abstracts away the need to use the `new` keyword (hence why we can make an array like `const names = ['wes', 'kait'];` and we get access to properties like `.pop`). However some don't have a literal syntax, so we need to use `new` in front of it to make a new instance and have access to new properties.
+
+For the functions we define, if we call them with just the function name, we get back whatever that function returns. But if we call it with `new` in front, we get back a new instance of that function. Instead of just getting whatever result is returned from the function, we get our own copy of the function, along with any functions it might contain inside it.
+
+### The This Keyword
+
+`this` refers to the instance of an object that a function is bound to.
+
+One example - if we create some buttons on a page, those are instances of a button element. If we then add an event listener to them, and pass in a function that logs what `this` is equal to, we'll get that button back.
+
+```js
+const button1 = document.querySelector('.one');
+
+function tellMeAboutTheButton() {
+  console.log(this);
+  // this will show <button class="one">Button 1</button>
+}
+// the addEventListener method will now bind this function to our button, setting the `this` keyword to our button
+button1.addEventListener('click', tellMeAboutTheButton);
+```
+
+`this` is always scoped to a function. This is why arrow functions act a bit different - they're scoped to whatever was bound before the function, so if they're globally defined `this` is equal to the window (instead of, say, our button we called it on).
+
+This can be useful for nested functions. Since every time we call `this` it makes a new instance of it, if we have regular functions inside others, what `this` is equal to will change. However, since arrow functions keep the binding of whatever parent element they're in, they work excellent for situations like this.
+
+```js
+// here, the outside 'this' will be the button, but the inside 'this' will be the window
+function tellMeAboutTheButton() {
+  console.log('outside', this);
+  // to fix this, you'll often see:
+  // const that = this;
+  setTimeout(function() {
+    console.log('inside', this);
+    // then this. would become that.
+    this.textContent = 'You Clicked Me';
+  }, 1000)
+}
+
+// but if we do an arrow function inside, both 'this' logs will be the button
+function tellMeAboutTheButton() {
+  console.log('outside', this);
+  setTimeout(() => {
+    console.log('inside', this);
+    this.textContent = 'You Clicked Me';
+  }, 1000)
+}
+```
+
+You'll also see `this` used often when you're making functions intended to be used to make multiple, new versions of itself.
+
+```js
+function Pizza(toppings = [], customer) {
+  // these will store a version of these values to each instance
+  this.toppings = toppings;
+  this.customer = customer;
+  // this just returns a random hex value, not guaranteed to be unique but a wide enough range it works for small examples
+  this.id = Math.floor(Math.random() * 16777215).toString(16)
+}
+
+// then when we make a new instance, we'll have a unique version stored
+const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos');
+```
+
+### Prototypes and Prototypal Inheritance
+
+Prototypes allow us to share functionality between instances.
+
+Say we want to give our Pizza function the ability to eat slices. If we declare the eat function *inside* of our Pizza function, that will make a new instance of that function for every Pizza we create. While this might work fine for small jobs where you only make 1 or 2 instances, it's not maintainable for larger jobs and will slow things down.
+
+Instead, we can define the function once *outside* of the Pizza function and link it to that, so we can use the same function for every instance we create. This is why, if we have two different arrays, they use the same `filter` method - it's defined on the prototype, so it's the same function that can run on any instance of Array. This also allows us to only need to update the function in one place for it to apply to every instance.
+
+![Screenshot of console showing pepperoniPizza instance with eat in the prototype](https://i.imgur.com/28hso6v.png)
+
+Instances will first look inside themselves to see if that property exists. If not, it will go to the parent instance (the prototype) and see if it exists there. If so, it can use it.
+
+Built in instances of methods can be overwritten - it's very rare you'll want to do this, but it is possible. Mostly, it's used for creating polyfills when a browser doesn't support that functionality yet. Can also add new methods to the prototype as well, though again it's not recommended for built ins.
