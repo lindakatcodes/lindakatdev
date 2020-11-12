@@ -382,3 +382,109 @@ Instead, we can define the function once *outside* of the Pizza function and lin
 Instances will first look inside themselves to see if that property exists. If not, it will go to the parent instance (the prototype) and see if it exists there. If so, it can use it.
 
 Built in instances of methods can be overwritten - it's very rare you'll want to do this, but it is possible. Mostly, it's used for creating polyfills when a browser doesn't support that functionality yet. Can also add new methods to the prototype as well, though again it's not recommended for built ins.
+
+### Bind, Call, and Apply
+
+These functions are used to change the scope of what `this` means in functions.
+
+Typically, `this` is defined by what's to the left of the `.` it's called on. So if we make an object and include a method, using `this.prop` inside that method will be bound to our object. However, if we make a variable storing a reference to that method then call it from the variable, `this` will now be bound to the window, not the object.
+
+```js
+const person = {
+  name: 'Linda',
+  sayHi() {
+    // 'this' here is bound to this person object
+    return `hey ${this.name}`;
+  }
+};
+
+// but if we call it from here, 'this' is bound to the window, so we don't have access to the name value
+const sayHi = person.sayHi;
+```
+
+> Important note: `this` is defined by where the function is being called, **NOT** where it is defined.
+
+We can use `bind` to change where `this` is defined, or what it's bound to. `bind` lives on all functions - so if we wanted to use this same method with different name values, we can simply pass those to `bind` and still have the functionality we want.
+
+```js
+// if we re-write our variable with 'bind', it will make 'this' set to whatever we pass into it - so now we'll have access to the person object
+const sayHi = person.sayHi.bind(person);
+
+// another example - can use 'bind' to make a shorthand for querySelector
+// since QS needs something to look inside of, we have to use 'bind' to store what we want to count as 'this'
+const $ = document.querySelector.bind(document);
+console.log($('p'));
+
+// With `bind`, can also pass in arguments that apply to the function as well
+const bill = {
+  total: 1000,
+  calculate: function (taxRate) {
+    return this.total + (this.total * taxRate);
+  }
+}
+
+// the first argument to 'bind' is always what you want to use for 'this'; everything else can be arguments to pass to the function in the order they're defined
+const calc = bill.calculate.bind({ total: 500 }, 0.0825);
+```
+
+`call` and `apply` work very similarly to `bind`. Basically:
+
+- To bind a function and call it later, use `bind` (returns a function)
+- To bind a function and call it immediately, use `call` (runs function right away)
+- The main difference between `call` and `apply` is that `apply` accepts a single array of arguments
+
+```js
+const bill = {
+  total: 1000,
+  calculate: function (taxRate) {
+    return this.total + (this.total * taxRate);
+  },
+  describe(mealType, drinkType, taxRate) {
+    return `Your meal of ${mealType} with a drink of ${drinkType} was ${this.calculate(taxRate)}`;
+  }
+}
+
+// call will run this function immediately and store it in the variable
+const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
+// apply will do the same thing, but takes the arguments as an array
+const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
+```
+
+## Advanced Flow Control
+
+### The Event Loop and Callback Hell
+
+JavaScript is single threaded - only one thing can be running at a time. It runs things asynchronously, so things won't always run in the order you write them.
+
+If you need to chain multiple events together, you end up nesting multiple functions since they depend on each other. This is often called 'callback hell' - your code gets hard to read because it's so nested, and it can be difficult to troubleshoot.
+
+```js
+// a simple example of needing multiple nested functions - callback hell
+const go = document.querySelector('.go');
+// change the text to go when clicked
+go.addEventListener('click', function (e) {
+  const el = e.currentTarget;
+  el.textContent = 'GO!';
+  // make it a circle after 2 seconds
+  setTimeout(function() {
+    el.classList.add('circle');
+    // make it red after 0.5s
+    setTimeout(function() {
+      el.classList.add('red');
+      // make it square after 0.25s
+      setTimeout(function() {
+        el.classList.remove('circle');
+        // make it purple after 0.3s
+        setTimeout(function() {
+          el.classList.remove('red');
+          el.classList.add('purple');
+          // fade out after 0.5s
+          setTimeout(function() {
+            el.classList.add('fadeOut');
+          }, 500)
+        }, 300)
+      }, 250)
+    }, 500)
+  }, 2000)
+});
+```
