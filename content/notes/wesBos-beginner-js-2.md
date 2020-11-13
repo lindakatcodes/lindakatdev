@@ -488,3 +488,245 @@ go.addEventListener('click', function (e) {
   }, 2000)
 });
 ```
+
+### Promises
+
+An IOU for something that will happen in the future. Often when we need to ask for data (a timer, an API request, etc), it takes time to complete that process. However we don't want to completely stop our pages from loading while we wait. With promises, we get a 'promise' back when we send off our requests, so eventually when the call or action is done we get a response back.
+
+```js
+// pizza is a great example - we call to place an order and get an order number (a promise of pizza in the future). then the pizza is cooked and eventually, when it's ready, we get the pizza!
+function makePizza(toppings = []) {
+  // will immediately return the promise we create - a promise gives us access to a resolve case and a reject case
+  return new Promise(function (resolve, reject) {
+    // pizza's need to cook - so we can set an amount of time based on how many toppings are on it
+    const bakeTime = 500 + (toppings.length * 200);
+    setTimeout(function () {
+      // when it's done, resolve the pizza
+      resolve(`Here is your pizza 🍕 with ${toppings.join(' ')} toppings`);
+    }, bakeTime);
+    // if something went wrong, we handle reject here
+  });
+}
+
+// when we set it up, we get back a promise
+const pepperoniPizza = makePizza(['pepperoni', 'cheese']);
+
+// then to get the data from that promise, we call then on it
+pepperoniPizza.then(function (pizza) {
+  console.log(`Ahhh, got it! ${pizza}`);
+
+// or, if our oven can only handle one at a time, we can chain promises to make a bunch of pizzas
+makePizza(['pepperoni'])
+  .then(function (pizza) {
+    console.log(pizza);
+    return makePizza(['ham', 'cheese'])
+  })
+  .then(function (pizza) {
+    console.log(pizza);
+    return makePizza(['peppers', 'onion', 'feta'])
+  })
+  .then(function (pizza) {
+    console.log(pizza);
+    return makePizza()
+  })
+  .then(function (pizza) {
+    console.log(pizza);
+    return makePizza(['one', 'two', 'three', 'four', 'five', 'six', 'seven'])
+  })
+  .then(pizza => {
+    console.log('Final pizza!');
+    console.log(pizza);
+  })
+});
+
+// we can also run them concurrently, say if we have a huge oven that can make multiple at once
+const pizzaPromise1 = makePizza(['ham', 'cheese']);
+const pizzaPromise2 = makePizza(['pepperoni', 'pineapple', 'bacon']);
+const pizzaPromise3 = makePizza(['cheese']);
+
+// we can use the static method .all to wait until all are done, then return them all at once
+const dinnerPromise = Promise.all([hamAndCheese, theBest, cheese]) {
+  console.log({ hamAndCheese, theBest, cheese });
+}
+```
+
+`Promise.all` only resolves when all of the promises passed in are resolved. There's also `Promise.race`, which will return the first promise that resolves from a group.
+
+### Promises - Error Handling
+
+It's also possible for us to handle errors with promises! We catch errors with the `.catch` method. Most promises will always have at least one `.then` to handle the success case, and a `.catch` to handle an error case. In a chain, the catch can go once at the end of the chain. However, note that anything after that error won't be completed.
+
+```js
+// our pizza function again, with error handling
+function makePizza(toppings = []) {
+  return new Promise(function (resolve, reject) {
+    // reject if toppings includes olives
+    if (toppings.includes('olives')) {
+      reject('Seriously? No olives allowed!');
+    }
+    const bakeTime = 500 + (toppings.length * 200);
+    setTimeout(function () {
+      // when it's done, resolve the pizza
+      resolve(`Here is your pizza 🍕 with ${toppings.join(' ')} toppings`);
+    }, bakeTime);
+  });
+}
+
+makePizza(['ham', 'olives'])
+  .then(pizza => {
+    console.log(pizza);
+  })
+  .catch(err => {
+    console.log(`Oh no!! ${err}`);
+  })
+
+  // if we need to run a few promises and get them all no matter if one failed or not, can use this
+  const p1 = makePizza(['pepperoni']);
+  const p2 = makePizza(['olives']);
+
+  const dinnerPromise2 = Promise.allSettled([p1, p2]);
+
+  dinnerPromise2.then(results => {
+    // this will give us the result of each one - so can grab ones that are fulfilled/resolved, or ones that are rejected
+    console.log(results);
+  })
+```
+
+### Refactoring Callback Hell to Promise Land
+
+Taking our nested `setTimeout` function from earlier and converting it to use promises instead.
+
+```js
+function animate(e) {
+  const el = e.currentTarget;
+  el.textContent = 'GO';
+  wait(200)
+    .then(() => {
+      el.classList.add('circle');
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.add('red');
+      return wait(250);
+    })
+    .then(() => {
+      el.classList.remove('circle');
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.remove('red');
+      el.classList.add('purple');
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.add('fadeOut');
+    })
+}
+```
+
+### Async Await
+
+With async await, we don't change how our function that makes the promise is written. Our `makePizza` function from earlier stays the same. Async await changes how we call that function and get our results. Await only pauses that particular function - so the rest of your JS will continue running.
+
+```js
+function wait(ms = 0) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  })
+}
+
+// can only use await in an async function - async tells the function there's going to be a call inside that needs to wait for something
+async function go() {
+  console.log('starting');
+  // await pauses this function until the promise is resolved
+  await wait(2000);
+  console.log('running');
+  // can have as many as you need
+  await wait(200);
+  console.log('ending');
+}
+
+go();
+
+// Can mark any type of function as async.
+
+// function declaration
+async function fd() {}
+
+// arrow
+const arrowFn = async () => {}
+
+// callback
+window.addEventListener('click', async function () {})
+
+const person = {
+  // method
+  sayHi: async function() {},
+  // method shorthand
+  async sayHello() {},
+  // function property
+  sayHey: async () => {}
+}
+
+async function makeDinner() {
+  // to keep things performing well if you have multiple promises, can put await on a .all call
+  const pizza1 = makePizza();
+  const pizza2 = makePizza();
+  const pizzas = await Promise.all(pizza1, pizza2);
+  console.log(pizzas);
+}
+
+// updated version of the animate function
+async function animate2(e) {
+  const el = e.currentTarget;
+  el.textContent = 'GO';
+  await wait(200);
+  el.classList.add('circle');
+  await wait(500);
+  el.classList.add('red');
+  await wait(250);
+  el.classList.remove('circle');
+  await wait(500);
+  el.classList.remove('red');
+  el.classList.add('purple');
+  await wait(500);
+  el.classList.add('fadeOut');
+}
+```
+
+### Async Await Error Handling
+
+Since we don't have `.then` in async await, we can instead use try & catch to catch the errors, if they happen.
+
+> When a function is marked as async, it automatically returns a promise.
+
+```js
+async function go() {
+  // anything that resolves/fulfills will happen here
+  try {
+    const pizza = await makePizza(['olives']);
+    console.log(pizza);
+  // then any errors will be caught here
+  } catch (err) {
+    console.log(`Ewww! ${err}`);
+  }
+}
+
+// can also mix and match, and put the catch at the end of the await
+async function go() {
+  const pizza = await makePizza(['olives']).catch(handleError);
+}
+
+// or can handle the error when we call the function - can also catch unrelated errors
+go().catch(handleError);
+
+// if your function and error handler will need to be used multiple times, can also write a higher order function, and make a variable with the error handler attached
+function makeSafe(fn, errorHandler) {
+  return function () {
+    fn().catch(errorHandler)
+  }
+}
+
+const safeGo = makeSafe(go, handleError);
+safeGo();
+```
