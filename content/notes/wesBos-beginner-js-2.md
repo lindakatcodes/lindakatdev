@@ -756,7 +756,7 @@ const endpoint = 'https://api.github.com/users/wesbos';
 
 const wesPromise = fetch(endpoint);
 wesPromise.then(response => {
-  // the response we get can contain different data depending on what we fetched - alot of APIs return JSON, so we need to convert it
+  // the response we get can contain different data depending on what we fetched - a lot of APIs return JSON, so we need to convert it
   return response.json();
 }).then(data => {
   // now we have the data in a format we can use
