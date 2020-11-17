@@ -742,3 +742,45 @@ function getRandom(min = 20, max = 150, randomNumber = Math.random()) {
   return Math.floor(randomNumber * (max - min) + min);
 }
 ```
+
+## Ajax and Fetching Data
+
+### Ajax and APIs
+
+API (application program interface) is a way that sites will store their data which we can call and use in our own sites. Most often they'll return that data in JSON. The API servers will return that data in a string, so we'll need to use `JSON.parse` on it to turn it into an object we can use.
+
+Browsers have a built in way to get data from outside sources and bring them into your file, called `fetch`. Fetch returns a promise, which we can then get the JSON from.
+
+```js
+const endpoint = 'https://api.github.com/users/wesbos';
+
+const wesPromise = fetch(endpoint);
+wesPromise.then(response => {
+  // the response we get can contain different data depending on what we fetched - alot of APIs return JSON, so we need to convert it
+  return response.json();
+}).then(data => {
+  // now we have the data in a format we can use
+  console.log(data);
+}).catch(handleError)
+```
+
+### CORS and Recipes
+
+Often, we can pass variables to API urls - these will go after a `?` in the url. What exactly they'll look like varies by API, but it'll always start with a `?` and if multiple are allowed, they'll be separated by `&`.
+
+CORS (cross origin resource sharing) - by default, you can't share data from one domain name to another; this helps keep sites secure. In order to share data (like when we fetch an API), the server we want to get data from needs to have a CORS policy on their server.
+
+If they don't have a CORS policy, you've got two options - run your own server that handles fetching the data and sending it to your front end (server - server fetching doesn't need CORS, it's more for sending it directly to a browser), or you can use a CORS proxy (someone else's server that processes the data and then sends it to your front end). **DO NOT** use a proxy if you're getting sensitive data!! Will be fine for test APIs that don't contain sensitive information.
+
+If you run into a `regeneratorRuntime` error - probably a Babel issue with trying to compile an async function. To fix, add a 'browserslist' property to your `package.json` file that supports 'last 1 chrome versions'.
+
+```js
+const baseEndpoint = 'http://www.recipepuppy.com/api';
+const proxy = `https://cors-anywhere.herokuapp.com/`;
+
+async function fetchRecipes(query) {
+  const res = await fetch(`${proxy}${baseEndpoint}?q=${query}`);
+  const data = await res.json();
+  return data;
+}
+```
