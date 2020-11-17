@@ -730,3 +730,15 @@ function makeSafe(fn, errorHandler) {
 const safeGo = makeSafe(go, handleError);
 safeGo();
 ```
+
+### Async Await Projects
+
+Quick note on pure functions - a "pure" function is a function that given the same inputs, will always return the same output. Dates and random numbers do *NOT* fit into this, since they, by nature of time passing / randomization, will always be different when you run them.
+
+If you want a random number generator to be easily testable, you can pass in the random value as an argument. So you can test it with a consistent number, then when you're ready to use it pass in `Math.random`.
+
+```js
+function getRandom(min = 20, max = 150, randomNumber = Math.random()) {
+  return Math.floor(randomNumber * (max - min) + min);
+}
+```
