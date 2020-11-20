@@ -796,3 +796,84 @@ const response = await fetch('https://icanhazdadjoke.com', {
   }
 });
 ```
+
+## ES Modules and Structuring Larger Apps
+
+### Modules
+
+Modules are a way to share some code across multiple files or projects. It's a way to bundle a specific functionality that we can then use anywhere we can add it in. It will have it's own scope and can hold any type of data and functionality we want.
+
+Modules will only work when running on a server, so you'll need to use localhost for development purposes.
+
+Typically you'll only have one script tag on your HTML page, to an entry point js file. Then you'll add a `type` attribute set to module.
+
+```html
+<script src="./scripts.js" type="module"></script>
+```
+
+To share some functionality between modules / files, we have to first export it from the file it's defined in. There's a few ways to do this. Typically, if our module only does one thing, it's common to export it as a default - if it does multiple things (like a utils library), it's common to export them as named modules.
+
+```js
+// we can simply put export in front of the function
+export function returnHi(name) {
+  return `hi ${name}`;
+}
+
+// since modules have scope, we can use variables declared in this file in our functions here, and they will still be used when we call the function in other files.
+const last = 'bos';
+export function returnHi(name) {
+  return `hi ${name} ${last}`;
+}
+
+// we can use named exports at the end of the file as well - there can be as many named exports as you want - they'll all go in {}
+export { last };
+
+// each module gets only one default export
+const person = {
+  name: 'wes',
+  last: 'bos',
+}
+
+export default person;
+
+// you can also do both - have one default export, and some named exports
+export default person;
+export { last };
+```
+
+Then to use the export, we need to import it in the file we want to use it.
+
+```js
+// we list the name of the function, and the relative path of where it's located
+import { returnHi } from './utils.js';
+// if we're importing a default export, we don't need the {} and can name it anything we want to use it as
+import wes from './wes.js';
+// we can also import a default and named values - the default goes first, then the named ones in brackets
+import first, { returnHi, last } from './utils.js';
+// if we want to rename a named function, that's possible
+import { returnHi as sayHi } from './utils.js';
+// if we want to pull in all the exports from a file, can use *
+import * as everything from './wes.js';
+
+console.log(returnHi('wes'));
+```
+
+A solid way to structure your files is using your main entry point to grab your selectors and set up event listeners. Then any functionality (how you handle clicks, utilities to run, etc) will go in separate files that you can import in when you need them.
+
+```js
+// scripts.js
+import { handleButtonClick } from './handlers.js';
+const button = document.querySelector('button');
+button.addEventListener('click', handleButtonClick);
+
+// handlers.js
+export async function handleButtonClick(event) {
+  // can also dynamically load exported functions as needed - the browser will cache this after the initial call
+  const currenciesModule = await import('./currencies.js');
+  // then if we want a specific bit, we can use dot notation to get it
+  console.log(currenciesModule.default);
+
+  // can use destructuring here, too! though note: we can't have a variable named default (it's a reserved word), so will need to rename it
+  const { localCurrency, default: currency } = await import('./currencies.js');
+}
+```
