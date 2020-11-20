@@ -784,3 +784,15 @@ async function fetchRecipes(query) {
   return data;
 }
 ```
+
+### Other API Tidbits
+
+You can pass headers to `fetch`! So if an API gives you the option to pass an Accept header telling it what format you want the data in, you can pass that through fetch.
+
+```js
+const response = await fetch('https://icanhazdadjoke.com', {
+  headers: {
+    Accept: 'application/json'
+  }
+});
+```
