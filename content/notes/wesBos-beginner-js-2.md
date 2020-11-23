@@ -741,7 +741,7 @@ If you want a random number generator to be easily testable, you can pass in the
 function getRandom(min = 20, max = 150, randomNumber = Math.random()) {
   return Math.floor(randomNumber * (max - min) + min);
 }
-`
+```
 
 ## Ajax and Fetching Data
 
@@ -877,3 +877,41 @@ export async function handleButtonClick(event) {
   const { localCurrency, default: currency } = await import('./currencies.js');
 }
 ```
+
+Also side note - if you run into issues with the Parcel server not working with your async / await functions or modules, try adding this to your package.json:
+
+```json
+"browserslist": [
+  "last 1 chrome versions"
+]
+```
+
+### Bundling and Building with Parcel
+
+Bundlers are often used to compress all your files, making them smaller and faster for computers to run. There's lots of options out there - this course covers Parcel. When we're ready to run it, we make a script in our package.json that will run the command 'parcel build index.html' (or whatever your entry html file is for your project).
+
+### Using Open Source NPM Packages
+
+Lots of complied packages exist on the npm registry that we can use.
+
+Node projects can use `require` (which is a CommonJS module) or `import` (a ES Module) to bring packages in. It will need to use one type or the other, not both. So if you look up a package and they use one version or the other, that's why.
+
+A few packages that might be worth playing around with:
+
+**Faker** - generates mock data for browser or node - great for when you need data to play with but don't want to write it up yourself.
+
+**Date.fns** - Nice way to work with dates.
+
+**Axios** - Works similar to fetch for making API calls. Has some decent defaults, and also works in Node!
+
+**Lodash** - Utility library with lots of functionality.
+
+### Security
+
+JavaScript code is all public - we ship it all to the browser and tell it to run it. This means that you should **never** put any sensitive information in your code - even if you try to cover or obscure it, there will always be someone who can read it. Most sensitive information things are handled on the server, but there are a few things that are client side and we should be aware of them.
+
+Anytime you're taking in information from users that will be displayed on the page, **sanitize it!** Especially if it allows for HTML or markdown, or something more than a strict text field. This is called Cross Site Scripting (XSS) and can allow someone to run JS on your page and do things you don't want.
+
+There's a package called `dompurify` that can help with this - will sanitize input data to remove any potential issues we don't want. Be default it looks for JS issues, but you can also pass other things like style tags that you don't want to allow as well.
+
+When sending data, make sure you send it through `https` - this helps make sure the data you're getting or sending is encrypted so it's more difficult for someone to hijack that request and get your data.
