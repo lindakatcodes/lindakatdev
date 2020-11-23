@@ -427,11 +427,11 @@ const bill = {
 const calc = bill.calculate.bind({ total: 500 }, 0.0825);
 ```
 
-`call` and `apply` work very similarly to `bind`. Basically:
-
-- To bind a function and call it later, use `bind` (returns a function)
-- To bind a function and call it immediately, use `call` (runs function right away)
-- The main difference between `call` and `apply` is that `apply` accepts a single array of arguments
+> `call` and `apply` work very similarly to `bind`. Basically:
+>
+> - To bind a function and call it later, use `bind` (returns a function)
+> - To bind a function and call it immediately, use `call` (runs function right away)
+> - The main difference between `call` and `apply` is that `apply` accepts a single array of arguments
 
 ```js
 const bill = {
@@ -580,16 +580,16 @@ makePizza(['ham', 'olives'])
     console.log(`Oh no!! ${err}`);
   })
 
-  // if we need to run a few promises and get them all no matter if one failed or not, can use this
-  const p1 = makePizza(['pepperoni']);
-  const p2 = makePizza(['olives']);
+// if we need to run a few promises and get them all no matter if one failed or not, can use this
+const p1 = makePizza(['pepperoni']);
+const p2 = makePizza(['olives']);
 
-  const dinnerPromise2 = Promise.allSettled([p1, p2]);
+const dinnerPromise2 = Promise.allSettled([p1, p2]);
 
-  dinnerPromise2.then(results => {
-    // this will give us the result of each one - so can grab ones that are fulfilled/resolved, or ones that are rejected
-    console.log(results);
-  })
+dinnerPromise2.then(results => {
+  // this will give us the result of each one - so can grab ones that are fulfilled/resolved, or ones that are rejected
+  console.log(results);
+})
 ```
 
 ### Refactoring Callback Hell to Promise Land
@@ -601,26 +601,26 @@ function animate(e) {
   const el = e.currentTarget;
   el.textContent = 'GO';
   wait(200)
-    .then(() => {
-      el.classList.add('circle');
-      return wait(500);
-    })
-    .then(() => {
-      el.classList.add('red');
-      return wait(250);
-    })
-    .then(() => {
-      el.classList.remove('circle');
-      return wait(500);
-    })
-    .then(() => {
-      el.classList.remove('red');
-      el.classList.add('purple');
-      return wait(500);
-    })
-    .then(() => {
-      el.classList.add('fadeOut');
-    })
+  .then(() => {
+    el.classList.add('circle');
+    return wait(500);
+  })
+  .then(() => {
+    el.classList.add('red');
+    return wait(250);
+  })
+  .then(() => {
+    el.classList.remove('circle');
+    return wait(500);
+  })
+  .then(() => {
+    el.classList.remove('red');
+    el.classList.add('purple');
+    return wait(500);
+  })
+  .then(() => {
+    el.classList.add('fadeOut');
+  })
 }
 ```
 
@@ -741,7 +741,7 @@ If you want a random number generator to be easily testable, you can pass in the
 function getRandom(min = 20, max = 150, randomNumber = Math.random()) {
   return Math.floor(randomNumber * (max - min) + min);
 }
-```
+`
 
 ## Ajax and Fetching Data
 
