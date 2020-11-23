@@ -1,6 +1,6 @@
 ---
 title: Beginner JavaScript part 1
-blurb: Notes and Reminders while going through Wes Bos' Beginner JS course
+blurb: Notes on Wes Bos' Beginner JS course - Basics, Functions, DOM, Events, Logic, and Data Types
 tags:
   - JavaScript
   - Wes-Bos

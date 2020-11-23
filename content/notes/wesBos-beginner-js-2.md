@@ -1,6 +1,6 @@
 ---
 title: Beginner JavaScript part 2
-blurb: Notes and Reminders while going through Wes Bos' Beginner JS course
+blurb: Notes on Wes Bos' Beginner JS course - Loops, Prototypes, Flow Control, Promises, Fetching Data, and ES Modules
 tags:
   - JavaScript
   - Wes-Bos
