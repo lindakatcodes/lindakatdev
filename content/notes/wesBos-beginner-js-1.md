@@ -28,7 +28,7 @@ Single & double quotes are interchangeable - mostly used when we need to escape 
 
 To do multi-line strings - will need to add back slashes or line breaks - or use back ticks, and can do multiple lines without extra syntax
 
-Back ticks also let you do some nice concatenation with separate strings and variables (interpolation) - ``Hello my name is ${name}, nice to meet you``
+Back ticks also let you do some nice concatenation with separate strings and variables (interpolation) - `Hello my name is ${name}, nice to meet you`
 
 #### Numbers
 
@@ -519,7 +519,7 @@ So we can have a listener on the window, and pass in `capture` to the listener t
       // can add the below line to prevent further events from firing
       // event.stopPropagation();
     },
-    { capture: true});
+    { capture: true });
 ```
 
 ### Prevent Default and Form Events
@@ -685,17 +685,18 @@ const name = "wes";
 const count = 2;
 const word = count === 1 ? 'item' : 'items';
 
-function showAdminBar() {}
-const isAdmin = true;
-// if you want to do nothing, can use null
-isAdmin ? showAdminBar() : null;
-// && trick - since JS will short circuit when it reaches false conditions, can use this to avoid using the null setting
-isAdmin && showAdminBar();
+function showAdminBar() {
+  const isAdmin = true;
+  // if you want to do nothing, can use null
+  isAdmin ? showAdminBar() : null;
+  // && trick - since JS will short circuit when it reaches false conditions, can use this to avoid using the null setting
+  isAdmin && showAdminBar();
+}
 ```
 
 ### Case Switch and Animating a Turtle with CSS Variables
 
-**Switch statement** - Block with a number of cases where the values are specific - can't do `> 20` or something similar. Will them react on whichever case it matches.
+**Switch statement** - Block with a number of cases where the values are specific - can't do `> 20` or something similar. Will then react on whichever case it matches.
 
 ```js
 switch (event.key) {
@@ -831,7 +832,7 @@ A slightly older/original way to do this is:
 const person3 = Object.assign({}, person1);
 ```
 
-Still works well, just not quite as popular anymore since `spread`
+Still works well, just not quite as popular anymore since `spread`.
 
 > Spread is only one level deep (a shallow copy) - so if we have nested values, updating them in our `person3` object will ALSO update the `person1` object.
 
@@ -946,8 +947,10 @@ Static methods are sort of like utilities - they're used with the keyword `Array
 ```js
 // can use .of to create a new array from the values provided
 // if an item has a length, can also spread it into an array
-Array.of('wes', 'kait'); // ['wes', 'kait']
-Array.of(...'wes'); // ['w', 'e', 's']
+Array.of('wes', 'kait');
+// ['wes', 'kait']
+Array.of(...'wes');
+// ['w', 'e', 's']
 
 // can use .for to make an array of a certain length, with a value passed in if desired
 function createRange(start, end) {
@@ -970,11 +973,14 @@ const meats = {
 };
 
 // .entries makes each item it's own array and returns all values
-Object.entries(meats); // [['beyond', 10], ['beef', 5], ['pork', 7]]
+Object.entries(meats);
+// [['beyond', 10], ['beef', 5], ['pork', 7]]
 // .keys makes an array of just the keys
-Object.keys(meats); // ['beyond', 'beef', 'pork']
+Object.keys(meats);
+// ['beyond', 'beef', 'pork']
 // .values makes an array of just the values
-Object.values(meats); // [10, 5, 7]
+Object.values(meats);
+// [10, 5, 7]
 
 // short destructuring example:
 Object.entries(meats).forEach(([meat, qty]) => {
@@ -982,7 +988,7 @@ Object.entries(meats).forEach(([meat, qty]) => {
   // if inside the loop, would pass entry in the parameters, then do:
   // const [meat, qty] = entry;
   console.log(meat, qty);
-})
+});
 ```
 
 ### Instance Methods
@@ -1107,4 +1113,29 @@ const toppingsReversed = [...toppings].reverse();
   });
   // Then if we wanted that back as an object, can do that
   console.table(Object.fromEntries(sortedByPrice));
+```
+
+## Gettin' Loopy
+
+### forEach
+
+`.forEach` will run once for each item in the Array. Does NOT actually return anything - just does whatever work you pass i
+
+```js
+// .forEach gives us access to the item, it's index, and the full array in our callback
+function logTopping(topping, index, origArray) {
+  console.log(topping);
+  // next topping
+  const nextTopping = origArray[index + 1];
+  nextTopping ? console.log(nextTopping) : null;
+  // prev topping
+  const prevTopping = origArray[index - 1];
+  prevTopping ? console.log(prevTopping) : null;
+  // if last item, say goodbye
+  index === origArray.length - 1
+   ? console.log('goodbye')
+   : console.log('getting next topping');
+};
+
+toppings.forEach(logTopping);
 ```
