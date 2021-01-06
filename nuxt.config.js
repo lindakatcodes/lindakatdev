@@ -125,6 +125,7 @@ export default {
    ** See https://content.nuxtjs.org/configuration
    */
   content: {
+    liveEdit: false,
     markdown: {
       prism: {
         theme: '@/assets/css/prism-theme.css',
