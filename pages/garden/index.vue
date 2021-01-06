@@ -12,7 +12,7 @@
         <ProjectCard v-for="(project, index) in playground" :key="index" :project="project" class="card"></ProjectCard>
       </div>
       <div class="section-link-to-all">
-        <nuxt-link to="/school/playground">See All Side Projects</nuxt-link>
+        <nuxt-link to="/garden/playground">See All Side Projects</nuxt-link>
       </div>
     </section>
     <section class="recent-writing">
@@ -22,7 +22,7 @@
         <PostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" :route-name="routeName"></PostBlurb>
       </div>
       <div class="section-link-to-all">
-        <nuxt-link to="/school/garden">See All Notes</nuxt-link>
+        <nuxt-link to="/garden/seedlings">See All Notes</nuxt-link>
       </div>
     </section>
   </main>
@@ -32,7 +32,7 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
-    layout: 'school',
+    layout: 'gardenView',
     async fetch() {
       this.playground = await this.$content('playground').where({ featured: true }).sortBy('id', 'desc').fetch();
       this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').limit(5).fetch();
@@ -96,7 +96,7 @@
             hid: 'og:url',
             name: 'og:url',
             property: 'og:url',
-            content: 'https://www.lindakat.com/school',
+            content: 'https://www.lindakat.com/garden',
           },
         ],
       };

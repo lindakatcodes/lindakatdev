@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavigationBar :page-type="'school'" />
+    <NavigationBar :page-type="'garden'" />
     <Nuxt class="main" />
     <FooterBar />
     <script data-goatcounter="https://lktdev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

@@ -10,12 +10,12 @@
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
     </nav>
     <nav v-else class="nav">
-      <nuxt-link to="/school" class="home-link link">
+      <nuxt-link to="/garden" class="home-link link">
         <img :srcset="srcset" :sizes="sizes" class="home-icon" alt="The letters LT crossed over each other in rainbow colors" />
       </nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
-      <nuxt-link to="/school/playground" class="link projects-link">PLAYGROUND</nuxt-link>
-      <nuxt-link to="/school/garden" class="link writing-link">GARDEN</nuxt-link>
+      <nuxt-link to="/garden/playground" class="link projects-link">PLAYGROUND</nuxt-link>
+      <nuxt-link to="/garden/seedlings" class="link writing-link">NOTES</nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>

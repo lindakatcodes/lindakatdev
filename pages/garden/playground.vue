@@ -12,7 +12,7 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
-    layout: 'school',
+    layout: 'gardenView',
     async fetch() {
       this.playground = await this.$content('playground').sortBy('id', 'desc').fetch();
     },
@@ -73,7 +73,7 @@
             hid: 'og:url',
             name: 'og:url',
             property: 'og:url',
-            content: 'https://www.lindakat.com/school',
+            content: 'https://www.lindakat.com/garden',
           },
         ],
       };

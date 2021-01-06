@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nuxt-link to="/school/garden" class="navigate">← Back to the Note Garden</nuxt-link>
+    <nuxt-link to="/garden/seedlings" class="navigate">← Back to the Note Garden</nuxt-link>
     <article class="full-post">
       <h1 class="title">{{ post.title }}</h1>
       <p class="timeToRead">{{ post.readingTime }}</p>

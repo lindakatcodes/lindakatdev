@@ -30,7 +30,7 @@
     },
     methods: {
       picUrl(pic) {
-        if (this.$route.path.includes('/school')) {
+        if (this.$route.path.includes('/garden')) {
           // eslint-disable-next-line global-require, import/no-dynamic-require
           return require(`@/assets/images/playground/${pic}.png`);
         }
