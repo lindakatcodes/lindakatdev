@@ -1114,28 +1114,3 @@ const toppingsReversed = [...toppings].reverse();
   // Then if we wanted that back as an object, can do that
   console.table(Object.fromEntries(sortedByPrice));
 ```
-
-## Gettin' Loopy
-
-### forEach
-
-`.forEach` will run once for each item in the Array. Does NOT actually return anything - just does whatever work you pass i
-
-```js
-// .forEach gives us access to the item, it's index, and the full array in our callback
-function logTopping(topping, index, origArray) {
-  console.log(topping);
-  // next topping
-  const nextTopping = origArray[index + 1];
-  nextTopping ? console.log(nextTopping) : null;
-  // prev topping
-  const prevTopping = origArray[index - 1];
-  prevTopping ? console.log(prevTopping) : null;
-  // if last item, say goodbye
-  index === origArray.length - 1
-   ? console.log('goodbye')
-   : console.log('getting next topping');
-};
-
-toppings.forEach(logTopping);
-```

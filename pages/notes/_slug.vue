@@ -255,8 +255,9 @@
     margin: 2.5% auto;
   }
 
-  .content p {
-    margin-bottom: 1.5%;
+  .content p,
+  .content li:last-child {
+    margin-bottom: 1.75%;
     z-index: 1;
   }
 
