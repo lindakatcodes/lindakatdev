@@ -13,12 +13,12 @@
 
   export default {
     async fetch() {
-      this.blogposts = await this.$content('writing/blog', { deep: true })
-        .only(['title', 'blurb', 'tags', 'slug'])
+      this.blogposts = await this.$content('posts/blog', { deep: true })
+        .only(['title', 'blurb', 'tags', 'slug', 'folder'])
         .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'desc')
         .fetch();
-      this.tagdata = await this.$content('writing/blog', { deep: true })
+      this.tagdata = await this.$content('posts/blog', { deep: true })
         .only(['tags'])
         .where({ type: { $eq: 'live' } })
         .fetch();
@@ -28,7 +28,7 @@
         blogposts: [],
         tagdata: [],
         page: 'writing',
-        routeName: 'blog',
+        routeName: 'posts-blog',
       };
     },
     computed: {

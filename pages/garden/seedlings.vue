@@ -14,15 +14,15 @@
   export default {
     layout: 'gardenView',
     async fetch() {
-      this.noteposts = await this.$content('writing/notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
-      this.tagdata = await this.$content('writing/notes').only(['tags']).fetch();
+      this.noteposts = await this.$content('posts/notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
+      this.tagdata = await this.$content('posts/notes').only(['tags']).fetch();
     },
     data() {
       return {
         noteposts: [],
         tagdata: [],
         page: 'garden-seedlings',
-        routeName: 'notes',
+        routeName: 'posts/notes',
       };
     },
     computed: {
