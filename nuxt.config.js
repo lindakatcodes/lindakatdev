@@ -89,7 +89,9 @@ export default {
         // eslint-disable-next-line global-require
         const { $content } = require('@nuxt/content');
 
-        const posts = await $content('blog').fetch();
+        const posts = await $content('writing/blog', { deep: true })
+          .where({ type: { $eq: 'live' } })
+          .fetch();
 
         posts.forEach((post) => {
           const url = `https://www.lindakat.com/blog/${post.slug}`;
