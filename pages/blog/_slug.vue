@@ -38,9 +38,13 @@
       <div class="title-divider"></div>
     </div>
     <div class="prev-next">
-      <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug } }" class="navigate prev">← {{ prev.title }}</nuxt-link>
+      <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
+        ← {{ prev.title }}
+      </nuxt-link>
       <span v-if="prev && next" class="pn-div"></span>
-      <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug } }" class="navigate next">{{ next.title }} →</nuxt-link>
+      <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug, path: next.path } }" class="navigate next">
+        {{ next.title }} →
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -50,8 +54,8 @@
 
   export default {
     async asyncData({ $content, params }) {
-      const post = await $content('blog', params.slug).fetch();
-      const [prev, next] = await $content('blog')
+      const post = await $content(params.path).fetch();
+      const [prev, next] = await $content('writing/blog', { deep: true })
         .only(['title', 'slug'])
         .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'asc')

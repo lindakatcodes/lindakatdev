@@ -1,6 +1,6 @@
 <template>
   <div class="blurb-container">
-    <nuxt-link :to="{ name: `${routeName}-slug`, params: { slug: postBlurb.slug } }" class="post-title">
+    <nuxt-link :to="{ name: `${routeName}-slug`, params: { slug: postBlurb.slug, path: postBlurb.path } }" class="post-title">
       {{ postBlurb.title }}
     </nuxt-link>
     <p class="post-blurb">{{ postBlurb.blurb }}</p>

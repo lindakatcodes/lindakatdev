@@ -31,18 +31,10 @@
   export default {
     layout: 'school',
     async asyncData({ $content, params }) {
-      const post = await $content('notes', params.slug).fetch();
-      const [prev, next] = await $content('notes')
-        .only(['title', 'slug'])
-        .where({ type: { $eq: 'notes' } })
-        .sortBy('createdAt', 'asc')
-        .surround(params.slug)
-        .fetch();
+      const post = await $content(params.path).fetch();
       const links = post.toc;
       return {
         post,
-        prev,
-        next,
         links,
       };
     },
