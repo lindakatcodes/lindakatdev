@@ -13,12 +13,12 @@
 
   export default {
     async fetch() {
-      this.blogposts = await this.$content('blog')
+      this.blogposts = await this.$content('writing/blog', { deep: true })
         .only(['title', 'blurb', 'tags', 'slug'])
         .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'desc')
         .fetch();
-      this.tagdata = await this.$content('blog')
+      this.tagdata = await this.$content('writing/blog', { deep: true })
         .only(['tags'])
         .where({ type: { $eq: 'live' } })
         .fetch();

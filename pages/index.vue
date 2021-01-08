@@ -47,8 +47,8 @@
   export default {
     async fetch() {
       this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
-      this.blogposts = await this.$content('blog')
-        .only(['title', 'blurb', 'tags', 'slug'])
+      this.blogposts = await this.$content('writing/blog/posts')
+        .only(['title', 'blurb', 'slug'])
         .where({
           type: { $eq: 'live' },
           featured: true,

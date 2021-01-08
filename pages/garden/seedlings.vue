@@ -14,8 +14,8 @@
   export default {
     layout: 'gardenView',
     async fetch() {
-      this.noteposts = await this.$content('notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
-      this.tagdata = await this.$content('notes').only(['tags']).fetch();
+      this.noteposts = await this.$content('writing/notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
+      this.tagdata = await this.$content('writing/notes').only(['tags']).fetch();
     },
     data() {
       return {

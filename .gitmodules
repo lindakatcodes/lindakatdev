@@ -1,0 +1,3 @@
+[submodule "content/writing"]
+	path = content/writing
+	url = https://github.com/lindakatcodes/writing.git
