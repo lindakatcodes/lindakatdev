@@ -2,12 +2,12 @@
   <div class="container">
     <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
     <article class="full-post">
-      <h1 class="title">{{ post.title }}</h1>
-      <p class="timeToRead">{{ post.readingTime }}</p>
+      <h1 class="title">{{ post[0].title }}</h1>
+      <p class="timeToRead">{{ post[0].readingTime }}</p>
       <div class="tag-container">
-        <p v-for="tag in post.tags" :key="tag">{{ tag }}</p>
+        <p v-for="tag in post[0].tags" :key="tag">{{ tag }}</p>
       </div>
-      <nuxt-content :document="post" class="content"></nuxt-content>
+      <nuxt-content :document="post[0]" class="content"></nuxt-content>
     </article>
     <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
@@ -54,7 +54,7 @@
 
   export default {
     async asyncData({ $content, params }) {
-      const post = await $content(params.path).fetch();
+      const post = await $content('posts/blog', { deep: true }).where({ slug: params.slug }).fetch();
       const [prev, next] = await $content('posts/blog', { deep: true })
         .only(['title', 'slug', 'dir'])
         .where({ type: { $eq: 'live' } })
