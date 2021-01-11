@@ -29,7 +29,7 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
-    layout: 'school',
+    layout: 'gardenView',
     async asyncData({ $content, params }) {
       const post = await $content('posts/notes', params.slug).fetch();
       const links = post.toc;
