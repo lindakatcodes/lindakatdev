@@ -31,7 +31,7 @@
   export default {
     layout: 'school',
     async asyncData({ $content, params }) {
-      const post = await $content(params.path).fetch();
+      const post = await $content('posts/notes', params.slug).fetch();
       const links = post.toc;
       return {
         post,

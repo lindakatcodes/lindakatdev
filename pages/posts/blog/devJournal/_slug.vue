@@ -86,7 +86,7 @@
         return this.getImageLink();
       },
       tagLineText() {
-        const tagList = this.post.tags.map((tag) => `#${tag} `);
+        const tagList = this.post[0].tags.map((tag) => `#${tag} `);
         return tagList.join(' ');
       },
       haveWms() {
