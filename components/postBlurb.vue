@@ -13,9 +13,6 @@
       postBlurb: {
         type: Object,
       },
-      routeName: {
-        type: String,
-      },
     },
     computed: {
       postPath() {

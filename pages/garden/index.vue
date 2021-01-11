@@ -35,13 +35,16 @@
     layout: 'gardenView',
     async fetch() {
       this.playground = await this.$content('playground').where({ featured: true }).sortBy('id', 'desc').fetch();
-      this.noteposts = await this.$content('posts/notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').limit(5).fetch();
+      this.noteposts = await this.$content('posts/notes')
+        .only(['title', 'blurb', 'tags', 'slug', 'dir'])
+        .sortBy('updatedAt', 'desc')
+        .limit(5)
+        .fetch();
     },
     data() {
       return {
         playground: [],
         noteposts: [],
-        routeName: 'notes',
       };
     },
     computed: {

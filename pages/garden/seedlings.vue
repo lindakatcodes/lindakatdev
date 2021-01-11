@@ -3,8 +3,8 @@
     <h2 class="title">The Note Garden</h2>
     <div class="divider"></div>
     <p class="description">Notes from Courses, Conference Talks, etc. View by tag if you'd like!</p>
-    <TagList :tags="tagdata" :all="page" :route-name="routeName"></TagList>
-    <nuxt-child :noteposts="noteposts" :route-name="routeName"></nuxt-child>
+    <TagList :tags="tagdata" :all="page"></TagList>
+    <nuxt-child :noteposts="noteposts"></nuxt-child>
   </main>
 </template>
 
@@ -14,7 +14,7 @@
   export default {
     layout: 'gardenView',
     async fetch() {
-      this.noteposts = await this.$content('posts/notes').only(['title', 'blurb', 'tags', 'slug']).sortBy('updatedAt', 'desc').fetch();
+      this.noteposts = await this.$content('posts/notes').only(['title', 'blurb', 'tags', 'slug', 'dir']).sortBy('updatedAt', 'desc').fetch();
       this.tagdata = await this.$content('posts/notes').only(['tags']).fetch();
     },
     data() {
@@ -22,7 +22,6 @@
         noteposts: [],
         tagdata: [],
         page: 'garden-seedlings',
-        routeName: 'posts/notes',
       };
     },
     computed: {

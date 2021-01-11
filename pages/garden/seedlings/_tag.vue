@@ -1,16 +1,11 @@
 <template>
   <div class="posts-wrapper">
-    <PostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" :route-name="routeName" class="post"></PostBlurb>
+    <PostBlurb v-for="(post, index) in filteredPosts" :key="index" :post-blurb="post" class="post"></PostBlurb>
   </div>
 </template>
 
 <script>
   export default {
-    props: {
-      routeName: {
-        type: String,
-      },
-    },
     data() {
       return {
         selectedTag: this.$route.params.tag,

@@ -32,7 +32,7 @@
       <h2 class="section-title">Featured Writings</h2>
       <div class="title-divider"></div>
       <div class="writing-block">
-        <PostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post" :route-name="routeName"></PostBlurb>
+        <PostBlurb v-for="(post, index) in blogposts" :key="index" :post-blurb="post"></PostBlurb>
       </div>
       <div class="section-link-to-all">
         <nuxt-link to="/writing">See All Posts</nuxt-link>
@@ -61,7 +61,6 @@
       return {
         projects: [],
         blogposts: [],
-        routeName: 'blog',
       };
     },
     computed: {

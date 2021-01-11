@@ -4,7 +4,7 @@
     <div class="divider"></div>
     <p class="description">View posts by tag:</p>
     <TagList :tags="tagdata" :all="page"></TagList>
-    <nuxt-child :blogposts="blogposts" :route-name="routeName"></nuxt-child>
+    <nuxt-child :blogposts="blogposts"></nuxt-child>
   </main>
 </template>
 
@@ -28,7 +28,6 @@
         blogposts: [],
         tagdata: [],
         page: 'writing',
-        routeName: 'posts-blog',
       };
     },
     computed: {
