@@ -31,14 +31,5 @@ jobs:
           - name: Update submodules index
             uses: stefanzweifel/git-auto-commit-action@v4.8.0
             with:
-              commit_message: Update submodule ref
+              commit_message: GHA - New post! Submodule ref updated.
               commit_user_name: My GitHub Actions Bot
-
-          - name: Netlify Deploy
-            uses: jsmrcaga/action-netlify-deploy@v1.2.0
-            with:
-              NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-              NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-              NETLIFY_DEPLOY_TO_PROD: true
-              build_command: npm run generate
-              build_directory: '/'
