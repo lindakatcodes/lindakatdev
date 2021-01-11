@@ -75,7 +75,9 @@ export default {
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
   ],
-
+  // router: {
+  //   routeNameSplitter: '/',
+  // },
   feed: [
     {
       path: '/feed.xml',

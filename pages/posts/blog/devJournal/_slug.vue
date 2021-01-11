@@ -38,11 +38,11 @@
       <div class="title-divider"></div>
     </div>
     <div class="prev-next">
-      <nuxt-link v-if="prev" :to="{ name: 'blog-slug', params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
+      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
         ← {{ prev.title }}
       </nuxt-link>
       <span v-if="prev && next" class="pn-div"></span>
-      <nuxt-link v-if="next" :to="{ name: 'blog-slug', params: { slug: next.slug, path: next.path } }" class="navigate next">
+      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
         {{ next.title }} →
       </nuxt-link>
     </div>
@@ -55,8 +55,8 @@
   export default {
     async asyncData({ $content, params }) {
       const post = await $content(params.path).fetch();
-      const [prev, next] = await $content('writing/blog', { deep: true })
-        .only(['title', 'slug'])
+      const [prev, next] = await $content('posts/blog', { deep: true })
+        .only(['title', 'slug', 'dir'])
         .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'asc')
         .surround(params.slug)
@@ -147,6 +147,10 @@
           return false;
         }
         return true;
+      },
+      postPath(path) {
+        const split = path.slice(1).split('/');
+        return split.join('-').concat('-slug');
       },
     },
     head() {

@@ -1,6 +1,6 @@
 <template>
   <div class="blurb-container">
-    <nuxt-link :to="{ name: `${routeName}-${postBlurb.folder}-slug`, params: { slug: postBlurb.slug, path: postBlurb.path } }" class="post-title">
+    <nuxt-link :to="{ name: `${postPath}-slug`, params: { slug: postBlurb.slug, path: postBlurb.path } }" class="post-title">
       {{ postBlurb.title }}
     </nuxt-link>
     <p class="post-blurb">{{ postBlurb.blurb }}</p>
@@ -15,6 +15,12 @@
       },
       routeName: {
         type: String,
+      },
+    },
+    computed: {
+      postPath() {
+        const split = this.postBlurb.dir.slice(1).split('/');
+        return split.join('-');
       },
     },
   };

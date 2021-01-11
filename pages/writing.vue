@@ -14,7 +14,7 @@
   export default {
     async fetch() {
       this.blogposts = await this.$content('posts/blog', { deep: true })
-        .only(['title', 'blurb', 'tags', 'slug', 'folder'])
+        .only(['title', 'blurb', 'tags', 'slug', 'dir'])
         .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'desc')
         .fetch();
