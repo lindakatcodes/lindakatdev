@@ -1,9 +1,15 @@
 <template>
   <main class="container">
-    <h2 class="title">Personal Projects</h2>
+    <h2 class="title">Key Projects</h2>
+    <p>Click an image for a larger view and more detail about each project!</p>
     <div class="divider"></div>
-    <div class="projects-wrapper">
-      <ProjectCard v-for="(project, index) in projects" :key="index" :project="project" class="card"></ProjectCard>
+    <div class="key-projects-wrapper">
+      <ProjectCard v-for="(project, index) in keyProjects" :key="index" :project="project" class="card"></ProjectCard>
+    </div>
+    <h3 class="title">Extra Fun Side Projects</h3>
+    <div class="divider"></div>
+    <div class="extra-projects-wrapper">
+      <ProjectCard v-for="(project, index) in extraProjects" :key="index" :project="project" class="card"></ProjectCard>
     </div>
   </main>
 </template>
@@ -23,6 +29,12 @@
     computed: {
       socialImage() {
         return this.getImageLink();
+      },
+      keyProjects() {
+        return this.projects.filter((project) => project.type === 'key');
+      },
+      extraProjects() {
+        return this.projects.filter((project) => project.type === 'extra');
       },
     },
     methods: {

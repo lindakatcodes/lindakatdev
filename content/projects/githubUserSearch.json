@@ -1,6 +1,6 @@
 {
   "name": "GitHub User Search",
-  "id": 5,
+  "id": 7,
   "images": [
     "githubsearch"
   ],
@@ -11,6 +11,7 @@
   "tech": "Vue, GraphQL, HTML, CSS",
   "multiPicType": false,
   "featured": false,
+  "type": "key",
   "links": {
     "demo": "http://bit.ly/lktGithubSearch",
     "site": "https://thisdot-githubsearch.netlify.app/",

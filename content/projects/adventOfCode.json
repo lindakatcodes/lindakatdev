@@ -1,6 +1,6 @@
 {
   "name": "Advent of Code",
-  "id": 3,
+  "id": 4,
   "images": [
     "aoc2017",
     "aoc2016"
@@ -13,6 +13,7 @@
   "tech": "JS",
   "multiPicType": true,
   "featured": true,
+  "type": "extra",
   "links": {
     "demo": "",
     "site": "",

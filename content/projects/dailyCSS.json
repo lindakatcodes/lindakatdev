@@ -1,5 +1,5 @@
 {
-  "name": "Daily CSS Images",
+  "name": "CSS Images",
   "id": 3,
   "images": [
     "cssHobbes",
@@ -13,6 +13,7 @@
   "tech": "HTML, CSS",
   "multiPicType": true,
   "featured": true,
+  "type": "key",
   "links": {
     "demo": "https://bit.ly/dailyCSS",
     "site": "",

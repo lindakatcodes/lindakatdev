@@ -1,6 +1,6 @@
 {
   "name": "Color Switcher",
-  "id": 6,
+  "id": 8,
   "images": [
     "colorswitcher"
   ],
@@ -11,6 +11,7 @@
   "tech": "React, HTML, CSS",
   "multiPicType": false,
   "featured": true,
+  "type": "extra",
   "links": {
     "demo": "http://bit.ly/lktColorSwitcher",
     "site": "https://react-color-switcher.netlify.app/",

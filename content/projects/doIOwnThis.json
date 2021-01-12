@@ -1,6 +1,6 @@
 {
   "name": "Do I Own This?",
-  "id": 5,
+  "id": 6,
   "images": [
     "doIOwnThis-sm"
   ],
@@ -11,6 +11,7 @@
   "tech": "Vue, Firebase, CSS",
   "multiPicType": false,
   "featured": true,
+  "type": "key",
   "links": {
     "demo": "https://bit.ly/doIOwnThis",
     "site": "https://doiownthis.netlify.app/",

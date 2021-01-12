@@ -1,6 +1,6 @@
 {
   "name": "Restaurant Reviews",
-  "id": 4,
+  "id": 5,
   "images": [
     "restaurantReviews-sm"
   ],
@@ -11,6 +11,7 @@
   "tech": "HTML, CSS, JS, Service Workers, IndexedDB / idb",
   "multiPicType": false,
   "featured": true,
+  "type": "key",
   "links": {
     "demo": "https://bit.ly/restaurantReviews",
     "site": "https://mws-reviews-app-lt.netlify.com/",

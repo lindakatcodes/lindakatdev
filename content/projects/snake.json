@@ -1,6 +1,6 @@
 {
   "name": "Snake!",
-  "id": 7,
+  "id": 9,
   "images": [
     "snake"
   ],
@@ -11,6 +11,7 @@
   "tech": "HTML, CSS, JS",
   "multiPicType": false,
   "featured": true,
+  "type": "key",
   "links": {
     "demo": "http://bit.ly/lktSnakeGame",
     "site": "https://snake-mini.netlify.app/",
