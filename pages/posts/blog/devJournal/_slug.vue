@@ -99,7 +99,7 @@
     methods: {
       getImageLink() {
         const imageLink = getShareImage({
-          title: this.post.title,
+          title: this.post[0].title,
           tagline: this.tagLineText,
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
