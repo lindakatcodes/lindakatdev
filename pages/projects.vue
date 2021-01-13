@@ -6,7 +6,7 @@
     <div class="key-projects-wrapper">
       <ProjectCard v-for="(project, index) in keyProjects" :key="index" :project="project" class="card"></ProjectCard>
     </div>
-    <h3 class="title">Extra Fun Side Projects</h3>
+    <h3 class="title">Extra Fun Projects</h3>
     <div class="divider"></div>
     <div class="extra-projects-wrapper">
       <ProjectCard v-for="(project, index) in extraProjects" :key="index" :project="project" class="card"></ProjectCard>
@@ -100,14 +100,21 @@
     font-weight: 900;
   }
 
+  p {
+    text-align: center;
+    color: var(--lightBasic);
+    margin: 0.5% 0 1.5%;
+    font-family: var(--sansSerif);
+  }
+
   .divider {
     height: 4px;
-    width: 20%;
+    width: 25%;
     background: var(--lightGradient);
     margin: 0.25% auto 2%;
   }
 
-  .projects-wrapper {
+  .key-projects-wrapper {
     width: 90%;
     margin: 2% auto;
     padding: 2% 1% 5%;
@@ -118,21 +125,36 @@
     justify-items: center;
   }
 
+  .extra-projects-wrapper {
+    width: 95%;
+    margin: 2% auto;
+    padding: 2% 1% 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-gap: 15px;
+    justify-items: center;
+  }
+
   @media screen and (max-width: 768px) {
     .container {
-      margin-top: 4%;
+      margin-top: 2%;
     }
 
     .title {
       font-size: 2rem;
     }
 
-    .divider {
-      width: 70%;
-      margin: 1% auto 6%;
+    p {
+      margin: 2% 3% 4%;
+      font-size: 0.85rem;
     }
 
-    .projects-wrapper {
+    .divider {
+      width: 70%;
+      margin: 2% auto;
+    }
+
+    .key-projects-wrapper {
       width: 95%;
       padding: 0;
       margin-bottom: 5%;

@@ -1,17 +1,17 @@
 <template>
   <article class="project-wrapper">
-    <div class="project-images" :class="{ multiPic: project.multiPicType }">
+    <div class="project-images" :class="{ extraPic: project.type === 'extra' }">
       <img v-for="(pic, index) in project.images" :key="index" :src="picUrl(pic)" :alt="project.altText[index]" />
     </div>
-    <h3 class="project-title">{{ project.name }}</h3>
+    <h3 class="project-title" :class="{ extraTitle: project.type === 'extra' }">{{ project.name }}</h3>
     <div class="project-tech">
       <p v-for="(tech, index) in techList" :key="index" class="tech">{{ tech }}</p>
     </div>
-    <p class="project-description">{{ project.description }}</p>
+    <p v-if="project.type === 'key'" class="project-description">{{ project.description }}</p>
     <div class="project-links">
       <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
-      <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
       <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
+      <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
     </div>
   </article>
 </template>
@@ -45,10 +45,10 @@
   .project-wrapper {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 98%;
-    padding: 1% 1.5%;
+    padding: 1% 1.5% 2%;
     border-radius: 8px;
     box-shadow: none;
     transition: box-shadow 0.3s, border 0.3s;
@@ -60,7 +60,7 @@
 
   .project-images {
     width: 100%;
-    height: 20vw;
+    height: 17vw;
     display: flex;
     justify-content: center;
   }
@@ -73,7 +73,11 @@
     overflow: hidden;
   }
 
-  .multiPic {
+  .extraPic {
+    height: 12vw;
+  }
+
+  /* .multiPic {
     justify-content: flex-start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -109,15 +113,23 @@
   .multiPic img:nth-last-child() {
     margin-left: 3%;
     margin-right: 0;
-  }
+  } */
 
   .project-title {
     color: var(--lightBasic);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0.5% 0 1.5%;
+  }
+
+  .extraTitle {
+    font-size: 1.15rem;
+    height: 20%;
   }
 
   .project-tech {
     width: 100%;
+    height: 10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -152,6 +164,7 @@
     color: var(--lightBasic);
     font-size: 0.8rem;
     width: 100%;
+    height: 25%;
     font-family: var(--sansSerif);
     line-height: 1.1rem;
   }
@@ -160,15 +173,16 @@
     width: 100%;
     margin: 2% 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
   }
 
   .project-links a {
     text-decoration: none;
     border-radius: 5px;
-    padding: 1% 2%;
-    margin: 0 3%;
+    padding: 1% 2.5%;
+    margin: 3%;
     font-weight: 700;
     color: var(--lightBasic);
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
@@ -183,20 +197,20 @@
     color: var(--darkBasic);
   }
 
-  .live {
+  .code {
     border: 2px solid var(--lightYellow);
   }
 
-  .live:hover {
+  .code:hover {
     background: var(--lightYellow);
     color: var(--darkBasic);
   }
 
-  .code {
+  .live {
     border: 2px solid var(--lightGreen);
   }
 
-  .code:hover {
+  .live:hover {
     background: var(--lightGreen);
     color: var(--darkBasic);
   }
@@ -207,14 +221,14 @@
       padding: 5% 1.5%;
       border-bottom: 1px solid var(--lightBasic);
       border-radius: 0;
-      margin-top: 7%;
+      margin-top: 3%;
     }
 
     .project-images {
       height: 50vw;
     }
 
-    .multiPic {
+    /* .multiPic {
       flex-direction: column;
       flex-wrap: wrap;
       justify-content: center;
@@ -222,7 +236,7 @@
 
     .multiPic img {
       width: 85vw;
-    }
+    } */
 
     .project-title {
       margin-top: 2%;

@@ -2,16 +2,14 @@
   "name": "Advent of Code",
   "id": 4,
   "images": [
-    "aoc2017",
-    "aoc2016"
+    "aoc2020"
   ],
   "altText": [
-    "Shows Santa's list of naughty and nice people on top, with the Easter Bunny heading the naughty list and my name leading the nice list. Underneath, the full advent calendar shows, which looks like a circuit board, with the day's number and two gold stars on the right hand side.",
-    "The full advent calendar shows three buildings with Christmas-themed lights on them - one says Ho Ho Ho, one has a snowflake and one a small tree. The bottom right of the map has a little park with a decorated Christmas tree. The day's number and two gold stars show on the right hand side. Above, snow flakes fall, and in the top right you can see Rudolph leading Santa's sleigh across the sky."
+    "A black background with 25 white numbers along the right side, each with two gold stars to the right of them. Ascii art creates a map of bracket markers and land masses with a small red pole with a star centered along the top, a purple sea monster in the ocean, and a hurricane spiral along the bottom right."
   ],
-  "description": "Advent of Code is a daily puzzle game that happens every December. Each year, there's some problems that deal with mapping, sorting, or searching problem sets, and each year's map creates a different picture. The puzzles are always challenging and feel so good to complete!",
-  "tech": "JS",
-  "multiPicType": true,
+  "description": "Advent of Code is a daily puzzle game that happens every December. Each year, there's problems that deal with common math or algorithm puzzles, and each year's map creates a different picture. The puzzles are always challenging and feel so good to complete! In 2020, I also built a helper terminal command in Rust to create the day's files for me.",
+  "tech": "JS, Rust",
+  "multiPicType": false,
   "featured": true,
   "type": "extra",
   "links": {

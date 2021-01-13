@@ -2,16 +2,14 @@
   "name": "CSS Images",
   "id": 3,
   "images": [
-    "cssHobbes",
-    "cssElephant"
+    "cssHobbes"
   ],
   "altText": [
-    "Hobbes the Tiger, from the comic strip Calvin and Hobbes, drawn with HTML and CSS.",
-    "A front facing view of a grey elephant, drawn with HTML and CSS."
+    "Hobbes the Tiger, from the comic strip Calvin and Hobbes, drawn with HTML and CSS."
   ],
   "description": "Images created using CSS, following prompts from a daily email. Through working on these drawings, I started to learn more about positioning items with CSS, as well as flexing the creative side of my mind.",
   "tech": "HTML, CSS",
-  "multiPicType": true,
+  "multiPicType": false,
   "featured": true,
   "type": "key",
   "links": {
