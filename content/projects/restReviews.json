@@ -10,7 +10,7 @@
   "description": "Created during the Udacity Mobile Web Specialist Nanodegree course, this site allows users to favorite a restaurant & add reviews, as well as filter by food type or location. Accessibility, responsiveness & offline capabilities were the main focus!",
   "tech": "HTML, CSS, JS, Service Workers, IndexedDB / idb",
   "multiPicType": false,
-  "featured": true,
+  "featured": false,
   "type": "key",
   "links": {
     "demo": "https://bit.ly/restaurantReviews",

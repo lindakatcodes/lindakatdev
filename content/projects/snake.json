@@ -10,7 +10,7 @@
   "description": "My take on the classic Snake game! Inspired by a project from Wes Bos' Beginner JS course, this uses the canvas element to draw the snake and food. It was good practice for grabbing items from the DOM and updating them as things change!",
   "tech": "HTML, CSS, JS",
   "multiPicType": false,
-  "featured": true,
+  "featured": false,
   "type": "key",
   "links": {
     "demo": "http://bit.ly/lktSnakeGame",

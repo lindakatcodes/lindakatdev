@@ -10,7 +10,7 @@
   "description": "Created following along with Ali Spittel's Intro to React live stream! First time really playing with React, was not as bad as I'd feared. Then I went a little further and figured out a way to have it pick a random color!",
   "tech": "React, HTML, CSS",
   "multiPicType": false,
-  "featured": true,
+  "featured": false,
   "type": "extra",
   "links": {
     "demo": "http://bit.ly/lktColorSwitcher",
