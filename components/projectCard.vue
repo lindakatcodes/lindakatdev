@@ -1,7 +1,7 @@
 <template>
   <article class="project-wrapper">
     <div class="project-images" :class="{ extraPic: project.type === 'extra' }">
-      <img v-for="(pic, index) in project.images" :key="index" :src="picUrl(pic)" :alt="project.altText[index]" />
+      <img :src="picUrl(project.images)" :alt="project.altText" @click="enlargeImg()" />
     </div>
     <h3 class="project-title" :class="{ extraTitle: project.type === 'extra' }">{{ project.name }}</h3>
     <div class="project-tech">
@@ -13,6 +13,7 @@
       <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
       <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
     </div>
+    <ImgModal :picsrc="picUrl(project.images)" :class="[isOpen]" @close-image="shrinkImg()"></ImgModal>
   </article>
 </template>
 
@@ -22,6 +23,11 @@
       project: {
         type: Object,
       },
+    },
+    data() {
+      return {
+        isOpen: '',
+      };
     },
     computed: {
       techList() {
@@ -36,6 +42,14 @@
         }
         // eslint-disable-next-line global-require, import/no-dynamic-require
         return require(`@/assets/images/projects/${pic}.png`);
+      },
+      enlargeImg() {
+        console.log('open modal');
+        this.isOpen = 'open';
+      },
+      shrinkImg() {
+        console.log('close modal');
+        this.isOpen = '';
       },
     },
   };
