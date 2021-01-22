@@ -73,7 +73,7 @@ export default {
     '@nuxt/content',
     '@nuxtjs/feed',
     'vue-scrollto/nuxt',
-    '@nuxtjs/markdownit',
+    // '@nuxtjs/markdownit',
   ],
   // router: {
   //   routeNameSplitter: '/',
@@ -136,12 +136,12 @@ export default {
       },
     },
   },
-  markdownit: {
-    preset: 'default',
-    linkify: true,
-    breaks: true,
-    use: ['markdown-it-div', 'markdown-it-attrs'],
-  },
+  // markdownit: {
+  //   preset: 'default',
+  //   linkify: true,
+  //   breaks: true,
+  //   use: ['markdown-it-div', 'markdown-it-attrs'],
+  // },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
