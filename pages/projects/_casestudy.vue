@@ -229,8 +229,8 @@
   .support-img-1 img,
   .support-img-2 img {
     width: 100%;
-    /* height: auto; */
-    display: block;
+    height: auto;
+    /* display: block; */
     object-fit: contain;
     /* align-self: center; */
   }
