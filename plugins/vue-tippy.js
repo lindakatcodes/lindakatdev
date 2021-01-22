@@ -16,4 +16,4 @@ Vue.use(VueTippy, {
   },
 });
 
-Vue.component('tippy', TippyComponent);
+Vue.component('Tippy', TippyComponent);

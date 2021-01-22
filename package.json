@@ -12,27 +12,29 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@jlengstorf/get-share-image": "^0.7.1",
+    "@jlengstorf/get-share-image": "^0.8.0",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/feed": "^2.0.0",
-    "@nuxtjs/markdownit": "^1.2.10",
-    "nuxt": "^2.14.5",
+    "@nuxtjs/markdownit": "^2.0.0",
+    "markdown-it-attrs": "^4.0.0",
+    "markdown-it-div": "^1.1.0",
+    "nuxt": "^2.14.12",
     "prism-themes": "^1.4.0",
     "reading-time": "^1.2.0",
     "vue-scrollto": "^2.19.1",
     "vue-tippy": "^4.7.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^3.1.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vue": "^7.4.1",
     "prettier": "^2.1.2"
   }
 }

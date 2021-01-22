@@ -1,7 +1,7 @@
 <template>
   <article class="project-wrapper">
     <div class="project-images" :class="{ extraPic: project.type === 'extra' }">
-      <img :src="picUrl(project.images)" :alt="project.altText" @click="enlargeImg()" />
+      <img :src="picUrl(project.images[0])" :alt="project.altText" @click="enlargeImg()" />
     </div>
     <h3 class="project-title" :class="{ extraTitle: project.type === 'extra' }">{{ project.name }}</h3>
     <div class="project-tech">
@@ -13,7 +13,11 @@
       <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
       <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
     </div>
-    <ImgModal :picsrc="picUrl(project.images)" :class="[isOpen]" @close-image="shrinkImg()"></ImgModal>
+    <!-- eslint-disable-next-line prettier/prettier -->
+    <nuxt-link v-if="project.type === 'key'" class="cs-link" :to="{ name: `projects-casestudy`, params: { casestudy: nameSlug, projectObj: project } }">
+      View Project Case Study
+    </nuxt-link>
+    <ImgModal :picsrc="picUrl(project.images[0])" :class="[isOpen]" @close-image="shrinkImg()"></ImgModal>
   </article>
 </template>
 
@@ -32,6 +36,9 @@
     computed: {
       techList() {
         return this.project.tech.split(', ');
+      },
+      nameSlug() {
+        return this.project.name.toLowerCase().split(' ').join('-');
       },
     },
     methods: {
@@ -90,44 +97,6 @@
   .extraPic {
     height: 12vw;
   }
-
-  /* .multiPic {
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-color: var(--lightBasic) var(--darkBasic);
-    scrollbar-width: thin;
-  }
-
-  .multiPic::-webkit-scrollbar {
-    width: 2px;
-  }
-
-  .multiPic::-webkit-scrollbar-track {
-    background: var(--darkBasic);
-  }
-
-  .multiPic::-webkit-scrollbar-thumb {
-    background-color: var(--lightBasic);
-  }
-
-  .multiPic img {
-    width: 27vw;
-    flex-shrink: 0;
-    transform-origin: center center;
-    transform: scale(1);
-    transition: transform 0.5s;
-    position: relative;
-    margin-left: 0;
-    margin-right: 3%;
-  }
-
-  .multiPic img:nth-last-child() {
-    margin-left: 3%;
-    margin-right: 0;
-  } */
 
   .project-title {
     color: var(--lightBasic);
@@ -226,6 +195,22 @@
 
   .live:hover {
     background: var(--lightGreen);
+    color: var(--darkBasic);
+  }
+
+  .cs-link {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 1% 2.5%;
+    margin: 1% 0 3%;
+    font-weight: 700;
+    color: var(--lightBasic);
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+    border: 2px solid var(--lightBlue);
+  }
+
+  .cs-link:hover {
+    background: var(--lightBlue);
     color: var(--darkBasic);
   }
 
