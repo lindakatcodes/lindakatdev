@@ -15,7 +15,7 @@
     "@jlengstorf/get-share-image": "^0.8.0",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/feed": "^2.0.0",
-    "@nuxtjs/markdownit": "^2.0.0",
+    "@nuxtjs/markdownit": "^1.2.10",
     "markdown-it-attrs": "^4.0.0",
     "markdown-it-div": "^1.1.0",
     "nuxt": "^2.14.12",
