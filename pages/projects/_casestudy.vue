@@ -92,6 +92,8 @@
     display: flex;
     flex-flow: column;
     justify-content: end;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .title {

@@ -3,9 +3,9 @@
   "id": 10,
   "images": [
     "trivia",
-    "trivia",
-    "snake2",
-    "wikiViewer"
+    "trivia-header",
+    "trivia-detail-1",
+    "trivia-detail-2"
   ],
   "altText": [
     "A light blue background with black text. The header asks the question 'What is the official name for the hashtag symbol?' and there are four multiple-choice answers stacked on top of each other: Number sign, Octothorpe, Pound, and Hash sign. The second answer, octothorpe, is selected and underlined. Below is a large black button asking 'Is this your final answer?'"
