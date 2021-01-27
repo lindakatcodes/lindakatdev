@@ -2,103 +2,31 @@
 name: Snake!
 id: 9
 images:
-- snake2
-- snake-header
-- snake-detail-1
-- snake-detail-2
+  - snake2
+  - snake-detail-1
+  - snake-detail-2
 altText:
-- The title Snake is centered at the top. Below it shows a score of 7 and a gray button
-  saying Game in Progress. A toggle is below with directions of how to play. The game
-  board has a purple border and shows a small green food dot, with a pink snake line
-  heading towards it.
+  - The title Snake is centered at the top. Below it shows a score of 7 and a gray button
+    saying Game in Progress. A toggle is below with directions of how to play. The game
+    board has a purple border and shows a small green food dot, with a pink snake line
+    heading towards it.
+  - The title Snake is centered at the top. Below it shows a score of 57 and a gray button
+    saying Game in Progress. A toggle is below with directions of how to play. The game
+    board has a purple border and shows a small green food dot, with a long light blue snake line
+    heading towards it.
+    - The title Snake is centered at the top. Below it shows a score of 64, the text "Game over! Hit your body", and a blue button saying Start New Game. A toggle is below with directions of how to play. The game
+    board has a purple border and shows a small green food dot, with a red snake line crossing over it.
 description: My take on the classic Snake game! Inspired by a project from Wes Bos'
   Beginner JS course, this uses the canvas element to draw the snake and food. It
   was good practice for grabbing items from the DOM and updating them as things change!
 tech: HTML, CSS, JS
-multiPicType: false
 featured: false
 type: key
 links:
   demo: http://bit.ly/lktSnakeGame
   site: https://snake-mini.netlify.app/
   code: https://github.com/lindakatcodes/minisites/tree/main/snake
-intro: Dont wait for the storm to pass, dance in the rain destroy the blinds i like
-  cats because they are fat and fluffy. Sleep over your phone and make cute snoring
-  noises be a nyan cat, feel great about it, be annoying 24/7 poop rainbows in litter
-  box all day, eat fish on floor or commence midnight zoomies. Meow all night having
-  their mate disturbing sleeping humans. Steal raw zucchini off kitchen counter meow
-  meow we are 3 small kittens sleeping most of our time, we are around 15 weeks old
-  i think, i don’t know i can’t count pee on walls it smells like breakfast and fish
-  i must find my red catnip fishy fish and paw at your fat belly. Play with twist
-  ties this cat happen now, it was too purr-fect!!!, warm up laptop with butt lick
-  butt fart rainbows until owner yells pee in litter box hiss at cats i love cats
-  i am one wake up scratch humans leg for food then purr then i have a and relax and
-  hopped up on catnip. Eat the rubberband prow?? ew dog you drink from the toilet,
-  yum yum warm milk hotter pls, ouch too hot but pretend you want to go out but then
-  don't for disappear for four days and return home with an expensive injury; bite
-  the vet catch mouse and gave it as a present lay on arms while you're using the
-  keyboard.
-purpose: Dont wait for the storm to pass, dance in the rain destroy the blinds i like
-  cats because they are fat and fluffy. Sleep over your phone and make cute snoring
-  noises be a nyan cat, feel great about it, be annoying 24/7 poop rainbows in litter
-  box all day, eat fish on floor or commence midnight zoomies. Meow all night having
-  their mate disturbing sleeping humans. Steal raw zucchini off kitchen counter meow
-  meow we are 3 small kittens sleeping most of our time, we are around 15 weeks old
-  i think, i don’t know i can’t count pee on walls it smells like breakfast and fish
-  i must find my red catnip fishy fish and paw at your fat belly. Play with twist
-  ties this cat happen now, it was too purr-fect!!!, warm up laptop with butt lick
-  butt fart rainbows until owner yells pee in litter box hiss at cats i love cats
-  i am one wake up scratch humans leg for food then purr then i have a and relax and
-  hopped up on catnip. Eat the rubberband prow?? ew dog you drink from the toilet,
-  yum yum warm milk hotter pls, ouch too hot but pretend you want to go out but then
-  don't for disappear for four days and return home with an expensive injury; bite
-  the vet catch mouse and gave it as a present lay on arms while you're using the
-  keyboard.
-highlight: Dont wait for the storm to pass, dance in the rain destroy the blinds i
-  like cats because they are fat and fluffy. Sleep over your phone and make cute snoring
-  noises be a nyan cat, feel great about it, be annoying 24/7 poop rainbows in litter
-  box all day, eat fish on floor or commence midnight zoomies. Meow all night having
-  their mate disturbing sleeping humans. Steal raw zucchini off kitchen counter meow
-  meow we are 3 small kittens sleeping most of our time, we are around 15 weeks old
-  i think, i don’t know i can’t count pee on walls it smells like breakfast and fish
-  i must find my red catnip fishy fish and paw at your fat belly. Play with twist
-  ties this cat happen now, it was too purr-fect!!!, warm up laptop with butt lick
-  butt fart rainbows until owner yells pee in litter box hiss at cats i love cats
-  i am one wake up scratch humans leg for food then purr then i have a and relax and
-  hopped up on catnip. Eat the rubberband prow?? ew dog you drink from the toilet,
-  yum yum warm milk hotter pls, ouch too hot but pretend you want to go out but then
-  don't for disappear for four days and return home with an expensive injury; bite
-  the vet catch mouse and gave it as a present lay on arms while you're using the
-  keyboard.
-challenge: Dont wait for the storm to pass, dance in the rain destroy the blinds i
-  like cats because they are fat and fluffy. Sleep over your phone and make cute snoring
-  noises be a nyan cat, feel great about it, be annoying 24/7 poop rainbows in litter
-  box all day, eat fish on floor or commence midnight zoomies. Meow all night having
-  their mate disturbing sleeping humans. Steal raw zucchini off kitchen counter meow
-  meow we are 3 small kittens sleeping most of our time, we are around 15 weeks old
-  i think, i don’t know i can’t count pee on walls it smells like breakfast and fish
-  i must find my red catnip fishy fish and paw at your fat belly. Play with twist
-  ties this cat happen now, it was too purr-fect!!!, warm up laptop with butt lick
-  butt fart rainbows until owner yells pee in litter box hiss at cats i love cats
-  i am one wake up scratch humans leg for food then purr then i have a and relax and
-  hopped up on catnip. Eat the rubberband prow?? ew dog you drink from the toilet,
-  yum yum warm milk hotter pls, ouch too hot but pretend you want to go out but then
-  don't for disappear for four days and return home with an expensive injury; bite
-  the vet catch mouse and gave it as a present lay on arms while you're using the
-  keyboard.
-lessons: Dont wait for the storm to pass, dance in the rain destroy the blinds i like
-  cats because they are fat and fluffy. Sleep over your phone and make cute snoring
-  noises be a nyan cat, feel great about it, be annoying 24/7 poop rainbows in litter
-  box all day, eat fish on floor or commence midnight zoomies. Meow all night having
-  their mate disturbing sleeping humans. Steal raw zucchini off kitchen counter meow
-  meow we are 3 small kittens sleeping most of our time, we are around 15 weeks old
-  i think, i don’t know i can’t count pee on walls it smells like breakfast and fish
-  i must find my red catnip fishy fish and paw at your fat belly. Play with twist
-  ties this cat happen now, it was too purr-fect!!!, warm up laptop with butt lick
-  butt fart rainbows until owner yells pee in litter box hiss at cats i love cats
-  i am one wake up scratch humans leg for food then purr then i have a and relax and
-  hopped up on catnip. Eat the rubberband prow?? ew dog you drink from the toilet,
-  yum yum warm milk hotter pls, ouch too hot but pretend you want to go out but then
-  don't for disappear for four days and return home with an expensive injury; bite
-  the vet catch mouse and gave it as a present lay on arms while you're using the
-  keyboard.
+purpose: some text
+highlight: some text
+challenge: some text
+lessons: some text

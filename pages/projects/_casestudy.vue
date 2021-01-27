@@ -1,26 +1,30 @@
 <template>
   <div class="container">
-    <div class="header" :style="headerBg">
+    <div class="header">
       <h1 class="title">{{ project.name }}</h1>
       <div class="underline"></div>
     </div>
-    <div class="purpose">
-      <h2 class="section-title">Purpose: Why This?</h2>
-      <p>{{ project.purpose }}</p>
+    <div class="main-img">
+      <img :src="picUrl(project.images[0])" :alt="project.altText[0]" @click="enlargeImg(0)" />
     </div>
-    <div class="data">
-      <p class="data-text">Built With:</p>
-      <div class="tech">
-        <p v-for="(tech, index) in techList" :key="index" class="tech-list">{{ tech }}</p>
+    <div class="details">
+      <div class="purpose">
+        <h2 class="section-title">Purpose: Why This?</h2>
+        <p>{{ project.purpose }}</p>
       </div>
-      <p class="data-text">See it in Action:</p>
-      <div class="links">
-        <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
-        <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
-        <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
+      <div class="data">
+        <p class="data-text tech-text">Built With:</p>
+        <div class="tech">
+          <p v-for="(tech, index) in techList" :key="index" class="tech-list">{{ tech }}</p>
+        </div>
+        <p class="data-text link-text">See it in Action:</p>
+        <div class="links">
+          <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
+          <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
+          <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
+        </div>
       </div>
     </div>
-
     <div class="highlight">
       <h2 class="section-title">Highlights: My Favorite Bits</h2>
       <ul class="list">
@@ -28,10 +32,10 @@
       </ul>
     </div>
     <div class="support-img-1">
-      <img :src="picUrl(project.images[2])" :alt="project.altText[2]" />
+      <img :src="picUrl(project.images[1])" :alt="project.altText[1]" @click="enlargeImg(1)" />
     </div>
     <div class="support-img-2">
-      <img :src="picUrl(project.images[3])" :alt="project.altText[3]" />
+      <img :src="picUrl(project.images[2])" :alt="project.altText[2]" @click="enlargeImg(2)" />
     </div>
 
     <div class="challenge">
@@ -53,6 +57,9 @@
       </ul>
     </div>
     <nuxt-link to="/projects" class="back">← Back to All Projects</nuxt-link>
+    <ImgModal :picsrc="picUrl(project.images[0])" :class="[isOpen0]" @close-image="shrinkImg(0)"></ImgModal>
+    <ImgModal :picsrc="picUrl(project.images[1])" :class="[isOpen1]" @close-image="shrinkImg(1)"></ImgModal>
+    <ImgModal :picsrc="picUrl(project.images[2])" :class="[isOpen2]" @close-image="shrinkImg(2)"></ImgModal>
   </div>
 </template>
 
@@ -61,22 +68,30 @@
     data() {
       return {
         project: this.$route.params.projectObj,
+        isOpen0: '',
+        isOpen1: '',
+        isOpen2: '',
       };
     },
     computed: {
       techList() {
         return this.project.tech.split(', ');
       },
-      headerBg() {
-        return `background-image: linear-gradient(to top, rgba(37, 50, 55, 1), rgba(37, 50, 55, 0.8) 20%, transparent 50%), url(${this.picUrl(
-          this.project.images[1]
-        )});`;
-      },
     },
     methods: {
       picUrl(pic) {
         // eslint-disable-next-line global-require, import/no-dynamic-require
         return require(`@/assets/images/projects/${pic}.png`);
+      },
+      enlargeImg(num) {
+        console.log('open modal');
+        const picClass = `isOpen${num}`;
+        this[picClass] = 'open';
+      },
+      shrinkImg(num) {
+        console.log('close modal');
+        const picClass = `isOpen${num}`;
+        this[picClass] = '';
       },
     },
   };
@@ -89,7 +104,7 @@
     grid-template-rows: repeat(auto-fit, minmax(200px, 30vh));
     grid-template-areas:
       'header header header header'
-      'purpose purpose purpose data'
+      'main-img main-img details details'
       'highlight highlight support-img-1 support-img-1'
       'support-img-2 support-img-2 challenge challenge'
       'lessons lessons lessons lessons'
@@ -103,15 +118,17 @@
     grid-area: header;
     display: flex;
     flex-flow: column;
-    justify-content: end;
-    background-repeat: no-repeat;
-    background-size: cover;
+    justify-content: flex-end;
+    background-image: linear-gradient(to top, rgba(37, 50, 55, 0.9), rgba(37, 50, 55, 0.7) 35%, rgba(37, 50, 55, 0.6) 40%, transparent 55%),
+      var(--lightGradient);
+    height: 20vh;
+    margin: 0 -8px;
   }
 
   .title {
     text-align: center;
     font-size: 2.2rem;
-    padding-bottom: 1%;
+    padding-bottom: 0.5%;
     font-family: var(--serif);
   }
 
@@ -129,7 +146,6 @@
   }
 
   .purpose {
-    grid-area: purpose;
     margin-top: 2%;
   }
 
@@ -218,11 +234,21 @@
     color: var(--lightPink);
   }
 
-  .data {
-    grid-area: data;
+  .details {
+    grid-area: details;
     display: flex;
     flex-flow: column;
     justify-content: center;
+  }
+
+  .data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-areas:
+      'tech-text link-text'
+      'tech-names link-names';
+    align-items: center;
     font-family: var(--serif);
   }
 
@@ -230,6 +256,7 @@
   .links {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 1% 0 6%;
   }
 
@@ -239,7 +266,16 @@
     text-align: center;
   }
 
+  .tech-text {
+    grid-area: tech-text;
+  }
+
+  .link-text {
+    grid-area: link-text;
+  }
+
   .tech-list {
+    grid-area: tech-names;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.75px;
@@ -257,6 +293,10 @@
 
   .tech-list:nth-child(4n) {
     color: var(--lightPink);
+  }
+
+  .links {
+    grid-area: link-names;
   }
 
   .links a {
@@ -298,6 +338,11 @@
     color: var(--darkBasic);
   }
 
+  .main-img {
+    grid-area: main-img;
+    align-self: center;
+  }
+
   .support-img-1 {
     grid-area: support-img-1;
     align-self: center;
@@ -308,6 +353,7 @@
     align-self: center;
   }
 
+  .main-img img,
   .support-img-1 img,
   .support-img-2 img {
     width: 100%;

@@ -3,22 +3,13 @@ name: Do I Own This?
 id: 6
 images:
   - doIOwnThis-sm
-  - diot-header
   - diot-detail-1
   - diot-detail-2
 altText:
-  - A heading bar with Do I Own This on the left, and a greeting and sign out button
-    on the right. Then, a filter bar, showing a drop down menu and a text box with a
-    search button. Finally, a link to add something new, and a grid view three across
-    and multiple down showing photos of nail polishes with their name below them.
+  - A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Finally, a link to add something new, and a grid view three across and multiple down showing photos of nail polishes with their name below them.
   - At the top left, a link in black text with a pink underline saying Back to All Items. In the center of the page, a hand holds a bottle of blue nail polish that says Zoya. Underneath the photo, there is data about the polish - the name Sia, brand Zoya, color group blue, and finish gloss.
-  - A heading bar with Do I Own This on the left, and a greeting and sign out button
-    on the right. Then, a filter bar, showing a drop down menu and a text box with a
-    search button. Underneath, there is welcome text, introducing the site and instructing the user to sign in to start their collection.
-description: Do I Own This is a personal nail polish inventory tracking site. It's
-  meant to hold information about your collection, so while you're out at a store
-  you can easily see if you already own a polish or not. I built this site to both
-  help my future self, and learn Vue.
+  - A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Underneath, there is welcome text, introducing the site and instructing the user to sign in to start their collection.
+description: Do I Own This is a personal nail polish inventory tracking site. It's meant to hold information about your collection, so while you're out at a store you can easily see if you already own a polish or not. I built this site to both help my future self, and learn Vue.
 tech: Vue, Firebase, CSS
 featured: true
 type: key
@@ -33,7 +24,6 @@ highlight:
 challenge: 
   - The other draw to using Firebase was that it included an authentication option. However, I quickly ran into problems with social authentication. Somewhere along the way, any attempts to use a different account would log me into the original account. Ultimately, I turned the social authentication off and switched to the email and password flow, which has worked reliably. However, it also forces the user to create a new account, which isn't ideal.
   - My other big hurdle was learning how to manage state. In tutorials, this seemed like it should just work, but I quickly learned that wasn't the case. At one point, I got so frustrated I had to take a break for a few days and come back to it with fresh eyes. I watched a more in-depth tutorial series on working with Vuex and completely rewrote my state files. With these updated files, I was able to get my data passing much more reliably between pages. There's still a lot that doesn't quite click for me with this topic, but I've come a long way!
-
 lessons: 
   intro:
     I gave myself a timeline of one month to build this project, which was a stretch for me at the time. Learning a new framework, building a site from scratch, and holding down a full-time job? It forced me to stay focused and work through my struggles. I'm incredibly proud to say I met my deadline, and I still use this site!
