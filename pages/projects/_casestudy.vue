@@ -6,7 +6,7 @@
     </div>
     <div class="purpose">
       <h2 class="section-title">Purpose: Why This?</h2>
-      {{ project.purpose }}
+      <p>{{ project.purpose }}</p>
     </div>
     <div class="data">
       <p class="data-text">Built With:</p>
@@ -23,7 +23,9 @@
 
     <div class="highlight">
       <h2 class="section-title">Highlights: My Favorite Bits</h2>
-      {{ project.highlight }}
+      <ul class="list">
+        <li v-for="(value, index) in project.highlight" :key="index" class="full-item">{{ value }}</li>
+      </ul>
     </div>
     <div class="support-img-1">
       <img :src="picUrl(project.images[2])" :alt="project.altText[2]" />
@@ -34,11 +36,21 @@
 
     <div class="challenge">
       <h2 class="section-title">Challenges: Struggles While Building</h2>
-      {{ project.challenge }}
+      <ul class="list">
+        <li v-for="(value, index) in project.challenge" :key="index" class="full-item">{{ value }}</li>
+      </ul>
     </div>
     <div class="lessons">
       <h2 class="section-title">Takeaway: Lessons Learned</h2>
-      {{ project.lessons }}
+      <p>{{ project.lessons.intro }}</p>
+      <h3 class="subsection-title">During the building process, the biggest takeaways for me were:</h3>
+      <ul class="list">
+        <li v-for="(value, index) in project.lessons.takeaways" :key="index" class="short-item">{{ value }}</li>
+      </ul>
+      <h3 class="subsection-title">A few things I'd like to improve in this project:</h3>
+      <ul class="list">
+        <li v-for="(value, index) in project.lessons.improvements" :key="index" class="short-item">{{ value }}</li>
+      </ul>
     </div>
     <nuxt-link to="/projects" class="back">← Back to All Projects</nuxt-link>
   </div>
@@ -113,11 +125,12 @@
   .highlight,
   .challenge,
   .lessons {
-    margin: 2% 2% 2% 3%;
+    margin: 1% 3% 0.5%;
   }
 
   .purpose {
     grid-area: purpose;
+    margin-top: 2%;
   }
 
   .highlight {
@@ -135,9 +148,74 @@
   }
 
   .section-title {
-    text-decoration: underline solid var(--lightYellow);
+    text-decoration: underline solid var(--lightBasic);
     margin-bottom: 1.5%;
     font-family: var(--serif);
+    font-size: 1.5rem;
+  }
+
+  .purpose .section-title {
+    color: var(--lightPurple);
+  }
+
+  .highlight .section-title {
+    color: var(--lightYellow);
+  }
+
+  .challenge .section-title {
+    color: var(--lightBlue);
+  }
+
+  .lessons .section-title {
+    color: var(--lightPink);
+  }
+
+  .subsection-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1.5%;
+  }
+
+  p {
+    margin-bottom: 2%;
+  }
+
+  .list {
+    list-style-type: none;
+    padding-left: 3%;
+    margin-bottom: 2%;
+  }
+
+  .list li {
+    text-indent: -2.5%;
+  }
+
+  .list .full-item {
+    margin-bottom: 2%;
+  }
+
+  .list .short-item {
+    margin-bottom: 0.5%;
+  }
+
+  .list li::before {
+    content: '»';
+    margin: 0 0.25rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--lightPurple);
+  }
+
+  .list li:nth-child(2n)::before {
+    color: var(--lightYellow);
+  }
+
+  .list li:nth-child(3n)::before {
+    color: var(--lightBlue);
+  }
+
+  .list li:nth-child(4n)::before {
+    color: var(--lightPink);
   }
 
   .data {
@@ -222,25 +300,25 @@
 
   .support-img-1 {
     grid-area: support-img-1;
+    align-self: center;
   }
 
   .support-img-2 {
     grid-area: support-img-2;
+    align-self: center;
   }
 
   .support-img-1 img,
   .support-img-2 img {
     width: 100%;
     height: auto;
-    /* display: block; */
     object-fit: contain;
-    /* align-self: center; */
   }
 
   .back {
     grid-area: back-link;
     text-align: center;
-    margin: 1%;
+    margin: 2% 0 4%;
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--lightBlue);
