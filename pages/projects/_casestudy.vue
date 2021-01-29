@@ -47,14 +47,18 @@
     <div class="lessons">
       <h2 class="section-title">Takeaway: Lessons Learned</h2>
       <p>{{ project.lessons.intro }}</p>
-      <h3 class="subsection-title">During the building process, the biggest takeaways for me were:</h3>
-      <ul class="list">
-        <li v-for="(value, index) in project.lessons.takeaways" :key="index" class="short-item">{{ value }}</li>
-      </ul>
-      <h3 class="subsection-title">A few things I'd like to improve in this project:</h3>
-      <ul class="list">
-        <li v-for="(value, index) in project.lessons.improvements" :key="index" class="short-item">{{ value }}</li>
-      </ul>
+      <div v-if="project.lessons.takeaways">
+        <h3 class="subsection-title">During the building process, the biggest takeaways for me were:</h3>
+        <ul class="list">
+          <li v-for="(value, index) in project.lessons.takeaways" :key="index" class="short-item">{{ value }}</li>
+        </ul>
+      </div>
+      <div v-if="project.lessons.improvements">
+        <h3 class="subsection-title">A few things I'd like to improve in this project:</h3>
+        <ul class="list">
+          <li v-for="(value, index) in project.lessons.improvements" :key="index" class="short-item">{{ value }}</li>
+        </ul>
+      </div>
     </div>
     <nuxt-link to="/projects" class="back">← Back to All Projects</nuxt-link>
     <ImgModal :picsrc="picUrl(project.images[0])" :class="[isOpen0]" @close-image="shrinkImg(0)"></ImgModal>

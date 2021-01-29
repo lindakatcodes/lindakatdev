@@ -20,4 +20,7 @@ links:
 purpose: some text
 highlight: some text
 challenge: some text
-lessons: some text
+lessons:
+  intro:
+  takeaways:
+  improvements:

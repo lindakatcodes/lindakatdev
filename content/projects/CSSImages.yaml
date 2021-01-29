@@ -19,7 +19,15 @@ links:
   demo: https://bit.ly/dailyCSS
   site: ''
   code: https://codepen.io/collection/XOBRMd
-purpose: some text
-highlight: some text
-challenge: some text
-lessons: some text
+purpose: A few years ago, there was a daily email challenge going around the Twitter tech community called Daily CSS Images. I loved the idea of drawing with CSS - I appreciate art but had never been skilled at doing it on paper. So I signed up and started making them! Often drawings took me a few days to complete. I never made it through the entire 50 email collection, but it inspired a method of creating art that I still love doing.
+highlight: 
+  - The biggest highlight for me was the few drawings that turned out exactly as I intended. Hobbes (the tiger from the comic strip Calvin and Hobbes) was my favorite. I'm still impressed that my final drawing looks like him and can be recognized! Seeing an idea take shape and turn out as well (or better) than intended is such a thrill.
+challenge: 
+  - Positioning in CSS is a subject people joke about often for a reason - it's challenging! This skill was one of the most useful things I learned while doing these drawings. It was a perfect playground for figuring out what concepts like positioning and z-index do.
+  - Shaping items was also a common challenge. Many drawings and objects have round edges or odd shapes - something that can feel impossible to create from the rectangles we have to work with on the web! Creating shapes by layering objects, changing colors, and applying a radius to the borders was often challenging but incredibly fun.
+lessons:
+  intro: I still enjoy creating drawings and can lose hours pushing pixels crafting what I want. It's a great way to experiment with positioning and layering.
+  takeaways: 
+    - Patience is SUCH an important skill, especially when drawing. It takes time to get things lined up and shaped. Allowing yourself the patience to make changes, mess things up, and watch as they take shape is worth it.
+    - Along with this, it's important to be ok with a project when it doesn't turn out as good as we'd like. Not everything can (or will) be a masterpiece. There's still a ton to learn from the experience.
+  improvements:

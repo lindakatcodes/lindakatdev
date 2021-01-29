@@ -23,7 +23,19 @@ links:
   demo: http://bit.ly/triviaTime
   site: https://trivia-quiz-tan.netlify.app
   code: https://github.com/lindakatcodes/tandem-trivia
-purpose: some text
-highlight: some text
-challenge: some text
-lessons: some text
+purpose: This quiz was a project for an apprenticeship program. Players are given ten questions per round, viewed one at a time. Questions can't repeat during a round, and only one answer is allowed for each question. Afterward, players can see their score and view the correct answers for each question. A JSON file was provided containing possible questions, the correct choice, and three incorrect options to use. I had one week to implement this project for consideration.
+highlight: 
+  - The second I read that this was a quiz, I knew I wanted the styling to be similar to Typeform's style. I love the way forms implemented by them look and how you interact with them! I wasn't able to make it an exact duplicate, but I kept the interface very clean and minimal and added in as much keyboard interaction as I could in the time I had.
+  - I was given free rein on how to implement this, and I decided this was a perfect chance to try out using React! I'd built a small guided project with it before but nothing else, so this was a big challenge in such a short time. But I was determined and made it happen!
+challenge: 
+  - Not surprisingly, using React was also one of the biggest challenges I tackled. Adjusting to the syntax, how to scaffold my project, and dealing with data management was a huge challenge. I still have a journey ahead of me and lots of ways to improve. But I'm impressed with how much I learned and that I accomplished this in just a week!
+  - I haven't dealt with full keyboard navigation much, so trying to implement that well was more difficult than expected. My screen kept losing focus or starting in the browser's menu bars, and I struggled with getting the visible focus on the checkboxes just right. In the end, I was able to get it mostly working, but it still has lots to improve on.
+lessons: 
+  intro: Overall, I'm pretty proud of this project. Given such a short time and choosing to challenge my brain using a new-to-me framework was A LOT. But I met the goal, and though I couldn't do everything exactly how I wanted to, I still got much closer than I might have expected not that long ago.
+  takeaways:
+    - The biggest takeaway is that I can do hard things. I can push myself beyond my comfort on a timeline and find a way to make things happen.
+    - This also gave me a chance to learn how to pull data into a React project, which I hadn't been exposed to yet.
+  improvements:
+    - I want to find an API that provides trivia questions and use that instead of the provided file. That would give me a way to make this quiz less tied to the company it was intended for and give me more experience working with data management in React.
+    - The one thing requested by the company that I ran out of time for was testing. I would love to go back and implement testing on this project. I think it's focused and small enough that it would be a great way to learn how to write tests for it.
+    - Along these lines, I also want to go back through and clean up my code. There are some areas where the state can be handled in a cleaner manner. There are also areas that I can split up and make more reusable. I'd also like to look into more accessibility options with handling keyboard navigation and focus and improve how users interact with the quiz.
