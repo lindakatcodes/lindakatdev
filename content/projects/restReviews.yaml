@@ -8,7 +8,7 @@ images:
 altText:
   - Filter bar on top with options for selecting neighborhoods or cuisines, showing three restaurant cards below, each with an image, favorite status, name, neighborhood, address, and a button to view more details.
   - A blue filter bar  with two drop down menus spans the top, with Brooklyn selected on one and Pizza on the other. Below, two cards show, both with a centered image, a heart symbol, the name and address of the restaurant, and a maroon button with the text "View Details"
-  - A black bar with yellow text reads "Restaurant Reviews" across the top. A smaller gray bar spans the length underneath, with the text Home / Emily on the left side. Below this is a map on the left side with a location marker centered. On the right side is a picture of pizza, with the label Pizza underneat, an address, and a red heart icon with a yellow circle around it.
+  - A black bar with yellow text reads "Restaurant Reviews" across the top. A smaller gray bar spans the length underneath, with the text Home / Emily on the left side. Below this is a map on the left side with a location marker centered. On the right side is a picture of pizza, with the label Pizza underneath, an address, and a red heart icon with a yellow circle around it.
 description: Created during the Udacity Mobile Web Specialist Nanodegree course, this site allows users to favorite a restaurant & add reviews, as well as filter by food type or location. Accessibility, responsiveness & offline capabilities were the main focus!
 tech: HTML, CSS, JS, Service Workers, IndexedDB / idb
 featured: false
@@ -17,10 +17,17 @@ links:
   demo: https://bit.ly/restaurantReviews
   site: https://mws-reviews-app-lt.netlify.com/
   code: https://github.com/lindakatcodes/mws-restaurant-project
-purpose: some text
-highlight: some text
-challenge: some text
+purpose: In 2018, I was chosen as a scholarship recipient with the Grow with Google program for a Udacity nano degree! I applied for the intermediate course and went through the Mobile Web Specialist program. The program centered around improving a single project - a restaurant reviews site. We were provided with an initial version and spent nine months doing deep dives into accessibility, responsive design, performance, and persisting data while offline. The finished site lets users view and favorite restaurants, leave reviews, filter through options, and see more details about each location. This project was in three stages - making accessibility and responsiveness adjustments, connecting that version to a server to request JSON data and storing it for offline usage with service workers and IndexedDB, and finally adding the review and favorite functionalities and meeting some performance benchmarks. The course aimed to give us experience with some standard practices involving code reviews and goals for each stage, as well as providing us some camaraderie with a Slack group just for scholarship winners. Overall, it was a great experience, and I'm so grateful I was selected.
+highlight: 
+  - Though the site had an initial design, we had some freedom to play with the styling and make adjustments. I struggled initially to find the right balance for the color contrast with the original options, so I created a new color scheme for the project. This allowed me to fully ensure I could meet color contrast guidelines and put a bit of my personality into the project.
+  - I'm also pleased with the favorites toggle I created. I was able to find a little icon I liked online and showed it in black and white when the restaurant was not a favorite. When a user clicked it, it turned into a colorful variation with a small fade animation. It was one of the first times I created a toggle like this, and though it's small, it makes me happy.
+challenge: 
+  - Without question, the most challenging part for me on this project was working with service workers. Dealing with the caching of data is a challenge on its own and can cause some unforeseen issues. Especially when dealing with data that needs to be stored while a user is offline, then updated to a database when the internet is connected again, the way service workers persist data often confused me. The way they're updated and written in the codebase also took me a long time to adjust to, and I still can't say I can work with them confidently.
+  - I also struggled with using IndexedDB. I'm not sure if it was because that part of the project was so closely tied with the service worker section or how the API works in general, but I felt very out of my depth when working on this section. Getting the data to update and stay current when the page refreshes was a great feeling, but working with that particular database still makes me wary.
 lessons:
-  intro:
-  takeaways:
+  intro: Overall, I'm incredibly proud that I had the opportunity to be in this program and that I stuck through and completed it. I even printed out and framed my certificate. This was the first time in my coding journey I interacted with other programmers working on the same projects, and I gained a lot of exposure to a ton of valuable knowledge. This was such a great overall experience, and I feel very fortunate that I had it.
+  takeaways: 
+    - Learning about so many ways that websites are made accessible to more people was so interesting. The course covered so many details, from screen readers to semantic HTML to keyboard focus and more. It laid a strong foundation for all my future projects.
+    - Responsive web design has come a long way recently, and this course was my first introduction to that world. Ensuring your site can be viewed well on multiple devices is so important for user experience.
+    - Performance, or how quickly users can view and interact with your site, was another big point. There's no doubt that being aware of how long your page takes to load and improving the reaction times is vital to provide the best experience for those using your site.
   improvements:

@@ -11,7 +11,7 @@ altText:
     stacked on top of each other: Number sign, Octothorpe, Pound, and Hash sign. The
     second answer, octothorpe, is selected and underlined. Below is a large black button
     asking "Is this your final answer?"'
-  - A light blue background with black text. Centered in the screen is the question "In a game of bingo, what number is represented by the name two little ducks?" with four checkboxes, all unchecked, with labels underneath - 77, 20, 22, and 55. Below is a large black button asking "Is this your final answer?" with red text underneath saying "You've got to pick an answer first - no skipping ahead!"
+  - A light red background with black text. Centered in the screen is the question "In a game of bingo, what number is represented by the name two little ducks?" with four checkboxes, all unchecked, with labels underneath - 77, 20, 22, and 55. Below is a large black button asking "Is this your final answer?" with dark red text underneath saying "You've got to pick an answer first - no skipping ahead!"
   - A light green background with the header "You made it" centered in the top. Beneath it shows the users final score of 6 / 10, an encouraging statement, and then starts showing each question with the answer the user picked and the correct answer below.
 description: A small trivia quiz - answer random trivia questions, and see your score
   and the answers at the end! I tried to style it similar to Typeform's style, and

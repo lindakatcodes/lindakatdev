@@ -18,10 +18,17 @@ links:
   demo: http://bit.ly/lktGithubSearch
   site: https://github-search-td.netlify.app
   code: https://github.com/lindakatcodes/thisDot-ghUserSearch
-purpose: some text
-highlight: some text
-challenge: some text
+purpose: This project was for a job application. The goal was to use the GitHub API to search usernames and navigate through the results. A user needed to see pagination and navigate through the returned results, see how many results there were, some pertinent information about each user, and click links that would take you to the appropriate GitHub page. I had free rein to use whatever tools I wanted to create this and the option to use the REST or GraphQL version of the API. I had about three days to put this together. I decided to test out some skills I'd been working on and chose the GraphQL version of the API and a touch of Vue. This project was good practice for exploring a company's schema setup, making quick decisions, and working within a tight timeline.
+highlight: 
+  - Working with the GitHub API was a pretty pleasant experience. I'd recently gone through the front end section of the How to GraphQL tutorial series, and that helped. It was nice to read through the schema of the API and have a decent understanding of how things were connected. The way schema docs are worded can often be confusing at first, so the fact that I could follow how things were connected was a sign of growth.
+  - I'm also pleased that I was able to complete this project at all. Not that long ago, the sound of this would have felt like it would take me weeks to get working. Being able to complete it in such a short amount of time was a great confidence booster!
+challenge: 
+  - Initially, I wanted to stick to plain JavaScript since I didn't feel like it needed to be that complex. However, I ran into some issues with getting the returned data to display on the screen and ended up reaching for Vue to allow me a better way of hooking into the HTML template. Since I've worked with Vue a few times, this gave me the speed I needed to get a viable site working.
 lessons: 
-  intro:
+  intro: Overall this was a fun project and gave me a big boost of confidence in my ability to build quickly. It gave me a chance to work with GraphQL and try out some new tooling (I used Parcel to bundle and preview my files). It also gave me a lesson in switching techniques quickly to be able to complete a task. 
   takeaways:
-  improvements:
+    - Choosing the right tool for a project can be difficult, but it can feel even harder when you're on a deadline. Recovering quickly from that frustration and course-correcting with a tool that worked better was a valuable experience.
+  improvements: 
+    - The biggest thing I'd like to adjust is going back in to refactor and clean up the code. Since I switched to using Vue halfway through, I ended up with one large file, and I know the code wasn't super concise. I want to go back and clean up some of the messier areas, reorganize the functions, and factor out some environment variables that aren't handled as securely as they could be.
+    - I still have some learning to work on when it comes to pagination. Though I have the gist of how it works with GraphQL, there were a few oddities that would be good to work out and understand better.
+    - I'm not super pleased with the overall styling and would like to go back and make some adjustments. It's got the overall feel that I wanted, but there are some fine tunings I'd like to make.
