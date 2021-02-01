@@ -44,6 +44,7 @@
   }
 
   .modal-inner {
+    z-index: 2;
     border-radius: 5px;
     width: 80vw;
     height: 70vh;
@@ -83,5 +84,16 @@
 
   .open .modal-inner {
     transform: translateY(0);
+  }
+
+  @media screen and (max-width: 768px) {
+    .modal-inner {
+      width: 95vw;
+      height: auto;
+    }
+
+    .close-modal {
+      top: -50px;
+    }
   }
 </style>

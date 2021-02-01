@@ -51,11 +51,9 @@
         return require(`@/assets/images/projects/${pic}.png`);
       },
       enlargeImg() {
-        console.log('open modal');
         this.isOpen = 'open';
       },
       shrinkImg() {
-        console.log('close modal');
         this.isOpen = '';
       },
     },

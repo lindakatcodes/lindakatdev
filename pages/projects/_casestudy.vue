@@ -18,6 +18,7 @@
           <p v-for="(tech, index) in techList" :key="index" class="tech-list">{{ tech }}</p>
         </div>
         <p class="data-text link-text">See it in Action:</p>
+        <div class="section-divider"></div>
         <div class="links">
           <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
           <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
@@ -104,8 +105,8 @@
 <style scoped>
   .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 24%));
-    grid-template-rows: repeat(auto-fit, minmax(200px, 30vh));
+    grid-template-columns: repeat(auto-fit, 24%);
+    grid-template-rows: 15%, 45%, 45%, 45%, 45%, 15%;
     grid-template-areas:
       'header header header header'
       'main-img main-img details details'
@@ -113,20 +114,22 @@
       'support-img-2 support-img-2 challenge challenge'
       'lessons lessons lessons lessons'
       '... back-link back-link ...';
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    grid-row-gap: 50px;
     color: var(--lightBasic);
     font-family: var(--sansSerif);
   }
 
   .header {
     grid-area: header;
+    align-self: start;
     display: flex;
     flex-flow: column;
     justify-content: flex-end;
     background-image: linear-gradient(to top, rgba(37, 50, 55, 0.9), rgba(37, 50, 55, 0.7) 35%, rgba(37, 50, 55, 0.6) 40%, transparent 55%),
       var(--lightGradient);
     height: 20vh;
-    margin: 0 -8px;
   }
 
   .title {
@@ -142,100 +145,24 @@
     background: var(--lightGradient);
   }
 
-  .purpose,
+  .details,
   .highlight,
   .challenge,
   .lessons {
-    margin: 1% 3% 0.5%;
-  }
-
-  .purpose {
-    margin-top: 2%;
+    margin: 1% 4%;
   }
 
   .highlight {
     grid-area: highlight;
-    padding: 2% 0;
   }
 
   .challenge {
     grid-area: challenge;
-    padding: 2% 0;
   }
 
   .lessons {
     grid-area: lessons;
-  }
-
-  .section-title {
-    text-decoration: underline solid var(--lightBasic);
-    margin-bottom: 1.5%;
-    font-family: var(--serif);
-    font-size: 1.5rem;
-  }
-
-  .purpose .section-title {
-    color: var(--lightPurple);
-  }
-
-  .highlight .section-title {
-    color: var(--lightYellow);
-  }
-
-  .challenge .section-title {
-    color: var(--lightBlue);
-  }
-
-  .lessons .section-title {
-    color: var(--lightPink);
-  }
-
-  .subsection-title {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 1.5%;
-  }
-
-  p {
-    margin-bottom: 2%;
-  }
-
-  .list {
-    list-style-type: none;
-    padding-left: 3%;
-    margin-bottom: 2%;
-  }
-
-  .list li {
-    text-indent: -2.5%;
-  }
-
-  .list .full-item {
-    margin-bottom: 2%;
-  }
-
-  .list .short-item {
-    margin-bottom: 0.5%;
-  }
-
-  .list li::before {
-    content: '»';
-    margin: 0 0.25rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--lightPurple);
-  }
-
-  .list li:nth-child(2n)::before {
-    color: var(--lightYellow);
-  }
-
-  .list li:nth-child(3n)::before {
-    color: var(--lightBlue);
-  }
-
-  .list li:nth-child(4n)::before {
-    color: var(--lightPink);
+    padding: 0 2%;
   }
 
   .details {
@@ -247,13 +174,14 @@
 
   .data {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 0.1fr 1fr;
     grid-template-rows: 0.5fr 0.5fr;
     grid-template-areas:
-      'tech-text link-text'
-      'tech-names link-names';
+      'tech-text divider link-text'
+      'tech-names divider link-names';
     align-items: center;
     font-family: var(--serif);
+    margin-top: 3%;
   }
 
   .tech,
@@ -261,13 +189,22 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 1% 0 6%;
+  }
+
+  .section-divider {
+    grid-area: divider;
+    justify-self: center;
+    width: 3px;
+    height: 100%;
+    background: var(--lightGradient);
   }
 
   .data-text {
     text-transform: uppercase;
     font-weight: 700;
     text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0;
   }
 
   .tech-text {
@@ -285,6 +222,7 @@
     letter-spacing: 0.75px;
     color: var(--lightPurple);
     margin: 1% 1.75%;
+    font-size: 0.9rem;
   }
 
   .tech-list:nth-child(2n) {
@@ -344,25 +282,99 @@
 
   .main-img {
     grid-area: main-img;
-    align-self: center;
   }
 
   .support-img-1 {
     grid-area: support-img-1;
-    align-self: center;
   }
 
   .support-img-2 {
     grid-area: support-img-2;
-    align-self: center;
   }
 
   .main-img img,
   .support-img-1 img,
   .support-img-2 img {
-    width: 100%;
+    width: 96%;
     height: auto;
     object-fit: contain;
+    margin: 2%;
+    border: 2px inset var(--lightBasic);
+    border-radius: 3px;
+  }
+
+  .section-title {
+    text-decoration: underline solid var(--lightBasic);
+    margin-bottom: 1.5%;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+  }
+
+  .purpose .section-title {
+    color: var(--lightPurple);
+  }
+
+  .highlight .section-title {
+    color: var(--lightYellow);
+  }
+
+  .challenge .section-title {
+    color: var(--lightBlue);
+  }
+
+  .lessons .section-title {
+    color: var(--lightPink);
+  }
+
+  .subsection-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1.5%;
+  }
+
+  p {
+    margin-bottom: 2%;
+    line-height: 1.5;
+    padding: 0 2%;
+  }
+
+  .list {
+    list-style-type: none;
+    padding-left: 3%;
+    margin-bottom: 2%;
+    line-height: 1.5;
+  }
+
+  .list li {
+    text-indent: -2.5%;
+  }
+
+  .list .full-item {
+    margin-bottom: 2%;
+  }
+
+  .list .short-item {
+    margin-bottom: 0.5%;
+  }
+
+  .list li::before {
+    content: '»';
+    margin: 0 0.25rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--lightPurple);
+  }
+
+  .list li:nth-child(2n)::before {
+    color: var(--lightYellow);
+  }
+
+  .list li:nth-child(3n)::before {
+    color: var(--lightBlue);
+  }
+
+  .list li:nth-child(4n)::before {
+    color: var(--lightPink);
   }
 
   .back {
@@ -378,5 +390,121 @@
 
   .back:hover {
     text-decoration: underline double var(--lightPink);
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'header'
+        'details'
+        'main-img'
+        'highlight'
+        'support-img-1'
+        'challenge'
+        'support-img-2'
+        'lessons'
+        'back-link';
+      grid-row-gap: 40px;
+    }
+
+    .lessons {
+      padding: 0;
+    }
+
+    .data {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 0.2fr 1fr 1fr;
+      grid-template-areas:
+        'tech-text'
+        'tech-names'
+        'divider'
+        'link-text'
+        'link-names';
+    }
+
+    .links {
+      align-self: start;
+    }
+
+    .links a {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .section-divider {
+      width: 60%;
+      height: 3px;
+      margin: 2% 0;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 3.5%;
+    }
+
+    .subsection-title {
+      line-height: 1.5;
+      margin-bottom: 3%;
+    }
+
+    p {
+      padding: 0;
+      margin-bottom: 3%;
+    }
+
+    .list {
+      padding-left: 1.5%;
+    }
+
+    .list .full-item,
+    .list .short-item {
+      margin-bottom: 4%;
+    }
+
+    .list li::before {
+      margin: 0 0.5rem 0 0.25rem;
+    }
+
+    .back {
+      font-size: 1.1rem;
+      margin: 1% 0 6%;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'header'
+        'details'
+        'main-img'
+        'highlight'
+        'support-img-1'
+        'challenge'
+        'support-img-2'
+        'lessons'
+        'back-link';
+      grid-row-gap: 40px;
+    }
+  }
+
+  .main-img,
+  .support-img-1,
+  .support-img-2 {
+    justify-self: center;
+    width: 75%;
+  }
+
+  @media screen and (min-width: 1201px) {
+    .container {
+      grid-template-areas:
+        'header header header header'
+        'main-img main-img details details'
+        'highlight highlight support-img-1 support-img-1'
+        'support-img-2 support-img-2 challenge challenge'
+        '... lessons lessons ...'
+        '... back-link back-link ...';
+    }
   }
 </style>
