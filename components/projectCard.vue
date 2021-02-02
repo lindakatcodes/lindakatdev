@@ -225,16 +225,6 @@
       height: 50vw;
     }
 
-    /* .multiPic {
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .multiPic img {
-      width: 85vw;
-    } */
-
     .project-title {
       margin-top: 2%;
       font-size: 1.65rem;
@@ -248,6 +238,7 @@
     .project-description {
       font-size: 0.875rem;
       padding-bottom: 2%;
+      height: auto;
     }
   }
 </style>
