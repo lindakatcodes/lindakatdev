@@ -1,18 +1,23 @@
 <template>
   <article class="project-wrapper">
-    <div class="project-images" :class="{ multiPic: project.multiPicType }">
-      <img v-for="(pic, index) in project.images" :key="index" :src="picUrl(pic)" :alt="project.altText[index]" />
+    <div class="project-images" :class="{ extraPic: project.type === 'extra' }">
+      <img :src="picUrl(project.images[0])" :alt="project.altText" @click="enlargeImg()" />
     </div>
-    <h3 class="project-title">{{ project.name }}</h3>
+    <h3 class="project-title" :class="{ extraTitle: project.type === 'extra' }">{{ project.name }}</h3>
     <div class="project-tech">
       <p v-for="(tech, index) in techList" :key="index" class="tech">{{ tech }}</p>
     </div>
-    <p class="project-description">{{ project.description }}</p>
+    <p v-if="project.type === 'key'" class="project-description">{{ project.description }}</p>
     <div class="project-links">
       <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
-      <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
       <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
+      <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
     </div>
+    <!-- eslint-disable-next-line prettier/prettier -->
+    <nuxt-link v-if="project.type === 'key'" class="cs-link" :to="{ name: `projects-casestudy`, params: { casestudy: nameSlug, projectObj: project } }">
+      View Project Case Study
+    </nuxt-link>
+    <ImgModal :picsrc="picUrl(project.images[0])" :class="[isOpen]" @close-image="shrinkImg()"></ImgModal>
   </article>
 </template>
 
@@ -23,9 +28,17 @@
         type: Object,
       },
     },
+    data() {
+      return {
+        isOpen: '',
+      };
+    },
     computed: {
       techList() {
         return this.project.tech.split(', ');
+      },
+      nameSlug() {
+        return this.project.name.toLowerCase().split(' ').join('-');
       },
     },
     methods: {
@@ -37,6 +50,12 @@
         // eslint-disable-next-line global-require, import/no-dynamic-require
         return require(`@/assets/images/projects/${pic}.png`);
       },
+      enlargeImg() {
+        this.isOpen = 'open';
+      },
+      shrinkImg() {
+        this.isOpen = '';
+      },
     },
   };
 </script>
@@ -45,10 +64,10 @@
   .project-wrapper {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 98%;
-    padding: 1% 1.5%;
+    padding: 1% 1.5% 2%;
     border-radius: 8px;
     box-shadow: none;
     transition: box-shadow 0.3s, border 0.3s;
@@ -60,7 +79,7 @@
 
   .project-images {
     width: 100%;
-    height: 20vw;
+    height: 17vw;
     display: flex;
     justify-content: center;
   }
@@ -73,51 +92,25 @@
     overflow: hidden;
   }
 
-  .multiPic {
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-color: var(--lightBasic) var(--darkBasic);
-    scrollbar-width: thin;
-  }
-
-  .multiPic::-webkit-scrollbar {
-    width: 2px;
-  }
-
-  .multiPic::-webkit-scrollbar-track {
-    background: var(--darkBasic);
-  }
-
-  .multiPic::-webkit-scrollbar-thumb {
-    background-color: var(--lightBasic);
-  }
-
-  .multiPic img {
-    width: 27vw;
-    flex-shrink: 0;
-    transform-origin: center center;
-    transform: scale(1);
-    transition: transform 0.5s;
-    position: relative;
-    margin-left: 0;
-    margin-right: 3%;
-  }
-
-  .multiPic img:nth-last-child() {
-    margin-left: 3%;
-    margin-right: 0;
+  .extraPic {
+    height: 12vw;
   }
 
   .project-title {
     color: var(--lightBasic);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0.5% 0 1.5%;
+  }
+
+  .extraTitle {
+    font-size: 1.15rem;
+    height: 20%;
   }
 
   .project-tech {
     width: 100%;
+    height: 10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -152,6 +145,7 @@
     color: var(--lightBasic);
     font-size: 0.8rem;
     width: 100%;
+    height: 25%;
     font-family: var(--sansSerif);
     line-height: 1.1rem;
   }
@@ -160,15 +154,16 @@
     width: 100%;
     margin: 2% 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
   }
 
   .project-links a {
     text-decoration: none;
     border-radius: 5px;
-    padding: 1% 2%;
-    margin: 0 3%;
+    padding: 1% 2.5%;
+    margin: 3%;
     font-weight: 700;
     color: var(--lightBasic);
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
@@ -183,21 +178,37 @@
     color: var(--darkBasic);
   }
 
-  .live {
+  .code {
     border: 2px solid var(--lightYellow);
   }
 
-  .live:hover {
+  .code:hover {
     background: var(--lightYellow);
     color: var(--darkBasic);
   }
 
-  .code {
+  .live {
     border: 2px solid var(--lightGreen);
   }
 
-  .code:hover {
+  .live:hover {
     background: var(--lightGreen);
+    color: var(--darkBasic);
+  }
+
+  .cs-link {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 1% 2.5%;
+    margin: 1% 0 3%;
+    font-weight: 700;
+    color: var(--lightBasic);
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+    border: 2px solid var(--lightBlue);
+  }
+
+  .cs-link:hover {
+    background: var(--lightBlue);
     color: var(--darkBasic);
   }
 
@@ -207,21 +218,11 @@
       padding: 5% 1.5%;
       border-bottom: 1px solid var(--lightBasic);
       border-radius: 0;
-      margin-top: 7%;
+      margin-top: 3%;
     }
 
     .project-images {
       height: 50vw;
-    }
-
-    .multiPic {
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .multiPic img {
-      width: 85vw;
     }
 
     .project-title {
@@ -237,6 +238,7 @@
     .project-description {
       font-size: 0.875rem;
       padding-bottom: 2%;
+      height: auto;
     }
   }
 </style>
