@@ -1,8 +1,8 @@
 <template>
   <div class="modal" tabindex="0" @keyup.esc="closeModal($event)" @click="handleClick($event)">
     <div class="modal-inner">
-      <img :src="picsrc" />
       <button class="close-modal" @click="closeModal">X</button>
+      <img :src="picsrc" />
     </div>
   </div>
 </template>
@@ -46,8 +46,8 @@
   .modal-inner {
     z-index: 2;
     border-radius: 5px;
-    width: 80vw;
-    height: 60vh;
+    width: 80%;
+    height: 60%;
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;
@@ -72,9 +72,8 @@
     border-radius: 5px;
     width: 40px;
     height: 40px;
-    position: absolute;
-    top: 3px;
-    right: 3px;
+    margin-bottom: 3%;
+    margin-left: 60%;
   }
 
   .open {
@@ -88,12 +87,35 @@
 
   @media screen and (max-width: 768px) {
     .modal-inner {
-      width: 95vw;
+      width: 95%;
       height: auto;
     }
 
     .close-modal {
-      top: -50px;
+      justify-self: end;
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .modal-inner {
+      width: 95%;
+      height: 75%;
+    }
+
+    .close-modal {
+      margin-left: 75%;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .modal-inner {
+      width: 75%;
+      height: 50%;
+    }
+
+    .close-modal {
+      margin-left: 45%;
     }
   }
 </style>
