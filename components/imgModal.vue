@@ -47,7 +47,7 @@
     z-index: 2;
     border-radius: 5px;
     width: 80vw;
-    height: 70vh;
+    height: 60vh;
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;

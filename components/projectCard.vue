@@ -14,7 +14,7 @@
       <a v-if="project.links.site" :href="project.links.site" class="live" target="_blank" rel="noreferrer noopener">Live Site</a>
     </div>
     <!-- eslint-disable-next-line prettier/prettier -->
-    <nuxt-link v-if="project.type === 'key'" class="cs-link" :to="{ name: `projects-casestudy`, params: { casestudy: nameSlug, projectObj: project } }">
+    <nuxt-link v-if="project.type === 'key'" class="cs-link" :to="{ name: `projects-casestudy`, params: { casestudy: project.slug, projectObj: project } }">
       View Project Case Study
     </nuxt-link>
     <ImgModal :picsrc="picUrl(project.images[0])" :class="[isOpen]" @close-image="shrinkImg()"></ImgModal>

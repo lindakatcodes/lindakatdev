@@ -70,9 +70,15 @@
 
 <script>
   export default {
+    async asyncData({ $content, params }) {
+      const projectArr = await $content('projects').where({ slug: params.casestudy }).fetch();
+      const project = projectArr[0];
+      return {
+        project,
+      };
+    },
     data() {
       return {
-        project: this.$route.params.projectObj,
         isOpen0: '',
         isOpen1: '',
         isOpen2: '',
@@ -81,6 +87,9 @@
     computed: {
       techList() {
         return this.project.tech.split(', ');
+      },
+      projectSample() {
+        return { ...this.projectTest[0] };
       },
     },
     methods: {
@@ -516,6 +525,18 @@
         'support-img-2 support-img-2 challenge challenge'
         '... lessons lessons ...'
         '... back-link back-link ...';
+    }
+
+    .data-text {
+      font-size: 1.2rem;
+    }
+
+    .tech-list {
+      font-size: 1rem;
+    }
+
+    .links a {
+      font-size: 1.1rem;
     }
   }
 </style>
