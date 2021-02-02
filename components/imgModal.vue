@@ -46,10 +46,11 @@
   .modal-inner {
     z-index: 2;
     border-radius: 5px;
-    width: 80%;
-    height: 60%;
+    width: 60%;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1fr;
     place-items: center;
     transform: translateY(-100vh);
     transition: all 0.5s;
@@ -73,7 +74,7 @@
     width: 40px;
     height: 40px;
     margin-bottom: 3%;
-    margin-left: 60%;
+    justify-self: end;
   }
 
   .open {
@@ -88,27 +89,16 @@
   @media screen and (max-width: 768px) {
     .modal-inner {
       width: 95%;
-      height: auto;
-    }
-
-    .close-modal {
-      justify-self: end;
-      margin-left: 0;
     }
   }
 
   @media screen and (min-width: 769px) and (max-width: 1200px) {
     .modal-inner {
-      width: 95%;
-      height: 75%;
-    }
-
-    .close-modal {
-      margin-left: 75%;
+      width: 80%;
     }
   }
 
-  @media screen and (min-width: 1600px) {
+  /* @media screen and (min-width: 1700px) {
     .modal-inner {
       width: 75%;
       height: 50%;
@@ -117,5 +107,5 @@
     .close-modal {
       margin-left: 45%;
     }
-  }
+  } */
 </style>
