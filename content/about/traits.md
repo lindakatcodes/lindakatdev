@@ -1,0 +1,9 @@
+---
+title: traits
+---
+
+- **Analytical** - I love organizing and digging into details. I catch proofreading mistakes others miss. I made an app to organize and track my nail polish collection. Tracking orders, solving puzzles, and finding solutions is my JAM.
+- **Empathetic** - It's easy for me to figure out where folks are coming from and what they're looking for. I'm the listening ear for my co-workers, the calm presence in the middle of a storm. While I don't enjoy tense situations (and would honestly like less of them in my life), I can navigate through them and try to help everyone come out stronger and happier on the other side. I want people to feel heard, understood, and seen in any interaction I have with them.
+- **Creative** - I majored in music in college. I love trying to draw (even if most times it looks like a toddler drew it). I take photographs almost everywhere I go. I play card games and do jigsaw puzzles for fun. And playing with the design of the sites I create is one of my favorite parts of development. Any chance I have to use the creative part of my brain is a chance I'll take!
+- **Grit** - The process of learning, applying, working through frustration, and improving is a common theme in my life. We can't avoid road blocks and frustrating situations - but I've learned when to push through, when to take a break, and how to find the answers I need. If I want it bad enough, I will persevere until I get there, no matter how long it takes.
+- **Optimistic Realist** - I always find the bright side of any situation. I believe there's always some bit of good in everything and everyone. But I'm also enough of a realist to know when it's time to let something go or move on. The ability to find good in things and also be aware of the reality of a situation is a tough line to follow, but I couldn't have it any other way.

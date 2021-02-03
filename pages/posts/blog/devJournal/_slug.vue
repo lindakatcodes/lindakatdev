@@ -81,6 +81,49 @@
         },
       };
     },
+    head() {
+      return {
+        title: this.post.title,
+        meta: [
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: this.post.blurb,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: this.post.title,
+          },
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:type',
+            name: 'og:type',
+            property: 'og:type',
+            content: 'article',
+          },
+          {
+            hid: 'og:url',
+            name: 'og:name',
+            property: 'og:url',
+            content: `https://www.lindakat.com${this.post.path}`,
+          },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
+        ],
+      };
+    },
     computed: {
       socialImage() {
         return this.getImageLink();
@@ -152,49 +195,6 @@
         const split = path.slice(1).split('/');
         return split.join('-').concat('-slug');
       },
-    },
-    head() {
-      return {
-        title: this.post.title,
-        meta: [
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            property: 'og:description',
-            content: this.post.blurb,
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            property: 'og:title',
-            content: this.post.title,
-          },
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
-          },
-          {
-            hid: 'og:type',
-            name: 'og:type',
-            property: 'og:type',
-            content: 'article',
-          },
-          {
-            hid: 'og:url',
-            name: 'og:name',
-            property: 'og:url',
-            content: `https://www.lindakat.com${this.post.path}`,
-          },
-          {
-            hid: 'twitter:card',
-            name: 'twitter:card',
-            property: 'twitter:card',
-            content: 'summary_large_image',
-          },
-        ],
-      };
     },
   };
 </script>

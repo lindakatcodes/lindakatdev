@@ -13,39 +13,13 @@
 
   export default {
     layout: 'gardenView',
-    async fetch() {
-      this.playground = await this.$content('playground').sortBy('id', 'desc').fetch();
-    },
     data() {
       return {
         playground: [],
       };
     },
-    computed: {
-      socialImage() {
-        return this.getImageLink();
-      },
-    },
-    methods: {
-      getImageLink() {
-        const imageLink = getShareImage({
-          title: 'LindaKat Plays',
-          tagline: 'Small side projects and guided learning exercises',
-          cloudName: 'lindakatcodes',
-          imagePublicID: 'lkdev/og-image',
-          titleFont: 'Overlock',
-          taglineFont: 'Fira Sans',
-          textColor: 'F3F6F7',
-          textAreaWidth: 850,
-          textLeftOffset: 325,
-          titleBottomOffset: 450,
-          taglineTopOffset: 350,
-          titleFontSize: 94,
-          taglineFontSize: 50,
-          titleExtraConfig: '_bold',
-        });
-        return imageLink;
-      },
+    async fetch() {
+      this.playground = await this.$content('playground').sortBy('id', 'desc').fetch();
     },
     head() {
       return {
@@ -77,6 +51,32 @@
           },
         ],
       };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: 'LindaKat Plays',
+          tagline: 'Small side projects and guided learning exercises',
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Overlock',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 450,
+          taglineTopOffset: 350,
+          titleFontSize: 94,
+          taglineFontSize: 50,
+          titleExtraConfig: '_bold',
+        });
+        return imageLink;
+      },
     },
   };
 </script>

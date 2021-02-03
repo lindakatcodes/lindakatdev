@@ -33,6 +33,12 @@
 
   export default {
     layout: 'gardenView',
+    data() {
+      return {
+        playground: [],
+        noteposts: [],
+      };
+    },
     async fetch() {
       this.playground = await this.$content('playground').where({ featured: true }).sortBy('id', 'desc').fetch();
       this.noteposts = await this.$content('posts/notes')
@@ -40,38 +46,6 @@
         .sortBy('updatedAt', 'desc')
         .limit(5)
         .fetch();
-    },
-    data() {
-      return {
-        playground: [],
-        noteposts: [],
-      };
-    },
-    computed: {
-      socialImage() {
-        return this.getImageLink();
-      },
-    },
-    methods: {
-      getImageLink() {
-        const imageLink = getShareImage({
-          title: 'LindaKat Learns',
-          tagline: 'Side projects, guided examples, course notes, and cheat sheets',
-          cloudName: 'lindakatcodes',
-          imagePublicID: 'lkdev/og-image',
-          titleFont: 'Overlock',
-          taglineFont: 'Fira Sans',
-          textColor: 'F3F6F7',
-          textAreaWidth: 850,
-          textLeftOffset: 325,
-          titleBottomOffset: 450,
-          taglineTopOffset: 350,
-          titleFontSize: 94,
-          taglineFontSize: 50,
-          titleExtraConfig: '_bold',
-        });
-        return imageLink;
-      },
     },
     head() {
       return {
@@ -103,6 +77,32 @@
           },
         ],
       };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: 'LindaKat Learns',
+          tagline: 'Side projects, guided examples, course notes, and cheat sheets',
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Overlock',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 450,
+          taglineTopOffset: 350,
+          titleFontSize: 94,
+          taglineFontSize: 50,
+          titleExtraConfig: '_bold',
+        });
+        return imageLink;
+      },
     },
   };
 </script>
