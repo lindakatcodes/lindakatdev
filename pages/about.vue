@@ -7,22 +7,24 @@
     <img src="~assets/images/profile/me-sm.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
     <section class="info summary">
       <div class="section-details">
+        <tippy to="about-email-copy" content="Click to copy!" multiple></tippy>
+        <tippy to="about-email-copy" content="Email copied!" trigger="click" multiple></tippy>
         <nuxt-content :document="aboutSections.summary"></nuxt-content>
       </div>
     </section>
-    <section class="info traits">
-      <h3 class="section-title">Quality Traits:</h3>
-      <div class="title-divider about-div"></div>
-      <nuxt-content :document="aboutSections.traits"></nuxt-content>
+    <section class="info history">
+      <h3 class="section-title">Career History:</h3>
+      <div class="title-divider sub-divider"></div>
+      <nuxt-content :document="aboutSections.history"></nuxt-content>
     </section>
     <section class="info career">
-      <h3 class="section-title">Career Wants:</h3>
-      <div class="title-divider about-div"></div>
+      <h3 class="section-title">Currently Looking For:</h3>
+      <div class="title-divider sub-divider"></div>
       <nuxt-content :document="aboutSections.career"></nuxt-content>
     </section>
     <section class="info favorites">
-      <h3 class="section-title">Quick Fire Favorites:</h3>
-      <div class="title-divider about-div"></div>
+      <h3 class="section-title">A Few Favorites:</h3>
+      <div class="title-divider sub-divider"></div>
       <nuxt-content :document="aboutSections.favorites"></nuxt-content>
     </section>
     <div class="certificates">
@@ -30,7 +32,11 @@
         <a :href="cert.link" class="cert-link" target="_blank" rel="noreferrer noopener">
           <img :src="picUrl(cert.img)" :alt="cert.altText" class="cert-pic" />
         </a>
-        <figcaption class="cert-caption">{{ cert.class }}</figcaption>
+        <figcaption class="cert-caption">
+          {{ cert.class }}
+          <br />
+          {{ cert.school }}
+        </figcaption>
       </figure>
     </div>
   </main>
@@ -40,6 +46,9 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
+    async fetch() {
+      this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
+    },
     async asyncData({ $content }) {
       const aboutArr = await $content('about').fetch();
       const aboutSections = {};
@@ -54,34 +63,6 @@
     data() {
       return {
         certificates: [],
-      };
-    },
-    async fetch() {
-      this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
-    },
-    head() {
-      return {
-        title: 'LindaKat Devs - About',
-        meta: [
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            property: 'og:title',
-            content: 'LindaKat Devs - About',
-          },
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            property: 'og:description',
-            content: "Everything you want to know about Linda's goals and knowledge",
-          },
-        ],
       };
     },
     computed: {
@@ -113,6 +94,41 @@
         });
         return imageLink;
       },
+      copyAboutEmail() {
+        navigator.clipboard.writeText('hello@lindakat.com').then(
+          () => {
+            console.log('Successfully copied text!');
+          },
+          () => {
+            console.error('Sorry, could not copy text');
+          }
+        );
+      },
+    },
+    head() {
+      return {
+        title: 'LindaKat Devs - About',
+        meta: [
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - About',
+          },
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: "Everything you want to know about Linda's goals and knowledge",
+          },
+        ],
+      };
     },
   };
 </script>
@@ -124,7 +140,7 @@
     grid-template-areas:
       'title title title'
       'image summary summary'
-      'traits career favorites'
+      'history career favorites'
       'certs certs certs';
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -155,7 +171,7 @@
     margin: 0.25% auto 1%;
   }
 
-  .about-div {
+  .sub-divider {
     width: 50%;
     margin-bottom: 2.5%;
   }
@@ -246,8 +262,27 @@
     grid-area: career;
   }
 
-  .traits {
-    grid-area: traits;
+  .history {
+    grid-area: history;
+  }
+
+  .email {
+    color: var(--lightBasic);
+  }
+
+  .email-copy-action {
+    color: var(--lightBasic);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: solid underline var(--lightPurple);
+  }
+
+  .email-copy-action:hover {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: solid underline var(--lightBasic);
   }
 
   .certificates {
@@ -259,15 +294,15 @@
   }
 
   .cert-figure {
-    width: 20vw;
-    height: 33vh;
+    width: 20%;
+    height: auto;
     margin: 1%;
     border: 3px ridge var(--lightPurple);
   }
 
   .cert-pic {
     width: 100%;
-    height: 75%;
+    height: auto;
     object-fit: cover;
     object-position: center center;
     overflow: hidden;
@@ -299,19 +334,18 @@
   }
 
   .cert-caption {
-    /* border: 2px solid white; */
     color: var(--lightBasic);
     font-size: 0.9rem;
     text-transform: uppercase;
     /* font-family: var(--sansSerif); */
     letter-spacing: 0.75px;
     font-weight: 700;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     text-align: center;
-    height: 22%;
-    padding: 0 2%;
+    height: 24%;
+    margin: 2% 1%;
   }
 
   @media screen and (max-width: 1200px) {
@@ -321,12 +355,12 @@
         'image'
         'summary'
         'career'
-        'traits'
+        'history'
         'favorites'
         'certs';
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      gap: 20px 0;
+      gap: 15px 0;
       margin: calc(50px + 2%) 0 0 0;
       width: 100%;
     }
@@ -338,7 +372,7 @@
 
     .photo {
       justify-self: center;
-      margin-bottom: 2%;
+      margin: 2% 0;
     }
   }
 
@@ -352,16 +386,17 @@
       width: 64%;
     }
 
-    .about-div {
+    .sub-divider {
       width: 58%;
     }
 
     .photo {
       width: 90%;
+      margin: 3.5% 0;
     }
 
     .section-title {
-      font-size: 1.75rem;
+      font-size: 1.7rem;
       margin-bottom: 2%;
     }
 
@@ -374,19 +409,8 @@
     }
 
     .cert-figure {
-      width: 44vw;
-      height: 56vw;
+      width: 50%;
       margin: 2%;
-    }
-
-    .cert-pic {
-      height: 63%;
-    }
-
-    .cert-caption {
-      padding: 2% 2%;
-      height: 31%;
-      font-size: 0.7rem;
     }
   }
 
@@ -395,22 +419,19 @@
       width: 44%;
     }
 
+    .sub-divider {
+      width: 30%;
+    }
+
     .photo {
       width: 45%;
     }
+  }
 
+  @media screen and (min-width: 769px) and (max-width: 900px) {
     .cert-figure {
-      width: 28vw;
-      height: 32vw;
-    }
-
-    .cert-pic {
-      height: 63%;
-    }
-
-    .cert-caption {
-      padding: 2% 3%;
-      height: 30%;
+      width: 32%;
+      margin: 2%;
     }
   }
 

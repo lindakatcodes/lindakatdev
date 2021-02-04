@@ -2,11 +2,12 @@
 title: favorites
 ---
 
-- Programming Language - JavaScript
 - JavaScript Library - Vue
 - Code Editor - VS Code
-- Current Editor Theme - Overnight Slumber Italic
+- Current Editor Theme - Panda
+- Dev Communities - Code Cafe Online & Party Corgi
+- Coffee Roast - Medium to Medium Dark
+- Type of Pet - Cats
+- Hobby - Photography & video games
 - Video Game Series - Ratchet & Clank
 - Musician - Matt Nathanson
-- Coffee Roast - Medium Dark
-- Type of Pet - Cats

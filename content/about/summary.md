@@ -2,10 +2,15 @@
 title: summary
 ---
 
-As a customer service sales associate at Cooper’s Copies, a local print shop, I did a little bit of = everything! Besides assisting customers in all forms and working with QuickBooks for invoicing, it all boiled down to taking custom print orders and ensuring they made it all the way through design, production, and finishing, on time and correctly. This helped me build upon the detail tracking and service skills I developed during my previous role at Steinway Hall, a piano sales store. There, I developed my customer service skills & built a complete inventory of our piano stock, that helped resolve discrepancies in the sales records.
+I'm a web developer with a front end focus who loves working with JavaScript and CSS. I'm the kid who bought puzzle books for the logic puzzles, so building the logic and functionality of sites with JavaScript feels natural. I've always thrived in creative roles, and getting to add some finesse to a project with CSS is so much fun. I also value accessibility and responsive design and work hard to keep those at the forefront of my projects.
 
-**With these experiences, I'm looking to put my detail & service skills to use as a front end web developer!**
+Why would you want me on your team?
 
-I shine when I'm creating and problem solving. Taking an idea, bringing it to life, and then watching it go out into the world is the BEST feeling. The process is always messy, but the feeling of working through a problem and overcoming it brings me a lot of joy. I love to investigate the why's and how's of a situation, find the best possible solution, and implement the changes. It's like being a detective - and I always get what I'm after, in some form or another.
+- I'm empathetic and want everyone I work with to feel heard and understood.
+- I'm resilient and determined to a fault when troubleshooting and finding solutions.
+- I'm always looking to learn from others and share what wisdom I have in return.
+- I'm an optimistic realist - I see the bright side in everything but have the experience to know when to let go or take a break.
 
-I also love playing with data and designs! There's so much information in the world, readily accessible to everyone - but most people won't ever find it, because it's buried in technical documents, written in unusual wording, scattered in multiple places, or just plain boring to look through! Being able to gather information into one place, help it make sense, and display it in a way that's easy to interpret and sort through gives me such a sense of accomplishment, and helps others in the process!
+<p class="email">
+Wanna chat? Please reach out at <span name="about-email-copy" class="email-copy-action" @click="copyAboutEmail">hello@lindakat.com</span>.
+</p>
