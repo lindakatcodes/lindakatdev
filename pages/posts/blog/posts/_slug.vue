@@ -13,6 +13,15 @@
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </BackToTop>
+    <div class="prev-next">
+      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
+        ← {{ prev.title }}
+      </nuxt-link>
+      <span v-if="prev && next" class="pn-div"></span>
+      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
+        {{ next.title }} →
+      </nuxt-link>
+    </div>
     <div v-if="haveWms" class="mentions">
       <div class="title-divider"></div>
       <div class="mentions-info">
@@ -36,15 +45,6 @@
         </li>
       </ul>
       <div class="title-divider"></div>
-    </div>
-    <div class="prev-next">
-      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
-        ← {{ prev.title }}
-      </nuxt-link>
-      <span v-if="prev && next" class="pn-div"></span>
-      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
-        {{ next.title }} →
-      </nuxt-link>
     </div>
   </div>
 </template>
