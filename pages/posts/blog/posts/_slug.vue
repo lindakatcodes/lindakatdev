@@ -9,10 +9,6 @@
       </div>
       <nuxt-content :document="post[0]" class="content"></nuxt-content>
     </article>
-    <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
-      <i class="material-icons arrow">arrow_upward</i>Back<br />
-      to Top
-    </BackToTop>
     <div class="prev-next">
       <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
         ← {{ prev.title }}
@@ -44,8 +40,11 @@
           <WmCommentCard :comment="item"></WmCommentCard>
         </li>
       </ul>
-      <div class="title-divider"></div>
     </div>
+    <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
+      <i class="material-icons arrow">arrow_upward</i>Back<br />
+      to Top
+    </BackToTop>
   </div>
 </template>
 
@@ -392,6 +391,7 @@
     grid-template-areas: 'prev div next';
     grid-template-columns: 1fr 0.15fr 1fr;
     gap: 15px;
+    margin-bottom: 3%;
   }
 
   .prev {
