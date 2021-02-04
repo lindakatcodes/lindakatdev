@@ -10,7 +10,3 @@ Why would you want me on your team?
 - I'm resilient and determined to a fault when troubleshooting and finding solutions.
 - I'm always looking to learn from others and share what wisdom I have in return.
 - I'm an optimistic realist - I see the bright side in everything but have the experience to know when to let go or take a break.
-
-<p class="email">
-Wanna chat? Please reach out at <span name="about-email-copy" class="email-copy-action" @click="copyAboutEmail">hello@lindakat.com</span>.
-</p>

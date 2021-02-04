@@ -10,6 +10,9 @@
         <tippy to="about-email-copy" content="Click to copy!" multiple></tippy>
         <tippy to="about-email-copy" content="Email copied!" trigger="click" multiple></tippy>
         <nuxt-content :document="aboutSections.summary"></nuxt-content>
+        <p class="email">
+          Wanna chat? Please reach out at <span name="about-email-copy" class="email-copy-action" @click="copyAboutEmail">hello@lindakat.com</span>.
+        </p>
       </div>
     </section>
     <section class="info history">
