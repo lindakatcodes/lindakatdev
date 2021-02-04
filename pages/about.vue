@@ -46,9 +46,6 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
-    async fetch() {
-      this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
-    },
     async asyncData({ $content }) {
       const aboutArr = await $content('about').fetch();
       const aboutSections = {};
@@ -63,6 +60,34 @@
     data() {
       return {
         certificates: [],
+      };
+    },
+    async fetch() {
+      this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
+    },
+    head() {
+      return {
+        title: 'LindaKat Devs - About',
+        meta: [
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - About',
+          },
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: "Everything you want to know about Linda's goals and knowledge",
+          },
+        ],
       };
     },
     computed: {
@@ -104,31 +129,6 @@
           }
         );
       },
-    },
-    head() {
-      return {
-        title: 'LindaKat Devs - About',
-        meta: [
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            property: 'og:title',
-            content: 'LindaKat Devs - About',
-          },
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            property: 'og:description',
-            content: "Everything you want to know about Linda's goals and knowledge",
-          },
-        ],
-      };
     },
   };
 </script>
@@ -268,6 +268,7 @@
 
   .email {
     color: var(--lightBasic);
+    font-size: 1.05rem;
   }
 
   .email-copy-action {
