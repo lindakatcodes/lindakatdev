@@ -5,7 +5,7 @@
       <div class="title-divider"></div>
     </div>
     <img src="~assets/images/profile/me-sm.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
-    <section class="info summary">
+    <section class="summary">
       <div class="section-details">
         <tippy to="about-email-copy" content="Click to copy!" multiple></tippy>
         <tippy to="about-email-copy" content="Email copied!" trigger="click" multiple></tippy>
@@ -15,33 +15,37 @@
         </p>
       </div>
     </section>
-    <section class="info history">
+    <section class="history">
       <h3 class="section-title">Career History:</h3>
       <div class="title-divider sub-divider"></div>
       <nuxt-content :document="aboutSections.history"></nuxt-content>
     </section>
-    <section class="info career">
+    <section class="career">
       <h3 class="section-title">Currently Looking For:</h3>
       <div class="title-divider sub-divider"></div>
       <nuxt-content :document="aboutSections.career"></nuxt-content>
     </section>
-    <section class="info favorites">
+    <section class="favorites">
       <h3 class="section-title">A Few Favorites:</h3>
       <div class="title-divider sub-divider"></div>
       <nuxt-content :document="aboutSections.favorites"></nuxt-content>
     </section>
-    <div class="certificates">
-      <figure v-for="(cert, index) in certificates" :key="index" class="cert-figure">
-        <a :href="cert.link" class="cert-link" target="_blank" rel="noreferrer noopener">
-          <img :src="picUrl(cert.img)" :alt="cert.altText" class="cert-pic" />
-        </a>
-        <figcaption class="cert-caption">
-          {{ cert.class }}
-          <br />
-          {{ cert.school }}
-        </figcaption>
-      </figure>
-    </div>
+    <section class="certifications">
+      <h3 class="section-title">Certifications</h3>
+      <div class="title-divider sub-divider"></div>
+      <div class="certificates">
+        <figure v-for="(cert, index) in certificates" :key="index" class="cert-figure">
+          <a :href="cert.link" class="cert-link" target="_blank" rel="noreferrer noopener">
+            <img :src="picUrl(cert.img)" :alt="cert.altText" class="cert-pic" />
+          </a>
+          <figcaption class="cert-caption">
+            {{ cert.class }}
+            <br />
+            {{ cert.school }}
+          </figcaption>
+        </figure>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -143,7 +147,7 @@
     grid-template-areas:
       'title title title'
       'image summary summary'
-      'history career favorites'
+      'favorites career history'
       'certs certs certs';
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -169,13 +173,13 @@
 
   .title-divider {
     height: 4px;
-    width: 25%;
+    width: calc(3rem * 7);
     background: var(--lightGradient);
     margin: 0.25% auto 1%;
   }
 
   .sub-divider {
-    width: 50%;
+    width: calc(1.8rem * 8);
     margin-bottom: 2.5%;
   }
 
@@ -289,8 +293,11 @@
     text-decoration: solid underline var(--lightBasic);
   }
 
-  .certificates {
+  .certifications {
     grid-area: certs;
+  }
+
+  .certificates {
     display: flex;
     justify-content: space-around;
     width: 100%;

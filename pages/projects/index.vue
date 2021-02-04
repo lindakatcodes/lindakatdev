@@ -1,12 +1,12 @@
 <template>
   <main class="container">
     <h2 class="title">Key Projects</h2>
-    <p>Click an image for a larger view and more detail about each project!</p>
+    <p>Click an image for a larger view!</p>
     <div class="divider"></div>
     <div class="key-projects-wrapper">
       <ProjectCard v-for="(project, index) in keyProjects" :key="index" :project="project" class="card"></ProjectCard>
     </div>
-    <h3 class="title">Extra Fun Projects</h3>
+    <h3 class="title">Extra Side Projects</h3>
     <div class="divider"></div>
     <div class="extra-projects-wrapper">
       <ProjectCard v-for="(project, index) in extraProjects" :key="index" :project="project" class="card"></ProjectCard>
