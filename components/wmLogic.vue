@@ -4,11 +4,11 @@
     <div class="mentions-info">
       <span v-if="wm.likes !== 0" class="info-show">
         <i class="material-icons wm-icon-fav">favorite</i>
-        <span class="wm-count">{{ wm.likes }} Likes</span>
+        <span class="wm-count">{{ wm.likes }} {{ wm.likes === 1 ? 'Like' : 'Likes' }} </span>
       </span>
       <span v-if="wm.shares !== 0" class="info-show">
         <i class="material-icons wm-icon-rt">repeat</i>
-        <span class="wm-count">{{ wm.shares }} Reposts</span>
+        <span class="wm-count">{{ wm.shares }} {{ wm.shares === 1 ? 'Retweet' : 'Retweets' }}</span>
       </span>
       <span v-if="wm.saves !== 0" class="info-show">
         <i class="material-icons wm-icon-bm">bookmark</i>
@@ -37,27 +37,26 @@
       };
     },
     async fetch() {
-      let mentions = [];
-      const routePath = this.$route.fullPath;
-      console.log(routePath);
-      const postsWithOldPath = ['pbd_20-09_snake-game', 'tut_20-08_nuxt-rss-feed', 'dj_20-10-26'];
-      const oldPaths = ['/blog/pb-snake', '/blog/nuxt-rss-feed', '/blog/z_dj_2020_10_26'];
-      if (postsWithOldPath.includes(this.$route.params.slug)) {
-        console.log('post has older mentions');
-        const postIndex = postsWithOldPath.indexOf(this.$route.params.slug);
-        const oldPath = oldPaths[postIndex];
-        console.log(oldPath);
-        mentions = await fetch(
-          `https://webmention.io/api/mentions.jf2?target[]=https://www.lindakat.com${routePath}/&target[]=https://www.lindakat.com${oldPath}/`
-        )
-          .then((res) => res.json())
-          .then((feed) => feed.children);
-      } else {
-        mentions = await fetch(`https://webmention.io/api/mentions.jf2?target=https://www.lindakat.com${routePath}/`)
-          .then((res) => res.json())
-          .then((feed) => feed.children);
+      if (this.webmentions.length === 0) {
+        let mentions = [];
+        const routePath = this.$route.fullPath;
+        const postsWithOldPath = ['pbd_20-09_snake-game', 'tut_20-08_nuxt-rss-feed', 'dj_20-10-26'];
+        const oldPaths = ['/blog/pb-snake', '/blog/nuxt-rss-feed', '/blog/z_dj_2020_10_26'];
+        if (postsWithOldPath.includes(this.$route.params.slug)) {
+          const postIndex = postsWithOldPath.indexOf(this.$route.params.slug);
+          const oldPath = oldPaths[postIndex];
+          mentions = await fetch(
+            `https://webmention.io/api/mentions.jf2?target[]=https://www.lindakat.com${routePath}/&target[]=https://www.lindakat.com${oldPath}/`
+          )
+            .then((res) => res.json())
+            .then((feed) => feed.children);
+        } else {
+          mentions = await fetch(`https://webmention.io/api/mentions.jf2?target=https://www.lindakat.com${routePath}/`)
+            .then((res) => res.json())
+            .then((feed) => feed.children);
+        }
+        this.webmentions = mentions;
       }
-      this.webmentions = mentions;
     },
     computed: {
       haveWms() {

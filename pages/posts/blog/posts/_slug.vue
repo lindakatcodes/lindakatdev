@@ -316,7 +316,7 @@
   .prev-next {
     padding: 0 2%;
     display: grid;
-    grid-template-areas: 'prev div next';
+    grid-template-areas: 'next div prev';
     grid-template-columns: 1fr 0.15fr 1fr;
     gap: 15px;
     margin-bottom: 5%;
