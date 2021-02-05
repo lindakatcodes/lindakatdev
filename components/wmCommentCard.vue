@@ -6,9 +6,7 @@
         <p>{{ comment.author }} {{ typeOf }} this post:</p>
       </div>
       <div class="comment-text">
-        <i class="material-icons bg-quote bg-quote-left">format_quote</i>
         <p class="text">{{ comment.text }}</p>
-        <i class="material-icons bg-quote bg-quote-right">format_quote</i>
       </div>
     </div>
   </div>
@@ -43,7 +41,6 @@
 <style scoped>
   .comment-wrapper {
     background-image: var(--lightGradient);
-    width: 65%;
     border-radius: 5px;
     margin-bottom: 4%;
   }
@@ -85,25 +82,6 @@
     margin: 0 auto;
   }
 
-  .bg-quote {
-    color: var(--lightYellow);
-    font-size: 5rem;
-    margin-top: -4%;
-    z-index: 1;
-    opacity: 0.2;
-    position: absolute;
-    top: -15px;
-  }
-
-  .bg-quote-left {
-    transform: scaleX(-1);
-    left: -15px;
-  }
-
-  .bg-quote-right {
-    right: -15px;
-  }
-
   @media screen and (max-width: 768px) {
     .comment-wrapper {
       margin: 0 auto 4%;
@@ -116,10 +94,6 @@
 
     .text {
       font-size: 1rem;
-    }
-
-    .bg-quote {
-      font-size: 3.5rem;
     }
   }
 </style>
