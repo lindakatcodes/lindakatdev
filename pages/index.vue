@@ -246,7 +246,7 @@
 
     .intro-subtitle {
       margin-top: 5%;
-      width: 93%;
+      width: 80%;
       font-size: 1.25rem;
     }
 
