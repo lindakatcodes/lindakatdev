@@ -37,26 +37,24 @@
       };
     },
     async fetch() {
-      if (this.webmentions.length === 0) {
-        let mentions = [];
-        const routePath = this.$route.fullPath;
-        const postsWithOldPath = ['pbd_20-09_snake-game', 'tut_20-08_nuxt-rss-feed', 'dj_20-10-26'];
-        const oldPaths = ['/blog/pb-snake', '/blog/nuxt-rss-feed', '/blog/z_dj_2020_10_26'];
-        if (postsWithOldPath.includes(this.$route.params.slug)) {
-          const postIndex = postsWithOldPath.indexOf(this.$route.params.slug);
-          const oldPath = oldPaths[postIndex];
-          mentions = await fetch(
-            `https://webmention.io/api/mentions.jf2?target[]=https://www.lindakat.com${routePath}/&target[]=https://www.lindakat.com${oldPath}/`
-          )
-            .then((res) => res.json())
-            .then((feed) => feed.children);
-        } else {
-          mentions = await fetch(`https://webmention.io/api/mentions.jf2?target=https://www.lindakat.com${routePath}/`)
-            .then((res) => res.json())
-            .then((feed) => feed.children);
-        }
-        this.webmentions = mentions;
+      let mentions = [];
+      const routePath = this.$route.fullPath;
+      const postsWithOldPath = ['pbd_20-09_snake-game', 'tut_20-08_nuxt-rss-feed', 'dj_20-10-26'];
+      const oldPaths = ['/blog/pb-snake', '/blog/nuxt-rss-feed', '/blog/z_dj_2020_10_26'];
+      if (postsWithOldPath.includes(this.$route.params.slug)) {
+        const postIndex = postsWithOldPath.indexOf(this.$route.params.slug);
+        const oldPath = oldPaths[postIndex];
+        mentions = await fetch(
+          `https://webmention.io/api/mentions.jf2?target[]=https://www.lindakat.com${routePath}/&target[]=https://www.lindakat.com${oldPath}/`
+        )
+          .then((res) => res.json())
+          .then((feed) => feed.children);
+      } else {
+        mentions = await fetch(`https://webmention.io/api/mentions.jf2?target=https://www.lindakat.com${routePath}/`)
+          .then((res) => res.json())
+          .then((feed) => feed.children);
       }
+      this.webmentions = new Set(mentions);
     },
     computed: {
       haveWms() {
