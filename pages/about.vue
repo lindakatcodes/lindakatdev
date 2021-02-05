@@ -402,7 +402,7 @@
     }
 
     .photo {
-      width: 90%;
+      width: 70%;
       margin: 3.5% 0;
     }
 
@@ -417,6 +417,10 @@
 
     ul li {
       margin-bottom: 5%;
+    }
+
+    .email {
+      text-align: center;
     }
 
     .cert-figure {
@@ -435,7 +439,7 @@
     }
 
     .photo {
-      width: 45%;
+      width: 35%;
     }
   }
 
