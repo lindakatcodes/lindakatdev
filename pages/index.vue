@@ -3,9 +3,9 @@
     <section class="intro">
       <h1 class="intro-name">Linda Thompson</h1>
       <p class="intro-subtitle">
-        A friendly and analytical web developer
+        A friendly and resilient front-end web developer
         <br />
-        building with design, data, and details in mind
+        building approachable designs for data-driven user experiences
       </p>
       <hr class="intro-divider" />
       <div class="intro-icons">
@@ -45,6 +45,12 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
+    data() {
+      return {
+        projects: [],
+        blogposts: [],
+      };
+    },
     async fetch() {
       this.projects = await this.$content('projects').where({ featured: true }).sortBy('id', 'desc').fetch();
       this.blogposts = await this.$content('posts/blog/posts')
@@ -57,10 +63,16 @@
         .limit(8)
         .fetch();
     },
-    data() {
+    head() {
       return {
-        projects: [],
-        blogposts: [],
+        meta: [
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+        ],
       };
     },
     computed: {
@@ -88,18 +100,6 @@
         });
         return imageLink;
       },
-    },
-    head() {
-      return {
-        meta: [
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
-          },
-        ],
-      };
     },
   };
 </script>

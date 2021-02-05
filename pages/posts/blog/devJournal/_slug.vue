@@ -9,10 +9,15 @@
       </div>
       <nuxt-content :document="post[0]" class="content"></nuxt-content>
     </article>
-    <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
-      <i class="material-icons arrow">arrow_upward</i>Back<br />
-      to Top
-    </BackToTop>
+    <div class="prev-next">
+      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
+        ← {{ prev.title }}
+      </nuxt-link>
+      <span v-if="prev && next" class="pn-div"></span>
+      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
+        {{ next.title }} →
+      </nuxt-link>
+    </div>
     <div v-if="haveWms" class="mentions">
       <div class="title-divider"></div>
       <div class="mentions-info">
@@ -35,17 +40,11 @@
           <WmCommentCard :comment="item"></WmCommentCard>
         </li>
       </ul>
-      <div class="title-divider"></div>
     </div>
-    <div class="prev-next">
-      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
-        ← {{ prev.title }}
-      </nuxt-link>
-      <span v-if="prev && next" class="pn-div"></span>
-      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
-        {{ next.title }} →
-      </nuxt-link>
-    </div>
+    <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
+      <i class="material-icons arrow">arrow_upward</i>Back<br />
+      to Top
+    </BackToTop>
   </div>
 </template>
 
@@ -79,6 +78,49 @@
           commentCount: 0,
           comments: [],
         },
+      };
+    },
+    head() {
+      return {
+        title: this.post.title,
+        meta: [
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: this.post.blurb,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: this.post.title,
+          },
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:type',
+            name: 'og:type',
+            property: 'og:type',
+            content: 'article',
+          },
+          {
+            hid: 'og:url',
+            name: 'og:name',
+            property: 'og:url',
+            content: `https://www.lindakat.com${this.post.path}`,
+          },
+          {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            property: 'twitter:card',
+            content: 'summary_large_image',
+          },
+        ],
       };
     },
     computed: {
@@ -152,49 +194,6 @@
         const split = path.slice(1).split('/');
         return split.join('-').concat('-slug');
       },
-    },
-    head() {
-      return {
-        title: this.post.title,
-        meta: [
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            property: 'og:description',
-            content: this.post.blurb,
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            property: 'og:title',
-            content: this.post.title,
-          },
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
-          },
-          {
-            hid: 'og:type',
-            name: 'og:type',
-            property: 'og:type',
-            content: 'article',
-          },
-          {
-            hid: 'og:url',
-            name: 'og:name',
-            property: 'og:url',
-            content: `https://www.lindakat.com${this.post.path}`,
-          },
-          {
-            hid: 'twitter:card',
-            name: 'twitter:card',
-            property: 'twitter:card',
-            content: 'summary_large_image',
-          },
-        ],
-      };
     },
   };
 </script>
@@ -392,6 +391,7 @@
     grid-template-areas: 'prev div next';
     grid-template-columns: 1fr 0.15fr 1fr;
     gap: 15px;
+    margin-bottom: 3%;
   }
 
   .prev {

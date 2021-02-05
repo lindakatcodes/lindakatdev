@@ -5,142 +5,47 @@
       <div class="title-divider"></div>
     </div>
     <img src="~assets/images/profile/me-sm.jpg" alt="Woman with brown hair, brown eyes, and a winning smile." class="photo" />
-    <section class="info learning">
-      <h3 class="section-title">Currently Learning</h3>
-      <div class="title-divider about-div"></div>
+    <section class="summary">
       <div class="section-details">
-        <ul class="list">
-          <li class="item">
-            Digging into Basics!
-            <p class="item-description">
-              While working through recent projects, I keep coming up against concepts that trip me up and things that haven't fully stuck into my
-              mind yet. So I'm spending some time every day working on basics and reinforcing skills. Right now I'm going through
-              <a href="https://beginnerjavascript.com/" class="link" target="_blank" rel="noreferrer noopener">Wes Bos' beginner JavaScript course</a>
-              for this, and supplimenting when I come across something that intrigues me!
-            </p>
-          </li>
-          <li class="item">
-            Rustlings!
-            <p class="item-description">
-              Recently I've watched and heard some folks talking about getting started with Rust, and it's seemed intriging. A party corgi group just
-              started an adventure club to go through the
-              <a href="https://github.com/rust-lang/rustlings" class="link" target="_blank" rel="noreferrer noopener">rustlings exercises</a>, a set
-              of challenges to start learning Rust. So I'm joining in! It should be really interesting, and I'm excited to learn more about it!
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="info goals">
-      <h3 class="section-title">Professional Goals</h3>
-      <div class="title-divider about-div"></div>
-      <div class="section-details">
-        <p>
-          As a customer service sales associate at Cooper’s Copies, a local print shop, I did a little bit of everything! Besides assisting customers
-          in all forms and working with QuickBooks for invoicing, it all boiled down to taking custom print orders and ensuring they made it all the
-          way through design, production, and finishing, on time and correctly.
-        </p>
-
-        <p>
-          This helped me build upon the detail tracking and service skills I developed during my previous role at Steinway Hall, a piano sales store.
-          There, I developed my customer service skills & built a complete inventory of our piano stock, that helped resolve discrepancies in the
-          sales records.
-        </p>
-
-        <p>
-          <strong>With these experiences, I'm looking to put my detail & service skills to use as a front end web developer!</strong>
-        </p>
-
-        <p>
-          I shine when I'm creating and problem solving. Taking an idea, bringing it to life, and then watching it go out into the world is the BEST
-          feeling. The process is always messy, but the feeling of working through a problem and overcoming it brings me a lot of joy. I love to
-          investigate the why's and how's of a situation, find the best possible solution, and implement the changes. It's like being a detective -
-          and I always get what I'm after, in some form or another.
-        </p>
-
-        <p>
-          I also love playing with data and designs! There's so much information in the world, readily accessible to everyone - but most people won't
-          ever find it, because it's buried in technical documents, written in unusual wording, scattered in multiple places, or just plain boring to
-          look through! Being able to gather information into one place, help it make sense, and display it in a way that's easy to interpret and sort
-          through gives me such a sense of accomplishment, and helps others in the process!
-        </p>
-
-        <p>As for the type of place I'd like to work - I have a few priorities:</p>
-        <ul class="list">
-          <li class="item">
-            An open and communicative office - where everyone is free to ask questions, help each other, and accepts each other as human beings
-          </li>
-          <li class="item">Colorado based, or remote</li>
-          <li class="item">
-            Somewhere I can learn and grow as a developer - mentorship would be amazing, but also being able to pair program with my teammates or
-            listen in to conversations would be amazing. I have a lot of growing to do, and I can't wait!
-          </li>
-          <li class="item">
-            Somewhere that's just plain fun to be! Folks who are friendly, kind, funny, and easy to be around. An environment where stress is left to
-            certain moments and not an overwhelming air that hangs over every day. When problems do arise (it's impossible to avoid entirely), they
-            are handled with respect and care for all involved.
-          </li>
-        </ul>
-
-        <p>
-          I'm not looking to be the best - just continuously better than I am at this moment. And I'm looking for a place where I can do just that!
+        <tippy to="about-email-copy" content="Click to copy!" multiple></tippy>
+        <tippy to="about-email-copy" content="Email copied!" trigger="click" multiple></tippy>
+        <nuxt-content :document="aboutSections.summary"></nuxt-content>
+        <p class="email">
+          Wanna chat? Please reach out at <span name="about-email-copy" class="email-copy-action" @click="copyAboutEmail">hello@lindakat.com</span>.
         </p>
       </div>
     </section>
-    <section class="info benefits">
-      <h3 class="section-title">A Few Key Qualities:</h3>
-      <div class="title-divider about-div"></div>
-      <div class="section-details">
-        <p><strong>Quick Fire Favorites:</strong></p>
-        <ul class="list">
-          <li class="item">Programming Language - JavaScript</li>
-          <li class="item">JavaScript Library - Vue</li>
-          <li class="item">Code Editor - VS Code</li>
-          <li class="item">Current Editor Theme - Overnight Slumber Italic</li>
-          <li class="item">Video Game Series - Ratchet & Clank</li>
-          <li class="item">Musician - Matt Nathanson</li>
-          <li class="item">Coffee Roast - Medium Dark</li>
-          <li class="item">Type of Pet - Cats</li>
-        </ul>
-        <br />
-        <p><strong>Personal Traits:</strong></p>
-        <ul class="list">
-          <li class="item">
-            Analytical - I love organizing and digging into details. I catch proofreading mistakes others miss. I made an app to organize and track my
-            nail polish collection. Tracking orders, solving puzzles, and finding solutions is my JAM.
-          </li>
-          <li class="item">
-            Empathy - It's easy for me to figure out where folks are coming from and what they're looking for. I'm the listening ear for my
-            co-workers, the calm presence in the middle of a storm. While I don't enjoy tense situations (and would honestly like less of them in my
-            life), I can navigate through them and try to help everyone come out stronger and happier on the other side. I want people to feel heard,
-            understood, and seen in any interaction I have with them.
-          </li>
-          <li class="item">
-            Creative - I majored in music in college. I love trying to draw (even if most times it looks like a toddler drew it). I take photographs
-            almost everywhere I go. I play card games and do jigsaw puzzles for fun. And playing with the design of the sites I create is one of my
-            favorite parts of development. Any chance I have to use the creative part of my brain is a chance I'll take!
-          </li>
-          <li class="item">
-            Grit - The process of learning, applying, working through frustration, and improving is a common theme in my life. We can't avoid road
-            blocks and frustrating situations - but I've learned when to push through, when to take a break, and how to find the answers I need. If I
-            want it bad enough, I will persevere until I get there, no matter how long it takes.
-          </li>
-          <li class="item">
-            Optimistic Realist - I always find the bright side of any situation. I believe there's always some bit of good in everything and everyone.
-            But I'm also enough of a realist to know when it's time to let something go or move on. The ability to find good in things and also be
-            aware of the reality of a situation is a tough line to follow, but I couldn't have it any other way.
-          </li>
-        </ul>
+    <section class="history">
+      <h3 class="section-title">Career History:</h3>
+      <div class="title-divider sub-divider"></div>
+      <nuxt-content :document="aboutSections.history"></nuxt-content>
+    </section>
+    <section class="career">
+      <h3 class="section-title">Currently Looking For:</h3>
+      <div class="title-divider sub-divider"></div>
+      <nuxt-content :document="aboutSections.career"></nuxt-content>
+    </section>
+    <section class="favorites">
+      <h3 class="section-title">A Few Favorites:</h3>
+      <div class="title-divider sub-divider"></div>
+      <nuxt-content :document="aboutSections.favorites"></nuxt-content>
+    </section>
+    <section class="certifications">
+      <h3 class="section-title">Certifications</h3>
+      <div class="title-divider sub-divider"></div>
+      <div class="certificates">
+        <figure v-for="(cert, index) in certificates" :key="index" class="cert-figure">
+          <a :href="cert.link" class="cert-link" target="_blank" rel="noreferrer noopener">
+            <img :src="picUrl(cert.img)" :alt="cert.altText" class="cert-pic" />
+          </a>
+          <figcaption class="cert-caption">
+            {{ cert.class }}
+            <br />
+            {{ cert.school }}
+          </figcaption>
+        </figure>
       </div>
     </section>
-    <div class="certificates">
-      <figure v-for="(cert, index) in certificates" :key="index" class="cert-figure">
-        <a :href="cert.link" class="cert-link" target="_blank" rel="noreferrer noopener">
-          <img :src="picUrl(cert.img)" :alt="cert.altText" class="cert-pic" />
-        </a>
-        <figcaption class="cert-caption">{{ cert.class }}</figcaption>
-      </figure>
-    </div>
   </main>
 </template>
 
@@ -148,12 +53,48 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
-    async fetch() {
-      this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
+    async asyncData({ $content }) {
+      const aboutArr = await $content('about').fetch();
+      const aboutSections = {};
+
+      aboutArr.forEach((section) => {
+        aboutSections[section.title] = section;
+      });
+      return {
+        aboutSections,
+      };
     },
     data() {
       return {
         certificates: [],
+      };
+    },
+    async fetch() {
+      this.certificates = await this.$content('certificates').sortBy('completion_id', 'desc').fetch();
+    },
+    head() {
+      return {
+        title: 'LindaKat Devs - About',
+        meta: [
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - About',
+          },
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: "Everything you want to know about Linda's goals and knowledge",
+          },
+        ],
       };
     },
     computed: {
@@ -185,31 +126,16 @@
         });
         return imageLink;
       },
-    },
-    head() {
-      return {
-        title: 'LindaKat Devs - About',
-        meta: [
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
+      copyAboutEmail() {
+        navigator.clipboard.writeText('hello@lindakat.com').then(
+          () => {
+            console.log('Successfully copied text!');
           },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            property: 'og:title',
-            content: 'LindaKat Devs - About',
-          },
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            property: 'og:description',
-            content: "Everything you want to know about Linda's goals and knowledge",
-          },
-        ],
-      };
+          () => {
+            console.error('Sorry, could not copy text');
+          }
+        );
+      },
     },
   };
 </script>
@@ -219,24 +145,23 @@
     position: relative;
     display: grid;
     grid-template-areas:
-      'title title title title'
-      'image learning learning learning'
-      'goals goals benefits benefits'
-      'certs certs certs certs';
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+      'title title title'
+      'image summary summary'
+      'favorites career history'
+      'certs certs certs';
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    gap: 1.25% 2%;
+    gap: 30px;
     justify-content: space-around;
     align-content: center;
     padding: 1% 2%;
-    width: 92%;
+    width: 94%;
     margin: 50px auto 5%;
     /* border: 2px solid purple; */
   }
 
   .page-header {
     grid-area: title;
-    /* border: 2px solid green; */
   }
 
   .page-title {
@@ -248,36 +173,38 @@
 
   .title-divider {
     height: 4px;
-    width: 25%;
+    width: calc(3rem * 7);
     background: var(--lightGradient);
-    margin: 0.25% auto 3%;
+    margin: 0.25% auto 1%;
   }
 
-  .about-div {
-    width: 50%;
+  .sub-divider {
+    width: calc(1.8rem * 8);
+    margin-bottom: 2.5%;
   }
 
   .photo {
     grid-area: image;
-    justify-self: start;
-    align-self: stretch;
-    width: 125%;
+    /* align-self: start; */
+    justify-self: center;
     border-radius: 10%;
     border: 2px solid var(--lightYellow);
+    margin: 5% 0;
+    width: 85%;
     object-fit: cover;
     object-position: right top;
-    margin: 10% 0;
   }
 
   .section-title {
     text-align: center;
     color: var(--lightBasic);
-    font-size: 2.15rem;
+    font-size: 1.8rem;
     font-weight: 900;
   }
 
-  .section-details {
-    padding: 1% 3% 2% 4%;
+  .section-details,
+  .nuxt-content {
+    padding: 1% 2% 2%;
     color: var(--lightBasic);
     font-family: var(--sansSerif);
     line-height: 1.35rem;
@@ -287,40 +214,35 @@
     margin-bottom: 2%;
   }
 
-  .list {
+  ul {
     list-style-type: none;
     padding-left: 3%;
     width: 96%;
   }
 
-  .list li {
+  ul li {
     text-indent: -4.5%;
     margin-bottom: 2%;
   }
 
-  .list li::before {
+  ul li::before {
     content: '»';
-    margin: 0 0.25rem;
+    margin: 0 0.5rem;
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--lightPurple);
   }
 
-  .list li:nth-child(2n)::before {
+  ul li:nth-child(2n)::before {
     color: var(--lightBlue);
   }
 
-  .list li:nth-child(3n)::before {
+  ul li:nth-child(3n)::before {
     color: var(--lightYellow);
   }
 
-  .list li:nth-child(4n)::before {
+  ul li:nth-child(4n)::before {
     color: var(--lightPink);
-  }
-
-  .item-description {
-    margin-left: 1%;
-    text-indent: 0;
   }
 
   .link {
@@ -335,26 +257,47 @@
     text-decoration: solid underline var(--lightBasic);
   }
 
-  .learning {
-    grid-area: learning;
-    padding: 1% 3% 2% 5%;
-    justify-self: end;
-    /* border: 2px solid white; */
+  .summary {
+    grid-area: summary;
   }
 
-  .benefits {
-    grid-area: benefits;
-    /* border: 2px solid red; */
+  .favorites {
+    grid-area: favorites;
   }
 
-  .goals {
-    grid-area: goals;
-    /* border: 2px solid blue; */
+  .career {
+    grid-area: career;
+  }
+
+  .history {
+    grid-area: history;
+  }
+
+  .email {
+    color: var(--lightBasic);
+    font-size: 1.05rem;
+  }
+
+  .email-copy-action {
+    color: var(--lightBasic);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: solid underline var(--lightPurple);
+  }
+
+  .email-copy-action:hover {
+    background: var(--lightGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: solid underline var(--lightBasic);
+  }
+
+  .certifications {
+    grid-area: certs;
   }
 
   .certificates {
-    grid-area: certs;
-    /* border: 2px solid brown; */
     display: flex;
     justify-content: space-around;
     width: 100%;
@@ -362,15 +305,15 @@
   }
 
   .cert-figure {
-    width: 20vw;
-    height: 33vh;
+    width: 20%;
+    height: auto;
     margin: 1%;
     border: 3px ridge var(--lightPurple);
   }
 
   .cert-pic {
     width: 100%;
-    height: 75%;
+    height: auto;
     object-fit: cover;
     object-position: center center;
     overflow: hidden;
@@ -402,19 +345,18 @@
   }
 
   .cert-caption {
-    /* border: 2px solid white; */
     color: var(--lightBasic);
     font-size: 0.9rem;
     text-transform: uppercase;
     /* font-family: var(--sansSerif); */
     letter-spacing: 0.75px;
     font-weight: 700;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     text-align: center;
-    height: 22%;
-    padding: 0 2%;
+    height: 24%;
+    margin: 2% 1%;
   }
 
   @media screen and (max-width: 1200px) {
@@ -422,13 +364,14 @@
       grid-template-areas:
         'title'
         'image'
-        'benefits'
-        'learning'
-        'goals'
+        'summary'
+        'career'
+        'history'
+        'favorites'
         'certs';
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      gap: 0 0.35%;
+      gap: 15px 0;
       margin: calc(50px + 2%) 0 0 0;
       width: 100%;
     }
@@ -440,7 +383,7 @@
 
     .photo {
       justify-self: center;
-      margin-bottom: 2%;
+      margin: 2% 0;
     }
   }
 
@@ -454,16 +397,17 @@
       width: 64%;
     }
 
-    .about-div {
+    .sub-divider {
       width: 58%;
     }
 
     .photo {
-      width: 90%;
+      width: 70%;
+      margin: 3.5% 0;
     }
 
     .section-title {
-      font-size: 1.75rem;
+      font-size: 1.7rem;
       margin-bottom: 2%;
     }
 
@@ -471,28 +415,17 @@
       margin-bottom: 5%;
     }
 
-    .list li {
+    ul li {
       margin-bottom: 5%;
     }
 
-    .item-description {
-      margin: 4% 0 5%;
+    .email {
+      text-align: center;
     }
 
     .cert-figure {
-      width: 44vw;
-      height: 56vw;
+      width: 50%;
       margin: 2%;
-    }
-
-    .cert-pic {
-      height: 63%;
-    }
-
-    .cert-caption {
-      padding: 2% 2%;
-      height: 31%;
-      font-size: 0.7rem;
     }
   }
 
@@ -501,22 +434,19 @@
       width: 44%;
     }
 
+    .sub-divider {
+      width: 30%;
+    }
+
     .photo {
-      width: 45%;
+      width: 35%;
     }
+  }
 
+  @media screen and (min-width: 769px) and (max-width: 900px) {
     .cert-figure {
-      width: 28vw;
-      height: 32vw;
-    }
-
-    .cert-pic {
-      height: 63%;
-    }
-
-    .cert-caption {
-      padding: 2% 3%;
-      height: 30%;
+      width: 32%;
+      margin: 2%;
     }
   }
 

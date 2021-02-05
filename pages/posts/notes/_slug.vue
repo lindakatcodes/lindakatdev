@@ -38,36 +38,6 @@
         links,
       };
     },
-    computed: {
-      socialImage() {
-        return this.getImageLink();
-      },
-      tagLineText() {
-        const tagList = this.post.tags.map((tag) => `#${tag} `);
-        return tagList.join(' ');
-      },
-    },
-    methods: {
-      getImageLink() {
-        const imageLink = getShareImage({
-          title: this.post[0].title,
-          tagline: this.tagLineText,
-          cloudName: 'lindakatcodes',
-          imagePublicID: 'lkdev/og-image',
-          titleFont: 'Overlock',
-          taglineFont: 'Fira Sans',
-          textColor: 'F3F6F7',
-          textAreaWidth: 850,
-          textLeftOffset: 325,
-          titleBottomOffset: 300,
-          taglineTopOffset: 425,
-          titleFontSize: 66,
-          taglineFontSize: 50,
-          titleExtraConfig: '_bold',
-        });
-        return imageLink;
-      },
-    },
     head() {
       return {
         title: this.post.title,
@@ -110,6 +80,36 @@
           },
         ],
       };
+    },
+    computed: {
+      socialImage() {
+        return this.getImageLink();
+      },
+      tagLineText() {
+        const tagList = this.post.tags.map((tag) => `#${tag} `);
+        return tagList.join(' ');
+      },
+    },
+    methods: {
+      getImageLink() {
+        const imageLink = getShareImage({
+          title: this.post[0].title,
+          tagline: this.tagLineText,
+          cloudName: 'lindakatcodes',
+          imagePublicID: 'lkdev/og-image',
+          titleFont: 'Overlock',
+          taglineFont: 'Fira Sans',
+          textColor: 'F3F6F7',
+          textAreaWidth: 850,
+          textLeftOffset: 325,
+          titleBottomOffset: 300,
+          taglineTopOffset: 425,
+          titleFontSize: 66,
+          taglineFontSize: 50,
+          titleExtraConfig: '_bold',
+        });
+        return imageLink;
+      },
     },
   };
 </script>

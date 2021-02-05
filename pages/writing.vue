@@ -12,6 +12,13 @@
   import getShareImage from '@jlengstorf/get-share-image';
 
   export default {
+    data() {
+      return {
+        blogposts: [],
+        tagdata: [],
+        page: 'writing',
+      };
+    },
     async fetch() {
       this.blogposts = await this.$content('posts/blog', { deep: true })
         .only(['title', 'blurb', 'tags', 'slug', 'dir'])
@@ -23,11 +30,29 @@
         .where({ type: { $eq: 'live' } })
         .fetch();
     },
-    data() {
+    head() {
       return {
-        blogposts: [],
-        tagdata: [],
-        page: 'writing',
+        title: 'LindaKat Devs - Writing',
+        meta: [
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            property: 'og:image',
+            content: this.socialImage,
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            property: 'og:title',
+            content: 'LindaKat Devs - Writing',
+          },
+          {
+            hid: 'og:description',
+            name: 'og:description',
+            property: 'og:description',
+            content: 'Tech blog posts - sharing, learning, & having fun in public',
+          },
+        ],
       };
     },
     computed: {
@@ -55,31 +80,6 @@
         });
         return imageLink;
       },
-    },
-    head() {
-      return {
-        title: 'LindaKat Devs - Writing',
-        meta: [
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            property: 'og:image',
-            content: this.socialImage,
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            property: 'og:title',
-            content: 'LindaKat Devs - Writing',
-          },
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            property: 'og:description',
-            content: 'Tech blog posts - sharing, learning, & having fun in public',
-          },
-        ],
-      };
     },
   };
 </script>
