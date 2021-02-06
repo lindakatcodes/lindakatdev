@@ -15,7 +15,7 @@
         <span class="wm-count">{{ wm.saves }} Saved</span>
       </span>
     </div>
-    <div class="mentions-comments">
+    <div v-if="wm.comments.length" class="mentions-comments">
       <div v-for="(item, index) in wm.comments" :key="index" class="comment-holder">
         <WmCommentCard :comment="item"></WmCommentCard>
       </div>
@@ -54,8 +54,9 @@
           .then((res) => res.json())
           .then((feed) => feed.children);
       }
-      this.webmentions = new Set(mentions);
+      this.webmentions = mentions;
     },
+    fetchOnServer: false,
     computed: {
       haveWms() {
         return this.checkWbStatus();
@@ -63,7 +64,8 @@
     },
     methods: {
       setMentions() {
-        this.webmentions.forEach((mention) => {
+        const cleanMentions = new Set(this.webmentions);
+        cleanMentions.forEach((mention) => {
           switch (mention['wm-property']) {
             case 'like-of':
               this.wm.likes += 1;
