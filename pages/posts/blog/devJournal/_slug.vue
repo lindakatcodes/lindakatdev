@@ -10,37 +10,16 @@
       <nuxt-content :document="post[0]" class="content"></nuxt-content>
     </article>
     <div class="prev-next">
-      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
-        ← {{ prev.title }}
+      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
+        ← {{ next.title }}
       </nuxt-link>
       <span v-if="prev && next" class="pn-div"></span>
-      <nuxt-link v-if="next" :to="{ name: postPath(next.dir), params: { slug: next.slug, path: next.path } }" class="navigate next">
-        {{ next.title }} →
+      <nuxt-link v-if="prev" :to="{ name: postPath(prev.dir), params: { slug: prev.slug, path: prev.path } }" class="navigate prev">
+        {{ prev.title }} →
       </nuxt-link>
     </div>
-    <div v-if="haveWms" class="mentions">
-      <div class="title-divider"></div>
-      <div class="mentions-info">
-        <h2 class="mentions-title">Webmentions</h2>
-        <span v-if="wm.likes !== 0" class="info-show">
-          <i class="material-icons wm-icon-fav">favorite</i>
-          <span class="wm-count">{{ wm.likes }}</span>
-        </span>
-        <span v-if="wm.shares !== 0" class="info-show">
-          <i class="material-icons wm-icon-rt">repeat</i>
-          <span class="wm-count">{{ wm.shares }}</span>
-        </span>
-        <span v-if="wm.commentCount !== 0" class="info-show">
-          <i class="material-icons wm-icon-com">chat_bubble</i>
-          <span class="wm-count">{{ wm.commentCount }}</span>
-        </span>
-      </div>
-      <ul class="mentions-comments">
-        <li v-for="(item, index) in wm.comments" :key="index">
-          <WmCommentCard :comment="item"></WmCommentCard>
-        </li>
-      </ul>
-    </div>
+    <div class="title-divider"></div>
+    <WmLogic></WmLogic>
     <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
@@ -60,25 +39,14 @@
         .sortBy('createdAt', 'asc')
         .surround(params.slug)
         .fetch();
-      const webmentions = await fetch('https://webmention.io/api/mentions.jf2?domain=www.lindakat.com&token=J4E1QXsqcA2rdArwtUgh5Q')
-        .then((res) => res.json())
-        .then((feed) => feed.children);
       return {
         post,
         prev,
         next,
-        webmentions,
       };
     },
     data() {
-      return {
-        wm: {
-          likes: 0,
-          shares: 0,
-          commentCount: 0,
-          comments: [],
-        },
-      };
+      return {};
     },
     head() {
       return {
@@ -131,12 +99,6 @@
         const tagList = this.post[0].tags.map((tag) => `#${tag} `);
         return tagList.join(' ');
       },
-      haveWms() {
-        return this.checkWbStatus();
-      },
-    },
-    created() {
-      this.setMentions();
     },
     methods: {
       getImageLink() {
@@ -157,38 +119,6 @@
           titleExtraConfig: '_bold',
         });
         return imageLink;
-      },
-      setMentions() {
-        this.webmentions.forEach((mention) => {
-          const wmPath = mention['wm-target'].toLowerCase();
-          const routePath = this.$route.fullPath.toLowerCase();
-          if (mention.author.url !== 'https://twitter.com/lindakatcodes') {
-            if (wmPath === `https://www.lindakat.com${routePath}/`) {
-              if (mention['wm-property'] === 'like-of') {
-                this.wm.likes += 1;
-              }
-              if (mention['wm-property'] === 'mention-of') {
-                this.wm.shares += 1;
-              }
-              if (mention.content) {
-                this.wm.commentCount += 1;
-                const comment = {
-                  author: mention.author.name,
-                  img: mention.author.photo,
-                  text: mention.content.text,
-                  type: mention['wm-property'],
-                };
-                this.wm.comments.push(comment);
-              }
-            }
-          }
-        });
-      },
-      checkWbStatus() {
-        if (this.wm.likes === 0 && this.wm.shares === 0 && this.wm.commentCount === 0) {
-          return false;
-        }
-        return true;
       },
       postPath(path) {
         const split = path.slice(1).split('/');
@@ -388,10 +318,10 @@
   .prev-next {
     padding: 0 2%;
     display: grid;
-    grid-template-areas: 'prev div next';
+    grid-template-areas: 'next div prev';
     grid-template-columns: 1fr 0.15fr 1fr;
     gap: 15px;
-    margin-bottom: 3%;
+    margin-bottom: 5%;
   }
 
   .prev {
@@ -416,51 +346,7 @@
     height: 4px;
     width: 100%;
     background: var(--lightGradient);
-    margin: 0 auto 2%;
-  }
-
-  .wm-icon-fav {
-    color: var(--lightPink);
-  }
-
-  .wm-icon-rt {
-    color: var(--lightBlue);
-  }
-
-  .wm-icon-com {
-    color: var(--lightGreen);
-  }
-
-  .mentions-info {
-    display: flex;
-    width: 90%;
-    margin: 0 auto 3%;
-  }
-
-  .mentions-title {
-    color: var(--lightBasic);
-    width: 50%;
-    font-size: 2rem;
-    padding-bottom: 1%;
-    margin-right: 6%;
-  }
-
-  .info-show {
-    display: flex;
-    align-items: center;
-    width: 10%;
-    margin-right: 2%;
-  }
-
-  .wm-count {
-    color: var(--lightBasic);
-    font-size: 1.2rem;
-    padding-left: 10%;
-  }
-
-  .mentions-comments {
-    list-style: none;
-    padding-left: 4%;
+    margin: 0 auto 4%;
   }
 
   .scrollUp {
@@ -550,31 +436,6 @@
 
     .post-image img {
       max-width: 65%;
-    }
-
-    .mentions-info {
-      width: 100%;
-    }
-
-    .mentions-title {
-      width: 55%;
-      font-size: 1.3rem;
-    }
-
-    .info-show {
-      width: 15%;
-    }
-
-    .material-icons {
-      font-size: 20px;
-    }
-
-    .wm-count {
-      font-size: 1.1rem;
-    }
-
-    .mentions-comments {
-      padding-left: 0;
     }
 
     .scrollUp {

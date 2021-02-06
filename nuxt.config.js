@@ -149,5 +149,6 @@ export default {
   build: {},
   generate: {
     fallback: true,
+    devtools: true,
   },
 };
