@@ -1,3 +1,5 @@
+import { Integrations } from '@sentry/tracing';
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -144,12 +146,14 @@ export default {
     use: ['markdown-it-div', 'markdown-it-attrs'],
   },
   sentry: {
-    dsn: 'https://d74a3529f84f48a8a4239f0368c5c7b2@o530948.ingest.sentry.io/5650998', 
+    dsn: 'https://d74a3529f84f48a8a4239f0368c5c7b2@o530948.ingest.sentry.io/5650998',
     config: {
       integrations: [new Integrations.BrowserTracing()],
-      tracesSampleRate: 1.0,
+      tracing: {
+        tracesSampleRate: 1.0,
+      },
     },
-  }
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
