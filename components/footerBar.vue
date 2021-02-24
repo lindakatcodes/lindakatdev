@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  this.$sentry.captureException(new Error('example'));
+  // this.$sentry.captureException(new Error('example'));
 
   export default {
     methods: {
