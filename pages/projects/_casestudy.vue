@@ -135,21 +135,21 @@
     align-self: start;
     display: flex;
     flex-flow: column;
-    justify-content: flex-end;
-    background-image: linear-gradient(to top, rgba(37, 50, 55, 0.9), rgba(37, 50, 55, 0.7) 40%, rgba(37, 50, 55, 0.6) 45%, transparent 55%),
-      var(--lightGradient);
-    height: 20vh;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
   }
 
   .title {
+    margin-top: 2%;
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 3rem;
     padding-bottom: 0.5%;
     font-family: var(--serif);
   }
 
   .underline {
-    width: 100%;
+    width: 40%;
     height: 5px;
     background: var(--lightGradient);
   }
@@ -424,8 +424,12 @@
       grid-row-gap: 40px;
     }
 
-    .header {
-      background-image: none;
+    .title {
+      font-size: 2.3rem;
+    }
+
+    .underline {
+      width: 70%;
     }
 
     .lessons {
