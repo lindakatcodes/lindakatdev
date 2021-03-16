@@ -34,7 +34,7 @@
         </a>
 
         <!-- eslint-disable-next-line prettier/prettier -->
-        <a href="https://drive.google.com/file/d/1VPrD-VNHA-gQZOnvadOtQITEZ4ggD8kb" rel="noreferrer noopener" target="_blank" tooltip="resume" class="res">
+        <a href="https://drive.google.com/file/d/1V7ypnulk-pDooBEf-GINj5jkzs0HNuxQ/" rel="noreferrer noopener" target="_blank" tooltip="resume" class="res">
           <figure>
             <img src="~assets/icons/google-drive.svg" alt="Google Drive icon" class="res-icon" />
             <figcaption class="caption">Resume</figcaption>
