@@ -6,11 +6,6 @@
     <div class="key-projects-wrapper">
       <ProjectCard v-for="(project, index) in keyProjects" :key="index" :project="project" class="card"></ProjectCard>
     </div>
-    <h3 class="title">Extra Side Projects</h3>
-    <div class="divider"></div>
-    <div class="extra-projects-wrapper">
-      <ProjectCard v-for="(project, index) in extraProjects" :key="index" :project="project" class="card"></ProjectCard>
-    </div>
   </main>
 </template>
 
@@ -21,18 +16,12 @@
     data() {
       return {
         keyProjects: [],
-        extraProjects: [],
       };
     },
     async fetch() {
       this.keyProjects = await this.$content('projects')
         .where({ type: { $eq: 'key' } })
         .sortBy('featured', 'desc')
-        .sortBy('id', 'desc')
-        .fetch();
-
-      this.extraProjects = await this.$content('projects')
-        .where({ type: { $eq: 'extra' } })
         .sortBy('id', 'desc')
         .fetch();
     },

@@ -1,13 +1,13 @@
 <template>
   <article class="project-wrapper">
-    <div class="project-images" :class="{ extraPic: project.type === 'extra' }">
+    <div class="project-images">
       <img :src="picUrl(project.images[0])" :alt="project.altText" @click="enlargeImg()" />
     </div>
-    <h3 class="project-title" :class="{ extraTitle: project.type === 'extra' }">{{ project.name }}</h3>
+    <h3 class="project-title">{{ project.name }}</h3>
     <div class="project-tech">
       <p v-for="(tech, index) in techList" :key="index" class="tech">{{ tech }}</p>
     </div>
-    <p v-if="project.type === 'key'" class="project-description">{{ project.description }}</p>
+    <p class="project-description">{{ project.description }}</p>
     <div class="project-links">
       <a v-if="project.links.demo" :href="project.links.demo" class="demo" target="_blank" rel="noreferrer noopener">Demo</a>
       <a v-if="project.links.code" :href="project.links.code" class="code" target="_blank" rel="noreferrer noopener">Code</a>
@@ -92,20 +92,11 @@
     overflow: hidden;
   }
 
-  .extraPic {
-    height: 12vw;
-  }
-
   .project-title {
     color: var(--lightBasic);
     font-size: 1.4rem;
     text-align: center;
-    margin: 0.5% 0 1.5%;
-  }
-
-  .extraTitle {
-    font-size: 1.15rem;
-    height: 20%;
+    margin: 0.75% 0 1.5%;
   }
 
   .project-tech {

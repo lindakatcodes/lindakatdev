@@ -1,0 +1,18 @@
+{
+  "name": "Product Landing Page",
+  "id": 1,
+  "images": [
+    "productLanding"
+  ],
+  "altText": [
+    "A page talking about Cookie Cat, showing a list of items describing him, with a picture of a cat in a space helmet next to a sign up for more info form underneath. The background is a cream to pink gradient."
+  ],
+  "description": "",
+  "tech": "HTML, CSS, JS",
+  "featured": false,
+  "links": {
+    "demo": "",
+    "site": "",
+    "code": "https://codepen.io/lindakatcodes/pen/GRNGXeB"
+  }
+}

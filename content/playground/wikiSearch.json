@@ -1,6 +1,6 @@
 {
   "name": "Wikipedia Search",
-  "id": 1,
+  "id": 2,
   "images": [
     "wikiViewer"
   ],
@@ -9,9 +9,7 @@
   ],
   "description": "Search Wikipedia for any category, and see matching search results that link to the articles. Can also get a random article to view. This was one of the first Free Code Camp projects I did that utilized API data.",
   "tech": "HTML, CSS, JS, jQuery",
-  "multiPicType": false,
   "featured": false,
-  "type": "extra",
   "links": {
     "demo": "",
     "site": "",
