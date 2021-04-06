@@ -19,7 +19,7 @@
       <h2 class="section-title">Recent Notes</h2>
       <div class="title-divider"></div>
       <div class="writing-block">
-        <PostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post" :route-name="routeName"></PostBlurb>
+        <PostBlurb v-for="(post, index) in noteposts" :key="index" :post-blurb="post"></PostBlurb>
       </div>
       <div class="section-link-to-all">
         <nuxt-link to="/garden/seedlings">See All Notes</nuxt-link>

@@ -6,6 +6,7 @@
 
 <script>
   export default {
+    layout: 'gardenView',
     props: {
       noteposts: {
         type: Array,

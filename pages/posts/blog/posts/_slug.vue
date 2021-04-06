@@ -24,6 +24,7 @@
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </BackToTop>
+    <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
   </div>
 </template>
 

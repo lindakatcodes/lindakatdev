@@ -22,6 +22,7 @@
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </BackToTop>
+    <nuxt-link to="/garden/seedlings" class="navigate">← Back to the Note Garden</nuxt-link>
   </div>
 </template>
 
@@ -93,7 +94,7 @@
     methods: {
       getImageLink() {
         const imageLink = getShareImage({
-          title: this.post[0].title,
+          title: this.post.title,
           tagline: this.tagLineText,
           cloudName: 'lindakatcodes',
           imagePublicID: 'lkdev/og-image',
