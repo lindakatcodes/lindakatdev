@@ -8,6 +8,7 @@
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
       <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link to="/garden" class="link garden-link"><GardenIcon /></nuxt-link>
     </nav>
     <nav v-else class="nav">
       <nuxt-link to="/garden" class="home-link link">
@@ -45,7 +46,7 @@
   .navigation-container {
     position: sticky;
     top: 0;
-    height: 50px;
+    height: 60px;
     width: 100%;
     z-index: 1;
   }
@@ -106,6 +107,10 @@
   .about-link:focus {
     border-bottom-color: var(--lightYellow);
     color: var(--lightYellow);
+  }
+
+  .garden-link {
+    height: 10%;
   }
 
   @media screen and (max-width: 768px) {
