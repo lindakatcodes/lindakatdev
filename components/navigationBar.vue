@@ -11,12 +11,11 @@
       <nuxt-link to="/garden" class="link garden-link"><GardenIcon /></nuxt-link>
     </nav>
     <nav v-else class="nav">
-      <nuxt-link to="/garden" class="home-link link">
-        <img :srcset="srcset" :sizes="sizes" class="home-icon" alt="The letters LT crossed over each other in rainbow colors" />
-      </nuxt-link>
+      <nuxt-link to="/garden" class="link garden-link"><GardenIcon /></nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
       <nuxt-link to="/garden/playground" class="link projects-link">PLAYGROUND</nuxt-link>
       <nuxt-link to="/garden/seedlings" class="link writing-link">NOTES</nuxt-link>
+      <nuxt-link to="/" class="link home-link-2"><img src="/logo48.png" /></nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>
@@ -89,6 +88,11 @@
     top: 18px;
     margin-left: 1%;
     border-bottom: none;
+  }
+
+  .home-link-2 {
+    position: relative;
+    top: 5px;
   }
 
   .projects-link:hover,
