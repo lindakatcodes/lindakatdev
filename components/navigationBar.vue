@@ -8,14 +8,14 @@
       <nuxt-link to="/projects" class="link projects-link">PROJECTS</nuxt-link>
       <nuxt-link to="/writing" class="link writing-link">WRITING</nuxt-link>
       <nuxt-link to="/about" class="link about-link">ABOUT</nuxt-link>
+      <nuxt-link to="/garden" class="link garden-link"><GardenIcon /></nuxt-link>
     </nav>
     <nav v-else class="nav">
-      <nuxt-link to="/garden" class="home-link link">
-        <img :srcset="srcset" :sizes="sizes" class="home-icon" alt="The letters LT crossed over each other in rainbow colors" />
-      </nuxt-link>
+      <nuxt-link to="/garden" class="link garden-link"><GardenIcon /></nuxt-link>
       <span v-if="largeScreen" class="divider"></span>
       <nuxt-link to="/garden/playground" class="link projects-link">PLAYGROUND</nuxt-link>
       <nuxt-link to="/garden/seedlings" class="link writing-link">NOTES</nuxt-link>
+      <nuxt-link to="/" class="link home-link-2"><img src="/logo48.png" /></nuxt-link>
     </nav>
     <div class="underline"></div>
   </div>
@@ -45,7 +45,7 @@
   .navigation-container {
     position: sticky;
     top: 0;
-    height: 50px;
+    height: 60px;
     width: 100%;
     z-index: 1;
   }
@@ -90,6 +90,11 @@
     border-bottom: none;
   }
 
+  .home-link-2 {
+    position: relative;
+    top: 5px;
+  }
+
   .projects-link:hover,
   .projects-link:focus {
     border-bottom-color: var(--lightPurple);
@@ -106,6 +111,10 @@
   .about-link:focus {
     border-bottom-color: var(--lightYellow);
     color: var(--lightYellow);
+  }
+
+  .garden-link {
+    height: 10%;
   }
 
   @media screen and (max-width: 768px) {
