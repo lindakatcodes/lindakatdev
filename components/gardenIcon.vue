@@ -4,10 +4,10 @@
       <div class="pot-base"></div>
     </div>
     <div class="stem">
-      <div class="petal-1">
+      <div class="petal-right">
         <div class="vein-right"></div>
       </div>
-      <div class="petal-2">
+      <div class="petal-left">
         <div class="vein-left"></div>
       </div>
       <!-- <div class="petal-3">
@@ -28,13 +28,13 @@
 </script>
 
 <style scoped>
-  .plant {
-    /* position: relative; */
-    /* top: 20%; */
-    /* margin: 0 auto; */
-    /* width: 15%; */
-    /* height: 60%; */
-  }
+  /* .plant {
+    position: relative;
+    top: 20%;
+    margin: 0 auto;
+    width: 15%;
+    height: 60%;
+  } */
 
   .pot {
     background: var(--lightPurple);
@@ -69,19 +69,19 @@
     z-index: 1;
   }
 
-  .petal-1 {
+  .petal-right {
     background: var(--lightGreen);
     position: absolute;
     top: 2px;
-    left: 9px;
+    left: 6px;
     width: 11px;
-    height: 15px;
+    height: 14px;
     border-radius: 65% 0 70% 10%;
     transform-origin: top right;
     transform: rotate(20deg);
   }
 
-  .petal-2 {
+  .petal-left {
     background: var(--lightGreen);
     position: absolute;
     top: 13px;
@@ -93,7 +93,7 @@
     transform: rotate(85deg);
   }
 
-  .petal-3 {
+  /* .petal-3 {
     background: var(--lightGreen);
     position: absolute;
     top: 45px;
@@ -127,29 +127,29 @@
     border-radius: 65% 0 70% 10%;
     transform-origin: top right;
     transform: rotate(20deg);
-  }
+  } */
 
   .vein-right {
     background: var(--darkGreen);
     position: absolute;
-    top: 35%;
-    right: 30%;
+    top: 30%;
+    right: 25%;
     width: 1px;
-    height: 10px;
+    height: 9px;
     border-radius: 10%;
     transform-origin: top right;
-    transform: rotate(40deg);
+    transform: rotate(35deg);
   }
 
   .vein-left {
     background: var(--darkGreen);
     position: absolute;
-    top: 22%;
-    right: 29%;
+    top: 16%;
+    right: 28%;
     width: 1px;
     height: 10px;
     border-radius: 10%;
     transform-origin: top right;
-    transform: rotate(30deg);
+    transform: rotate(29deg);
   }
 </style>

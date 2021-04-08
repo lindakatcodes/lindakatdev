@@ -18,13 +18,13 @@
         {{ prev.title }} →
       </nuxt-link>
     </div>
+    <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
     <div class="title-divider"></div>
     <WmLogic></WmLogic>
     <BackToTop visibleoffset="950" bottom="25px" class="scrollUp">
       <i class="material-icons arrow">arrow_upward</i>Back<br />
       to Top
     </BackToTop>
-    <nuxt-link to="/writing" class="navigate">← Back to All Posts</nuxt-link>
   </div>
 </template>
 
@@ -345,7 +345,7 @@
     height: 4px;
     width: 100%;
     background: var(--lightGradient);
-    margin: 0 auto 4%;
+    margin: 2% auto 4%;
   }
 
   .scrollUp {

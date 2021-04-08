@@ -123,7 +123,7 @@
     }
 
     .link {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       margin: 1.5% 0.75%;
     }
   }
