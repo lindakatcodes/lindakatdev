@@ -1,8 +1,9 @@
 :root {
   --serif: 'Overlock', serif;
   --sansSerif: 'Fira Sans', sans-serif;
-  --darkBasic: #253237;
+  --darkBasic: #323334;
   --darkBasicOpacity: rgba(37, 50, 55, 0.7);
+  --superDarkBasic: #292a2b;
   --lightBasic: #F3F6F7;
   --lightBasicOpacity: rgba(243, 246, 247, 0.7);
   --lightPurple: #D3A9EA;
@@ -10,13 +11,13 @@
   --lightYellow: #F9F5AD;
   --lightPink: #EAA9B6;
   --lightGreen: #9DE59A;
-  --darkPurple: #632B82;
+  --lightGradient: linear-gradient(62.28deg, var(--lightPurple) 0%, var(--lightBlue) 33.44%, var(--lightYellow) 68.33%, var(--lightPink) 100%);
+  /* --darkPurple: #632B82;
   --darkBlue: #2B7582;
   --darkYellow: #F8E218;
   --darkPink: #BE3C57;
   --darkGreen: #277623;
-  --lightGradient: linear-gradient(62.28deg, var(--lightPurple) 0%, var(--lightBlue) 33.44%, var(--lightYellow) 68.33%, var(--lightPink) 100%);
-  --darkGradient: linear-gradient(62.28deg, var(--darkPurple) 0%, var(--darkBlue) 33.44%, var(--darkYellow) 68.33%, var(--darkPink) 100%);  
+  --darkGradient: linear-gradient(62.28deg, var(--darkPurple) 0%, var(--darkBlue) 33.44%, var(--darkYellow) 68.33%, var(--darkPink) 100%);   */
 }
 
 .tippy-tooltip {

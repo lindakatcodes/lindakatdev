@@ -299,7 +299,7 @@
   }
 
   .content blockquote p {
-    background-color: #212c31;
+    background-color: var(--superDarkBasic);
     padding: 2% 1% 2% 3%;
     font-size: 1.2rem;
     font-weight: bold;
