@@ -241,16 +241,16 @@
   }
 
   .content hr {
-    width: 60%;
+    width: 75%;
     height: 4px;
     border: 0;
     background: var(--lightGradient);
-    margin: 2.5% auto;
+    margin: 5.5% auto;
   }
 
   .content p,
   .content li:last-child {
-    margin-bottom: 1.75%;
+    margin-bottom: 2.5%;
     z-index: 1;
   }
 
@@ -260,7 +260,7 @@
   .content h4,
   .content h5,
   .content h6 {
-    margin-bottom: 2%;
+    margin: 4% 0;
     font-family: var(--serif);
   }
 
@@ -295,7 +295,7 @@
   }
 
   .content strong {
-    color: var(--lightBlue);
+    color: var(--lightPurple);
     font-size: 1.05rem;
   }
 
@@ -317,7 +317,7 @@
   }
 
   .content p code {
-    color: var(--lightPurple);
+    color: var(--lightBlue);
     overflow-wrap: break-word;
   }
 
