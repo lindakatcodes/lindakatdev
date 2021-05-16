@@ -21,8 +21,11 @@
       };
     },
     async fetch() {
-      this.noteposts = await this.$content('posts/notes').only(['title', 'blurb', 'tags', 'slug', 'dir']).sortBy('updatedAt', 'desc').fetch();
-      this.tagdata = await this.$content('posts/notes').only(['tags']).fetch();
+      this.noteposts = await this.$content('posts/published/notes')
+        .only(['title', 'blurb', 'tags', 'slug', 'dir'])
+        .sortBy('createdAt', 'desc')
+        .fetch();
+      this.tagdata = await this.$content('posts/published/notes').only(['tags']).fetch();
     },
     head() {
       return {

@@ -32,7 +32,7 @@
   export default {
     layout: 'gardenView',
     async asyncData({ $content, params }) {
-      const post = await $content('posts/notes', params.slug).fetch();
+      const post = await $content('posts/published/notes', params.slug).fetch();
       const links = post.toc;
       return {
         post,

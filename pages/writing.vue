@@ -20,15 +20,11 @@
       };
     },
     async fetch() {
-      this.blogposts = await this.$content('posts/blog', { deep: true })
+      this.blogposts = await this.$content('posts/published/posts')
         .only(['title', 'blurb', 'tags', 'slug', 'dir'])
-        .where({ type: { $eq: 'live' } })
         .sortBy('createdAt', 'desc')
         .fetch();
-      this.tagdata = await this.$content('posts/blog', { deep: true })
-        .only(['tags'])
-        .where({ type: { $eq: 'live' } })
-        .fetch();
+      this.tagdata = await this.$content('posts/published/posts').only(['tags']).fetch();
     },
     head() {
       return {

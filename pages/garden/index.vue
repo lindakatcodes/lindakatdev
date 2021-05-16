@@ -41,9 +41,12 @@
     },
     async fetch() {
       this.playground = await this.$content('playground').where({ featured: true }).sortBy('id', 'desc').fetch();
-      this.noteposts = await this.$content('posts/notes')
+      this.noteposts = await this.$content('posts/published/notes')
         .only(['title', 'blurb', 'tags', 'slug', 'dir'])
-        .sortBy('updatedAt', 'desc')
+        .where({
+          featured: true,
+        })
+        .sortBy('createdAt', 'desc')
         .limit(5)
         .fetch();
     },
