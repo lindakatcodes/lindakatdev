@@ -47,7 +47,6 @@
           featured: true,
         })
         .sortBy('createdAt', 'desc')
-        .limit(5)
         .fetch();
     },
     head() {
