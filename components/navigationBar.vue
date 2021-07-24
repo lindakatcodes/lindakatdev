@@ -119,7 +119,7 @@
 
   @media screen and (max-width: 768px) {
     .home-link {
-      top: 20px;
+      top: 24px;
     }
 
     .link {
