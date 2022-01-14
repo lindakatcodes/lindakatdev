@@ -316,7 +316,7 @@
     margin: 2% auto;
   }
 
-  .content p code {
+  .content p code, .content ol code, .content ul code {
     color: var(--lightBlue);
     overflow-wrap: break-word;
   }
