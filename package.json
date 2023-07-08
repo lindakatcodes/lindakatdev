@@ -1,0 +1,17 @@
+{
+  "name": "lindakatdev",
+  "type": "module",
+  "version": "2.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource/allura": "^5.0.4",
+    "@fontsource/fira-sans": "^5.0.4",
+    "astro": "^2.8.0"
+  }
+}
