@@ -1,4 +1,4 @@
-# My Tech Home! 
+# My Tech Home
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8e2f09e5-efce-41ee-8db8-805b453cf618/deploy-status)](https://app.netlify.com/sites/lindakatdev/deploys)
 
