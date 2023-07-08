@@ -1,0 +1,37 @@
+---
+import '@fontsource/fira-sans';
+import '@fontsource/allura';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>LindaKatCodes</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+
+<style is:global>
+  :root {
+    --heading-font: 'Allura', cursive;
+    --body-font: 'Fira Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-size: 80px;
+    text-align: center;
+  }
+  p {
+    font-family: var(--body-font);
+    font-size: 20px;
+    text-align: center;
+  }
+</style>
+
