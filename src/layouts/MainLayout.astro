@@ -1,37 +1,57 @@
 ---
-import '@fontsource/fira-sans';
-import '@fontsource/allura';
+import "@fontsource/fira-sans";
+import "@fontsource/allura";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>LindaKatCodes</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>LindaKatCodes</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-
 
 <style is:global>
   :root {
-    --heading-font: 'Allura', cursive;
-    --body-font: 'Fira Sans', sans-serif;
+    --heading-font: "Allura", cursive;
+    --body-font: "Fira Sans", sans-serif;
+    --text-color-light: #fcf5ed;
+    --text-color-dark: #251403;
+    --primary-color-light: #81b2ba;
+    --primary-color-dark: #2b5056;
+    --secondary-color-light: #c09dd2;
+    --secondary-color-dark: #723390;
+    --accent-color-light: #f6c37b;
+    --accent-color-dark: #cf770f;
+    --gradient-dark: #000;
+    --gradient-light: #fff;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--heading-font);
     font-size: 80px;
     text-align: center;
+    color: var(--text-color-dark);
+    
   }
   p {
     font-family: var(--body-font);
     font-size: 20px;
     text-align: center;
+    color: var(--text-color-dark);
+  }
+
+  body {
+    background-color: var(--primary-color-light);
   }
 </style>
-
