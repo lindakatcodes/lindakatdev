@@ -1,6 +1,7 @@
 ---
 import "@fontsource/fira-sans";
 import "@fontsource/allura";
+import "../styles/reset.css"
 ---
 
 <html lang="en">
@@ -20,16 +21,42 @@ import "@fontsource/allura";
   :root {
     --heading-font: "Allura", cursive;
     --body-font: "Fira Sans", sans-serif;
-    --text-color-light: #fcf5ed;
-    --text-color-dark: #251403;
-    --primary-color-light: #81b2ba;
-    --primary-color-dark: #2b5056;
-    --secondary-color-light: #c09dd2;
-    --secondary-color-dark: #723390;
-    --accent-color-light: #f6c37b;
-    --accent-color-dark: #cf770f;
-    --gradient-dark: #000;
-    --gradient-light: #fff;
+    --text-color-light: #F6F9F9;
+    --text-color-dark: #343B42;
+    --primary-color-light: #93A8AC;
+    --primary-color-dark: #506468;
+    --secondary-color-light: #E2B4BD;
+    --secondary-color-dark: #BA4F64;
+    --accent-color-light: #410C41;
+    --accent-color-dark: #F9D98E;
+    --gradient-dark: linear-gradient(
+  315deg,
+  hsl(190deg 13% 36%) 0%,
+  hsl(221deg 19% 39%) 8%,
+  hsl(253deg 25% 43%) 19%,
+  hsl(284deg 31% 46%) 31%,
+  hsl(317deg 37% 49%) 46%,
+  hsl(348deg 44% 52%) 60%,
+  hsl(359deg 53% 57%) 72%,
+  hsl(10deg 62% 62%) 82%,
+  hsl(20deg 72% 67%) 90%,
+  hsl(31deg 81% 72%) 96%,
+  hsl(42deg 90% 77%) 100%
+);
+    --gradient-light: linear-gradient(
+  315deg,
+  hsl(190deg 13% 63%) 0%,
+  hsl(211deg 24% 53%) 11%,
+  hsl(234deg 35% 44%) 21%,
+  hsl(256deg 47% 34%) 30%,
+  hsl(278deg 57% 25%) 39%,
+  hsl(300deg 69% 15%) 48%,
+  hsl(310deg 64% 28%) 57%,
+  hsl(320deg 59% 41%) 67%,
+  hsl(329deg 54% 54%) 77%,
+  hsl(339deg 49% 67%) 88%,
+  hsl(348deg 44% 80%) 100%
+);
   }
 
   h1,
@@ -40,6 +67,7 @@ import "@fontsource/allura";
   h6 {
     font-family: var(--heading-font);
     font-size: 80px;
+    letter-spacing: -2spx;
     text-align: center;
     color: var(--text-color-dark);
     
