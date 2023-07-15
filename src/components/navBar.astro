@@ -1,0 +1,24 @@
+---
+import ThemeToggle from "./themeToggle.astro";
+---
+
+<nav>
+  <ThemeToggle />
+</nav>
+<div class="hr"></div>
+
+<style>
+  nav {
+    height: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  
+  .hr {
+    height: 7px;
+    width: 100vw;
+    background-image: var(--gradient-light);
+  }
+</style>

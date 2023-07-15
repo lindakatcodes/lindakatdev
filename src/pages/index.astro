@@ -3,8 +3,8 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout>
-  <div class="nav"></div>
-  <div class="hr"></div>
+  
+  
   <h1>Linda Thompson</h1>
   <p>Friendly & resilient front-end web dev, agy 1289</p>
   <div class="wrapper">
@@ -14,16 +14,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 </MainLayout>
 
 <style>
-  .nav {
-    height: 60px;
-    width: 100vw;
-    background-color: var(--secondary-color-light);
-  }
-  .hr {
-    height: 7px;
-    width: 100vw;
-    background-image: var(--gradient-light);
-  }
+  
   .wrapper {
     width: 250px;
     display: flex;
@@ -33,16 +24,16 @@ import MainLayout from "../layouts/MainLayout.astro";
   .one,
   .two {
     text-align: center;
-    color: var(--text-color-dark);
+    color: var(--text-dark);
     font-family: var(--body-font);
     font-size: 1.5rem;
     width: 100px;
     height: 100px;
   }
   .one {
-    background-color: var(--secondary-color-light);
+    background-color: var(--secondary-light);
   }
   .two {
-    background-color: var(--accent-color-light);
+    background-color: var(--accent-light);
   }
 </style>
