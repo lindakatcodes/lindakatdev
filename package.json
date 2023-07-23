@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/allura": "^5.0.4",
     "@fontsource/fira-sans": "^5.0.4",
+    "@fontsource/rancho": "^5.0.5",
     "astro": "^2.8.0"
   }
 }

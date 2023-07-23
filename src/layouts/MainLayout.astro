@@ -1,20 +1,21 @@
 ---
 import "@fontsource/fira-sans";
-import "@fontsource/allura";
+// import "@fontsource/allura";
+import '@fontsource/rancho';
 import "../styles/reset.css"
 import NavBar from "../components/navBar.astro";
 ---
 
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <title>LindaKatCodes</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script src="/theme-toggle.js" is:inline></script>
+    <!-- <script src="/theme-toggle.js" is:inline></script> -->
   </head>
-  <body>
+  <body class="theme-dark">
     <NavBar/>
     <slot />
   </body>
@@ -22,17 +23,16 @@ import NavBar from "../components/navBar.astro";
 
 <style is:global>
   :root {
-    --heading-font: "Allura", cursive;
+    --heading-font: "Rancho", sans-serif;;
     --body-font: "Fira Sans", sans-serif;
-    --text-light: #F6F9F9;
-    --text-dark: #343B42;
-    --primary-light: #93A8AC;
-    --primary-dark: #506468;
-    --secondary-light: #E2B4BD;
-    --secondary-dark: #BA4F64;
-    --accent-light: #410C41;
-    --accent-dark: #F9D98E;
-    --gradient-dark: linear-gradient(
+  }
+
+  .theme-dark {
+    --text: #F6F9F9;
+    --primary: #506468;
+    --secondary: #E2B4BD;
+    --accent: #410C41;
+    --gradient: linear-gradient(
   315deg,
   hsl(190deg 13% 36%) 0%,
   hsl(221deg 19% 39%) 8%,
@@ -46,7 +46,14 @@ import NavBar from "../components/navBar.astro";
   hsl(31deg 81% 72%) 96%,
   hsl(42deg 90% 77%) 100%
 );
-    --gradient-light: linear-gradient(
+  }
+   
+  .theme-light {
+    --text: #343B42;
+    --primary: #93A8AC;
+    --secondary: #BA4F64;
+    --accent: #F9D98E;
+    --gradient: linear-gradient(
   315deg,
   hsl(190deg 13% 63%) 0%,
   hsl(211deg 24% 53%) 11%,
@@ -62,20 +69,6 @@ import NavBar from "../components/navBar.astro";
 );
   }
 
-  html {
-    color-scheme: light;
-  }
-
-  html[data-theme="dark"] {
-    color-scheme: dark;
-  }
-
-  @supports not (color-scheme: dark) {
-    html[data-theme=dark] {
-        background: var(--primary-dark)
-    }
-}
-
   h1,
   h2,
   h3,
@@ -84,19 +77,19 @@ import NavBar from "../components/navBar.astro";
   h6 {
     font-family: var(--heading-font);
     font-size: 80px;
-    letter-spacing: -2spx;
     text-align: center;
-    color: var(--text-dark);
+    color: var(--text);
     
   }
-  p {
+  p, span {
     font-family: var(--body-font);
     font-size: 20px;
     text-align: center;
-    color: var(--text-dark);
+    color: var(--text);
   }
 
   body {
-    background-color: var(--primary-light);
+    background-color: var(--primary);
+    height: 100dvh;
   }
 </style>
