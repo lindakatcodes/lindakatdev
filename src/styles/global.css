@@ -1,0 +1,74 @@
+@import "reset.css";
+
+:root {
+  --heading-font: "Rancho", sans-serif;;
+  --body-font: "Fira Sans", sans-serif;
+}
+
+.theme-dark {
+  --text-main: #F6F9F9;
+  --text-opp: #343B42;
+  --primary: #506468;
+  --secondary: #E2B4BD;
+  --accent: #410C41;
+  --gradient: linear-gradient(
+315deg,
+hsl(190deg 13% 36%) 0%,
+hsl(221deg 19% 39%) 8%,
+hsl(253deg 25% 43%) 19%,
+hsl(284deg 31% 46%) 31%,
+hsl(317deg 37% 49%) 46%,
+hsl(348deg 44% 52%) 60%,
+hsl(359deg 53% 57%) 72%,
+hsl(10deg 62% 62%) 82%,
+hsl(20deg 72% 67%) 90%,
+hsl(31deg 81% 72%) 96%,
+hsl(42deg 90% 77%) 100%
+);
+}
+ 
+.theme-light {
+  --text-main: #343B42;
+  --text-opp: #F6F9F9;
+  --primary: #93A8AC;
+  --secondary: #BA4F64;
+  --accent: #F9D98E;
+  --gradient: linear-gradient(
+315deg,
+hsl(190deg 13% 63%) 0%,
+hsl(211deg 24% 53%) 11%,
+hsl(234deg 35% 44%) 21%,
+hsl(256deg 47% 34%) 30%,
+hsl(278deg 57% 25%) 39%,
+hsl(300deg 69% 15%) 48%,
+hsl(310deg 64% 28%) 57%,
+hsl(320deg 59% 41%) 67%,
+hsl(329deg 54% 54%) 77%,
+hsl(339deg 49% 67%) 88%,
+hsl(348deg 44% 80%) 100%
+);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  font-size: 80px;
+  text-align: center;
+  color: var(--text-main);
+  
+}
+p, span {
+  font-family: var(--body-font);
+  font-size: 20px;
+  text-align: center;
+  color: var(--text-main);
+}
+
+body {
+  background-color: var(--primary);
+  height: 100dvh;
+}

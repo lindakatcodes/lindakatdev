@@ -1,153 +1,132 @@
----
-// copied from web.dev: https://web.dev/building-a-theme-switch-component/#overview
----
-
-<button
-  class="theme-toggle"
-  id="theme-toggle"
-  title="Toggles light & dark"
-  aria-label="auto"
-  aria-live="polite"
->
-  <svg
-    class="sun-and-moon"
-    aria-hidden="true"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-  >
-    <circle
+<!-- code is a mix of:
+https://letsbuildui.dev/articles/building-a-dark-mode-theme-toggle
+https://docs.astro.build/en/tutorial/6-islands/2/ -->
+<button id="themeToggle" class="theme-button">
+  <div class="icons">
+    <svg
       class="sun"
-      cx="12"
-      cy="12"
-      r="6"
-      mask="url(#moon-mask)"
-      fill="currentColor"></circle>
-    <g class="sun-beams" stroke="currentColor">
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </g>
-    <mask class="moon" id="moon-mask">
-      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-      <circle cx="24" cy="10" r="6" fill="black"></circle>
-    </mask>
-  </svg>
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.995 12C6.995 14.761 9.241 17.007 12.002 17.007C14.763 17.007 17.009 14.761 17.009 12C17.009 9.239 14.763 6.993 12.002 6.993C9.241 6.993 6.995 9.239 6.995 12ZM11 19H13V22H11V19ZM11 2H13V5H11V2ZM2 11H5V13H2V11ZM19 11H22V13H19V11Z"
+      ></path>
+      <path
+        d="M5.63702 19.778L4.22302 18.364L6.34402 16.243L7.75802 17.657L5.63702 19.778Z"
+      ></path>
+      <path
+        d="M16.242 6.34405L18.364 4.22205L19.778 5.63605L17.656 7.75805L16.242 6.34405Z"
+      ></path>
+      <path
+        d="M6.34402 7.75902L4.22302 5.63702L5.63802 4.22302L7.75802 6.34502L6.34402 7.75902Z"
+      ></path>
+      <path
+        d="M19.778 18.3639L18.364 19.7779L16.242 17.6559L17.656 16.2419L19.778 18.3639Z"
+      ></path>
+    </svg>
+    <svg
+      class="moon"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 11.807C10.7418 10.5483 9.88488 8.94484 9.53762 7.1993C9.19037 5.45375 9.36832 3.64444 10.049 2C8.10826 2.38205 6.3256 3.33431 4.92899 4.735C1.02399 8.64 1.02399 14.972 4.92899 18.877C8.83499 22.783 15.166 22.782 19.072 18.877C20.4723 17.4805 21.4245 15.6983 21.807 13.758C20.1625 14.4385 18.3533 14.6164 16.6077 14.2692C14.8622 13.9219 13.2588 13.0651 12 11.807V11.807Z"
+      ></path>
+    </svg>
+  </div>
 </button>
 
 <style>
-  .sun-and-moon>:is(.moon,.sun,.sun-beams) {
-    transform-origin: center center
-}
-
-.sun-and-moon>:is(.moon,.sun) {
-    fill: var(--icon-fill)
-}
-
-.theme-toggle:is(:hover,:focus-visible)>.sun-and-moon>:is(.moon,.sun) {
-    fill: var(--icon-fill-hover)
-}
-
-.sun-and-moon>.sun-beams {
-    stroke: var(--icon-fill);
-    stroke-width: 2px
-}
-
-.theme-toggle:is(:hover,:focus-visible) .sun-and-moon>.sun-beams {
-    stroke: var(--icon-fill-hover)
-}
-
-[data-theme=dark] .sun-and-moon>.sun {
-    transform: scale(1.75)
-}
-
-[data-theme=dark] .sun-and-moon>.sun-beams {
-    opacity: 0
-}
-
-[data-theme=dark] .sun-and-moon>.moon>circle {
-    transform: translate(-7px)
-}
-
-@supports (cx: 1) {
-    [data-theme=dark] .sun-and-moon>.moon>circle {
-        transform: translate(0);
-        cx: 17
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .sun-and-moon>.sun {
-        transition: transform .5s var(--ease-elastic-3)
-    }
-
-    .sun-and-moon>.sun-beams {
-        transition: transform .5s var(--ease-elastic-4),opacity .5s var(--ease-3)
-    }
-
-    .sun-and-moon .moon>circle {
-        transition: transform .25s var(--ease-out-5)
-    }
-
-    @supports (cx: 1) {
-        .sun-and-moon .moon>circle {
-            transition: cx .25s var(--ease-out-5)
-        }
-    }
-
-    [data-theme=dark] .sun-and-moon>.sun {
-        transform: scale(1.75);
-        transition-timing-function: var(--ease-3);
-        transition-duration: .25s
-    }
-
-    [data-theme=dark] .sun-and-moon>.sun-beams {
-        transform: rotate(-25deg);
-        transition-duration: .15s
-    }
-
-    [data-theme=dark] .sun-and-moon>.moon>circle {
-        transition-delay: .25s;
-        transition-duration: .5s
-    }
-}
-
-.theme-toggle {
-    --size: 2rem;
-    --icon-fill: hsl(210 10% 30%);
-    --icon-fill-hover: hsl(210 10% 15%);
-    background: none;
-    border: none;
-    padding: 0;
-    inline-size: var(--size);
-    block-size: var(--size);
-    aspect-ratio: 1;
-    border-radius: 50%;
+  .theme-button {
+    height: 35px;
+    width: 70px;
+    background: var(--text-main);
+    border-radius: 40px;
+    padding: 12px;
+    position: relative;
+    margin: auto;
     cursor: pointer;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-    outline-offset: 5px
-}
+    display: block;
+    border: none;
+  }
 
-.theme-toggle>svg {
-    inline-size: 100%;
-    block-size: 100%;
-    stroke-linecap: round
-}
+  .theme-button::before {
+    content: "";
+    display: block;
+    height: 26px;
+    width: 26px;
+    border-radius: 30px;
+    background: var(--accent);
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    z-index: 2;
+    transform: translate(0);
+    transition: transform 0.5s ease;
+  }
 
-[data-theme=dark] .theme-toggle {
-    --icon-fill: hsl(210 10% 70%);
-    --icon-fill-hover: hsl(210 15% 90%)
-}
+  .theme-button.enabled::before {
+    transform: translateX(35px);
+  }
 
-@media (hover: none) {
-    .theme-toggle {
-        --size: 48px
-    }
-}
+  .theme-button .icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0 -5px;
+  }
+
+  .theme-button .icons svg {
+    fill: var(--text-opp);
+    height: 24px;
+    width: 24px;
+    z-index: 0;
+  }
 </style>
+
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "theme-dark";
+    }
+    return "theme-light";
+  })();
+
+  if (theme === "theme-light") {
+    document.documentElement.classList.remove("theme-dark");
+    document.documentElement.classList.add("theme-light");
+    document.getElementById("themeToggle").classList.remove("enabled");
+  } else {
+    document.documentElement.classList.add("theme-dark");
+    document.documentElement.classList.remove("theme-light");
+    document.getElementById("themeToggle").classList.add("enabled");
+  }
+
+  window.localStorage.setItem("theme", theme);
+
+  const handleToggleClick = () => {
+    const element = document.documentElement;
+    element.classList.toggle("theme-dark");
+    element.classList.toggle("theme-light");
+
+    const isDark = element.classList.contains("theme-dark");
+    localStorage.setItem("theme", isDark ? "theme-dark" : "theme-light");
+
+    // specifically to change button colors
+    document.getElementById("themeToggle").classList.toggle("enabled");
+  };
+
+  document
+    .getElementById("themeToggle")
+    .addEventListener("click", handleToggleClick);
+</script>
