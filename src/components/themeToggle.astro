@@ -105,19 +105,19 @@ https://docs.astro.build/en/tutorial/6-islands/2/ -->
   })();
 
   if (theme === "theme-light") {
-    document.documentElement.classList.remove("theme-dark");
-    document.documentElement.classList.add("theme-light");
+    document.getElementById('root').classList.remove("theme-dark");
+    document.getElementById('root').classList.add("theme-light");
     document.getElementById("themeToggle").classList.remove("enabled");
   } else {
-    document.documentElement.classList.add("theme-dark");
-    document.documentElement.classList.remove("theme-light");
+    document.getElementById('root').classList.add("theme-dark");
+    document.getElementById('root').classList.remove("theme-light");
     document.getElementById("themeToggle").classList.add("enabled");
   }
 
   window.localStorage.setItem("theme", theme);
 
   const handleToggleClick = () => {
-    const element = document.documentElement;
+    const element = document.getElementById('root');
     element.classList.toggle("theme-dark");
     element.classList.toggle("theme-light");
 

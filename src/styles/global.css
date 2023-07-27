@@ -8,44 +8,44 @@
 .theme-dark {
   --text-main: #F6F9F9;
   --text-opp: #343B42;
-  --primary: #506468;
-  --secondary: #E2B4BD;
-  --accent: #410C41;
+  --primary: #415A51;
+  --secondary: #B95067;
+  --accent: #5D185D;
   --gradient: linear-gradient(
-315deg,
-hsl(190deg 13% 36%) 0%,
-hsl(221deg 19% 39%) 8%,
-hsl(253deg 25% 43%) 19%,
-hsl(284deg 31% 46%) 31%,
-hsl(317deg 37% 49%) 46%,
-hsl(348deg 44% 52%) 60%,
-hsl(359deg 53% 57%) 72%,
-hsl(10deg 62% 62%) 82%,
-hsl(20deg 72% 67%) 90%,
-hsl(31deg 81% 72%) 96%,
-hsl(42deg 90% 77%) 100%
+135deg,
+   hsl(158deg 16% 30%) 0%,
+  hsl(182deg 51% 23%) 4%,
+  hsl(194deg 100% 20%) 9%,
+  hsl(204deg 100% 23%) 16%,
+  hsl(236deg 40% 33%) 26%,
+  hsl(300deg 59% 23%) 42%,
+  hsl(313deg 56% 29%) 62%,
+  hsl(323deg 52% 34%) 79%,
+  hsl(332deg 48% 40%) 89%,
+  hsl(339deg 44% 46%) 95%,
+  hsl(347deg 43% 52%) 100%
 );
 }
  
 .theme-light {
   --text-main: #343B42;
   --text-opp: #F6F9F9;
-  --primary: #93A8AC;
-  --secondary: #BA4F64;
-  --accent: #F9D98E;
+  --primary: #96A5B8;
+  --secondary: #FFE070;
+  --accent: #E99DAB;
   --gradient: linear-gradient(
-315deg,
-hsl(190deg 13% 63%) 0%,
-hsl(211deg 24% 53%) 11%,
-hsl(234deg 35% 44%) 21%,
-hsl(256deg 47% 34%) 30%,
-hsl(278deg 57% 25%) 39%,
-hsl(300deg 69% 15%) 48%,
-hsl(310deg 64% 28%) 57%,
-hsl(320deg 59% 41%) 67%,
-hsl(329deg 54% 54%) 77%,
-hsl(339deg 49% 67%) 88%,
-hsl(348deg 44% 80%) 100%
+310deg,
+  hsl(349deg 63% 76%) 0%,
+  hsl(2deg 95% 81%) 6%,
+  hsl(15deg 100% 79%) 15%,
+  hsl(27deg 100% 76%) 26%,
+  hsl(38deg 100% 73%) 39%,
+  hsl(47deg 100% 72%) 51%,
+  hsl(89deg 61% 71%) 63%,
+  hsl(152deg 56% 68%) 75%,
+  hsl(179deg 49% 61%) 85%,
+  hsl(196deg 43% 65%) 94%,
+  hsl(214deg 19% 65%) 100%
 );
 }
 
@@ -58,8 +58,8 @@ h6 {
   font-family: var(--heading-font);
   font-size: 80px;
   text-align: center;
-  color: var(--text-main);
-  
+  color: var(--text-main); 
+  letter-spacing: 0.07rem;
 }
 p, span {
   font-family: var(--body-font);
