@@ -56,15 +56,11 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font);
-  font-size: 80px;
-  text-align: center;
   color: var(--text-main); 
-  letter-spacing: 0.07rem;
+  letter-spacing: 0.08rem;
 }
 p, span {
   font-family: var(--body-font);
-  font-size: 20px;
-  text-align: center;
   color: var(--text-main);
 }
 
@@ -72,3 +68,10 @@ body {
   background-color: var(--primary);
   height: 100dvh;
 }
+
+/* Light theme specific settings */
+.theme-light .link {
+  text-shadow: none;
+}
+
+/* Dark theme specific settings */

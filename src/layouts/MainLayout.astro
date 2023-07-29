@@ -3,6 +3,7 @@ import "@fontsource/fira-sans";
 import '@fontsource/rancho';
 import "../styles/global.css"
 import NavBar from "../components/navBar.astro";
+import Footer from '../components/footer.astro';
 ---
 
 <html lang="en">
@@ -14,11 +15,10 @@ import NavBar from "../components/navBar.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body id="root">
-    <NavBar/>
+    <NavBar />
     <slot />
+    <Footer />
   </body>
 </html>
 
-<style>
- 
-</style>
+<style></style>

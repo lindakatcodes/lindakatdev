@@ -3,35 +3,21 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout>
-  <h1>Linda Thompson</h1>
-  <p>Friendly & resilient front-end web dev, agy 1289</p>
-  <div class="wrapper">
-    <div class="one">one</div>
-    <div class="two">two</div>
+  <div>
+    <h1 class="title">Linda Thompson</h1>
+    <p class="subtitle">Some text here</p>
   </div>
 </MainLayout>
 
 <style>
-  
-  .wrapper {
-    width: 250px;
-    display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
-  }
-  .one,
-  .two {
+  .title {
+    margin-top: 4rem;
+    font-size: 6rem;
     text-align: center;
-    color: var(--text-main);
-    font-family: var(--body-font);
+  }
+
+  .subtitle {
+    text-align: center;
     font-size: 1.5rem;
-    width: 100px;
-    height: 100px;
-  }
-  .one {
-    background-color: var(--secondary);
-  }
-  .two {
-    background-color: var(--accent);
   }
 </style>

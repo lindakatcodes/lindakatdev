@@ -1,0 +1,85 @@
+---
+---
+
+<div class="footer-container">
+  <div class="divider"></div>
+  <footer>
+    <h2 class="footer-title">Hi there!</h2>
+    <p>
+      If you'd like to reach out, try my email: 
+      <span class="email-copy-action">
+        hello@lindakat.com
+      </span>
+    </p>
+    <p>Or you can find me online in these fine places. See you around!</p>
+  </footer>
+</div>
+
+<style>
+  .footer-container {
+    display: block;
+    height: 12rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100dvw;
+  }
+
+  .divider {
+    width: 100%;
+    height: 5px;
+    background: var(--gradient);
+    margin-bottom: 1%;
+  }
+
+  footer {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .footer-title {
+    text-align: center;
+    font-size: 1.7rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .title-divider {
+    height: 5px;
+    background-image: var(--gradient);
+    width: 8rem;
+    margin: 0 auto 1%;
+    border: none;
+  }
+
+  p {
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .email-copy-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: solid underline var(--secondary);
+  }
+
+  .email-copy-action:hover {
+    background-color: var(--accent);
+    text-decoration-style: double;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+
+<script>
+  const email = document.querySelector(".email-copy-action");
+  email?.addEventListener("click", () => {
+    navigator.clipboard.writeText("hello@lindakat.com").then(
+      () => {
+        console.log("Successfully copied text!");
+      },
+      () => {
+        console.error("Sorry, could not copy text");
+      }
+    );
+  });
+</script>
