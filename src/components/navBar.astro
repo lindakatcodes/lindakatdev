@@ -9,7 +9,7 @@ import ThemeToggle from "./themeToggle.astro";
   <a class="link" href="/writing">Writing</a>
   <ThemeToggle />
 </nav>
-<div class="hr"></div>
+<div class="divider"></div>
 
 <style>
   nav {
@@ -23,7 +23,7 @@ import ThemeToggle from "./themeToggle.astro";
 
   .link {
     text-decoration: none;
-    color: var(--text-main);
+    color: var(--primary-text);
     font-family: var(--heading-font);
     font-size: 1.6rem;
     font-weight: bold;
@@ -31,22 +31,16 @@ import ThemeToggle from "./themeToggle.astro";
     margin: auto 0.5rem;
     height: 100%;
     vertical-align: baseline;
-    text-shadow: -1px 1px 4px var(--text-opp);
+    text-shadow: -1px 1px 4px var(--primary-shadow);
   }
 
   .link:hover {
-    text-decoration: underline wavy var(--secondary);
+    text-decoration: underline double var(--accent);
   }
 
   .home {
     flex-grow: 1;
     margin-left: 0;
     font-size: 2rem;
-  }
-  
-  .hr {
-    height: 6px;
-    width: 100dvw;
-    background-image: var(--gradient);
   }
 </style>

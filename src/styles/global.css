@@ -1,52 +1,40 @@
 @import "reset.css";
 
 :root {
-  --heading-font: "Rancho", sans-serif;;
+  --heading-font: "Rancho", sans-serif;
   --body-font: "Fira Sans", sans-serif;
 }
 
+/* 
+  dark theme
+  primary: hsla(158, 16%, 30%, 1) or 415A51
+  lighter: hsla(159, 25%, 95%, 1) or eff5f3
+  darker: hsla(150, 13%, 18%, 1) or 28342e
+  accent: hsla(325, 47%, 26%, 1) or 612347
+  contrast: hsla(313, 95%, 93%, 1) or fedcf7
+
+  light theme
+  primary: hsla(180, 27%, 69%, 1) or 9bc5c5
+  lighter: hsla(179, 23%, 95%, 1) or eff5f5
+  darker: hsla(180, 25%, 14%, 1) or 1b2d2d
+  accent: hsla(263, 53%, 79%, 1) or c3ade6
+  contrast: hsla(269, 69%, 33%, 1) or 521a8e
+*/
+
 .theme-dark {
-  --text-main: #F6F9F9;
-  --text-opp: #343B42;
-  --primary: #415A51;
-  --secondary: #B95067;
-  --accent: #5D185D;
-  --gradient: linear-gradient(
-135deg,
-   hsl(158deg 16% 30%) 0%,
-  hsl(182deg 51% 23%) 4%,
-  hsl(194deg 100% 20%) 9%,
-  hsl(204deg 100% 23%) 16%,
-  hsl(236deg 40% 33%) 26%,
-  hsl(300deg 59% 23%) 42%,
-  hsl(313deg 56% 29%) 62%,
-  hsl(323deg 52% 34%) 79%,
-  hsl(332deg 48% 40%) 89%,
-  hsl(339deg 44% 46%) 95%,
-  hsl(347deg 43% 52%) 100%
-);
+  --primary: hsla(158, 16%, 30%, 1);
+  --primary-text: hsla(159, 25%, 95%, 1);
+  --primary-shadow: hsla(150, 13%, 18%, 1);
+  --accent: hsla(325, 47%, 26%, 1);
+  --accent-contrast: hsla(313, 95%, 93%, 1);
 }
- 
+
 .theme-light {
-  --text-main: #343B42;
-  --text-opp: #F6F9F9;
-  --primary: #96A5B8;
-  --secondary: #FFE070;
-  --accent: #E99DAB;
-  --gradient: linear-gradient(
-310deg,
-  hsl(349deg 63% 76%) 0%,
-  hsl(2deg 95% 81%) 6%,
-  hsl(15deg 100% 79%) 15%,
-  hsl(27deg 100% 76%) 26%,
-  hsl(38deg 100% 73%) 39%,
-  hsl(47deg 100% 72%) 51%,
-  hsl(89deg 61% 71%) 63%,
-  hsl(152deg 56% 68%) 75%,
-  hsl(179deg 49% 61%) 85%,
-  hsl(196deg 43% 65%) 94%,
-  hsl(214deg 19% 65%) 100%
-);
+  --primary: hsla(180, 27%, 69%, 1);
+  --primary-text: hsla(180, 25%, 14%, 1);
+  --primary-shadow: hsla(179, 23%, 95%, 1);
+  --accent: hsla(263, 53%, 79%, 1);
+  --accent-contrast: hsla(269, 69%, 33%, 1);
 }
 
 h1,
@@ -56,17 +44,24 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font);
-  color: var(--text-main); 
+  color: var(--primary-text);
   letter-spacing: 0.08rem;
 }
-p, span {
+p,
+span {
   font-family: var(--body-font);
-  color: var(--text-main);
+  color: var(--primary-text);
 }
 
 body {
   background-color: var(--primary);
   height: 100dvh;
+}
+
+.divider {
+  height: 6px;
+  width: 100dvw;
+  background: var(--accent);
 }
 
 /* Light theme specific settings */
