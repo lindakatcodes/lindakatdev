@@ -1,12 +1,13 @@
 ---
 import ThemeToggle from "./themeToggle.astro";
+const activePath = Astro.url.pathname;
 ---
 
 <nav>
-  <a class="home link" href="/">LT</a>
-  <a class="link" href="/about">About</a>
-  <a class="link" href="/projects">Projects</a>
-  <a class="link" href="/writing">Writing</a>
+  <a class:list={["home link", {active: activePath === '/'}]} href="/">LT</a>
+  <a class:list={["link", {active: activePath === '/projects'}]} href="/projects">Projects</a>
+  <a class:list={["link", {active: activePath === '/writing'}]} href="/writing">Writing</a>
+  <a class:list={["link", {active: activePath === '/about'}]} href="/about">About</a>
   <ThemeToggle />
 </nav>
 <div class="divider"></div>
@@ -42,5 +43,9 @@ import ThemeToggle from "./themeToggle.astro";
     flex-grow: 1;
     margin-left: 0;
     font-size: 2rem;
+  }
+
+  .active {
+    color: var(--accent-contrast);
   }
 </style>
