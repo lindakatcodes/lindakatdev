@@ -13,28 +13,38 @@
   accent: hsla(325, 47%, 26%, 1) or 612347
   contrast: hsla(313, 95%, 93%, 1) or fedcf7
 
+  maybe alt dark bg: #292D36
+  nice green: #5F8786
+  maybe greenblue: #71CBBE
+
   light theme
   primary: hsla(180, 27%, 69%, 1) or 9bc5c5
   lighter: hsla(179, 23%, 95%, 1) or eff5f5
   darker: hsla(180, 25%, 14%, 1) or 1b2d2d
   accent: hsla(263, 53%, 79%, 1) or c3ade6
   contrast: hsla(269, 69%, 33%, 1) or 521a8e
+
+  bluegreen: #028787
+  purple: #8C9BFA
+  another bluegreen: #008787
+  pink: #CB7787
+  bubble gum pink: #E06182
 */
 
 .theme-dark {
-  --primary: hsla(158, 16%, 30%, 1);
+  --primary: #333333;
   --primary-text: hsla(159, 25%, 95%, 1);
   --primary-shadow: hsla(150, 13%, 18%, 1);
-  --accent: hsla(325, 47%, 26%, 1);
-  --accent-contrast: hsla(313, 95%, 93%, 1);
+  --accent: #5F8786;
+  --accent-contrast: #71CBBE;
 }
 
 .theme-light {
-  --primary: hsla(180, 27%, 69%, 1);
+  --primary: #f0f0f0;
   --primary-text: hsla(180, 25%, 14%, 1);
   --primary-shadow: hsla(179, 23%, 95%, 1);
-  --accent: hsla(263, 53%, 79%, 1);
-  --accent-contrast: hsla(269, 69%, 33%, 1);
+  --accent: #028787;
+  --accent-contrast: #0887A9;
 }
 
 h1,
