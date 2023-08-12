@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import MainLayout from "../layouts/MainLayout.astro";
 import profilePic from "../assets/profile-pic.jpg";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout>
@@ -9,7 +9,7 @@ import profilePic from "../assets/profile-pic.jpg";
     <Image
       src={profilePic}
       class="selfie"
-      alt="Woman with blue, purple, pink, and brown hair, brown eyes, and a confident smirk."
+      alt="Woman with blue, purple, pink, and brown hair, brown eyes, green glasses, and a confident smirk."
     />
     <h1>Who am I?</h1>
     <p>
@@ -83,6 +83,15 @@ import profilePic from "../assets/profile-pic.jpg";
     margin-bottom: 2rem;
   }
 
+  .selfie {
+    width: 50%;
+    height: auto;
+    margin: 1.5rem auto 1rem;
+    border-radius: 50px;
+    border: 2px solid var(--highlight);
+    box-shadow: -12px 12px 16px 0px var(--bg-shadow);
+  }
+
   .email-copy-action {
     background: none;
     border: none;
@@ -95,13 +104,6 @@ import profilePic from "../assets/profile-pic.jpg";
     text-decoration-style: double;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
-
-  .selfie {
-    width: 60%;
-    height: auto;
-    margin: 1rem auto;
-    border-radius: 50px;
   }
 </style>
 
