@@ -11,42 +11,44 @@ import MainLayout from "../layouts/MainLayout.astro";
       class="selfie"
       alt="Woman with blue, purple, pink, and brown hair, brown eyes, green glasses, and a confident smirk."
     />
-    <h1>Who am I?</h1>
-    <p>
-      I'm a web developer with a front-end focus who loves working with
-      JavaScript and CSS. I'm the kid who bought puzzle books for the logic
-      puzzles, so building the logic and functionality of sites with JavaScript
-      feels natural. I've always thrived in creative roles, and getting to add
-      some finesse to a project with CSS is so much fun. I also value
-      accessibility and responsive design and work hard to keep those at the
-      forefront of my projects.
-    </p>
-    <p>
-      Why would you want me on your team?
-      <ul>
-        <li>
-          I'm empathetic and want everyone I work with to feel heard and
-          understood.
-        </li>
-        <li>
-          I'm resilient and determined to a fault when troubleshooting and
-          finding solutions.
-        </li>
-        <li>
-          I'm always looking to learn from others and share what wisdom I have
-          in return.
-        </li>
-        <li>
-          I'm an optimistic realist - I see the bright side in everything but
-          have the experience to know when to let go or take a break.
-        </li>
-      </ul>
-    </p>
-    <p>
-      Wanna chat? Please reach out at <span class="email-copy-action"
-        >hello@lindakat.com</span
-      >.
-    </p>
+    <div class="about-me-text">
+      <h1>Who am I?</h1>
+      <p>
+        I'm a web developer with a front-end focus who loves working with
+        JavaScript and CSS. I'm the kid who bought puzzle books for the logic
+        puzzles, so building the logic and functionality of sites with
+        JavaScript feels natural. I've always thrived in creative roles, and
+        getting to add some finesse to a project with CSS is so much fun. I also
+        value accessibility and responsive design and work hard to keep those at
+        the forefront of my projects.
+      </p>
+      <p>
+        Why would you want me on your team?
+        <ul>
+          <li>
+            I'm empathetic and want everyone I work with to feel heard and
+            understood.
+          </li>
+          <li>
+            I'm resilient and determined to a fault when troubleshooting and
+            finding solutions.
+          </li>
+          <li>
+            I'm always looking to learn from others and share what wisdom I have
+            in return.
+          </li>
+          <li>
+            I'm an optimistic realist - I see the bright side in everything but
+            have the experience to know when to let go or take a break.
+          </li>
+        </ul>
+      </p>
+      <p>
+        Wanna chat? Please reach out at <span class="email-copy-action"
+          >hello@lindakat.com</span
+        >.
+      </p>
+    </div>
   </section>
   <section class="work-values">
     <h1>Work Values</h1>
@@ -104,6 +106,31 @@ import MainLayout from "../layouts/MainLayout.astro";
     text-decoration-style: double;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    .about-me {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 2.5rem 1rem;
+    }
+    .selfie {
+      width: 25%;
+    }
+
+    .about-me-text {
+      margin-left: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1640px) {
+    .about-me {
+      align-items: flex-end;
+    }
+    .selfie {
+      width: 20%;
+    }
   }
 </style>
 
