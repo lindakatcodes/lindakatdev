@@ -71,36 +71,45 @@ https://docs.astro.build/en/tutorial/6-islands/2/ -->
 </style>
 
 <script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
+  const setColorTheme = () => {
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "theme-dark";
+      }
+      return "theme-light";
+    })();
+
+    if (theme === "theme-light") {
+      document.getElementById("root").classList.remove("theme-dark");
+      document.getElementById("root").classList.add("theme-light");
+    } else {
+      document.getElementById("root").classList.add("theme-dark");
+      document.getElementById("root").classList.remove("theme-light");
     }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "theme-dark";
-    }
-    return "theme-light";
-  })();
 
-  if (theme === "theme-light") {
-    document.getElementById("root").classList.remove("theme-dark");
-    document.getElementById("root").classList.add("theme-light");
-  } else {
-    document.getElementById("root").classList.add("theme-dark");
-    document.getElementById("root").classList.remove("theme-light");
-  }
+    window.localStorage.setItem("theme", theme);
 
-  window.localStorage.setItem("theme", theme);
+    const handleToggleClick = () => {
+      const element = document.getElementById("root");
+      element.classList.toggle("theme-dark");
+      element.classList.toggle("theme-light");
 
-  const handleToggleClick = () => {
-    const element = document.getElementById("root");
-    element.classList.toggle("theme-dark");
-    element.classList.toggle("theme-light");
+      const isDark = element.classList.contains("theme-dark");
+      localStorage.setItem("theme", isDark ? "theme-dark" : "theme-light");
+    };
 
-    const isDark = element.classList.contains("theme-dark");
-    localStorage.setItem("theme", isDark ? "theme-dark" : "theme-light");
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
   };
 
-  document
-    .getElementById("themeToggle")
-    .addEventListener("click", handleToggleClick);
+  setColorTheme();
+
+  document.addEventListener("astro:beforeload", setColorTheme);
 </script>

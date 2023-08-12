@@ -3,7 +3,7 @@ import ThemeToggle from "./themeToggle.astro";
 const activePath = Astro.url.pathname;
 ---
 
-<nav>
+<nav transition:name="header">
   <a class:list={["home link", { active: activePath === "/" }]} href="/">LT</a>
   <a
     class:list={["link", { active: activePath === "/projects" }]}

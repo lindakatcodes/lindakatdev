@@ -2,17 +2,24 @@
 import "@fontsource/fira-sans";
 import "@fontsource/rancho";
 import "../styles/global.css";
+import CommonHead from "../components/commonHead.astro";
 import NavBar from "../components/navBar.astro";
 import Footer from "../components/footer.astro";
 ---
 
 <html lang="en">
   <head>
-    <title>LindaKatCodes</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <CommonHead />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+    
+      .content {
+        flex-grow: 1;
+      }
+    </style>
   </head>
   <body id="root">
     <NavBar />
@@ -22,14 +29,3 @@ import Footer from "../components/footer.astro";
     <Footer />
   </body>
 </html>
-
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .content {
-    flex-grow: 1;
-  }
-</style>
