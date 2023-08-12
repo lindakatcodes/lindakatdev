@@ -4,10 +4,18 @@ const activePath = Astro.url.pathname;
 ---
 
 <nav>
-  <a class:list={["home link", {active: activePath === '/'}]} href="/">LT</a>
-  <a class:list={["link", {active: activePath === '/projects'}]} href="/projects">Projects</a>
-  <a class:list={["link", {active: activePath === '/writing'}]} href="/writing">Writing</a>
-  <a class:list={["link", {active: activePath === '/about'}]} href="/about">About</a>
+  <a class:list={["home link", { active: activePath === "/" }]} href="/">LT</a>
+  <a
+    class:list={["link", { active: activePath === "/projects" }]}
+    href="/projects">Projects</a
+  >
+  <a
+    class:list={["link", { active: activePath === "/writing" }]}
+    href="/writing">Writing</a
+  >
+  <a class:list={["link", { active: activePath === "/about" }]} href="/about"
+    >About</a
+  >
   <ThemeToggle />
 </nav>
 <div class="divider"></div>
@@ -24,7 +32,7 @@ const activePath = Astro.url.pathname;
 
   .link {
     text-decoration: none;
-    color: var(--primary-text);
+    color: var(--text-main);
     font-family: var(--heading-font);
     font-size: 1.6rem;
     font-weight: bold;
@@ -32,11 +40,11 @@ const activePath = Astro.url.pathname;
     margin: auto 0.5rem;
     height: 100%;
     vertical-align: baseline;
-    text-shadow: -1px 1px 4px var(--primary-shadow);
+    text-shadow: -1px 1px 4px var(--bg-shadow);
   }
 
   .link:hover {
-    text-decoration: underline double var(--accent);
+    text-decoration: underline double var(--highlight);
   }
 
   .home {
@@ -46,6 +54,6 @@ const activePath = Astro.url.pathname;
   }
 
   .active {
-    color: var(--accent-contrast);
+    color: var(--highlight);
   }
 </style>

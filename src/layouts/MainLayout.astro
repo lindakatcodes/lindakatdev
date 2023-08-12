@@ -16,9 +16,20 @@ import Footer from '../components/footer.astro';
   </head>
   <body id="root">
     <NavBar />
-    <slot />
+    <div class="content">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>
 
-<style></style>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    flex-grow: 1;
+  }
+</style>

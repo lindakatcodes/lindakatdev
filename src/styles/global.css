@@ -7,44 +7,42 @@
 
 /* 
   dark theme
-  primary: hsla(158, 16%, 30%, 1) or 415A51
-  lighter: hsla(159, 25%, 95%, 1) or eff5f3
-  darker: hsla(150, 13%, 18%, 1) or 28342e
-  accent: hsla(325, 47%, 26%, 1) or 612347
-  contrast: hsla(313, 95%, 93%, 1) or fedcf7
-
-  maybe alt dark bg: #292D36
-  nice green: #5F8786
-  maybe greenblue: #71CBBE
-
+  background hsl(0,0%,20%)
+  bg-shadow hsl(0,0%,10%)
+  bg-light hsl(0,0%,30%)
+  text-main hsl(0,0%,85%)
+  text-flip hsl(0,0%,20%)
+  accent hsla(233, 65%, 73%, 1)
+  highlight hsla(164, 51%, 65%, 1)
+ 
   light theme
-  primary: hsla(180, 27%, 69%, 1) or 9bc5c5
-  lighter: hsla(179, 23%, 95%, 1) or eff5f5
-  darker: hsla(180, 25%, 14%, 1) or 1b2d2d
-  accent: hsla(263, 53%, 79%, 1) or c3ade6
-  contrast: hsla(269, 69%, 33%, 1) or 521a8e
-
-  bluegreen: #028787
-  purple: #8C9BFA
-  another bluegreen: #008787
-  pink: #CB7787
-  bubble gum pink: #E06182
+  background hsla(248, 0%, 85%, 1)
+  bg-shadow hsla(248, 0%, 75%, 1)
+  bg-light hsla(248, 0%, 95%, 1)
+  text-main hsl(0,0%,20%)
+  text-flip hsla(248, 0%, 85%, 1)
+  accent hsla(177, 100%, 21%, 1)
+  highlight hsla(287, 40%, 41%, 1)
 */
 
 .theme-dark {
-  --primary: #333333;
-  --primary-text: hsla(159, 25%, 95%, 1);
-  --primary-shadow: hsla(150, 13%, 18%, 1);
-  --accent: #5F8786;
-  --accent-contrast: #71CBBE;
+  --background: #333333;
+  --bg-shadow: #1a1a1a;
+  --bg-light: #4d4d4d;
+  --text-main: #d9d9d9;
+  --text-flip: #333333;
+  --accent: #8c97e7;
+  --highlight: #78d3bb;
 }
 
 .theme-light {
-  --primary: #f0f0f0;
-  --primary-text: hsla(180, 25%, 14%, 1);
-  --primary-shadow: hsla(179, 23%, 95%, 1);
-  --accent: #028787;
-  --accent-contrast: #0887A9;
+  --background: #d9d9d9;
+  --bg-shadow: #bfbfbf;
+  --bg-light: #f2f2f2;
+  --text-main: #333333;
+  --text-flip: #d9d9d9;
+  --accent: #006963;
+  --highlight: #803f92;
 }
 
 h1,
@@ -54,17 +52,17 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font);
-  color: var(--primary-text);
+  color: var(--text-main);
   letter-spacing: 0.08rem;
 }
 p,
 span {
   font-family: var(--body-font);
-  color: var(--primary-text);
+  color: var(--text-main);
 }
 
 body {
-  background-color: var(--primary);
+  background-color: var(--background);
   height: 100dvh;
   transition: all 0.4s;
 }
