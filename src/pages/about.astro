@@ -1,11 +1,120 @@
 ---
+import { Image } from "astro:assets";
 import MainLayout from "../layouts/MainLayout.astro";
+import profilePic from "../assets/profile-pic.jpg";
 ---
 
 <MainLayout>
-  <h1>Hello. It's me.</h1>
+  <section class="about-me">
+    <Image
+      src={profilePic}
+      class="selfie"
+      alt="Woman with blue, purple, pink, and brown hair, brown eyes, and a confident smirk."
+    />
+    <h1>Who am I?</h1>
+    <p>
+      I'm a web developer with a front-end focus who loves working with
+      JavaScript and CSS. I'm the kid who bought puzzle books for the logic
+      puzzles, so building the logic and functionality of sites with JavaScript
+      feels natural. I've always thrived in creative roles, and getting to add
+      some finesse to a project with CSS is so much fun. I also value
+      accessibility and responsive design and work hard to keep those at the
+      forefront of my projects.
+    </p>
+    <p>
+      Why would you want me on your team?
+      <ul>
+        <li>
+          I'm empathetic and want everyone I work with to feel heard and
+          understood.
+        </li>
+        <li>
+          I'm resilient and determined to a fault when troubleshooting and
+          finding solutions.
+        </li>
+        <li>
+          I'm always looking to learn from others and share what wisdom I have
+          in return.
+        </li>
+        <li>
+          I'm an optimistic realist - I see the bright side in everything but
+          have the experience to know when to let go or take a break.
+        </li>
+      </ul>
+    </p>
+    <p>
+      Wanna chat? Please reach out at <span class="email-copy-action"
+        >hello@lindakat.com</span
+      >.
+    </p>
+  </section>
+  <section class="work-values">
+    <h1>Work Values</h1>
+    <ul>
+      <li>
+        <strong>An open and communicative office</strong> - where asking questions
+        is safe, feedback is constructive, and the whole human is considered.
+      </li>
+      <li>
+        <strong>Working with a diverse team</strong> - a mix of viewpoints from different
+        backgrounds and groups is vital to a company's ability to benefit others.
+        I want to work with a variety of folks and have the chance to learn new things.
+      </li>
+      <li>
+        <strong>Building a product that benefits others</strong> - I want to spend
+        my time on something that makes someone's day easier or brighter. Bonus points
+        if it involves music, is for other developers, or improves lives through
+        education, healthcare, or democracy!
+      </li>
+    </ul>
+  </section>
 </MainLayout>
 
 <style>
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
 
+  section {
+    padding: 0 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .email-copy-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: solid underline var(--accent);
+  }
+
+  .email-copy-action:hover {
+    background-color: var(--highlight);
+    text-decoration-style: double;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .selfie {
+    width: 60%;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 50px;
+  }
 </style>
+
+<script>
+  const email = document.querySelector(".email-copy-action");
+  email?.addEventListener("click", () => {
+    navigator.clipboard.writeText("hello@lindakat.com").then(
+      () => {
+        console.log("Successfully copied text!");
+      },
+      () => {
+        console.error("Sorry, could not copy text");
+      }
+    );
+  });
+</script>

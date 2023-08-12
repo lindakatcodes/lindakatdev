@@ -55,7 +55,9 @@ h6 {
   color: var(--text-main);
   letter-spacing: 0.08rem;
 }
+
 p,
+li,
 span {
   font-family: var(--body-font);
   color: var(--text-main);
@@ -71,6 +73,28 @@ body {
   height: 6px;
   width: 100dvw;
   background: var(--accent);
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 3%;
+}
+
+ul li {
+  text-indent: -4.5%;
+  margin-bottom: 2%;
+}
+
+ul li::before {
+  content: "»";
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+ul li:nth-child(2n)::before {
+  color: var(--accent);
 }
 
 /* Light theme specific settings */
