@@ -17,43 +17,78 @@
 }
 
 /* 
-  dark theme
-  background hsl(0,0%,20%)
-  bg-shadow hsl(0,0%,10%)
-  bg-light hsl(0,0%,30%)
-  text-main hsl(0,0%,85%)
-  text-flip hsl(0,0%,20%)
-  accent hsla(233, 65%, 73%, 1)
-  highlight hsla(164, 51%, 65%, 1)
- 
-  light theme
-  background hsla(248, 0%, 85%, 1)
-  bg-shadow hsla(248, 0%, 70%, 1)
-  bg-light hsla(248, 0%, 95%, 1)
-  text-main hsl(0,0%,20%)
-  text-flip hsla(248, 0%, 85%, 1)
-  accent hsla(177, 100%, 21%, 1)
-  highlight hsla(287, 40%, 41%, 1)
+dark
+purple: D3A9EA 
+blue: 95D9E4 
+yellow: F9F5AD 
+green: 9DE59A 
+pink: EAA9B6 
+
+light
+purple: 622682 
+blue: 28646f 
+yellow: f8df3a 
+green: 1f631c 
+pink: a02840 
+
+black: 323334 
+white: ebeeef 
 */
 
 .theme-dark {
-  --background: #333333;
-  --bg-shadow: #1a1a1a;
-  --bg-light: #4d4d4d;
-  --text-main: #d9d9d9;
-  --text-flip: #333333;
-  --accent: #8c97e7;
-  --highlight: #78d3bb;
+  --background: hsla(210, 2%, 20%, 1);
+  --bg-shadow: hsla(210, 2%, 15%, 1);
+  --bg-light: hsla(210, 2%, 25%, 1);
+  --text-main: hsla(195, 10%, 93%, 1);
+  --text-flip: var(--background);
+  --purple: hsla(279, 61%, 79%, 1); 
+  --blue: hsla(188, 59%, 74%, 1);
+  --yellow: hsla(57, 86%, 83%, 1);
+  --green: hsla(118, 59%, 75%, 1);
+  --pink: hsla(348, 61%, 79%, 1);
+  --gradient: linear-gradient(
+    60deg,
+    hsl(279deg 61% 79%) 0%,
+    hsl(307deg 49% 77%) 19%,
+    hsl(326deg 59% 78%) 27%,
+    hsl(340deg 63% 79%) 34%,
+    hsl(355deg 73% 81%) 41%,
+    hsl(14deg 100% 83%) 47%,
+    hsl(32deg 100% 82%) 53%,
+    hsl(48deg 99% 83%) 59%,
+    hsl(85deg 75% 83%) 66%,
+    hsl(141deg 66% 82%) 73%,
+    hsl(171deg 60% 75%) 81%,
+    hsl(188deg 59% 74%) 100%
+  );
 }
 
 .theme-light {
-  --background: #d9d9d9;
-  --bg-shadow: #b3b3b3;
-  --bg-light: #f2f2f2;
-  --text-main: #333333;
-  --text-flip: #d9d9d9;
-  --accent: #006963;
-  --highlight: #803f92;
+  --background: hsla(195, 10%, 93%, 1);
+  --bg-shadow: hsla(195, 10%, 87%, 1);
+  --bg-light: hsla(195, 10%, 98%, 1);
+  --text-main: hsla(210, 2%, 20%, 1);
+  --text-flip: var(--background);
+  --purple: hsla(279, 55%, 33%, 1); 
+  --blue: hsla(189, 47%, 30%, 1);
+  --yellow: hsla(52, 93%, 60%, 1);
+  --green: hsla(117, 56%, 25%, 1);
+  --pink: hsla(348, 60%, 39%, 1);
+  --gradient: linear-gradient(
+    60deg,
+    hsl(279deg 55% 33%) 0%,
+    hsl(309deg 65% 30%) 19%,
+    hsl(325deg 74% 33%) 27%,
+    hsl(338deg 68% 37%) 34%,
+    hsl(355deg 53% 45%) 41%,
+    hsl(16deg 66% 53%) 47%,
+    hsl(32deg 86% 57%) 53%,
+    hsl(46deg 94% 59%) 59%,
+    hsl(77deg 60% 57%) 66%,
+    hsl(142deg 41% 50%) 73%,
+    hsl(175deg 100% 28%) 81%,
+    hsl(189deg 47% 30%) 100%
+  );
 }
 
 /* basic font & color settings */
@@ -82,7 +117,7 @@ body {
 /* styles used on multiple pages */
 .divider {
   height: 6px;
-  background: var(--accent);
+  background: var(--gradient);
 }
 
 ul {
@@ -100,11 +135,11 @@ ul li::before {
   margin: 0 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--highlight);
+  color: var(--purple);
 }
 
 ul li:nth-child(2n)::before {
-  color: var(--accent);
+  color: var(--blue);
 }
 
 /* Light theme specific settings */
