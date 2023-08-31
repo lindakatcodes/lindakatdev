@@ -1,10 +1,7 @@
 ---
 ---
 
-<!-- code is a mix of:
-https://letsbuildui.dev/articles/building-a-dark-mode-theme-toggle
-https://docs.astro.build/en/tutorial/6-islands/2/ -->
-<button id="themeToggle" class="theme-button">
+<button id="themeToggle" class="theme-button" type="button" data-theme-toggle aria-label="change to light theme">
   <svg
     class="sun"
     width="24"
@@ -71,46 +68,37 @@ https://docs.astro.build/en/tutorial/6-islands/2/ -->
   }
 </style>
 
-<script is:inline>
+<script>
+  function getThemeString(localValue: string | null, systemValue: MediaQueryList ): string {
+    if (localValue !== null) return localValue;
+    if (systemValue.matches) return 'light';
+    return 'dark';
+  }
+
+  function updatePageTheme(currentTheme: string, buttonEl: Element | null): void {
+    const newAriaLabel = currentTheme === 'dark' ? "Change to light theme" : "Change to dark theme";
+    buttonEl?.setAttribute("aria-label", newAriaLabel);
+    document.querySelector("html")?.setAttribute("data-theme", currentTheme);
+  }
+
   const setColorTheme = () => {
-    const theme = (() => {
-      if (
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
-      ) {
-        return localStorage.getItem("theme");
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "theme-dark";
-      }
-      return "theme-light";
-    })();
-
-    if (theme === "theme-light") {
-      document.getElementById("root").classList.remove("theme-dark");
-      document.getElementById("root").classList.add("theme-light");
-    } else {
-      document.getElementById("root").classList.add("theme-dark");
-      document.getElementById("root").classList.remove("theme-light");
-    }
-
-    window.localStorage.setItem("theme", theme);
-
-    const handleToggleClick = () => {
-      const element = document.getElementById("root");
-      element.classList.toggle("theme-dark");
-      element.classList.toggle("theme-light");
-
-      const isDark = element.classList.contains("theme-dark");
-      localStorage.setItem("theme", isDark ? "theme-dark" : "theme-light");
-    };
-
-    document
-      .getElementById("themeToggle")
-      .addEventListener("click", handleToggleClick);
-  };
+    const themeButton = document.querySelector("[data-theme-toggle]");
+    const localStorageTheme = localStorage.getItem("theme");
+    const systemSettingLight = window.matchMedia("(prefers-color-scheme: light)");
+    
+    let currentThemeSetting = getThemeString(localStorageTheme, systemSettingLight); 
+    updatePageTheme(currentThemeSetting, themeButton);
+    
+    
+    themeButton?.addEventListener("click", (event) => {
+      const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      updatePageTheme(newTheme, themeButton);
+      currentThemeSetting = newTheme;
+    }); 
+  }
 
   setColorTheme();
 
-  document.addEventListener("astro:beforeload", setColorTheme);
+  document.addEventListener("astro:after-swap", setColorTheme);
 </script>

@@ -35,7 +35,7 @@ black: 323334
 white: ebeeef 
 */
 
-.theme-dark {
+[data-theme="dark"] {
   --background: hsla(210, 2%, 20%, 1);
   --bg-shadow: hsla(210, 2%, 15%, 1);
   --bg-light: hsla(210, 2%, 25%, 1);
@@ -61,9 +61,17 @@ white: ebeeef
     hsl(171deg 60% 75%) 81%,
     hsl(188deg 59% 74%) 100%
   );
+
+  & .sun {
+    visibility: hidden;
+  }
+  
+  & .moon {
+    visibility: visible;
+  }
 }
 
-.theme-light {
+[data-theme="light"] {
   --background: hsla(195, 10%, 93%, 1);
   --bg-shadow: hsla(195, 10%, 87%, 1);
   --bg-light: hsla(195, 10%, 98%, 1);
@@ -89,6 +97,18 @@ white: ebeeef
     hsl(175deg 100% 28%) 81%,
     hsl(189deg 47% 30%) 100%
   );
+
+  & .link {
+    text-shadow: none;
+  }
+  
+  & .sun {
+    visibility: visible;
+  }
+  
+  & .moon {
+    visibility: hidden;
+  }
 }
 
 /* basic font & color settings */
@@ -140,26 +160,4 @@ ul li::before {
 
 ul li:nth-child(2n)::before {
   color: var(--blue);
-}
-
-/* Light theme specific settings */
-.theme-light .link {
-  text-shadow: none;
-}
-
-.theme-light .sun {
-  visibility: visible;
-}
-
-.theme-light .moon {
-  visibility: hidden;
-}
-
-/* Dark theme specific settings */
-.theme-dark .sun {
-  visibility: hidden;
-}
-
-.theme-dark .moon {
-  visibility: visible;
 }
