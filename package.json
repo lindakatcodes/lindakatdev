@@ -10,9 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/allura": "^5.0.4",
+    "@fontsource/arizonia": "^5.0.11",
     "@fontsource/fira-sans": "^5.0.4",
     "@fontsource/rancho": "^5.0.5",
-    "astro": "^3.0.4"
+    "astro": "^3.0.4",
+    "astro-icon": "^0.8.1"
   }
 }

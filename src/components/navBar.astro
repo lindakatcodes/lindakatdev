@@ -1,10 +1,13 @@
 ---
+import '@fontsource/arizonia';
 import ThemeToggle from "./themeToggle.astro";
 const activePath = Astro.url.pathname;
 ---
 <header>
   <nav transition:name="header">
-    <a class:list={["home link", { active: activePath === "/" }]} href="/">LT</a>
+    <a class:list={["home gradient-text link", { active: activePath === "/" }]} href="/">
+      LT
+    </a>
     <span class="spacer"></span>
     <a
     class:list={["link", { active: activePath === "/projects" }]}
@@ -50,13 +53,11 @@ const activePath = Astro.url.pathname;
   }
 
   .home {
-    font-size: 2.5rem;
-    margin-left: 0.5rem;
-  }
-
-  .home:hover {
-    text-decoration: none;
-    color: var(--blue);
+    font-family: 'Arizonia', sans-serif;
+    font-size: 3.5rem;
+    width: 7rem;
+    margin-left: 2px;
+    text-shadow: none;
   }
 
   .spacer {
