@@ -2,14 +2,16 @@
 ---
 
 <div transition:name="footer" class="footer-container">
-  <div class="divider"></div>
+  <div class="divider shadow-over"></div>
   <footer>
     <h2 class="footer-title">Hi there!</h2>
+    <div class="footer-grid">
     <p>
       If you'd like to reach out, try my email:
-      <span class="email-copy-action"> hello@lindakat.com</span>
+      <span class="email gradient-text"> hello@lindakat.com</span>
     </p>
-    <p>Or you can find me online in these fine places. See you around!</p>
+    <p>Or you can find me online most anywhere <span class="handle">@lindakatcodes</span>. See you around!</p>
+  </div>
   </footer>
 </div>
 
@@ -24,32 +26,42 @@
 
   .footer-title {
     text-align: center;
-    font-size: 1.7rem;
-    margin-bottom: 0.25rem;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4rem;
   }
 
   p {
     text-align: center;
-    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
   }
 
-  .email-copy-action {
-    background: none;
-    border: none;
+  .email {
     cursor: pointer;
-    text-decoration: solid underline var(--purple);
+    text-decoration: 2px solid underline var(--blue);
+    transition: background 0.3s ease-in-out;
+    background-image: none;
+    background-color: var(--pink);
   }
 
-  .email-copy-action:hover {
-    background-color: var(--pink);
+  .email:hover {
     text-decoration-style: double;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-image: var(--gradient);
+  }
+
+  .handle {
+    color: var(--purple);
   }
 </style>
 
 <script>
-  const email = document.querySelector(".email-copy-action");
+  const email = document.querySelector(".email");
   email?.addEventListener("click", () => {
     navigator.clipboard.writeText("hello@lindakat.com").then(
       () => {
