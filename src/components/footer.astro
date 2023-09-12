@@ -1,17 +1,61 @@
 ---
+import Icon from "astro-icon";
+
+type socialLink = {
+  iconName: String;
+  displayName: String;
+  link: URL["href"];
+};
+const socialLinks: socialLink[] = [
+  {
+    iconName: "file-lines-regular",
+    displayName: "Resume",
+    link: "https://drive.google.com/file/d/1z6EGbKBtzqffZUGtfUB9eGelxLBdcdsK/view?usp=sharing",
+  },
+  {
+    iconName: "github",
+    displayName: "GitHub",
+    link: "https://github.com/lindakatcodes",
+  },
+  {
+    iconName: "linkedin",
+    displayName: "LinkedIn",
+    link: "https://www.linkedin.com/in/lindakatcodes/",
+  },
+  {
+    iconName: "mastodon",
+    displayName: "Mastodon",
+    link: "https://hachyderm.io/@lindakatcodes",
+  },
+  {
+    iconName: "x-twitter",
+    displayName: "X-Twitter",
+    link: "https://twitter.com/lindakatcodes",
+  },
+];
 ---
 
 <div transition:name="footer" class="footer-container">
   <div class="divider shadow-over"></div>
   <footer>
-    <h2 class="footer-title">Hi there!</h2>
-    <div class="footer-grid">
-    <p>
-      If you'd like to reach out, try my email:
-      <span class="email gradient-text"> hello@lindakat.com</span>
-    </p>
-    <p>Or you can find me online most anywhere <span class="handle">@lindakatcodes</span>. See you around!</p>
-  </div>
+    <section class="email-outro">
+      <h2>Hi there!</h2>
+      <p>Thanks for checking out my site!</p>
+      <p>
+        Feel free to email me if you'd like to get in touch: <br />
+        <span class="email gradient-text"> hello@lindakat.com</span>
+      </p>
+    </section>
+    <section class="socials">
+      {
+        socialLinks.map((link) => (
+          <a class:list={["social-link", link.displayName.toLowerCase()]} href={link.link}>
+            <Icon name={link.iconName} />
+            <p>{link.displayName}</p>
+          </a>
+        ))
+      }
+    </section>
   </footer>
 </div>
 
@@ -21,25 +65,23 @@
   }
 
   footer {
-    padding: 0.25rem 0.5rem;
+    padding: 1rem 4rem;
+    display: grid;
+    grid-template-areas: "email socials";
+    grid-template-columns: 1fr 0.5fr;
   }
 
-  .footer-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 0.5rem;
-  }
+  .email-outro {
+    grid-area: email;
 
-  .footer-grid {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 4rem;
-  }
+    & h2 {
+      font-family: var(--cursive-font);
+      font-size: 1.75rem;
+    }
 
-  p {
-    text-align: center;
-    font-size: 1.1rem;
+    & p {
+      margin-bottom: 0.25rem;
+    }
   }
 
   .email {
@@ -48,6 +90,7 @@
     transition: background 0.3s ease-in-out;
     background-image: none;
     background-color: var(--pink);
+    font-size: 1.1rem;
   }
 
   .email:hover {
@@ -55,8 +98,84 @@
     background-image: var(--gradient);
   }
 
-  .handle {
-    color: var(--purple);
+  .socials {
+    grid-area: socials;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration-color: var(--text-flip);
+
+    & svg {
+      fill: var(--text-main);
+      height: 36px;
+      width: auto;
+    }
+
+    & p {
+      color: var(--text-main);
+      margin-top: 0.125rem;
+      font-size: 0.7rem;
+    }
+  }
+
+  .resume:hover {
+    text-decoration-color: var(--purple);
+
+    & svg {
+      fill: var(--purple);
+    }
+    & p {
+      color: var(--purple);
+    }
+  }
+
+  .github:hover {
+    text-decoration-color: var(--green);
+
+    & svg {
+      fill: var(--green);
+    }
+    & p {
+      color: var(--green);
+    }
+  }
+
+  .linkedin:hover {
+    text-decoration-color: var(--blue);
+
+    & svg {
+      fill: var(--blue);
+    }
+    & p {
+      color: var(--blue);
+    }
+  }
+
+  .mastodon:hover {
+    text-decoration-color: var(--purple);
+
+    & svg {
+      fill: var(--purple);
+    }
+    & p {
+      color: var(--purple);
+    }
+  }
+
+  .x-twitter:hover {
+    text-decoration-color: var(--pink);
+
+    & svg {
+      fill: var(--pink);
+    }
+    & p {
+      color: var(--pink);
+    }
   }
 </style>
 
