@@ -10,14 +10,14 @@ const activePath = Astro.url.pathname;
     <span class="spacer"></span>
     <a
     class:list={["link projects", { 'projects-active': activePath === "/projects" }]}
-    href="/projects">PROJECTS</a
+    href="/projects">Projects</a
     >
     <!-- <a
     class:list={["link writing", { 'writing-active': activePath === "/writing" }]}
     href="/writing">WRITING</a
     > -->
     <a class:list={["link about", { 'about-active': activePath === "/about" }]} href="/about"
-    >ABOUT</a
+    >About</a
     >
     <ThemeToggle />
   </nav>
@@ -42,8 +42,8 @@ const activePath = Astro.url.pathname;
   
   .link {
     color: var(--text-main);
-    font-family: var(--heading-font);
-    font-size: 1.6rem;
+    font-family: var(--cursive-font);
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 0.07rem;
     padding: 0.5rem 0.25rem 0;
