@@ -1,5 +1,4 @@
 ---
-import '@fontsource/arizonia';
 import ThemeToggle from "./themeToggle.astro";
 const activePath = Astro.url.pathname;
 ---
@@ -11,14 +10,14 @@ const activePath = Astro.url.pathname;
     <span class="spacer"></span>
     <a
     class:list={["link projects", { 'projects-active': activePath === "/projects" }]}
-    href="/projects">Projects</a
+    href="/projects">PROJECTS</a
     >
-    <a
+    <!-- <a
     class:list={["link writing", { 'writing-active': activePath === "/writing" }]}
-    href="/writing">Writing</a
-    >
+    href="/writing">WRITING</a
+    > -->
     <a class:list={["link about", { 'about-active': activePath === "/about" }]} href="/about"
-    >About</a
+    >ABOUT</a
     >
     <ThemeToggle />
   </nav>
@@ -45,13 +44,12 @@ const activePath = Astro.url.pathname;
     color: var(--text-main);
     font-family: var(--heading-font);
     font-size: 1.6rem;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 0.07rem;
     padding: 0.5rem 0.25rem 0;
     border-bottom: thick solid;
     border-bottom-color: transparent;
     text-decoration: none;
-    vertical-align: baseline;
     text-shadow: -1px 1px 4px var(--bg-shadow);
     transition: border-bottom-color 0.2s linear, color 0.2s linear;
   }
@@ -61,7 +59,7 @@ const activePath = Astro.url.pathname;
   }
 
   .home {
-    font-family: 'Arizonia', sans-serif;
+    font-family: var(--cursive-font);
     font-size: 3.5rem;
     width: 7rem;
     margin-left: 2px;

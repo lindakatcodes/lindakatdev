@@ -10,8 +10,9 @@
 
 /* global variables */
 :root {
-  --heading-font: "Rancho", sans-serif;
+  --heading-font: "Overlock", serif;
   --body-font: "Fira Sans", sans-serif;
+  --cursive-font: "Rouge Script", cursive;
   --header-height: 4.25rem;
   --footer-height: 9rem;
   font-size: 18px;
@@ -121,7 +122,6 @@ h5,
 h6 {
   font-family: var(--heading-font);
   color: var(--text-main);
-  letter-spacing: 0.08rem;
 }
 
 p,
