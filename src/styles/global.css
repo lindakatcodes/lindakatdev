@@ -39,8 +39,7 @@ white: ebeeef b8bcbf
 
 [data-theme="dark"] {
   --background: hsla(210, 2%, 20%, 1);
-  --bg-shadow: hsla(210, 2%, 15%, 1);
-  --bg-light: hsla(210, 2%, 25%, 1);
+  --box-shadow: hsla(210, 2%, 75%, 1);
   --text-main: hsla(195, 10%, 93%, 1);
   --text-flip: var(--background);
   --purple: hsla(279, 61%, 79%, 1);
@@ -75,7 +74,7 @@ white: ebeeef b8bcbf
 
 [data-theme="light"] {
   --background: hsla(206, 5%, 74%, 1);
-  --bg-shadow: hsla(200, 5%, 53%, 1);
+  --box-shadow: hsla(200, 5%, 53%, 1);
   --bg-light: hsla(200, 5%, 73%, 1);
   --text-main: hsla(210, 2%, 20%, 1);
   --text-flip: var(--background);
@@ -144,11 +143,11 @@ body {
 }
 
 .shadow-under {
-  box-shadow: 0 4px 5px var(--bg-shadow);
+  box-shadow: 0 4px 5px var(--box-shadow);
 }
 
 .shadow-over {
-  box-shadow: 0 -4px 5px var(--bg-shadow);
+  box-shadow: 0 -4px 5px var(--box-shadow);
 }
 
 ul {

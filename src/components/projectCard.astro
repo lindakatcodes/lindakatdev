@@ -1,0 +1,241 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-wrapper">
+  <div class="project-image">
+    <Image src={project.data.headerImage} alt={project.data.headerImageAlt} />
+  </div>
+  <h3 class="project-title">{project.data.name}</h3>
+  <div class="project-tech">
+    {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
+  </div>
+  <p class="project-description">{project.data.description}</p>
+  <div class="project-links">
+    {
+      project.data.demoLink && (
+        <a
+          href={project.data.demoLink}
+          class="demo"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Demo
+        </a>
+      )
+    }
+    {
+      project.data.codeLink && (
+        <a
+          href={project.data.codeLink}
+          class="code"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Code
+        </a>
+      )
+    }
+    {
+      project.data.liveLink && (
+        <a
+          href={project.data.liveLink}
+          class="live"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Live Site
+        </a>
+      )
+    }
+  </div>
+  {
+    project.data.hasCaseStudy && (
+      <a href={"/projects/" + project.slug} class="case-study">
+        View Project Case Study
+      </a>
+    )
+  }
+</article>
+
+<style>
+  .project-wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 98%;
+    padding: 1% 1.5% 2%;
+    border-radius: 8px;
+    box-shadow: none;
+    transition:
+      box-shadow 0.3s,
+      border 0.3s;
+  }
+
+  .project-wrapper:hover {
+    box-shadow:
+      0px 0.3px 2.3px var(--box-shadow),
+      0px 1px 1.2px -0.7px var(--box-shadow),
+      0.1px 2.4px 2.8px -1.5px var(--box-shadow),
+      0.2px 5.7px 6.6px -2.2px var(--box-shadow);
+  }
+
+  .project-image {
+    width: 100%;
+    height: 17vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .project-image img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    overflow: hidden;
+  }
+
+  .project-title {
+    color: var(--text-main);
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0.75% 0 1.5%;
+  }
+
+  .project-tech {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-family: var(--body-font);
+    font-weight: 600;
+    letter-spacing: 0.75px;
+  }
+
+  .project-tech p {
+    color: var(--pink);
+    margin: 1% 1.75%;
+  }
+
+  .project-tech p:nth-child(2n) {
+    color: var(--purple);
+  }
+
+  .project-tech p:nth-child(3n) {
+    color: var(--blue);
+  }
+
+  .project-tech p:nth-child(4n) {
+    color: var(--green);
+  }
+
+  .project-description {
+    margin-top: 1%;
+    padding-left: 2%;
+    font-size: 0.9rem;
+    width: 100%;
+    height: 25%;
+    line-height: 1.1rem;
+  }
+
+  .project-links {
+    width: 100%;
+    margin: 2% 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .project-links a,
+  .case-study {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 1% 2.5%;
+    margin: 3%;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: var(--serif-font);
+    transition:
+      color 0.2s ease-in-out,
+      background 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--text-flip);
+    }
+  }
+
+  .demo {
+    border: 2px solid var(--pink);
+  }
+
+  .demo:hover {
+    background: var(--pink);
+  }
+
+  .code {
+    border: 2px solid var(--green);
+  }
+
+  .code:hover {
+    background: var(--green);
+  }
+
+  .live {
+    border: 2px solid var(--purple);
+  }
+
+  .live:hover {
+    background: var(--purple);
+  }
+
+  .case-study {
+    border: 2px solid var(--blue);
+  }
+
+  .case-study:hover {
+    background: var(--blue);
+  }
+
+  @media screen and (max-width: 768px) {
+    .project-wrapper {
+      width: 95%;
+      padding: 5% 1.5%;
+      border-bottom: 1px solid var(--text-main);
+      border-radius: 0;
+      margin-top: 3%;
+    }
+
+    .project-image {
+      height: 50vw;
+    }
+
+    .project-title {
+      margin-top: 2%;
+      font-size: 1.65rem;
+      text-align: center;
+    }
+
+    .project-tech {
+      font-size: 0.85rem;
+    }
+
+    .project-description {
+      font-size: 0.875rem;
+      padding-bottom: 2%;
+      height: auto;
+    }
+  }
+</style>

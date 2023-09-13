@@ -1,0 +1,38 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ProjectCard from "../../components/projectCard.astro";
+import { getCollection } from "astro:content";
+const projects = await getCollection("projects");
+---
+
+<MainLayout>
+  <h1>Projects</h1>
+  <div class="projects-wrapper">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</MainLayout>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  .projects-wrapper {
+    width: 90%;
+    margin: 2% auto;
+    padding: 2% 1% 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    .projects-wrapper {
+      width: 95%;
+      padding: 0;
+      margin-bottom: 5%;
+      grid-row-gap: 0;
+    }
+  }
+</style>
