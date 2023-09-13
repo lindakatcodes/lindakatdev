@@ -177,6 +177,21 @@ const socialLinks: socialLink[] = [
       color: var(--pink);
     }
   }
+
+  @media (max-width: 1024px) {
+    footer {
+      grid-template-areas: "email" "socials";
+      grid-template-columns: 1fr;
+    }
+
+    .email-outro {
+      text-align: center;
+    }
+
+    .socials {
+      margin-top: 1rem;
+    }
+  }
 </style>
 
 <script>

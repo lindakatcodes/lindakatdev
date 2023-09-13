@@ -153,12 +153,12 @@ body {
 
 ul {
   list-style-type: none;
-  padding-left: 3%;
+  padding-left: 1.75rem;
 }
 
 ul li {
   text-indent: -4.5%;
-  margin-bottom: 2%;
+  margin-bottom: 0.5rem;
 }
 
 ul li::before {
