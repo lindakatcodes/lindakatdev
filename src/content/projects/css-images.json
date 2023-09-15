@@ -5,7 +5,9 @@
   "description": "Images created using CSS, following prompts from a daily email. Through working on these drawings, I started to learn more about positioning items with CSS, as well as flexing the creative side of my mind.",
   "tech": ["HTML", "CSS"],
   "featured": true,
+  "demoLink": null,
   "codeLink": "https://codepen.io/collection/XOBRMd",
+  "liveLink": null,
   "hasCaseStudy": true,
   "purpose": "A few years ago, there was a daily email challenge going around the Twitter tech community called Daily CSS Images. I loved the idea of drawing with CSS - I appreciate art but had never been skilled at doing it on paper. So I signed up and started making them! Often drawings took me a few days to complete. I never made it through the entire 50 email collection, but it inspired a method of creating art that I still love doing.",
   "highlights": [

@@ -2,10 +2,6 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-interface Props {
-  entry: CollectionEntry<"projects">;
-}
 
 export async function getStaticPaths() {
   const projectCaseStudies = await getCollection("projects", ({ data }) => {
@@ -34,7 +30,7 @@ const { entry } = Astro.props;
       <div class="cs-data">
         <p class="tech-title">Built With:</p>
         <div class="tech-data">
-          {entry.data.tech.map((name) => <span>{name}</span>)}
+          {entry.data.tech.map((name: string) => <span>{name}</span>)}
         </div>
         <div class="vertical-divider"></div>
         <p class="link-title">See it in action:</p>
@@ -81,7 +77,7 @@ const { entry } = Astro.props;
     <div class="highlight-text">
       <h3>Highlights: The Good Parts</h3>
       <ul>
-        {entry.data.highlights.map((point) => <li>{point}</li>)}
+        {entry.data.highlights.map((point: string) => <li>{point}</li>)}
       </ul>
     </div>
     <Image
@@ -97,7 +93,7 @@ const { entry } = Astro.props;
     <div class="challenge-text">
       <h3>Challenges: The Hard Parts</h3>
       <ul>
-        {entry.data.challenges.map((point) => <li>{point}</li>)}
+        {entry.data.challenges.map((point: string) => <li>{point}</li>)}
       </ul>
     </div>
     <div class="wrapup">
@@ -105,14 +101,14 @@ const { entry } = Astro.props;
       <p>{entry.data.lessonIntro}</p>
       <h4>The biggest takeaways I got from this project were:</h4>
       <ul>
-        {entry.data.lessonWins.map((point) => <li>{point}</li>)}
+        {entry.data.lessonWins.map((point: string) => <li>{point}</li>)}
       </ul>
       {
         entry.data.lessonImprovements && (
           <>
             <h4>Improvements I'd like to make down the road:</h4>
             <ul>
-              {entry.data.lessonImprovements.map((point) => (
+              {entry.data.lessonImprovements.map((point: string) => (
                 <li>{point}</li>
               ))}
             </ul>

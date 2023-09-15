@@ -1,0 +1,12 @@
+{
+  "name": "Technical Documentation",
+  "headerImage": "../../assets/projects/documentation.png",
+  "headerImageAlt": "A dark black border on the left hand side shows a table of contents. The right hand side shows a white blackground with black text, showing the title Learn with Jason commands and a few list items showing a command name and description.",
+  "description": "I've enjoyed participating in the Learn with Jason Twitch streams for awhile now, especially with all the different ways chatters can interact with the stream. So while going back and completing some FreeCodeCamp exercises, I made this documentation of the different chat commands for Jason's stream.",
+  "tech": ["HTML", "CSS", "JS"],
+  "featured": false,
+  "demoLink": null,
+  "codeLink": "https://codepen.io/lindakatcodes/pen/PoWpmeO",
+  "liveLink": null,
+  "hasCaseStudy": false
+}

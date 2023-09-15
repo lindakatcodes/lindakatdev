@@ -2,18 +2,27 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import ProjectCard from "../../components/projectCard.astro";
 import { getCollection } from "astro:content";
-const projects = await getCollection("projects");
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+});
+const otherProjects = await getCollection("projects", ({ data }) => {
+  return data.featured !== true;
+});
 ---
 
 <MainLayout>
-  <h1>Projects</h1>
+  <h1>Featured Projects</h1>
   <div class="projects-wrapper">
-    {projects.map((project) => <ProjectCard project={project} />)}
+    {featuredProjects.map((project) => <ProjectCard project={project} />)}
+  </div>
+  <h2>Other Fun Projects</h2>
+  <div class="projects-wrapper">
+    {otherProjects.map((project) => <ProjectCard project={project} />)}
   </div>
 </MainLayout>
 
 <style>
-  h1 {
+  h1, h2 {
     text-align: center;
   }
 
