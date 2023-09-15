@@ -1,18 +1,362 @@
 ---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  entry: CollectionEntry<"projects">;
+}
 
 export async function getStaticPaths() {
   const projectCaseStudies = await getCollection("projects", ({ data }) => {
     return data.hasCaseStudy === true;
   });
   return projectCaseStudies.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
 ---
 
-<Content />
+<MainLayout>
+  <h2>{entry.data.name}</h2>
+  <article class="cs-wrapper">
+    <Image
+      src={entry.data.headerImage}
+      alt={entry.data.headerImageAlt}
+      class="purpose-image"
+    />
+    <div class="purpose-text">
+      <h3>Purpose: Why This?</h3>
+      <p>{entry.data.purpose}</p>
+      <div class="cs-data">
+        <p class="tech-title">Built With:</p>
+        <div class="tech-data">
+          {entry.data.tech.map((name) => <span>{name}</span>)}
+        </div>
+        <div class="vertical-divider"></div>
+        <p class="link-title">See it in action:</p>
+        <div class="link-data">
+          {
+            entry.data.demoLink && (
+              <a
+                href={entry.data.demoLink}
+                target="_blank"
+                rel="noreferrer noopener"
+                class="link-demo"
+              >
+                Demo
+              </a>
+            )
+          }
+          {
+            entry.data.codeLink && (
+              <a
+                href={entry.data.codeLink}
+                target="_blank"
+                rel="noreferrer noopener"
+                class="link-code"
+              >
+                Code
+              </a>
+            )
+          }
+          {
+            entry.data.liveLink && (
+              <a
+                href={entry.data.liveLink}
+                target="_blank"
+                rel="noreferrer noopener"
+                class="link-live"
+              >
+                Live Site
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+    <div class="highlight-text">
+      <h3>Highlights: The Good Parts</h3>
+      <ul>
+        {entry.data.highlights.map((point) => <li>{point}</li>)}
+      </ul>
+    </div>
+    <Image
+      src={entry.data.detailImage1}
+      alt={entry.data.detailImage1Alt}
+      class="highlight-image"
+    />
+    <Image
+      src={entry.data.detailImage2}
+      alt={entry.data.detailImage2Alt}
+      class="challenge-image"
+    />
+    <div class="challenge-text">
+      <h3>Challenges: The Hard Parts</h3>
+      <ul>
+        {entry.data.challenges.map((point) => <li>{point}</li>)}
+      </ul>
+    </div>
+    <div class="wrapup">
+      <h3>Takeaway: Lessons Learned</h3>
+      <p>{entry.data.lessonIntro}</p>
+      <h4>The biggest takeaways I got from this project were:</h4>
+      <ul>
+        {entry.data.lessonWins.map((point) => <li>{point}</li>)}
+      </ul>
+      {
+        entry.data.lessonImprovements && (
+          <>
+            <h4>Improvements I'd like to make down the road:</h4>
+            <ul>
+              {entry.data.lessonImprovements.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+    </div>
+  </article>
+  <a href="/projects" class="back-link">← Back to Projects</a>
+</MainLayout>
+
+<style>
+  h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 1.5rem;
+  }
+
+  h3 {
+    margin-bottom: 1.5%;
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 1.15rem;
+    margin-bottom: 1.5%;
+    padding-left: 2%;
+  }
+  
+  p {
+    margin-bottom: 2%;
+    line-height: 1.5;
+    padding: 0 2%;
+  }
+
+  .cs-wrapper {
+    display: grid;
+    grid-template-areas:
+      "main-img purpose"
+      "highlight detail-img-1"
+      "detail-img-2 challenge"
+      "lessons lessons";
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 2rem;
+    column-gap: 1.2rem;
+  }
+
+  .purpose-image {
+    grid-area: main-img;
+  }
+
+  .purpose-text {
+    grid-area: purpose;
+
+    & h3 {
+      color: var(--purple);
+    }
+  }
+
+  .highlight-text {
+    grid-area: highlight;
+
+    & h3 {
+      color: var(--blue);
+    }
+  }
+
+  .highlight-image {
+    grid-area: detail-img-1;
+  }
+
+  .challenge-image {
+    grid-area: detail-img-2;
+  }
+
+  .challenge-text {
+    grid-area: challenge;
+
+    & h3 {
+      color: var(--pink);
+    }
+  }
+
+  .wrapup {
+    grid-area: lessons;
+    padding: 0 3rem;
+
+    & h3 {
+      color: var(--green);
+    }
+
+    & ul {
+      padding-left: 3.75rem;
+    }
+
+    & li {
+      text-indent: -2.5%;
+    }
+
+    & li:last-child {
+      margin-bottom: 1.3rem;
+    }
+  }
+
+  .purpose-image,
+  .challenge-image,
+  .highlight-image {
+    width: 96%;
+    height: auto;
+    object-fit: contain;
+    margin: 2%;
+    border-radius: 3px;
+  }
+
+  .cs-data {
+    display: grid;
+    grid-template-columns: 1fr 0.1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-areas:
+      'tech-title divider link-title'
+      'tech-list divider link-list';
+    align-items: center;
+    margin-top: 3%;
+  }
+
+  .tech-title {
+    grid-area: tech-title;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    font-family: var(--serif-font);
+  }
+
+  .link-title {
+    grid-area: link-title;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    font-family: var(--serif-font);
+  }
+
+  .tech-data {
+    grid-area: tech-list;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    & span {
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.75px;
+      margin: 1% 1.75%;
+      font-size: 0.9rem;
+      color: var(--pink);
+    }
+  }
+  
+  .tech-data span:nth-child(2n) {
+    color: var(--purple);
+  }
+
+  .tech-data span:nth-child(3n) {
+    color: var(--blue);
+  }
+
+  .tech-data span:nth-child(4n) {
+    color: var(--green);
+  }
+
+  .link-data {
+    grid-area: link-list;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    & a {
+      font-size: 1.05rem;
+      border-radius: 5px;
+      padding: 1% 2.5%;
+      margin: 1% 2%;
+      font-weight: 700;
+      font-family: var(--serif-font);
+      transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+    }
+  }
+
+  .link-demo {
+    color: var(--blue);
+    text-decoration: underline solid var(--blue);
+  }
+
+  .link-demo:hover {
+    color: var(--text-flip);
+    background: var(--blue);
+  }
+
+  .link-code {
+    color: var(--green);
+    text-decoration: underline solid var(--green);
+  }
+
+  .link-code:hover {
+    color: var(--text-flip);
+    background: var(--green);
+  }
+
+  .link-live {
+    color: var(--purple);
+    text-decoration: underline solid var(--purple);
+  }
+
+  .link-live:hover {
+    color: var(--text-flip);
+    background: var(--purple);
+  }
+
+  .vertical-divider {
+    grid-area: divider;
+    justify-self: center;
+    width: 3px;
+    height: 100%;
+    background: var(--gradient);
+  }
+
+  .back-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 2% 0 4%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--purple);
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+    font-family: var(--serif-font);
+  }
+
+  .back-link:hover {
+    text-decoration: underline double var(--blue);
+  }
+</style>

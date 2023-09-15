@@ -1,7 +1,7 @@
 import { z, defineCollection } from "astro:content";
 
 const projectsCollection = defineCollection({
-  type: "content",
+  type: "data",
   schema: ({ image }) =>
     z.object({
       name: z.string(),
@@ -14,6 +14,16 @@ const projectsCollection = defineCollection({
       codeLink: z.string().url().optional(),
       liveLink: z.string().url().optional(),
       hasCaseStudy: z.boolean(),
+      purpose: z.string(),
+      highlights: z.array(z.string()),
+      challenges: z.array(z.string()),
+      detailImage1: image(),
+      detailImage1Alt: z.string(),
+      detailImage2: image(),
+      detailImage2Alt: z.string(),
+      lessonIntro: z.string(),
+      lessonWins: z.array(z.string()),
+      lessonImprovements: z.array(z.string()).optional(),
     }),
 });
 
