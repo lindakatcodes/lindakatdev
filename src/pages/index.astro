@@ -16,11 +16,22 @@ import MainLayout from "../layouts/MainLayout.astro";
   }
 
   .subtitle {
-    vertical-align: center;
     text-align: center;
     font-family: var(--serif-font);
     font-size: 2rem;
     width: 27rem;
     margin: 0 auto;
+  }
+
+  @media (max-width: 520px) {
+    .title {
+      margin-top: -1.5rem;
+      font-size: 5.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.75rem;
+      width: auto;
+    }
   }
 </style>

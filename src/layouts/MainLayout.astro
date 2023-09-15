@@ -26,7 +26,13 @@ import Footer from "../components/footer.astro";
 
   .content {
     flex-grow: 1;
-    min-height: calc(96dvh - var(--header-height) - var(--footer-height));
+    min-height: calc(92dvh - var(--header-height) - var(--footer-height));
     margin: 1.5rem 3rem;
+  }
+
+  @media (max-width: 520px) {
+    .content {
+      margin: 1.5rem 2rem;
+    }
   }
 </style>

@@ -26,20 +26,21 @@ import MainLayout from "../layouts/MainLayout.astro";
         So what value do I add to your team?
         <ul>
           <li>
-            I'm <strong>empathetic</strong> and want everyone I work with to feel heard and
-            understood.
+            I'm <strong>empathetic</strong> and want everyone I work with to
+            feel heard and understood.
           </li>
           <li>
-            I'm <strong>resilient</strong> and determined to a fault when troubleshooting and
-            finding solutions.
+            I'm <strong>resilient</strong> and determined to a fault when
+            troubleshooting and finding solutions.
           </li>
           <li>
-            I'm a <strong>fast learner</strong>, eager to learn from those around me and share
-            what wisdom I have as well.
+            I'm a <strong>fast learner</strong>, eager to learn from those
+            around me and share what wisdom I have as well.
           </li>
           <li>
-            I'm an <strong>optimistic realist</strong> - I see the bright side in everything but
-            have the experience to know when to ask for help or take a break.
+            I'm an <strong>optimistic realist</strong> - I see the bright side
+            in everything but have the experience to know when to ask for help
+            or take a break.
           </li>
         </ul>
       </p>
@@ -98,7 +99,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 <style>
   section {
-    padding: 0 1rem;
+    padding: 0 3rem 1rem;
     margin-bottom: 2rem;
   }
 
@@ -118,10 +119,20 @@ import MainLayout from "../layouts/MainLayout.astro";
     margin-bottom: 0.5rem;
   }
 
+  .about-me {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .about-me-text {
+    margin-left: 1.25rem;
+  }
+
   .selfie {
-    width: 50%;
+    width: 25dvw;
     height: auto;
-    margin: 3.25rem auto 1rem;
+    margin: 4.75rem auto 1rem;
     border-radius: 50px;
     border: 2px solid var(--blue);
     box-shadow: -12px 12px 16px 0px var(--bg-shadow);
@@ -140,51 +151,44 @@ import MainLayout from "../layouts/MainLayout.astro";
     background-image: var(--gradient);
   }
 
-  @media (min-width: 1024px) {
-    section {
-    padding: 0 3rem 1rem;
-    }
-    .about-me {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .selfie {
-      width: 30%;
-      margin-top: 4.75rem;
-    }
-
-    .about-me-text {
-      margin-left: 1.25rem;
-    }
-
-    .work-sections-wrapper {
+  .work-sections-wrapper {
     display: flex;
   }
 
   .background {
-    width: 50%;
+    width: 50dvw;
   }
 
   .work-values {
-    width: 50%;
-  }
+    width: 50dvw;
   }
 
-  @media (min-width: 1640px) {
+  @media (max-width: 520px) {
     section {
-    padding: 0 9rem 1rem;
+      padding: 0 0 1rem;
+      margin-bottom: 1rem;
     }
 
-    ul {
-      padding-left: 3.75rem;
-    }
-    
     .about-me {
-      align-items: flex-end;
+      flex-direction: column;
     }
+
     .selfie {
-      width: 20%;
+      width: 80dvw;
+      height: auto;
+      margin: 0 auto 0.5rem;
+    }
+
+    .work-sections-wrapper {
+      flex-direction: column;
+    }
+
+    .background {
+      width: auto;
+    }
+
+    .work-values {
+      width: auto;
     }
   }
 </style>

@@ -2,22 +2,30 @@
 import ThemeToggle from "./themeToggle.astro";
 const activePath = Astro.url.pathname;
 ---
+
 <header>
   <nav transition:name="header">
-    <a class:list={["gradient-text link home", { active: activePath === "/" }]} href="/">
+    <a
+      class:list={["gradient-text link home", { active: activePath === "/" }]}
+      href="/"
+    >
       LT
     </a>
     <span class="spacer"></span>
     <a
-    class:list={["link projects", { 'projects-active': activePath === "/projects" }]}
-    href="/projects">Projects</a
+      class:list={[
+        "link projects",
+        { "projects-active": activePath === "/projects" },
+      ]}
+      href="/projects">Projects</a
     >
     <!-- <a
     class:list={["link writing", { 'writing-active': activePath === "/writing" }]}
     href="/writing">WRITING</a
     > -->
-    <a class:list={["link about", { 'about-active': activePath === "/about" }]} href="/about"
-    >About</a
+    <a
+      class:list={["link about", { "about-active": activePath === "/about" }]}
+      href="/about">About</a
     >
     <ThemeToggle />
   </nav>
@@ -39,7 +47,7 @@ const activePath = Astro.url.pathname;
     align-items: center;
     gap: 1.25rem;
   }
-  
+
   .link {
     color: var(--text-main);
     font-family: var(--cursive-font);
@@ -50,8 +58,10 @@ const activePath = Astro.url.pathname;
     border-bottom: thick solid;
     border-bottom-color: transparent;
     text-decoration: none;
-    text-shadow: -1px 1px 4px var(--bg-shadow);
-    transition: border-bottom-color 0.2s linear, color 0.2s linear;
+    text-shadow: -1px 1px 3px var(--bg-shadow);
+    transition:
+      border-bottom-color 0.2s linear,
+      color 0.2s linear;
   }
 
   .spacer {
@@ -66,16 +76,18 @@ const activePath = Astro.url.pathname;
     text-shadow: none;
   }
 
-  .projects:hover, .projects:focus {
+  .projects:hover,
+  .projects:focus {
     border-bottom-color: var(--purple);
     color: var(--purple);
   }
 
   .projects-active {
-      color: var(--purple);
-    }
+    color: var(--purple);
+  }
 
-  .writing:hover, .writing:focus {
+  .writing:hover,
+  .writing:focus {
     border-bottom-color: var(--blue);
     color: var(--blue);
   }
@@ -84,13 +96,13 @@ const activePath = Astro.url.pathname;
     color: var(--blue);
   }
 
-  .about:hover, .about:focus {
+  .about:hover,
+  .about:focus {
     border-bottom-color: var(--pink);
     color: var(--pink);
   }
 
   .about-active {
-      color: var(--pink);
-    }
- 
+    color: var(--pink);
+  }
 </style>

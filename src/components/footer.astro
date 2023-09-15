@@ -73,15 +73,15 @@ const socialLinks: socialLink[] = [
 
   .email-outro {
     grid-area: email;
+  }
+  
+  .email-outro h2 {
+    font-family: var(--cursive-font);
+    font-size: 1.75rem;
+  }
 
-    & h2 {
-      font-family: var(--cursive-font);
-      font-size: 1.75rem;
-    }
-
-    & p {
-      margin-bottom: 0.25rem;
-    }
+  .email-outro p {
+    margin-bottom: 0.25rem;
   }
 
   .email {
@@ -109,18 +109,18 @@ const socialLinks: socialLink[] = [
     display: flex;
     flex-direction: column;
     text-decoration-color: var(--text-flip);
-
-    & svg {
-      fill: var(--text-main);
-      height: 36px;
-      width: auto;
-    }
-
-    & p {
-      color: var(--text-main);
-      margin-top: 0.125rem;
-      font-size: 0.7rem;
-    }
+  }
+  
+  .social-link svg {
+    fill: var(--text-main);
+    height: 36px;
+    width: auto;
+  }
+  
+  .social-link p {
+    color: var(--text-main);
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
   }
 
   .resume:hover {
@@ -178,18 +178,21 @@ const socialLinks: socialLink[] = [
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 520px) {
     footer {
       grid-template-areas: "email" "socials";
       grid-template-columns: 1fr;
+      padding: 1rem 2rem;
     }
 
     .email-outro {
       text-align: center;
+      margin-bottom: 0.75rem;
+      padding: 0 0.5rem;
     }
 
     .socials {
-      margin-top: 1rem;
+      justify-content: space-between;
     }
   }
 </style>

@@ -21,20 +21,18 @@
 /* 
 dark
 purple: D3A9EA 
-blue: 95D9E4 
-yellow: F9F5AD 
+blue: 95D9E4
 green: 9DE59A 
 pink: EAA9B6 
 
 light
-purple: 622682 54077e
-blue: 28646f  054e5e
-yellow: f8df3a ffe587
-green: 1f631c 135809
-pink: a02840 77133c
+purple: 54077e
+blue: 054e5e
+green: 135809
+pink: 77133c
 
 black: 323334 
-white: ebeeef b8bcbf
+white: b8bcbf
 */
 
 [data-theme="dark"] {
@@ -45,7 +43,6 @@ white: ebeeef b8bcbf
   --text-flip: var(--background);
   --purple: hsla(279, 61%, 79%, 1);
   --blue: hsla(188, 59%, 74%, 1);
-  /* --yellow: hsla(57, 86%, 83%, 1); */
   --green: hsla(118, 59%, 75%, 1);
   --pink: hsla(348, 61%, 79%, 1);
   --gradient: linear-gradient(
@@ -63,14 +60,14 @@ white: ebeeef b8bcbf
     hsl(152deg 64% 71%) 91%,
     hsl(118deg 59% 75%) 100%
   );
+}
 
-  & [astro-icon="sun"] {
-    visibility: hidden;
-  }
+[data-theme="dark"] [astro-icon="sun"] {
+  visibility: hidden;
+}
 
-  & [astro-icon="moon"] {
-    visibility: visible;
-  }
+[data-theme="dark"] [astro-icon="moon"] {
+  visibility: visible;
 }
 
 [data-theme="light"] {
@@ -81,7 +78,6 @@ white: ebeeef b8bcbf
   --text-flip: var(--background);
   --purple: hsla(279, 89%, 26%, 1);
   --blue: hsla(191, 90%, 19%, 1);
-  /* --yellow: hsla(47, 100%, 76%, 1); */
   --green: hsla(112, 81%, 19%, 1);
   --pink: hsla(335, 72%, 27%, 1);
   --gradient: linear-gradient(
@@ -99,18 +95,14 @@ white: ebeeef b8bcbf
     hsl(154deg 100% 17%) 91%,
     hsl(112deg 81% 19%) 100%
   );
+}
 
-  & .link {
-    text-shadow: none;
-  }
+[data-theme="light"] [astro-icon="sun"] {
+  visibility: visible;
+}
 
-  & [astro-icon="sun"] {
-    visibility: visible;
-  }
-
-  & [astro-icon="moon"] {
-    visibility: hidden;
-  }
+[data-theme="light"] [astro-icon="moon"] {
+  visibility: hidden;
 }
 
 /* basic font & color settings */
@@ -194,4 +186,10 @@ ul li:nth-child(4n)::before {
 /* specifics for packages */
 [astro-icon] {
   fill: currentColor;
+}
+
+@media (max-width: 520px) {
+  ul {
+    padding-left: 0.75rem;
+  }
 }

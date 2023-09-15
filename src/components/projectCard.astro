@@ -71,8 +71,8 @@ const { project } = Astro.props;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    width: 98%;
-    padding: 1% 1.5% 2%;
+    width: 98dvw;
+    padding: 0.25rem 0.5rem 1rem;
     border-radius: 8px;
     box-shadow: none;
     transition:
@@ -86,7 +86,7 @@ const { project } = Astro.props;
 
   .project-image {
     width: 100%;
-    height: 17vw;
+    height: 17dvw;
     display: flex;
     justify-content: center;
   }
@@ -167,10 +167,11 @@ const { project } = Astro.props;
     transition:
       color 0.2s ease-in-out,
       background 0.2s ease-in-out;
+  }
 
-    &:hover {
-      color: var(--text-flip);
-    }
+  .project-links a:hover,
+  .case-study:hover {
+    color: var(--text-flip);
   }
 
   .demo {
@@ -205,23 +206,13 @@ const { project } = Astro.props;
     background: var(--blue);
   }
 
-  @media screen and (max-width: 768px) {
+  @media (max-width: 520px) {
     .project-wrapper {
-      width: 95%;
-      padding: 5% 1.5%;
-      border-bottom: 1px solid var(--text-main);
-      border-radius: 0;
-      margin-top: 3%;
+      width: 80dvw;
     }
 
     .project-image {
-      height: 50vw;
-    }
-
-    .project-title {
-      margin-top: 2%;
-      font-size: 1.65rem;
-      text-align: center;
+      height: auto;
     }
 
     .project-tech {
@@ -229,8 +220,6 @@ const { project } = Astro.props;
     }
 
     .project-description {
-      font-size: 0.875rem;
-      padding-bottom: 2%;
       height: auto;
     }
   }
