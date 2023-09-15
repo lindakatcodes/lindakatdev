@@ -1,10 +1,16 @@
 ---
-import Icon from 'astro-icon';
+import Icon from "astro-icon";
 ---
 
-<button id="themeToggle" class="theme-button" type="button" data-theme-toggle aria-label="change to light theme">
-  <Icon name="sun"></Icon>
-  <Icon name="moon"></Icon>
+<button
+  id="themeToggle"
+  class="theme-button"
+  type="button"
+  data-theme-toggle
+  aria-label="change to light theme"
+>
+  <Icon name="sun" />
+  <Icon name="moon" />
 </button>
 
 <style>
@@ -33,17 +39,38 @@ import Icon from 'astro-icon';
   .theme-button svg:hover {
     fill: var(--green);
   }
+
+  @media (max-width: 520px) {
+    .theme-button {
+      height: 28px;
+      width: 28px;
+    }
+
+    .theme-button svg {
+      height: 28px;
+      width: 24px;
+    }
+  }
 </style>
 
 <script>
-  function getThemeString(localValue: string | null, systemValue: MediaQueryList ): string {
+  function getThemeString(
+    localValue: string | null,
+    systemValue: MediaQueryList
+  ): string {
     if (localValue !== null) return localValue;
-    if (systemValue.matches) return 'light';
-    return 'dark';
+    if (systemValue.matches) return "light";
+    return "dark";
   }
 
-  function updatePageTheme(currentTheme: string, buttonEl: Element | null): void {
-    const newAriaLabel = currentTheme === 'dark' ? "Change to light theme" : "Change to dark theme";
+  function updatePageTheme(
+    currentTheme: string,
+    buttonEl: Element | null
+  ): void {
+    const newAriaLabel =
+      currentTheme === "dark"
+        ? "Change to light theme"
+        : "Change to dark theme";
     buttonEl?.setAttribute("aria-label", newAriaLabel);
     document.querySelector("html")?.setAttribute("data-theme", currentTheme);
   }
@@ -51,19 +78,23 @@ import Icon from 'astro-icon';
   const setColorTheme = () => {
     const themeButton = document.querySelector("[data-theme-toggle]");
     const localStorageTheme = localStorage.getItem("theme");
-    const systemSettingLight = window.matchMedia("(prefers-color-scheme: light)");
-    
-    let currentThemeSetting = getThemeString(localStorageTheme, systemSettingLight); 
+    const systemSettingLight = window.matchMedia(
+      "(prefers-color-scheme: light)"
+    );
+
+    let currentThemeSetting = getThemeString(
+      localStorageTheme,
+      systemSettingLight
+    );
     updatePageTheme(currentThemeSetting, themeButton);
-    
-    
+
     themeButton?.addEventListener("click", (event) => {
       const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
       localStorage.setItem("theme", newTheme);
       updatePageTheme(newTheme, themeButton);
       currentThemeSetting = newTheme;
-    }); 
-  }
+    });
+  };
 
   setColorTheme();
 

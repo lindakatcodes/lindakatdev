@@ -163,7 +163,7 @@ import MainLayout from "../layouts/MainLayout.astro";
     width: 50dvw;
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 1024px) {
     section {
       padding: 0 0 1rem;
       margin-bottom: 1rem;
@@ -175,7 +175,6 @@ import MainLayout from "../layouts/MainLayout.astro";
 
     .selfie {
       width: 80dvw;
-      height: auto;
       margin: 0 auto 0.5rem;
     }
 
@@ -189,6 +188,12 @@ import MainLayout from "../layouts/MainLayout.astro";
 
     .work-values {
       width: auto;
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 1024px) {
+    .selfie {
+      width: 40dvw;
     }
   }
 </style>

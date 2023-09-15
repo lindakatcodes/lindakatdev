@@ -45,4 +45,10 @@ const otherProjects = await getCollection("projects", ({ data }) => {
       gap: 30px 0;
     }
   }
+
+  @media (min-width: 520px) and (max-width: 1024px) {
+    .projects-wrapper {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
 </style>

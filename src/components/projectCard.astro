@@ -71,7 +71,7 @@ const { project } = Astro.props;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    width: 98dvw;
+    width: 98%;
     padding: 0.25rem 0.5rem 1rem;
     border-radius: 8px;
     box-shadow: none;
@@ -208,7 +208,7 @@ const { project } = Astro.props;
 
   @media (max-width: 520px) {
     .project-wrapper {
-      width: 80dvw;
+      width: 95%;
     }
 
     .project-image {
@@ -221,6 +221,12 @@ const { project } = Astro.props;
 
     .project-description {
       height: auto;
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 1024px) {
+    .project-description {
+      height: 38%;
     }
   }
 </style>
