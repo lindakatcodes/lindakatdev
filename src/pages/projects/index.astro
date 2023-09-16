@@ -1,0 +1,54 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ProjectCard from "../../components/projectCard.astro";
+import { getCollection } from "astro:content";
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+});
+const otherProjects = await getCollection("projects", ({ data }) => {
+  return data.featured !== true;
+});
+---
+
+<MainLayout>
+  <h1>Featured Projects</h1>
+  <div class="projects-wrapper">
+    {featuredProjects.map((project) => <ProjectCard project={project} />)}
+  </div>
+  <h2>Other Fun Projects</h2>
+  <div class="projects-wrapper">
+    {otherProjects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</MainLayout>
+
+<style>
+  h1, h2 {
+    text-align: center;
+  }
+
+  .projects-wrapper {
+    width: 90dvw;
+    margin: 0.25rem auto;
+    padding: 0.25rem 0.125rem 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+
+  @media (max-width: 520px) {
+    .projects-wrapper {
+      margin: 0.25rem 0;
+      width: auto;
+      padding-bottom: 0.25rem;
+      grid-template-columns: 1fr;
+      gap: 30px 0;
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 1024px) {
+    .projects-wrapper {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+</style>

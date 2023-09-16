@@ -1,0 +1,128 @@
+---
+import ThemeToggle from "./themeToggle.astro";
+const activePath = Astro.url.pathname;
+---
+
+<header>
+  <nav transition:name="header">
+    <a
+      class:list={["gradient-text link home", { active: activePath === "/" }]}
+      href="/"
+    >
+      LT
+    </a>
+    <span class="spacer"></span>
+    <a
+      class:list={[
+        "link projects",
+        { "projects-active": activePath === "/projects" },
+      ]}
+      href="/projects">Projects</a
+    >
+    <!-- <a
+      class:list={[
+        "link writing",
+        { "writing-active": activePath === "/writing" },
+      ]}
+      href="/writing">Writing</a
+    > -->
+    <a
+      class:list={["link about", { "about-active": activePath === "/about" }]}
+      href="/about">About</a
+    >
+    <ThemeToggle />
+  </nav>
+  <div class="divider shadow-under"></div>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--background);
+  }
+  nav {
+    height: var(--header-height);
+    width: calc(100dvw - 20px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .link {
+    color: var(--text-main);
+    font-family: var(--cursive-font);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.07rem;
+    padding: 0.5rem 0.25rem 0;
+    border-bottom: thick solid;
+    border-bottom-color: transparent;
+    text-decoration: none;
+    text-shadow: -1px 1px 3px var(--bg-shadow);
+    transition:
+      border-bottom-color 0.2s linear,
+      color 0.2s linear;
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  .home {
+    font-family: var(--cursive-font);
+    font-size: 3.5rem;
+    width: 7rem;
+    margin-left: 2px;
+    text-shadow: none;
+  }
+
+  .projects:hover,
+  .projects:focus {
+    border-bottom-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .projects-active {
+    color: var(--purple);
+  }
+
+  .writing:hover,
+  .writing:focus {
+    border-bottom-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .writing-active {
+    color: var(--blue);
+  }
+
+  .about:hover,
+  .about:focus {
+    border-bottom-color: var(--pink);
+    color: var(--pink);
+  }
+
+  .about-active {
+    color: var(--pink);
+  }
+
+  @media (max-width: 520px) {
+    nav {
+      gap: 0.5rem;
+      width: 100dvw;
+    }
+
+    .link {
+      font-size: 1.2rem;
+    }
+
+    .home {
+      font-size: 2.5rem;
+      width: 3.5rem;
+      margin-left: 0.25rem;
+    }
+  }
+</style>

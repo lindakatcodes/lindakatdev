@@ -1,0 +1,37 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout>
+  <h1 class="title">Linda Thompson</h1>
+  <p class="subtitle gradient-text">Career changer building for the web & bringing teams together</p>
+</MainLayout>
+
+<style>
+  .title {
+    margin-top: 4rem;
+    font-size: 6rem;
+    text-align: center;
+    font-family: var(--cursive-font);
+  }
+
+  .subtitle {
+    text-align: center;
+    font-family: var(--serif-font);
+    font-size: 2rem;
+    width: 27rem;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 520px) {
+    .title {
+      margin-top: -1.5rem;
+      font-size: 5rem;
+    }
+
+    .subtitle {
+      font-size: 1.65rem;
+      width: auto;
+    }
+  }
+</style>

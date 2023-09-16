@@ -1,0 +1,239 @@
+---
+import Icon from "astro-icon";
+
+type socialLink = {
+  iconName: String;
+  displayName: String;
+  link: URL["href"];
+};
+const socialLinks: socialLink[] = [
+  {
+    iconName: "file-lines-regular",
+    displayName: "Resume",
+    link: "https://drive.google.com/file/d/1z6EGbKBtzqffZUGtfUB9eGelxLBdcdsK/view?usp=sharing",
+  },
+  {
+    iconName: "github",
+    displayName: "GitHub",
+    link: "https://github.com/lindakatcodes",
+  },
+  {
+    iconName: "linkedin",
+    displayName: "LinkedIn",
+    link: "https://www.linkedin.com/in/lindakatcodes/",
+  },
+  {
+    iconName: "mastodon",
+    displayName: "Mastodon",
+    link: "https://hachyderm.io/@lindakatcodes",
+  },
+  {
+    iconName: "x-twitter",
+    displayName: "X-Twitter",
+    link: "https://twitter.com/lindakatcodes",
+  },
+];
+---
+
+<div transition:name="footer" class="footer-container">
+  <div class="divider shadow-over"></div>
+  <footer>
+    <section class="email-outro">
+      <h2>Hi there!</h2>
+      <p>Thanks for checking out my site!</p>
+      <p>
+        Feel free to email me if you'd like to get in touch: <br />
+        <span class="email gradient-text"> hello@lindakat.com</span>
+      </p>
+    </section>
+    <section class="socials">
+      {
+        socialLinks.map((link) => (
+          <a
+            class:list={["social-link", link.displayName.toLowerCase()]}
+            href={link.link}
+          >
+            <Icon name={link.iconName} />
+            <p>{link.displayName}</p>
+          </a>
+        ))
+      }
+    </section>
+  </footer>
+</div>
+
+<style>
+  .footer-container {
+    height: var(--footer-height);
+  }
+
+  footer {
+    padding: 1rem 4rem;
+    display: grid;
+    grid-template-areas: "email socials";
+    grid-template-columns: 1fr 0.5fr;
+  }
+
+  .email-outro {
+    grid-area: email;
+  }
+
+  .email-outro h2 {
+    font-family: var(--cursive-font);
+    font-size: 1.75rem;
+  }
+
+  .email-outro p {
+    margin-bottom: 0.25rem;
+  }
+
+  .email {
+    cursor: pointer;
+    text-decoration: 2px solid underline var(--blue);
+    transition: background 0.3s ease-in-out;
+    background-image: none;
+    background-color: var(--pink);
+    font-size: 1.1rem;
+  }
+
+  .email:hover {
+    text-decoration-style: double;
+    background-image: var(--gradient);
+  }
+
+  .socials {
+    grid-area: socials;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration-color: var(--text-flip);
+  }
+
+  .social-link svg {
+    fill: var(--text-main);
+    height: 36px;
+    width: auto;
+  }
+
+  .social-link p {
+    color: var(--text-main);
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+  }
+
+  .resume:hover {
+    text-decoration-color: var(--purple);
+
+    & svg {
+      fill: var(--purple);
+    }
+    & p {
+      color: var(--purple);
+    }
+  }
+
+  .github:hover {
+    text-decoration-color: var(--green);
+
+    & svg {
+      fill: var(--green);
+    }
+    & p {
+      color: var(--green);
+    }
+  }
+
+  .linkedin:hover {
+    text-decoration-color: var(--blue);
+
+    & svg {
+      fill: var(--blue);
+    }
+    & p {
+      color: var(--blue);
+    }
+  }
+
+  .mastodon:hover {
+    text-decoration-color: var(--purple);
+
+    & svg {
+      fill: var(--purple);
+    }
+    & p {
+      color: var(--purple);
+    }
+  }
+
+  .x-twitter:hover {
+    text-decoration-color: var(--pink);
+
+    & svg {
+      fill: var(--pink);
+    }
+    & p {
+      color: var(--pink);
+    }
+  }
+
+  @media (max-width: 520px) {
+    footer {
+      grid-template-areas: "email" "socials";
+      grid-template-columns: 1fr;
+      padding: 1rem 2rem;
+    }
+
+    .email-outro {
+      margin-bottom: 0.75rem;
+      padding: 0 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    
+    .email {
+      font-size: 1rem;
+    }
+
+    .socials {
+      justify-content: space-between;
+    }
+
+    .social-link svg {
+      height: 32px;
+    }
+
+    .social-link p {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 1024px) {
+    footer {
+      grid-template-columns: 0.75fr 1fr;
+      padding: 1rem 2rem;
+    }
+
+    .email-outro {
+      padding: 0 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  const email = document.querySelector(".email");
+  email?.addEventListener("click", () => {
+    navigator.clipboard.writeText("hello@lindakat.com").then(
+      () => {
+        console.log("Successfully copied text!");
+      },
+      () => {
+        console.error("Sorry, could not copy text");
+      }
+    );
+  });
+</script>

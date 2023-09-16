@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import CommonHead from "../components/commonHead.astro";
+import NavBar from "../components/navBar.astro";
+import Footer from "../components/footer.astro";
+---
+
+<html lang="en" data-theme="dark">
+  <head>
+    <CommonHead />
+  </head>
+  <body id="root">
+    <NavBar />
+    <div class="content">
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    flex-grow: 1;
+    min-height: calc(92dvh - var(--header-height) - var(--footer-height));
+    margin: 1.5rem 3rem;
+  }
+
+  @media (max-width: 1024px) {
+    .content {
+      margin: 1.5rem 2rem;
+    }
+  }
+</style>

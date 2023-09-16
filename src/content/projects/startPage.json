@@ -1,0 +1,12 @@
+{
+  "name": "Home Page",
+  "headerImage": "../../assets/projects/startPage.png",
+  "headerImageAlt": "",
+  "description": "My own personal home page, filled with links I visit regularly. The greeting randomly selects an adjective from a list and updates morning/afternoon/evening depending on the time of day.",
+  "tech": ["HTML", "CSS", "Vue"],
+  "featured": false,
+  "demoLink": null,
+  "codeLink": "https://github.com/lindakatcodes/startpage",
+  "liveLink": "https://lkt-startpage.netlify.app/#/",
+  "hasCaseStudy": false
+}

@@ -1,0 +1,102 @@
+---
+import Icon from "astro-icon";
+---
+
+<button
+  id="themeToggle"
+  class="theme-button"
+  type="button"
+  data-theme-toggle
+  aria-label="change to light theme"
+>
+  <Icon name="sun" />
+  <Icon name="moon" />
+</button>
+
+<style>
+  .theme-button {
+    height: 42px;
+    width: 42px;
+    background: none;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    display: block;
+    border: none;
+    margin-right: 0.5rem;
+  }
+
+  .theme-button svg {
+    fill: var(--text-main);
+    height: 42px;
+    width: 36px;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .theme-button svg:hover {
+    fill: var(--green);
+  }
+
+  @media (max-width: 520px) {
+    .theme-button {
+      height: 28px;
+      width: 28px;
+    }
+
+    .theme-button svg {
+      height: 28px;
+      width: 24px;
+    }
+  }
+</style>
+
+<script>
+  function getThemeString(
+    localValue: string | null,
+    systemValue: MediaQueryList
+  ): string {
+    if (localValue !== null) return localValue;
+    if (systemValue.matches) return "light";
+    return "dark";
+  }
+
+  function updatePageTheme(
+    currentTheme: string,
+    buttonEl: Element | null
+  ): void {
+    const newAriaLabel =
+      currentTheme === "dark"
+        ? "Change to light theme"
+        : "Change to dark theme";
+    buttonEl?.setAttribute("aria-label", newAriaLabel);
+    document.querySelector("html")?.setAttribute("data-theme", currentTheme);
+  }
+
+  const setColorTheme = () => {
+    const themeButton = document.querySelector("[data-theme-toggle]");
+    const localStorageTheme = localStorage.getItem("theme");
+    const systemSettingLight = window.matchMedia(
+      "(prefers-color-scheme: light)"
+    );
+
+    let currentThemeSetting = getThemeString(
+      localStorageTheme,
+      systemSettingLight
+    );
+    updatePageTheme(currentThemeSetting, themeButton);
+
+    themeButton?.addEventListener("click", (event) => {
+      const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      updatePageTheme(newTheme, themeButton);
+      currentThemeSetting = newTheme;
+    });
+  };
+
+  setColorTheme();
+
+  document.addEventListener("astro:after-swap", setColorTheme);
+</script>
