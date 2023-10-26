@@ -39,7 +39,7 @@
           "title": "Layout",
           "name": "layout",
           "type": "string",
-          "default": ""
+          "default": "../../layouts/BlogPostLayout.astro"
         },
         {
           "title": "Slug",

@@ -1,4 +1,5 @@
 ---
+import BlogCard from "../../components/blogCard.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
@@ -7,22 +8,40 @@ const allBlogPosts = await getCollection("blog");
 
 <MainLayout>
   <h1>Blog</h1>
-  <ul>
+  <div class="posts-wrapper">
     {
       allBlogPosts.map((blogPostEntry) => (
-        <li>
-          <a href={`/blog/${blogPostEntry.slug}`}>{blogPostEntry.data.title}</a>
-          <time datetime={blogPostEntry.data.date.toISOString()}>
-            {blogPostEntry.data.date.toDateString()}
-          </time>
-        </li>
+       <BlogCard blogBit={blogPostEntry} />
       ))
     }
-  </ul>
+    {
+      allBlogPosts.map((blogPostEntry) => (
+       <BlogCard blogBit={blogPostEntry} />
+      ))
+    }
+  </div>
 </MainLayout>
 
 <style>
   h1 {
     text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .posts-wrapper {
+    width: 65%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 520px) {
+    .posts-wrapper {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 1024px) {
+    .posts-wrapper {
+      width: 85%;
+    }
   }
 </style>

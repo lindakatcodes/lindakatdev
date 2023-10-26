@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+  blogBit: CollectionEntry<"blog">;
+}
+
+const { blogBit } = Astro.props;
+---
+
+<div class="blog-bit-wrapper">
+  <a href={`/blog/${blogBit.slug}`} class="blog-bit-link">
+    <time datetime={blogBit.data.date.toISOString()} class="blog-bit-date">
+      {blogBit.data.date.toDateString()}
+    </time>
+    <h2 class="blog-bit-title">{blogBit.data.title}</h2>
+    <p class="blog-bit-blurb">{blogBit.data.description}</p>
+  </a>
+</div>
+
+<style>
+  .blog-bit-wrapper {
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border: 3px dotted transparent;
+    border-bottom-color: var(--purple);
+    border-radius: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .blog-bit-wrapper:nth-child(2n) {
+    border-bottom-color: var(--blue);
+  }
+
+  .blog-bit-wrapper:nth-child(3n) {
+    border-bottom-color: var(--pink);
+  }
+
+  .blog-bit-wrapper:nth-child(4n) {
+    border-bottom-color: var(--green);
+  }
+
+  .blog-bit-wrapper:hover {
+    border-color: var(--purple);
+    border-radius: 10px;
+  }
+
+  .blog-bit-wrapper:nth-child(2n):hover {
+    border-color: var(--blue);
+  }
+
+  .blog-bit-wrapper:nth-child(3n):hover {
+    border-color: var(--pink);
+  }
+
+  .blog-bit-wrapper:nth-child(4n):hover {
+    border-color: var(--green);
+  }
+
+  .blog-bit-link {
+    text-decoration: none;
+  }
+
+  .blog-bit-title {
+    font-size: 1.75rem;
+  }
+
+  .blog-bit-date {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    opacity: 0.6;
+    font-family: var(--body-font);
+    display: block;
+  }
+</style>
