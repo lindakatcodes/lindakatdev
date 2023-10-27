@@ -115,6 +115,7 @@ h6 {
   font-family: var(--serif-font);
   font-weight: 700;
   color: var(--text-main);
+  margin: 1rem auto;
 }
 
 p,

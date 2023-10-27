@@ -1,10 +1,51 @@
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-align: center;
-  }
+p { 
+  line-height: 160%;
+  margin: 1rem auto;
+}
 
-  p { line-height: 150%; }
+h2 {
+  color: var(--blue);
+}
+
+h3 {
+  color: var(--purple);
+}
+
+h4 {
+  color: var(--green);
+}
+
+hr {
+  width: 55%;
+  margin: 0.25rem auto;
+  height: 2px;
+  background: var(--gradient);
+  border: none;
+  border-radius: 5px;
+}
+
+img {
+  margin: 0.5rem auto;
+}
+
+a {
+  color: var(--text-main);
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--text-main);
+}
+
+a:hover {
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 3px;
+}
+
+p code {
+  padding: 0.125rem;
+  background-color: var(--bg-shadow);
+  border-radius: 3px;
+}
+
+pre {
+  padding: 0.5rem;
+  border-radius: 3px;
+}

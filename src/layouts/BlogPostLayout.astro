@@ -3,7 +3,7 @@ import "../styles/blog.css";
 const { frontmatter } = Astro.props;
 ---
 
-<a href="/blog"><- Back to the blog list</a>
+<a href="/blog"> ← Back to the blog list</a>
 <h1>{frontmatter.title}</h1>
 <!-- read time, tags, and other general things here -->
 <div class="blog-content">
@@ -12,7 +12,17 @@ const { frontmatter } = Astro.props;
 
 <style>
   .blog-content {
-    max-width: 70em;
+    max-width: 70rem;
     margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  a {
+    font-family: var(--body-font);
+    font-size: 1.25rem;
+    font-weight: bolder;
   }
 </style>
