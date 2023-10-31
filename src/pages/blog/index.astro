@@ -14,11 +14,6 @@ const allBlogPosts = await getCollection("blog");
        <BlogCard blogBit={blogPostEntry} />
       ))
     }
-    {
-      allBlogPosts.map((blogPostEntry) => (
-       <BlogCard blogBit={blogPostEntry} />
-      ))
-    }
   </div>
 </MainLayout>
 
