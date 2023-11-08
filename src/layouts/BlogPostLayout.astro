@@ -1,28 +1,112 @@
 ---
-import "../styles/blog.css";
+// import "../styles/blog.css";
 const { frontmatter } = Astro.props;
 ---
 
-<a href="/blog"> ← Back to the blog list</a>
-<h1>{frontmatter.title}</h1>
+<a href="/blog" class="back-link"> ← Back to the blog list</a>
+<h1 class="blog-title">{frontmatter.title}</h1>
 <!-- read time, tags, and other general things here -->
 <div class="blog-content">
   <slot />
 </div>
 
-<style>
+<style is:global>
   .blog-content {
-    max-width: 70rem;
+    max-width: 60rem;
     margin: 0 auto;
   }
 
-  h1 {
+  .blog-title {
     text-align: center;
   }
 
-  a {
+  .back-link {
     font-family: var(--body-font);
     font-size: 1.25rem;
     font-weight: bolder;
+    color: var(--text-main);
+    text-decoration: none;
+  }
+
+  .back-link::after {
+    content: '';
+    display: block;
+    margin-top: -3px;
+    height: 1.5px;
+    width: 13.5rem;
+    background: var(--text-main);
+    transition: background 0.3s ease-in-out;
+  }
+
+  .back-link:hover::after {
+    background: var(--gradient);
+  }
+
+  /* markdown styles */
+  .blog-content p {
+    line-height: 160%;
+    margin: 1rem auto;
+  }
+
+  .blog-content h2 {
+    color: var(--blue);
+  }
+
+  .blog-content h3 {
+    color: var(--purple);
+  }
+
+  .blog-content h4 {
+    color: var(--green);
+  }
+
+  .blog-content hr {
+    width: 55%;
+    margin: 0.25rem auto;
+    height: 2px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 5px;
+  }
+
+  .blog-content img {
+    margin: 0.5rem auto;
+  }
+
+  .blog-content a {
+    color: var(--text-main);
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--text-main);
+  }
+
+  .blog-content a:hover {
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 3px;
+  }
+
+  .blog-content p code {
+    padding: 0.125rem;
+    background-color: var(--bg-shadow);
+    border-radius: 3px;
+  }
+
+  .blog-content pre {
+    padding: 0.5rem;
+    border-radius: 3px;
+  }
+
+  .blog-content blockquote {
+    background-image: var(--gradient);
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  .blog-content blockquote > * {
+    background-color: var(--bg-shadow);
+    padding: 2% 1% 2% 3%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 auto;
+    border-radius: 3px;
   }
 </style>

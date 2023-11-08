@@ -71,8 +71,8 @@ white: ebeeef
 }
 
 [data-theme="light"] {
-  --background: hsla(206, 5%, 74%, 1);
-  --bg-shadow: hsla(206, 5%, 64%, 1);
+  --background: hsla(206, 3%, 90%, 1);
+  --bg-shadow: hsla(206, 3%, 75%, 1);
   --box-shadow: hsla(206, 5%, 23%, 0.5);
   --text-main: hsla(210, 2%, 20%, 1);
   --text-flip: var(--background);

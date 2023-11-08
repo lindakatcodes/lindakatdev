@@ -7,7 +7,10 @@ const allBlogPosts = await getCollection("blog");
 ---
 
 <MainLayout>
-  <h1>Blog</h1>
+  <div class="intro">
+    <h1>Welcome to the blog!</h1>
+    <p>Here you'll find posts on what I'm learning, things I find interesting, and my experiences creating my career path as a software engineer.</p>
+  </div>
   <div class="posts-wrapper">
     {
       allBlogPosts.map((blogPostEntry) => (
@@ -24,8 +27,15 @@ const allBlogPosts = await getCollection("blog");
   }
 
   .posts-wrapper {
-    width: 65%;
+    width: 50%;
     margin: 0 auto;
+  }
+
+  .intro {
+    width: 55%;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.1rem;
   }
 
   @media (max-width: 520px) {

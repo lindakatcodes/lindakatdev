@@ -21,29 +21,33 @@ const { blogBit } = Astro.props;
 
 <style>
   .blog-bit-wrapper {
-    margin-bottom: 1rem;
-    padding: 1.5rem;
-    border: 3px dotted transparent;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border: 3px dashed transparent;
     border-bottom-color: var(--purple);
+    border-top-color: var(--purple);
     border-radius: 0;
     transition: all 0.2s ease-in-out;
   }
 
   .blog-bit-wrapper:nth-child(2n) {
     border-bottom-color: var(--blue);
+    border-top-color: var(--blue);
   }
 
   .blog-bit-wrapper:nth-child(3n) {
     border-bottom-color: var(--pink);
+    border-top-color: var(--pink);
   }
 
   .blog-bit-wrapper:nth-child(4n) {
     border-bottom-color: var(--green);
+    border-top-color: var(--green);
   }
 
   .blog-bit-wrapper:hover {
     border-color: var(--purple);
-    border-radius: 10px;
+    border-radius: 7px;
   }
 
   .blog-bit-wrapper:nth-child(2n):hover {
@@ -64,6 +68,7 @@ const { blogBit } = Astro.props;
 
   .blog-bit-title {
     font-size: 1.75rem;
+    margin: 0.5rem auto;
   }
 
   .blog-bit-date {

@@ -7,8 +7,8 @@ const parser = new MarkdownIt();
 export async function GET(context) {
   const blog = await getCollection('blog');
   return rss({
-    title: 'LindaKat Writes',
-    description: 'The technical writing home for Linda Thompson',
+    title: "LindaKat Writes",
+    description: "The musings and knowledge sharing of Linda Thompson",
     site: context.site,
     items: blog.map((post) => ({
       title: post.data.title,
@@ -18,6 +18,6 @@ export async function GET(context) {
       content: sanitizeHtml(parser.render(post.body)),
     })),
     customData: `<language>en-us</language>`,
-    stylesheet: '/rss/pretty-feed-v3.xsl',
+    stylesheet: "/rss/pretty-feed-v3.xsl",
   });
 }
