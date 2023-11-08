@@ -4,22 +4,16 @@ const { frontmatter } = Astro.props;
 ---
 
 <a href="/blog" class="back-link"> ← Back to the blog list</a>
-<h1 class="blog-title">{frontmatter.title}</h1>
-<!-- read time, tags, and other general things here -->
+<div class="fm-wrapper">
+  <h1 class="blog-title">{frontmatter.title}</h1>
+  <!-- read time and tags -->
+</div>
 <div class="blog-content">
   <slot />
 </div>
+<a href="/blog" class="back-link"> ← Back to the blog list</a>
 
 <style is:global>
-  .blog-content {
-    max-width: 60rem;
-    margin: 0 auto;
-  }
-
-  .blog-title {
-    text-align: center;
-  }
-
   .back-link {
     font-family: var(--body-font);
     font-size: 1.25rem;
@@ -40,6 +34,20 @@ const { frontmatter } = Astro.props;
 
   .back-link:hover::after {
     background: var(--gradient);
+  }
+
+  .fm-wrapper {
+    margin-bottom: 4rem;
+  }
+
+  .blog-title {
+    text-align: center;
+    font-size: 4.25rem;
+  }
+
+  .blog-content {
+    max-width: 60rem;
+    margin: 0 auto;
   }
 
   /* markdown styles */
@@ -108,5 +116,6 @@ const { frontmatter } = Astro.props;
     font-weight: bold;
     margin: 0 auto;
     border-radius: 3px;
+    text-align: center;
   }
 </style>
