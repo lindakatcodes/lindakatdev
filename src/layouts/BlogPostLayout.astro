@@ -1,12 +1,20 @@
 ---
-// import "../styles/blog.css";
-const { frontmatter } = Astro.props;
+const { title, minutesRead, tags } = Astro.props.frontmatter;
 ---
 
 <a href="/blog" class="back-link"> ← Back to the blog list</a>
 <div class="fm-wrapper">
-  <h1 class="blog-title">{frontmatter.title}</h1>
-  <!-- read time and tags -->
+  <h1 class="blog-title">{title}</h1>
+  <div class="blog-data">
+    <p class="read-time">☕ {minutesRead}</p>
+    <!-- tags needs links to tagged posts logic -->
+    <div class="tags">
+      <p>This post covers these topics:</p>
+      <ul>
+        {tags.map((tag: String) => <p class="tag">{tag}</p>)}
+      </ul>
+    </div>
+  </div>
 </div>
 <div class="blog-content">
   <slot />
@@ -37,12 +45,42 @@ const { frontmatter } = Astro.props;
   }
 
   .fm-wrapper {
-    margin-bottom: 4rem;
+    margin: 0 auto 4rem;
   }
 
   .blog-title {
     text-align: center;
     font-size: 4.25rem;
+    margin: 1.25rem auto 0.5rem;
+  }
+
+  .blog-data {
+    width: 60%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 0.75fr 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .tags {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tags ul {
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: 0.5rem auto;
+  }
+
+  .tag {
+    padding: 0.375rem;
+    margin: 0 0.75rem;
+    border-radius: 3px;
+    background-color: var(--bg-shadow);
   }
 
   .blog-content {
