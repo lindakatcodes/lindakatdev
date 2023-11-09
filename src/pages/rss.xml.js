@@ -10,7 +10,7 @@ export async function GET(context) {
     title: "LindaKat Writes",
     description: "The musings and knowledge sharing of Linda Thompson",
     site: context.site,
-    items: blog.map((post) => ({
+    items: blog.reverse().map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
       link: `/blog/${post.slug}/`,
