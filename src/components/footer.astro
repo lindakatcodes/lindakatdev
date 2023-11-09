@@ -36,7 +36,7 @@ const socialLinks: socialLink[] = [
 ---
 
 <div transition:name="footer" class="footer-container">
-  <div class="divider shadow-over"></div>
+  <div class="divider"></div>
   <footer>
     <section class="email-outro">
       <h2>Hi there!</h2>
@@ -66,12 +66,13 @@ const socialLinks: socialLink[] = [
   .footer-container {
     height: var(--footer-height);
   }
-
+  
   footer {
     padding: 1rem 4rem;
     display: grid;
     grid-template-areas: "email socials";
     grid-template-columns: 1fr 0.5fr;
+    background: var(--bg-shadow);
   }
 
   .email-outro {
@@ -114,7 +115,7 @@ const socialLinks: socialLink[] = [
   .social-link {
     display: flex;
     flex-direction: column;
-    text-decoration-color: var(--text-flip);
+    text-decoration-color: transparent;
   }
 
   .social-link svg {

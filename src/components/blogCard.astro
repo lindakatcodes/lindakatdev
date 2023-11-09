@@ -7,14 +7,10 @@ interface Props {
 }
 
 const { blogBit } = Astro.props;
-const options = {
-  weekday: 'short',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-};
 
-const dateString = new Date(blogBit.data.date).toLocaleDateString('en-us', options);
+const dateString = new Date(blogBit.data.date).toLocaleDateString('en-us', {
+  dateStyle: 'long'
+});
 ---
 
 <div class="blog-bit-wrapper">

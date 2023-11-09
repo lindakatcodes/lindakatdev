@@ -136,14 +136,6 @@ body {
   background: var(--gradient);
 }
 
-.shadow-under {
-  box-shadow: 0 4px 5px var(--bg-shadow);
-}
-
-.shadow-over {
-  box-shadow: 0 -4px 5px var(--bg-shadow);
-}
-
 ul {
   list-style-type: none;
   padding-left: 1.75rem;
