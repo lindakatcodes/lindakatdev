@@ -14,7 +14,7 @@ const allBlogPosts = await getCollection("blog");
   </div>
   <div class="posts-wrapper">
     {
-      allBlogPosts.reverse().map((blogPostEntry) => (
+      allBlogPosts.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)).map((blogPostEntry) => (
        <BlogCard blogBit={blogPostEntry} />
       ))
     }

@@ -7,12 +7,20 @@ interface Props {
 }
 
 const { blogBit } = Astro.props;
+const options = {
+  weekday: 'short',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+
+const dateString = new Date(blogBit.data.date).toLocaleDateString('en-us', options);
 ---
 
 <div class="blog-bit-wrapper">
   <a href={`/blog/${blogBit.slug}`} class="blog-bit-link">
-    <time datetime={blogBit.data.date.toISOString()} class="blog-bit-date">
-      {blogBit.data.date.toDateString()}
+    <time datetime={blogBit.data.date} class="blog-bit-date">
+      {dateString}
     </time>
     <h2 class="blog-bit-title">{blogBit.data.title}</h2>
     <p class="blog-bit-blurb">{blogBit.data.description}</p>
