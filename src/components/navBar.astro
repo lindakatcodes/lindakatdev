@@ -32,7 +32,7 @@ const activePath = Astro.url.pathname;
     >
     <ThemeToggle />
   </nav>
-  <div class="divider"></div>
+  <div class="divider shadow-under"></div>
 </header>
 
 <style>
@@ -40,7 +40,7 @@ const activePath = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: 2;
-    background: var(--bg-shadow);
+    background: var(--background);
   }
   nav {
     height: var(--header-height);
