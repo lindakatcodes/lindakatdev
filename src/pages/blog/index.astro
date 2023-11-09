@@ -10,10 +10,11 @@ const allBlogPosts = await getCollection("blog");
   <div class="intro">
     <h1>Welcome to the blog!</h1>
     <p>Here you'll find posts on what I'm learning, things I find interesting, and my experiences creating my career path as a software engineer.</p>
+    <p>Prefer to read through RSS? <a href="/rss.xml">Here's my feed!</a></p>
   </div>
   <div class="posts-wrapper">
     {
-      allBlogPosts.map((blogPostEntry) => (
+      allBlogPosts.sort((a, b) => b.data.date - a.data.date).map((blogPostEntry) => (
        <BlogCard blogBit={blogPostEntry} />
       ))
     }
@@ -38,6 +39,14 @@ const allBlogPosts = await getCollection("blog");
     font-size: 1.1rem;
   }
 
+  .intro p {
+    margin-bottom: 1.5rem;
+  }
+
+  .intro a {
+    color: var(--green);
+  }
+
   @media (max-width: 520px) {
     .posts-wrapper {
       width: 100%;
@@ -47,6 +56,12 @@ const allBlogPosts = await getCollection("blog");
   @media (min-width: 520px) and (max-width: 1024px) {
     .posts-wrapper {
       width: 85%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .posts-wrapper {
+      width: 45%;
     }
   }
 </style>

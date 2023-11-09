@@ -2,7 +2,7 @@
 const { title, minutesRead, tags } = Astro.props.frontmatter;
 ---
 
-<a href="/blog" class="back-link"> ← Back to the blog list</a>
+<a href="/blog" class:list={["back-link", "gradient-text"]}> ← Back to the blog list</a>
 <div class="fm-wrapper">
   <h1 class="blog-title">{title}</h1>
   <div class="blog-data">
@@ -19,7 +19,7 @@ const { title, minutesRead, tags } = Astro.props.frontmatter;
 <div class="blog-content">
   <slot />
 </div>
-<a href="/blog" class="back-link"> ← Back to the blog list</a>
+<a href="/blog" class:list={["back-link", "gradient-text"]}> ← Back to the blog list</a>
 
 <style is:global>
   .back-link {
@@ -28,20 +28,12 @@ const { title, minutesRead, tags } = Astro.props.frontmatter;
     font-weight: bolder;
     color: var(--text-main);
     text-decoration: none;
+    background-image: none;
+    background-color: var(--pink);
   }
 
-  .back-link::after {
-    content: '';
-    display: block;
-    margin-top: -3px;
-    height: 1.5px;
-    width: 13.5rem;
-    background: var(--text-main);
-    transition: background 0.3s ease-in-out;
-  }
-
-  .back-link:hover::after {
-    background: var(--gradient);
+  .back-link:hover {
+    background-image: var(--gradient);
   }
 
   .fm-wrapper {
