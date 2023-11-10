@@ -19,13 +19,13 @@ const activePath = Astro.url.pathname;
       ]}
       href="/projects">Projects</a
     >
-    <!-- <a
+    <a
       class:list={[
-        "link writing",
-        { "writing-active": activePath === "/writing" },
+        "link blog",
+        { "blog-active": activePath === "/blog" },
       ]}
-      href="/writing">Writing</a
-    > -->
+      href="/blog">Blog</a
+    >
     <a
       class:list={["link about", { "about-active": activePath === "/about" }]}
       href="/about">About</a
@@ -39,7 +39,7 @@ const activePath = Astro.url.pathname;
   header {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     background: var(--background);
   }
   nav {
@@ -89,13 +89,13 @@ const activePath = Astro.url.pathname;
     color: var(--purple);
   }
 
-  .writing:hover,
-  .writing:focus {
+  .blog:hover,
+  .blog:focus {
     border-bottom-color: var(--blue);
     color: var(--blue);
   }
 
-  .writing-active {
+  .blog-active {
     color: var(--blue);
   }
 

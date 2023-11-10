@@ -1,0 +1,157 @@
+---
+const { title, minutesRead, tags } = Astro.props.frontmatter;
+---
+
+<a href="/blog" class:list={["back-link", "gradient-text"]}> ← Back to the blog list</a>
+<div class="fm-wrapper">
+  <h1 class="blog-title">{title}</h1>
+  <div class="blog-data">
+    <p class="read-time">☕ {minutesRead}</p>
+    <!-- tags needs links to tagged posts logic -->
+    <div class="tags">
+      <p>This post covers these topics:</p>
+      <ul>
+        {tags.map((tag: String) => <p class="tag">{tag}</p>)}
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="blog-content">
+  <slot />
+</div>
+<a href="/blog" class:list={["back-link", "gradient-text"]}> ← Back to the blog list</a>
+
+<style is:global>
+  .back-link {
+    font-family: var(--body-font);
+    font-size: 1.25rem;
+    font-weight: bolder;
+    color: var(--text-main);
+    text-decoration: none;
+    background-image: none;
+    background-color: var(--pink);
+  }
+
+  .back-link:hover {
+    background-image: var(--gradient);
+  }
+
+  .fm-wrapper {
+    margin: 0 auto 4rem;
+  }
+
+  .blog-title {
+    text-align: center;
+    font-size: 4.25rem;
+    margin: 1.25rem auto 0.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-title {
+      font-size: 3rem;
+    }
+  }
+
+  .blog-data {
+    width: 60%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 0.75fr 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .tags {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tags ul {
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: 0.5rem auto;
+  }
+
+  .tag {
+    padding: 0.375rem;
+    margin: 0 0.75rem;
+    border-radius: 3px;
+    background-color: var(--bg-shadow);
+  }
+
+  .blog-content {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+
+  /* markdown styles */
+  .blog-content p {
+    line-height: 160%;
+    margin: 1rem auto;
+  }
+
+  .blog-content h2 {
+    color: var(--blue);
+  }
+
+  .blog-content h3 {
+    color: var(--purple);
+  }
+
+  .blog-content h4 {
+    color: var(--green);
+  }
+
+  .blog-content hr {
+    width: 55%;
+    margin: 0.25rem auto;
+    height: 2px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 5px;
+  }
+
+  .blog-content img {
+    margin: 0.5rem auto;
+  }
+
+  .blog-content a {
+    color: var(--text-main);
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--text-main);
+  }
+
+  .blog-content a:hover {
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 3px;
+  }
+
+  .blog-content p code {
+    padding: 0.125rem;
+    background-color: var(--bg-shadow);
+    border-radius: 3px;
+  }
+
+  .blog-content pre {
+    padding: 0.5rem;
+    border-radius: 3px;
+  }
+
+  .blog-content blockquote {
+    background-image: var(--gradient);
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  .blog-content blockquote > * {
+    background-color: var(--bg-shadow);
+    padding: 2% 1% 2% 3%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 auto;
+    border-radius: 3px;
+    text-align: center;
+  }
+</style>

@@ -8,6 +8,19 @@
  --xl (min-width: 1640px);
 */
 
+/* 348, 61%, 79%
+336, 62%, 79%
+321, 57%, 78%
+297, 47%, 77%
+262, 70%, 82%
+221, 92%, 82%
+204, 86%, 76%
+192, 67%, 74%
+182, 58%, 70%
+169, 63%, 69%
+152, 64%, 71%
+118, 59%, 75% */
+
 /* global variables */
 :root {
   --body-font: "Fira Sans", sans-serif;
@@ -71,8 +84,8 @@ white: ebeeef
 }
 
 [data-theme="light"] {
-  --background: hsla(206, 5%, 74%, 1);
-  --bg-shadow: hsla(206, 5%, 64%, 1);
+  --background: hsla(206, 3%, 90%, 1);
+  --bg-shadow: hsla(206, 3%, 75%, 1);
   --box-shadow: hsla(206, 5%, 23%, 0.5);
   --text-main: hsla(210, 2%, 20%, 1);
   --text-flip: var(--background);
@@ -115,6 +128,7 @@ h6 {
   font-family: var(--serif-font);
   font-weight: 700;
   color: var(--text-main);
+  margin: 1rem auto;
 }
 
 p,
