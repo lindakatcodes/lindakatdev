@@ -8,10 +8,10 @@ interface Props {
   }
 }
 
-import "../styles/global.css";
-import CommonHead from "../components/commonHead.astro";
-import NavBar from "../components/navBar.astro";
-import Footer from "../components/footer.astro";
+import "@styles/global.css";
+import CommonHead from "@components/commonHead.astro";
+import NavBar from "@components/navBar.astro";
+import Footer from "@components/footer.astro";
 const { metadata } = Astro.props;
 ---
 <html lang="en" data-theme="dark">
