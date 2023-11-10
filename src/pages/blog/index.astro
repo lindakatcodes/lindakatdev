@@ -1,7 +1,7 @@
 ---
-import BlogCard from "../../components/blogCard.astro";
-import MainLayout from "../../layouts/MainLayout.astro";
-import { DEFAULT_METADATA } from "../../util/constants";
+import BlogCard from "@components/blogCard.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
 const allBlogPosts = await getCollection("blog");
