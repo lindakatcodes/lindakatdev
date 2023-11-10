@@ -46,6 +46,12 @@ const { title, minutesRead, tags } = Astro.props.frontmatter;
     margin: 1.25rem auto 0.5rem;
   }
 
+  @media (max-width: 1024px) {
+    .blog-title {
+      font-size: 3rem;
+    }
+  }
+
   .blog-data {
     width: 60%;
     margin: 0 auto;
