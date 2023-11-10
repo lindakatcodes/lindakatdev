@@ -1,8 +1,9 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "../util/constants";
 ---
 
-<MainLayout>
+<MainLayout metadata={DEFAULT_METADATA}>
   <h1 class="title">Linda Thompson</h1>
   <p class="subtitle gradient-text">Career changer building for the web & bringing teams together</p>
 </MainLayout>

@@ -2,9 +2,10 @@
 import { Image } from "astro:assets";
 import profilePic from "../assets/profile-pic.jpg";
 import MainLayout from "../layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "../util/constants";
 ---
 
-<MainLayout>
+<MainLayout metadata={DEFAULT_METADATA}>
   <section class="about-me">
     <Image
       src={profilePic}

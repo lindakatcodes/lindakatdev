@@ -1,16 +1,17 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+const { metadata } = Astro.props;
 ---
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <meta name="generator" content={Astro.generator} />
-<meta property="og:image" content="/og-image.png" />
-<meta property="og:title" content="LindaKatCodes">
+<meta property="og:image" content={metadata.imagePath} />
+<meta property="og:title" content={metadata.title}>
 <meta property="og:type" content="article" />
-<meta property="og:description" content="The online home of all my code, thoughts, and more.">
-<meta property="og:url" content="https://lindakat.com">
+<meta property="og:description" content={metadata.description}>
+<meta property="og:url" content={metadata.url}>
 <meta name="twitter:card" content="summary_large_image">
 <title>LindaKatCodes</title>
 <meta charset="utf-8" />

@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "../../util/constants";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 ---
 
-<MainLayout>
+<MainLayout metadata={DEFAULT_METADATA}>
   <h2>{entry.data.name}</h2>
   <article class="cs-wrapper">
     <Image
