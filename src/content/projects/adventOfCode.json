@@ -5,6 +5,7 @@
   "description": "Advent of Code is a daily puzzle game that happens every December. Each year, there's problems that deal with common math or algorithm puzzles, and each year's map creates a different picture. The puzzles are always challenging and feel so good to complete! In 2020, I also built a helper terminal command in Rust to create the day's files for me.",
   "tech": ["JS", "Rust"],
   "featured": false,
+  "order": 1,
   "demoLink": null,
   "codeLink": "https://github.com/lindakatcodes/adventOfCode-JavaScript",
   "liveLink": null,

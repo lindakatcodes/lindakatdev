@@ -5,6 +5,7 @@
   "description": "Images created using CSS, following prompts from a daily email. Through working on these drawings, I started to learn more about positioning items with CSS, as well as flexing the creative side of my mind.",
   "tech": ["HTML", "CSS"],
   "featured": true,
+  "order": 2,
   "demoLink": null,
   "codeLink": "https://codepen.io/collection/XOBRMd",
   "liveLink": null,

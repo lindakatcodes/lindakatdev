@@ -5,6 +5,7 @@
   "description": "Do I Own This is a personal nail polish inventory tracking site. It's meant to hold information about your collection, so while you're out at a store you can easily see if you already own a polish or not. I built this site to both help my future self, and learn Vue.",
   "tech": ["Vue", "VueX", "Firebase", "Auth0"],
   "featured": true,
+  "order": 1,
   "demoLink": null,
   "codeLink": "https://github.com/lindakatcodes/doIOwnThis",
   "liveLink": "https://doiownthis.netlify.app/",

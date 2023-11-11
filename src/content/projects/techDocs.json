@@ -5,6 +5,7 @@
   "description": "I've enjoyed participating in the Learn with Jason Twitch streams for awhile now, especially with all the different ways chatters can interact with the stream. So while going back and completing some FreeCodeCamp exercises, I made this documentation of the different chat commands for Jason's stream.",
   "tech": ["HTML", "CSS", "JS"],
   "featured": false,
+  "order": 3,
   "demoLink": null,
   "codeLink": "https://codepen.io/lindakatcodes/pen/PoWpmeO",
   "liveLink": null,
