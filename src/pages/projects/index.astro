@@ -10,16 +10,17 @@ const featuredProjects = await getCollection("projects", ({ data }) => {
 const otherProjects = await getCollection("projects", ({ data }) => {
   return data.featured !== true;
 });
+
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <h1>Featured Projects</h1>
   <div class="projects-wrapper">
-    {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    {featuredProjects.sort((a, b) => a.data.order - b.data.order).map((project) => <ProjectCard project={project} />)}
   </div>
   <h2>Other Fun Projects</h2>
   <div class="projects-wrapper">
-    {otherProjects.map((project) => <ProjectCard project={project} />)}
+    {otherProjects.sort((a, b) => a.data.order - b.data.order).map((project) => <ProjectCard project={project} />)}
   </div>
 </MainLayout>
 
