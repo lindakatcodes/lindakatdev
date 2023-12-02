@@ -27,7 +27,8 @@ const postsMatchingTag = allPosts.filter((post) => {
   const sanitizedTags = post.data.tags.map((tag) =>
     tag.toLowerCase().split(" ").join("-")
   );
-  return sanitizedTags.includes(tag);
+  const filteredTags = tag === "course-notes" ? sanitizedTags : sanitizedTags.filter((tag) => tag !== "course-notes");
+  return filteredTags.includes(tag);
 });
 ---
 
