@@ -5,9 +5,7 @@ import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const allBlogPosts = await getCollection("blog", ({ data }) => {
-    return !data.tags.includes("Course Notes");
-  });
+  const allBlogPosts = await getCollection("blog");
   const tags = [
     ...new Set(
       allBlogPosts
@@ -16,7 +14,7 @@ export async function getStaticPaths() {
         .map((tag) => tag.toLowerCase().split(" ").join("-"))
     ),
   ];
-  console.log(tags);
+
   return tags.map((tag) => ({
     params: { tag },
     props: { allPosts: allBlogPosts },
