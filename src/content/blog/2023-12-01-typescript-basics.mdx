@@ -1,0 +1,832 @@
+---
+title: TypeScript Basics
+description: Notes on the basics of the TypeScript language
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: typescript-basics
+date: "2021-10-26T00:00:00.000Z"
+type: blog
+tags:
+  - TypeScript
+  - Course Notes
+ogImage: ../../assets/blog/og-images/building-snake-og.png
+---
+
+## Types
+
+There are two ways to declare your types - implicit and explicit. Using `let` will allow you to declare the variable without having to assign it first - using `const` will need the initial value. Explicit is often recommended, as it helps show the shape of your data, and provides documentation for how your code works.
+
+```ts
+// explicit - tells you specifically what's to be expected
+let myVariable: number;
+// implicit - gets it's type from the value you assign it, if it can tell
+let thisVariable = 10;
+// if you don't assign it or give it a type, it assumes the type "any", and will work just like normal js
+let z;
+```
+
+All types are subtypes of the `any` type. There are also three subtypes:
+
+- Primitive types: boolean, number, string, void, null, and undefined, along with user-defined enum types.
+  - Void exists to indicate the absence of a value, like when a function has no return value.
+  - Null and undefined are subtypes of all other types, and can't be explicitly referenced - they're used as literal values.
+- Object types: all class, interface, array, and literal types (basically anything that's not a primitive).
+- Type parameters
+
+```ts
+// boolean
+let flag: boolean;
+let yes = true;
+// number / bigint
+let count: number;
+let numItems = 5.25;
+let big: bigint = 100n;
+// string - can use double or single quotes, or template literals
+let s: string;
+let empty = "";
+```
+
+### Enums
+
+Enums are sets of related constants, treated as a data type. Enums are most helpful in situations where there are a small set of possible values - they make it easy to change values in the future, reduce errors from misspelling, and help with forward compatibility when someone new adjusts the code.
+
+```ts
+enum ContractStatus {
+  Permanent,
+  Temp,
+  Apprentice,
+}
+
+let employeeStatus: ContractStatus = ContractStatus.Temp;
+console.log(employeeStatus); // logs 1
+
+// By default, enum values start from 0 and iterate up. You can declare a different starting number if you'd like, and the rest of the values will iterate up from there.
+
+enum ContractStatus {
+  Permanent = 1,
+  Temp,
+  Apprentice,
+}
+
+// Since they iterate by number, if you want the name of the field you can use indexing
+console.log(ContractStatus[employeeStatus]); // logs Temp
+```
+
+### Any and Unknown
+
+Sometimes, you won't know the type of your data while you're writing the code. In these instances, you can use any or unknown.
+
+Any allows you to opt out of type checking, great for gradually migrating a codebase or when you're not sure what shape your data will take. When something is registered as the any type, TypeScript won't do any type checking. This won't cause any type errors, but could still cause runtime issues if it's improper JavaScript.
+
+To avoid some of the errors that can occur with any, TypeScript has an unknown type. Any value can be assigned an unknown type - however, you can't access any properties of a variable with this type. This will allow unknown values to be set, but you can't do anything with it until you check it and set a correct type for it.
+
+### Type Assertions and Guards
+
+If you need to treat a variable as a different data type you can use a type assertion. You're basically telling the complier you've done any necessary checks. There's no change to the data structure and is used purely by the complier.
+
+```ts
+let randomValue: unknown = 10;
+
+randomValue = true;
+randomValue = "Mateo";
+
+if (typeof randomValue === "string") {
+  console.log((randomValue as string).toUpperCase()); //* Returns MATEO to the console.
+} else {
+  console.log("Error - A string was expected here."); //* Returns an error message.
+}
+```
+
+You can use typeof in an if statement to check the current type of a value (called a type guard).
+
+```ts
+// typeof s === "string"
+// typeof n === "number"
+// typeof b === "boolean"
+// typeof undefined === "undefined"
+// typeof f === "function"
+// Array.isArray(a)
+```
+
+### Unions
+
+A union type describes a value that can be one of several types. Union types can provide intellisense and help scope your values to a certain subset of possible types.
+
+```ts
+let multiType: number | boolean;
+```
+
+### Intersections
+
+An intersection type combines two or more types to create a new type that has all properties of the existing types. They're most often used with interfaces.
+
+```ts
+interface Employee {
+  employeeID: number;
+  age: number;
+}
+interface Manager {
+  stockPlan: boolean;
+}
+type ManagementEmployee = Employee & Manager;
+let newManager: ManagementEmployee = {
+  employeeID: 12345,
+  age: 34,
+  stockPlan: true,
+};
+```
+
+### Literals
+
+There are three subtypes of literal types - strings, numbers, and booleans. When defining variables with `let`, we know that our value has the possibility to change. It will always be the type it's set as, but it can be any value that matches that type. If we use `const`, we can specify very specific values that we expect our variable to be, thus "narrowing" our possibilities.
+
+Most often, these are written as `type` literals, and are used to as types themselves by other variables.
+
+```ts
+type testResult = "pass" | "fail" | "incomplete";
+let myResult: testResult;
+myResult = "incomplete"; //* Valid
+myResult = "pass"; //* Valid
+myResult = "failure"; //* Invalid
+
+// can also use number or boolean types in the same way
+type dice = 1 | 2 | 3 | 4 | 5 | 6;
+```
+
+### Arrays
+
+There are two ways to denote arrays of types. This way each value in the array will be of the same type.
+
+```js
+let list: number[] = [1, 2, 3];
+let list: Array<number> = [1, 2, 3];
+```
+
+### Tuples
+
+Sometimes, you might need an array with mixed types. For this, we can use a tuple. Tuples are always a fixed length, and the values will go in the same order.
+
+```ts
+let person1: [string, number] = ["Marcia", 35];
+```
+
+## Interfaces
+
+> Fun fact - type checking focuses on the shape that values have, and sometimes this is called "duck typing"! If it walks like a duck, and talks like a duck - it must be a duck! 🦆
+
+Interfaces help describe an object, giving names and parameters to the properties you expect it to have and helping turn existing named objects into new ones. It doesn't initialize or implement the properties it contains - just tells you the shape of it.
+
+```ts
+interface Employee {
+  firstName: string;
+  lastName: string;
+  fullName(): string;
+}
+
+// to satisfy this "contract", we then use it as a type and give it values
+let employee: Employee = {
+  firstName: "Emil",
+  lastName: "Andersson",
+  fullName(): string {
+    return this.firstName + " " + this.lastName;
+  },
+};
+```
+
+Interfaces are purely a compile-time construct - they're useful for documenting and validating the shape of an object and it's properties.
+
+Type aliases and interfaces are very similar, but do have some differences. Key among this is that interfaces are extendable - we can reopen them to add new properties (which we can't do with the type alias). Also, unions and tuples can only be described by a type alias.
+
+### Common Style Guides for Interfaces
+
+- Typically, interface names are in PascalCase (or TitleCase).
+- Properties are required fields by default, but can be specified to be optional or read only.
+
+```ts
+// required
+firstName: string;
+// optional
+firstName?: string;
+// readonly - only modified when an object is first created
+readonly firstName: string;
+```
+
+Interfaces can extend each other, letting you copy the properties of one interface into another. A few rules apply here:
+
+- You must implement all the required properties of all interfaces
+- Two interfaces can have the same property if they're the exact same name and type
+- If they have the same property name but different types, you have to make a new property that can have a subtype matching both interfaces
+
+```ts
+interface IceCream {
+  flavor: string;
+  scoops: number;
+  instructions?: string;
+}
+
+interface Sundae extends IceCream {
+  sauce: "chocolate" | "caramel" | "strawberry";
+  nuts?: boolean;
+  whippedCream?: boolean;
+  instructions?: string;
+}
+```
+
+### Create Indexable Types
+
+Interfaces can describe array types you can index into. We can describe the type you use to index into the array, along with the corresponding return type.
+
+```ts
+// this says we will access items in this array by a number, and expect to get back a string
+interface IceCreamArray {
+  [index: number]: string;
+}
+
+let myIceCream: IceCreamArray = ["chocolate", "vanilla", "strawberry"];
+let myStr: string = myIceCream[0];
+```
+
+### Describing APIs using an Interface
+
+Interfaces can also be helpful in describing existing APIs and clarifying parameters and return types. This can help with understanding what an API is expecting and what we get in return.
+
+```ts
+const fetchURL = "https://jsonplaceholder.typicode.com/posts";
+// Interface describing the shape of our json data
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+async function fetchPosts(url: string) {
+  let response = await fetch(url);
+  let body = await response.json();
+  // alias the body as the Post type
+  return body as Post[];
+}
+async function showPost() {
+  let posts = await fetchPosts(fetchURL);
+  // Display the contents of the first item in the response
+  let post = posts[0];
+  console.log("Post #" + post.id);
+  // If the userId is 1, then display a note that it's an administrator
+  console.log(
+    "Author: " + (post.userId === 1 ? "Administrator" : post.userId.toString())
+  );
+  console.log("Title: " + post.title);
+  console.log("Body: " + post.body);
+}
+
+showPost();
+```
+
+## Typed Functions
+
+Using TypeScript with functions allows us to perform type checking on passed arguments and return values, and also specify if parameters are required or optional.
+
+As in JavaScript, there's a few different ways we can create functions.
+
+```ts
+// named functions - loaded into execution context, so can be hoisted & used before it's defined
+function addNumbers(x: number, y: number): number {
+  return x + y;
+}
+// anonymous functions - not pre-loaded, only run when the code encounters it so must be declared before it's called
+let addNumbers = function (x: number, y: number): number {
+  return x + y;
+};
+// arrow functions - shorthand for anonymous functions
+let addNumbers = (x: number, y: number): number => x + y;
+let total = (input: number[]): number => {
+  let total: number = 0;
+  for (let i = 0; i < input.length; i++) {
+    if (isNaN(input[i])) {
+      continue;
+    }
+    total += Number(input[i]);
+  }
+  return total;
+};
+```
+
+TypeScript assumes by default that all parameters are required. The compiler verifies that a value has been passed for each parameter, onto parameters required are passed, and they're passed in the order they were defined.
+
+But we can also make parameters optional, set defaults, and deconstruct object parameters. Required values need to come before optional or default values.
+
+```ts
+// required
+function addNumbers(x: number, y: number): number {
+  return x + y;
+}
+
+addNumbers(1, 2); // Returns 3
+addNumbers(1); // Returns an error
+
+// optional
+function addNumbers(x: number, y?: number): number {
+  return x + y;
+}
+
+addNumbers(1, 2); // Returns 3
+addNumbers(1); // Returns 1
+
+// default
+function addNumbers(x: number, y = 25): number {
+  return x + y;
+}
+
+addNumbers(1, 2); // Returns 3
+addNumbers(1); // Returns 26
+
+// rest parameters - a boundless number of optional parameters, useful if you don't know how many you'll be given
+let addAllNumbers = (
+  firstNumber: number,
+  ...restOfNumbers: number[]
+): number => {
+  let total: number = firstNumber;
+  for (let counter = 0; counter < restOfNumbers.length; counter++) {
+    if (isNaN(restOfNumbers[counter])) {
+      continue;
+    }
+    total += Number(restOfNumbers[counter]);
+  }
+  return total;
+};
+addAllNumbers(1, 2, 3, 4, 5, 6, 7); // returns 28
+addAllNumbers(2); // returns 2
+addAllNumbers(2, 3, "three"); // flags error due to data type at design time, returns 5
+
+// deconstructed object - allows us to use named parameters, which don't have to be in the right positional order in the function
+interface Message {
+  text: string;
+  sender: string;
+}
+
+function displayMessage({ text, sender }: Message) {
+  console.log(`Message from ${sender}: ${text}`);
+}
+
+displayMessage({ sender: "Christopher", text: "hello, world" });
+```
+
+It's also possible to define function types, helpful if you want to apply the same type signature to multiple functions. This can be done with an interface or a type alias - use an interface if you might need to extend the type later, or an alias if you want to use unions or tuples.
+
+```ts
+type calculator = (x: number, y: number) => number;
+let addNumbers: calculator = (x: number, y: number): number => x + y;
+let subtractNumbers: calculator = (x: number, y: number): number => x - y;
+// can also use to pass values from another function
+let doCalculation = (operation: "add" | "subtract"): calculator =>
+  operation === "add" ? addNumbers : subtractNumbers;
+
+// if we wanted to use an interface instead of the alias:
+interface Calculator {
+  (x: number, y: number): number;
+}
+
+// the names of the parameters do not have to match
+let addNumbers: Calculator = (num1: number, num2: number): number =>
+  num1 + num2;
+// we can also leave off the types, since they're defined in the alias / interface
+let addNumbers: Calculator = (num1, num2) => num1 + num2;
+```
+
+## Classes
+
+Classes are like blueprints for building objects. It can describe the options and properties for an object, but it's still just a plan - you need to make an instance of it to actually assign values. They can also be extended, to give something all the same values and allow it to add new ones.
+
+Classes encapsulate data for an object, acting as a sort of "black box" - the specific details can be hidden from whoever's working with the object. All te attributes and behaviors are only exposed through the properties and methods it creates, limiting what others can do with it.
+
+Class components:
+
+- Properties - data for the object, sometimes called fields.
+- Constructor - creates and initializes objects. When you create a new instance, this special function creates a new object with the shape of the class.
+- Accessors - let you get or set values of properties. Can make properties read-only if there's no set, or unreachable if there's no get.
+- Methods - define behaviors or actions created objects can do.
+
+Classes do not require that you use all these components - they're simply the options that are available.
+
+```ts
+class Car {
+  // Properties - raw data
+  private _make: string;
+  private _color: string;
+  private _doors: number;
+  // Constructor - initializes properties; will have a parameter list that defines what's passed to the new object (not required to define every property & can have different names from the properties).
+  constructor(make: string, color: string, doors = 4) {
+    this._make = make;
+    this._color = color;
+    this._doors = doors;
+  }
+  // Accessors - properties are public by default & can be accessed directly, but getters and setters will intercept access to a property, giving you more control. Can also use to validate data, impose constraints, & manipulate data.
+  get make() {
+    return this._make;
+  }
+  set make(make) {
+    tis._make = make;
+  }
+
+  get doors() {
+    return this._doors;
+  }
+  set doors(doors) {
+    if (doors % 2 === 0) {
+      this._doors = doors;
+    } else {
+      throw new Error("Doors must be an even number");
+    }
+  }
+  // Methods - describe behaviors class can perform or other tasks required by class
+  accelerate(speed: number): string {
+    return `${this.worker()} is accelerating to ${speed} MPH.`;
+  }
+  brake(): string {
+    return `${this.worker()} is braking with the standard braking system.`;
+  }
+  turn(direction: "left" | "right"): string {
+    return `${this.worker()} is turning ${direction}`;
+  }
+  // This function performs work for the other method functions
+  private worker(): string {
+    return this._make;
+  }
+}
+
+// Now we can make a new Car object
+let myCar1 = new Car("Cool Car Company", "blue", 2);
+```
+
+A few notable things with this example:
+
+- Both `myCar1.color` and `myCar1._color` are possible to access and log. Remember that `_color` is the property defined in the class & will return the raw data. `Color` is the parameter value and is accessed through `get` and `set`.
+- Though we set some validation on `doors` in the setter, we can still create an object with an odd number of doors because the validation isn't inside the constructor. If we tried to set the value using the setter it would give us the error.
+
+### Access modifiers
+
+All class members are public by default. Sometimes this is what you want, but often you'll want to control access to the raw data inside the class and only allow access to the values from `get` or `set`. (This also includes method functions.)
+
+We can control the visibility of class members by adding these keywords before the name:
+
+- public: the default, available everywhere
+- private: can't be accessed outside the containing class
+- protected: can be accessed by derived classes, but not outside of those
+- readonly: only set when initialized at declaration or in the constructor
+
+> When comparing types with `private` or `protected` values: if one type has a private member, the other must have a private member that originated in the same declaration to be compatible.
+
+So far we've talked about instance properties - they're all instantiated and called on each instance of a class, so the values are unique for each instance. But we can also have static properties, that are shared by all instances.
+
+```ts
+class Car {
+  private static numberOfCards: number = 0;
+  // ...
+  constructor() {
+    // to use these, we use the name of the class instead of this
+    Car.numberOfCars++;
+  }
+
+  // can also make static methods
+  public static getNumberOfCars(): number {
+    return Car.numberOfCars;
+  }
+}
+
+console.log(Car.getNumberOfCars());
+```
+
+### Inheritance
+
+by extending a class, the new class (called a subclass) will inherit the properties and methods of the original (of called a base, superclass, or parent), and also have it's own unique properties.
+
+Benefits of inheritance:
+
+- Reusability - reduce the number of places you need to make changes to code.
+- Can use one base to derive any number of subclasses.
+
+If you need to change how one of the base class properties work for a subclass, you can override it by writing a new version with the same name.
+
+```ts
+// based on Car class from above
+class ElectricCar extends Car {
+  // only need to define unique properties or ones to override
+  private _range: number;
+  // the constructor can have any properties of the base class and this class it needs
+  constructor(make: string, color: string, range: number, doors = 2) {
+    // we need to use the super keyword to include parameters from the base - this lets it execute the constructor from the base class when it runs. It has to appear before any 'this' values
+    super(make, color, doors);
+    this._range = range;
+  }
+
+  // if we change the modifier of the previous worker function from private to protected, we can then use it in this subclass
+  charge() {
+    console.log(this.worker() + " is charging.");
+  }
+
+  // when overriding methods, the parameter signature and return type have to be the same as the original
+  brake(): string {
+    return `${this.worker()} is braking with the regenerative braking system.`;
+  }
+}
+```
+
+Classes can also use interfaces to ensure the shape we want.Interfaces can only describe the public facing side of the class, so it will have the parameters of the constructor (make and not \_make) and none of the private properties. Classes can implement one or many interfaces to help validate the implementation.
+
+```ts
+interface Vehicle {
+  make: string;
+  color: string;
+  doors: number;
+  accelerate(speed: number): string;
+  brake(): string;
+  turn(directions: "left" | "right"): string;
+}
+
+class Car implements Vehicle {
+  // ...
+}
+```
+
+### When to use interfaces
+
+Interfaces are weightless, taking up no space in the end files since they're removed when the code is transpiled (JavaScript doesn't know what interfaces are).
+
+Interfaces can be used to define a data structure without the use of a class. They can work for function parameters, framework properties, and how objects from remote APIs and service look.
+
+They're also helpful if you're making full-stack applications. You can make a shared interface to define both the server and client shapes, so both sides match.
+
+```ts
+interface Dog {
+  id?: number;
+  name: string;
+  age: number;
+  description: string;
+}
+
+async loadDog(id: number): Dog {
+  return await (await fetch('demoUrl')).json() as Dog;
+}
+```
+
+### When to use classes
+
+Classes let you define implementation details. Where interfaces solely define how data is structured, classes let you define methods, fields, and properties, and a way to template objects.
+
+A common technique for managing database data is "active record pattern", meaning the object has methods for save, load, etc.
+
+```ts
+class DogRecord implements Dog {
+  id: number;
+  name: string;
+  age: number;
+  description: string;
+
+  constructor({ name, age, description, id = 0 }: Dog) {
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.description = description;
+  }
+
+  static load(id: number): DogRecord {
+    // code to load dog from database
+    return dog;
+  }
+
+  save() {
+    // code to save dog to database
+  }
+}
+```
+
+## Generics
+
+Generics are code templates you can define and reuse. We've so far used types to make interfaces, functions, and classes strongly typed. But what if we want to make a component that can work with a variety of types? Generics allow the code we write to tell us the type they want to use when we call it. By being able to allow our future code to provide the type when it uses the generic code, we can reuse our code easier and keep the type strength we wouldn't get if we used the `any` type.
+
+Let's say we have a function that makes an array of items of any type.
+
+```ts
+function getArray(items: any[]): any[] {
+  return new Array().concat(items);
+}
+```
+
+We can use this to make an array of numbers, or an array of strings. But since it uses the `any` type, there's nothing stopping us from mixing types in the values we pass it.
+
+Generics can help us determine the type of values we want to allow when we call the function and let TypeScript type check the values for us.
+
+```ts
+function getArray<T>(items: T[]): T[] {
+  return new Array<T>().concat(items);
+}
+```
+
+The `<T>` is a type variable, which will identify the type we pass to the component. It does need the angle brackets, but the name could be anything (T is very popular though).
+
+Once we identify the variable, we can use it in place of the type in parameters, return types, or anywhere else we would add the type annotation.
+
+Then when we call the function, we pass the type in angle brackets after the name.
+
+```ts
+let numberArray = getArray<number>([5, 10, 15]);
+```
+
+We can also use multiple generic types! These can then be different types completely, or two values with the same type.
+
+```ts
+function identity<T, U>(value: T, message: U): T {
+  console.log(message);
+  return value;
+}
+
+let returnNumber = identity<number, string>(100, "Hello!");
+let returnString = identity<string, string>("100", "Hola!");
+
+returnNumber = returnNumber * 100; // OK
+returnString = returnString * 100; // Error: Type 'number' not assignable to type 'string'
+```
+
+When using type variables in components, we can only use properties and methods of objects available to every type. Since it doesn't know what kind of value will be passed to it, it limits what you can do to prevent potential errors.
+
+If we wanted to use a specific type of method, we can create a generic constraint to limit the types we want that value to be. There's a few different ways to do this.
+
+```ts
+// declare a tuple type and extend it
+type ValidTypes = string | number;
+function identity<T extends ValidTypes, U>() {}
+
+// constrained by the property of another object
+function getPets<T, K extends keyof T>(pet: T, key: K) {
+  return pet[key];
+}
+
+let pets = { cats: 4, dogs: 3, parrots: 1 };
+console.log(getPets(pets, "dogs")); // returns 3
+```
+
+If we were constraining the types we pass in, we can use `typeof` checks (or `instanceof` if it's a class) to do some verification before performing operations.
+
+We can also use interfaces, functions, and classes as generic type variables! So we're not limited to the native types.
+
+```ts
+// let's say we start with a generic interface
+interface Identity<T, U> {
+  value: T;
+  message: U;
+}
+
+// then to use this as an object type
+let returnNumber: Identity<number, string> = {
+  value: 25,
+  message: "Hello!",
+};
+
+// generic interface as a function type
+// first we make an interface with a generic signature of a method
+interface ProcessIdentity<T, U> {
+  (value: T, message: U): T;
+}
+
+// then make a function with the same type signature as the interface
+function processIdentity<T, U>(value: T, message: U): T {
+  console.log(message);
+  return value;
+}
+
+// make a function type variable with the interface and the function
+let processor: ProcessIdentity<number, string> = processIdentity;
+let returnNumber = processor(100, "test");
+
+// generic interface as class type - this could also be done without the interface
+interface ProcessIdentity<T, U> {
+  value: T;
+  message: U;
+  process(): T;
+}
+
+class processIdentity<X, Y> implements ProcessIdentity<X, Y> {
+  value: X;
+  message: Y;
+  constructor(val: X, msg: Y) {
+    this.value = val;
+    this.message = msg;
+  }
+  process(): X {
+    console.log(this.message);
+    return this.value;
+  }
+}
+
+let processor = new processIdentity<number, string>(100, "Hello");
+processor.process(); // Displays 'Hello'
+processor.value = "100"; // Type check error
+```
+
+Some of the real power of generics is using custom types and classes.
+
+```ts
+class Car {
+  make: string = "Generic Car";
+  doors: number = 4;
+}
+class ElectricCar extends Car {
+  make = "Electric Car";
+  doors = 4;
+}
+function accelerate<T extends Car>(car: T): T {
+  console.log(`All ${car.doors} doors are closed.`);
+  console.log(`The ${car.make} is now accelerating!`);
+  return car;
+}
+
+let myElectricCar = new ElectricCar();
+accelerate<ElectricCar>(myElectricCar);
+```
+
+## Organize code with modules
+
+Modules are a way to organize your code, pulling it out of the global scope and into the module scope. Declarations can be exported and imported - any file with a top-level import or export is considered a module. Modules are declarative - statements at the file level describe the relationships between them.
+
+```ts
+// to export, place the export keyword in front of the declaration
+export function returnGreeting() {}
+
+// then, there are a few ways to import modules
+import { returnGreeting } from "<module name>";
+import { returnGreeting as greeting } from "<module name>";
+import * as greeting from "<module name>";
+```
+
+Modules use a module loader to locate and execute all the dependencies for the module before executing it. Then the compiler will generate the appropriate code it needs for the targeted system.
+
+To compile them, pass `--module` to the command line or in the tsconfig file. When compiled, each module will be a separate file.
+
+```ts
+// for older node versions
+tsc --module commonjs main.ts
+// for newer node or web browsers
+tsc --module es6 main.ts
+// then in the html to use it, specify the type
+<script type="module" src="./main.js">
+```
+
+External libraries can be imported in the same way. However, not all libraries are written in TypeScript, and the compiler will raise an error message if you attempt to use it. Since they're not required once compiled, you can install them as dev dependencies. There's also a lot of open source projects (like Definitely Typed) that have created types for popular libraries. You can install them by using the `@types` prefix. `npm install --save-dev @types/<library-name>`
+
+## Organize code with Namespaces
+
+Namespaces are a TypeScript specific way to categorize your code, grouping together variables, functions, interfaces, or classes. This way you can have a namespace for business rules and one for security, for example.
+
+Namespaces are a way to help reduce code in the global scope, provide context for names, and enhance reusability. Code inside a namespace is pulled from the global scope, allowing an avoidance of naming conflicts. They can be implemented in a single file or across multiple files.
+
+Compiling files with namespaces is the same as regular TypeScript files. Since they're a TypeScript-only construct, they'll be removed from the compiled JavaScript and converted into nested variables to make namespace-like objects.
+
+```ts
+namespace Greetings {
+  // similar to modules, we need to export to be able to use outside of a namespace
+  export function returnGreeting() {}
+}
+
+// to use, we call namespace.function
+Greetings.returnGreeting();
+
+// you can also nest namespaces
+namespace AllGreetings {
+  export namespace Greetings {
+    export function returnGreeting() {}
+  }
+}
+AllGreetings.Greetings.returnGreeting();
+
+// it's also possible to create an alias that we can import to help with readability
+import greet = AllGreetings.Greetings;
+greet.returnGreeting();
+```
+
+To use namespaces in multiple files, we extend them using reference tags. This tells the compiler about the relationships between the files. If you're referencing more than one file, start with the highest-level namespace then work your way down.
+
+```ts
+// if we have a file called interfaces.ts
+namespace Interfaces {}
+
+// then a file called functions.ts that uses items from interfaces.ts
+
+/// <reference path="interfaces.ts" />
+namespace Functions {
+  export function functionName {}
+}
+```
+
+They can be compiled per-file or as a single file. The compiler by default will examine the reference statements in the file and make one JavaScript file for each input file. If we go with this option, use `<script>` tags on the webpage to load each emitted file in the appropriate order.
+
+We can also tell the compiler to produce a single file by using `--outFile` and giving it a name you want for the file.
+`tsc --outFile main.js main.ts`
+
+### Design considerations
+
+It's not recommended to combine namespaces and modules in the same project. While namespaces are easy to use for simple implementations and don't depend on a module loader, modules are often the recommended option. Some of the benefits of modules:
+
+- They declare their dependencies, providing beter code reuse and strong isolation
+- They hide the internal statements of definitions and show only methods and parameters associated to the declared component
+- Recommended for Node applications since it's the default
+- Can resolve top-down JavaScript flow issues because a reference to an external method or class is instantiated only on method invocation

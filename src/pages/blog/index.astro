@@ -4,7 +4,9 @@ import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
-const allBlogPosts = await getCollection("blog");
+const allBlogPosts = await getCollection("blog", ({ data }) => {
+  return !data.tags.includes('Course Notes');
+});
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>

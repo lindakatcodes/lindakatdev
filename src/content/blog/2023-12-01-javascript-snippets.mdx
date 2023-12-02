@@ -1,0 +1,50 @@
+---
+title: JavaScript Snippets
+description: My own reference sheet for common, basic JS recipes that I use and/or need to look up often
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: javascript-snippets
+date: "2020-08-11T00:00:00.000Z"
+type: blog
+tags:
+  - JavaScript
+  - Course Notes
+ogImage: ../../assets/blog/og-images/building-snake-og.png
+---
+
+### Arrays
+
+```js
+// basic reduce - adding all values in an array
+arr.reduce( (total, value) => total + value, 0);
+
+// Need to know how many of each item are in an array? Reduce into an object:
+var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+
+var countedNames = names.reduce(function (allNames, name) {
+  if (name in allNames) {
+    allNames[name]++;
+  }
+  else {
+    allNames[name] = 1;
+  }
+  return allNames;
+}, {});
+
+// countedNames is:
+// { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+```
+
+### Objects
+
+```js
+// Followed the above reduce into an object, but then need to do something with the values?
+// Can get all the keys, which will return an array (that you can then loop over)
+Object.keys(objectName);
+```
+
+### Measuring Elements
+- For total amount of space an item takes up, including visible content, padding, and border: `offsetWidth / offsetHeight`
+- For amount of space the content takes up, including padding and visible content but nothing else: `clientWidth / clientHeight`
+- For the total size of the content, no matter how much is visible: `scrollWidth / scrollHeight`

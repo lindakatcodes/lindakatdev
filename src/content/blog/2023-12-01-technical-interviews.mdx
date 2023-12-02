@@ -1,0 +1,377 @@
+---
+title: Technical Interviews
+description: Notes while reading through "De-coding the Technical Interview" by Emma Bostian
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: technical-interviews
+date: "2021-04-12T00:00:00.000Z"
+type: blog
+tags:
+  - Career
+  - Course Notes
+ogImage: ../../assets/blog/og-images/building-snake-og.png
+---
+
+This book is for anyone who has ever felt like they didn’t belong in the technical industry, those who have been told they’re not good enough, and anyone who was recently laid off.
+
+> You are important. You are smart. And you can do this.
+
+## The Interview Process
+
+Processes vary by company, but will typically consist of a recruiter interview & a technical interview.
+
+### Recruiter Interview
+
+Learning more about the role & process.
+
+Tips:
+
+- Read up on role & company
+  Will be expected that you have some idea of the role you applied for. Great to show you've read some about the company's values & what they're working on, too.
+- Be on time
+- Have some questions prepared
+  Always say yes! Can ask about office culture, diversity, opportunities for continuing education, work/life balance, etc.
+
+### Coding Challenge
+
+Focus on HTML, CSS, and JS. Good things to brush up on:
+
+- HTML: DOM manipulation
+- CSS: specificity, positioning, display properties, responsive layouts
+- Accessibility: semantic HTML, ARIA attributes
+- JS: promises, async/await
+
+> Honesty is best - if you can't remember the syntax, let them know.
+
+Often, coding challenges aim to test breadth of knowledge, where on-site interviews and/or coding projects aim to test depth of knowledge - not guaranteed though. Can ask recruiter what you should study up on.
+
+Might also get direct questions. A few samples:
+
+- Can you define a promise?
+- What is a closure?
+- How would you visually hide an element in the UI so it's still accessible for screen readers?
+- Why do we use alt tags for images?
+- How can we make our web applications more performant?
+
+### Coding Projects
+
+Projects allow you to showcase your skills in an environment more conducive to day-to-day work. Sometimes in addition to challenges, sometimes instead of.
+
+A few things that are great to do or include if you're able to:
+
+- **Clarify Requirements** - Make sure you know if you need to use a specific stack, or other similar details.
+- **Thoroughly Document** - Make sure you know how the company wants to view your files, and provide information on how to install and run your application.
+- **Create User Flows** - More of a UX design activity, but can sketch the different flows a user can take and/or how the information architecture looks. Shows conscious attention to the end user.
+- **Add Additional Enhancements** - Adding enhancements or features if you have extra time can be impressive. Feature doesn't have to be fully functional. Can also list ideas with a high-level description of what they'd do and why they enhance the UX if you don't have time to implement.
+- **Note Areas for Improvement** - Show you're self-aware and can recognize areas to improve. Shows knowledge without spending hours implementing or refactoring code.
+
+Tips for Nailing your Coding Project:
+
+- **Remove Code Comments** - Wait several hours after you're done and take a fresh read through your code. Can you remove any lingering comments?
+- **Refactor Non-Performant Code** - Try to optimize if possible, shows you prioritize performance.
+- **Test for Accessibility** - Run through Lighthouse or Axe. Fixing small pitfalls and including a paragraph explaining sets you apart.
+- **Design a Logical Project Architecture** - How do you want to organize your files? Consider naming styles, folder structure, etc. and be consistent.
+
+### On-Site Interviews
+
+Common with larger companies, typically involves 4-5 interviews in a row. There are several types you might experience - a recruiter can provide you with more detailed information about what to expect.
+
+#### Data Structures & Algorithm Interviews
+
+Typically, these are taught most in computer science degree courses. However they're a common subject for tech interviews. Will be covered in more detail later in the book, but a few of the topics that often come up here are:
+
+- Data structures
+  - Stacks
+  - Queues
+  - Linked Lists
+  - Graphs
+  - Trees
+  - Tries
+
+- Sorting Algorithms
+  - Merge sort
+  - Quick sort
+  - Insertion sort
+
+- Searching Algorithms
+  - Binary search
+  - Depth-first search
+  - Breadth-first search
+  - Tree traversals
+
+- Concepts
+  - Big-O Notation
+  - Recursion
+
+#### Front-End Interviews
+
+Cover web tech and questions to test practical situations in day-to-day responsibilities. A few areas to be comfortable with:
+
+- HTML
+  - Semantic HTML
+  - Accessibility / ARIA
+
+- CSS
+  - Specificity
+  - Pseudo-elements / pseudo-selectors
+  - Position
+  - Display
+  - Media queries
+  - Animations
+
+- JavaScript
+  - Data structures (i.e. maps, sets, symbols, arrays)
+  - Closures
+  - Asynchronous programming
+  - DOM manipulation
+  - Event delegation
+
+- The Internet
+  - TCP/IP
+  - CORS
+  - Performance
+
+- UX / Visual Design
+  - Information architecture
+  - User flows
+  - UX heuristics
+
+**Sample Question** - How would you design and build an application with infinite scroll?
+
+Might want to touch on image performance (file formats to reduce bundle size) or lazy loading (only load needed results, make another request when closer to needing them).
+
+#### Process & Communication Interviews
+
+Questions about collaboration and workflow. A few tips:
+
+- Sit up straight and make eye contact
+- Don't fidget
+- Think before answering; it's okay to take a quick pause to iron out your answer
+- Never speak poorly about your previous or current employer
+
+Some potential questions that might come up in this type of interview:
+
+- Tell me about a project that failed. Why did it fail and how did you handle it?
+- How would you handle a situation in which your coworker has a different opinion on how to develop a new feature?
+- Why are you looking to leave your current job?
+- What are you looking for in your next role?
+
+For in-person interviews, a few tips that can help your day go smoothly:
+
+- Wear comfortable and smart clothing - balance looking professional while still feeling comfortable and at ease.
+- Take bathroom breaks - allowing two minutes to breathe and clear your mind will help.
+- Visit the building the day before or allow extra time before your interview to ensure you can locate the building.
+
+#### Manager & Team-Matching Interviews
+
+It's good to have some questions prepared for these, if you're meeting a potential manager or team. Consider these:
+
+- What technology stack is the team using?
+- Does the team iterate on sprints? If so, how long are sprints? One week? Two weeks? Four?
+- What opportunities are there to expand my knowledge? Will I have the opportunity to attend conferences or take online courses?
+- Is there an opportunity for mentorship?
+
+### After the Interview
+
+Take a moment and recognize how much you've accomplished. Whatever happens happens! There's two potential paths now: you get an offer or a rejection.
+
+#### Negotiating an Offer
+
+You earned this and you deserve it!
+
+When we don't negotiate, we can leave a lot of money and benefits on the table. You don't have to solely negotiate salary either; can focus on paid time off, stock options, flexible working hours, etc.
+
+**If you're happy with the offer** you don't *have* to negotiate, but typically a company doesn't make their best offer first. There's no shame in trying. But sometimes they do, and if you're happy with the offer you still win!
+
+**If you're NOT happy with the offer** and the company isn't willing to negotiate, you have to decide whether to accept the offer. Everyone's situation is different.
+
+#### Processing a Rejection
+
+Everyone gets rejected. **Everyone.** It's a normal part of the process. It doesn't mean you're not good enough; it means you weren't a fit for this role or they had other candidates that more closely aligned with the teams' needs. Take some time to process the rejection. Don't diminish your feelings. Try to think about how proud of yourself you'll feel once you DO receive an offer.
+
+> You'll get there. You can do this.
+
+<hr>
+
+## Problem Solving
+
+![A flow chart of the steps to problem solving](https://i.imgur.com/DxmI7Zd.png)
+
+### Where do you start?
+
+Understanding how to solve problems is huge. Here's a list of steps to consider when faced with a problem.
+
+#### Understand the problem
+
+Before you start, ask yourself if you understand what the problem is. If no, you should clarify. Lots of questions are left incomplete to see your ability to deduce what information is incomplete or missing. A good way to test this is to repeat the problem to the interviewer. Ask for clarification if they say your interpretation isn't correct.
+
+#### List the functional requirements
+
+Listing the things your solution absolutely HAS to include helps you understand the problem, make sure you don't get sidetracked on different aspects, and helps identify missing information. Thinking about system requirements will allow you to focus on the most important tasks.
+
+For example, if you're tasked with designing and coding an infinite scroll for an Instagram-style application, some of the functional requirements might be:
+
+- Users see their friends photos in reverse chronological order (newest first)
+- Lazy loading is a good option, so first paint time is reduced
+- We want to request a max of 30 photos as a time
+
+#### List possible solutions
+
+Think through a few different solutions you could take. Speak your thoughts out loud and write them down. Once you have a few options, choose the solution you're most comfortable coding. It's okay if it's not the most performant or optimal solution - let them know you're aware of that. There's nothing wrong with brute-forcing a solution first and then optimizing.
+
+#### Optimize your solution
+
+If you have time, optimize your code. If you don't have time, explicity state you recognize the pitfalls and how you'd like to refactor it.
+
+#### Test your solution
+
+Even if you know your solution is 100% correct, test it. Think about edge cases. What happens if it's passed an argument it doesn't expect? Refactor if it breaks.
+
+### What to do if you get stuck
+
+Getting stuck happens to the best of engineers and it's nothing to beat yourself up about.
+
+If you find yourself unable to move forward, be honest with your interviewer. "I know I need to do X but I'm not sure how to proceed." Your interviewer most likely wants you to succeed. They'll likely be happy to give you a hint or two along the way.
+
+Try to stay calm, breathe, and take a drink of water.
+
+> Everyone gets stuck, and you will be okay.
+
+<hr>
+## Data Structures
+
+### What is a data structure?
+
+A data structure is an organization of data such that it can be accessed and modified in a particular manner. This is vague, but will start to make more sense as we go. Many of the data structures (DS) needed for tech interviews are not natively built into JS, so can be overwhelming to learn since lots of the resources are geared toward back-end languages. Here we'll cover a few of the most common.
+
+### Stacks
+
+A stack is "last in first out" (LIFO) structure, where the newest element added (the last one) is the first to be removed. Similar to a stack of books - you need to grab the one off the top to get to the next one.
+
+#### Benefits of Stacks
+
+Stacks allow for constant time O(1) for adding and removing of the top item. Very performant, since we don't need to shift any items around to get the top item.
+
+#### Downsides of Stacks
+
+However, we won't have constant time for the nth item in the stack - it doesn't work by index like an array would. We have to remove each top item until we find the item we need, which gives this a worst-case runtime of O(n).
+
+#### Stack methods
+
+There are three primary methods and two additional helper methods we can use:
+
+- `pop()`: Removes the top item from the stack
+- `push(item)`: Adds an item to the top of the stack
+- `peek()`: Returns the item at the top of the stack (but does not remove it)
+- `isEmpty()`: Returns true if the stack is empty
+- `get length()`: Returns the number of items in the stack
+
+Here's an example using the class notation. We're going to use an array for the stack, with the top being the end and the bottom being the beginning of the array. This way we can use the native `pop` and `push` methods to access items.
+
+```js
+class Stack {
+  constructor() {
+    this.stack = []
+  }
+  // lets us check the number of items in the stack with stack.length
+  get length() {
+    return this.stack.length;
+  }
+  // Needs the item to add onto the top of the stack
+  push(item) {
+    return this.stack.push(item);
+  }
+  // Will remove and return the top item
+  pop() {
+    return this.stack.pop();
+  } 
+  // See which element is at the top of the stack, but leave it there
+  peek() {
+    return this.stack[this.length - 1];
+  }
+  // Check if the stack is currently empty
+  isEmpty() {
+    return this.length === 0;
+  }
+}
+```
+
+#### When would you use a stack during an interview?
+
+Here's an example question where a stack would be a good choice:
+
+```markdown
+Imagine you’re building a navigation component for a product website we’ll call “Rainforest”. Users can navigate from the home page to different product pages within the site. For example, a user flow might be Home > Kitchen > Small Appliances > Toasters.
+
+Build a navigation component that displays the list of previously visited pages as well as a back button which lets the user go back to the previous page.
+```
+
+Since the last item added would be the last page we visited, a stack would work great for this. When we want to navigate backwards, we can pop off the last item and render the state of the previous page.
+
+A solution for this would display a navigation with four links, a history list that displays the previously visited pages, a current page, and a go back button which navigates to the previously visited page.
+
+A few additional boundaries to think about:
+
+- Have you tested several user flows?
+- What happens if you don't have any previously visited pages?
+- What happens if you're already on a page and you try navigating to it?
+
+You'll often get follow-up questions as well once you finish a challenge. You're often not expected to complete all pieces of a question or get them completely correct - they're more to discover how you problem solve and communicate. Here's a follow-up for this question.
+
+- Expand your solution to be able to navigate forwards as well as backwards. A few example user flows to help develop your solution:
+  - User flow 1: Home Home > Kitchen Home > Kitchen > Bathroom Back Home > Kitchen Home > Kitchen > Living room
+  - User flow 2: Home Home > Kitchen Home > Kitchen > Bathroom Back Home > Kitchen Forward Home > Kitchen > Bathroom Home > Kitchen > Bathroom > Home
+  - User flow 3: Home Home > Kitchen Home > Kitchen > Bathroom Back Home > Kitchen Back Home Forward Home > Kitchen Forward Home > Kitchen > Bathroom
+
+
+### Queues
+
+Queues are similar to stacks except they follow "first in first out" (FIFO) structure, meaning the oldest element is the first removed. 
+
+Similar to a queue in a line at a store - the person waiting the longest, at the front of the line, is the next to go, and new folks go in the back.
+
+#### Use cases for queues
+
+Similar to linked lists, these are typically used for breadth-first searches through trees. Also might be used for implementing caches.
+
+#### Downsides of queues
+
+A bit more difficult to manage, since we need to manipulate both sides of the structure to add or remove items.
+
+#### Queue methods
+
+Similar to stacks, queues can have `peek`, `isEmpty`, and `get Length` methods. They'll also have two new methods:
+
+- `enqueue`: Add an item to the back of the queue
+- `dequeue`: Remove an item from the front of the queue
+
+Here's an example using class notation. This will look very similar to our previous stack example, except the methods to remove items is slightly different.
+
+```js
+export default class Queue {  
+	constructor() {    
+		this.queue = []  
+	}  
+	// Gets the length of the queue
+	get length() {    
+		return this.queue.length  
+	} 
+	// Adds item to the end of the queue
+	enqueue(item) {    
+		this.queue.push(item)  
+	}  
+	// Removes and returns the item at the front of the queue
+	dequeue() {    
+		return this.queue.shift()  
+	}  
+	//  Will see which item is at the front of the queue, but leaves it there
+	peek() {    
+		return this.queue[0]  
+	}  
+	// Checks to see if the queue is empty
+	isEmpty() {    
+		return this.length === 0  
+	}
+}
+```

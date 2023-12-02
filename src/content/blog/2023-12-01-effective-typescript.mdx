@@ -1,0 +1,1211 @@
+---
+title: Effective Typescript
+description: Notes and impressions from reading through Effective TypeScript by Dan Vanderkam
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: effective-typescript
+date: "2022-04-26T00:00:00.000Z"
+type: blog
+tags:
+  - TypeScript
+  - Course Notes
+ogImage: ../../assets/blog/og-images/building-snake-og.png
+---
+
+## Getting to know TypeScript
+
+This chapter covers some basics about the language itself and how it relates to JavaScript.
+
+### 1. The relationship between TS and JS
+
+TypeScript is a superset of JavaScript. This means that any JS program is automatically a TS program. The reverse is not true - there are things added into a TS program that JS doesn't understand.
+
+TS has a type system that models the runtime behavior of JS - to a point. It will try to spot code ahead of time that could cause runtime issues, but isn't perfect. It is possible that code will pass the type check but still throw an exception at runtime.
+
+Using TS means you go along with the taste of the developers who write it. There are some things JS will allow (like calling functions with the wrong number of arguments) that TS will not. So to use TS, you have to go along with what the language says is correct.
+
+### 2. Know which options you're using
+
+The compiler comes with a ton of different options that affect the language. You can configure these through the command line or a config file - the config file is preferred, as it makes it easier for other programs and maintainers of your code to know what your intent is.
+
+Aim to enable "strict" type checking for the best error handling TS can offer you. However, if you're migrating from an existing database or have other valid reasons, you may not start there.
+
+If you have to choose, the two main options to enable above others are `noImplicitAny` and `strictNullChecks`.
+
+`noImplicitAny` is the most recommended setting - this means you have to declare types for any values that aren't easy for TS to infer. You can still use `any` if you need it - you just have to directly specify it.
+
+`strictNullChecks` controls if `null` or `undefined` are valid values for every type. Some types don't naturally allow these values, so turning this check on can be helpful to guard against that unless you intend to use them as an option.
+
+### 3. Code generation is independent of types
+
+`tsc`, the TS compiler, does two things - converts TS/JS to an older version of JS that works in browsers (transpiling), and checks code for type errors. These behaviors are independent of each other. Types cannot affect the JS your compiled TS emits.
+
+A few notes on this:
+
+- **Code with type errors can produce output.** As long as the code is valid JS, it can be created into output. Ideally you don't want to output code with TS errors, but they work more like warnings than true errors and your code can still be compiled.
+- **You can't check types at runtime.** Types are basically "erasable" code - when your code is compiled, all the types, interfaces, and annotations are removed. So if you need to write a check based on something you see in a type, you'll need to either check for a property to exist, create a property you can use to verify the type (called a tagged union), or convert it into a `class` which makes a type and a value.
+- **Type operations can't affect runtime values.** Trying to use something like `as number` to force a type conversion won't work - you'll need to use JS constructs to convert it.
+
+```js
+// won't work - the "as number" is a type operation and can't affect runtime behavior
+function asNumber(val: number | string): number { return val as number };
+// do this instead
+function asNumber(val: number | string): number { return typeof(val) === 'string' ? Number(val) : val };
+```
+
+- **Runtime types may not be the same as declared types.** Say we have a `boolean` type, and a switch function that uses it. You can still have a need for a default response that's not `true` or `false`, since a user could still call this function with a string or something else. It's possible for a value to have types other than the ones you've declared.
+- **You can't overload a function based on types.** In some languages, you can declare a function multiple times based on different types. But in TS, you can't - at least, you can't fully declare a function more than once. You CAN, however, provide a few declarations for function for a single implementation. Since the declarations only show the possible types, they'll be removed when the TS is compiled and only the single implementation remains.
+
+```js
+// multiple declarations
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
+// single implementation
+function add (a, b) {
+  return a + b
+}
+```
+
+- **Types have no effect on runtime performance.** Static types are truly zero cost. The only two caveats are that there could be build time overhead (typically pretty fast, but there is a "transpile only" option to skip type checking if it gets too long), and potential for performance overhead if you're supporting older versions of JS where more polyfills are needed to be created to support them.
+
+### 4. Get comfortable with structural typing
+
+JavaScript is inherently duck typed: if you pass a function a value with all the right properties, it won’t care how you made the value. It will just use it. So TS also does this. It is possible to write a function that expects certain arguments and properties, and as long as the type of value you give that function has those properties, it will work without errors.
+
+Say you have this function:
+
+```js
+function calculateLength(v: Vector2D) {
+  return Math.sqrt(v.x * v.x + v.y * v.y);
+}
+```
+
+You'll have an initial type of `Vector2D`. But you can also create a different type that has some of the same properties, and some new ones.
+
+```js
+interface Vector2D {
+  x: number;
+  y: number;
+}
+
+interface NamedVector {
+  name: string;
+  x: number;
+  y: number;
+}
+```
+
+The `calculateLength` function will work with both interfaces, because they both have x and y properties that are numbers. TS just...figures this out. We don't have to declare the relationship between them, or write alternate implementations. It works because the structure is the same (hence "structural typing").
+
+However, this can bite us too. Looping over objects can be tricky, because even though _we_ know the types of the properties we have, the functions we use can't confirm that. TypeScript's types are considered "open" - our arguments will have the types we declare, but can also potentially have ones we DON'T declare. So looping over object properties can use the type to become `any` when we don't expect it to. Classes can also run into weird issues, since they're compared structurally when assigned.
+
+Structural typing can be helpful when writing tests. If we have a function that runs a query on a database, instead of having to mock the database or run something on the actual database, we can create an interface with just the properties we know our function runs. Since the structure of our database will match the interface we create, we don't have to adjust our function, and can write cleaner tests.
+
+```js
+interface Author {
+  first: string;
+  last: string;
+}
+
+interface DB {
+  runQuery: (sql: string) => any[];
+}
+
+// in our code, we can pass a PostgresDB instance; in tests we can pass a mock
+function getAuthors(database: DB): Author[] {
+  const authorRows = database.runQuery("SELECT FIRST, LAST FROM AUTHORS");
+  return authorRows.map((row) => ({ first: row[0], last: row[1] }));
+}
+
+test("getAuthors", () => {
+  const authors = getAuthors({
+    runQuery(sql: string) {
+      return [
+        ["Toni", "Morrison"],
+        ["Maya", "Angelou"],
+      ];
+    },
+  });
+  expect(authors).toEqual([
+    { first: "Toni", last: "Morrison" },
+    { first: "Maya", last: "Angelou" },
+  ]);
+});
+```
+
+### 5. Limit use of `any` type
+
+TS types are gradual and optional - you can add them in bit by bit, and disable the type checker whenever you want. The `any` type is a big reason we can do this, but naturally it comes with it's own dangers to be aware of.
+
+- No type safety (casting as any can't confirm the type of your data)
+- Lets you break contracts of functions (can pass data of the wrong type)
+- No language services (can't get benefit of autocomplete or renaming from IDE)
+- Masks bugs in refactoring
+- Hides type design
+
+## TypeScript's Type System
+
+### 6. Use your editor to explore
+
+When TS is installed you get two executables:
+
+- `tsc`, which is the compiler
+- `tsserver`, a standalone server
+
+This `tsserver` is what gives our code editor's their language services. With these, we gain autocomplete and the ability to read what types are inferred or set.
+
+### 7. Think of types as sets of values
+
+At runtime, every variable has a single value in JS. But before the code runs, when TS is checking for errors, variables are only a type. It's a set of possible values, or the domain of the type. The `number` type is a set of all possible number values.
+
+The smallest set is the empty set, described by the type `never`. Nothing is assignable to it, because it has no values in it's domain.
+
+The next smallest sets are single values, or literal / unit types. `type A = 'A'` would be an example of this. It only has one possible value.
+
+We can also have union types that have a small set of values. `type AB = 'A' | 'B'`
+
+You'll often see the word "assignable" in TS errors. This means it's either a member of or a subset of a set of values.
+
+Interfaces get a bit more complex, though they do the same thing. They define a description of values in it's domain. If we have:
+
+```js
+interface Identified {
+  id: string;
+}
+```
+
+An object can be considered of type `Identified` if it has an id property whose value is assignable to a member of `string`. That's all the TS validation is doing - checking if it has those properties and the types match.
+
+Now say we have an intersection of two types.
+
+```js
+interface Person {
+  name: string;
+}
+interface Lifespan {
+  birth: Date;
+  death?: Date;
+}
+type PersonSpan = Person & Lifespan;
+```
+
+Since type operations apply to sets of values, and values with additional properties still belong to a type, then a value with the properties of both `Person` and `Lifespan` belongs to the intersection type.
+
+However, if we had a union instead of an intersection, there are no keys TS can guarantee belong to a value in the union type, so it's an empty set.
+
+```js
+type K = keyof (Person | Lifespan);
+```
+
+We might also see this using `extends`. So every value in `PersonSpan` has to have a name property that's a string, as well as a birth property that's a date. It's a subset of `Person`.
+
+```js
+interface Person {
+  name: string;
+}
+interface PersonSpan extends Person {
+  birth: Date;
+  death?: Date;
+}
+```
+
+"Subtype" is another common term - it's another way of saying one set's domain is a subset of another. Venn diagrams can be an appropriate way to think of these too. The subset relationships would be unchanged if we rewrote them without `extends` as well.
+
+```js
+interface Vector1D {
+  x: number;
+}
+interface Vector2D extends Vector1D {
+  y: number;
+}
+interface Vector3D extends Vector2D {
+  z: number;
+}
+
+// this is the same thing
+interface Vector1D {
+  x: number;
+}
+interface Vector2D {
+  x: number;
+  y: number;
+}
+interface Vector3D {
+  x: number;
+  y: number;
+  z: number;
+}
+```
+
+A few more examples:
+
+```js
+function getKey<K extends string>(val: any, key: K) {
+  // ...
+}
+getKey({}, 'x');  // OK, 'x' extends string
+getKey({}, document.title);  // OK, string extends string
+getKey({}, 12);
+        // ~~ Type '12' is not assignable to parameter of type 'string'
+
+interface Point {
+  x: number;
+  y: number;
+}
+type PointKeys = keyof Point;  // Type is "x" | "y"
+
+function sortBy<K extends keyof T, T>(vals: T[], key: K): T[] {
+  // ...
+}
+const pts: Point[] = [{x: 1, y: 1}, {x: 2, y: 0}];
+sortBy(pts, 'x');  // OK, 'x' extends 'x'|'y' (aka keyof T)
+sortBy(pts, 'y');  // OK, 'y' extends 'x'|'y'
+sortBy(pts, 'z');
+         // ~~~ Type '"z"' is not assignable to parameter of type '"x" | "y"
+```
+
+Interesting note on tuples and triples - TS models the length value too!
+
+```js
+const triple: [number, number, number] = [1, 2, 3];
+const double: [number, number] = triple;
+// Types of property 'length' are incompatible
+// Type '3' is not assignable to type '2'
+```
+
+Final notes:
+
+- Think of types as sets of values that can be finite or infinite.
+- Types for intersecting sets rather than a strict hierarchy. Two types can overlap without being subsets of each other.
+- An object can still belong to a type even if it has additional properties not mentioned in the type declaration.
+- Type operations apply to a set's domain. For object types, this means values in A & B have the properties of both A and B.
+- Think of "extends", "assignable to", and "subtype of" as synonyms for "subset of".
+
+### 8. How to tell if a symbol is in the type or value space
+
+Every value has a type, but types do not have values.
+
+Key takeaway - context matters! It can be easy for types and values to look very similar, but they are in fact different and we have to rely on context often to determine which space we're dealing with.
+
+```js
+// type space
+interface Cylinder {
+  radius: number;
+  height: number;
+}
+type T1 = "string literal";
+
+// value space
+const Cylinder = (radius: number, height: number) => ({ radius, height });
+const V1 = "string literal";
+
+// Errors can sometimes be confusing
+function calcVolume(shape: unknown) {
+  if (shape instanceof Cylinder) {
+    shape.radius;
+    // ~~ Property 'radius' does not exist on type '{}' ~~
+  }
+}
+```
+
+`instanceof` is part of JavaScript's runtime operations, so it operates on values - hence this is looking at the function, not the type.
+
+If you're not sure, using the TS playground can be a great tool for telling if something is in the type space or value space. Since types are erased in compilation, the generated JS it shows will give you a good indicator which space you're in.
+
+A few general ways to tell type vs. value spaces:
+
+- Symbols after `type` or `interface` are generally types, while `const` or `let` are generally values
+- Symbols after a `:` or `as` are types, while anything after an `=` is a value.
+- `class` and `enum` make a type AND a value. The type is based on it's properties and methods, while the value is based on the constructor.
+- `typeof` means different things in both spaces - in types, it looks at a value and returns its TS type; in values, it uses JS runtime operator and returns a string of the runtime type. These are not the same! JS types are a much smaller, more general set of types.`typeof` always operates on values - it's can't be applied to a type directly.
+- In value space, `obj['field']` and `obj.field` yield the same thing - but in type space, you can only use `obj['field']` to get a type's property.
+- `this` in value space is the JS keyword; in type space is a different, TS type (polymorphic this).
+- In value space, `&` and `|` are bitwise AND and OR; in type space, they're intersection and union operators.
+- `const` is a new variable in value space, but `as const` changes the inferred type of a literal or literal expression in type space.
+
+Also - some statements (and functions especially) can alternate between type and value space. It can get tricky!
+
+```js
+interface Person {
+  first: string;
+  last: string;
+}
+
+const p: Person = { first: "Jane", last: "Jacobs" };
+// p, and the whole object are values
+// Person is a type
+
+function email(p: Person, subject: string, body: string): Response {}
+// email, p, subject, body - values
+// Person, string, string, Response - types
+
+// trying to destructure this becomes messy in type space, and has to be written a bit differently - otherwise your types get interpreted as values
+
+// JS version - all good
+function email({ person, subject, body }) {}
+
+// TS version - doesn't work
+function email({
+  person: Person,
+  subject: string,
+  // ~~ Duplicate identifier 'string'
+  // ~~ Binding element 'string' implicitly has an 'any' type
+  body: string,
+}) {}
+
+// TS version - fixed
+function email({
+  person,
+  subject,
+  body,
+}: {
+  person: Person,
+  subject: string,
+  body: string,
+}) {}
+```
+
+### 9. Prefer type declarations to assertions
+
+There's 2 common ways to assign a value to a variable and give it a type.
+
+```js
+interface Person { name: string };
+
+// declaration
+const alice: Person = { name: 'Alice' };
+// assertion
+const bob = { name: 'Bob' } as Person;
+```
+
+Using a declaration ensures the value conforms to that type, giving us safety checks to make sure the variable matches the right shape and doesn't try to declare additional properties.
+
+Assertion is basically telling TS that you know better, and we won't get the helpful errors or protection from excess property checking.
+
+In arrow functions, we have a few ways we can add in type declarations.
+
+```js
+// the function we want to add a type too
+// this gives us { name: string }[]
+const people = ["alice", "bob", "jan"].map((name) => ({ name }));
+// verbose but works
+const people = ["alice", "bob", "jan"].map((name) => {
+  const person: Person = { name };
+  return person;
+});
+// declare the return type
+const people = ["alice", "bob", "jan"].map((name): Person => ({ name }));
+// note the () are important here - doing (name: Person) specifies the type of name as Person while the return type is inferred, which is not what we want
+```
+
+When to use assertion? Typically when you have context that the type checker doesn't, like with DOM elements.
+
+Checking for `null` is an assertion common enough to have it's own special syntax - `!`. Using it at the end of a value tells the type checker that you know the value will not be `null`. If you can't fully ensure it, it's best to do a conditional check instead.
+`const el = document.getElementById('foo')!;`
+
+Type assertions will only work if one is a subset of the other. `HTMLElement | null` and `HTMLElement` work; so would `Person` or `{}`. But trying to convert `Person` to an `HTMLElement` would NOT work.
+
+### 10. Avoid object wrapper types (String, Number, Boolean, Symbol, BigInt)
+
+JS has 7 primitive types - different from objects in that that are immutable and don't have methods.
+
+When we do something like `'primitive'.charAt(3)`, what's really happening is that JS is using a String _object_ here instead, which DOES have methods. JS creates an object instance of the primitive, performs the method, then throws the object version away. This is why, if you try to set a property on a string, when you try to view that property it doesn't exist - it got thrown away after it was set.
+
+These wrapper types exist to give us convenient ways to provide some static methods on the primitives, but there's usually no reason to make direct version ourselves.
+
+TS models this by making types specifically for the primitives. It's best to use the type instead of the primitive itself - note the main difference is the types are all lower case.
+
+`string / number / boolean / symbol / bigint`
+
+### 11. Limits of Excess Property Checking
+
+What's the difference between these two different ways to assign a type to this object? Why does one cause an error and the other doesn't?
+
+```js
+interface Room {
+  numDoors: number;
+  ceilingHeight: number;
+}
+
+// option 1
+const r: Room = {
+  numDoors: 1,
+  ceilingHeight: 10,
+  elephant: "present",
+}; // object literal may only specify known properties, and 'elephant' does not exist in type 'Room'
+
+// option 2
+const obj = {
+  numDoors: 1,
+  ceilingHeight: 10,
+  elephant: "present",
+};
+const r: Room = obj; // OK
+```
+
+The difference is a thing called "excess property checking". When you assign an object literal to a variable with a type, TS will ensure your object has all the properties the type expects, no more and no less. So our `elephant` property cannot exist, since `Room` doesn't have it.
+
+So why does it work the second way? Well, with the default TS structural typing idea, any object that has overlapping properties of a type with the right kind of values can be assigned to that type. So storing an object in a variable and then giving that variable the type you want can get around this.
+
+Excess property checking can be great when you don't want any other properties, and you want those properties to be type checked. It helps ensure that the code we write does what we intend it to do.
+
+Purely structural type checking, remember, has a very broad range of values that can work for a given type. If your type only had one known property, say `title`, then almost any object that has a `title` property could be cast as that type. It has no knowledge of the other fields you give it.
+
+Worth noting that if you wanted to tell TS that an object could have other properties, you can do that.
+
+```js
+interface Options {
+  darkMode?: boolean;
+  [otherOptions: string]: unknown;
+}
+```
+
+Also worth noting that "weak" types, where an interface has only optional values, will be checked in all assignability checks. So trying to save an object and then assign it a type won't work for this use case. TS does this to make sure they have at least one property in common.
+
+```js
+interface LineChartOptions {
+  logscale?: boolean;
+  areaChart?: boolean;
+}
+const opts = { logScale: true };
+const o: LineChartOptions = opts;
+// Type '{ logScale: true }' has no properties in common with type 'LineChartOptions'
+```
+
+### 12. Apply types to entire function expressions when possible
+
+A JS statement is what you'll typically see, where the function is declared on it's own. If you store that function in a variable, it becomes a function expression. And by making it an expression, you can then type the entire expression, which will mean you don't have to type the parameters and return type of the function directly - they'll get it from the expression type.
+
+```js
+// Statement vs Expression
+function rollDice1(sides: number): number {
+  /* ... */
+} // Statement
+const rollDice2 = function (sides: number): number {
+  /* ... */
+}; // Expression
+const rollDice3 = (sides: number): number => {
+  /* ... */
+}; // Also expression
+
+// Typed expression example
+type BinaryFn = (a: number, b: number) => number;
+const add: BinaryFn = (a, b) => a + b;
+const sub: BinaryFn = (a, b) => a - b;
+
+// Common callback example
+declare function fetch(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<Response>;
+const checkedFetch: typeof fetch = async (input, init) => {
+  const response = await fetch(input, init);
+  if (!response.ok) {
+    // make sure to throw here - returning doesn't give us a response type, so won't match
+    throw new Error("Request failed: " + response.status);
+  }
+  return response;
+};
+```
+
+When is it best to use this?
+
+- If you have multiple functions using a similar type shape
+- If you're writing a library, it's great to provide type declarations for common callbacks
+- If you want to match the signature of another function
+
+### 13. Differences between type and interface
+
+`type` and `interface` can, in many situations, be used almost interchangeably. However, they do have some differences. The key is to be consistent in how you use them in those situations.
+
+First let's talk about the similarities:
+
+- Both will catch extra properties errors
+- Both can use index signatures `{ [key: string]: string }`
+- Both can define function types `(x: number): string;`
+- Both can be generic
+- Both can extend the other (though an interface can't extend a complex type like a union type)
+- A class can implement either one
+
+Now the differences:
+
+- There are union types but not union interfaces `type AorB = 'a' | 'b'`
+- `type` can take advantage of mapped or conditional varieties, and also more easily express tuple or array types
+- `interface` can be augmented, meaning you can declare the same interface name with different values, and they'll be "declaration merged" together into a single type. The different versions of JS (ie. ES2015) use this to add new methods.
+
+The key things to consider are consistency and augmentation. If you're publishing something like an API that might need to be extended by your users, `interface` will probably be a better choice. But if you don't want the types to be augmented, or you need the more complex unions / arrays / tuple options, you'll want to go with `type`.
+
+### 14. Use type operations and generics to avoid repetition
+
+Duplication in types is just as common as it can be in code, and just as useful to try to reduce. There's a few different ways we can do this.
+
+```js
+// Name your types - if you have a repeated set of parameters, name them and use that instead. (The equivalent of factoring out a constant instead of writing it over and over.)
+type HTTPFunction = (url: string, opts: Options) => Promise<Response>;
+const get: HTTPFunction = (url, opts) => {...};
+
+// If working with interfaces, we can extend them to reduce duplication.
+interface Person {
+  first: string;
+  last: string;
+}
+interface PersonWithBirthDate extends Person {
+  birth: Date;
+}
+
+// Can also use the intersection operator to extend a type, though it's a little less common - most useful when you want to add properties to a union type that can't be extended
+type PersonWithBirthDate = Person & { birth: Date };
+
+// Use mapped types if you want to store a subset of a larger type (like keeping an overall State object, then a subset of the TopNav specific state)
+interface State {
+  userId: string;
+  pageTitle: string;
+  recentFiles: string[];
+  pageContents: string;
+}
+type TopNavState = {
+  [k in 'userId' | 'pageTitle' | 'recentFiles']: State[k]
+};
+// this is equivalent to indexing into each field, but more succinct (like looping over the fields in an array)
+
+// this idea is common enough that it's part of the standard library, called Pick - a generic type that's equivalent to calling a function.
+type Pick<T, K> = { [k in K]: T[k]};
+type TopNavState = Pick<State, 'userId' | 'pageTitle' | 'recentFiles'>;
+
+// Tagged unions also cause duplication, and using Pick for this would actually give us an interface with a property. If we want just the tags, indexing into a union is the way to go
+interface SaveAction {
+  type: 'save',
+  ...
+}
+interface LoadAction {
+  type: 'load',
+  ...
+}
+type Action = SaveAction | LoadAction;
+type ActionType = Action['type'];
+
+// If you have initial data that can later be updated, can use keyof with a mapped type to get a union of those key's types. Adding the ? makes each one optional.
+interface Options {
+  width: number;
+  height: number;
+  color: string;
+}
+type OptionsUpdate = { [k in keyof Options]?: Options[k] };
+
+// This is also common enough to be in the standard library, a generic called Partial
+update(options: Partial<Options>){...}
+
+// If we want to create a named type for an inferred return value of a function or method, we can use ReturnType from the standard library to create a conditional type for us. Note this user the function's type, not it's value.
+function getUserInfo(userId: string) {
+  ...
+  return {
+    userId,
+    name,
+    age
+  }
+}
+type UserInfo = ReturnType<typeof getUserInfo>;
+
+// To constrain the value of a generic (which by nature can be almost anything), we use extends.
+interface Name {
+  first: string;
+  last: string;
+}
+type DancingDuo<T extends Name> = [T, T];
+const couple: DancingDuo<Name> = [
+  ...
+]
+// Using this, we're always required to list the generic parameter when we use it!
+
+// To improve Pick from earlier so it works with our specific fields:
+type Pick<T, K extends keyof T> = {
+  [k in K]: T[k]
+}
+```
+
+### 15. Use index signatures for dynamic data
+
+JS objects let you map string keys to values of any type. To show this in TS, we use index signatures:
+
+```js
+type Rocket = { [property: string]: string };
+const rocket: Rocket = {
+  name: "Falcon 9",
+  variant: "v1.0",
+};
+```
+
+The index signature specifies 3 things:
+
+- A name for the keys (for documentation)
+- A type for the key (some combo of string, number, or symbol)
+- A type for the values (can be any type)
+
+There are a few downsides to using an index signature:
+
+- It allows any keys - no type safety in the key names
+- Doesn't require any keys - a blank object will match
+- Can't have distinct types for different keys; they all have to have the same value type
+- The language service can't help with autocomplete, since the name could be anything
+
+So if we know what the desired shape of the data should be, we probably want something else. Where this is best suited is for dynamic data, where we may not know in advance what the names are.
+
+If `string` is too broad of a type for the key, we can use a `Record` (which will let us pass in subsets of `string`) or a mapped type.
+
+```js
+// Record example
+type Vec3D = Record<'x' | 'y' | 'z', number>;
+// Type Vec3D = {
+//   x: number;
+//   y: number;
+//   z: number;
+// }
+
+// Mapped type example - gives us a way to use different types for different keys with conditional types
+type Vec3D = {[k in 'x' | 'y' | 'z']: number};
+// Same as above
+type ABC = {[k in 'a' | 'b' | 'c']: k extends 'b' ? string : number};
+// Type ABC = {
+//   a: number;
+//   b: string;
+//   c: number;
+// }
+```
+
+### 16. Prefer arrays, tuples, and arrayLike to number index signatures
+
+In JS, objects are a collection of key/value pairs. The keys are usually strings or sometimes symbols. There is no notion of a "hashable" object like some other languages will have. If you try to use an object as a key, JS converts it into a string first and uses that string as the key.
+
+In particular, numbers can't be used as keys. Even in arrays, where we're used to accessing items by a numbered index, JS is converting them to strings internally. So we can also use a string of the key to access the element at that index! And if we do `Object.keys` we get strings back.
+
+TS does allow for numeric keys in our code, which can help catch some mistakes. However, it's still erased at runtime and converted into strings, the same as JS would.
+
+`Object.keys` in TS will still return strings. It's allowed to act as an index for an array since it works that way in regular JS. To actually get the right type of the index value in arrays, there's a few better options than directly reaching into the array:
+
+- `for of` if you don't need the index
+- `forEach` if you do need the index
+- `for` if you need to break the loop early
+
+The general pattern is that with a `number` index signature, what you put in has to be a number (except in `for in` loops), but what you get out is a string.
+
+This can totally be confusing. As a rule of thumb, if you want to specify something that will be indexed using numbers, you probably want an Array for tuple type instead of a numbered index signature.
+
+If you're not wild about using Array as a type since you probably won't need all the properties Arrays have, TS has an `ArrayLike` type that only provides a length and numeric index signature. (Though in the end, the keys will still wind up as strings).
+
+```js
+function checkedAccess<T>(xs: ArrayLike<T>, i: number): T {
+  if (i < xs.length) {
+    return xs[i];
+  }
+  throw new Error(`Attempt to access ${i} which is past end of array.`);
+}
+```
+
+### 17. Use readonly to avoid mutation errors
+
+The `readonly` keyword turns a type into a stricter version of itself. You can read its elements but can't set them; get the length but not change it; and can't call `pop` or other methods that mutate the value directly.
+
+You can assign a mutable array to a `readonly` array, but not vice versa.
+
+When you declare something as `readonly`, TS will make sure the parameter isn't mutated in the function body. This also lets the function callers know that your function doesn't mutate the value.
+
+It's a best practice to declare any parameters to a function that don't get mutated as `readonly`. This will help you catch places where you might inadvertently be changing things.
+
+This can also be helpful to catch errors with local variables. You might end up aliasing a value, thinking you're assigning it somewhere else, and actually mutating the value afterwards when you don't mean to.
+
+An important caveat - `readonly` is shallow. It only goes one layer deep.
+
+```js
+// Example 1
+// if we have this function that calls another function, we might assume that it will return what we think. But we have no guarantee that the arraySum function uses our array like we think it will!
+function printTriangles(n: number) {
+  const nums = [];
+  for (let i = 0; i < n; i++) {
+    nums.push(i);
+    console.log(arraySum(nums));
+  }
+}
+
+// it could be that arraySum is set up to remove items from the array in order to add them
+function arraySum(arr: number[]) {
+  let sum = 0, num;
+  while ((num = arr.pop()) !== undefined) {
+    sum += num;
+  }
+  return sum;
+}
+
+// to help prevent this, we can declare the parameter as readonly, which will give us an error. Then, we can adjust the function to use a different method that does NOT change the initial parameter
+function arraySum(arr: readonly number[]) {
+  let sum = 0;
+  for (const num of arr) {
+    sum += num;
+  }
+  return sum;
+}
+
+// Example 2
+// Aliasing can be tricky to spot. This looks like it should work, but instead of directly adding the currPara to the paragraphs array, we're actually making a reference to an object - and then deleting it!
+function parseTaggedText(lines: string[]): string[][] {
+  const paragraphs: string[][] = [];
+  const currPara: string[] = [];
+
+  const addParagraph = () => {
+    if (currPara.length) {
+      // this is where the alias is set
+      paragraphs.push(currPara);
+      currPara.length = 0;
+    }
+  };
+
+  for (const line of lines) {
+    if (!line) {
+      addParagraph();
+    } else {
+      currPara.push(line);
+    }
+  }
+  addParagraph();
+  return paragraphs;
+}
+
+// using .length and .push both mutate the currPara array. We can prevent this with readonly, which will surface some errors and help us think about a safer way to achieve what we want.
+
+// We can fix those errors by declaring currPara as let instead of const, and using .concat instead of .push. Since .concat returns a new array, and using let makes it so we can change what the variable points to, we prevent directly mutating the value and simply change what it points at.
+function parseTaggedText(lines: string[]): string[][] {
+  let currPara: readonly string[] = [];
+  const paragraphs: string[][] = [];
+
+  const addParagraph = () => {
+    if (currPara.length) {
+      // making a copy here works because we can mutate the copy however we want, without changing currPara
+      paragraphs.push([...currPara]);
+      currPara = [];
+    }
+  };
+
+  for (const line of lines) {
+    if (!line) {
+      addParagraph();
+    } else {
+     currPara = currPara.concat([line]);
+    }
+  }
+  addParagraph();
+  return paragraphs;
+}
+
+// We could also change how we add the currPara to paragraphs in two other ways:
+// We could make paragraphs (and the return type of the function) to be an array of readonly string[]. This does enforce that the function can only return readonly arrays, though.
+// Also important to note that grouping matters here: readonly string[][] would be a readonly array of mutable arrays; (readonly string[])[] is a mutable array of readonly arrays.
+const paragraphs: (readonly string[])[] = [];
+
+// Or we could use an assertion to remove the readonly-ness of the array
+paragraphs.push(currPara as string[]);
+```
+
+### 18. Use mapped types to keep values in sync
+
+Mapped types are ideal if one object should have exactly the same properties as another. It will allow TS to enforce constraints on your code, and force choices when adding new properties to the object.
+
+The example given here is for a type that creates a scatter plot. We want the graph redrawn whenever one of the values changes, but since the event handler doesn't return anything new we _don't_ need it to be redrawn when it's called.
+
+Two common approaches are to "fail closed" (which might make the chart drawn too often still, but ensures the chart is always right) or "fail open" (where we know there won't be unnecessary redraws but we might miss some times it is necessary).
+
+```js
+// The initial interface to make our scatter plot
+interface ScatterProps {
+  // The data
+  xs: number[];
+  ys: number[];
+
+  // Display
+  xRange: [number, number];
+  yRange: [number, number];
+  color: string;
+
+  // Events
+  onClick: (x: number, y: number, index: number) => void;
+}
+
+// fail closed approach
+function shouldUpdate(
+  oldProps: ScatterProps,
+  newProps: ScatterProps
+) {
+  let k: keyof ScatterProps;
+  for (k in oldProps) {
+    if (oldProps[k] !== newProps[k]) {
+      if (k !== 'onClick') return true;
+    }
+  }
+  return false;
+}
+
+// fail open approach
+function shouldUpdate(
+  oldProps: ScatterProps,
+  newProps: ScatterProps
+) {
+  return (
+    oldProps.xs !== newProps.xs ||
+    oldProps.ys !== newProps.ys ||
+    oldProps.xRange !== newProps.xRange ||
+    oldProps.yRange !== newProps.yRange ||
+    oldProps.color !== newProps.color
+    // (no check for onClick)
+  );
+}
+```
+
+A better option is to make an object of boolean values for each property in our interface. That tells the type checker it should match or interface, so when a property is added or deleted, it'll throw an error that we need to then fix. (Note that this has to be an object - if we tried an array of the keys, we fall into the same open/closed options as before.)
+
+```js
+// mapped types approach - preferred
+const REQUIRES_UPDATE: {[k in keyof ScatterProps]: boolean} = {
+  xs: true,
+  ys: true,
+  xRange: true,
+  yRange: true,
+  color: true,
+  onClick: false,
+};
+
+function shouldUpdate(
+  oldProps: ScatterProps,
+  newProps: ScatterProps
+) {
+  let k: keyof ScatterProps;
+  for (k in oldProps) {
+    if (oldProps[k] !== newProps[k] && REQUIRES_UPDATE[k]) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+
+## Type Inference
+
+TS makes extensive use of type inference. This can be a key way to tell the difference in your skill level - it's easy when getting started to drown your code in type annotations that are fairly redundant. The more skilled you get with TS, the less types you'll actually need - and the better you'll use the ones you do add.
+
+This chapter will focus on common problems with inference, how to fix them, when we might still need to write type declarations, and when we should declare a type even if it can be inferred.
+
+### 19. Avoid cluttering code with inferable types
+
+When starting out, you want to declare the type for every variable - but this is often not necessary. Sometimes writing the type and value just adds noise. This goes not only for single values, but for objects and arrays as well.
+
+TS might infer something more precise than you would have expected, which can be beneficial. It can also make refactoring easier - if you have an interface that changes the type of a property, and also declared the type in a function using that property, then you have two places to change instead of just one.
+
+Explicit type annotations are typically saved for where it doesn't have enough context to determine the type on its own. Since TS generally determines a variable's type when it's first introduced, the main places you'll need to declare the type is for function parameters and signatures. The local variables inside the function are typically fine inferred.
+
+Worth noting that parameters that have a default value or are used as a callback for a library can often be inferred as well.
+
+So when might you want to declare the type even if it can be inferred?
+
+- On object literals where you want to enable excess property checking
+- Getting an error reported where it's defined, rather than where it's used (more concise)
+- Function return types where you want to ensure that implementation errors don't leak out into uses of the function
+- Writing the return type of a function can also help you think more clearly about what you expect the function to do before you implement it. While implementation can change, typically the function's contract (its type signature) should not change often.
+- To use a named type, which can make the presentation more straight forward to users
+
+### 20. Use different variables for different types
+
+While a variable's value can change, in TS the type generally does not. Types can narrow (or get smaller), but don't normally expand to include new values.
+
+If you want the type of a variable to be able to adjust (say to hold a string or a number), then it needs to be typed broadly enough to encompass both of those types.
+
+While you can use a union type for this, it may create more issues down the road. It's often better to introduce a new variable for the alternate types.
+
+Why is this a better option?
+
+- Improves type inference (no annotations needed)
+- Results in simpler types, requiring less checking which type it is before you do something with it
+- Can declare values with `const` instead of `let`, making it easier to reason about
+- Can use more specific variable names, and disentangle potentially unrelated concepts
+
+### 21. Understand type widening
+
+At runtime, every variable has a single value. However when TS is checking your code, a variable has a set of possible values - the provided type. If you initialize a variable as a constant but don't provide a type, the type checker has to decide on a set of possible values from the value you provided. This is called widening.
+
+Widening can sometimes lead to interesting errors. Consider this example.
+
+```js
+interface Vector3 {
+  x: number;
+  y: number;
+  z: number;
+}
+function getComponent(vector: Vector3, axis: "x" | "y" | "z") {
+  return vector[axis];
+}
+
+// Trying to use it like this gives an error
+let x = "x";
+let vec = { x: 10, y: 20, z: 30 };
+getComponent(vec, x);
+// ~ Argument of type 'string' is not assignable to parameter of type '"x" | "y" | "z"'
+```
+
+The issue here is that the `getComponent` function expected a more specific type for the second argument than `string`. The process of widening and how TS tries to infer the type can be ambiguous, where many possible types might work. TS attempts to strike a balance between specificity and flexibility. Since a variable's type shouldn't change after it's declared, it errs for `string` in this case since it makes the most sense to TS. While it's typically pretty good, it can't read your mind so can sometimes result in errors.
+
+There are a few ways to control the process of widening.
+
+`const` is one option - using `const` instead of `let` gives it a narrower type. (Using `const` would have prevented the previous error.)
+
+However for objects and arrays, there's still ambiguity. For objects, we can change the type of a property and add new ones in regular JavaScript.
+
+```js
+const v = {
+  x: 1,
+};
+v.x = 3;
+v.x = "3";
+v.y = 4;
+v.name = "Pythagoras";
+```
+
+Remember TS tries to find a balance to still catch some errors, but not be so specific it creates false positives. So in this case, TS will default to `{x: number}` as the type. This lets us reassign x to a different number, but no other types and prevents adding other properties.
+
+There are a few ways to override TS's default behavior. We can supply an explicit type annotation. We can give the type checker extra context by passing the value as the parameter of a function.
+
+Or we can use `const` assertion. This is different from the version of `const` we already know, that creates a variable. This is a purely type-level construct.
+
+```js
+// explicit annotation
+const v: { x: 1 | 3 | 5 } = {
+  x: 1,
+};
+
+// const assertion examples
+// type is { x: number, y: number }
+const v1 = {
+  x: 1,
+  y: 2,
+};
+// type is { x: 1, y: number }
+const v2 = {
+  x: 1 as const,
+  y: 2
+}
+// type is { readonly x: 1, readonly y:2 }
+const v3 = {
+  x: 1,
+  y: 2,
+} as const;
+// tuple type readonly [1, 2, 3]
+const a2 = [1, 2, 3] as const;
+```
+
+Writing `as const` after a value tells TS to infer the narrowest possible type for it.
+
+### 22. Understand type narrowing
+
+Narrowing is the process TS uses to go from a broad type to a narrower one. There are a number of ways to narrow the type in your code.
+
+Most common is using some form of conditional - checking for `null` values, throwing or returning early based on a check, or checking the property or `instanceof` value.
+
+```js
+// Straight conditional
+const el = document.getElementById("foo"); // Type is HTMLElement | null
+if (el) {
+  el; // Type is HTMLElement
+} else {
+  el; // Type is null
+}
+
+// throw early
+const el = document.getElementById("foo"); // Type is HTMLElement | null
+if (!el) throw new Error("no element");
+el; // Type is HTMLElement
+```
+
+Some built-in functions (like `Array.isArray`) are able to narrow types as well. Caution is recommended in using assertions though - sometimes JS doesn't give values the type you might expect and can cause some odd behavior. Similar oddities can happen with falsy primitive values as well.
+
+```js
+// In JS, the type of null is "object" - so this doesn't work.
+const el = document.getElementById("foo"); // type is HTMLElement | null
+if (typeof el === "object") {
+  el; // Type is HTMLElement | null
+}
+```
+
+Another common pattern is to use a "tagged union" or "discriminated union" - creating a tag or property for your types that you can then use a `switch` function on.
+
+```js
+interface UploadEvent {
+  type: "upload";
+  filename: string;
+  contents: string;
+}
+interface DownloadEvent {
+  type: "download";
+  filename: string;
+}
+type AppEvent = UploadEvent | DownloadEvent;
+
+function handleEvent(e: AppEvent) {
+  switch (e.type) {
+    case "download":
+      e; // Type is DownloadEvent
+      break;
+    case "upload":
+      e; // Type is UploadEvent
+      break;
+  }
+}
+```
+
+There's also a way to make a custom function, called a "user-defined type guard", to help TS narrow things down.
+
+```js
+function isInputElement(el: HTMLElement): el is HTMLInputElement {
+  return 'value' in el;
+}
+
+function getElementContent(el: HTMLElement) {
+  if (isInputElement(el)) {
+    el; // Type is HTMLInputElement
+    return el.value;
+  }
+  el; // Type is HTMLElement
+  return el.textContent;
+}
+```
+
+### 23. Create objects all at once
+
+Since types are inferred when a variable is defined, creating objects when you initialize them rather than piece by piece is preferred.
+
+There are a few ways to avoid type errors, if you need to build an object gradually or add new properties:
+
+- Use a type assertion `const pt = {} as Point;`
+- Make a new variable each time you add a property and spread the previous version into it `const pt0 = {}; const pt1 = {...pt0, x: 3};`
+- For conditional options, can use spread with `null` or `{}`, which don't add properties `const first = {first: 'Harry'}; const prez = {...first, ...(hasMiddle? { middle: 'S'} : {})};`
+
+Note that by adding condition fields in this way, you'll have to account for the fact that the optional field will have a type of `value | undefined` and you'll have to check for `undefined` when you access it.
+
+### 24. Be consistent with aliases
+
+Aliasing (saving an object property to a new variable name) can prevent TS from narrowing types. If you make one, use it consistently.
+
+Destructuring syntax can help to encourage consistent naming, and avoid type issues.
+
+Be aware that function calls can invalidate type refinements on properties. Trust the refinements on local variables more than on properties.
+
+Remember that changes to an alias will reflect back into the object's version of the property as well, which may not be what you want.
+
+An example:
+
+```js
+// Say we have a polygon:
+interface Coordinate {
+  x: number;
+  y: number;
+}
+interface BoundingBox {
+  x: [number, number];
+  y: [number, number];
+}
+interface Polygon {
+  exterior: Coordinate[];
+  holes: Coordinate[][];
+  bbox?: BoundingBox;
+}
+
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  if (polygon.bbox) {
+    if (
+      pt.x < polygon.bbox.x[0] ||
+      pt.x > polygon.bbox.x[1] ||
+      pt.y < polygon.bbox.y[0] ||
+      pt.y > polygon.bbox.y[1]
+    ) {
+      return false;
+    }
+  }
+
+  // ... more complex check
+}
+
+// This code works but is repetitive, calling polygon.bbox multiple times. However, if we attempt to save that to a new variable, we get some type errors:
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const box = polygon.bbox;
+  if (polygon.bbox) {
+    if (
+      pt.x < box.x[0] ||
+      pt.x > box.x[1] ||
+      //     ~~~                ~~~  Object is possibly 'undefined'
+      pt.y < box.y[0] ||
+      pt.y > box.y[1]
+    ) {
+      //     ~~~                ~~~  Object is possibly 'undefined'
+      return false;
+    }
+  }
+  // ...
+}
+
+// Why? Because the alias confuses the control flow analysis TS uses. If you inspect the types, you'll see that inside our conditional call, the type of polygon.bbox got refined, but the type of box does not.
+
+// This is what we mean by being consistent - using the variable in the check fixes the error
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const box = polygon.bbox;
+  if (box) {
+    if (
+      pt.x < box.x[0] ||
+      pt.x > box.x[1] ||
+      pt.y < box.y[0] ||
+      pt.y > box.y[1]
+    ) {
+      // OK
+      return false;
+    }
+  }
+  // ...
+}
+
+// However, doing this makes it a little harder to read, since box and polygon.bbox mean the same thing. There's no real difference between them.
+
+// A better option would be to use destructuring to keep thing consistent and shorter:
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const { bbox } = polygon;
+  if (bbox) {
+    const { x, y } = bbox;
+    if (pt.x < x[0] || pt.x > x[1] || pt.y < y[0] || pt.y > y[1]) {
+      return false;
+    }
+  }
+  // ...
+}
+
+// Aliasing can cause confusion at runtime, too:
+const { bbox } = polygon;
+if (!bbox) {
+  calculatePolygonBbox(polygon); // Fills in polygon.bbox
+  // Now polygon.bbox and bbox refer to different values!
+}
+
+function fn(p: Polygon) {
+  /* ... */
+}
+
+polygon.bbox; // Type is BoundingBox | undefined
+if (polygon.bbox) {
+  polygon.bbox; // Type is BoundingBox
+  fn(polygon);
+  polygon.bbox; // Type is still BoundingBox
+}
+
+// For all we know, the function call unsets the bbox property, which would make the second check undefined instead. However, TS will assume it does not change, so you don't have to repeat the property checks every time. But instances like this, that's not what you'd actually want.
+```
+
+### 25. Use async functions instead of callbacks for async code
+
+Promises (especially with the `async / await` keywords) are easier to compose than the older callback structure, and types are able to flow through easier. Pluse, TS will handle the compiling for you to transform the newer code into an older style if you need it to.
+
+There could be times where you need to use a raw Promise (`new Promise((resolve, reject) => {}`), but generally it's best to prefer `async / await` as it typically produces more straitforward code, and enforces that `async` functions always return Promises.
+
+Functions should always be run either synchronously or asynchronously - it should never mix the two.
