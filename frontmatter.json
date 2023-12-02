@@ -58,7 +58,8 @@
         {
           "title": "OG Image Preview",
           "name": "ogImage",
-          "type": "image"
+          "type": "image",
+          "description": "Template: https://www.canva.com/design/DAFzuN4ys5c/qNsSSQTKRAFSeynGko0bLg/edit?utm_content=DAFzuN4ys5c"
         }
       ]
     }

@@ -1,0 +1,49 @@
+---
+title: Code Breaker now live in the Arcade!
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: code-breaker-live-arcade
+date: "2023-12-02T20:24:54.209Z"
+type: blog
+description: Play the new Code Breaker game on my arcade site now!
+tags:
+  - Games
+  - JavaScript
+  - HTML
+ogImage: ../../assets/blog/og-images/code-breaker-og.png
+---
+
+I've been working on my arcade site a little more lately, and it's been a blast. I really want to have it polished enough and ready to talk about on my portfolio by the end of the year, and I made some solid progress towards that goal this week!
+
+> The Arcade is a work in progress right now. Please don't mind the imperfections as you're viewing it. Thanks. ❤
+
+## A little history
+
+A few years back, I stumbled onto this "Code Breaker" game tutorial from CodeSchool, that walked you through building out a guessing game in vanilla JavaScript. At the time, I was still freshly learning JavaScript so building out a game sounded like a great idea!
+
+The game itself is fairly straight forward - you're trying to guess a 4 digit code in 10 guesses. Each guess, you get to see what you guessed and a little guide to show if that number is in the right place, in the code but not this exact place, or not in the code at all (think Wordle). And then when the game is over it shows you the actual number.
+
+## Updates and why now
+
+Fast forward a few years and I ended up creating [my version of Snake](/blog/building-snake-html-canvas-js) with inspiration from a different online course. I decided I wanted a space to keep all these little games that were so fun to build, so I created [my Arcade](https://lindakat-arcade.netlify.app/)! My goal with this is to have a space to share any little games I create, either on my own or from tutorials, and use the site to help show more of my "gamer girl" side and my range of skills.
+
+The Arcade is built with Astro, so I can take advantage of their [islands architecture](https://docs.astro.build/en/concepts/islands/) to write my games in any JavaScript framework I want! This way I can learn or reinforce different frameworks, and still share them all on the same site with minimal issues. It's so very cool.
+
+Finding myself currently in the market for a new job, I knew I wanted more projects to share on my portfolio. But none of the other ideas I've got for sites felt all that interesting. So I decided I want to use the Arcade to be a way to showcase skills and personality in one, and will be a lot more fun to talk about with other people too!
+
+## Progress thoughts
+
+So I'm working towards getting it ready, and getting Code Breaker live on it is the next big step. Porting the code itself over into an Astro component was fairly straight forward, but it's honestly not ideal the way it is. 
+
+Both Snake and Code Breaker have the same issue - all their logic lives in a script tag directly in an Astro component, which makes it globally available. And since they share the same layout, I'm running into issues with Code Breaker getting an error in the console from Snake, and vice versa. Both scripts are running no matter which game is actually being viewed, and so the event listeners and query selectors can't find the items (obviously, because that game isn't open). It doesn't actually break anything on the site since you won't be able to interact with those errored elements anyways, but it's still annoying. I don't want errors in my console! 😆
+
+The way to fix that is to move a lot of the actual game logic into the Astro script area (so it's not global anymore) or into separate components so each game then has to pull in their own components and maybe they won't conflict as much? I'm not sure yet. There's a ticket for it, after I spent a short amount of time seeing if I could quickly fix it. lol
+
+The only other complaint I really had with porting the game over was adding a lot of assertions to appease TypeScript. Lots of assuring it that these elements would exist, because I was directly creating them in the template right above it. It's not ideal, and again I think if I can figure out how to move a lot of the logic to the actual `.astro` file script area, and leave the client-side `<script>` tag to just the event listeners and query selectors, then that might help with a lot of this. 
+
+Everything else was more of a pleasure to deal with! I had to make some logic adjustments to restart the game and keep the page from refreshing since it's now a subpage inside another page. I squabbled a bit with some icon libraries before just grabbing unicode characters for the hint icons. lol And a few weird little style issues because I create a lot of the HTML within the JavaScript so changes in the `<style>` tag didn't take. 
+
+## Wrapup
+
+[Code Breaker is now live on the Arcade site and ready to play](https://lindakat-arcade.netlify.app/code-breaker/)! I have a few things I'd still like to improve (as always), but it's in a "good enough to go live" stage now so we're moving forward with it! Enjoy!
