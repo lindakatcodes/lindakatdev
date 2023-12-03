@@ -12,7 +12,7 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
 <MainLayout metadata={DEFAULT_METADATA}>
   <div class="intro">
     <h1>Welcome to the blog!</h1>
-    <p>Here you'll find posts on what I'm <a href="/tags/course-notes" class="learn">learning</a>, things I find <span class="interest">interesting</span>, and my <span class="exp">experiences</span> creating my career path as a software engineer.</p>
+    <p>Here you'll find posts on what I'm <a href="/blog/tags/course-notes" class="learn">learning</a>, things I find <span class="interest">interesting</span>, and my <span class="exp">experiences</span> creating my career path as a software engineer.</p>
     <p>Prefer to read through RSS? <a href="/rss.xml" class="rss">Here's my feed!</a></p>
   </div>
   <div class="posts-wrapper">
@@ -51,7 +51,7 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   }
 
   .learn {
-    cursor: default;
+    cursor: text;
     color: var(--text-main);
     text-decoration: none;
   }
