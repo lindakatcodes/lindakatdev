@@ -24,10 +24,10 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { allPosts } = Astro.props;
 const postsMatchingTag = allPosts.filter((post) => {
-  const sanitizedTags = post.data.tags.map((tag) =>
-    tag.toLowerCase().split(" ").join("-")
+  const sanitizedTags = post.data.tags.map((tagName) =>
+    tagName.toLowerCase().split(" ").join("-")
   );
-  const filteredTags = tag === "course-notes" ? sanitizedTags : sanitizedTags.filter((tag) => tag !== "course-notes");
+  const filteredTags = tag === "course-notes" ? sanitizedTags : sanitizedTags.filter((tagName) => tagName !== "course-notes");
   return filteredTags.includes(tag);
 });
 ---
