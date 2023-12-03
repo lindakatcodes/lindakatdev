@@ -52,6 +52,8 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
 
   .learn {
     cursor: pointer;
+    color: var(--text-main);
+    text-decoration: none;
   }
 
   .learn:hover {
@@ -59,10 +61,18 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   }
 
   .interest {
+    color: var(--text-main);
+  }
+  
+  .interest:hover {
     color: var(--blue);
   }
 
   .exp {
+    color: var(--text-main);
+  }
+  
+  .exp:hover {
     color: var(--pink);
   }
 
