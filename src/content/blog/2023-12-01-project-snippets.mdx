@@ -1,0 +1,34 @@
+---
+title: Project Snippets
+description: Helpful references for getting started on projects
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: project-snippets
+date: "2021-05-07T00:00:00.000Z"
+type: blog
+tags:
+  - Architecture
+  - Course Notes
+ogImage: ../../assets/blog/og-images/building-snake-og.png
+---
+
+## Initiating a New Project
+
+- Setup an empty repository on GitHub. **DO NOT** add the readme or anything - you can do that in a minute.
+- Open the outer folder on your computer that you want to put your project into. Starting the project will make it's own folder, so start wherever you want that folder to live.
+- Use whichever tool you're using (`create-react-app` or `vue create`), run that and let it install and create your new folder.
+- Switch into your new folder, so you're at the root of your project.
+- Go to the page that GitHub directed you to, for your repo. It should give you a list of commands to run to connect your repository to your folder. If not, these will be the commands in order:
+	- `git remote add origin 'project-url'`
+	- `git branch -M main`
+	- `git push -u origin main`
+- Then let the `push` command run and you should be good to go!
+
+## Use Emoji as Favicon
+
+Easy way to get around the 'missing favicon' errors on small dev projects:
+
+```html
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+```

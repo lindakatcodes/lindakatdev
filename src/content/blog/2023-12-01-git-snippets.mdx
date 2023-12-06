@@ -1,0 +1,37 @@
+---
+title: Git Snippets
+description: A reference for the less used Git commands, so I can find them easily
+published: true
+featured: false
+layout: ../../layouts/BlogPostLayout.astro
+slug: git-snippets
+date: "2022-01-13T00:00:00.000Z"
+type: blog
+tags:
+  - Git
+  - Course Notes
+ogImage: ../../assets/blog/og-images/building-snake-og.png
+---
+
+## Git Bisect
+
+`Bisect` is so cool. It performs a binary search on your code commits, so you can find the last time a feature worked, or when a fix was added to the project. Here's how you use it:
+
+1. Find a commit that you _know_ is before what you're looking for. One you know works, or know was before the fix was added.
+2. `git bisect start` Starts the run.
+3. `git bisect bad` Lets it know that the current commit does not have what you want.
+4. `git bisect good <commit>` Tell it you know this one was earlier than what you want.
+5. Bisect will know pick a commit in between the two you just specified. Run your project however you do, and see if what you want exists in this commit. If it does, type `git bisect good`. If not, type `git bisect bad`.
+6. Repeat this process. Bisect will tell you roughly how many more steps it needs to find the commit you want. Keep going until it ultimately spits out some more information.
+7. Bisect will eventually reach 0 steps, and it'll print out the first "bad" commit. This is what you're looking for, where your project changed!
+8. Last step - run `git bisect reset` to clean up your session and return git's state to where you started. If you wanted to switch it to a particular commit instead, you can do `git bisect reset <commit>`.
+
+You're done! You should know where to start looking now for whatever changed. Super helpful for bugs, especially if it's been awhile since you've noticed that something wasn't working right!!
+
+Extra things you can do with this:
+
+- If you want to use words besides good/bad (which can get confusing if you want to find something that's not actually a bug/broken), you can do that. Git allows "old" and "new" as well - when you start the bisect, just use those words (old first) instead of bad & good in your first 3 steps. You can also use `git bisect terms` to see what the currently set words are.
+- OR, you can use your own custom words (as long as they're not used for other bisect commands)! When you're ready to start, run `git bisect start --term-old <term-old> --term-new <term-new>`.
+- You can see the commits you have left to check by using `git bisect visualize`.
+- You can run `git bisect log` to see what's been marked so far. This would be helpful if you'd accidentally marked something the wrong way - you could save this log output to a file and change the ones you need to change. Then you can run `git bisect reset` to start over and `git bisect replay <file>` to load your edited file. That way you don't have to do all of it over again!
+- If you know the current commit you're testing has a different issue from what you're looking for (you know it fails on something else or doesn't compile, whatever), you can tell bisect to skip that commit with `git bisect skip` - it'll pick another one close by. If you're far enough along (or only have a few suspects) ths might make it a little harder for git to tell which commit is the first bad one, though.

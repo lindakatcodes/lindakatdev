@@ -5,7 +5,9 @@ import MarkdownIt from 'markdown-it';
 const parser = new MarkdownIt();
 
 export async function GET(context) {
-  const blog = await getCollection('blog');
+  const blog = await getCollection("blog", ({ data }) => {
+    return !data.tags.includes("Course Notes");
+  });
   return rss({
     title: "LindaKat Writes",
     description: "The musings and knowledge sharing of Linda Thompson",
