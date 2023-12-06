@@ -1,5 +1,6 @@
 ---
 import BlogCard from "@components/blogCard.astro";
+import BlogHeader from "@components/blogHeader.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
@@ -10,11 +11,7 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <div class="intro">
-    <h1>Welcome to the blog!</h1>
-    <p>Here you'll find posts on what I'm <a href="/blog/tags/course-notes" class="learn">learning</a>, things I find <span class="interest">interesting</span>, and my <span class="exp">experiences</span> creating my career path as a software engineer.</p>
-    <p>Prefer to read through RSS? <a href="/rss.xml" class="rss">Here's my feed!</a></p>
-  </div>
+  <BlogHeader />
   <div class="posts-wrapper">
     {
       allBlogPosts.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)).map((blogPostEntry) => (
@@ -33,47 +30,6 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   .posts-wrapper {
     width: 50%;
     margin: 0 auto;
-  }
-
-  .intro {
-    width: 55%;
-    margin: 0 auto 3rem;
-    text-align: center;
-    font-size: 1.1rem;
-  }
-
-  .intro p {
-    margin-bottom: 1.5rem;
-  }
-
-  .rss {
-    color: var(--green);
-  }
-
-  .learn {
-    cursor: text;
-    color: var(--text-main);
-    text-decoration: none;
-  }
-
-  .learn:hover {
-    color: var(--purple);
-  }
-
-  .interest {
-    color: var(--text-main);
-  }
-  
-  .interest:hover {
-    color: var(--blue);
-  }
-
-  .exp {
-    color: var(--text-main);
-  }
-  
-  .exp:hover {
-    color: var(--pink);
   }
 
   @media (max-width: 520px) {

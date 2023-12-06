@@ -1,6 +1,7 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/blogCard.astro";
+import BlogHeader from "@components/blogHeader.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
@@ -23,27 +24,20 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { allPosts } = Astro.props;
-const postsMatchingTag = allPosts.filter((post) => {
+const tagFilteredPosts = allPosts.filter((post) => { 
   const sanitizedTags = post.data.tags.map((tagName) =>
     tagName.toLowerCase().split(" ").join("-")
   );
-  const filteredTags = tag === "course-notes" ? sanitizedTags : sanitizedTags.filter((tagName) => tagName !== "course-notes");
-  return filteredTags.includes(tag);
+  return sanitizedTags.includes(tag);
 });
+const postsToView = tag === 'course-notes' ? tagFilteredPosts : tagFilteredPosts.filter((post) => !post.data.tags.includes('Course Notes'));
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <div class="intro">
-    <h1>Welcome to the blog!</h1>
-    <p>
-      Here you'll find posts on what I'm learning, things I find interesting,
-      and my experiences creating my career path as a software engineer.
-    </p>
-    <p>Prefer to read through RSS? <a href="/rss.xml">Here's my feed!</a></p>
-  </div>
+  <BlogHeader />
   <div class="posts-wrapper">
     {
-      postsMatchingTag
+      postsToView
         .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date))
         .map((blogPostEntry) => <BlogCard blogBit={blogPostEntry} />)
     }
@@ -59,21 +53,6 @@ const postsMatchingTag = allPosts.filter((post) => {
   .posts-wrapper {
     width: 50%;
     margin: 0 auto;
-  }
-
-  .intro {
-    width: 55%;
-    margin: 0 auto 3rem;
-    text-align: center;
-    font-size: 1.1rem;
-  }
-
-  .intro p {
-    margin-bottom: 1.5rem;
-  }
-
-  .intro a {
-    color: var(--green);
   }
 
   @media (max-width: 520px) {
