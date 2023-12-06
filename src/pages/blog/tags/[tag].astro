@@ -38,7 +38,15 @@ const postsToView = tag === 'course-notes' ? tagFilteredPosts : tagFilteredPosts
   <div class="posts-wrapper">
     {
       postsToView
-        .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date))
+        .sort((a, b) => {
+          if (a.data.title < b.data.title) {
+            return -1;
+          } else if (a.data.title > b.data.title) {
+            return 1;
+          } else {
+            return 0;
+          }
+        })
         .map((blogPostEntry) => <BlogCard blogBit={blogPostEntry} />)
     }
   </div>
