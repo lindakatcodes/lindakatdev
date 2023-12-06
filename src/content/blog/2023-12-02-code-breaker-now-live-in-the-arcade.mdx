@@ -30,11 +30,11 @@ Fast forward a few years and I ended up creating [my version of Snake](/blog/bui
 
 The Arcade is built with Astro, so I can take advantage of their [islands architecture](https://docs.astro.build/en/concepts/islands/) to write my games in any JavaScript framework I want! This way I can learn or reinforce different frameworks, and still share them all on the same site with minimal issues. It's so very cool.
 
-Finding myself currently in the market for a new job, I knew I wanted more projects to share on my portfolio. But none of the other ideas I've got for sites felt all that interesting. So I decided I want to use the Arcade to be a way to showcase skills and personality in one, and will be a lot more fun to talk about with other people too!
+Finding myself currently in the market for a new job, I knew I wanted more projects to share on my portfolio. So I decided I want to use the Arcade to be a way to showcase my skills and personality in one, and it will be a lot more fun to talk about with other people too!
 
 ## Progress thoughts
 
-So I'm working towards getting it ready, and getting Code Breaker live on it is the next big step. Porting the code itself over into an Astro component was fairly straight forward, but it's honestly not ideal the way it is. 
+Porting the code itself over into an Astro component was fairly straight forward, but it's honestly not ideal the way it is. 
 
 Both Snake and Code Breaker have the same issue - all their logic lives in a script tag directly in an Astro component, which makes it globally available. And since they share the same layout, I'm running into issues with Code Breaker getting an error in the console from Snake, and vice versa. Both scripts are running no matter which game is actually being viewed, and so the event listeners and query selectors can't find the items (obviously, because that game isn't open). It doesn't actually break anything on the site since you won't be able to interact with those errored elements anyways, but it's still annoying. I don't want errors in my console! 😆
 
