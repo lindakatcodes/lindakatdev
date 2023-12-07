@@ -8,7 +8,7 @@ const blogCollection = defineCollection({
       description: z.string(),
       published: z.boolean(),
       tags: z.array(z.string()),
-      date: z.string().datetime(),
+      date: z.date(),
       ogImage: image(),
       featured: z.boolean(),
     }),
@@ -57,7 +57,20 @@ const projectsCollection = defineCollection({
     ]),
 });
 
+const notesCollection = defineCollection({
+  type: "content",
+  schema: () =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      lastUpdate: z.date(),
+      tags: z.array(z.string()),
+      source: z.string().optional(),
+    }),
+});
+
 export const collections = {
   blog: blogCollection,
   projects: projectsCollection,
+  notes: notesCollection,
 };

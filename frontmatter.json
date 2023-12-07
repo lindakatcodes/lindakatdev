@@ -62,9 +62,52 @@
           "description": "Template: https://www.canva.com/design/DAFzuN4ys5c/qNsSSQTKRAFSeynGko0bLg/edit?utm_content=DAFzuN4ys5c"
         }
       ]
+    },
+    {
+      "name": "notes",
+      "previewPath": "'notes'",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Layout",
+          "name": "layout",
+          "type": "string"
+        },
+        {
+          "title": "Last Updated",
+          "name": "lastUpdate",
+          "type": "datetime",
+          "default": "{{now}}"
+        },
+        {
+          "title": "Post Type",
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Author or Course Source",
+          "name": "source",
+          "type": "string"
+        }
+      ]
     }
   ],
-
   "frontMatter.content.draftField": {
     "name": "published",
     "type": "boolean",
@@ -77,6 +120,11 @@
     {
       "title": "blog",
       "path": "[[workspace]]/src/content/blog"
+    },
+    {
+      "title": "notes",
+      "path": "[[workspace]]/src/content/notes",
+      "contentTypes": ["notes"]
     }
   ],
   "frontMatter.content.publicFolder": {
