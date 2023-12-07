@@ -1,0 +1,20 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import { DEFAULT_METADATA } from "@util/constants";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return notes.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<MainLayout metadata={DEFAULT_METADATA}>
+  <Content />
+</MainLayout>

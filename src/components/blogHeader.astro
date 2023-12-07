@@ -5,9 +5,8 @@
 <div class="intro">
   <h1>Welcome to the blog!</h1>
   <p>
-    Here you'll find posts on what I'm <a
-      href="/blog/tags/course-notes"
-      class="learn">learning</a
+    Here you'll find posts on what I'm <span
+      class="learn">learning</span
     >, things I find <span class="interest">interesting</span>, and my <span
       class="exp">experiences</span
     > creating my career path as a software engineer.
@@ -34,26 +33,16 @@
     color: var(--green);
   }
 
-  .learn {
-    cursor: text;
+  .learn, .interest, .exp {
     color: var(--text-main);
-    text-decoration: none;
   }
 
   .learn:hover {
     color: var(--purple);
   }
 
-  .interest {
-    color: var(--text-main);
-  }
-
   .interest:hover {
     color: var(--blue);
-  }
-
-  .exp {
-    color: var(--text-main);
   }
 
   .exp:hover {
