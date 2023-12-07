@@ -1,3 +1,4 @@
 [[redirects]]
 from = "/blog/tags/course-notes"
 to = "notes.lindakat.com"
+force = true
