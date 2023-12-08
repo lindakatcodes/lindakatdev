@@ -1,4 +1,4 @@
  [[redirects]]
  from = "https://notes.lindakat.com/*"
- to = "https://www.lindakat.com/notes/:splat"
+ to = "/notes/:splat"
  force = true
