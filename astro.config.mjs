@@ -11,4 +11,7 @@ export default defineConfig({
     syntaxHighlight: "prism",
     remarkPlugins: [remarkReadingTime],
   },
+  redirects: {
+    "/notes/": "https://notes.lindakat.com",
+  },
 });
