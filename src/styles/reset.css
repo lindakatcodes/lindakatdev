@@ -24,7 +24,8 @@ body {
 */
 img, picture, video, canvas, svg {
   display: block;
-  max-width: 100%;
+  max-width: 70%;
+  height: auto;
 }
 /*
   6. Remove built-in form typography styles
