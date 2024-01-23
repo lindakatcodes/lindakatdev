@@ -4,27 +4,10 @@
   "headerImageAlt": "Hobbes the Tiger, from the comic strip Calvin and Hobbes, drawn with HTML and CSS.",
   "description": "Images created using CSS, following prompts from a daily email. Through working on these drawings, I started to learn more about positioning items with CSS, as well as flexing the creative side of my mind.",
   "tech": ["HTML", "CSS"],
-  "featured": true,
+  "featured": false,
   "order": 2,
   "demoLink": null,
   "codeLink": "https://codepen.io/collection/XOBRMd",
   "liveLink": null,
-  "hasCaseStudy": true,
-  "purpose": "A few years ago, there was a daily email challenge going around the Twitter tech community called Daily CSS Images. I loved the idea of drawing with CSS - I appreciate art but had never been skilled at doing it on paper. So I signed up and started making them! Often drawings took me a few days to complete. I never made it through the entire 50 email collection, but it inspired a method of creating art that I still love doing.",
-  "highlights": [
-    "The biggest highlight for me was the few drawings that turned out exactly as I intended. Hobbes (the tiger from the comic strip Calvin and Hobbes) was my favorite. I'm still impressed that my final drawing looks like him and can be recognized! Seeing an idea take shape and turn out as well (or better) than intended is such a thrill."
-  ],
-  "challenges": [
-    "Positioning in CSS is a subject people joke about often for a reason - it's challenging! This skill was one of the most useful things I learned while doing these drawings. It was a perfect playground for figuring out what concepts like positioning and z-index do.",
-    "Shaping items was also a common challenge. Many drawings and objects have round edges or odd shapes - something that can feel impossible to create from the rectangles we have to work with on the web! Creating shapes by layering objects, changing colors, and applying a radius to the borders was often challenging but incredibly fun."
-  ],
-  "detailImage1": "../../assets/projects/css-detail-1.png",
-  "detailImage1Alt": "A small plant with a white stem and light green leaves pokes out of a pastel purple vase with a pastel yellow water tray.",
-  "detailImage2": "../../assets/projects/css-detail-2.png",
-  "detailImage2Alt": "A gray elephant on a blue background, facing forwards, with small white toenails and white tusks.",
-  "lessonIntro": "I still enjoy creating drawings and can lose hours pushing pixels crafting what I want. It's a great way to experiment with positioning and layering.",
-  "lessonWins": [
-    "Patience is SUCH an important skill, especially when drawing. It takes time to get things lined up and shaped. Allowing yourself the patience to make changes, mess things up, and watch as they take shape is worth it.",
-    "Along with this, it's important to be ok with a project when it doesn't turn out as good as we'd like. Not everything can (or will) be a masterpiece. There's still a ton to learn from the experience."
-  ]
+  "hasCaseStudy": false
 }
