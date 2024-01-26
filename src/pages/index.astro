@@ -56,10 +56,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     margin: 0 auto 10rem;
   }
 
-  .intro {
-    /* border: 2px solid hotpink; */
-  }
-
   .title {
     font-size: 6rem;
     font-family: var(--cursive-font);
@@ -97,10 +93,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     background-image: var(--gradient);
   }
 
-  .projects {
-    /* border: 2px solid lime; */
-  }
-
   .project-cards {
     padding: 0.5rem 0.25rem 0.75rem;
     display: grid;
@@ -111,7 +103,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   #posts {
     margin-bottom: 0;
-    /* border: 2px solid yellow; */
   }
 
   .post-blurbs {
@@ -119,7 +110,8 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     margin: 0.5rem auto;
   }
 
-  /* @media (max-width: 520px) {
+  /* Mobile */
+  @media (max-width: 520px) {
     .title {
       margin-top: -1.5rem;
       font-size: 5rem;
@@ -129,5 +121,29 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       font-size: 1.65rem;
       width: auto;
     }
-  } */
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .page-link {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .project-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .post-blurbs {
+      width: 100%;
+    }
+  }
+
+  /* Large monitors */
+  @media (min-width: 1280px) {
+    .post-blurbs {
+      width: 45%;
+    }
+  }
 </style>
