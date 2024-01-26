@@ -1,30 +1,125 @@
 ---
+import BlogCard from "@components/blogCard.astro";
+import ProjectCard from "@components/projectCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
+import { getCollection } from "astro:content";
+
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+});
+const featuredPosts = await getCollection("blog", ({ data }) => {
+  return data.featured === true;
+});
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <h1 class="title">Linda Thompson</h1>
-  <p class="subtitle gradient-text">Career changer building for the web & bringing teams together</p>
+  <section id="intro">
+    <h1 class="title">Linda Thompson</h1>
+    <p class="subtitle gradient-text">
+      Career changer building for the web & bringing teams together
+    </p>
+  </section>
+  <section id="projects">
+    <div class="project-intro">
+      <h2 class="section-title">Favorite Projects</h2>
+    </div>
+    <div class="project-cards">
+      {
+        featuredProjects
+          .sort((a, b) => a.data.order - b.data.order)
+          .map((project) => <ProjectCard project={project} />)
+      }
+    </div>
+    <div class="page-link">
+      <a href="/projects" class="gradient-text">Dive deeper into these projects and more on the projects page!</a>
+    </div>
+  </section>
+  <section id="posts">
+    <div class="posts-intro">
+      <h2 class="section-title">Favorite Posts</h2>
+    </div>
+    <div class="post-blurbs">
+      {featuredPosts
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+        .map((post) => <BlogCard blogBit={post} />
+      )}
+    </div>
+    <div class="page-link">
+      <a href="/blog" class="gradient-text">There's even more posts on the blog page!</a>
+    </div>
+  </section>
 </MainLayout>
 
 <style>
+  section {
+    margin: 0 auto 10rem;
+  }
+
+  .intro {
+    /* border: 2px solid hotpink; */
+  }
+
   .title {
-    margin-top: 4rem;
     font-size: 6rem;
-    text-align: center;
     font-family: var(--cursive-font);
+    text-align: center;
   }
 
   .subtitle {
-    text-align: center;
-    font-family: var(--serif-font);
     font-size: 2rem;
+    font-family: var(--serif-font);
+    text-align: center;
     width: 27rem;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
   }
 
-  @media (max-width: 520px) {
+  .section-title {
+    font-size: 2.5rem;
+    font-family: var(--serif-font);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .page-link {
+    text-align: center;
+  }
+
+  .page-link a {
+    font-size: 1.1rem;
+    text-decoration: underline solid var(--blue);
+    transition: background 0.3s ease-in-out;
+    background-image: none;
+    background-color: var(--pink);
+  }
+
+  .page-link a:hover {
+    background-image: var(--gradient);
+  }
+
+  .projects {
+    /* border: 2px solid lime; */
+  }
+
+  .project-cards {
+    padding: 0.5rem 0.25rem 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+
+  #posts {
+    margin-bottom: 0;
+    /* border: 2px solid yellow; */
+  }
+
+  .post-blurbs {
+    width: 70%;
+    margin: 0.5rem auto;
+  }
+
+  /* @media (max-width: 520px) {
     .title {
       margin-top: -1.5rem;
       font-size: 5rem;
@@ -34,5 +129,5 @@ import { DEFAULT_METADATA } from "@util/constants";
       font-size: 1.65rem;
       width: auto;
     }
-  }
+  } */
 </style>

@@ -133,7 +133,8 @@ h6 {
 
 p,
 li,
-span {
+span,
+a {
   font-family: var(--body-font);
   color: var(--text-main);
 }

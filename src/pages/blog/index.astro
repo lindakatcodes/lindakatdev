@@ -14,7 +14,7 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   <BlogHeader />
   <div class="posts-wrapper">
     {
-      allBlogPosts.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)).map((blogPostEntry) => (
+      allBlogPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).map((blogPostEntry) => (
        <BlogCard blogBit={blogPostEntry} />
       ))
     }
