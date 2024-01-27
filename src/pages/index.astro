@@ -1,6 +1,7 @@
 ---
 import BlogCard from "@components/blogCard.astro";
 import ProjectCard from "@components/projectCard.astro";
+import Socials from "@components/socials.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
@@ -17,12 +18,19 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   <section id="intro">
     <h1 class="title">Linda Thompson</h1>
     <p class="subtitle gradient-text">
-      Career changer building for the web & bringing teams together
+      Highly motivated developer, career changer, & team builder
     </p>
+    <div class="social-wrapper">
+      <Socials />
+    </div>
+    <div class="hire-cta">
+      <span></span>
+      <p>Available to Hire!</p>
+    </div>
   </section>
   <section id="projects">
     <div class="project-intro">
-      <h2 class="section-title">Favorite Projects</h2>
+      <h2 class="section-title">My Favorite Projects</h2>
     </div>
     <div class="project-cards">
       {
@@ -32,21 +40,26 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       }
     </div>
     <div class="page-link">
-      <a href="/projects" class="gradient-text">Dive deeper into these projects and more on the projects page!</a>
+      <a href="/projects" class="gradient-text"
+        >View more projects</a
+      >
     </div>
   </section>
   <section id="posts">
     <div class="posts-intro">
-      <h2 class="section-title">Favorite Posts</h2>
+      <h2 class="section-title">Highlighted Posts</h2>
     </div>
     <div class="post-blurbs">
-      {featuredPosts
-        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-        .map((post) => <BlogCard blogBit={post} />
-      )}
+      {
+        featuredPosts
+          .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+          .map((post) => <BlogCard blogBit={post} />)
+      }
     </div>
     <div class="page-link">
-      <a href="/blog" class="gradient-text">There's even more posts on the blog page!</a>
+      <a href="/blog" class="gradient-text"
+        >View more posts</a
+      >
     </div>
   </section>
 </MainLayout>
@@ -60,14 +73,15 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     font-size: 6rem;
     font-family: var(--cursive-font);
     text-align: center;
+    margin-bottom: 0.5rem;
   }
 
   .subtitle {
     font-size: 2rem;
     font-family: var(--serif-font);
     text-align: center;
-    width: 27rem;
-    margin: 0 auto 1rem;
+    width: 25rem;
+    margin: -1rem auto 1rem;
   }
 
   .section-title {
@@ -91,6 +105,34 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   .page-link a:hover {
     background-image: var(--gradient);
+  }
+
+  .social-wrapper {
+    width: 65%;
+    margin: 3rem auto;
+  }
+
+  .hire-cta {
+    width: 9rem;
+    border: 2px solid var(--purple);
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 0.25rem;
+  }
+
+  .hire-cta p {
+    font-size: 0.9rem;
+  }
+
+  .hire-cta span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-right: 3px;
   }
 
   .project-cards {
@@ -131,6 +173,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       margin: 0 auto;
     }
 
+    .social-wrapper {
+      width: 100%;
+    }
+
     .project-cards {
       grid-template-columns: 1fr;
     }
@@ -142,6 +188,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   /* Large monitors */
   @media (min-width: 1280px) {
+    .social-wrapper {
+      width: 50%;
+    }
+
     .post-blurbs {
       width: 45%;
     }

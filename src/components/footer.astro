@@ -1,38 +1,6 @@
 ---
-import Icon from "astro-icon";
+import Socials from "./socials.astro";
 
-type socialLink = {
-  iconName: String;
-  displayName: String;
-  link: URL["href"];
-};
-const socialLinks: socialLink[] = [
-  {
-    iconName: "file-lines-regular",
-    displayName: "Resume",
-    link: "https://drive.google.com/file/d/12GcNF-iFYKQQV7rB1yR0bqRWUFONv8Ds/view?usp=sharing",
-  },
-  {
-    iconName: "github",
-    displayName: "GitHub",
-    link: "https://github.com/lindakatcodes",
-  },
-  {
-    iconName: "linkedin",
-    displayName: "LinkedIn",
-    link: "https://www.linkedin.com/in/lindakatcodes/",
-  },
-  {
-    iconName: "mastodon",
-    displayName: "Mastodon",
-    link: "https://hachyderm.io/@lindakatcodes",
-  },
-  {
-    iconName: "x-twitter",
-    displayName: "X-Twitter",
-    link: "https://twitter.com/lindakatcodes",
-  },
-];
 ---
 
 <div transition:name="footer" class="footer-container">
@@ -46,19 +14,9 @@ const socialLinks: socialLink[] = [
         <span class="email gradient-text"> hello@lindakat.com</span>
       </p>
     </section>
-    <section class="socials">
-      {
-        socialLinks.map((link) => (
-          <a
-            class:list={["social-link", link.displayName.toLowerCase()]}
-            href={link.link}
-          >
-            <Icon name={link.iconName} />
-            <p>{link.displayName}</p>
-          </a>
-        ))
-      }
-    </section>
+    <div class="footer-socials">
+      <Socials />
+    </div>
     <p class="copyright">© 2020 - 2024 Linda Thompson</p>
   </footer>
 </div>
@@ -105,84 +63,9 @@ const socialLinks: socialLink[] = [
     background-image: var(--gradient);
   }
 
-  .socials {
+  .footer-socials {
     grid-area: socials;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
-  .social-link {
-    display: flex;
-    flex-direction: column;
-    text-decoration-color: transparent;
-  }
-
-  .social-link svg {
-    fill: var(--text-main);
-    height: 36px;
-    width: auto;
-  }
-
-  .social-link p {
-    color: var(--text-main);
-    margin-top: 0.125rem;
-    font-size: 0.7rem;
-  }
-
-  .resume:hover {
-    text-decoration-color: var(--purple);
-
-    & svg {
-      fill: var(--purple);
-    }
-    & p {
-      color: var(--purple);
-    }
-  }
-
-  .github:hover {
-    text-decoration-color: var(--green);
-
-    & svg {
-      fill: var(--green);
-    }
-    & p {
-      color: var(--green);
-    }
-  }
-
-  .linkedin:hover {
-    text-decoration-color: var(--blue);
-
-    & svg {
-      fill: var(--blue);
-    }
-    & p {
-      color: var(--blue);
-    }
-  }
-
-  .mastodon:hover {
-    text-decoration-color: var(--purple);
-
-    & svg {
-      fill: var(--purple);
-    }
-    & p {
-      color: var(--purple);
-    }
-  }
-
-  .x-twitter:hover {
-    text-decoration-color: var(--pink);
-
-    & svg {
-      fill: var(--pink);
-    }
-    & p {
-      color: var(--pink);
-    }
+    display: grid;
   }
 
   .copyright {
@@ -207,18 +90,6 @@ const socialLinks: socialLink[] = [
     
     .email {
       font-size: 1rem;
-    }
-
-    .socials {
-      justify-content: space-between;
-    }
-
-    .social-link svg {
-      height: 32px;
-    }
-
-    .social-link p {
-      font-size: 0.6rem;
     }
 
     .copyright {
