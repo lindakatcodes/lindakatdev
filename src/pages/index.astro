@@ -1,38 +1,203 @@
 ---
+import BlogCard from "@components/blogCard.astro";
+import ProjectCard from "@components/projectCard.astro";
+import Socials from "@components/socials.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
+import { getCollection } from "astro:content";
+
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+});
+const featuredPosts = await getCollection("blog", ({ data }) => {
+  return data.featured === true;
+});
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <h1 class="title">Linda Thompson</h1>
-  <p class="subtitle gradient-text">Career changer building for the web & bringing teams together</p>
+  <section id="intro">
+    <h1 class="title">Linda Thompson</h1>
+    <p class="subtitle gradient-text">
+      Highly motivated developer, career changer, & team builder
+    </p>
+    <div class="social-wrapper">
+      <Socials />
+    </div>
+    <div class="hire-cta">
+      <span></span>
+      <p>Available to Hire!</p>
+    </div>
+  </section>
+  <section id="projects">
+    <div class="project-intro">
+      <h2 class="section-title">My Favorite Projects</h2>
+    </div>
+    <div class="project-cards">
+      {
+        featuredProjects
+          .sort((a, b) => a.data.order - b.data.order)
+          .map((project) => <ProjectCard project={project} />)
+      }
+    </div>
+    <div class="page-link">
+      <a href="/projects" class="gradient-text"
+        >View more projects</a
+      >
+    </div>
+  </section>
+  <section id="posts">
+    <div class="posts-intro">
+      <h2 class="section-title">Highlighted Posts</h2>
+    </div>
+    <div class="post-blurbs">
+      {
+        featuredPosts
+          .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+          .map((post) => <BlogCard blogBit={post} />)
+      }
+    </div>
+    <div class="page-link">
+      <a href="/blog" class="gradient-text"
+        >View more posts</a
+      >
+    </div>
+  </section>
 </MainLayout>
 
 <style>
+  section {
+    margin: 0 auto 7rem;
+  }
+
   .title {
-    margin-top: 4rem;
     font-size: 6rem;
-    text-align: center;
     font-family: var(--cursive-font);
+    text-align: center;
+    margin-bottom: 0.5rem;
   }
 
   .subtitle {
-    text-align: center;
-    font-family: var(--serif-font);
     font-size: 2rem;
-    width: 27rem;
+    font-family: var(--serif-font);
+    text-align: center;
+    width: 25rem;
+    margin: -1rem auto 1rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-family: var(--serif-font);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .page-link {
+    text-align: center;
+  }
+
+  .page-link a {
+    font-size: 1.1rem;
+    text-decoration: underline solid var(--blue);
+    transition: background 0.3s ease-in-out;
+    background-image: none;
+    background-color: var(--pink);
+  }
+
+  .page-link a:hover {
+    background-image: var(--gradient);
+  }
+
+  .social-wrapper {
+    width: 65%;
+    margin: 3rem auto;
+  }
+
+  .hire-cta {
+    width: 9rem;
+    border: 2px solid transparent;
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 0.25rem;
+    background: linear-gradient(to bottom, var(--background), var(--background)) padding-box, var(--gradient) border-box;
+  }
+
+  .hire-cta p {
+    font-size: 0.9rem;
+  }
+
+  .hire-cta span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-right: 3px;
+  }
+
+  .project-cards {
+    padding: 0.5rem 0.25rem 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    width: 75%;
     margin: 0 auto;
   }
 
+  #posts {
+    margin-bottom: 0;
+  }
+
+  .post-blurbs {
+    width: 70%;
+    margin: 0.5rem auto;
+  }
+
+  /* Mobile */
   @media (max-width: 520px) {
     .title {
       margin-top: -1.5rem;
-      font-size: 5rem;
+      font-size: 3.5rem;
     }
 
     .subtitle {
-      font-size: 1.65rem;
+      font-size: 1.5rem;
       width: auto;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .page-link {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .social-wrapper {
+      width: 100%;
+    }
+
+    .project-cards {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    .post-blurbs {
+      width: 100%;
+    }
+  }
+
+  /* Large monitors */
+  @media (min-width: 1280px) {
+    .social-wrapper {
+      width: 50%;
+    }
+
+    .post-blurbs {
+      width: 50%;
     }
   }
 </style>
