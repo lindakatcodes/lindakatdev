@@ -114,12 +114,13 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   .hire-cta {
     width: 9rem;
-    border: 2px solid var(--purple);
+    border: 2px solid transparent;
     margin: 0 auto;
     display: flex;
     align-items: baseline;
     justify-content: center;
     padding: 0.25rem;
+    background: linear-gradient(to bottom, var(--background), var(--background)) padding-box, var(--gradient) border-box;
   }
 
   .hire-cta p {
@@ -139,8 +140,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     padding: 0.5rem 0.25rem 0.75rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
+    gap: 10px;
     justify-items: center;
+    width: 75%;
+    margin: 0 auto;
   }
 
   #posts {
@@ -156,7 +159,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   @media (max-width: 520px) {
     .title {
       margin-top: -1.5rem;
-      font-size: 5rem;
+      font-size: 4.5rem;
     }
 
     .subtitle {
@@ -165,7 +168,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
 
     .page-link {
@@ -193,7 +196,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     }
 
     .post-blurbs {
-      width: 45%;
+      width: 50%;
     }
   }
 </style>
