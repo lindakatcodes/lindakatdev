@@ -1,4 +1,5 @@
 ---
+import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
 const { metadata } = Astro.props;
 ---
@@ -16,9 +17,37 @@ const { metadata } = Astro.props;
 <title>{metadata.title}</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Overlock:wght@400;700&family=Birthstone&display=swap" rel="stylesheet">
+<AstroFont
+  config={[
+    {
+      src: [],
+      preload: false,
+      display: "swap",
+      name: "Birthstone",
+      fallback: "sans-serif",
+      cssVariable: "cursive-font",
+      googleFontsURL: 'https://fonts.googleapis.com/css2?family=Birthstone',
+    },
+    {
+      src: [],
+      preload: false,
+      display: "swap",
+      name: "Overlock",
+      fallback: "serif",
+      cssVariable: "serif-font",
+      googleFontsURL: 'https://fonts.googleapis.com/css2?family=Overlock:wght@400;700',
+    },
+    {
+      src: [],
+      preload: false,
+      display: "swap",
+      name: "Fira Sans",
+      fallback: "sans-serif",
+      cssVariable: "body-font",
+      googleFontsURL: 'https://fonts.googleapis.com/css2?family=Fira+Sans',
+    },
+  ]}
+/>
 <link href="/prism-theme.css" rel="stylesheet">
 
 <ViewTransitions />
