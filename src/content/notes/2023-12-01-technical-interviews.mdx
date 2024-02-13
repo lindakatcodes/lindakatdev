@@ -172,7 +172,7 @@ You earned this and you deserve it!
 
 When we don't negotiate, we can leave a lot of money and benefits on the table. You don't have to solely negotiate salary either; can focus on paid time off, stock options, flexible working hours, etc.
 
-**If you're happy with the offer** you don't *have* to negotiate, but typically a company doesn't make their best offer first. There's no shame in trying. But sometimes they do, and if you're happy with the offer you still win!
+**If you're happy with the offer** you don't _have_ to negotiate, but typically a company doesn't make their best offer first. There's no shame in trying. But sometimes they do, and if you're happy with the offer you still win!
 
 **If you're NOT happy with the offer** and the company isn't willing to negotiate, you have to decide whether to accept the offer. Everyone's situation is different.
 
@@ -182,7 +182,7 @@ Everyone gets rejected. **Everyone.** It's a normal part of the process. It does
 
 > You'll get there. You can do this.
 
-<hr/>
+<hr />
 
 ## Problem Solving
 
@@ -228,7 +228,7 @@ Try to stay calm, breathe, and take a drink of water.
 
 > Everyone gets stuck, and you will be okay.
 
-<hr/>
+<hr />
 ## Data Structures
 
 ### What is a data structure?
@@ -241,7 +241,7 @@ A stack is "last in first out" (LIFO) structure, where the newest element added 
 
 #### Benefits of Stacks
 
-Stacks allow for constant time O(1) for adding and removing of the top item. Very performant, since we don't need to shift any items around to get the top item.
+Stacks allow for constant time O(1) for adding and removing of the <strong>top</strong> item. Very performant, since we don't need to shift any items around to get the top item.
 
 #### Downsides of Stacks
 
@@ -262,7 +262,7 @@ Here's an example using the class notation. We're going to use an array for the 
 ```js
 class Stack {
   constructor() {
-    this.stack = []
+    this.stack = [];
   }
   // lets us check the number of items in the stack with stack.length
   get length() {
@@ -275,7 +275,7 @@ class Stack {
   // Will remove and return the top item
   pop() {
     return this.stack.pop();
-  } 
+  }
   // See which element is at the top of the stack, but leave it there
   peek() {
     return this.stack[this.length - 1];
@@ -314,10 +314,9 @@ You'll often get follow-up questions as well once you finish a challenge. You're
   - User flow 2: Home Home > Kitchen Home > Kitchen > Bathroom Back Home > Kitchen Forward Home > Kitchen > Bathroom Home > Kitchen > Bathroom > Home
   - User flow 3: Home Home > Kitchen Home > Kitchen > Bathroom Back Home > Kitchen Back Home Forward Home > Kitchen Forward Home > Kitchen > Bathroom
 
-
 ### Queues
 
-Queues are similar to stacks except they follow "first in first out" (FIFO) structure, meaning the oldest element is the first removed. 
+Queues are similar to stacks except they follow "first in first out" (FIFO) structure, meaning the oldest element is the first removed.
 
 Similar to a queue in a line at a store - the person waiting the longest, at the front of the line, is the next to go, and new folks go in the back.
 
@@ -339,29 +338,186 @@ Similar to stacks, queues can have `peek`, `isEmpty`, and `get Length` methods. 
 Here's an example using class notation. This will look very similar to our previous stack example, except the methods to remove items is slightly different.
 
 ```js
-export default class Queue {  
-	constructor() {    
-		this.queue = []  
-	}  
-	// Gets the length of the queue
-	get length() {    
-		return this.queue.length  
-	} 
-	// Adds item to the end of the queue
-	enqueue(item) {    
-		this.queue.push(item)  
-	}  
-	// Removes and returns the item at the front of the queue
-	dequeue() {    
-		return this.queue.shift()  
-	}  
-	//  Will see which item is at the front of the queue, but leaves it there
-	peek() {    
-		return this.queue[0]  
-	}  
-	// Checks to see if the queue is empty
-	isEmpty() {    
-		return this.length === 0  
-	}
+export default class Queue {
+  constructor() {
+    this.queue = [];
+  }
+  // Gets the length of the queue
+  get length() {
+    return this.queue.length;
+  }
+  // Adds item to the end of the queue
+  enqueue(item) {
+    this.queue.push(item);
+  }
+  // Removes and returns the item at the front of the queue
+  dequeue() {
+    return this.queue.shift();
+  }
+  //  Will see which item is at the front of the queue, but leaves it there
+  peek() {
+    return this.queue[0];
+  }
+  // Checks to see if the queue is empty
+  isEmpty() {
+    return this.length === 0;
+  }
+}
+```
+
+### Linked Lists
+
+Linked lists are a series of nodes, where each node has their own value and a pointer to the next node. There are also doubly-linked lists, where a node also includes a pointer to the previous node. Linked lists use the LIFO method and have a runtime of O(n) since to find a node, we have to start at the head node and follow the trail until we find the node we want or reach the end of the list.
+
+#### Linked List Methods
+
+Again the methods feel similar but will be done slightly differently:
+
+- `push(Node)`: Add an element to the linked list
+- `pop()`: Remove an element from the linked list
+- `get(index)`: Return an element from a given index (but don't remove it)
+- `delete(index)`: Delete an item from a given index
+- `isEmpty()`: Return a boolean indicating whether the list is empty
+
+To make a linked list we'll need 2 classes - one for the nodes and one for the list.
+
+```js
+class Node {
+  // when we make a new node, we provide the value that the constructor will use
+  constructor(value) {
+    this.value = value;
+    // we also init the next pointer to null since we always add nodes to the end of the list
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  // adding nodes - we need to account for the list being empty or not
+  push(value) {
+    const newNode = new Node(value);
+    // if the list is empty, we want to set the head and tail to the new node
+    if (this.isEmpty()) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      // otherwise our current tail needs the next value updated to point to our new node, and the new node becomes the tail
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    // and don't forget to update the list length
+    this.length++;
+  }
+
+  // removing nodes has 3 scenarios to check for - an already empty list, a list with only one item, and a list with multiple items
+  pop() {
+    // do nothing if the list is already empty
+    if (this.isEmpty()) {
+      return null;
+    } else if (this.length === 1) {
+      // if only one item left, we save it then update all the list values
+      const nodeToRemove = this.head;
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return nodeToRemove;
+    } else {
+      /* With multiple nodes, we have to start at the head and move to the end */
+      // Start our pointer at the head
+      let currentNode = this.head;
+      // We're removing the last node in the list
+      const nodeToRemove = this.tail;
+      // This will be our new tail
+      let secondToLastNode;
+      while (currentNode) {
+        if (currentNode.next === this.tail) {
+          secondToLastNode = currentNode;
+          break;
+        }
+        currentNode = currentNode.next;
+      }
+      secondToLastNode.next = null;
+      this.tail = secondToLastNode;
+      this.length--;
+      return nodeToRemove;
+    }
+  }
+
+  // finding a node at a given index
+  get(index) {
+    // first make sure the provided index is valid for our list
+    if (index < 0 || index > this.length || this.isEmpty()) {
+      return null;
+    }
+    // first node is easy to find
+    if (index === 0) {
+      return this.head;
+    }
+    // same with the last node, easy to find
+    if (index === this.length - 1) {
+      return this.tail;
+    }
+    // otherwise iterate until we match our provided index value
+    let currentNode = this.head;
+    let iterator = 0;
+    while (iterator < index) {
+      iterator++;
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
+
+  // delete wasn't provided in the course, but giving it my best go here for completion and understanding
+  delete(index) {
+    // similarly want to validate the index value first
+    if (index < 0 || index > this.length || this.isEmpty()) {
+      return null;
+    }
+    // first node - move the head to the next node and decrease the length
+    if (index === 0) {
+      const nodeToRemove = this.head;
+      this.head = nodeToRemove.next;
+      this.length--;
+      return nodeToRemove;
+    }
+    // last node - same logic as our last pop method, we have to iterate through the list to find the next to last node and update it to be the new tail
+    if (index === this.length - 1) {
+      let currentNode = this.head;
+      const nodeToRemove = this.tail;
+      let secondToLastNode;
+      while (currentNode) {
+        if (currentNode.next === this.tail) {
+          secondToLastNode = currentNode;
+          break;
+        }
+        currentNode = currentNode.next;
+      }
+      secondToLastNode.next = null;
+      this.tail = secondToLastNode;
+      this.length--;
+      return nodeToRemove;
+    }
+    // a middle node - we'll need to find the node on either side of the index, so we can connect those together
+    let previousNode = null;
+    let currentNode = this.head;
+    let iterator = 0;
+    while (iterator < index) {
+      iterator++;
+      previousNode = currentNode;
+      currentNode = currentNode.next;
+    }
+    previousNode.next = currentNode.next;
+    this.length--;
+    return currentNode;
+  }
 }
 ```
