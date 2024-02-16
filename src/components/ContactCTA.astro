@@ -1,0 +1,56 @@
+---
+interface Props {
+  cta: string;
+  color: string;
+}
+
+const { cta, color } = Astro.props;
+const colorStr = `var(--${color})`;
+---
+
+<div class="contact-cta">
+  <span></span>
+  <a href="/contact" class="gradient-text">
+    {cta}
+  </a>
+</div>
+
+<style define:vars={{ "span-color": colorStr }}>
+  .contact-cta {
+    align-items: center;
+    border: 2px solid transparent;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: var(--sm);
+    width: 10rem;
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+  }
+
+  a {
+    background-image: none;
+    font-size: 0.85rem;
+    text-align: center;
+    text-decoration: solid underline var(--text-main);
+    text-underline-offset: 2px;
+    transition: background 0.3s ease-in-out;
+  }
+
+  a:hover,
+  a:focus {
+    background-image: var(--gradient);
+    text-decoration-style: double;
+  }
+
+  span {
+    background: var(--span-color);
+    border-radius: 50%;
+    display: block;
+    height: 12px;
+    margin-right: var(--sm);
+    width: 12px;
+  }
+</style>

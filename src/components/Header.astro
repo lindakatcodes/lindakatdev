@@ -20,10 +20,7 @@ const activePath = Astro.url.pathname;
       href="/projects">Projects</a
     >
     <a
-      class:list={[
-        "link blog",
-        { "blog-active": activePath === "/blog" },
-      ]}
+      class:list={["link blog", { "blog-active": activePath === "/blog" }]}
       href="/blog">Blog</a
     >
     <a
@@ -37,29 +34,31 @@ const activePath = Astro.url.pathname;
 
 <style>
   header {
+    background: var(--background);
+    height: var(--header-height);
     position: sticky;
     top: 0;
+    width: 100dvw;
     z-index: 2;
-    background: var(--background);
   }
+
   nav {
-    height: var(--header-height);
-    width: calc(100dvw - 20px);
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
-    gap: 1.25rem;
+    display: flex;
+    gap: var(--md);
+    margin: 0 auto;
+    width: calc(100% - var(--xl));
   }
 
   .link {
-    color: var(--text-main);
-    font-family: var(--cursive-font);
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 0.07rem;
-    padding: 0.5rem 0.25rem 0;
     border-bottom: thick solid;
     border-bottom-color: transparent;
+    color: var(--text-main);
+    font-family: var(--cursive-font);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.07rem;
+    padding: 0 var(--xs);
     text-decoration: none;
     text-shadow: -1px 1px 3px var(--bg-shadow);
     transition:
@@ -73,10 +72,9 @@ const activePath = Astro.url.pathname;
 
   .home {
     font-family: var(--cursive-font);
-    font-size: 3.5rem;
-    width: 7rem;
-    margin-left: 2px;
+    font-size: 2.25rem;
     text-shadow: none;
+    width: 4.5rem;
   }
 
   .projects:hover,
@@ -107,22 +105,5 @@ const activePath = Astro.url.pathname;
 
   .about-active {
     color: var(--pink);
-  }
-
-  @media (max-width: 520px) {
-    nav {
-      gap: 0.5rem;
-      width: 100dvw;
-    }
-
-    .link {
-      font-size: 1.2rem;
-    }
-
-    .home {
-      font-size: 2.5rem;
-      width: 3.5rem;
-      margin-left: 0.25rem;
-    }
   }
 </style>

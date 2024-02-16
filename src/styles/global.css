@@ -8,27 +8,25 @@
  --xl (min-width: 1640px);
 */
 
-/* 348, 61%, 79%
-336, 62%, 79%
-321, 57%, 78%
-297, 47%, 77%
-262, 70%, 82%
-221, 92%, 82%
-204, 86%, 76%
-192, 67%, 74%
-182, 58%, 70%
-169, 63%, 69%
-152, 64%, 71%
-118, 59%, 75% */
-
 /* global variables */
 :root {
   --body-font: "Fira Sans", sans-serif;
   --serif-font: "Overlock", serif;
   --cursive-font: "Birthstone", cursive;
-  --header-height: 4.25rem;
-  --footer-height: 10.25rem;
-  font-size: 18px;
+  --xs: 4px;
+  --sm: 8px;
+  --md: 16px;
+  --lg: 24px;
+  --xl: 32px;
+  --2xl: 40px;
+  --3xl: 48px;
+  --4xl: 56px;
+  --5xl: 64px;
+  --6xl: 72px;
+  --7xl: 80px;
+  font-size: var(--md);
+  --header-height: var(--5xl);
+  /* --footer-height: 10.25rem; */
 }
 
 /* 
@@ -125,9 +123,9 @@ h3,
 h4,
 h5,
 h6 {
+  color: var(--text-main);
   font-family: var(--serif-font);
   font-weight: 700;
-  color: var(--text-main);
   margin: 1rem auto;
 }
 
@@ -135,8 +133,8 @@ p,
 li,
 span,
 a {
-  font-family: var(--body-font);
   color: var(--text-main);
+  font-family: var(--body-font);
 }
 
 body {
@@ -146,8 +144,8 @@ body {
 
 /* styles used on multiple pages */
 .divider {
-  height: 6px;
   background: var(--gradient);
+  height: 6px;
 }
 
 .shadow-under {
@@ -164,16 +162,16 @@ ul {
 }
 
 ul li {
-  text-indent: -4.5%;
   margin-bottom: 0.5rem;
+  text-indent: -4.5%;
 }
 
 ul li::before {
+  color: var(--purple);
   content: "»";
-  margin: 0 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--purple);
+  margin: 0 0.5rem;
 }
 
 ul li:nth-child(2n)::before {
@@ -189,13 +187,13 @@ ul li:nth-child(4n)::before {
 }
 
 .gradient-text {
-  background-color: var(--text-main);
-  background-image: var(--gradient);
-  background-size: 100%;
-  background-repeat: repeat;
-  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: var(--text-main);
+  background-image: var(--gradient);
+  background-repeat: repeat;
+  background-size: 100%;
 }
 
 /* specifics for packages */

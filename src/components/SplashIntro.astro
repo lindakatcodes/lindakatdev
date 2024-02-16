@@ -1,0 +1,38 @@
+---
+import Socials from "@components/Socials.astro";
+import ContactCTA from "./ContactCTA.astro";
+---
+
+<div class="splash-wrapper">
+  <h1 class="title">Linda Thompson</h1>
+  <p class="subtitle gradient-text">
+    Software engineer, career changer, & team builder
+  </p>
+  <div class="social-wrapper">
+    <Socials />
+  </div>
+  <ContactCTA cta="Available to Hire!" color={"green"} />
+</div>
+
+<style>
+  .title {
+    font-family: var(--cursive-font);
+    font-size: 5rem;
+    line-height: 4.5rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-family: var(--serif-font);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 1.5rem auto 0;
+    text-align: center;
+    width: 80%;
+  }
+
+  .social-wrapper {
+    margin: 3rem auto;
+    width: 90%;
+  }
+</style>

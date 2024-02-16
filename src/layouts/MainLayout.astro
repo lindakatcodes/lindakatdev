@@ -1,47 +1,45 @@
 ---
 interface Props {
   metadata: {
+    description: string;
+    imagePath: string;
     title: string;
-    description: string,
-    imagePath: string,
-    url: string,
-  }
+    url: string;
+  };
 }
 
+import Footer from "@components/Footer.astro";
+import HeadMetadata from "@components/HeadMetadata.astro";
+import Header from "@components/Header.astro";
 import "@styles/global.css";
-import CommonHead from "@components/commonHead.astro";
-import NavBar from "@components/navBar.astro";
-import Footer from "@components/footer.astro";
+
 const { metadata } = Astro.props;
 ---
+
 <html lang="en" data-theme="dark">
   <head>
-    <CommonHead metadata={metadata} />
+    <HeadMetadata metadata={metadata} />
   </head>
   <body id="root">
-    <NavBar />
-    <main class="content">
+    <Header />
+    <main id="content">
       <slot />
     </main>
     <Footer />
   </body>
-</html>
-
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .content {
-    flex-grow: 1;
-    min-height: calc(92dvh - var(--header-height) - var(--footer-height));
-    margin: 1.5rem 3rem;
-  }
-
-  @media (max-width: 1024px) {
-    .content {
-      margin: 1.5rem 2rem;
+  
+  <style>
+    body {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100dvh;
     }
-  }
-</style>
+
+    main {
+      margin: 0 auto;
+      max-width: 75rem;
+      padding: 1rem 2rem;
+      width: 100dvw;
+    }
+  </style>
+</html>
