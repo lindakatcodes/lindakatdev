@@ -1,0 +1,66 @@
+---
+import Icon from "astro-icon";
+import ContactCTA from "./ContactCTA.astro";
+import meCutout from "@assets/me-cutout.png";
+import { Image } from "astro:assets";
+---
+
+<div class="intro-wrapper">
+  <div class="arrows">
+    <Icon name="arrow" class="arrow left" />
+    <Icon name="arrow" class="arrow right" />
+  </div>
+  <Image
+    src={meCutout}
+    alt="A woman in an orange jacket, purple shirt, and jeans smiles at the mirror, taking a selfie of herself"
+    loading="eager"
+    class="cutout"
+  />
+  <div class="short-bio">
+    <p>Some stuff about me and why I'm awesome here.</p>
+    <p>We'll have a few little p's most likely.</p>
+    <ul>
+      <li>Maybe a list item</li>
+      <li>Or two as well</li>
+    </ul>
+  </div>
+  <ContactCTA cta="Available to Hire!" color={"green"} />
+</div>
+
+<style>
+  .intro-wrapper {
+    display: grid;
+    justify-items: center;
+  }
+
+  .arrows {
+    width: 80%;
+    margin: 4rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .arrow {
+    width: var(--2xl);
+    height: var(--2xl);
+    fill: var(--text-main);
+  }
+
+  .left {
+    transform: rotate(220deg);
+  }
+
+  .right {
+    transform: rotate(145deg) scaleX(-1);
+  }
+
+  .cutout {
+    margin-top: -0.5rem;
+  }
+
+  .short-bio {
+    margin: 1.5rem auto;
+    width: 80%;
+  }
+</style>

@@ -5,6 +5,8 @@ import SplashIntro from '@components/SplashIntro.astro';
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
+import SalesIntro from '@components/SalesIntro.astro';
+
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
@@ -19,9 +21,9 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     <SplashIntro />
   </section>
 
-  <!-- <section id="intro">
-    <!-- picture of me, w/ short bio, skill highlights, and cta again 
-  </section> -->
+  <section id="intro">
+    <SalesIntro />
+  </section>
 
   <!-- <section id="projects">
     <div class="project-intro">
