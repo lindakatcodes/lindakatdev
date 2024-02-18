@@ -1,17 +1,23 @@
 ---
-import { getCollection } from "astro:content";
-import MainLayout from "@layouts/MainLayout.astro";
 import PostPreviewCard from "@components/PostPreviewCard.astro";
+import PraiseCard from "@components/PraiseCard.astro";
 import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
-import SalesIntro from '@components/SalesIntro.astro';
+import SalesIntro from "@components/SalesIntro.astro";
 import ShowcaseWrapper from "@components/ShowcaseWrapper.astro";
-import SplashIntro from '@components/SplashIntro.astro';
+import SplashIntro from "@components/SplashIntro.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
+import { getCollection } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
 });
+
 const featuredPosts = await getCollection("blog", ({ data }) => {
+  return data.featured === true;
+});
+
+const featuredPraises = await getCollection("praises", ({ data }) => {
   return data.featured === true;
 });
 ---
@@ -26,10 +32,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   </section>
 
   <section id="projects">
-    <ShowcaseWrapper 
-      title="Compositions" 
+    <ShowcaseWrapper
+      title="Compositions"
       description="I used to think I wasn't good at composition, at creating something from nothing. But really I just hadn't found the right medium yet. The web is my playground now, and these are some of my favorite works I've made."
-      ctaText="More of My Work" 
+      ctaText="More of My Work"
       ctaPath="/projects"
     >
       {
@@ -41,22 +47,29 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   </section>
 
   <section id="posts">
-    <ShowcaseWrapper 
-    title="Sharing My Experiences" 
-    description="I want my unique voice to be heard. Through a mix of technical and personal content, I share what I'm learning  and how I'm processing here."
-    ctaText="All My Published Thoughts" 
-    ctaPath="/blog"
-  >
-  {
-    featuredPosts
-      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-      .map((post) => <PostPreviewCard postData={post} />)
-  }
-  </ShowcaseWrapper>
+    <ShowcaseWrapper
+      title="Sharing My Experiences"
+      description="I want my unique voice to be heard. Through a mix of technical and personal content, I share what I'm learning  and how I'm processing here."
+      ctaText="All My Published Thoughts"
+      ctaPath="/blog"
+    >
+      {
+        featuredPosts
+          .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+          .map((post) => <PostPreviewCard postData={post} />)
+      }
+    </ShowcaseWrapper>
   </section>
 
   <section id="boosters">
-    <!-- testimonial cards here  -->
+    <ShowcaseWrapper
+      title="Some Might Say"
+      description="My network is my greatest asset. Here's what some wonderful developers and leaders have said about me."
+      ctaText="More About Who I Am"
+      ctaPath="/about"
+    >
+      {featuredPraises.map((praise) => <PraiseCard praise={praise} />)}
+    </ShowcaseWrapper>
   </section>
 </MainLayout>
 

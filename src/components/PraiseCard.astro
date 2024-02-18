@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  praise: CollectionEntry<"praises">;
+}
+
+const { praise } = Astro.props;
+---
+
+<div class="wrapper">
+  <div class="quote-bg">
+    <p>{praise.quote}</p>
+  </div>
+  <div class="person-wrapper">
+    <Image src={praise.whoSaidIt.photo} />
+    <p class="name">{praise.whoSaidIt.name}</p>
+    <p class="title">{praise.whoSaidIt.title}</p>
+  </div>
+</div>
+
+<style></style>
