@@ -1,13 +1,12 @@
 ---
-import BlogCard from "@components/blogCard.astro";
-import ProjectCard from "@components/projectCard.astro";
-import SplashIntro from '@components/SplashIntro.astro';
-import MainLayout from "@layouts/MainLayout.astro";
-import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
+import MainLayout from "@layouts/MainLayout.astro";
+import PostPreviewCard from "@components/PostPreviewCard.astro";
+import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SalesIntro from '@components/SalesIntro.astro';
 import ShowcaseWrapper from "@components/ShowcaseWrapper.astro";
-
+import SplashIntro from '@components/SplashIntro.astro';
+import { DEFAULT_METADATA } from "@util/constants";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
@@ -36,7 +35,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       {
         featuredProjects
           .sort((a, b) => a.data.order - b.data.order)
-          .map((project) => <ProjectCard project={project} />)
+          .map((project) => <ProjectPreviewCard project={project} />)
       }
     </ShowcaseWrapper>
   </section>
@@ -51,7 +50,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   {
     featuredPosts
       .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-      .map((post) => <BlogCard blogBit={post} />)
+      .map((post) => <PostPreviewCard postData={post} />)
   }
   </ShowcaseWrapper>
   </section>

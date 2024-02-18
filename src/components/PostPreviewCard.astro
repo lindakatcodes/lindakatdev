@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  postData: CollectionEntry<"blog">;
+}
+
+const { postData } = Astro.props;
+
+const dateString = new Date(postData.data.date).toLocaleDateString("en-us", {
+  dateStyle: "long",
+});
+---
+
+<div class="post-wrapper">
+  <a href={`/blog/${postData.slug}`} class="post-link">
+    <time datetime={postData.data.date.toString()} class="post-date">
+      {dateString}
+    </time>
+    <h2 class="post-title">{postData.data.title}</h2>
+    <p class="post-blurb">{postData.data.description}</p>
+  </a>
+</div>
+
+<style>
+  .post-wrapper {
+    border: 3px dashed transparent;
+    border-bottom-color: var(--purple);
+    border-radius: 0;
+    border-top-color: var(--purple);
+    margin-bottom: 3rem;
+    padding: 1rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .post-wrapper:nth-child(2n) {
+    border-bottom-color: var(--blue);
+    border-top-color: var(--blue);
+  }
+
+  .post-wrapper:nth-child(3n) {
+    border-bottom-color: var(--pink);
+    border-top-color: var(--pink);
+  }
+
+  .post-wrapper:nth-child(4n) {
+    border-bottom-color: var(--green);
+    border-top-color: var(--green);
+  }
+
+  .post-wrapper:hover {
+    border-color: var(--purple);
+    border-radius: 7px;
+  }
+
+  .post-wrapper:nth-child(2n):hover {
+    border-color: var(--blue);
+  }
+
+  .post-wrapper:nth-child(3n):hover {
+    border-color: var(--pink);
+  }
+
+  .post-wrapper:nth-child(4n):hover {
+    border-color: var(--green);
+  }
+
+  .post-link {
+    text-decoration: none;
+  }
+
+  .post-title {
+    font-size: 1.75rem;
+    margin: 0.5rem auto;
+  }
+
+  .post-date {
+    color: var(--text-main);
+    display: block;
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    opacity: 0.6;
+  }
+</style>

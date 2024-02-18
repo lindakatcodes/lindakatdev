@@ -1,6 +1,6 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -67,14 +67,15 @@ const { project } = Astro.props;
 
 <style>
   .project-wrapper {
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: none;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-    align-items: center;
-    width: 98%;
     padding: 0.25rem 0.5rem 1rem;
-    border-radius: 8px;
-    box-shadow: none;
+    width: 98%;
+
     transition:
       box-shadow 0.3s,
       border 0.3s;
@@ -85,39 +86,39 @@ const { project } = Astro.props;
   }
 
   .project-image {
-    width: 100%;
-    height: 17dvw;
     display: flex;
+    height: 17dvw;
     justify-content: center;
+    width: 100%;
   }
 
   .project-image img {
-    width: auto;
     height: 100%;
     object-fit: contain;
     object-position: center top;
     overflow: hidden;
+    width: auto;
   }
 
   .project-title {
     color: var(--text-main);
     font-size: 1.4rem;
-    text-align: center;
     margin: 0.75% 0 1.5%;
+    text-align: center;
   }
 
   .project-tech {
-    width: 100%;
-    height: 10%;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    text-transform: uppercase;
     font-family: var(--body-font);
+    font-size: 0.7rem;
     font-weight: 600;
+    height: 10%;
+    justify-content: center;
     letter-spacing: 0.75px;
+    text-transform: uppercase;
+    width: 100%;
   }
 
   .project-tech p {
@@ -138,32 +139,33 @@ const { project } = Astro.props;
   }
 
   .project-description {
-    margin-top: 1%;
-    padding-left: 2%;
     font-size: 0.9rem;
-    width: 100%;
     height: 25%;
     line-height: 1.1rem;
+    margin-top: 1%;
+    padding-left: 2%;
+    width: 100%;
   }
 
   .project-links {
-    width: 100%;
-    margin: 2% 0;
+    align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-end;
+    margin: 2% 0;
+    width: 100%;
   }
 
   .project-links a,
   .case-study {
-    text-decoration: none;
     border-radius: 5px;
-    padding: 1% 2.5%;
-    margin: 3%;
-    font-weight: 700;
     color: var(--text-main);
     font-family: var(--serif-font);
+    font-weight: 700;
+    margin: 3%;
+    padding: 1% 2.5%;
+    text-decoration: none;
+
     transition:
       color 0.2s ease-in-out,
       background 0.2s ease-in-out;
@@ -177,7 +179,6 @@ const { project } = Astro.props;
   .demo {
     border: 2px solid var(--pink);
   }
-
   .demo:hover {
     background: var(--pink);
   }
