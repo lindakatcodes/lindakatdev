@@ -1,11 +1,12 @@
 ---
-// import BlogCard from "@components/blogCard.astro";
-// import ProjectCard from "@components/projectCard.astro";
+import BlogCard from "@components/blogCard.astro";
+import ProjectCard from "@components/projectCard.astro";
 import SplashIntro from '@components/SplashIntro.astro';
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 import SalesIntro from '@components/SalesIntro.astro';
+import ShowcaseWrapper from "@components/ShowcaseWrapper.astro";
 
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
@@ -25,45 +26,39 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     <SalesIntro />
   </section>
 
-  <!-- <section id="projects">
-    <div class="project-intro">
-      <h2 class="section-title">My Favorite Projects</h2>
-    </div>
-    <div class="project-cards">
+  <section id="projects">
+    <ShowcaseWrapper 
+      title="Compositions" 
+      description="I used to think I wasn't good at composition, at creating something from nothing. But really I just hadn't found the right medium yet. The web is my playground now, and these are some of my favorite works I've made."
+      ctaText="More of My Work" 
+      ctaPath="/projects"
+    >
       {
         featuredProjects
           .sort((a, b) => a.data.order - b.data.order)
           .map((project) => <ProjectCard project={project} />)
       }
-    </div>
-    <div class="page-link">
-      <a href="/projects" class="gradient-text"
-        >View more projects</a
-      >
-    </div>
-  </section> -->
+    </ShowcaseWrapper>
+  </section>
 
-  <!-- <section id="posts">
-    <div class="posts-intro">
-      <h2 class="section-title">Highlighted Posts</h2>
-    </div>
-    <div class="post-blurbs">
-      {
-        featuredPosts
-          .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-          .map((post) => <BlogCard blogBit={post} />)
-      }
-    </div>
-    <div class="page-link">
-      <a href="/blog" class="gradient-text"
-        >View more posts</a
-      >
-    </div>
-  </section> -->
+  <section id="posts">
+    <ShowcaseWrapper 
+    title="Sharing My Experiences" 
+    description="I want my unique voice to be heard. Through a mix of technical and personal content, I share what I'm learning  and how I'm processing here."
+    ctaText="All My Published Thoughts" 
+    ctaPath="/blog"
+  >
+  {
+    featuredPosts
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+      .map((post) => <BlogCard blogBit={post} />)
+  }
+  </ShowcaseWrapper>
+  </section>
 
-  <!-- <section id="boosters">
-    <!-- testimonial cards here 
-  </section> -->
+  <section id="boosters">
+    <!-- testimonial cards here  -->
+  </section>
 </MainLayout>
 
 <style>
@@ -71,134 +66,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     margin: 0 auto;
     padding: var(--md);
     width: 100%;
+    border-bottom: 3px solid limegreen;
   }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <style>
-  section {
-    margin: 0 auto 7rem;
-  }
-
-  
-
-  .section-title {
-    font-size: 2.5rem;
-    font-family: var(--serif-font);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .page-link {
-    text-align: center;
-  }
-
-  .page-link a {
-    font-size: 1.1rem;
-    text-decoration: underline solid var(--blue);
-    transition: background 0.3s ease-in-out;
-    background-image: none;
-    background-color: var(--pink);
-  }
-
-  .page-link a:hover {
-    background-image: var(--gradient);
-  }
-
-  
-
-  
-
-  .project-cards {
-    padding: 0.5rem 0.25rem 0.75rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 10px;
-    justify-items: center;
-    width: 75%;
-    margin: 0 auto;
-  }
-
-  #posts {
-    margin-bottom: 0;
-  }
-
-  .post-blurbs {
-    width: 70%;
-    margin: 0.5rem auto;
-  }
-
-  /* Mobile */
-  @media (max-width: 520px) {
-    
-
-    .section-title {
-      font-size: 1.5rem;
-    }
-
-    .page-link {
-      width: 70%;
-      margin: 0 auto;
-    }
-
-    
-
-    .project-cards {
-      grid-template-columns: 1fr;
-      width: 100%;
-    }
-
-    .post-blurbs {
-      width: 100%;
-    }
-  }
-
-  /* Large monitors */
-  @media (min-width: 1280px) {
-    
-
-    .post-blurbs {
-      width: 50%;
-    }
-  }
-</style> -->

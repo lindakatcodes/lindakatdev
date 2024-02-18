@@ -1,0 +1,62 @@
+---
+export interface Props {
+  ctaPath: string;
+  ctaText: string;
+  description: string;
+  title: string;
+}
+
+const { ctaPath, ctaText, description, title } = Astro.props;
+---
+
+<div class="wrapper">
+  <h2 class="title">{title}</h2>
+  <p class="description">{description}</p>
+  <div class="cards-wrapper">
+    <slot />
+  </div>
+  <a href={ctaPath} class="cta gradient-text">{ctaText}</a>
+</div>
+
+<style>
+  .wrapper {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .title {
+    font-family: var(--serif-font);
+    font-size: 1.5rem;
+    margin: 0.5rem auto;
+    text-align: center;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .cards-wrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .cta {
+    background-color: var(--pink);
+    background-image: none;
+    font-size: 1.125rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline solid var(--blue);
+    transition: background 0.3s ease-in-out;
+  }
+
+  .cta:hover {
+    background-image: var(--gradient);
+  }
+</style>
