@@ -71,13 +71,13 @@ const notesCollection = defineCollection({
 
 const praisesCollection = defineCollection({
   type: "data",
-  schema: ({ image }) => {
+  schema: () =>
     z.object({
-      quote: z.string(),
+      quote: z.array(z.string()),
       name: z.string(),
+      srcLink: z.string(),
       featured: z.boolean().default(false),
-    });
-  },
+    }),
 });
 
 export const collections = {

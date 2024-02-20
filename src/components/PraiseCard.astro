@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -7,17 +6,34 @@ interface Props {
 }
 
 const { praise } = Astro.props;
+const praiseData = praise.data;
 ---
 
 <div class="wrapper">
   <div class="quote-bg">
-    <p>{praise.quote}</p>
+    {praiseData.featured ? (
+      <p>{praiseData.quote[0]}</p>
+    ) : (
+      praiseData.quote.map((piece => <p>{piece}</p>))
+    )}
   </div>
-  <div class="person-wrapper">
-    <Image src={praise.whoSaidIt.photo} />
-    <p class="name">{praise.whoSaidIt.name}</p>
-    <p class="title">{praise.whoSaidIt.title}</p>
-  </div>
+    <p class="name">{praiseData.name}</p>
+    <a href={praiseData.srcLink}>Honest it's real</a>
 </div>
 
-<style></style>
+<style>
+  .wrapper {
+    width: 90%;
+    padding: 0.5rem;
+    background: var(--bg-shadow);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .quote-bg {
+    padding: 1rem;
+    text-wrap: balance;
+  }
+</style>
