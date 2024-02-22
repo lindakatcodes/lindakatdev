@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Icon from 'astro-icon';
 
 interface Props {
   praise: CollectionEntry<"praises">;
@@ -10,15 +11,17 @@ const praiseData = praise.data;
 ---
 
 <div class="wrapper">
-  <div class="quote-bg">
+  <p class="decorator quotemark">❝</p>
     {praiseData.featured ? (
-      <p>{praiseData.quote[0]}</p>
+      <p class="quote">{praiseData.quote[0]}</p>
     ) : (
-      praiseData.quote.map((piece => <p>{piece}</p>))
+      praiseData.quote.map((piece => <p class="quote">{piece}</p>))
     )}
-  </div>
-    <p class="name">{praiseData.name}</p>
-    <a href={praiseData.srcLink}>Honest it's real</a>
+    <p class="decorator speaker">{praiseData.name}</p>
+    <a href={praiseData.srcLink}>
+      <p>Honest it's real </p>
+      <Icon name="external-link" class="link-icon" />
+    </a>
 </div>
 
 <style>
@@ -32,8 +35,63 @@ const praiseData = praise.data;
     gap: 0.5rem;
   }
 
-  .quote-bg {
-    padding: 1rem;
-    text-wrap: balance;
+  .decorator {
+    width: 90%;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .decorator::before,
+  .decorator::after {
+    content: "";
+    height: 2px;
+    background: var(--gradient);
+    border-radius: 3px;
+  }
+
+  .quotemark {
+    font-size: 3rem;
+    line-height: 48px;
+  }
+
+  .quotemark::before,
+  .quotemark::after {
+    margin-bottom: 1.25rem;
+  }
+
+  .speaker {
+    margin-top: 1.25rem;
+  }
+
+  .quote {
+    width: 85%;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--blue);
+    text-underline-offset: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  a p {
+    color: var(--blue);
+    font-size: 0.8rem;
+    padding-right: 0.25rem;
+  }
+
+  .link-icon {
+    width: var(--sm);
+    height: var(--sm);
+    color: var(--blue);
   }
 </style>

@@ -12,6 +12,7 @@ const { ctaPath, ctaText, description, title } = Astro.props;
 <div class="wrapper">
   <h2 class="title">{title}</h2>
   <p class="description">{description}</p>
+  <div class="divider"></div>
   <div class="cards-wrapper">
     <slot />
   </div>
@@ -34,16 +35,24 @@ const { ctaPath, ctaText, description, title } = Astro.props;
   }
 
   .description {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     text-align: center;
     text-wrap: balance;
   }
 
+  .divider {
+    width: 35%;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    height: 3px;
+  }
+
   .cards-wrapper {
     display: grid;
-    gap: 1rem;
+    gap: 3rem;
     grid-template-columns: 1fr;
     justify-items: center;
+    margin-bottom: 1rem;
   }
 
   .cta {
