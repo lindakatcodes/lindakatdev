@@ -1,7 +1,7 @@
 ---
-import BlogCard from "@components/blogCard.astro";
-import ProjectCard from "@components/projectCard.astro";
-import Socials from "@components/socials.astro";
+import PostPreviewCard from "@components/PostPreviewCard.astro";
+import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
+import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
@@ -21,7 +21,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       Software engineer, career changer, & team builder
     </p>
     <div class="social-wrapper">
-      <Socials />
+      <SocialsGrid />
     </div>
     <div class="hire-cta">
       <span></span>
@@ -36,7 +36,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       {
         featuredProjects
           .sort((a, b) => a.data.order - b.data.order)
-          .map((project) => <ProjectCard project={project} />)
+          .map((project) => <ProjectPreviewCard project={project} />)
       }
     </div>
     <div class="page-link">
@@ -53,7 +53,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       {
         featuredPosts
           .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-          .map((post) => <BlogCard blogBit={post} />)
+          .map((post) => <PostPreviewCard blogBit={post} />)
       }
     </div>
     <div class="page-link">

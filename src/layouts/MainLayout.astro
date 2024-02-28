@@ -9,21 +9,21 @@ interface Props {
 }
 
 import "@styles/global.css";
-import CommonHead from "@components/commonHead.astro";
-import NavBar from "@components/navBar.astro";
-import Footer from "@components/footer.astro";
+import HeadMetadata from "@components/HeadMetadata.astro";
+import HeaderBar from "@components/HeaderBar.astro";
+import FooterBar from "@components/FooterBar.astro";
 const { metadata } = Astro.props;
 ---
 <html lang="en" data-theme="dark">
   <head>
-    <CommonHead metadata={metadata} />
+    <HeadMetadata metadata={metadata} />
   </head>
   <body id="root">
-    <NavBar />
+    <HeaderBar />
     <main class="content">
       <slot />
     </main>
-    <Footer />
+    <FooterBar />
   </body>
 </html>
 

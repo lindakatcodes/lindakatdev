@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
 
 interface Props {
   blogBit: CollectionEntry<"blog">;
@@ -8,8 +7,8 @@ interface Props {
 
 const { blogBit } = Astro.props;
 
-const dateString = new Date(blogBit.data.date).toLocaleDateString('en-us', {
-  dateStyle: 'long'
+const dateString = new Date(blogBit.data.date).toLocaleDateString("en-us", {
+  dateStyle: "long",
 });
 ---
 
@@ -25,12 +24,12 @@ const dateString = new Date(blogBit.data.date).toLocaleDateString('en-us', {
 
 <style>
   .blog-bit-wrapper {
-    margin-bottom: 3rem;
-    padding: 1rem;
     border: 3px dashed transparent;
     border-bottom-color: var(--purple);
-    border-top-color: var(--purple);
     border-radius: 0;
+    border-top-color: var(--purple);
+    margin-bottom: 3rem;
+    padding: 1rem;
     transition: all 0.2s ease-in-out;
   }
 
@@ -77,9 +76,9 @@ const dateString = new Date(blogBit.data.date).toLocaleDateString('en-us', {
 
   .blog-bit-date {
     color: var(--text-main);
+    display: block;
+    font-family: var(--body-font);
     font-size: 0.9rem;
     opacity: 0.6;
-    font-family: var(--body-font);
-    display: block;
   }
 </style>
