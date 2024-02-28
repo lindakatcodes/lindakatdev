@@ -8,56 +8,62 @@
  --xl (min-width: 1640px);
 */
 
-/* 348, 61%, 79%
-336, 62%, 79%
-321, 57%, 78%
-297, 47%, 77%
-262, 70%, 82%
-221, 92%, 82%
-204, 86%, 76%
-192, 67%, 74%
-182, 58%, 70%
-169, 63%, 69%
-152, 64%, 71%
-118, 59%, 75% */
-
 /* global variables */
 :root {
   --body-font: "Fira Sans", sans-serif;
-  --serif-font: "Overlock", serif;
   --cursive-font: "Birthstone", cursive;
-  --header-height: 4.25rem;
-  --footer-height: 10.25rem;
-  font-size: 18px;
+  --serif-font: "Source Serif 4", serif;
+  --xs: 4px;
+  --sm: 8px;
+  --md: 16px;
+  --lg: 24px;
+  --xl: 32px;
+  --2xl: 40px;
+  --3xl: 48px;
+  --4xl: 56px;
+  --5xl: 64px;
+  --6xl: 72px;
+  --7xl: 80px;
+  font-size: var(--md);
+  --header-height: var(--5xl);
+  /* --footer-height: 10.25rem; */
 }
 
 /* 
+COLOR THEME
+Storing the Hex values since those are easiest to pass around
+
+black: #323334 
+white: #EBEEEF
+
 dark
-purple: D3A9EA 
-blue: 95D9E4
-green: 9DE59A 
-pink: EAA9B6 
+purple: #D3A9EA 
+blue: #96D9E4
+green: #9CE59A 
+pink: #EAA9B6 
+dark shadow: #252627
+light shadow: #BEBFC1
 
 light
-purple: 54077e
-blue: 054e5e
-green: 135809
-pink: 77133c
-
-black: 323334 
-white: ebeeef
+purple: #54077D
+blue: #054C5C
+green: #145809
+pink: #76133D
+dark shadow: #383B3E
+light shadow: #BDC0C1
 */
 
 [data-theme="dark"] {
-  --background: hsla(210, 2%, 20%, 1);
-  --bg-shadow: hsla(210, 2%, 15%, 1);
-  --box-shadow: hsla(210, 2%, 75%, 0.5);
-  --text-main: hsla(195, 10%, 93%, 1);
+  --background: oklch(32.05% 0.002 247.9);
+  --bg-shadow: oklch(26.8% 0.002 247.91);
+  --blue: oklch(84.43% 0.069 208.77);
+  --box-shadow: oklch(80.45% 0.003 264.54 / 0.5);
+  --green: oklch(85.52% 0.126 143.77);
+  --pink: oklch(79.96% 0.078 5.76);
+  --purple: oklch(79.44% 0.1 313.35);
   --text-flip: var(--background);
-  --purple: hsla(279, 61%, 79%, 1);
-  --blue: hsla(188, 59%, 74%, 1);
-  --green: hsla(118, 59%, 75%, 1);
-  --pink: hsla(348, 61%, 79%, 1);
+  --text-main: oklch(94.71% 0.003 219.53);
+
   --gradient: linear-gradient(
     60deg,
     hsl(348deg 61% 79%) 0%,
@@ -84,15 +90,16 @@ white: ebeeef
 }
 
 [data-theme="light"] {
-  --background: hsla(206, 3%, 90%, 1);
-  --bg-shadow: hsla(206, 3%, 75%, 1);
-  --box-shadow: hsla(206, 5%, 23%, 0.5);
-  --text-main: hsla(210, 2%, 20%, 1);
+  --background: oklch(94.71% 0.003 219.53);
+  --bg-shadow: oklch(80.57% 0.004 219.54);
+  --blue: oklch(38.54% 0.068 218.69);
+  --box-shadow: oklch(35.06% 0.007 248.02);
+  --green: oklch(40.32% 0.126 141.35);
+  --pink: oklch(37.75% 0.136 1.28);
+  --purple: oklch(35.09% 0.172 308.25);
   --text-flip: var(--background);
-  --purple: hsla(279, 89%, 26%, 1);
-  --blue: hsla(191, 90%, 19%, 1);
-  --green: hsla(112, 81%, 19%, 1);
-  --pink: hsla(335, 72%, 27%, 1);
+  --text-main: oklch(32.05% 0.002 247.9);
+
   --gradient: linear-gradient(
     60deg,
     hsl(335deg 72% 27%) 0%,
@@ -125,9 +132,9 @@ h3,
 h4,
 h5,
 h6 {
+  color: var(--text-main);
   font-family: var(--serif-font);
   font-weight: 700;
-  color: var(--text-main);
   margin: 1rem auto;
 }
 
@@ -135,8 +142,8 @@ p,
 li,
 span,
 a {
-  font-family: var(--body-font);
   color: var(--text-main);
+  font-family: var(--body-font);
 }
 
 body {
@@ -144,10 +151,10 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* styles used on multiple pages */
+/* global utility styles */
 .divider {
-  height: 6px;
   background: var(--gradient);
+  height: 6px;
 }
 
 .shadow-under {
@@ -164,16 +171,16 @@ ul {
 }
 
 ul li {
-  text-indent: -4.5%;
   margin-bottom: 0.5rem;
+  text-indent: -4.5%;
 }
 
 ul li::before {
+  color: var(--purple);
   content: "»";
-  margin: 0 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--purple);
+  margin: 0 0.5rem;
 }
 
 ul li:nth-child(2n)::before {
@@ -188,23 +195,23 @@ ul li:nth-child(4n)::before {
   color: var(--green);
 }
 
-.gradient-text {
-  background-color: var(--text-main);
-  background-image: var(--gradient);
-  background-size: 100%;
-  background-repeat: repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* specifics for packages */
-[astro-icon] {
-  fill: currentColor;
-}
-
 @media (max-width: 520px) {
   ul {
     padding-left: 0.75rem;
   }
+}
+
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: var(--text-main);
+  background-image: var(--gradient);
+  background-repeat: repeat;
+  background-size: 100%;
+}
+
+/* specifics for packages that need to be globally available */
+[astro-icon] {
+  fill: currentColor;
 }
