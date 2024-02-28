@@ -1,19 +1,21 @@
 ---
+import FooterBar from "@components/FooterBar.astro";
+import HeadMetadata from "@components/HeadMetadata.astro";
+import HeaderBar from "@components/HeaderBar.astro";
+import "@styles/global.css";
+
 interface Props {
   metadata: {
-    title: string;
     description: string,
     imagePath: string,
+    title: string;
     url: string,
   }
 }
 
-import "@styles/global.css";
-import HeadMetadata from "@components/HeadMetadata.astro";
-import HeaderBar from "@components/HeaderBar.astro";
-import FooterBar from "@components/FooterBar.astro";
 const { metadata } = Astro.props;
 ---
+
 <html lang="en" data-theme="dark">
   <head>
     <HeadMetadata metadata={metadata} />
@@ -35,8 +37,8 @@ const { metadata } = Astro.props;
 
   .content {
     flex-grow: 1;
-    min-height: calc(92dvh - var(--header-height) - var(--footer-height));
     margin: 1.5rem 3rem;
+    min-height: calc(92dvh - var(--header-height) - var(--footer-height));
   }
 
   @media (max-width: 1024px) {
