@@ -1,0 +1,31 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
+---
+
+<MainLayout metadata={DEFAULT_METADATA}>
+  <p>This page will exist later, at some other point.</p>
+  <p>
+    In the meantime, you can reach me directly at <span
+      class="email gradient-text"
+    >
+      hello@lindakat.com</span
+    >
+  </p>
+</MainLayout>
+
+<style>
+  .email {
+    background-color: var(--pink);
+    background-image: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: underline solid var(--blue);
+    transition: background 0.3s ease-in-out;
+  }
+
+  .email:hover {
+    background-image: var(--gradient);
+    text-decoration-style: double;
+  }
+</style>

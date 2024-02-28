@@ -8,28 +8,28 @@ type socialLink = {
 };
 const socialLinks: socialLink[] = [
   {
-    iconName: "mastodon",
     displayName: "Mastodon",
+    iconName: "mastodon",
     link: "https://hachyderm.io/@lindakatcodes",
   },
   {
-    iconName: "x-twitter",
     displayName: "X-Twitter",
+    iconName: "x-twitter",
     link: "https://twitter.com/lindakatcodes",
   },
   {
-    iconName: "github",
     displayName: "GitHub",
+    iconName: "github",
     link: "https://github.com/lindakatcodes",
   },
   {
-    iconName: "linkedin",
     displayName: "LinkedIn",
+    iconName: "linkedin",
     link: "https://www.linkedin.com/in/lindakatcodes/",
   },
   {
-    iconName: "file-lines-regular",
     displayName: "Resume",
+    iconName: "file-lines-regular",
     link: "https://drive.google.com/file/d/12GcNF-iFYKQQV7rB1yR0bqRWUFONv8Ds/view?usp=sharing",
   },
 ];
@@ -51,28 +51,28 @@ const socialLinks: socialLink[] = [
 
 <style>
   .socials {
-    display: flex;
-    justify-content: space-evenly;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
   }
 
   .social-link {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     text-decoration-color: transparent;
   }
 
   .social-link svg {
     fill: var(--text-main);
-    height: 36px;
+    height: 32px;
     width: auto;
   }
 
   .social-link p {
     color: var(--text-main);
-    margin-top: 0.125rem;
     font-size: 0.7rem;
+    margin-top: 0.125rem;
   }
 
   .resume:hover {
@@ -130,13 +130,13 @@ const socialLinks: socialLink[] = [
     }
   }
 
-  @media (max-width: 520px) {
+  @media (min-width: 768px) {
     .socials {
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
 
     .social-link svg {
-      height: 32px;
+      height: 36px;
     }
 
     .social-link p {
