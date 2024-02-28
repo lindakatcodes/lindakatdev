@@ -1,6 +1,6 @@
 {
   "name": "Advent of Code",
-  "headerImage": "../../assets/projects/aoc2020.png",
+  "headerImage": "../../assets/projects/aoc-2020.png",
   "headerImageAlt": "A black background with 25 white numbers along the right side, each with two gold stars to the right of them. Ascii art creates a map of bracket markers and land masses with a small red pole with a star centered along the top, a purple sea monster in the ocean, and a hurricane spiral along the bottom right.",
   "description": "Advent of Code is a daily puzzle game that happens every December. Each year, there's problems that deal with common math or algorithm puzzles, and each year's map creates a different picture. The puzzles are always challenging and feel so good to complete! In 2020, I also built a helper terminal command in Rust to create the day's files for me.",
   "tech": ["JS", "Rust"],
