@@ -13,19 +13,29 @@
   --body-font: "Fira Sans", sans-serif;
   --cursive-font: "Birthstone", cursive;
   --serif-font: "Source Serif 4", serif;
-  --xs: 4px;
-  --sm: 8px;
-  --md: 16px;
-  --lg: 24px;
-  --xl: 32px;
-  --2xl: 40px;
-  --3xl: 48px;
-  --4xl: 56px;
-  --5xl: 64px;
-  --6xl: 72px;
-  --7xl: 80px;
-  font-size: var(--md);
-  --header-height: var(--5xl);
+  --s4: 4px;
+  --s8: 8px;
+  --s16: 16px;
+  --s24: 24px;
+  --s32: 32px;
+  --s40: 40px;
+  --s48: 48px;
+  --s56: 56px;
+  --s64: 64px;
+  --s72: 72px;
+  --s80: 80px;
+  --b-sm: 14px;
+  --b-md: 18px;
+  --b-lg: 24px;
+  --b-xl: 28px;
+  --h6: 32px;
+  --h5: 40px;
+  --h4: 48px;
+  --h3: 60px;
+  --h2: 72px;
+  --h1: 92px;
+  --header-height: var(--s64);
+  font-size: var(--b-md);
 }
 
 /* 
@@ -135,6 +145,30 @@ h6 {
   font-family: var(--serif-font);
   font-weight: 700;
   margin: 1rem auto;
+}
+
+h1 {
+  font-size: var(--h1);
+}
+
+h2 {
+  font-size: var(--h2);
+}
+
+h3 {
+  font-size: var(--h3);
+}
+
+h4 {
+  font-size: var(--h4);
+}
+
+h5 {
+  font-size: var(--h5);
+}
+
+h6 {
+  font-size: var(--h6);
 }
 
 p,
