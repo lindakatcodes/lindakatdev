@@ -19,7 +19,7 @@ const otherProjects = await getCollection("projects", ({ data }) => {
     {
       featuredProjects
         .sort((a, b) => a.data.order - b.data.order)
-        .map((project) => <ProjectPreviewCard project={project} />)
+        .map((project) => <ProjectPreviewCard project={project} aboveFold={true} />)
     }
   </div>
   <h3>Other Fun Projects</h3>

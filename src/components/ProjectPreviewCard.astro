@@ -3,15 +3,29 @@ import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
+  aboveFold: boolean;
   project: CollectionEntry<"projects">;
 }
 
-const { project } = Astro.props;
+const { aboveFold = false, project } = Astro.props;
 ---
 
 <article class="project-wrapper">
   <div class="project-image">
-    <Image src={project.data.headerImage} alt={project.data.headerImageAlt} />
+    {
+      aboveFold ? (
+        <Image
+          src={project.data.headerImage}
+          alt={project.data.headerImageAlt}
+          loading="eager"
+        />
+      ) : (
+        <Image
+          src={project.data.headerImage}
+          alt={project.data.headerImageAlt}
+        />
+      )
+    }
   </div>
   <h3 class="project-title">{project.data.name}</h3>
   <div class="project-tech">

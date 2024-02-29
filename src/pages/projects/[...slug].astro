@@ -24,6 +24,7 @@ const { entry } = Astro.props;
       src={entry.data.headerImage}
       alt={entry.data.headerImageAlt}
       class="purpose-image"
+      loading="eager"
     />
     <div class="purpose-text">
       <h3>Purpose: Why This?</h3>
@@ -85,6 +86,7 @@ const { entry } = Astro.props;
       src={entry.data.detailImage1}
       alt={entry.data.detailImage1Alt}
       class="highlight-image"
+      loading="eager"
     />
     <Image
       src={entry.data.detailImage2}
