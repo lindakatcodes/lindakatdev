@@ -31,19 +31,14 @@ const { metadata } = Astro.props;
 
 <style>
   body {
-    display: flex;
-    flex-direction: column;
+    min-height: 100dvh;
+    margin: 0 auto;
   }
-
-  .content {
-    flex-grow: 1;
-    margin: 1.5rem 3rem;
-    min-height: calc(92dvh - var(--header-height) - var(--footer-height));
-  }
-
-  @media (max-width: 1024px) {
-    .content {
-      margin: 1.5rem 2rem;
-    }
+  
+  main {
+    margin: 0 auto;
+    width: 100%;
+    padding: 1rem;
+    max-width: 70rem;
   }
 </style>

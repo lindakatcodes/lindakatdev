@@ -3,8 +3,8 @@ import ThemeToggleSwitch from "./ThemeToggleSwitch.astro";
 const activePath = Astro.url.pathname;
 ---
 
-<header>
-  <nav transition:name="header">
+<header transition:name="header">
+  <nav>
     <a
       class:list={["gradient-text link home", { active: activePath === "/" }]}
       href="/"
@@ -60,7 +60,6 @@ const activePath = Astro.url.pathname;
     padding: 0.5rem 0.25rem 0;
     text-decoration: none;
     text-shadow: -1px 1px 3px var(--bg-shadow);
-
     transition:
       border-bottom-color 0.2s linear,
       color 0.2s linear;

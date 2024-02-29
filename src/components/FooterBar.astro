@@ -2,41 +2,45 @@
 import SocialsGrid from "./SocialsGrid.astro";
 ---
 
-<div transition:name="footer" class="footer-container">
-  <div class="divider shadow-over"></div>
-  <footer>
-    <section class="email-outro">
-      <h2>Hey there!</h2>
+<footer transition:name="footer">
+    <div class="divider shadow-over"></div>
+    <div class="email-outro">
+      <h4>Hey there!</h4>
       <p>Thanks for checking out my site!</p>
       <p>
         Reach out if you'd like to get in touch: <br />
         <span class="email gradient-text"> hello@lindakat.com</span>
       </p>
-    </section>
+    </div>
     <div class="footer-socials">
       <SocialsGrid />
     </div>
     <p class="copyright">© 2020 - 2024 Linda Thompson</p>
   </footer>
-</div>
 
 <style>
-  .footer-container {
-    height: var(--footer-height);
+  footer {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+      "divider divider"
+      "outro socials"
+      "copyright copyright";
   }
 
-  footer {
-    display: grid;
-    grid-template-areas: "email socials";
-    grid-template-columns: 1fr 0.5fr;
-    padding: 0 4rem 0.5rem;
+  .divider {
+    grid-area: divider;
+    width: 100%;
   }
 
   .email-outro {
-    grid-area: email;
+    grid-area: outro;
+    margin-left: var(--lg);
   }
 
-  .email-outro h2 {
+  .email-outro h4 {
     color: var(--blue);
     font-family: var(--cursive-font);
     font-size: 1.75rem;
@@ -63,27 +67,31 @@ import SocialsGrid from "./SocialsGrid.astro";
   }
 
   .footer-socials {
-    display: grid;
     grid-area: socials;
+    margin-right: var(--lg);
   }
 
   .copyright {
     font-size: 0.8rem;
-    grid-column: 1 / 3;
+    grid-area: copyright;
+    margin-bottom: var(--lg);
     text-align: center;
   }
 
   @media (max-width: 520px) {
     footer {
-      grid-template-areas: "email" "socials";
       grid-template-columns: 1fr;
-      padding: 0 2rem 1rem;
+      grid-template-rows: auto 1fr 1fr auto;
+      grid-template-areas: 
+        "divider"
+        "outro"
+        "socials"
+        "copyright";
     }
 
     .email-outro {
       font-size: 0.9rem;
-      margin-bottom: 0.75rem;
-      padding: 0 3rem;
+      margin-left: 0;
       text-align: center;
     }
 
@@ -91,21 +99,17 @@ import SocialsGrid from "./SocialsGrid.astro";
       font-size: 1rem;
     }
 
-    .copyright {
-      padding-top: 0.5rem;
+    .footer-socials {
+      margin: 0 auto;
+      width: 85%;
     }
   }
 
   @media (min-width: 520px) and (max-width: 1024px) {
     footer {
       grid-template-columns: 0.75fr 1fr;
-      padding: 0 2rem 1rem;
     }
-
-    .email-outro {
-      padding: 0 0.5rem;
-    }
-  }
+  } 
 </style>
 
 <script>
