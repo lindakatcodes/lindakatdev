@@ -47,7 +47,7 @@ const activePath = Astro.url.pathname;
     height: var(--header-height);
     justify-content: flex-end;
     margin-bottom: var(--s8);
-    width: calc(100dvw - 20px);
+    width: calc(100dvw - var(--s24));
   }
 
   .link {
@@ -111,7 +111,6 @@ const activePath = Astro.url.pathname;
   @media (max-width: 520px) {
     nav {
       gap: 0.5rem;
-      width: 100dvw;
     }
 
     .link {

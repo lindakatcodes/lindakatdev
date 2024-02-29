@@ -4,6 +4,7 @@ const postType = Astro.url.pathname.includes("/blog") ? "blog" : "notes";
 const backLink = `/${postType}`;
 ---
 
+<section>
 <a href={backLink} class:list={["back-link", "gradient-text"]}>
   ← Back to the {postType} list</a
 >
@@ -24,9 +25,9 @@ const backLink = `/${postType}`;
     <!-- tags needs links to tagged posts logic -->
     <div class="tags">
       <p>This post covers these topics:</p>
-      <ul>
+      <span>
         {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
-      </ul>
+      </span>
     </div>
   </div>
 </div>
@@ -36,74 +37,15 @@ const backLink = `/${postType}`;
 <a href={backLink} class:list={["back-link", "gradient-text"]}>
   ← Back to the {postType} list</a
 >
+</section>
 
 <style is:global>
-  .back-link {
-    background-color: var(--pink);
-    background-image: none;
-    color: var(--text-main);
-    font-family: var(--body-font);
-    font-size: 1.25rem;
-    font-weight: bolder;
-    text-decoration: none;
-  }
-
-  .back-link:hover {
-    background-image: var(--gradient);
-  }
-
-  .fm-wrapper {
-    margin: 0 auto 4rem;
-  }
-
-  .post-title {
-    font-size: var(--h0);
-    margin: 1.25rem auto 0.5rem;
-    text-align: center;
-  }
-
-  .post-data {
-    align-items: center;
-    display: grid;
-    grid-auto-rows: 0.6fr;
-    justify-items: center;
-    margin: 0 auto;
-    row-gap: 0.5rem;
-    width: 60%;
-  }
-
-  @media (max-width: 520px) {
-    .post-data {
-      width: 100%;
-    }
-  }
-
-  .tags {
-    text-align: center;
-    width: 100%;
-  }
-
-  .tags ul {
-    display: flex;
-    justify-content: center;
-    margin: 0.5rem auto;
-    padding-left: 0;
-    width: 70%;
-  }
-
-  .tag-name {
-    background-color: var(--bg-shadow);
-    border-radius: 3px;
-    margin: 0 0.75rem;
-    padding: 0.375rem;
-  }
-
+  /* markdown styles */
   .post-content {
     margin: 0 auto;
     max-width: 60rem;
   }
 
-  /* markdown styles */
   .post-content p {
     font-size: 1.1rem;
     line-height: 160%;
@@ -186,5 +128,69 @@ const backLink = `/${postType}`;
 
   .post-content ul li {
     text-indent: -3%;
+  }
+</style>
+
+<style>
+  /* layout styles */
+  .back-link {
+    background-color: var(--pink);
+    background-image: none;
+    color: var(--text-main);
+    font-family: var(--body-font);
+    font-size: 1.25rem;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    background-image: var(--gradient);
+  }
+
+  .fm-wrapper {
+    margin: 0 auto 4rem;
+  }
+
+  .post-title {
+    font-size: var(--h0);
+    margin: 1.25rem auto 0.5rem;
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  .post-data {
+    align-items: center;
+    display: grid;
+    grid-auto-rows: 0.6fr;
+    justify-items: center;
+    margin: 0 auto;
+    row-gap: 0.5rem;
+    width: 60%;
+  }
+
+  @media (max-width: 520px) {
+    .post-data {
+      width: 100%;
+    }
+  }
+
+  .tags {
+    text-align: center;
+    width: 100%;
+  }
+
+  .tags span {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem auto;
+    padding-left: 0;
+    width: 70%;
+  }
+
+  .tag-name {
+    background-color: var(--bg-shadow);
+    border-radius: 3px;
+    margin: 0 0.75rem;
+    padding: 0.375rem;
   }
 </style>

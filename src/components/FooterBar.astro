@@ -5,7 +5,7 @@ import SocialsGrid from "./SocialsGrid.astro";
 <footer transition:name="footer">
     <div class="divider shadow-over"></div>
     <div class="email-outro">
-      <h4>Hey there!</h4>
+      <p class="hey">Hey there!</p>
       <p>Thanks for checking out my site!</p>
       <p>
         Reach out if you'd like to get in touch: <br />
@@ -40,10 +40,10 @@ import SocialsGrid from "./SocialsGrid.astro";
     margin-left: var(--s24);
   }
 
-  .email-outro h4 {
+  .email-outro .hey {
     color: var(--blue);
     font-family: var(--cursive-font);
-    font-size: 1.75rem;
+    font-size: var(--h5);
     margin-bottom: initial;
   }
 
