@@ -63,7 +63,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
 <style>
   section {
-    margin: 0 auto 7rem;
+    padding: var(--s16) 0 calc(var(--s80) * 1.75);
   }
 
   .title {
@@ -82,8 +82,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   .section-title {
-    font-family: var(--serif-font);
-    font-size: 2.5rem;
+    font-family: var(--cursive-font);
     margin-bottom: 2rem;
     text-align: center;
   }
@@ -147,7 +146,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   #posts {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 
   .post-blurbs {

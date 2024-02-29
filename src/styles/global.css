@@ -27,13 +27,13 @@
   --b-sm: 14px;
   --b-md: 18px;
   --b-lg: 24px;
-  --b-xl: 28px;
-  --h6: 32px;
-  --h5: 40px;
-  --h4: 48px;
-  --h3: 60px;
-  --h2: 72px;
-  --h1: 92px;
+  --h6: 28px;
+  --h5: 32px;
+  --h4: 40px;
+  --h3: 48px;
+  --h2: 56px;
+  --h1: 68px;
+  --h0: 80px;
   --header-height: var(--s64);
   font-size: var(--b-md);
 }
