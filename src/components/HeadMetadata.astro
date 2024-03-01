@@ -6,23 +6,43 @@ const { metadata } = Astro.props;
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<meta name="generator" content={Astro.generator} />
+
 <meta property="og:image" content={metadata.imagePath} />
 <meta property="og:title" content={metadata.title} />
 <meta property="og:type" content="article" />
 <meta property="og:description" content={metadata.description} />
 <meta property="og:url" content={metadata.url} />
 <meta name="twitter:card" content="summary" />
-<title>{metadata.title}</title>
-<meta name="description" content={metadata.description} />
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+<meta name="description" content={metadata.description} />
+<meta name="generator" content={Astro.generator} />
+<title>{metadata.title}</title>
+
+<!--
+  Found from CSS Wizardry: https://csswizardry.com/2020/05/the-fastest-google-fonts/
+  1. Preemptively warm up the fonts’ origin.
+  2. Initiate a high-priority, asynchronous fetch for the CSS file. Works in most modern browsers.
+  3. Initiate a low-priority, asynchronous fetch that gets applied to the page only after it’s arrived. Works in all browsers with JavaScript enabled.
+  4. In the unlikely event that a visitor has intentionally disabled JavaScript, fall back to the original method. The good news is that, although this is a render-blocking request, it can still make use of the preconnect which makes it marginally faster than the default.
+  -->
+<!-- [1] -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- [2] -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" />
+<!-- [3] -->
 <link
-  href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Birthstone&display=swap"
   rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+  media="print"
+  onload="this.media='all'"
 />
+<!-- [4] -->
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" />
+</noscript>
+
 <link href="/prism-theme.css" rel="stylesheet" />
 
 <ViewTransitions />
