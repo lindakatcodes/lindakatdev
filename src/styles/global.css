@@ -10,9 +10,9 @@
 
 /* global variables */
 :root {
-  --body-font: "Fira Sans", sans-serif;
-  --cursive-font: "Birthstone", cursive;
-  --serif-font: "Source Serif 4", serif;
+  --body-font: "Fira Sans", system-ui, sans-serif;
+  --cursive-font: "Birthstone", script-fallback, script-fallback-sans, "Brush Script MT", system-ui, sans-serif;
+  --serif-font: "Source Serif 4", system-ui, serif;
   --s4: 4px;
   --s8: 8px;
   --s16: 16px;
@@ -37,6 +37,22 @@
   --header-height: var(--s64);
   font-size: var(--b-md);
 }
+
+@font-face {
+  font-family: script-fallback;
+  src: local("Brush Script MT");
+  ascent-override: 95%;
+  descent-override: 41%;
+  line-gap-override: 0;
+};
+
+@font-face {
+  font-family: script-fallback-sans;
+  src: local("Arial");
+  ascent-override: 95%;
+  descent-override: 41%;
+  line-gap-override: 0;
+};
 
 /* 
 COLOR THEME
