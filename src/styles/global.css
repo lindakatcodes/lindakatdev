@@ -1,6 +1,5 @@
 @import "reset.css";
 
-
 /* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
  --xs (min-width: 520px);
  --sm (min-width: 768px);

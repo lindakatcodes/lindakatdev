@@ -79,7 +79,7 @@ Functions are defined (when you create & define what it does) and called (when y
 
 ```js
 function calculateBill() {
-  console.log('Running Calculate Bill!!');
+  console.log("Running Calculate Bill!!");
   const total = 100 * 1.13;
   return total;
 }
@@ -108,8 +108,8 @@ Can pass values into function as direct values, variable names, or expressions -
 Can also set default values for params, so if you call the function without the argument it has a fallback value.
 
 ```js
-function yell(name = 'Silly Goose') {
-  console.log(`HEY ${name.toUpperCase()}`)
+function yell(name = "Silly Goose") {
+  console.log(`HEY ${name.toUpperCase()}`);
 }
 
 yell();
@@ -119,7 +119,7 @@ Functions only fallback to the default if it's undefined - so if you want to pas
 
 ```js
 function calculateBill(billAmount, taxRate = 0.13, tipRate = 0.15) {
-  console.log('Running Calculate Bill!!');
+  console.log("Running Calculate Bill!!");
   const total = billAmount + billAmount * taxRate + billAmount * tipRate;
   return total;
 }
@@ -266,32 +266,32 @@ Can scope functions inside functions as well - inner function will only be avail
 
 #### Scope Lookup
 
-JS is a lexically / statically scoped language. This means variable/scope lookup happens where the function is *defined*, not where it's run.
+JS is a lexically / statically scoped language. This means variable/scope lookup happens where the function is _defined_, not where it's run.
 
 ```js
 // globally defined dog version
-  const dog = 'Snickers';
+const dog = "Snickers";
 
-  function logDog() {
-    // since this is defined here without a dog variable, it will look up to the global scope, and log Snickers.
-    console.log(dog);
-  }
+function logDog() {
+  // since this is defined here without a dog variable, it will look up to the global scope, and log Snickers.
+  console.log(dog);
+}
 
-  function go() {
-    // function scoped dog version
-    const dog = 'Sunny';
-    // here's where we actually call the logDog function - but it won't look at the dog variable here!
-    logDog();
-  }
+function go() {
+  // function scoped dog version
+  const dog = "Sunny";
+  // here's where we actually call the logDog function - but it won't look at the dog variable here!
+  logDog();
+}
 
-  go();
+go();
 ```
 
 > Try not to create global variables - often leads to confusion or weirdness, can accidentally cause issues. When working with modules, becomes very difficult to do unless you create one specifically on the window object.
 
 ### Hoisting
 
-Accessing functions and variables *before* they've been created. This is possible because of how JS works! It takes all declarations of functions and variables and puts them at the top of the file, so technically you can call them before they've actually been declared.
+Accessing functions and variables _before_ they've been created. This is possible because of how JS works! It takes all declarations of functions and variables and puts them at the top of the file, so technically you can call them before they've actually been declared.
 
 One use case for this: Can arrange your files to have calls first, showing what the file does; then declarations after, showing how the file does it. Not super common, but it is possible.
 
@@ -302,21 +302,21 @@ For variables, it will hoist the variable declaration, but not the value! So you
 The ability to access a parent level scope from a child scope, even after the parent has been terminated.
 
 ```js
-function createGreeting(greeting = '') {
+function createGreeting(greeting = "") {
   // say we have a variable here, in our parent scope
   const myGreet = greeting.toUpperCase();
   // then we're returning this inner function, which uses the variable from it's parent scope
   return function (name) {
     return `${myGreet} ${name}`;
-  }
+  };
 }
 
 // we could then assign this function to a few different variables with different arguments passed to it. It will run the whole function, which should clear up all the variables once it's done.
-const sayHello = createGreeting('hello');
-const sayHey = createGreeting('hey');
+const sayHello = createGreeting("hello");
+const sayHey = createGreeting("hey");
 // but we can then use the new variables, and still access that variables inside the function. It's called a closure because even though the function run is closed, we can still access the variables inside.
-console.log(sayHello('wes'));
-console.log(sayHey('wes'));
+console.log(sayHello("wes"));
+console.log(sayHey("wes"));
 ```
 
 It's a little bit weird wording, but basically it's a way JS allows us to save & use variables from outer scopes, if function calls are nested inside each other. So the scope is preserved for when we need it.
@@ -324,17 +324,17 @@ It's a little bit weird wording, but basically it's a way JS allows us to save &
 Can also be used to create "private variables" - so can keep multiple, updating instances of a similar variable.
 
 ```js
- function createGame(gameName) {
-   let score = 0;
-   return function win() {
-     score++;
-     return `Your ${gameName} score is ${score}`;
-   }
- }
+function createGame(gameName) {
+  let score = 0;
+  return function win() {
+    score++;
+    return `Your ${gameName} score is ${score}`;
+  };
+}
 
 // because of closure, when we run these functions it will keep a separate, updated score for each one. Since we stored two instances of our createGame function, each one counts as it's own version, and will stay updated.
- const hockeyGame = createGame('Hockey');
- const soccerGame = createGame('Soccer');
+const hockeyGame = createGame("Hockey");
+const soccerGame = createGame("Soccer");
 ```
 
 ## The DOM
@@ -358,8 +358,8 @@ Can see all the properties of an element using `console.dir`, if needed.
 `insertAdjacentText` (also element & HTML) - takes position and element/text provided and adds to the indicated position. Positions `beforebegin` and `afterend` will go outside the target element; `afterbegin` and `beforeend` will go inside the target element.
 
 ```js
-const pizzaList = document.querySelector('.pizza');
-pizzaList.insertAdjacentText('beforeend', '🍕');
+const pizzaList = document.querySelector(".pizza");
+pizzaList.insertAdjacentText("beforeend", "🍕");
 ```
 
 ### Working with Classes
@@ -367,16 +367,16 @@ pizzaList.insertAdjacentText('beforeend', '🍕');
 `className` will give the name of any classes attached to element - however, often you can use `classList` instead and get a few methods as well.
 
 ```js
-const pic = document.querySelector('img');
+const pic = document.querySelector("img");
 
 // add will add a class to the list
-pic.classList.add('open');
+pic.classList.add("open");
 // remove takes a class off the list
-pic.classList.remove('cool');
+pic.classList.remove("cool");
 // toggle will add or remove the class, depending on if it's already in the list or not
-pic.classList.toggle('change');
+pic.classList.toggle("change");
 // contains returns a true/false value to check if the name is in the list
-pic.classList.contains('round');
+pic.classList.contains("round");
 ```
 
 ### Data Attributes
@@ -386,11 +386,11 @@ Can make custom attributes using the `data-` tag! Better way to add your own att
 To access those attributes, call `.dataset` - will return an object with whatever data properties you've created.
 
 ```js
-const custom = document.querySelector('.custom');
+const custom = document.querySelector(".custom");
 // if you want the specific property you made, use dot notation
-custom.addEventListener('click', () => {
-  alert(`Welcome ${custom.dataset.name}!`)
-})
+custom.addEventListener("click", () => {
+  alert(`Welcome ${custom.dataset.name}!`);
+});
 ```
 
 ### Creating HTML
@@ -415,13 +415,13 @@ If you pass true, it will go "deep" and add in any children already set up as we
 If you've got a long list of items to add, you can use strings with valid HTML to add everything directly.
 
 ```js
-const item = document.querySelector('.item');
+const item = document.querySelector(".item");
 
 item.innerHTML = `
 <div>
   <h1>Hey How are ya?</h1>
 </div>
-`
+`;
 ```
 
 If using backticks, will work basically like templating in any other language! So can add variables and such into the strings.
@@ -476,8 +476,8 @@ Will still have access to item if created in JS as it stays in memory - will be 
 Go get something, listen for something, do something - essentially how an event listener works ;)
 
 ```js
-button.addEventListener('click', function() {
-  console.log('Callback!');
+button.addEventListener("click", function () {
+  console.log("Callback!");
 });
 ```
 
@@ -488,15 +488,15 @@ Can also use `.removeEventListener`! Pass in event you want to stop listening fo
 To listen on multiple items:
 
 ```js
-const buyButtons = document.querySelectorAll('button.buy');
+const buyButtons = document.querySelectorAll("button.buy");
 
 function buyItem() {
-  console.log('Buying item');
+  console.log("Buying item");
 }
 
-buyButtons.forEach(function(buyButton) {
-  buyButton.addEventListener('click', buyItem);
-})
+buyButtons.forEach(function (buyButton) {
+  buyButton.addEventListener("click", buyItem);
+});
 ```
 
 ### Targets, Bubbling, Propagation, Capture
@@ -516,14 +516,15 @@ Can also trigger event listeners to work going down first, instead of up. This c
 So we can have a listener on the window, and pass in `capture` to the listener to have it trigger before our button triggers, and can even use `.stopPropagation()` to stop the button trigger from even happening.
 
 ```js
-  window.addEventListener(
-    'click',
-    function(event) {
-      console.log('Window click detected');
-      // can add the below line to prevent further events from firing
-      // event.stopPropagation();
-    },
-    { capture: true });
+window.addEventListener(
+  "click",
+  function (event) {
+    console.log("Window click detected");
+    // can add the below line to prevent further events from firing
+    // event.stopPropagation();
+  },
+  { capture: true },
+);
 ```
 
 ### Prevent Default and Form Events
@@ -531,15 +532,17 @@ So we can have a listener on the window, and pass in `capture` to the listener t
 `event.preventDefault()` will stop items that have default actions from performing their default actions.
 
 ```js
-  const link = document.querySelector('.link');
+const link = document.querySelector(".link");
 
-  link.addEventListener('click', function(e) {
-    // Bonus! confirm gives a popup with a ok & cancel button
-    const shouldChangePage = confirm('Do you wish to navigate away from this page?');
-    if (!shouldChangePage) {
-      e.preventDefault();
-    }
-  });
+link.addEventListener("click", function (e) {
+  // Bonus! confirm gives a popup with a ok & cancel button
+  const shouldChangePage = confirm(
+    "Do you wish to navigate away from this page?",
+  );
+  if (!shouldChangePage) {
+    e.preventDefault();
+  }
+});
 ```
 
 Another common default happens on forms - `submit`.
@@ -547,7 +550,7 @@ Another common default happens on forms - `submit`.
 Can grab the form by the name attribute - anytime we want to find an item by it's name in our HTML, can do that like this:
 
 ```js
-const signupForm = document.querySelector('[name="signup"]')
+const signupForm = document.querySelector('[name="signup"]');
 ```
 
 Inside our callback handler, can access form values either directly from `currentTarget` or like above w/ a query selector.
@@ -588,7 +591,7 @@ Building an Etch-a-Sketch in the browser! A few random notes:
 
 ```js
 const button = event.currentTarget;
-const card = button.closest('.card');
+const card = button.closest(".card");
 ```
 
 ### Scroll Events and Intersection Observer
@@ -619,7 +622,7 @@ ob.observe(terms.lastElementChild);
 - In most cases, if a property is listed with a - in HTML, you can use it in JS with camelCase. However, for aria and custom properties, you'll want to use `setAttribute` to have the property update.
 
 ```js
-tab.setAttribute('aria-selected', false);
+tab.setAttribute("aria-selected", false);
 ```
 
 - When possible, you can style things by aria-labels and properties - so instead of having to keep track of classes and labels, you can simply have the accessible labels/properties. Less to update or code!
@@ -628,7 +631,7 @@ tab.setAttribute('aria-selected', false);
 
 ### BEDMAS
 
- Order of operations!
+Order of operations!
 
 - **B**rackets (also Parenthesis)
 - **E**xponents
@@ -645,7 +648,7 @@ tab.setAttribute('aria-selected', false);
 
 ```js
 function slugify(sentence, lowercase) {
-  let slug = sentence.replace(/\s/g, '-');
+  let slug = sentence.replace(/\s/g, "-");
   if (lowercase) {
     return slug.toLowerCase();
   }
@@ -687,7 +690,7 @@ const name = "wes";
 
 ```js
 const count = 2;
-const word = count === 1 ? 'item' : 'items';
+const word = count === 1 ? "item" : "items";
 
 function showAdminBar() {
   const isAdmin = true;
@@ -704,14 +707,14 @@ function showAdminBar() {
 
 ```js
 switch (event.key) {
-  case 'ArrowUp':
+  case "ArrowUp":
     y = y - 1;
     break;
-  case 'ArrowDown':
+  case "ArrowDown":
     y = y + 1;
     break;
   default:
-    console.log('Not a valid move');
+    console.log("Not a valid move");
     break;
 }
 ```
@@ -719,8 +722,8 @@ switch (event.key) {
 Also - if you need to set a CSS variable in your JS, can use `setAttribute` to access it.
 
 ```js
-const turtle = document.querySelector('.');
-turtle.setAttribute('style', `--x: ${x * speed}px;`)
+const turtle = document.querySelector(".");
+turtle.setAttribute("style", `--x: ${x * speed}px;`);
 ```
 
 ### Intervals and Timers
@@ -728,7 +731,7 @@ turtle.setAttribute('style', `--x: ${x * speed}px;`)
 To run code once after a certain set of time, you'll use a timer - to run it multiple times after a certain set of time, you'll want an interval.
 
 ```js
-setTimeout(function() {
+setTimeout(function () {
   // do some code here - this is your callback function, then you'll pass the time to run it after
 }, 500);
 
@@ -749,10 +752,10 @@ setImmediateInterval(buzzer, 2000);
 // If we save the reference to the timer, we can then clear it to stop it from running - works with timers and intervals
 const bombTimer = setTimeout(destroy, 5000);
 
-window.addEventListener('click', () => {
-  console.log('You saved the world');
+window.addEventListener("click", () => {
+  console.log("You saved the world");
   clearTimeout(bombTimer); // for intervals - clearInterval(IntToClear);
-})
+});
 ```
 
 ## Data Types
@@ -764,11 +767,11 @@ Groups of properties/keys and values. Most used where the order of the propertie
 ```js
 const age = 100;
 const person = {
-  name: 'wes',
+  name: "wes",
   // if you have a variable and key with the same name, can just pass the name
   age,
   // can use dashes or spaces if needed, wrap in quotes
-  'really-cool': true,
+  "really-cool": true,
   // nested properties
   clothing: {
     shirts: 10,
@@ -776,16 +779,16 @@ const person = {
   },
   // if you have a function in an object, it's called a method - the this keyword will be bound to the object
   // can also use shorthand of sayHello(greeting = 'Hey') {}
-  sayHello: function(greeting = 'Hey') {
+  sayHello: function (greeting = "Hey") {
     return `${greeting} ${this.name}`;
-  }
+  },
 };
 // can also add properties after creation
-person.job = 'web developer';
+person.job = "web developer";
 // and can update properties
 person.age = 50;
 // another way to access properties - can use strings stored in variables, or for property names with dashes or spaces
-person['really-cool'];
+person["really-cool"];
 // to remove a property
 delete person.job;
 // to clear a variable, can set to undefined or null
@@ -795,17 +798,17 @@ Even though our object is declared with a `const`, you can update the properties
 
 ### Object References vs Values
 
-With variables, if you set one value equal to another, it will copy that value into the new variable. If you update the original value, the copy will *not* update.
+With variables, if you set one value equal to another, it will copy that value into the new variable. If you update the original value, the copy will _not_ update.
 
 ```js
-let name1 = 'wes';
-let name2 = 'scott';
+let name1 = "wes";
+let name2 = "scott";
 
 // if we set name1 to be equal to what's in name2
 name1 = name2;
 // the value in name1 is now the string 'scott' - it copies the value stored in name2 and sets it to be set in name1
 // if we then change the value in name2
-name2 = 'westopher';
+name2 = "westopher";
 // name1 still equals 'scott', while name2 is now 'westopher'
 ```
 
@@ -814,17 +817,17 @@ However, if we're comparing objects, they're checked by reference - so if you ha
 ```js
 // so if we make an object
 const person1 = {
-  first: 'wes',
-  last: 'bos',
-}
+  first: "wes",
+  last: "bos",
+};
 // then set a new variable to be pointing to person1 - it will be a reference; it won't copy the values into the new variable, it points to the original
 const person2 = person1;
 // however now, if we update a value in person2 - it will ALSO update the value in person1, since they're both pointing to the same object
-person2.first = 'Larry';
+person2.first = "Larry";
 // now both person2.first and person1.first are both set to 'Larry'
 ```
 
-If we want to make a copy of an object (a new version, not a reference to the original), we can use the `spread` operator. It will take an object and *spread* the values into a new object.
+If we want to make a copy of an object (a new version, not a reference to the original), we can use the `spread` operator. It will take an object and _spread_ the values into a new object.
 
 ```js
 const person3 = { ...person1 };
@@ -852,33 +855,33 @@ Maps are similar to objects, but will have a few differences.
 
 ```js
 const person1 = {
-  name: 'wes',
+  name: "wes",
   age: 200,
 };
 
 const myMap = new Map();
 // Map has a few nice syntax things
 // to add entires to our map, use .set()
-myMap.set('name', 'wes');
+myMap.set("name", "wes");
 // one nice thing is we can use any value for our keys, like numbers or objects
-myMap.set(100, 'this is a number');
-myMap.set(person1, 'Cool person');
+myMap.set(100, "this is a number");
+myMap.set(person1, "Cool person");
 // we can use .get() to grab the value stored in our entries
 myMap.get(person1); // will return the value 'cool person'
 // to delete an entry, use .delete()
-myMap.delete('name');
+myMap.delete("name");
 // if you need to know if a key exists in a map, use .has()
 myMap.has(100); // will return a boolean
 ```
 
 You can use dot notation to add a property, but it will be a property on the map, not an entry.
 
-In maps, order is *guaranteed* - the order we put them in will be the order they stay in. Can also use `myMap.size` similar to length, if we need to know how many entries there are.
+In maps, order is _guaranteed_ - the order we put them in will be the order they stay in. Can also use `myMap.size` similar to length, if we need to know how many entries there are.
 
 Use a map if order is important. However there is no literal - we always need to use the `new` keyword to make a map. If you know what data to pass, you can pass in arrays to set the values.
 
 ```js
-new Map(['name', 'wes'], ['age', 49]);
+new Map(["name", "wes"], ["age", 49]);
 ```
 
 Cannot put functions/methods in maps. Maps also don't currently handle JSON, so can't convert your maps with `json.stringify` - will need to convert it to an object first.
@@ -888,25 +891,21 @@ Cannot put functions/methods in maps. Maps also don't currently handle JSON, so 
 Holds a list of items where the position matters. Arrays have no keys - they use indexes instead. It has the `typeof` object.
 
 ```js
-const names = ['wes', 'kait', 'snickers'];
+const names = ["wes", "kait", "snickers"];
 
 // we use the index of an item (0 based) in square brackets to access it
 console.log(names[0]);
 
 // add items to END of the array
-names.push('lux');
+names.push("lux");
 
 // add to FRONT of the array
-names.unshift('poppy');
+names.unshift("poppy");
 
 // can use spread method if you want to add in the middle
 // if you want to go to the end, can simply only provide a starting index to slice
-const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
-const newBikes = [
-  ...bikes.slice(0, 2),
-  'benotto',
-  ...bikes.slice(2),
-];
+const bikes = ["bianchi", "miele", "panasonic", "miyata"];
+const newBikes = [...bikes.slice(0, 2), "benotto", ...bikes.slice(2)];
 ```
 
 `Mutable` methods perform mutations - they change the original version. `Immutable` return a new version that's changed, leaving the original as is.
@@ -927,19 +926,19 @@ const splice = numbers.splice(1, 2); // will remove 3, 4 from original array
 ```js
 // find and delete example
 const comments = [
-  { text: 'Cool Beans', id: 123 },
-  { text: 'Love this', id: 133 },
-  { text: 'Neato', id: 233 },
-  { text: 'Good bikes', id: 333 },
-  { text: 'So good', id: 433 },
+  { text: "Cool Beans", id: 123 },
+  { text: "Love this", id: 133 },
+  { text: "Neato", id: 233 },
+  { text: "Good bikes", id: 333 },
+  { text: "So good", id: 433 },
 ];
 
 function deleteComments(id, comments) {
   // find the index where our comment to remove is - since comment is an object, will use dot notation on the id field
-  const commentIndex = comments.findIndex(comment => comment.id === id);
+  const commentIndex = comments.findIndex((comment) => comment.id === id);
   return [
     ...comments.slice(0, commentIndex),
-    ...comments.slice(commentIndex + 1)
+    ...comments.slice(commentIndex + 1),
   ];
 }
 ```
@@ -951,9 +950,9 @@ Static methods are sort of like utilities - they're used with the keyword `Array
 ```js
 // can use .of to create a new array from the values provided
 // if an item has a length, can also spread it into an array
-Array.of('wes', 'kait');
+Array.of("wes", "kait");
 // ['wes', 'kait']
-Array.of(...'wes');
+Array.of(..."wes");
 // ['w', 'e', 's']
 
 // can use .for to make an array of a certain length, with a value passed in if desired
@@ -964,7 +963,7 @@ function createRange(start, end) {
     return index + start;
   });
   return range;
-};
+}
 
 // use .isArray to see if it is an array
 Array.isArray(myRange);
@@ -1001,21 +1000,33 @@ Instance methods work directly on your specific array (also called prototype met
 
 ```js
 // make a string from your array with .join
-const buns = ['egg', 'wonder', 'brioche'];
-buns.join(' or '); // 'egg or wonder or brioche'
+const buns = ["egg", "wonder", "brioche"];
+buns.join(" or "); // 'egg or wonder or brioche'
 
 // string method, can turn a string into an array with .split
-const foodString = 'hot dogs, hamburgers, sausages, corn';
-foodString.split(','); // ['hot dogs', 'hamburgers', 'sausages', 'corn']
+const foodString = "hot dogs, hamburgers, sausages, corn";
+foodString.split(","); // ['hot dogs', 'hamburgers', 'sausages', 'corn']
 
 // adding and removing items
-const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+const toppings = [
+  "Mushrooms ",
+  "Tomatoes",
+  "Eggs",
+  "Chili",
+  "Lettuce",
+  "Avocado",
+  "Chiles",
+  "Bacon",
+  "Pickles",
+  "Onions",
+  "Cheese",
+];
 
 // .pop and .shift will return the item you removed
 // .push and .unshift will return the new length of the array
 
 // take last item off array
-const lastItem  = toppings.pop();
+const lastItem = toppings.pop();
 // add it back to end
 toppings.push(lastItem);
 // take first item off
@@ -1036,10 +1047,10 @@ toppingsCopy.splice(3, 5);
 
 // find index of Avocado with .indexOf / .lastIndexOf
 // indexOf will find the FIRST instance; lastIndexOf will find the LAST instance
-const avoIndex = toppings.indexOf('Avocado');
+const avoIndex = toppings.indexOf("Avocado");
 
 // check if item exists in array with .includes
-const isInToppings = toppings.includes('Hot Sauce');
+const isInToppings = toppings.includes("Hot Sauce");
 
 // reverse the list
 const toppingsReversed = [...toppings].reverse();
@@ -1048,75 +1059,80 @@ const toppingsReversed = [...toppings].reverse();
 ### Callback Methods and Function Generation
 
 ```js
-  // Can pass callback functions directly, or store in a variable and pass the variable
-  const findBurgRating = (singleFeedback) => singleFeedback.comment.includes('burg');
+// Can pass callback functions directly, or store in a variable and pass the variable
+const findBurgRating = (singleFeedback) =>
+  singleFeedback.comment.includes("burg");
 
-  const burgRating = feedback.find(findBurgRating);
+const burgRating = feedback.find(findBurgRating);
 
-  // A nice tip - if you have a bunch of helper functions like this, can store them in an object, to keep things organized
-  const util = {
-    findBurgRating: function (singleFeedback) {
-      return singleFeedback.comment.includes('burg');
-    }
+// A nice tip - if you have a bunch of helper functions like this, can store them in an object, to keep things organized
+const util = {
+  findBurgRating: function (singleFeedback) {
+    return singleFeedback.comment.includes("burg");
+  },
+};
+
+// High order functions - functions that return other functions
+// This way, if we want to be able to search for multiple terms, we don't need a function for each word - just the one that will work for all of them
+function findByWord(word) {
+  return function (singleFeedback) {
+    return singleFeedback.comment.includes(word);
   };
+}
 
-  // High order functions - functions that return other functions
-  // This way, if we want to be able to search for multiple terms, we don't need a function for each word - just the one that will work for all of them
-  function findByWord(word) {
-    return function(singleFeedback) {
-      return singleFeedback.comment.includes(word);
-    }
-  };
+// If working with an object, remember we can use Object.entries/values/keys to turn it into an array
+const meats = {
+  beyond: 10,
+  beef: 5,
+  pork: 7,
+};
+// .some will see if at least one of the values meets our criteria
+const isThereEnoughMeat = Object.values(meats).some(
+  (meatValue) => meatValue >= 5,
+);
 
-  // If working with an object, remember we can use Object.entries/values/keys to turn it into an array
-  const meats = {
-    beyond: 10,
-    beef: 5,
-    pork: 7
-  };
-  // .some will see if at least one of the values meets our criteria
-  const isThereEnoughMeat = Object.values(meats).some(meatValue => meatValue >= 5);
+// .every will make sure all of them meet our criteria
+const isEnoughOfEveryMeat = Object.values(meats).every(
+  (meatValue) => meatValue >= 3,
+);
 
-  // .every will make sure all of them meet our criteria
-  const isEnoughOfEveryMeat = Object.values(meats).every(meatValue => meatValue >= 3);
+// Sort orders by turning args into strings, then sorts alphabetically
+// But can be given a compareFunction, so you can control how it sorts
+// The function access first value and second value
+// Returning -1 puts first value first (f < s)
+// Returning 0 keeps things in the order they're in
+// Returning 1 puts second value first (s < f)
+const numbers = [1, 2, 100, 3, 200, 400, 155];
+const numbersSorted = numbers.sort(function (firstItem, secondItem) {
+  // typically would look like this:
+  // if (firstItem > secondItem) {
+  //   return 1;
+  // } else if (secondItem > firstItem) {
+  //   return -1;
+  // } else {
+  //   return 0;
+  // }
 
-  // Sort orders by turning args into strings, then sorts alphabetically
-  // But can be given a compareFunction, so you can control how it sorts
-  // The function access first value and second value
-  // Returning -1 puts first value first (f < s)
-  // Returning 0 keeps things in the order they're in
-  // Returning 1 puts second value first (s < f)
-  const numbers = [1, 2, 100, 3, 200, 400, 155];
-  const numbersSorted = numbers.sort(function (firstItem, secondItem) {
-    // typically would look like this:
-    // if (firstItem > secondItem) {
-    //   return 1;
-    // } else if (secondItem > firstItem) {
-    //   return -1;
-    // } else {
-    //   return 0;
-    // }
+  // however since we're sorting numbers, can just directly use the numbers (as long as you're returning a 0, positive num, or negative num, it will work)
+  return firstItem - secondItem;
+});
 
-    // however since we're sorting numbers, can just directly use the numbers (as long as you're returning a 0, positive num, or negative num, it will work)
-    return firstItem - secondItem;
-  });
+// Can work with objects too!
+const prices = {
+  hotDog: 453,
+  corn: 234,
+  sausage: 634,
+  burger: 765,
+};
 
-  // Can work with objects too!
-  const prices = {
-    hotDog: 453,
-    corn: 234,
-    sausage: 634,
-    burger: 765
-  };
-
-  const sortedByPrice = Object.entries(prices).sort(function (a, b) {
-    // .entries gives us an array of nested arrays, where each line is [key, value]
-    const aPrice = a[1];
-    const bPrice = b[1];
-    return aPrice - bPrice;
-  });
-  // Then if we wanted that back as an object, can do that
-  console.table(Object.fromEntries(sortedByPrice));
+const sortedByPrice = Object.entries(prices).sort(function (a, b) {
+  // .entries gives us an array of nested arrays, where each line is [key, value]
+  const aPrice = a[1];
+  const bPrice = b[1];
+  return aPrice - bPrice;
+});
+// Then if we wanted that back as an object, can do that
+console.table(Object.fromEntries(sortedByPrice));
 ```
 
 ## Gettin' Loopy
@@ -1137,9 +1153,9 @@ function logTopping(topping, index, origArray) {
   prevTopping ? console.log(prevTopping) : null;
   // if last item, say goodbye
   index === origArray.length - 1
-   ? console.log('goodbye')
-   : console.log('getting next topping');
-};
+    ? console.log("goodbye")
+    : console.log("getting next topping");
+}
 
 toppings.forEach(logTopping);
 ```
@@ -1151,64 +1167,61 @@ Side effects happen when you're reaching something outside of your function and 
 `.map` works sort of like a machine - it takes data in, does something to it, and returns it. It will always return the same number of values that it takes in - there's no way to return less items. Can chain multiple maps together, since it will always return an array.
 
 ```js
-const fullNames = ['wes', 'kait', 'poppy'].map(name => `${name} bos`);
+const fullNames = ["wes", "kait", "poppy"].map((name) => `${name} bos`);
 // can also do multiple things in a chain
 function bosify(name) {
   return `${name} Bos`;
-};
+}
 
 function capitalize(word) {
   return `${word[0].toUpperCase()}${word.slice(1)}`;
-};
+}
 
-const fullNames = ['wes', 'kait', 'poppy']
-  .map(capitalize)
-  .map(bosify);
+const fullNames = ["wes", "kait", "poppy"].map(capitalize).map(bosify);
 
-  // A few fun bonus things - .repeat & .fill
-  // using .repeat will add a repeat of whatever it's attached to, x number of times
-  'x'.repeat(3); // returns 'xxx'
-  Array(3).fill('x'); // returns ['x', 'x', 'x']
+// A few fun bonus things - .repeat & .fill
+// using .repeat will add a repeat of whatever it's attached to, x number of times
+"x".repeat(3); // returns 'xxx'
+Array(3).fill("x"); // returns ['x', 'x', 'x']
 
-  // Most often, you'll likely need .map when working with objects, to get data into the format you want it
-  const people = [
-      {
-        birthday: 'April 22, 1993',
-        names: {
-          first: 'Keith',
-          last: 'Buckley'
-        }
-      },
-      {
-        birthday: 'January 3, 1975',
-        names: {
-          first: 'Larry',
-          last: 'Heep'
-        }
-      },
-      {
-        birthday: 'February 12, 1944',
-        names: {
-          first: 'Linda',
-          last: 'Bermeer'
-        }
-      }
-    ];
-  
-  const cleanPeople = people.map(function (person) {
-    // passing a string of a date into new Date turns it into a date
-    const birthday = new Date(person.birthday).getTime();
-    const now = Date.now();
-    // we now have birthday and current time in milliseconds - to figure out age, can subtract those two numbers.
-    // Then we'll convert those milliseconds into years (rough guess)
-    // 1000 ms in s *60 s in m* 60 m in h *24 h in d* 365 d in y
-    const age = Math.floor((now - birthday) / 31536000000);
-    return {
-      age,
-      name: `${person.names.first} ${person.names.last}`,
-    };
-  });
+// Most often, you'll likely need .map when working with objects, to get data into the format you want it
+const people = [
+  {
+    birthday: "April 22, 1993",
+    names: {
+      first: "Keith",
+      last: "Buckley",
+    },
+  },
+  {
+    birthday: "January 3, 1975",
+    names: {
+      first: "Larry",
+      last: "Heep",
+    },
+  },
+  {
+    birthday: "February 12, 1944",
+    names: {
+      first: "Linda",
+      last: "Bermeer",
+    },
+  },
+];
 
+const cleanPeople = people.map(function (person) {
+  // passing a string of a date into new Date turns it into a date
+  const birthday = new Date(person.birthday).getTime();
+  const now = Date.now();
+  // we now have birthday and current time in milliseconds - to figure out age, can subtract those two numbers.
+  // Then we'll convert those milliseconds into years (rough guess)
+  // 1000 ms in s *60 s in m* 60 m in h *24 h in d* 365 d in y
+  const age = Math.floor((now - birthday) / 31536000000);
+  return {
+    age,
+    name: `${person.names.first} ${person.names.last}`,
+  };
+});
 ```
 
 ### Filter, Find, and Higher Order Functions
@@ -1216,22 +1229,22 @@ const fullNames = ['wes', 'kait', 'poppy']
 ```js
 // using the cleanPeople object from last section
 // filter will find every item in the array that matches our condition
-const over40 = cleanPeople.filter(person => person.age > 40);
+const over40 = cleanPeople.filter((person) => person.age > 40);
 // .filter returns an array, so if we wanted to do a check on this we use length - it will be an empty array if there's no data
 if (over40.length) {
-  console.log('Yep, some older folks')
-};
+  console.log("Yep, some older folks");
+}
 
 // find only finds one item in an array - returns a single item
-const student = students.find(student => student.id === '565a');
+const student = students.find((student) => student.id === "565a");
 
 // using higher order functions, we can make this really flexible - can pass in both the property we want, as well as the value
 function findByProp(prop, propWeAreLookingFor) {
   return function isStudent(student) {
     return student[prop] === propWeAreLookingFor;
-  }
-};
-const student2 = students.find(findByProp('first_name', 'Micki'));
+  };
+}
+const student2 = students.find(findByProp("first_name", "Micki"));
 ```
 
 ### Reduce
@@ -1245,19 +1258,19 @@ const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
 // whatever you return from the function is what the accumulator is set to on the next pass through
 function tallyNumbers(tally, currentTotal) {
   return tally + currentTotal;
-};
+}
 // this will start from 0, and add up each value in our array to get a total sum
 const allOrders = orderTotals.reduce(tallyNumbers, 0);
 
 // another example
 const inventory = [
-  { type: 'shirt', price: 4000 },
-  { type: 'pants', price: 4532 },
-  { type: 'socks', price: 234 },
-  { type: 'shirt', price: 2343 },
-  { type: 'pants', price: 2343 },
-  { type: 'socks', price: 542 },
-  { type: 'pants', price: 123 },
+  { type: "shirt", price: 4000 },
+  { type: "pants", price: 4532 },
+  { type: "socks", price: 234 },
+  { type: "shirt", price: 2343 },
+  { type: "pants", price: 2343 },
+  { type: "socks", price: 542 },
+  { type: "pants", price: 123 },
 ];
 
 function inventoryReducer(totals, item) {
@@ -1266,41 +1279,42 @@ function inventoryReducer(totals, item) {
   totals[item.type] = totals[item.type] + 1 || 1;
   // or can use a ternary
   // totals[item.type] ? totals[item.type] + 1 : totals[item.type] = 1;
-};
+}
 
 const inventoryCounts = inventory.reduce(inventoryReducer, {});
 // will return { shirt: 2, pants: 3, socks: 2 }
 
 // if we're doing simple math, can do this in a one liner
-const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
+const totalInventoryPrice = inventory.reduce(
+  (acc, item) => acc + item.price,
+  0,
+);
 ```
 
 Here's a more detailed example using lots of stuff we just covered - grab all the text in a random webpage, get every letter and number in that text, and count how many instances of each value we found. Upper and lower case letters should count for the same (A = a). As a bonus, we'll also sort it so we can see which value is the most popular!
 
 ```js
-const text = '...'; // this would be your whole text value
+const text = "..."; // this would be your whole text value
 // We'll make a few helper functions to perform the actual work
 function isValidChar(char) {
   // regular expression to grab anything that's a letter or number - the i makes it case insensitive
-  return char.match(/[a-z0-9]/i)
-};
+  return char.match(/[a-z0-9]/i);
+}
 
-const lowercase = char => char.toLowerCase();
+const lowercase = (char) => char.toLowerCase();
 
 function instanceCounter(counts, char) {
-  counts[char]
-    ? counts[char] = counts[char] + 1
-    : counts[char] = 1;
+  counts[char] ? (counts[char] = counts[char] + 1) : (counts[char] = 1);
   // make sure to return the new counts here - otherwise it will be undefined on the next loop through
   return counts;
-};
+}
 
 function sortByValue(a, b) {
   return b[1] - a[1];
-};
+}
 
 const result = text
-  .split('') // split each char into an item of an array
+  .split("") // split each char into an item of an array
   .filter(isValidChar) // filter so we only get the valid chars
   .map(lowercase) // make them all lowercase
   .reduce(instanceCounter, {}); // then count instances
@@ -1314,8 +1328,8 @@ const sortedResult = Object.entries(result).sort(sortByValue);
 
 ```js
 for (let i = 0; i < numbers.length; i++) {
-  console.log(numbers[i])
-};
+  console.log(numbers[i]);
+}
 ```
 
 `For of` is used for looping over iterables (something with a length). Can use `await` inside here - used often with Promises. Returns the raw value - so if we did `for of` on an array of numbers, we'd get back the value for each number. Don't have access to the index.
@@ -1323,7 +1337,7 @@ for (let i = 0; i < numbers.length; i++) {
 ```js
 for (const num of numbers) {
   console.log(num); // will show 2, 32, 3, 23....
-};
+}
 ```
 
 `For in` is similar, but used most for looping over keys of objects. Specifically will also grab the prototype values for the object (where something like `Object.entries` will only grab properties, not prototype data).
@@ -1331,7 +1345,7 @@ for (const num of numbers) {
 ```js
 for (const num in numbers) {
   console.log(num); // will show 0, 1, 2, 3.... (indexes)
-};
+}
 ```
 
 `While` takes a condition and runs infinitely until that condition is false. `Do While` works similarly, except it will always run at least once before it checks the condition.
@@ -1341,21 +1355,21 @@ for (const num in numbers) {
 let cool = true;
 let i = 1;
 while (cool === true) {
-  console.log('you are cool');
+  console.log("you are cool");
   i++;
   if (i > 100) {
     cool = false;
   }
-};
+}
 
 // layout of a do/while
 do {
-  console.log('you are cool');
+  console.log("you are cool");
   i++;
   if (i > 100) {
     cool = false;
   }
-} while(cool === true);
+} while (cool === true);
 ```
 
 ## Harder Practice Exercises
@@ -1385,10 +1399,10 @@ Also covering custom events - we have a `displayItems` function that we will nee
 function handleSubmit() {
   // ... other code here
   // itemsUpdated can be called anything - that's the name we want for our event
-  list.dispatchEvent(new CustomEvent('itemsUpdated'));
+  list.dispatchEvent(new CustomEvent("itemsUpdated"));
 }
 // then we can add the listener to whatever we want - so this will call and fire our display function whenever our custom event is dispatched
-list.addEventListener('itemsUpdated', displayItems);
+list.addEventListener("itemsUpdated", displayItems);
 ```
 
 We're also using localstorage here - basically a mini database that lives in your browser. So anytime a user comes back to the site from the same browser, the data will still be there. Local storage is **text only**, so will need to use `JSON.stringify` on objects to be able to store them.
@@ -1396,12 +1410,12 @@ We're also using localstorage here - basically a mini database that lives in you
 ```js
 function mirrorToLocalStorage() {
   // add an item into localstorage
-  localStorage.setItem('items', JSON.stringify(items));
+  localStorage.setItem("items", JSON.stringify(items));
 }
 
 function restoreFromLocalStorage() {
   // then to get it out, we want to parse it back into an object
-  JSON.parse(localStorage.getItem('items'));
+  JSON.parse(localStorage.getItem("items"));
 }
 ```
 
@@ -1430,14 +1444,14 @@ For the functions we define, if we call them with just the function name, we get
 One example - if we create some buttons on a page, those are instances of a button element. If we then add an event listener to them, and pass in a function that logs what `this` is equal to, we'll get that button back.
 
 ```js
-const button1 = document.querySelector('.one');
+const button1 = document.querySelector(".one");
 
 function tellMeAboutTheButton() {
   console.log(this);
   // this will show <button class="one">Button 1</button>
 }
 // the addEventListener method will now bind this function to our button, setting the `this` keyword to our button
-button1.addEventListener('click', tellMeAboutTheButton);
+button1.addEventListener("click", tellMeAboutTheButton);
 ```
 
 `this` is always scoped to a function. This is why arrow functions act a bit different - they're scoped to whatever was bound before the function, so if they're globally defined `this` is equal to the window (instead of, say, our button we called it on).
@@ -1447,23 +1461,23 @@ This can be useful for nested functions. Since every time we call `this` it make
 ```js
 // here, the outside 'this' will be the button, but the inside 'this' will be the window
 function tellMeAboutTheButton() {
-  console.log('outside', this);
+  console.log("outside", this);
   // to fix this, you'll often see:
   // const that = this;
-  setTimeout(function() {
-    console.log('inside', this);
+  setTimeout(function () {
+    console.log("inside", this);
     // then this. would become that.
-    this.textContent = 'You Clicked Me';
-  }, 1000)
+    this.textContent = "You Clicked Me";
+  }, 1000);
 }
 
 // but if we do an arrow function inside, both 'this' logs will be the button
 function tellMeAboutTheButton() {
-  console.log('outside', this);
+  console.log("outside", this);
   setTimeout(() => {
-    console.log('inside', this);
-    this.textContent = 'You Clicked Me';
-  }, 1000)
+    console.log("inside", this);
+    this.textContent = "You Clicked Me";
+  }, 1000);
 }
 ```
 
@@ -1475,20 +1489,20 @@ function Pizza(toppings = [], customer) {
   this.toppings = toppings;
   this.customer = customer;
   // this just returns a random hex value, not guaranteed to be unique but a wide enough range it works for small examples
-  this.id = Math.floor(Math.random() * 16777215).toString(16)
+  this.id = Math.floor(Math.random() * 16777215).toString(16);
 }
 
 // then when we make a new instance, we'll have a unique version stored
-const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos');
+const pepperoniPizza = new Pizza(["pepperoni"], "Wes Bos");
 ```
 
 ### Prototypes and Prototypal Inheritance
 
 Prototypes allow us to share functionality between instances.
 
-Say we want to give our Pizza function the ability to eat slices. If we declare the eat function *inside* of our Pizza function, that will make a new instance of that function for every Pizza we create. While this might work fine for small jobs where you only make 1 or 2 instances, it's not maintainable for larger jobs and will slow things down.
+Say we want to give our Pizza function the ability to eat slices. If we declare the eat function _inside_ of our Pizza function, that will make a new instance of that function for every Pizza we create. While this might work fine for small jobs where you only make 1 or 2 instances, it's not maintainable for larger jobs and will slow things down.
 
-Instead, we can define the function once *outside* of the Pizza function and link it to that, so we can use the same function for every instance we create. This is why, if we have two different arrays, they use the same `filter` method - it's defined on the prototype, so it's the same function that can run on any instance of Array. This also allows us to only need to update the function in one place for it to apply to every instance.
+Instead, we can define the function once _outside_ of the Pizza function and link it to that, so we can use the same function for every instance we create. This is why, if we have two different arrays, they use the same `filter` method - it's defined on the prototype, so it's the same function that can run on any instance of Array. This also allows us to only need to update the function in one place for it to apply to every instance.
 
 ![Screenshot of console showing pepperoniPizza instance with eat in the prototype](https://i.imgur.com/28hso6v.png)
 
@@ -1504,11 +1518,11 @@ Typically, `this` is defined by what's to the left of the `.` it's called on. So
 
 ```js
 const person = {
-  name: 'Linda',
+  name: "Linda",
   sayHi() {
     // 'this' here is bound to this person object
     return `hey ${this.name}`;
-  }
+  },
 };
 
 // but if we call it from here, 'this' is bound to the window, so we don't have access to the name value
@@ -1526,15 +1540,15 @@ const sayHi = person.sayHi.bind(person);
 // another example - can use 'bind' to make a shorthand for querySelector
 // since QS needs something to look inside of, we have to use 'bind' to store what we want to count as 'this'
 const $ = document.querySelector.bind(document);
-console.log($('p'));
+console.log($("p"));
 
 // With `bind`, can also pass in arguments that apply to the function as well
 const bill = {
   total: 1000,
   calculate: function (taxRate) {
-    return this.total + (this.total * taxRate);
-  }
-}
+    return this.total + this.total * taxRate;
+  },
+};
 
 // the first argument to 'bind' is always what you want to use for 'this'; everything else can be arguments to pass to the function in the order they're defined
 const calc = bill.calculate.bind({ total: 500 }, 0.0825);
@@ -1550,17 +1564,17 @@ const calc = bill.calculate.bind({ total: 500 }, 0.0825);
 const bill = {
   total: 1000,
   calculate: function (taxRate) {
-    return this.total + (this.total * taxRate);
+    return this.total + this.total * taxRate;
   },
   describe(mealType, drinkType, taxRate) {
     return `Your meal of ${mealType} with a drink of ${drinkType} was ${this.calculate(taxRate)}`;
-  }
-}
+  },
+};
 
 // call will run this function immediately and store it in the variable
-const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
+const myMeal = bill.describe.call(bill, "pizza", "beer", 0.13);
 // apply will do the same thing, but takes the arguments as an array
-const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
+const myMeal2 = bill.describe.apply(bill, ["pizza", "beer", 0.13]);
 ```
 
 ## Advanced Flow Control
@@ -1573,32 +1587,32 @@ If you need to chain multiple events together, you end up nesting multiple funct
 
 ```js
 // a simple example of needing multiple nested functions - callback hell
-const go = document.querySelector('.go');
+const go = document.querySelector(".go");
 // change the text to go when clicked
-go.addEventListener('click', function (e) {
+go.addEventListener("click", function (e) {
   const el = e.currentTarget;
-  el.textContent = 'GO!';
+  el.textContent = "GO!";
   // make it a circle after 2 seconds
-  setTimeout(function() {
-    el.classList.add('circle');
+  setTimeout(function () {
+    el.classList.add("circle");
     // make it red after 0.5s
-    setTimeout(function() {
-      el.classList.add('red');
+    setTimeout(function () {
+      el.classList.add("red");
       // make it square after 0.25s
-      setTimeout(function() {
-        el.classList.remove('circle');
+      setTimeout(function () {
+        el.classList.remove("circle");
         // make it purple after 0.3s
-        setTimeout(function() {
-          el.classList.remove('red');
-          el.classList.add('purple');
+        setTimeout(function () {
+          el.classList.remove("red");
+          el.classList.add("purple");
           // fade out after 0.5s
-          setTimeout(function() {
-            el.classList.add('fadeOut');
-          }, 500)
-        }, 300)
-      }, 250)
-    }, 500)
-  }, 2000)
+          setTimeout(function () {
+            el.classList.add("fadeOut");
+          }, 500);
+        }, 300);
+      }, 250);
+    }, 500);
+  }, 2000);
 });
 ```
 
@@ -1674,35 +1688,35 @@ It's also possible for us to handle errors with promises! We catch errors with t
 function makePizza(toppings = []) {
   return new Promise(function (resolve, reject) {
     // reject if toppings includes olives
-    if (toppings.includes('olives')) {
-      reject('Seriously? No olives allowed!');
+    if (toppings.includes("olives")) {
+      reject("Seriously? No olives allowed!");
     }
-    const bakeTime = 500 + (toppings.length * 200);
+    const bakeTime = 500 + toppings.length * 200;
     setTimeout(function () {
       // when it's done, resolve the pizza
-      resolve(`Here is your pizza 🍕 with ${toppings.join(' ')} toppings`);
+      resolve(`Here is your pizza 🍕 with ${toppings.join(" ")} toppings`);
     }, bakeTime);
   });
 }
 
-makePizza(['ham', 'olives'])
-  .then(pizza => {
+makePizza(["ham", "olives"])
+  .then((pizza) => {
     console.log(pizza);
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(`Oh no!! ${err}`);
-  })
+  });
 
 // if we need to run a few promises and get them all no matter if one failed or not, can use this
-const p1 = makePizza(['pepperoni']);
-const p2 = makePizza(['olives']);
+const p1 = makePizza(["pepperoni"]);
+const p2 = makePizza(["olives"]);
 
 const dinnerPromise2 = Promise.allSettled([p1, p2]);
 
-dinnerPromise2.then(results => {
+dinnerPromise2.then((results) => {
   // this will give us the result of each one - so can grab ones that are fulfilled/resolved, or ones that are rejected
   console.log(results);
-})
+});
 ```
 
 ### Refactoring Callback Hell to Promise Land
@@ -1712,28 +1726,28 @@ Taking our nested `setTimeout` function from earlier and converting it to use pr
 ```js
 function animate(e) {
   const el = e.currentTarget;
-  el.textContent = 'GO';
+  el.textContent = "GO";
   wait(200)
-  .then(() => {
-    el.classList.add('circle');
-    return wait(500);
-  })
-  .then(() => {
-    el.classList.add('red');
-    return wait(250);
-  })
-  .then(() => {
-    el.classList.remove('circle');
-    return wait(500);
-  })
-  .then(() => {
-    el.classList.remove('red');
-    el.classList.add('purple');
-    return wait(500);
-  })
-  .then(() => {
-    el.classList.add('fadeOut');
-  })
+    .then(() => {
+      el.classList.add("circle");
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.add("red");
+      return wait(250);
+    })
+    .then(() => {
+      el.classList.remove("circle");
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.remove("red");
+      el.classList.add("purple");
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.add("fadeOut");
+    });
 }
 ```
 
@@ -1743,20 +1757,20 @@ With async await, we don't change how our function that makes the promise is wri
 
 ```js
 function wait(ms = 0) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, ms);
-  })
+  });
 }
 
 // can only use await in an async function - async tells the function there's going to be a call inside that needs to wait for something
 async function go() {
-  console.log('starting');
+  console.log("starting");
   // await pauses this function until the promise is resolved
   await wait(2000);
-  console.log('running');
+  console.log("running");
   // can have as many as you need
   await wait(200);
-  console.log('ending');
+  console.log("ending");
 }
 
 go();
@@ -1767,19 +1781,19 @@ go();
 async function fd() {}
 
 // arrow
-const arrowFn = async () => {}
+const arrowFn = async () => {};
 
 // callback
-window.addEventListener('click', async function () {})
+window.addEventListener("click", async function () {});
 
 const person = {
   // method
-  sayHi: async function() {},
+  sayHi: async function () {},
   // method shorthand
   async sayHello() {},
   // function property
-  sayHey: async () => {}
-}
+  sayHey: async () => {},
+};
 
 async function makeDinner() {
   // to keep things performing well if you have multiple promises, can put await on a .all call
@@ -1792,18 +1806,18 @@ async function makeDinner() {
 // updated version of the animate function
 async function animate2(e) {
   const el = e.currentTarget;
-  el.textContent = 'GO';
+  el.textContent = "GO";
   await wait(200);
-  el.classList.add('circle');
+  el.classList.add("circle");
   await wait(500);
-  el.classList.add('red');
+  el.classList.add("red");
   await wait(250);
-  el.classList.remove('circle');
+  el.classList.remove("circle");
   await wait(500);
-  el.classList.remove('red');
-  el.classList.add('purple');
+  el.classList.remove("red");
+  el.classList.add("purple");
   await wait(500);
-  el.classList.add('fadeOut');
+  el.classList.add("fadeOut");
 }
 ```
 
@@ -1817,9 +1831,9 @@ Since we don't have `.then` in async await, we can instead use try & catch to ca
 async function go() {
   // anything that resolves/fulfills will happen here
   try {
-    const pizza = await makePizza(['olives']);
+    const pizza = await makePizza(["olives"]);
     console.log(pizza);
-  // then any errors will be caught here
+    // then any errors will be caught here
   } catch (err) {
     console.log(`Ewww! ${err}`);
   }
@@ -1827,7 +1841,7 @@ async function go() {
 
 // can also mix and match, and put the catch at the end of the await
 async function go() {
-  const pizza = await makePizza(['olives']).catch(handleError);
+  const pizza = await makePizza(["olives"]).catch(handleError);
 }
 
 // or can handle the error when we call the function - can also catch unrelated errors
@@ -1836,8 +1850,8 @@ go().catch(handleError);
 // if your function and error handler will need to be used multiple times, can also write a higher order function, and make a variable with the error handler attached
 function makeSafe(fn, errorHandler) {
   return function () {
-    fn().catch(errorHandler)
-  }
+    fn().catch(errorHandler);
+  };
 }
 
 const safeGo = makeSafe(go, handleError);
@@ -1846,7 +1860,7 @@ safeGo();
 
 ### Async Await Projects
 
-Quick note on pure functions - a "pure" function is a function that given the same inputs, will always return the same output. Dates and random numbers do *NOT* fit into this, since they, by nature of time passing / randomization, will always be different when you run them.
+Quick note on pure functions - a "pure" function is a function that given the same inputs, will always return the same output. Dates and random numbers do _NOT_ fit into this, since they, by nature of time passing / randomization, will always be different when you run them.
 
 If you want a random number generator to be easily testable, you can pass in the random value as an argument. So you can test it with a consistent number, then when you're ready to use it pass in `Math.random`.
 
@@ -1865,16 +1879,19 @@ API (application program interface) is a way that sites will store their data wh
 Browsers have a built in way to get data from outside sources and bring them into your file, called `fetch`. Fetch returns a promise, which we can then get the JSON from.
 
 ```js
-const endpoint = 'https://api.github.com/users/wesbos';
+const endpoint = "https://api.github.com/users/wesbos";
 
 const wesPromise = fetch(endpoint);
-wesPromise.then(response => {
-  // the response we get can contain different data depending on what we fetched - a lot of APIs return JSON, so we need to convert it
-  return response.json();
-}).then(data => {
-  // now we have the data in a format we can use
-  console.log(data);
-}).catch(handleError)
+wesPromise
+  .then((response) => {
+    // the response we get can contain different data depending on what we fetched - a lot of APIs return JSON, so we need to convert it
+    return response.json();
+  })
+  .then((data) => {
+    // now we have the data in a format we can use
+    console.log(data);
+  })
+  .catch(handleError);
 ```
 
 ### CORS and Recipes
@@ -1888,7 +1905,7 @@ If they don't have a CORS policy, you've got two options - run your own server t
 If you run into a `regeneratorRuntime` error - probably a Babel issue with trying to compile an async function. To fix, add a 'browserslist' property to your `package.json` file that supports 'last 1 chrome versions'.
 
 ```js
-const baseEndpoint = 'http://www.recipepuppy.com/api';
+const baseEndpoint = "http://www.recipepuppy.com/api";
 const proxy = `https://cors-anywhere.herokuapp.com/`;
 
 async function fetchRecipes(query) {
@@ -1903,10 +1920,10 @@ async function fetchRecipes(query) {
 You can pass headers to `fetch`! So if an API gives you the option to pass an Accept header telling it what format you want the data in, you can pass that through fetch.
 
 ```js
-const response = await fetch('https://icanhazdadjoke.com', {
+const response = await fetch("https://icanhazdadjoke.com", {
   headers: {
-    Accept: 'application/json'
-  }
+    Accept: "application/json",
+  },
 });
 ```
 
@@ -1958,36 +1975,36 @@ Then to use the export, we need to import it in the file we want to use it.
 
 ```js
 // we list the name of the function, and the relative path of where it's located
-import { returnHi } from './utils.js';
+import { returnHi } from "./utils.js";
 // if we're importing a default export, we don't need the {} and can name it anything we want to use it as
-import wes from './wes.js';
+import wes from "./wes.js";
 // we can also import a default and named values - the default goes first, then the named ones in brackets
-import first, { returnHi, last } from './utils.js';
+import first, { returnHi, last } from "./utils.js";
 // if we want to rename a named function, that's possible
-import { returnHi as sayHi } from './utils.js';
+import { returnHi as sayHi } from "./utils.js";
 // if we want to pull in all the exports from a file, can use *
-import * as everything from './wes.js';
+import * as everything from "./wes.js";
 
-console.log(returnHi('wes'));
+console.log(returnHi("wes"));
 ```
 
 A solid way to structure your files is using your main entry point to grab your selectors and set up event listeners. Then any functionality (how you handle clicks, utilities to run, etc) will go in separate files that you can import in when you need them.
 
 ```js
 // scripts.js
-import { handleButtonClick } from './handlers.js';
-const button = document.querySelector('button');
-button.addEventListener('click', handleButtonClick);
+import { handleButtonClick } from "./handlers.js";
+const button = document.querySelector("button");
+button.addEventListener("click", handleButtonClick);
 
 // handlers.js
 export async function handleButtonClick(event) {
   // can also dynamically load exported functions as needed - the browser will cache this after the initial call
-  const currenciesModule = await import('./currencies.js');
+  const currenciesModule = await import("./currencies.js");
   // then if we want a specific bit, we can use dot notation to get it
   console.log(currenciesModule.default);
 
   // can use destructuring here, too! though note: we can't have a variable named default (it's a reserved word), so will need to rename it
-  const { localCurrency, default: currency } = await import('./currencies.js');
+  const { localCurrency, default: currency } = await import("./currencies.js");
 }
 ```
 

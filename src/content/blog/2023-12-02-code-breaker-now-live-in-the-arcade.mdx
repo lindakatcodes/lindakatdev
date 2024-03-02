@@ -34,15 +34,15 @@ Finding myself currently in the market for a new job, I knew I wanted more proje
 
 ## Progress thoughts
 
-Porting the code itself over into an Astro component was fairly straight forward, but it's honestly not ideal the way it is. 
+Porting the code itself over into an Astro component was fairly straight forward, but it's honestly not ideal the way it is.
 
 Both Snake and Code Breaker have the same issue - all their logic lives in a script tag directly in an Astro component, which makes it globally available. And since they share the same layout, I'm running into issues with Code Breaker getting an error in the console from Snake, and vice versa. Both scripts are running no matter which game is actually being viewed, and so the event listeners and query selectors can't find the items (obviously, because that game isn't open). It doesn't actually break anything on the site since you won't be able to interact with those errored elements anyways, but it's still annoying. I don't want errors in my console! 😆
 
 The way to fix that is to move a lot of the actual game logic into the Astro script area (so it's not global anymore) or into separate components so each game then has to pull in their own components and maybe they won't conflict as much? I'm not sure yet. There's a ticket for it, after I spent a short amount of time seeing if I could quickly fix it. lol
 
-The only other complaint I really had with porting the game over was adding a lot of assertions to appease TypeScript. Lots of assuring it that these elements would exist, because I was directly creating them in the template right above it. It's not ideal, and again I think if I can figure out how to move a lot of the logic to the actual `.astro` file script area, and leave the client-side `<script>` tag to just the event listeners and query selectors, then that might help with a lot of this. 
+The only other complaint I really had with porting the game over was adding a lot of assertions to appease TypeScript. Lots of assuring it that these elements would exist, because I was directly creating them in the template right above it. It's not ideal, and again I think if I can figure out how to move a lot of the logic to the actual `.astro` file script area, and leave the client-side `<script>` tag to just the event listeners and query selectors, then that might help with a lot of this.
 
-Everything else was more of a pleasure to deal with! I had to make some logic adjustments to restart the game and keep the page from refreshing since it's now a subpage inside another page. I squabbled a bit with some icon libraries before just grabbing unicode characters for the hint icons. lol And a few weird little style issues because I create a lot of the HTML within the JavaScript so changes in the `<style>` tag didn't take. 
+Everything else was more of a pleasure to deal with! I had to make some logic adjustments to restart the game and keep the page from refreshing since it's now a subpage inside another page. I squabbled a bit with some icon libraries before just grabbing unicode characters for the hint icons. lol And a few weird little style issues because I create a lot of the HTML within the JavaScript so changes in the `<style>` tag didn't take.
 
 ## Wrapup
 

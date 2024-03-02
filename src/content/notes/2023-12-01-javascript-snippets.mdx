@@ -13,16 +13,15 @@ tags:
 
 ```js
 // basic reduce - adding all values in an array
-arr.reduce( (total, value) => total + value, 0);
+arr.reduce((total, value) => total + value, 0);
 
 // Need to know how many of each item are in an array? Reduce into an object:
-var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+var names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"];
 
 var countedNames = names.reduce(function (allNames, name) {
   if (name in allNames) {
     allNames[name]++;
-  }
-  else {
+  } else {
     allNames[name] = 1;
   }
   return allNames;
@@ -41,6 +40,7 @@ Object.keys(objectName);
 ```
 
 ### Measuring Elements
+
 - For total amount of space an item takes up, including visible content, padding, and border: `offsetWidth / offsetHeight`
 - For amount of space the content takes up, including padding and visible content but nothing else: `clientWidth / clientHeight`
 - For the total size of the content, no matter how much is visible: `scrollWidth / scrollHeight`

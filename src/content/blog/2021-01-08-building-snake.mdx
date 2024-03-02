@@ -19,19 +19,20 @@ While going through Wes Bos' [Beginner JavaScript](https://beginnerjavascript.co
 
 If you've never heard of or played Snake before, it's an old phone game where you control a snake. You start off small, and you move around the board and try to eat pieces of food. For each piece you eat, your body grows a little bigger. If you hit the side of the game board or your body, the game is over. It sounds simple, but once your body gets long enough it can be tricky!
 
-
-  <img src="https://media1.tenor.com/images/14ea3c45f66ec873f5ee9cf1abfd0340/tenor.gif" alt="Snake being played on a Nokia phone" />
-
+<img
+  src="https://media1.tenor.com/images/14ea3c45f66ec873f5ee9cf1abfd0340/tenor.gif"
+  alt="Snake being played on a Nokia phone"
+/>
 
 Since the Etch a Sketch also involves drawing lines on the screen, I figured I could use the same methods to create Snake! It's something I've wanted to play with making for awhile, but always seemed like too much work. Going through the course exercise made me realize that maybe it was more do-able than I thought!
 
-----
+---
 
 ## Tech Used
 
 The real star of this game is the HTML `canvas` element. This is an element that lets you draw complex shapes on the screen. I had heard of the `canvas` element before, but really hadn't had a use case for it. But once we used it in the course exercise, it seemed like the perfect "canvas" (get it?? lol) for building this game! This also uses some fairly straight forward vanilla JavaScript.
 
-----
+---
 
 ## Lessons Learned
 
@@ -43,12 +44,12 @@ I thought the food style was a good place to start - it's just a single small sq
 
 I set my `lineWidth` and `fillStyle` for the food, made a little random number function to get a random x and y, and put in the code that (I thought) would show a little square of food on the canvas. Saved and...nothing! This had worked in the Etch a Sketch project - why wasn't it working now?
 
-Turns out, you need to adjust the `lineCap` to be something *other* than the default for a single point to show. If you're drawing a full line it will work without the `lineCap` adjustment, but for this single point I had to set it to 'square', and then it showed up.
+Turns out, you need to adjust the `lineCap` to be something _other_ than the default for a single point to show. If you're drawing a full line it will work without the `lineCap` adjustment, but for this single point I had to set it to 'square', and then it showed up.
 
 ```js
 foodCtx.lineWidth = SIZE;
-foodCtx.fillStyle = '#27ae60';
-foodCtx.lineCap = 'square';
+foodCtx.fillStyle = "#27ae60";
+foodCtx.lineCap = "square";
 ```
 
 ### Making the snake grow properly
@@ -88,14 +89,14 @@ I thought the `.includes` method on arrays would work great for this - however, 
 Using `.find`, you can look at each point in your array, and see if you have a particular key that matches a particular value. Using this, it was actually as easy as I thought to detect if the current head ran into a value in the body array - just had to find the right JavaScript method to do it!
 
 ```js
-if (body.find(point => point.x === headX && point.y === headY)) {
-    gameStatusUi.innerHTML = `
+if (body.find((point) => point.x === headX && point.y === headY)) {
+  gameStatusUi.innerHTML = `
     Game over! <br>
     Hit your body.
     `;
-    endGame();
-    return;
-  }
+  endGame();
+  return;
+}
 ```
 
 ### Setting canvas focus
@@ -116,5 +117,4 @@ There's always room for improvement - I might eventually test out the third canv
 
 You can view the code for the full game [on my GitHub here](https://github.com/lindakatcodes/minisites/tree/main/snake). And you can [play my version yourself here!](https://snake-mini.netlify.app/)
 
-
-  <img src="https://i.imgur.com/txjQiqg.png" alt="View of my version of snake" />
+<img src="https://i.imgur.com/txjQiqg.png" alt="View of my version of snake" />
