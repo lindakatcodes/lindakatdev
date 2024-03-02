@@ -1,5 +1,6 @@
 @import "reset.css";
 
+
 /* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
  --xs (min-width: 520px);
  --sm (min-width: 768px);
@@ -35,7 +36,6 @@
   --h1: 68px;
   --h0: 80px;
   --header-height: var(--s64);
-  font-size: var(--b-md);
 }
 
 /* 
@@ -182,6 +182,7 @@ a {
 body {
   background-color: var(--background);
   transition: all 0.3s ease-in-out;
+  font-size: var(--b-md);
 }
 
 /* global utility styles */
@@ -242,6 +243,24 @@ ul li:nth-child(4n)::before {
   background-image: var(--gradient);
   background-repeat: repeat;
   background-size: 100%;
+}
+
+.script-font-loaded .link {
+  font-size: var(--h5);
+  letter-spacing: 1.25px;
+  line-height: 1;
+}
+
+.script-font-loaded .home {
+  font-size: var(--h2);
+  letter-spacing: 1.25px;
+  line-height: 1;
+}
+
+.script-font-loaded .title {
+  font-size: calc(var(--h0) * 1.25);
+  letter-spacing: 1.25px;
+  line-height: 1;
 }
 
 /* specifics for packages that need to be globally available */

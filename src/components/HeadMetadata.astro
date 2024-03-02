@@ -30,17 +30,18 @@ const { metadata } = Astro.props;
 <!-- [1] -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <!-- [2] -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" />
+<link rel="preload" as="style" href="/font-faces.css" />
+<script src="../util/fontFaces.js"></script>
 <!-- [3] -->
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
   media="print"
   onload="this.media='all'"
 />
 <!-- [4] -->
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" />
 </noscript>
 
 <link href="/prism-theme.css" rel="stylesheet" />

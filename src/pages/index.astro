@@ -68,7 +68,9 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   .title {
     font-family: var(--cursive-font);
-    font-size: 6rem;
+    font-size: var(--h1);
+    letter-spacing: -1.3px;
+    line-height: 1.3;
     margin-bottom: 0.5rem;
     text-align: center;
   }
