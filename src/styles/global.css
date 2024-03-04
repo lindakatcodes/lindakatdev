@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "colors.css";
 
 /* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
  --xs (min-width: 520px);
@@ -8,7 +9,7 @@
  --xl (min-width: 1640px);
 */
 
-/* global variables */
+/* Variables */
 :root {
   --body-font: "Fira Sans", system-ui, sans-serif;
   --cursive-font: "Birthstone", "Brush Script MT", serif;
@@ -37,103 +38,7 @@
   --header-height: var(--s64);
 }
 
-/* 
-COLOR THEME
-Storing the Hex values since those are easiest to pass around
-
-black: #323334 
-white: #EBEEEF
-
-dark
-purple: #D3A9EA 
-blue: #96D9E4
-green: #9CE59A 
-pink: #EAA9B6 
-dark shadow: #252627
-light shadow: #BEBFC1
-
-light
-purple: #54077D
-blue: #054C5C
-green: #145809
-pink: #76133D
-dark shadow: #383B3E
-light shadow: #BDC0C1
-*/
-
-[data-theme="dark"] {
-  --background: oklch(32.05% 0.002 247.9);
-  --bg-shadow: oklch(26.8% 0.002 247.91);
-  --blue: oklch(84.43% 0.069 208.77);
-  --box-shadow: oklch(80.45% 0.003 264.54 / 0.5);
-  --green: oklch(85.52% 0.126 143.77);
-  --pink: oklch(79.96% 0.078 5.76);
-  --purple: oklch(79.44% 0.1 313.35);
-  --text-flip: var(--background);
-  --text-main: oklch(94.71% 0.003 219.53);
-
-  --gradient: linear-gradient(
-    60deg,
-    hsl(348deg 61% 79%) 0%,
-    hsl(336deg 62% 79%) 9%,
-    hsl(321deg 57% 78%) 18%,
-    hsl(297deg 47% 77%) 27%,
-    hsl(262deg 70% 82%) 36%,
-    hsl(221deg 92% 82%) 45%,
-    hsl(204deg 86% 76%) 55%,
-    hsl(192deg 67% 74%) 64%,
-    hsl(182deg 58% 70%) 73%,
-    hsl(169deg 63% 69%) 82%,
-    hsl(152deg 64% 71%) 91%,
-    hsl(118deg 59% 75%) 100%
-  );
-}
-
-[data-theme="dark"] [astro-icon="sun"] {
-  visibility: hidden;
-}
-
-[data-theme="dark"] [astro-icon="moon"] {
-  visibility: visible;
-}
-
-[data-theme="light"] {
-  --background: oklch(94.71% 0.003 219.53);
-  --bg-shadow: oklch(80.57% 0.004 219.54);
-  --blue: oklch(38.54% 0.068 218.69);
-  --box-shadow: oklch(35.06% 0.007 248.02);
-  --green: oklch(40.32% 0.126 141.35);
-  --pink: oklch(37.75% 0.136 1.28);
-  --purple: oklch(35.09% 0.172 308.25);
-  --text-flip: var(--background);
-  --text-main: oklch(32.05% 0.002 247.9);
-
-  --gradient: linear-gradient(
-    60deg,
-    hsl(335deg 72% 27%) 0%,
-    hsl(323deg 100% 23%) 9%,
-    hsl(312deg 100% 22%) 18%,
-    hsl(294deg 100% 22%) 27%,
-    hsl(259deg 62% 32%) 36%,
-    hsl(214deg 100% 27%) 45%,
-    hsl(205deg 100% 24%) 55%,
-    hsl(194deg 100% 20%) 64%,
-    hsl(187deg 100% 18%) 73%,
-    hsl(174deg 100% 17%) 82%,
-    hsl(154deg 100% 17%) 91%,
-    hsl(112deg 81% 19%) 100%
-  );
-}
-
-[data-theme="light"] [astro-icon="sun"] {
-  visibility: visible;
-}
-
-[data-theme="light"] [astro-icon="moon"] {
-  visibility: hidden;
-}
-
-/* basic font & color settings */
+/* Global defaults */
 h1,
 h2,
 h3,
@@ -184,20 +89,6 @@ body {
   font-size: var(--b-md);
 }
 
-/* global utility styles */
-.divider {
-  background: var(--gradient);
-  height: 6px;
-}
-
-.shadow-under {
-  box-shadow: 0 4px 5px var(--bg-shadow);
-}
-
-.shadow-over {
-  box-shadow: 0 -4px 5px var(--bg-shadow);
-}
-
 ul {
   list-style-type: none;
   padding-left: 1.75rem;
@@ -234,6 +125,20 @@ ul li:nth-child(4n)::before {
   }
 }
 
+/* Global utilities */
+.divider {
+  background: var(--gradient);
+  height: 6px;
+}
+
+.shadow-under {
+  box-shadow: 0 4px 5px var(--bg-shadow);
+}
+
+.shadow-over {
+  box-shadow: 0 -4px 5px var(--bg-shadow);
+}
+
 .gradient-text {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -244,25 +149,23 @@ ul li:nth-child(4n)::before {
   background-size: 100%;
 }
 
-.script-font-loaded .link {
-  font-size: var(--h5);
-  letter-spacing: 1.25px;
-  line-height: 1;
-}
-
-.script-font-loaded .home {
-  font-size: var(--h2);
-  letter-spacing: 1.25px;
-  line-height: 1;
-}
-
-.script-font-loaded .title {
-  font-size: calc(var(--h0) * 1.25);
-  letter-spacing: 1.25px;
-  line-height: 1;
-}
-
-/* specifics for packages that need to be globally available */
+/* External package styles */
 [astro-icon] {
   fill: currentColor;
+}
+
+[data-theme="dark"] [astro-icon="sun"] {
+  visibility: hidden;
+}
+
+[data-theme="dark"] [astro-icon="moon"] {
+  visibility: visible;
+}
+
+[data-theme="light"] [astro-icon="sun"] {
+  visibility: visible;
+}
+
+[data-theme="light"] [astro-icon="moon"] {
+  visibility: hidden;
 }
