@@ -1,6 +1,6 @@
 {
   "name": "CSS Images",
-  "headerImage": "../../assets/projects/cssHobbes.png",
+  "headerImage": "../../assets/projects/css-hobbes.png",
   "headerImageAlt": "Hobbes the Tiger, from the comic strip Calvin and Hobbes, drawn with HTML and CSS.",
   "description": "Images created using CSS, following prompts from a daily email. Through working on these drawings, I started to learn more about positioning items with CSS, as well as flexing the creative side of my mind.",
   "tech": ["HTML", "CSS"],

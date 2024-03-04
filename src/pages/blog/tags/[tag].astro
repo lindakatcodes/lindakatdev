@@ -1,7 +1,7 @@
 ---
+import BlogIntro from "@components/BlogIntro.astro";
+import PostPreviewCard from "@components/PostPreviewCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import BlogCard from "@components/blogCard.astro";
-import BlogHeader from "@components/blogHeader.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { allPosts } = Astro.props;
-const postsToView = allPosts.filter((post) => { 
+const postsToView = allPosts.filter((post) => {
   const sanitizedTags = post.data.tags.map((tagName) =>
     tagName.toLowerCase().split(" ").join("-")
   );
@@ -33,7 +33,7 @@ const postsToView = allPosts.filter((post) => {
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <BlogHeader />
+  <BlogIntro />
   <div class="posts-wrapper">
     {
       postsToView
@@ -46,20 +46,20 @@ const postsToView = allPosts.filter((post) => {
             return 0;
           }
         })
-        .map((blogPostEntry) => <BlogCard blogBit={blogPostEntry} />)
+        .map((blogPostEntry) => <PostPreviewCard blogBit={blogPostEntry} />)
     }
   </div>
 </MainLayout>
 
 <style>
   h1 {
-    text-align: center;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .posts-wrapper {
-    width: 50%;
     margin: 0 auto;
+    width: 50%;
   }
 
   @media (max-width: 520px) {

@@ -1,51 +1,59 @@
 ---
+import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import ProjectCard from "@components/projectCard.astro";
 import { DEFAULT_METADATA } from "@util/constants.ts";
-
 import { getCollection } from "astro:content";
+
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
 });
+
 const otherProjects = await getCollection("projects", ({ data }) => {
   return data.featured !== true;
 });
-
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <h1>Featured Projects</h1>
+  <h2>Featured Projects</h2>
   <div class="projects-wrapper">
-    {featuredProjects.sort((a, b) => a.data.order - b.data.order).map((project) => <ProjectCard project={project} />)}
+    {
+      featuredProjects
+        .sort((a, b) => a.data.order - b.data.order)
+        .map((project) => <ProjectPreviewCard project={project} aboveFold={true} />)
+    }
   </div>
-  <h2>Other Fun Projects</h2>
+  <h3>Other Fun Projects</h3>
   <div class="projects-wrapper">
-    {otherProjects.sort((a, b) => a.data.order - b.data.order).map((project) => <ProjectCard project={project} />)}
+    {
+      otherProjects
+        .sort((a, b) => a.data.order - b.data.order)
+        .map((project) => <ProjectPreviewCard project={project} />)
+    }
   </div>
 </MainLayout>
 
 <style>
-  h1, h2 {
+  h2,
+  h3 {
     text-align: center;
   }
 
   .projects-wrapper {
-    width: 90dvw;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center;
     margin: 0.25rem auto;
     padding: 0.25rem 0.125rem 0.75rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-    justify-items: center;
   }
 
   @media (max-width: 520px) {
     .projects-wrapper {
-      margin: 0.25rem 0;
-      width: auto;
-      padding-bottom: 0.25rem;
-      grid-template-columns: 1fr;
       gap: 30px 0;
+      grid-template-columns: 1fr;
+      margin: 0.25rem 0;
+      padding-bottom: 0.25rem;
+      width: auto;
     }
   }
 

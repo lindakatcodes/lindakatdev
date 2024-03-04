@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-interface Props {
+export interface Props {
   noteInfo: CollectionEntry<"notes">;
 }
 
@@ -27,12 +27,12 @@ const dateString = new Date(noteInfo.data.lastUpdate).toLocaleDateString(
 
 <style>
   .note-info-wrapper {
-    margin-bottom: 3rem;
-    padding: 1rem;
     border: 3px dashed transparent;
     border-bottom-color: var(--purple);
-    border-top-color: var(--purple);
     border-radius: 0;
+    border-top-color: var(--purple);
+    margin-bottom: 3rem;
+    padding: 1rem;
     transition: all 0.2s ease-in-out;
   }
 
@@ -79,9 +79,9 @@ const dateString = new Date(noteInfo.data.lastUpdate).toLocaleDateString(
 
   .note-info-date {
     color: var(--text-main);
+    display: block;
+    font-family: var(--body-font);
     font-size: 0.9rem;
     opacity: 0.6;
-    font-family: var(--body-font);
-    display: block;
   }
 </style>

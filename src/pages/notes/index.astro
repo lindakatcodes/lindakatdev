@@ -1,6 +1,6 @@
 ---
+import NotePreviewCard from "@components/NotePreviewCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import NoteCard from "@components/noteCard.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
@@ -27,22 +27,22 @@ const notes = await getCollection("notes");
             return 0;
           }
         })
-        .map((note) => <NoteCard noteInfo={note} />)
+        .map((note) => <NotePreviewCard noteInfo={note} />)
     }
   </div>
 </MainLayout>
 
 <style>
   h1 {
-    text-align: center;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .intro {
-    width: 55%;
+    font-size: 1.1rem;
     margin: 0 auto 3rem;
     text-align: center;
-    font-size: 1.1rem;
+    width: 55%;
   }
 
   .intro p {
@@ -50,8 +50,8 @@ const notes = await getCollection("notes");
   }
 
   .posts-wrapper {
-    width: 50%;
     margin: 0 auto;
+    width: 50%;
   }
 
   @media (max-width: 520px) {

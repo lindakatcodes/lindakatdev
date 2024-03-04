@@ -1,46 +1,49 @@
 ---
-import Socials from "./socials.astro";
-
+import SocialsGrid from "./SocialsGrid.astro";
 ---
 
-<div transition:name="footer" class="footer-container">
-  <div class="divider shadow-over"></div>
-  <footer>
-    <section class="email-outro">
-      <h2>Hi there!</h2>
+<footer transition:name="footer">
+    <div class="divider shadow-over"></div>
+    <div class="email-outro">
+      <p class="hey">Hey there!</p>
       <p>Thanks for checking out my site!</p>
       <p>
-        Feel free to email me if you'd like to get in touch: <br />
+        Reach out if you'd like to get in touch: <br />
         <span class="email gradient-text"> hello@lindakat.com</span>
       </p>
-    </section>
+    </div>
     <div class="footer-socials">
-      <Socials />
+      <SocialsGrid />
     </div>
     <p class="copyright">© 2020 - 2024 Linda Thompson</p>
   </footer>
-</div>
 
 <style>
-  .footer-container {
-    height: var(--footer-height);
+  footer {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+      "divider divider"
+      "outro socials"
+      "copyright copyright";
   }
 
-  footer {
-    padding: 0 4rem 0.5rem;
-    display: grid;
-    grid-template-areas: "email socials";
-    grid-template-columns: 1fr 0.5fr;
+  .divider {
+    grid-area: divider;
+    width: 100%;
   }
 
   .email-outro {
-    grid-area: email;
+    grid-area: outro;
+    margin-left: var(--s24);
   }
 
-  .email-outro h2 {
-    font-family: var(--cursive-font);
-    font-size: 1.75rem;
+  .email-outro .hey {
     color: var(--blue);
+    font-family: var(--cursive-font);
+    font-size: var(--h5);
     margin-bottom: initial;
   }
 
@@ -50,63 +53,63 @@ import Socials from "./socials.astro";
   }
 
   .email {
+    background-color: var(--pink);
+    background-image: none;
     cursor: pointer;
+    font-size: 1.1rem;
     text-decoration: underline solid var(--blue);
     transition: background 0.3s ease-in-out;
-    background-image: none;
-    background-color: var(--pink);
-    font-size: 1.1rem;
   }
 
   .email:hover {
-    text-decoration-style: double;
     background-image: var(--gradient);
+    text-decoration-style: double;
   }
 
   .footer-socials {
     grid-area: socials;
-    display: grid;
+    margin-right: var(--s24);
   }
 
   .copyright {
-    grid-column: 1 / 3;
-    text-align: center;
     font-size: 0.8rem;
+    grid-area: copyright;
+    margin-bottom: var(--s8);
+    text-align: center;
   }
 
   @media (max-width: 520px) {
     footer {
-      grid-template-areas: "email" "socials";
       grid-template-columns: 1fr;
-      padding: 0 2rem 1rem;
+      grid-template-rows: auto 1fr 1fr auto;
+      grid-template-areas: 
+        "divider"
+        "outro"
+        "socials"
+        "copyright";
     }
 
     .email-outro {
-      margin-bottom: 0.75rem;
-      padding: 0 3rem;
       font-size: 0.9rem;
+      margin-left: 0;
       text-align: center;
     }
-    
+
     .email {
       font-size: 1rem;
     }
 
-    .copyright {
-      padding-top: 0.5rem;
+    .footer-socials {
+      margin: 0 auto;
+      width: 85%;
     }
   }
 
   @media (min-width: 520px) and (max-width: 1024px) {
     footer {
       grid-template-columns: 0.75fr 1fr;
-      padding: 0 2rem 1rem;
     }
-
-    .email-outro {
-      padding: 0 0.5rem;
-    }
-  }
+  } 
 </style>
 
 <script>

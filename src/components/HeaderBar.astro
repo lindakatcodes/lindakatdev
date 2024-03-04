@@ -1,17 +1,16 @@
 ---
-import ThemeToggle from "./themeToggle.astro";
+import ThemeToggleSwitch from "./ThemeToggleSwitch.astro";
 const activePath = Astro.url.pathname;
 ---
 
-<header>
-  <nav transition:name="header">
+<header transition:name="header">
+  <nav>
     <a
       class:list={["gradient-text link home", { active: activePath === "/" }]}
       href="/"
     >
       LT
     </a>
-    <span class="spacer"></span>
     <a
       class:list={[
         "link projects",
@@ -20,61 +19,56 @@ const activePath = Astro.url.pathname;
       href="/projects">Projects</a
     >
     <a
-      class:list={[
-        "link blog",
-        { "blog-active": activePath === "/blog" },
-      ]}
+      class:list={["link blog", { "blog-active": activePath === "/blog" }]}
       href="/blog">Blog</a
     >
     <a
       class:list={["link about", { "about-active": activePath === "/about" }]}
       href="/about">About</a
     >
-    <ThemeToggle />
+    <ThemeToggleSwitch />
   </nav>
   <div class="divider shadow-under"></div>
 </header>
 
 <style>
   header {
+    background: var(--background);
     position: sticky;
     top: 0;
     z-index: 2;
-    background: var(--background);
   }
+
   nav {
-    height: var(--header-height);
-    width: calc(100dvw - 20px);
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
+    display: flex;
     gap: 1.25rem;
+    height: var(--header-height);
+    justify-content: flex-end;
+    margin: 0 auto var(--s8);
+    width: calc(100dvw - var(--s24));
   }
 
   .link {
-    color: var(--text-main);
-    font-family: var(--cursive-font);
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 0.07rem;
-    padding: 0.5rem 0.25rem 0;
     border-bottom: thick solid;
     border-bottom-color: transparent;
+    color: var(--text-main);
+    font-family: var(--cursive-font);
+    font-size: var(--h6);
+    letter-spacing: -1px;
+    line-height: 1.15;
+    padding: 0.5rem 0.5rem 0;
     text-decoration: none;
     text-shadow: -1px 1px 3px var(--bg-shadow);
     transition:
-      border-bottom-color 0.2s linear,
-      color 0.2s linear;
-  }
-
-  .spacer {
-    flex-grow: 1;
+      all 0.2s linear
   }
 
   .home {
+    flex-grow: 1;
     font-family: var(--cursive-font);
-    font-size: 3.5rem;
-    width: 7rem;
+    font-size: var(--h2);
+    justify-self: flex-start;
     margin-left: 2px;
     text-shadow: none;
   }
@@ -112,7 +106,6 @@ const activePath = Astro.url.pathname;
   @media (max-width: 520px) {
     nav {
       gap: 0.5rem;
-      width: 100dvw;
     }
 
     .link {
@@ -121,8 +114,8 @@ const activePath = Astro.url.pathname;
 
     .home {
       font-size: 2.5rem;
-      width: 3.5rem;
       margin-left: 0.25rem;
+      width: 3.5rem;
     }
   }
 </style>

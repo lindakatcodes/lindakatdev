@@ -14,11 +14,11 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 
 const metadata = {
-  title: entry.data.title,
   description: entry.data.description,
   imagePath: entry.data.ogImage.src,
-  url: `https://lindakat.com/blog/${entry.slug}`
-}
+  title: entry.data.title,
+  url: `https://lindakat.com/blog/${entry.slug}`,
+};
 ---
 
 <MainLayout metadata={metadata}>
