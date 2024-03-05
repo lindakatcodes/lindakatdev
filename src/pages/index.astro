@@ -64,6 +64,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     padding: var(--s16) 0 calc(var(--s80) * 1.75);
   }
 
+  #intro {
+    padding-top: calc(var(--s80) * 1.75);
+  }
+
   [astro-icon="script-name"] {
     margin: 0.5rem auto;
     max-width: 95%;
@@ -155,10 +159,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   /* Mobile */
   @media (max-width: 520px) {
-    /* [astro-icon="script-name"] {
-    max-width: 95%;
-  } */
-
     .subtitle {
       font-size: var(--h6);
       width: auto;
