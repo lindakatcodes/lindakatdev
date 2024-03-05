@@ -4,7 +4,6 @@ import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import { Icon } from 'astro-icon';
 import { getCollection } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
@@ -18,7 +17,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <section id="intro">
-    <Icon name="script-name" title="Linda Thompson" />
+    <h1 class="title">Linda Thompson</h1>
     <p class="subtitle gradient-text">
       Software engineer, career changer, & team builder
     </p>
@@ -63,14 +62,11 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     padding: var(--s16) 0 calc(var(--s80) * 1.75);
   }
 
-  #intro {
-    padding-top: calc(var(--s80) * 1.75);
-  }
-
-  [astro-icon="script-name"] {
-    color: var(--text-main);
-    margin: 0.5rem auto;
-    max-width: 95%;
+  .title {
+    font-family: var(--cursive-font);
+    font-size: calc(var(--h0) * 1.5);
+    margin-bottom: 0.5rem;
+    text-align: center;
   }
 
   .subtitle {
@@ -158,9 +154,13 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   /* Mobile */
   @media (max-width: 520px) {
+    .title {
+      font-size: var(--h1);
+      margin-top: -1.5rem;
+    }
+
     .subtitle {
-      font-size: var(--h6);
-      max-width: 85%;
+      font-size: var(--h5);
       width: auto;
     }
 
@@ -174,7 +174,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     }
 
     .social-wrapper {
-      width: 85%;
+      width: 75%;
     }
 
     .project-cards {
@@ -184,12 +184,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
     .post-blurbs {
       width: 100%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    [astro-icon="script-name"] {
-      max-width: 50%;
     }
   }
 
