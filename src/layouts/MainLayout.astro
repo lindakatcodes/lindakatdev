@@ -6,11 +6,11 @@ import "@styles/global.css";
 
 export interface Props {
   metadata: {
-    description: string,
-    imagePath: string,
+    description: string;
+    imagePath: string;
     title: string;
-    url: string,
-  }
+    url: string;
+  };
 }
 
 const { metadata } = Astro.props;
@@ -34,7 +34,7 @@ const { metadata } = Astro.props;
     min-height: 100dvh;
     margin: 0 auto;
   }
-  
+
   main {
     margin: 0 auto;
     width: 100%;
@@ -42,3 +42,13 @@ const { metadata } = Astro.props;
     padding: var(--s24);
   }
 </style>
+
+<script>
+  document.fonts.ready.then(() => {
+    document.documentElement.classList.add("fonts-loaded");
+  });
+
+  document.addEventListener('astro:after-swap', () => {
+    document.documentElement.classList.add("fonts-loaded");
+  });
+</script>
