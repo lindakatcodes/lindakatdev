@@ -1,5 +1,6 @@
 @import "reset.css";
 @import "colors.css";
+@import "fonts.css";
 
 /* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
  --xs (min-width: 520px);
@@ -11,20 +12,6 @@
 
 /* Variables */
 :root {
-  --body-font: "Fira Sans", system-ui, sans-serif;
-  --cursive-font: "Birthstone", "Brush Script MT", serif;
-  --serif-font: "Source Serif 4", serif;
-  --s4: 4px;
-  --s8: 8px;
-  --s16: 16px;
-  --s24: 24px;
-  --s32: 32px;
-  --s40: 40px;
-  --s48: 48px;
-  --s56: 56px;
-  --s64: 64px;
-  --s72: 72px;
-  --s80: 80px;
   --b-sm: 14px;
   --b-md: 18px;
   --b-lg: 24px;
@@ -36,6 +23,17 @@
   --h1: 68px;
   --h0: 80px;
   --header-height: var(--s64);
+  --s4: 4px;
+  --s8: 8px;
+  --s16: 16px;
+  --s24: 24px;
+  --s32: 32px;
+  --s40: 40px;
+  --s48: 48px;
+  --s56: 56px;
+  --s64: 64px;
+  --s72: 72px;
+  --s80: 80px;
 }
 
 /* Global defaults */

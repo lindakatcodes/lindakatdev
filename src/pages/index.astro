@@ -36,7 +36,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       {
         featuredProjects
           .sort((a, b) => a.data.order - b.data.order)
-          .map((project) => <ProjectPreviewCard project={project} aboveFold={true} />)
+          .map((project) => <ProjectPreviewCard project={project} />)
       }
     </div>
     <div class="page-link">
