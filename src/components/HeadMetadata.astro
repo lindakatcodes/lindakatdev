@@ -2,7 +2,8 @@
 import { ViewTransitions } from "astro:transitions";
 const { metadata } = Astro.props;
 
-const fontUrl = "https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap";
+const fontUrl =
+  "https://fonts.googleapis.com/css2?family=Birthstone&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap";
 ---
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -34,17 +35,17 @@ const fontUrl = "https://fonts.googleapis.com/css2?family=Birthstone&family=Fira
 <!-- [2] -->
 <link rel="preload" as="style" href={fontUrl} />
 <!-- [3] -->
-<link
-  rel="stylesheet"
-  href={fontUrl}
-  media="print"
-  onload="this.media='all'"
-/>
+<link rel="stylesheet" href={fontUrl} media="print" onload="this.media='all'" />
 <!-- [4] -->
 <noscript>
   <link rel="stylesheet" href={fontUrl} />
 </noscript>
 
-<link href="/prism-theme.css" rel="stylesheet" />
+<link
+  href="/prism-theme.css"
+  rel="stylesheet"
+  media="print"
+  onload="this.media='all'"
+/>
 
 <ViewTransitions />
