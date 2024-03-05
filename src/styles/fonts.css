@@ -1,7 +1,7 @@
 /* Initial font families */
 html {
   --body-font: sans-serif;
-  --cursive-font: serif;
+  --cursive-font: "Brush Script MT", serif;
   --serif-font: serif;
 }
 
