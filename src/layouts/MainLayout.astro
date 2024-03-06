@@ -31,8 +31,9 @@ const { metadata } = Astro.props;
 
 <style>
   body {
-    min-height: 100dvh;
-    margin: 0 auto;
+    min-block-size: 100%;
+    display: grid;
+    grid-template: max-content auto max-content / 100%;
   }
 
   main {
