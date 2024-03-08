@@ -25,17 +25,23 @@
           "default": false
         },
         {
-          "title": "Tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
           "title": "Published date",
           "name": "publishedDate",
           "type": "datetime",
           "default": "{{now}}",
           "dateFormat": "yyyy-MM-dd",
           "isPublishDate": true
+        },
+        {
+          "title": "Post Status",
+          "name": "status",
+          "type": "draft",
+          "default": "Draft"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
         },
         {
           "title": "Link to remote article",
@@ -48,22 +54,17 @@
           "type": "string"
         },
         {
-          "title": "Slug",
-          "name": "slug",
-          "type": "slug",
-          "editable": true,
-          "default": "{{slug}}"
-        },
-        {
           "title": "OG Image Preview",
           "name": "ogImage",
           "type": "image",
           "description": "Template: https://www.canva.com/design/DAFzuN4ys5c/qNsSSQTKRAFSeynGko0bLg/edit?utm_content=DAFzuN4ys5c"
         },
         {
-          "title": "Post Status",
-          "name": "status",
-          "type": "draft"
+          "title": "Slug",
+          "name": "slug",
+          "type": "slug",
+          "editable": true,
+          "default": "{{slug}}"
         },
         {
           "title": "Layout",
@@ -98,6 +99,12 @@
           "isPublishDate": true
         },
         {
+          "title": "Post Status",
+          "name": "status",
+          "type": "draft",
+          "default": "Garden"
+        },
+        {
           "title": "Tags",
           "name": "tags",
           "type": "tags"
@@ -106,11 +113,6 @@
           "title": "Author or Course Source",
           "name": "source",
           "type": "string"
-        },
-        {
-          "title": "Post Status",
-          "name": "status",
-          "type": "draft"
         },
         {
           "title": "Layout",
@@ -124,7 +126,11 @@
   "frontMatter.content.draftField": {
     "name": "status",
     "type": "choice",
-    "choices": ["Live", "Draft", "Garden"]
+    "choices": [
+      "Live",
+      "Draft",
+      "Garden"
+    ]
   },
   "frontMatter.framework.id": "astro",
   "frontMatter.preview.host": "http://localhost:4321",
@@ -133,12 +139,16 @@
     {
       "title": "blog",
       "path": "[[workspace]]/src/content/blog",
-      "contentTypes": ["blog"]
+      "contentTypes": [
+        "blog"
+      ]
     },
     {
       "title": "notes",
       "path": "[[workspace]]/src/content/notes",
-      "contentTypes": ["notes"]
+      "contentTypes": [
+        "notes"
+      ]
     }
   ],
   "frontMatter.content.publicFolder": {
