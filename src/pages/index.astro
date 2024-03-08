@@ -4,7 +4,7 @@ import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import { Icon } from 'astro-icon';
+import { Icon } from "astro-icon";
 import { getCollection } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
@@ -48,7 +48,11 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     <div class="post-blurbs">
       {
         featuredPosts
-          .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+          .sort(
+            (a, b) =>
+              new Date(b.data.publishedDate).valueOf() -
+              new Date(a.data.publishedDate).valueOf()
+          )
           .map((post) => <PostPreviewCard blogBit={post} />)
       }
     </div>

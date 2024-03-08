@@ -7,7 +7,7 @@ export interface Props {
 
 const { noteInfo } = Astro.props;
 
-const dateString = new Date(noteInfo.data.lastUpdate).toLocaleDateString(
+const dateString = new Date(noteInfo.data.dateUpdated).toLocaleDateString(
   "en-us",
   {
     dateStyle: "long",
@@ -17,7 +17,7 @@ const dateString = new Date(noteInfo.data.lastUpdate).toLocaleDateString(
 
 <div class="note-info-wrapper">
   <a href={`/notes/${noteInfo.slug}`} class="note-info-link">
-    <time datetime={noteInfo.data.lastUpdate.toString()} class="note-info-date">
+    <time datetime={noteInfo.data.dateUpdated.toString()} class="note-info-date">
       {dateString}
     </time>
     <h2 class="note-info-title">{noteInfo.data.title}</h2>

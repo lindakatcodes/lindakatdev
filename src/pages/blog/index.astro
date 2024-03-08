@@ -15,7 +15,7 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   <div class="posts-wrapper">
     {
       allBlogPosts
-        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+        .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
         .map((blogPostEntry) => <PostPreviewCard blogBit={blogPostEntry} />)
     }
   </div>
