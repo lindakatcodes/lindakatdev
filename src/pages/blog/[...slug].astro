@@ -12,12 +12,13 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const metadata = {
   description: entry.data.description,
   imagePath: entry.data.ogImage.src,
   title: entry.data.title,
-  url: `https://lindakat.com/blog/${entry.slug}`,
+  url: canonicalUrl.toString(),
 };
 ---
 

@@ -6,7 +6,9 @@ const parser = new MarkdownIt();
 
 export async function GET(context) {
   const blog = await getCollection("blog", ({ data }) => {
-    return !data.tags.includes("Course Notes");
+    const isLocal = data.remoteLink === undefined;
+    const isLive = data.status === "Live";
+    return isLocal && isLive;
   });
   return rss({
     title: "LindaKat Writes",
@@ -14,7 +16,7 @@ export async function GET(context) {
     site: context.site,
     items: blog.reverse().map((post) => ({
       title: post.data.title,
-      pubDate: post.data.date,
+      pubDate: post.data.publishedDate,
       link: `/blog/${post.slug}/`,
       description: post.data.description,
       content: sanitizeHtml(parser.render(post.body)),
