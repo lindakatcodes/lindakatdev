@@ -1,84 +1,84 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import CardWrapper from "./CardWrapper.astro";
 
 export interface Props {
   blogBit: CollectionEntry<"blog">;
 }
 
 const { blogBit } = Astro.props;
+const { title, description, publishedDate, remoteLink, remoteSrc } = blogBit.data;
 
-const dateString = new Date(blogBit.data.publishedDate).toLocaleDateString("en-us", {
-  dateStyle: "long",
+const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
+  dateStyle: "medium",
 });
+const postUrl = remoteLink ?? `/blog/${blogBit.slug}`;
+const isLocal = remoteLink === undefined;
+const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
 ---
 
-<div class="blog-bit-wrapper">
-  <a href={`/blog/${blogBit.slug}`} class="blog-bit-link">
-    <time datetime={blogBit.data.publishedDate.toString()} class="blog-bit-date">
-      {dateString}
-    </time>
-    <h2 class="blog-bit-title">{blogBit.data.title}</h2>
-    <p class="blog-bit-blurb">{blogBit.data.description}</p>
+<CardWrapper class="fill-card">
+  <a href={postUrl} class="pr-link">
+    <h2 class="pr-title">{title}</h2>
+    <div class="pr-flex">
+      <p class="pr-date">
+        {dateString}
+      </p>
+      <div class="decoration"></div>
+    </div>
+    <p class="pr-blurb">{description}</p>
+    <div class="pr-flex">
+      <p class="pr-src">{isLocal ? 'Local' : 'Remote'}</p>
+      <div class="decoration"></div>
+      <p class="pr-read-more">{readPostCTA}</p>
+    </div>
   </a>
-</div>
+</CardWrapper>
 
 <style>
-  .blog-bit-wrapper {
-    border: 3px dashed transparent;
-    border-bottom-color: var(--purple);
-    border-radius: 0;
-    border-top-color: var(--purple);
-    margin-bottom: 3rem;
-    padding: 1rem;
-    transition: all 0.2s ease-in-out;
+  .fill-card {  
+    block-size: 100%;
   }
 
-  .blog-bit-wrapper:nth-child(2n) {
-    border-bottom-color: var(--blue);
-    border-top-color: var(--blue);
-  }
-
-  .blog-bit-wrapper:nth-child(3n) {
-    border-bottom-color: var(--pink);
-    border-top-color: var(--pink);
-  }
-
-  .blog-bit-wrapper:nth-child(4n) {
-    border-bottom-color: var(--green);
-    border-top-color: var(--green);
-  }
-
-  .blog-bit-wrapper:hover {
-    border-color: var(--purple);
-    border-radius: 7px;
-  }
-
-  .blog-bit-wrapper:nth-child(2n):hover {
-    border-color: var(--blue);
-  }
-
-  .blog-bit-wrapper:nth-child(3n):hover {
-    border-color: var(--pink);
-  }
-
-  .blog-bit-wrapper:nth-child(4n):hover {
-    border-color: var(--green);
-  }
-
-  .blog-bit-link {
+  .pr-link {
     text-decoration: none;
+    padding: var(--s8) var(--s16);
+    min-block-size: 100%;
+    display: grid;
+    gap: var(--s8);
   }
 
-  .blog-bit-title {
-    font-size: 1.75rem;
-    margin: 0.5rem auto;
+  .pr-title {
+    font-size: var(--h6);
+    margin: 0;
   }
 
-  .blog-bit-date {
+  .pr-date {
     color: var(--text-main);
-    display: block;
     font-family: var(--body-font);
-    font-size: 0.9rem;
+    font-size: var(--b-sm);
     opacity: 0.8;
+  }
+  
+  .pr-flex {
+    display: flex;
+    align-items: center;
+    gap: var(--s8);
+  }
+
+  .decoration {
+    height: 2px;
+    flex-grow: 1;
+    background-color: var(--text-main);
+    border-radius: var(--s4);
+    opacity: 0.8;
+  }
+
+  .pr-src, .pr-read-more {
+    opacity: 0.8;
+  }
+
+  .blurb {
+    
   }
 </style>

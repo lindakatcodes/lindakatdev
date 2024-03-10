@@ -1,10 +1,10 @@
 ---
-
+const { class: className } = Astro.props;
 ---
 
 <div class="container">
   <div class="corners"></div>
-  <div class="card">
+  <div class:list={["card", className]}>
     <slot />
   </div>
 </div>
@@ -17,7 +17,6 @@
     background: transparent;
     border: none;
     box-shadow: none;
-    margin: var(--s24);
     padding: var(--s8);
     position: relative;
     transition: all 0.2s;
@@ -29,7 +28,7 @@
     transform: scale(1.05);
   }
 
-  /* keeps the card info in front of the corners backround */
+  /* keeps the card info in front of the corners background */
   .card {
     position: relative;
   }

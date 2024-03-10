@@ -28,25 +28,15 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   }
 
   .posts-wrapper {
-    margin: 0 auto;
-    width: 50%;
+    display: grid;
+    gap: var(--s24);
   }
 
-  @media (max-width: 520px) {
+  @media (min-width: 520px) {
     .posts-wrapper {
-      width: 100%;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     }
   }
 
-  @media (min-width: 520px) and (max-width: 1024px) {
-    .posts-wrapper {
-      width: 85%;
-    }
-  }
 
-  @media (min-width: 1280px) {
-    .posts-wrapper {
-      width: 45%;
-    }
-  }
 </style>
