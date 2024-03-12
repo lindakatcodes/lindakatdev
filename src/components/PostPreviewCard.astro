@@ -12,6 +12,7 @@ const { title, description, publishedDate, remoteLink, remoteSrc } = blogBit.dat
 const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
   dateStyle: "medium",
 });
+const addFontClamp = title.length > 45;
 const postUrl = remoteLink ?? `/blog/${blogBit.slug}`;
 const isLocal = remoteLink === undefined;
 const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
@@ -19,7 +20,7 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
 
 <CardWrapper>
   <a href={postUrl} class="pr-link">
-    <h2 class="pr-title">{title}</h2>
+    <h2 class:list={["pr-title", {'title-clamp': addFontClamp}]}>{title}</h2>
     <div class="pr-flex">
       <p class="pr-date">
         {dateString}
@@ -40,20 +41,23 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
     text-decoration: none;
     padding: 0 var(--s16);
     display: grid;
-    grid-template-rows: 2fr 0.5fr 2fr 0.5fr;
+    grid-template-rows: 2fr auto 1fr auto;
     align-items: center;
     gap: var(--s8);
     min-block-size: 100%;
   }
 
   .pr-title {
-    font-size: var(--h6);
+    font-size: var(--h4);
     margin: 0;
     text-align: center;
   }
 
+  .title-clamp {
+    font-size: clamp(var(--h6), 7cqi, var(--h3));
+  }
+
   .pr-date {
-    align-self: start;
     color: var(--text-main);
     font-family: var(--body-font);
     font-size: var(--b-sm);
@@ -61,10 +65,17 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
   }
   
   .pr-flex {
-    align-self: end;
     display: flex;
     align-items: center;
     gap: var(--s8);
+  }
+
+  .pr-flex:has(.pr-date) {
+    align-self: start;
+  }
+
+  .pr-flex:has(.pr-src) {
+    align-self: end;
   }
 
   .decoration {
@@ -85,8 +96,17 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
   .local-color {
     color: var(--blue);
   }
+
   .pr-read-more {
     color: var(--purple);
   }
 
+  @media (max-width: 520px) {
+    .pr-link {
+      grid-template-rows: auto;
+    }
+    .pr-title:not(.title-clamp) {
+      font-size: var(--h5);
+    }
+  }
 </style>

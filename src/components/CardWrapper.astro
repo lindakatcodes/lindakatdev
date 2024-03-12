@@ -21,16 +21,16 @@
     padding: var(--s8);
     position: relative;
     transition: all 0.2s;
-    width: fit-content;
   }
-
+  
   .container:hover, .container:focus {
     box-shadow: 8px 12px 20px -4px var(--bg-shadow);
     transform: scale(1.05);
   }
-
+  
   /* keeps the card info in front of the corners background */
   .card {
+    container-type: inline-size;
     position: relative;
   }
 
