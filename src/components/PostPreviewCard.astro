@@ -17,7 +17,7 @@ const isLocal = remoteLink === undefined;
 const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
 ---
 
-<CardWrapper class="fill-card">
+<CardWrapper>
   <a href={postUrl} class="pr-link">
     <h2 class="pr-title">{title}</h2>
     <div class="pr-flex">
@@ -28,7 +28,7 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
     </div>
     <p class="pr-blurb">{description}</p>
     <div class="pr-flex">
-      <p class="pr-src">{isLocal ? 'Local' : 'Remote'}</p>
+      <p class:list={["pr-src", {'local-color': isLocal}]}>{isLocal ? 'Local' : 'Remote'}</p>
       <div class="decoration"></div>
       <p class="pr-read-more">{readPostCTA}</p>
     </div>
@@ -36,24 +36,24 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
 </CardWrapper>
 
 <style>
-  .fill-card {  
-    block-size: 100%;
-  }
-
   .pr-link {
     text-decoration: none;
-    padding: var(--s8) var(--s16);
-    min-block-size: 100%;
+    padding: 0 var(--s16);
     display: grid;
+    grid-template-rows: 2fr 0.5fr 2fr 0.5fr;
+    align-items: center;
     gap: var(--s8);
+    min-block-size: 100%;
   }
 
   .pr-title {
     font-size: var(--h6);
     margin: 0;
+    text-align: center;
   }
 
   .pr-date {
+    align-self: start;
     color: var(--text-main);
     font-family: var(--body-font);
     font-size: var(--b-sm);
@@ -61,6 +61,7 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
   }
   
   .pr-flex {
+    align-self: end;
     display: flex;
     align-items: center;
     gap: var(--s8);
@@ -74,11 +75,18 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
     opacity: 0.8;
   }
 
-  .pr-src, .pr-read-more {
+  .pr-src {
+    color: var(--green);
+    text-transform: uppercase;
+    font-size: var(--b-sm);
     opacity: 0.8;
   }
-
-  .blurb {
-    
+  
+  .local-color {
+    color: var(--blue);
   }
+  .pr-read-more {
+    color: var(--purple);
+  }
+
 </style>

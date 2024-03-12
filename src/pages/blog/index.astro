@@ -29,12 +29,12 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
 
   .posts-wrapper {
     display: grid;
-    gap: var(--s24);
+    gap: var(--s64);
   }
 
-  @media (min-width: 520px) {
+  @media (min-width: 768px) {
     .posts-wrapper {
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      grid-template-columns: 1fr 1fr;
     }
   }
 
