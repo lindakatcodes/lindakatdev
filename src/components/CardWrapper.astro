@@ -26,9 +26,19 @@
   .container:hover, .container:focus {
     box-shadow: 8px 12px 20px -4px var(--bg-shadow);
     transform: scale(1.05);
+
+    & .corners:before {
+      top: 0;
+      bottom: 0;
+    }
+
+    & .corners:after {
+      left: 0;
+      right: 0;
+    }
   }
   
-  /* keeps the card info in front of the corners background */
+  /* keeps the card info in front of the corners background, and allows for font size adjustments based on the card size */
   .card {
     container-type: inline-size;
     position: relative;
