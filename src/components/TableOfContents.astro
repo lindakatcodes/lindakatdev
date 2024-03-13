@@ -1,0 +1,38 @@
+---
+import type { MarkdownHeading } from "astro";
+
+export interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<div class="toc-wrapper">
+  {
+    headings.map((heading) => (
+      <a
+        href={`#${heading.slug}`}
+        class={`depth-${heading.depth} gradient-text`}
+      >
+        {heading.text}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .toc-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .depth-3 {
+    padding-left: var(--s16);
+  }
+
+  .depth-4 {
+    padding-left: var(--s32);
+  }
+</style>

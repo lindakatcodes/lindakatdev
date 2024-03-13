@@ -58,14 +58,17 @@ const backLink = `/${postType}`;
 
   .post-content h2 {
     color: var(--blue);
+    scroll-margin-top: calc(var(--header-height) + var(--s8));
   }
 
   .post-content h3 {
     color: var(--purple);
+    scroll-margin-top: calc(var(--header-height) + var(--s8));
   }
 
   .post-content h4 {
     color: var(--green);
+    scroll-margin-top: calc(var(--header-height) + var(--s8));
   }
 
   .post-content hr {
@@ -95,6 +98,7 @@ const backLink = `/${postType}`;
     text-underline-offset: 2px;
     transition: all 0.2s;
   }
+
   .post-content a:hover {
     background-image: var(--gradient);
     text-decoration-style: double;
