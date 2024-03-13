@@ -81,6 +81,10 @@ a {
   font-family: var(--body-font);
 }
 
+a {
+  text-underline-offset: 2px;
+}
+
 body {
   background-color: var(--background);
   transition: all 0.3s ease-in-out;
