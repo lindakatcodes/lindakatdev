@@ -5,38 +5,38 @@ const backLink = `/${postType}`;
 ---
 
 <section>
-<a href={backLink} class:list={["back-link", "gradient-text"]}>
-  ← Back to the {postType} list</a
->
-<div class="fm-wrapper">
-  <h1 class="post-title">{title}</h1>
-  <div class="post-data">
-    {
-      postType === "notes" && Astro.props.frontmatter.source && (
-        <p>
-          <em>
-            Notes are based on a course or docs from:{" "}
-            {Astro.props.frontmatter.source}
-          </em>
-        </p>
-      )
-    }
-    <p class="read-time">☕ {minutesRead}</p>
-    <!-- tags needs links to tagged posts logic -->
-    <div class="tags">
-      <p>This post covers these topics:</p>
-      <span>
-        {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
-      </span>
+  <a href={backLink} class="back-link gradient-text">
+    <span>«</span> Back to the {postType} list</a
+  >
+  <div class="fm-wrapper">
+    <h1 class="post-title">{title}</h1>
+    <div class="post-data">
+      {
+        postType === "notes" && Astro.props.frontmatter.source && (
+          <p>
+            <em>
+              Notes are based on a course or docs from:{" "}
+              {Astro.props.frontmatter.source}
+            </em>
+          </p>
+        )
+      }
+      <p class="read-time">☕ {minutesRead}</p>
+      <!-- tags needs links to tagged posts logic -->
+      <div class="tags">
+        <p>This post covers these topics:</p>
+        <span>
+          {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
+        </span>
+      </div>
     </div>
   </div>
-</div>
-<div class="post-content">
-  <slot />
-</div>
-<a href={backLink} class:list={["back-link", "gradient-text"]}>
-  ← Back to the {postType} list</a
->
+  <div class="post-content">
+    <slot />
+  </div>
+  <a href={backLink} class:list={["back-link", "gradient-text"]}>
+    ← Back to the {postType} list</a
+  >
 </section>
 
 <style is:global>
@@ -82,16 +82,22 @@ const backLink = `/${postType}`;
   }
 
   .post-content a {
-    color: var(--text-main);
-    text-decoration-color: var(--text-main);
-    text-decoration-thickness: 1px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-color: var(--purple);
+    background-image: none;
+    background-repeat: repeat;
+    background-size: 100%;
+    color: var(--purple);
+    font-family: var(--body-font);
+    text-decoration: underline solid var(--green);
+    text-underline-offset: 2px;
+    transition: all 0.2s;
   }
-
   .post-content a:hover {
-    color: var(--pink);
-    text-decoration-color: var(--pink);
-    text-decoration-thickness: 3px;
-    text-decoration-color: var(--pink);
+    background-image: var(--gradient);
+    text-decoration-style: double;
   }
 
   .post-content p code,
@@ -134,17 +140,11 @@ const backLink = `/${postType}`;
 <style>
   /* layout styles */
   .back-link {
-    background-color: var(--pink);
-    background-image: none;
-    color: var(--text-main);
-    font-family: var(--body-font);
-    font-size: 1.25rem;
     font-weight: bolder;
-    text-decoration: none;
-  }
 
-  .back-link:hover {
-    background-image: var(--gradient);
+    & span {
+      font-size: var(--b-lg);
+    }
   }
 
   .fm-wrapper {

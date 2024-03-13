@@ -7,7 +7,8 @@ export interface Props {
 }
 
 const { blogBit } = Astro.props;
-const { title, description, publishedDate, remoteLink, remoteSrc } = blogBit.data;
+const { title, description, publishedDate, remoteLink, remoteSrc } =
+  blogBit.data;
 
 const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
   dateStyle: "medium",
@@ -15,12 +16,12 @@ const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
 const addFontClamp = title.length > 45;
 const postUrl = remoteLink ?? `/blog/${blogBit.slug}`;
 const isLocal = remoteLink === undefined;
-const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
+const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
 ---
 
 <CardWrapper>
   <a href={postUrl} class="pr-link">
-    <h2 class:list={["pr-title", {'title-clamp': addFontClamp}]}>{title}</h2>
+    <h2 class:list={["pr-title", { "title-clamp": addFontClamp }]}>{title}</h2>
     <div class="pr-flex">
       <p class="pr-date">
         {dateString}
@@ -29,9 +30,11 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
     </div>
     <p class="pr-blurb">{description}</p>
     <div class="pr-flex">
-      <p class:list={["pr-src", {'local-color': isLocal}]}>{isLocal ? 'Local' : 'Remote'}</p>
+      <p class:list={["pr-src", { "local-color": isLocal }]}>
+        {isLocal ? "Local" : "Remote"}
+      </p>
       <div class="decoration"></div>
-      <p class="pr-read-more">{readPostCTA}</p>
+      <p class="pr-read-more">{readPostCTA}<span> »</span></p>
     </div>
   </a>
 </CardWrapper>
@@ -63,7 +66,7 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
     font-size: var(--b-sm);
     opacity: 0.8;
   }
-  
+
   .pr-flex {
     display: flex;
     align-items: center;
@@ -92,12 +95,13 @@ const readPostCTA = isLocal ? 'Read post ➜' : `Read on ${remoteSrc} ➜`;
     font-size: var(--b-sm);
     opacity: 0.8;
   }
-  
+
   .local-color {
     color: var(--blue);
   }
 
-  .pr-read-more {
+  .pr-read-more,
+  .pr-read-more span {
     color: var(--purple);
   }
 

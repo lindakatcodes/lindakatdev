@@ -3,20 +3,20 @@ import SocialsGrid from "./SocialsGrid.astro";
 ---
 
 <footer transition:name="footer">
-    <div class="divider shadow-over"></div>
-    <div class="email-outro">
-      <p class="hey">Hey there!</p>
-      <p>Thanks for checking out my site!</p>
-      <p>
-        Reach out if you'd like to get in touch: <br />
-        <span class="email gradient-text"> hello@lindakat.com</span>
-      </p>
-    </div>
-    <div class="footer-socials">
-      <SocialsGrid />
-    </div>
-    <p class="copyright">© 2020 - 2024 Linda Thompson</p>
-  </footer>
+  <div class="divider shadow-over"></div>
+  <div class="email-outro">
+    <p class="hey">Hey there!</p>
+    <p>Thanks for checking out my site!</p>
+    <p>
+      Reach out if you'd like to get in touch: <br />
+      <span class="email gradient-text"> hello@lindakat.com</span>
+    </p>
+  </div>
+  <div class="footer-socials">
+    <SocialsGrid />
+  </div>
+  <p class="copyright">© 2020 - 2024 Linda Thompson</p>
+</footer>
 
 <style>
   footer {
@@ -24,7 +24,7 @@ import SocialsGrid from "./SocialsGrid.astro";
     display: grid;
     grid-template-columns: 1fr 0.5fr;
     grid-template-rows: auto 1fr auto;
-    grid-template-areas: 
+    grid-template-areas:
       "divider divider"
       "outro socials"
       "copyright copyright";
@@ -53,9 +53,9 @@ import SocialsGrid from "./SocialsGrid.astro";
   }
 
   .email {
-    background-color: var(--pink);
+    background-color: var(--purple);
     background-image: none;
-    cursor: pointer;
+    cursor: copy;
     font-size: 1.1rem;
     text-decoration: underline solid var(--blue);
     transition: background 0.3s ease-in-out;
@@ -82,7 +82,7 @@ import SocialsGrid from "./SocialsGrid.astro";
     footer {
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr 1fr auto;
-      grid-template-areas: 
+      grid-template-areas:
         "divider"
         "outro"
         "socials"
@@ -109,7 +109,7 @@ import SocialsGrid from "./SocialsGrid.astro";
     footer {
       grid-template-columns: 0.75fr 1fr;
     }
-  } 
+  }
 </style>
 
 <script>

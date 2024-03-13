@@ -75,14 +75,31 @@ h6 {
 
 p,
 li,
-span,
-a {
+span {
   color: var(--text-main);
   font-family: var(--body-font);
 }
 
 a {
+  color: var(--purple);
+  font-family: var(--body-font);
+  text-decoration: underline solid var(--green);
   text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+a:hover,
+a:focus {
+  text-decoration-style: double;
+}
+
+a:is(.gradient-text) {
+  background-color: var(--purple);
+  background-image: none;
+}
+
+a:is(.gradient-text):hover, a:is(.gradient-text):focus {
+  background-image: var(--gradient);
 }
 
 body {
