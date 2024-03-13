@@ -5,9 +5,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
-const allBlogPosts = await getCollection("blog", ({ data }) => {
-  return !data.tags.includes("Course Notes");
-});
+const allBlogPosts = await getCollection("blog");
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
@@ -15,14 +13,17 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
   <div class="posts-wrapper">
     {
       allBlogPosts
-        .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
+        .sort(
+          (a, b) =>
+            b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+        )
         .map((blogPostEntry) => <PostPreviewCard blogBit={blogPostEntry} />)
     }
   </div>
 </MainLayout>
 
 <style>
-  h1 {
+  h2 {
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -37,6 +38,4 @@ const allBlogPosts = await getCollection("blog", ({ data }) => {
       grid-template-columns: 1fr 1fr;
     }
   }
-
-
 </style>

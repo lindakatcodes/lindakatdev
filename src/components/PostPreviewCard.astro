@@ -21,7 +21,7 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
 
 <CardWrapper>
   <a href={postUrl} class="pr-link">
-    <h2 class:list={["pr-title", { "title-clamp": addFontClamp }]}>{title}</h2>
+    <h3 class:list={["pr-title", { "title-clamp": addFontClamp }]}>{title}</h3>
     <div class="pr-flex">
       <p class="pr-date">
         {dateString}
