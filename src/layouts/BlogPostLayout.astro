@@ -1,42 +1,59 @@
 ---
-const { title, minutesRead, tags } = Astro.props.frontmatter;
-const postType = Astro.url.pathname.includes("/blog") ? "blog" : "notes";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  publishedDate?: string;
+  dateUpdated?: string;
+  tags: string[];
+  source?: string;
+  minutesRead: string;
+}>;
+
+const { title, minutesRead, tags, publishedDate, dateUpdated, source } =
+  Astro.props.frontmatter;
+
+const isPost = Astro.url.pathname.includes("/blog");
+const postType = isPost ? "blog" : "notes";
 const backLink = `/${postType}`;
+
+const noteDate = !dateUpdated
+  ? ""
+  : new Date(dateUpdated).toLocaleDateString("en-us", {
+      dateStyle: "medium",
+    });
+const postDate = !publishedDate
+  ? ""
+  : new Date(publishedDate).toLocaleDateString("en-us", {
+      dateStyle: "medium",
+    });
 ---
 
 <section id="top">
   <a href={backLink} class="back-link gradient-text">
-    <span>«</span> Back to the {postType} list</a
+    <span>«</span> Back to the full {postType} list</a
   >
   <div class="fm-wrapper">
     <h1 class="post-title">{title}</h1>
     <div class="post-data">
-      {
-        postType === "notes" && Astro.props.frontmatter.source && (
-          <p>
-            <em>
-              Notes are based on a course or docs from:{" "}
-              {Astro.props.frontmatter.source}
-            </em>
-          </p>
-        )
-      }
-      <p class="read-time">☕ {minutesRead}</p>
-      <!-- tags needs links to tagged posts logic -->
-      <div class="tags">
-        <p>This post covers these topics:</p>
-        <span>
-          {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
-        </span>
+      <p class="post-date">
+        {isPost ? `Published ${postDate}` : `Last updated ${noteDate}`}
+      </p>
+      <span>{(source || isPost) && "✦"}</span>
+      <p class="post-src-read">
+        {isPost ? `☕ ${minutesRead}` : source && `📓 Source: ${source}`}
+      </p>
+    </div>
+    <div class="post-tags">
+      <p>This post covers these topics:</p>
+      <div>
+        {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
       </div>
     </div>
   </div>
   <div class="post-content">
     <slot />
   </div>
-  <a href={backLink} class:list={["back-link", "gradient-text"]}>
-    ← Back to the {postType} list</a
-  >
 </section>
 
 <style is:global>
@@ -156,34 +173,38 @@ const backLink = `/${postType}`;
   }
 
   .post-title {
-    font-size: var(--h0);
     margin: 1.25rem auto 0.5rem;
     text-align: center;
     text-wrap: pretty;
   }
 
   .post-data {
-    align-items: center;
     display: grid;
-    grid-auto-rows: 0.6fr;
-    justify-items: center;
-    margin: 0 auto;
-    row-gap: 0.5rem;
+    grid-template-columns: 1fr auto 1fr;
+    justify-content: center;
+    margin: 0 auto var(--s8);
+    gap: 1rem;
     width: 60%;
   }
 
   @media (max-width: 520px) {
+    .post-title {
+      font-size: var(--h2);
+    }
     .post-data {
       width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
     }
   }
 
-  .tags {
+  .post-tags {
     text-align: center;
     width: 100%;
   }
 
-  .tags span {
+  .post-tags div {
     display: flex;
     justify-content: center;
     margin: 0.5rem auto;
