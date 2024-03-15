@@ -1,5 +1,4 @@
 ---
-import BackToTopLink from "@components/BackToTopLink.astro";
 const { title, minutesRead, tags } = Astro.props.frontmatter;
 const postType = Astro.url.pathname.includes("/blog") ? "blog" : "notes";
 const backLink = `/${postType}`;
@@ -38,7 +37,6 @@ const backLink = `/${postType}`;
   <a href={backLink} class:list={["back-link", "gradient-text"]}>
     ← Back to the {postType} list</a
   >
-  <BackToTopLink />
 </section>
 
 <style is:global>
@@ -200,15 +198,3 @@ const backLink = `/${postType}`;
     padding: 0.375rem;
   }
 </style>
-
-<script>
-  const bttLink = document.querySelector("#backToTop");
-  window.addEventListener("scroll", function (e) {
-    const y = e.currentTarget?.scrollY;
-    if (y > 1500) {
-      bttLink?.classList.add("active");
-    } else {
-      bttLink?.classList.remove("active");
-    }
-  });
-</script>
