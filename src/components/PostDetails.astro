@@ -16,7 +16,7 @@ const niceDate = new Date(date).toLocaleDateString("en-us", {
     dateStyle: "medium",
   });
 
-const gridColumns = noteSrc ? "1fr auto 1fr" : "auto";
+const gridColumns = (noteSrc || minutesRead) ? "1fr auto 1fr" : "auto";
 ---
 
 <div class="pd-wrapper">
@@ -24,13 +24,13 @@ const gridColumns = noteSrc ? "1fr auto 1fr" : "auto";
   <div class="fun-facts">
     {isPost ? (
       <Fragment>
-        <p class="date">{`Published on ${niceDate}`}</p>
+        <p class="date">{`📅 ${niceDate}`}</p>
         <span>✦</span>
         <p class="post-src-read">{`☕ ${minutesRead}`}</p>
       </Fragment>
       ) : (
         <Fragment>
-          <p class="date">{`Last updated ${niceDate}`}</p>
+          <p class="date">{`📅 ${niceDate}`}</p>
           {noteSrc && (
             <Fragment>
               <span>✦</span>
@@ -70,6 +70,13 @@ const gridColumns = noteSrc ? "1fr auto 1fr" : "auto";
     margin: 0 auto var(--s8);
     gap: 0.5rem;
     width: 100%;
+    font-size: var(--b-sm);
+  }
+
+  @media (min-width: 768px) {
+    .fun-facts {
+      width: 50%;
+    }
   }
 
   .date {

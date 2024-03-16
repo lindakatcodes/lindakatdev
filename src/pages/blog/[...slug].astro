@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings, remarkPluginFrontmatter } = await entry.render();
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const metadata = {
@@ -25,12 +25,13 @@ const metadata = {
 };
 
 const { title, publishedDate, tags } = entry.data;
+const { minutesRead } = remarkPluginFrontmatter;
 
 const postDetails = {
   title,
   date: publishedDate,
   tags,
-  minutesRead: "",
+  minutesRead,
   isPost: true,
 };
 ---
@@ -40,23 +41,70 @@ const postDetails = {
     <a href="/blog" class="back-link gradient-text">
       <span>«</span> Back to the full blog list</a
     >
-    <PostDetails postDetails={postDetails} />
-    <TableOfContents headings={headings} />
-    <Content />
-    <PaginationLinks main="#top" mainText="Back to top" />
+    <div class="info">
+      <PostDetails postDetails={postDetails} />
+    </div>
+    <div class="toc">
+      <TableOfContents headings={headings} />
+    </div>
+    <div class="body">
+      <Content />
+    </div>
+    <div class="links">
+      <PaginationLinks main="#top" mainText="Back to top" />
+    </div>
   </section>
 </MainLayout>
 
 <style>
   section {
     scroll-margin-top: var(--scroll-height);
+    display: grid;
+    grid-template-areas:
+      "back-link"
+      "info"
+      "toc"
+      "body"
+      "links";
+    justify-content: center;
+    gap: 0.5rem;
   }
 
   .back-link {
     font-weight: bolder;
+    grid-area: back-link;
 
     & span {
       font-size: var(--b-lg);
+    }
+  }
+
+  .info {
+    grid-area: info;
+  }
+
+  .toc {
+    grid-area: toc;
+    justify-self: center;
+    margin-bottom: var(--s40);
+  }
+
+  .body {
+    grid-area: body;
+    padding: 0 1.5rem;
+  }
+
+  .links {
+    grid-area: links;
+  }
+
+  @media (min-width: 1024px) {
+    section {
+      grid-template-areas:
+        "back-link back-link"
+        "info info"
+        "body toc"
+        "links links";
     }
   }
 </style>
