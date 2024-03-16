@@ -1,6 +1,8 @@
 ---
+import PostDetails from "@components/PostDetails.astro";
+import PaginationLinks from "@components/PaginationLinks.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -12,9 +14,49 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+const metadata = {
+  description: entry.data.description,
+  imagePath: "",
+  title: entry.data.title,
+  url: canonicalUrl.toString(),
+};
+
+const { title, dateUpdated, tags, source } = entry.data;
+
+const postDetails = {
+  title,
+  date: dateUpdated,
+  tags,
+  isPost: false,
+  noteSrc: source,
+};
 ---
 
-<MainLayout metadata={DEFAULT_METADATA}>
-  <Content />
+<MainLayout metadata={metadata}>
+  <section id="top">
+    <a href="/notes" class="back-link gradient-text">
+      <span>«</span> Back to the full notes list</a
+    >
+    <PostDetails postDetails={postDetails} />
+    <TableOfContents headings={headings} />
+    <Content />
+    <PaginationLinks main="#top" mainText="Back to top" />
+  </section>
 </MainLayout>
+
+<style>
+  section {
+    scroll-margin-top: var(--scroll-height);
+  }
+
+  .back-link {
+    font-weight: bolder;
+
+    & span {
+      font-size: var(--b-lg);
+    }
+  }
+</style>

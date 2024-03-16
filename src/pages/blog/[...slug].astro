@@ -1,4 +1,7 @@
 ---
+import PostDetails from "@components/PostDetails.astro";
+import PaginationLinks from "@components/PaginationLinks.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
@@ -11,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const metadata = {
@@ -20,8 +23,40 @@ const metadata = {
   title: entry.data.title,
   url: canonicalUrl.toString(),
 };
+
+const { title, publishedDate, tags } = entry.data;
+
+const postDetails = {
+  title,
+  date: publishedDate,
+  tags,
+  minutesRead: "",
+  isPost: true,
+};
 ---
 
 <MainLayout metadata={metadata}>
-  <Content />
+  <section id="top">
+    <a href="/blog" class="back-link gradient-text">
+      <span>«</span> Back to the full blog list</a
+    >
+    <PostDetails postDetails={postDetails} />
+    <TableOfContents headings={headings} />
+    <Content />
+    <PaginationLinks main="#top" mainText="Back to top" />
+  </section>
 </MainLayout>
+
+<style>
+  section {
+    scroll-margin-top: var(--scroll-height);
+  }
+
+  .back-link {
+    font-weight: bolder;
+
+    & span {
+      font-size: var(--b-lg);
+    }
+  }
+</style>

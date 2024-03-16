@@ -26,9 +26,15 @@ const { headings } = Astro.props;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: start;
-    position: sticky;
-    top: calc(var(--header-height) + 2rem);
+    position: relative;
     will-change: transform;
+  }
+
+  @media (min-width: 1024px) {
+    .toc-wrapper {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+    }
   }
 
   .depth-3 {

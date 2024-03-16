@@ -1,0 +1,102 @@
+---
+interface Props {
+  postDetails: {
+    title: string;
+    date: Date;
+    tags: string[];
+    noteSrc?: string;
+    minutesRead?: string;
+    isPost: boolean;
+  }
+}
+
+const { title, minutesRead = "", tags, date, noteSrc = "", isPost } = Astro.props.postDetails;
+
+const niceDate = new Date(date).toLocaleDateString("en-us", {
+    dateStyle: "medium",
+  });
+
+const gridColumns = noteSrc ? "1fr auto 1fr" : "auto";
+---
+
+<div class="pd-wrapper">
+  <h1 class="title">{title}</h1>
+  <div class="fun-facts">
+    {isPost ? (
+      <Fragment>
+        <p class="date">{`Published on ${niceDate}`}</p>
+        <span>✦</span>
+        <p class="post-src-read">{`☕ ${minutesRead}`}</p>
+      </Fragment>
+      ) : (
+        <Fragment>
+          <p class="date">{`Last updated ${niceDate}`}</p>
+          {noteSrc && (
+            <Fragment>
+              <span>✦</span>
+              <p class="post-src-read">{`📓 Source: ${noteSrc}`}</p>
+            </Fragment>
+          )}
+        </Fragment>
+      )
+    }
+  </div>
+  <div class="tags-wrapper">
+    <p>This post covers these topics:</p>
+    <div>
+      {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ gridColumns }}>
+  .pd-wrapper {
+    margin: 0 auto 2rem;
+  }
+
+  .title {
+    font-size: var(--h2);
+    margin: 1.25rem auto 0.5rem;
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  .fun-facts {
+    display: grid;
+    grid-template-columns: var(--gridColumns);
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    margin: 0 auto var(--s8);
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .date {
+    text-align: center;
+  }
+
+  .post-src-read {
+    text-align: center;
+  }
+
+  .tags-wrapper {
+    text-align: center;
+    width: 100%;
+  }
+
+  .tags-wrapper div {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem auto;
+    padding-left: 0;
+    width: 70%;
+  }
+
+  .tag-name {
+    background-color: var(--bg-shadow);
+    border-radius: 3px;
+    margin: 0 0.75rem;
+    padding: 0.375rem;
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-import BlogIntro from "@components/BlogIntro.astro";
+import BlogIndexIntro from "@components/BlogIndexIntro.astro";
 import PostPreviewCard from "@components/PostPreviewCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
@@ -33,7 +33,7 @@ const postsToView = allPosts.filter((post) => {
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <BlogIntro />
+  <BlogIndexIntro />
   <div class="posts-wrapper">
     {
       postsToView
