@@ -9,6 +9,7 @@ const { headings } = Astro.props;
 ---
 
 <div class="toc-wrapper">
+  <p class="title">Jump to a section:</p>
   {
     headings.map((heading) => (
       <a
@@ -23,11 +24,24 @@ const { headings } = Astro.props;
 
 <style>
   .toc-wrapper {
+    max-block-size: 80dvh;
+    max-width: 90%;
+    margin: 0 auto;
+    overflow-y: scroll;
     display: grid;
+    gap: 0.125rem;
     grid-template-columns: 1fr;
     justify-items: start;
     position: relative;
     will-change: transform;
+    scrollbar-color: var(--bg-shadow) var(--background);
+    padding-left: 0.5rem;
+    /* border: 2px solid yellow; */
+
+    & a {
+      width: 95%;
+      text-wrap: pretty;
+    }
   }
 
   @media (min-width: 1024px) {

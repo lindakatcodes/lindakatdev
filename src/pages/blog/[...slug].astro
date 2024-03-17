@@ -31,8 +31,8 @@ const postDetails = {
   title,
   date: publishedDate,
   tags,
-  minutesRead,
   isPost: true,
+  minutesRead,
 };
 ---
 
@@ -87,11 +87,13 @@ const postDetails = {
     grid-area: toc;
     justify-self: center;
     margin-bottom: var(--s40);
+    scrollbar-gutter: stable;
   }
 
   .body {
     grid-area: body;
     padding: 0 1.5rem;
+    scrollbar-gutter: stable;
   }
 
   .links {
@@ -105,6 +107,7 @@ const postDetails = {
         "info info"
         "body toc"
         "links links";
+      grid-template-columns: 2fr 0.75fr;
     }
   }
 </style>
