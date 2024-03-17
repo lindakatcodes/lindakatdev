@@ -7,27 +7,35 @@ interface Props {
     noteSrc?: string;
     minutesRead?: string;
     isPost: boolean;
-  }
+  };
 }
 
-const { title, minutesRead = "", tags, date, noteSrc = "", isPost } = Astro.props.postDetails;
+const {
+  title,
+  minutesRead = "",
+  tags,
+  date,
+  noteSrc = "",
+  isPost,
+} = Astro.props.postDetails;
 
 const niceDate = new Date(date).toLocaleDateString("en-us", {
-    dateStyle: "medium",
-  });
+  dateStyle: "medium",
+});
 
-const gridColumns = (noteSrc || minutesRead) ? "1fr auto 1fr" : "auto";
+const gridColumns = noteSrc || minutesRead ? "1fr auto 1fr" : "auto";
 ---
 
 <div class="pd-wrapper">
   <h1 class="title">{title}</h1>
   <div class="fun-facts">
-    {isPost ? (
-      <Fragment>
-        <p class="date">{`📅 ${niceDate}`}</p>
-        <span>✦</span>
-        <p class="post-src-read">{`☕ ${minutesRead}`}</p>
-      </Fragment>
+    {
+      isPost ? (
+        <Fragment>
+          <p class="date">{`📅 ${niceDate}`}</p>
+          <span>✦</span>
+          <p class="post-src-read">{`☕ ${minutesRead}`}</p>
+        </Fragment>
       ) : (
         <Fragment>
           <p class="date">{`📅 ${niceDate}`}</p>
@@ -63,7 +71,7 @@ const gridColumns = (noteSrc || minutesRead) ? "1fr auto 1fr" : "auto";
 
   .fun-facts {
     display: grid;
-    grid-template-columns: var(--gridColumns);
+    grid-template-columns: auto;
     justify-content: center;
     align-items: center;
     justify-items: center;
@@ -75,6 +83,7 @@ const gridColumns = (noteSrc || minutesRead) ? "1fr auto 1fr" : "auto";
 
   @media (min-width: 768px) {
     .fun-facts {
+      grid-template-columns: var(--gridColumns);
       width: 50%;
     }
   }

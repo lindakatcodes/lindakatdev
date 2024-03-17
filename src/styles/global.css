@@ -34,7 +34,7 @@
   --s72: 72px;
   --s80: 80px;
   --header-height: var(--s64);
-  --scroll-height: calc(var(--header-height) + var(--s8));
+  --scroll-height: calc(var(--header-height) + var(--s16));
 }
 
 /* Global defaults */
