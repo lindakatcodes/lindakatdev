@@ -6,7 +6,9 @@ import MainLayout from "@layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("blog");
+  const blogPosts = await getCollection("blog", ({ data }) => {
+    return data.remoteLink === undefined;
+  });
   return blogPosts.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
