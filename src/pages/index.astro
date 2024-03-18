@@ -147,8 +147,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   .post-blurbs {
+    display: grid;
+    gap: 2rem;
     margin: 0.5rem auto;
-    width: 70%;
+    width: 50%;
   }
 
   /* Mobile */
@@ -191,7 +193,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   /* Large monitors */
   @media (min-width: 1280px) {
     .post-blurbs {
-      width: 50%;
+      width: 40%;
     }
   }
 </style>
