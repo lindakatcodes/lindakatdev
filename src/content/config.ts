@@ -6,11 +6,26 @@ const blogCollection = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      published: z.boolean(),
-      tags: z.array(z.string()),
-      date: z.date(),
+      publishedDate: z.date(),
       ogImage: image(),
+      tags: z.array(z.string()),
       featured: z.boolean(),
+      status: z.enum(["Live", "Draft", "Garden"]),
+      remoteLink: z.string().url().optional(),
+      remoteSrc: z.string().optional(),
+    }),
+});
+
+const notesCollection = defineCollection({
+  type: "content",
+  schema: () =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      dateUpdated: z.date(),
+      tags: z.array(z.string()),
+      status: z.enum(["Live", "Draft", "Garden"]),
+      source: z.string().optional(),
     }),
 });
 
@@ -55,18 +70,6 @@ const projectsCollection = defineCollection({
         lessonImprovements: z.array(z.string()).optional(),
       }),
     ]),
-});
-
-const notesCollection = defineCollection({
-  type: "content",
-  schema: () =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      lastUpdate: z.date(),
-      tags: z.array(z.string()),
-      source: z.string().optional(),
-    }),
 });
 
 export const collections = {

@@ -1,6 +1,8 @@
 ---
+import PostDetails from "@components/PostDetails.astro";
+import PaginationLinks from "@components/PaginationLinks.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -12,9 +14,102 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+const metadata = {
+  description: entry.data.description,
+  imagePath: "",
+  title: entry.data.title,
+  url: canonicalUrl.toString(),
+};
+
+const { title, dateUpdated, tags, source } = entry.data;
+
+const postDetails = {
+  title,
+  date: dateUpdated,
+  tags,
+  isPost: false,
+  noteSrc: source,
+};
 ---
 
-<MainLayout metadata={DEFAULT_METADATA}>
-  <Content />
+<MainLayout metadata={metadata}>
+  <section id="top">
+    <a href="/notes" class="back-link gradient-text">
+      <span>«</span> Back to the full notes list</a
+    >
+    <div class="info">
+      <PostDetails postDetails={postDetails} />
+    </div>
+    <div class="toc">
+      <TableOfContents headings={headings} />
+    </div>
+    <div class="body">
+      <Content />
+    </div>
+    <div class="links">
+      <PaginationLinks main="#top" mainText="Back to top" />
+    </div>
+  </section>
 </MainLayout>
+
+<style>
+  section {
+    scroll-margin-top: var(--scroll-height);
+    display: grid;
+    grid-template-areas:
+      "back-link"
+      "info"
+      "toc"
+      "body"
+      "links";
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .back-link {
+    font-weight: bolder;
+    grid-area: back-link;
+
+    & span {
+      font-size: var(--b-lg);
+    }
+  }
+
+  .info {
+    grid-area: info;
+  }
+
+  .toc {
+    grid-area: toc;
+    justify-self: center;
+    margin-bottom: var(--s40);
+    scrollbar-gutter: stable;
+  }
+
+  .body {
+    grid-area: body;
+    scrollbar-gutter: stable;
+  }
+
+  .links {
+    grid-area: links;
+  }
+
+  @media (min-width: 1024px) {
+    section {
+      grid-template-areas:
+        "back-link back-link"
+        "info info"
+        "body toc"
+        "links links";
+      grid-template-columns: 2fr 0.75fr;
+    }
+
+    .body {
+      padding: 0 1.5rem;
+    }
+  }
+</style>

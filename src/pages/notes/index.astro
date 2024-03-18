@@ -9,10 +9,10 @@ const notes = await getCollection("notes");
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <div class="intro">
-    <h1>Linda's Notes!</h1>
+    <h2>Linda's Notes!</h2>
     <p>
-      Notes and snippets from courses I've taken, books I've read, or things I
-      always forget how to do.
+      Notes from courses I've taken and events I've attended, or collections of
+      common snippets or things I forget.
     </p>
   </div>
   <div class="posts-wrapper">
@@ -33,13 +33,12 @@ const notes = await getCollection("notes");
 </MainLayout>
 
 <style>
-  h1 {
+  h2 {
     margin-bottom: 1rem;
     text-align: center;
   }
 
   .intro {
-    font-size: 1.1rem;
     margin: 0 auto 3rem;
     text-align: center;
     width: 55%;
@@ -50,25 +49,13 @@ const notes = await getCollection("notes");
   }
 
   .posts-wrapper {
-    margin: 0 auto;
-    width: 50%;
+    display: grid;
+    gap: var(--s64);
   }
 
-  @media (max-width: 520px) {
+  @media (min-width: 768px) {
     .posts-wrapper {
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 520px) and (max-width: 1024px) {
-    .posts-wrapper {
-      width: 85%;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .posts-wrapper {
-      width: 45%;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 </style>

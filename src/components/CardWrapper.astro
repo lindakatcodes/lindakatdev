@@ -1,0 +1,90 @@
+---
+
+---
+
+<div class="container">
+  <div class="corners"></div>
+  <div class="card">
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* Effect heavily based on this awesome codepen: https://codepen.io/notwaldorf/pen/EOOzqz */
+
+  /* padding here only affects the slot */
+  .container {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: grid;
+    padding: var(--s8);
+    position: relative;
+    transition: all 0.2s;
+  }
+  
+  .container:hover, .container:focus {
+    box-shadow: 8px 12px 20px -4px var(--bg-shadow);
+    transform: scale(1.05);
+
+    & .corners:before {
+      top: 0;
+      bottom: 0;
+    }
+
+    & .corners:after {
+      left: 0;
+      right: 0;
+    }
+  }
+  
+  /* keeps the card info in front of the corners background, and allows for font size adjustments based on the card size */
+  .card {
+    container-type: inline-size;
+    position: relative;
+  }
+
+  .corners {
+    --border-block-size: calc(1.5 * var(--border-size));
+    --border-size: 2px;
+    --position-size: var(--s24);
+    border: var(--border-size) solid transparent;
+    border-radius: var(--s4);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+  }
+
+  /* 
+    Before covers top/bottom, After covers left/right
+    The borders here should be solid and the same color as whatever the card is on - they're "blocking out" the corners border
+  */
+  .corners:before {
+    border-bottom: var(--border-block-size) solid var(--background);
+    border-top: var(--border-block-size) solid var(--background);
+    bottom: calc(-1 * var(--border-size));
+    content: "";
+    left: var(--position-size);
+    position: absolute;
+    top: calc(-1 * var(--border-size));
+    width: calc(100% - (var(--position-size) * 2));
+  }
+
+  .corners:after {
+    border-left: var(--border-block-size) solid var(--background);
+    border-right: var(--border-block-size) solid var(--background);
+    content: "";
+    height: calc(100% - (var(--position-size) * 2));
+    left: calc(-1 * var(--border-size));
+    position: absolute;
+    right: calc(-1 * var(--border-size));
+    top: var(--position-size);
+  }
+</style>

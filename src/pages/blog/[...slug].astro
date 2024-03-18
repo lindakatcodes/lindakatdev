@@ -1,9 +1,14 @@
 ---
+import PostDetails from "@components/PostDetails.astro";
+import PaginationLinks from "@components/PaginationLinks.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("blog");
+  const blogPosts = await getCollection("blog", ({ data }) => {
+    return data.remoteLink === undefined;
+  });
   return blogPosts.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -11,16 +16,103 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings, remarkPluginFrontmatter } = await entry.render();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const metadata = {
   description: entry.data.description,
   imagePath: entry.data.ogImage.src,
   title: entry.data.title,
-  url: `https://lindakat.com/blog/${entry.slug}`,
+  url: canonicalUrl.toString(),
+};
+
+const { title, publishedDate, tags } = entry.data;
+const { minutesRead } = remarkPluginFrontmatter;
+
+const postDetails = {
+  title,
+  date: publishedDate,
+  tags,
+  isPost: true,
+  minutesRead,
 };
 ---
 
 <MainLayout metadata={metadata}>
-  <Content />
+  <section id="top">
+    <a href="/blog" class="back-link gradient-text">
+      <span>«</span> Back to the full blog list</a
+    >
+    <div class="info">
+      <PostDetails postDetails={postDetails} />
+    </div>
+    <div class="toc">
+      <TableOfContents headings={headings} />
+    </div>
+    <div class="body">
+      <Content />
+    </div>
+    <div class="links">
+      <PaginationLinks main="#top" mainText="Back to top" />
+    </div>
+  </section>
 </MainLayout>
+
+<style>
+  section {
+    scroll-margin-top: var(--scroll-height);
+    display: grid;
+    grid-template-areas:
+      "back-link"
+      "info"
+      "toc"
+      "body"
+      "links";
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .back-link {
+    font-weight: bolder;
+    grid-area: back-link;
+
+    & span {
+      font-size: var(--b-lg);
+    }
+  }
+
+  .info {
+    grid-area: info;
+  }
+
+  .toc {
+    grid-area: toc;
+    justify-self: center;
+    margin-bottom: var(--s40);
+    scrollbar-gutter: stable;
+  }
+
+  .body {
+    grid-area: body;
+    scrollbar-gutter: stable;
+  }
+
+  .links {
+    grid-area: links;
+  }
+
+  @media (min-width: 1024px) {
+    section {
+      grid-template-areas:
+        "back-link back-link"
+        "info info"
+        "body toc"
+        "links links";
+      grid-template-columns: 2fr 0.75fr;
+    }
+
+    .body {
+      padding: 0 1.5rem;
+    }
+  }
+</style>

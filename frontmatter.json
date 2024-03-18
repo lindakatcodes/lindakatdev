@@ -19,16 +19,24 @@
           "type": "string"
         },
         {
-          "title": "Published?",
-          "name": "published",
-          "type": "draft",
-          "default": false
-        },
-        {
           "title": "Mark as featured post",
           "name": "featured",
           "type": "boolean",
           "default": false
+        },
+        {
+          "title": "Published date",
+          "name": "publishedDate",
+          "type": "datetime",
+          "default": "{{now}}",
+          "dateFormat": "yyyy-MM-dd",
+          "isPublishDate": true
+        },
+        {
+          "title": "Post Status",
+          "name": "status",
+          "type": "draft",
+          "default": "Draft"
         },
         {
           "title": "Tags",
@@ -36,10 +44,20 @@
           "type": "tags"
         },
         {
-          "title": "Layout",
-          "name": "layout",
-          "type": "string",
-          "default": "../../layouts/BlogPostLayout.astro"
+          "title": "Link to remote article",
+          "name": "remoteLink",
+          "type": "string"
+        },
+        {
+          "title": "Article written for",
+          "name": "remoteSrc",
+          "type": "string"
+        },
+        {
+          "title": "OG Image Preview",
+          "name": "ogImage",
+          "type": "image",
+          "description": "Template: https://www.canva.com/design/DAFzuN4ys5c/qNsSSQTKRAFSeynGko0bLg/edit?utm_content=DAFzuN4ys5c"
         },
         {
           "title": "Slug",
@@ -49,17 +67,10 @@
           "default": "{{slug}}"
         },
         {
-          "title": "Published date",
-          "name": "date",
-          "type": "datetime",
-          "default": "{{now}}",
-          "isPublishDate": true
-        },
-        {
-          "title": "OG Image Preview",
-          "name": "ogImage",
-          "type": "image",
-          "description": "Template: https://www.canva.com/design/DAFzuN4ys5c/qNsSSQTKRAFSeynGko0bLg/edit?utm_content=DAFzuN4ys5c"
+          "title": "Layout",
+          "name": "layout",
+          "type": "string",
+          "default": "../../layouts/BlogPostLayout.astro"
         }
       ]
     },
@@ -80,20 +91,18 @@
           "type": "string"
         },
         {
-          "title": "Layout",
-          "name": "layout",
-          "type": "string"
-        },
-        {
-          "title": "Last Updated",
-          "name": "lastUpdate",
+          "title": "Date Updated",
+          "name": "dateUpdated",
           "type": "datetime",
-          "default": "{{now}}"
+          "default": "{{now}}",
+          "dateFormat": "yyyy-MM-dd",
+          "isPublishDate": true
         },
         {
-          "title": "Post Type",
-          "name": "type",
-          "type": "string"
+          "title": "Post Status",
+          "name": "status",
+          "type": "draft",
+          "default": "Garden"
         },
         {
           "title": "Tags",
@@ -104,14 +113,24 @@
           "title": "Author or Course Source",
           "name": "source",
           "type": "string"
+        },
+        {
+          "title": "Layout",
+          "name": "layout",
+          "type": "string",
+          "default": "../../layouts/BlogPostLayout.astro"
         }
       ]
     }
   ],
   "frontMatter.content.draftField": {
-    "name": "published",
-    "type": "boolean",
-    "invert": true
+    "name": "status",
+    "type": "choice",
+    "choices": [
+      "Live",
+      "Draft",
+      "Garden"
+    ]
   },
   "frontMatter.framework.id": "astro",
   "frontMatter.preview.host": "http://localhost:4321",
@@ -119,12 +138,17 @@
   "frontMatter.content.pageFolders": [
     {
       "title": "blog",
-      "path": "[[workspace]]/src/content/blog"
+      "path": "[[workspace]]/src/content/blog",
+      "contentTypes": [
+        "blog"
+      ]
     },
     {
       "title": "notes",
       "path": "[[workspace]]/src/content/notes",
-      "contentTypes": ["notes"]
+      "contentTypes": [
+        "notes"
+      ]
     }
   ],
   "frontMatter.content.publicFolder": {

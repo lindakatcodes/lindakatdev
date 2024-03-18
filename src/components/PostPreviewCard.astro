@@ -1,84 +1,116 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import CardWrapper from "./CardWrapper.astro";
 
 export interface Props {
   blogBit: CollectionEntry<"blog">;
 }
 
 const { blogBit } = Astro.props;
+const { title, description, publishedDate, remoteLink, remoteSrc } =
+  blogBit.data;
 
-const dateString = new Date(blogBit.data.date).toLocaleDateString("en-us", {
-  dateStyle: "long",
+const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
+  dateStyle: "medium",
 });
+const addFontClamp = title.length > 45;
+const postUrl = remoteLink ?? `/blog/${blogBit.slug}`;
+const isLocal = remoteLink === undefined;
+const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
 ---
 
-<div class="blog-bit-wrapper">
-  <a href={`/blog/${blogBit.slug}`} class="blog-bit-link">
-    <time datetime={blogBit.data.date.toString()} class="blog-bit-date">
-      {dateString}
-    </time>
-    <h2 class="blog-bit-title">{blogBit.data.title}</h2>
-    <p class="blog-bit-blurb">{blogBit.data.description}</p>
+<CardWrapper>
+  <a href={postUrl} class="pr-link">
+    <h3 class:list={["pr-title", { "title-clamp": addFontClamp }]}>{title}</h3>
+    <div class="pr-flex">
+      <p class="pr-date">
+        {dateString}
+      </p>
+      <div class="decoration"></div>
+    </div>
+    <p class="pr-blurb">{description}</p>
+    <div class="pr-flex">
+      <p class:list={["pr-src", { "local-color": isLocal }]}>
+        {isLocal ? "Local" : "Remote"}
+      </p>
+      <div class="decoration"></div>
+      <p class="pr-read-more">{readPostCTA}<span> »</span></p>
+    </div>
   </a>
-</div>
+</CardWrapper>
 
 <style>
-  .blog-bit-wrapper {
-    border: 3px dashed transparent;
-    border-bottom-color: var(--purple);
-    border-radius: 0;
-    border-top-color: var(--purple);
-    margin-bottom: 3rem;
-    padding: 1rem;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .blog-bit-wrapper:nth-child(2n) {
-    border-bottom-color: var(--blue);
-    border-top-color: var(--blue);
-  }
-
-  .blog-bit-wrapper:nth-child(3n) {
-    border-bottom-color: var(--pink);
-    border-top-color: var(--pink);
-  }
-
-  .blog-bit-wrapper:nth-child(4n) {
-    border-bottom-color: var(--green);
-    border-top-color: var(--green);
-  }
-
-  .blog-bit-wrapper:hover {
-    border-color: var(--purple);
-    border-radius: 7px;
-  }
-
-  .blog-bit-wrapper:nth-child(2n):hover {
-    border-color: var(--blue);
-  }
-
-  .blog-bit-wrapper:nth-child(3n):hover {
-    border-color: var(--pink);
-  }
-
-  .blog-bit-wrapper:nth-child(4n):hover {
-    border-color: var(--green);
-  }
-
-  .blog-bit-link {
+  .pr-link {
     text-decoration: none;
+    padding: 0 var(--s16);
+    display: grid;
+    grid-template-rows: 2fr auto 1fr auto;
+    align-items: center;
+    gap: var(--s8);
+    min-block-size: 100%;
   }
 
-  .blog-bit-title {
-    font-size: 1.75rem;
-    margin: 0.5rem auto;
+  .pr-title {
+    font-size: var(--h4);
+    margin: 0;
+    text-align: center;
   }
 
-  .blog-bit-date {
+  .title-clamp {
+    font-size: clamp(var(--h6), 7cqi, var(--h3));
+  }
+
+  .pr-date {
     color: var(--text-main);
-    display: block;
     font-family: var(--body-font);
-    font-size: 0.9rem;
+    font-size: var(--b-sm);
     opacity: 0.8;
+  }
+
+  .pr-flex {
+    display: flex;
+    align-items: center;
+    gap: var(--s8);
+  }
+
+  .pr-flex:has(.pr-date) {
+    align-self: start;
+  }
+
+  .pr-flex:has(.pr-src) {
+    align-self: end;
+  }
+
+  .decoration {
+    height: 2px;
+    flex-grow: 1;
+    background-color: var(--text-main);
+    border-radius: var(--s4);
+    opacity: 0.8;
+  }
+
+  .pr-src {
+    color: var(--green);
+    text-transform: uppercase;
+    font-size: var(--b-sm);
+    opacity: 0.8;
+  }
+
+  .local-color {
+    color: var(--blue);
+  }
+
+  .pr-read-more,
+  .pr-read-more span {
+    color: var(--purple);
+  }
+
+  @media (max-width: 520px) {
+    .pr-link {
+      grid-template-rows: auto;
+    }
+    .pr-title:not(.title-clamp) {
+      font-size: var(--h5);
+    }
   }
 </style>

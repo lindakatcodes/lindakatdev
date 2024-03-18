@@ -23,6 +23,13 @@ const fontUrl =
 <meta name="generator" content={Astro.generator} />
 <title>{metadata.title}</title>
 
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title="LindaKat Writes"
+    href={`${Astro.site}rss.xml`}
+/>
+
 <!--
   Found from CSS Wizardry: https://csswizardry.com/2020/05/the-fastest-google-fonts/
   1. Preemptively warm up the fonts’ origin.

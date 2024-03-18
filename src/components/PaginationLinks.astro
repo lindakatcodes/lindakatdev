@@ -1,0 +1,63 @@
+---
+export interface Props {
+  prev?: string;
+  next?: string;
+  main?: string;
+  mainText?: string;
+}
+
+const { prev, next, main, mainText } = Astro.props;
+---
+
+<div class="pagination-wrapper">
+  {
+    prev ? (
+      <a href={prev} class="prev gradient-text">
+        <span>«</span> Previous
+      </a>
+    ) : (
+      <div />
+    )
+  }
+  {
+    main ? (
+      <a href={main} class="main gradient-text">
+        {mainText || "Back to full list"}
+      </a>
+    ) : (
+      <div />
+    )
+  }
+  {
+    next ? (
+      <a href={next} class="next gradient-text">
+        Next <span>»</span>
+      </a>
+    ) : (
+      <div />
+    )
+  }
+</div>
+
+<style>
+  .pagination-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  span {
+    font-size: var(--b-lg);
+  }
+
+  .prev {
+    justify-self: start;
+  }
+
+  .main {
+    justify-self: center;
+  }
+
+  .next {
+    justify-self: end;
+  }
+</style>

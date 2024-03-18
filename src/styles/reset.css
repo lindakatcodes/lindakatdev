@@ -61,3 +61,7 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+:root {
+  block-size: 100%;
+}
