@@ -21,7 +21,7 @@
     "markdown-it": "^12.0.4",
     "markdown-it-attrs": "^4.0.0",
     "markdown-it-div": "^1.1.0",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.17.3",
     "prism-themes": "^1.4.0",
     "reading-time": "^1.2.0",
     "vue-scrollto": "^2.19.1",
