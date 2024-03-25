@@ -1,4 +1,5 @@
 ---
+import HireCTA from "@components/HireCTA.astro";
 import PostPreviewCard from "@components/PostPreviewCard.astro";
 import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
@@ -25,10 +26,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     <div class="social-wrapper">
       <SocialsGrid />
     </div>
-    <div class="hire-cta">
-      <span></span>
-      <p>Available to Hire!</p>
-    </div>
+    <HireCTA />
   </section>
   <section id="projects">
     <h2 class="section-title">Projects I've Crafted</h2>
@@ -68,7 +66,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   #intro {
-    padding-top: calc(var(--s80) * 1.75);
+    padding-top: calc(var(--s40) * 1.75);
   }
 
   [astro-icon="script-name"] {
@@ -86,7 +84,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   .section-title {
-    font-family: var(--cursive-font);
     margin-bottom: 2rem;
     text-align: center;
     font-size: calc(var(--h2) * 1.25);
@@ -103,33 +100,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   .social-wrapper {
     margin: 3rem auto;
     width: 40%;
-  }
-
-  .hire-cta {
-    align-items: baseline;
-    background:
-      linear-gradient(to bottom, var(--background), var(--background))
-        padding-box,
-      var(--gradient) border-box;
-    border: 2px solid transparent;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 0.25rem;
-    width: 9rem;
-  }
-
-  .hire-cta p {
-    font-size: 0.9rem;
-  }
-
-  .hire-cta span {
-    background: var(--green);
-    border-radius: 50%;
-    display: block;
-    height: 12px;
-    margin-right: 3px;
-    width: 12px;
   }
 
   .project-cards {

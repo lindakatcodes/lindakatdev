@@ -1,0 +1,77 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<div class="hire-cta">
+  <span class="color"></span>
+  <div class="text">
+    <p class="first">You should hire me!</p>
+    <div class="second">
+      <p>Find out why {" "}</p>
+      <Icon name="chevrons-down" />
+    </div>
+  </div>
+</div>
+
+<style>
+  [astro-icon="chevrons-down"] {
+    fill: none;
+    width: var(--s16);
+    stroke: var(--text-main);
+  }
+
+  .hire-cta {
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+    border: 2px solid transparent;
+    margin: 0 auto;
+    padding: 0.25rem;
+    width: 10rem;
+    display: grid;
+    grid-template: 1fr 1fr / 0.25fr 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .color {
+    background: var(--green);
+    border-radius: 50%;
+    display: block;
+    height: var(--s16);
+    margin-right: 3px;
+    width: var(--s16);
+    grid-column: 1 / 2;
+    grid-row: 1 / span 2;
+  }
+
+  .text {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.125rem;
+  }
+
+  .first {
+    align-self: end;
+  }
+
+  .second {
+    display: flex;
+    align-self: start;
+  }
+
+  p {
+    font-size: var(--b-sm);
+  }
+
+  @media (max-width: 520px) {
+    .hire-cta {
+      width: 12rem;
+    }
+  }
+</style>

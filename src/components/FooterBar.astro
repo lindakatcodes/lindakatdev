@@ -1,15 +1,16 @@
 ---
 import SocialsGrid from "./SocialsGrid.astro";
+import { EMAIL } from "@util/constants";
 ---
 
 <footer transition:name="footer">
   <div class="divider shadow-over"></div>
   <div class="email-outro">
     <p class="hey">Hey there!</p>
-    <p>Thanks for checking out my site!</p>
+    <p>Thanks for your time!</p>
     <p>
-      Reach out if you'd like to get in touch: <br />
-      <span class="email gradient-text"> hello@lindakat.com</span>
+      Get in touch: <br />
+      <span class="email gradient-text"> {EMAIL}</span>
     </p>
   </div>
   <div class="footer-socials">
@@ -40,14 +41,14 @@ import SocialsGrid from "./SocialsGrid.astro";
     margin-left: var(--s24);
   }
 
-  .email-outro .hey {
+  .hey {
     color: var(--blue);
     font-family: var(--cursive-font);
     font-size: var(--h5);
     margin-bottom: initial;
   }
 
-  .email-outro p {
+  p {
     margin-bottom: 0.25rem;
     margin-top: 0;
   }
@@ -56,7 +57,6 @@ import SocialsGrid from "./SocialsGrid.astro";
     background-color: var(--purple);
     background-image: none;
     cursor: copy;
-    font-size: 1.1rem;
     text-decoration: underline solid var(--blue);
     transition: background 0.3s ease-in-out;
   }
@@ -96,12 +96,12 @@ import SocialsGrid from "./SocialsGrid.astro";
     }
 
     .email {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .footer-socials {
       margin: 0 auto;
-      width: 85%;
+      width: 80%;
     }
   }
 

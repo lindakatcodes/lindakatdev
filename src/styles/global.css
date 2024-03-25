@@ -45,32 +45,37 @@ h4,
 h5,
 h6 {
   color: var(--text-main);
-  font-family: var(--serif-font);
   font-weight: 700;
   margin: 1rem auto;
 }
 
 h1 {
+  font-family: var(--cursive-font);
   font-size: var(--h1);
 }
 
 h2 {
+  font-family: var(--cursive-font);
   font-size: var(--h2);
 }
 
 h3 {
+  font-family: var(--serif-font);
   font-size: var(--h3);
 }
 
 h4 {
+  font-family: var(--serif-font);
   font-size: var(--h4);
 }
 
 h5 {
+  font-family: var(--serif-font);
   font-size: var(--h5);
 }
 
 h6 {
+  font-family: var(--serif-font);
   font-size: var(--h6);
 }
 
