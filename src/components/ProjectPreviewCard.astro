@@ -14,13 +14,11 @@ const loading = aboveFold ? "eager" : "lazy";
 
 <CardWrapper>
   <article class="project-wrapper">
-    <!-- <div class="project-image"> -->
     <Image
       src={project.data.headerImage}
       alt={project.data.headerImageAlt}
       loading={loading}
     />
-    <!-- </div> -->
     <h4 class="project-title">{project.data.name}</h4>
     <div class="project-tech">
       {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
@@ -64,6 +62,7 @@ const loading = aboveFold ? "eager" : "lazy";
 
 <style>
   .project-wrapper {
+    block-size: 100%;
     padding: 0.25rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -72,19 +71,8 @@ const loading = aboveFold ? "eager" : "lazy";
     justify-items: center;
   }
 
-  /* .project-image { */
-  /* display: flex; */
-  /* height: 17dvw; */
-  /* justify-content: center; */
-  /* width: 100%; */
-  /* } */
-
   img {
     max-width: 100%;
-    /* object-fit: contain; */
-    /* object-position: center top; */
-    /* overflow: hidden; */
-    /* width: auto; */
   }
 
   .project-title {
@@ -97,9 +85,7 @@ const loading = aboveFold ? "eager" : "lazy";
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    /* height: 10%; */
     justify-content: center;
-    /* width: 100%; */
   }
 
   .project-tech p {
@@ -125,28 +111,18 @@ const loading = aboveFold ? "eager" : "lazy";
   .project-description {
     font-size: 0.95rem;
     margin: 0.25rem 0;
-    /* height: 25%; */
-    /* line-height: 1.1rem; */
-    /* margin-top: 1%; */
-    /* padding-left: 2%; */
-    /* width: 100%; */
   }
 
   .project-links {
-    /* align-items: flex-end; */
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content: center;
     gap: var(--s8);
-    /* margin: 2% 0; */
-    /* width: 100%; */
   }
 
   a {
     border-radius: 5px;
     color: var(--text-main);
     font-weight: bold;
-    /* margin: 3%; */
     padding: 0.25rem 0.5rem;
     text-decoration: none;
 
@@ -182,28 +158,4 @@ const loading = aboveFold ? "eager" : "lazy";
   .case-study:hover {
     background: var(--blue);
   }
-
-  /* @media (max-width: 520px) {
-    .project-wrapper {
-      width: 95%;
-    }
-
-    .project-image {
-      height: auto;
-    }
-
-    .project-tech {
-      font-size: 0.85rem;
-    }
-
-    .project-description {
-      height: auto;
-    }
-  }
-
-  @media (min-width: 520px) and (max-width: 1024px) {
-    .project-description {
-      height: 38%;
-    }
-  } */
 </style>
