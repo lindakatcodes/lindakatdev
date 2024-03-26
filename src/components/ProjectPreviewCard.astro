@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import CardWrapper from "./CardWrapper.astro";
 
 interface Props {
   aboveFold?: boolean;
@@ -8,99 +9,84 @@ interface Props {
 }
 
 const { aboveFold = false, project } = Astro.props;
+const loading = aboveFold ? "eager" : "lazy";
 ---
 
-<article class="project-wrapper">
-  <div class="project-image">
+<CardWrapper>
+  <article class="project-wrapper">
+    <div class="project-image">
+      <Image
+        src={project.data.headerImage}
+        alt={project.data.headerImageAlt}
+        loading={loading}
+      />
+    </div>
+    <h3 class="project-title">{project.data.name}</h3>
+    <div class="project-tech">
+      {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
+    </div>
+    <p class="project-description">{project.data.description}</p>
+    <div class="project-links">
+      {
+        project.data.demoLink && (
+          <a
+            href={project.data.demoLink}
+            class="demo"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Demo
+          </a>
+        )
+      }
+      {
+        project.data.codeLink && (
+          <a
+            href={project.data.codeLink}
+            class="code"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Code
+          </a>
+        )
+      }
+      {
+        project.data.liveLink && (
+          <a
+            href={project.data.liveLink}
+            class="live"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Live
+          </a>
+        )
+      }
+    </div>
     {
-      aboveFold ? (
-        <Image
-          src={project.data.headerImage}
-          alt={project.data.headerImageAlt}
-          loading="eager"
-        />
-      ) : (
-        <Image
-          src={project.data.headerImage}
-          alt={project.data.headerImageAlt}
-        />
-      )
-    }
-  </div>
-  <h3 class="project-title">{project.data.name}</h3>
-  <div class="project-tech">
-    {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
-  </div>
-  <p class="project-description">{project.data.description}</p>
-  <div class="project-links">
-    {
-      project.data.demoLink && (
-        <a
-          href={project.data.demoLink}
-          class="demo"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Demo
+      project.data.hasCaseStudy && (
+        <a href={"/projects/" + project.id} class="case-study">
+          View Project Case Study
         </a>
       )
     }
-    {
-      project.data.codeLink && (
-        <a
-          href={project.data.codeLink}
-          class="code"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Code
-        </a>
-      )
-    }
-    {
-      project.data.liveLink && (
-        <a
-          href={project.data.liveLink}
-          class="live"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Live
-        </a>
-      )
-    }
-  </div>
-  {
-    project.data.hasCaseStudy && (
-      <a href={"/projects/" + project.id} class="case-study">
-        View Project Case Study
-      </a>
-    )
-  }
-</article>
+  </article>
+</CardWrapper>
 
 <style>
   .project-wrapper {
-    align-items: center;
-    border-radius: 8px;
-    box-shadow: none;
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
+    /* align-items: center; */
+    /* display: flex; */
+    /* flex-flow: column; */
+    /* justify-content: flex-start; */
     padding: 0.25rem 0.5rem 1rem;
     width: 98%;
-    transition:
-      box-shadow 0.3s,
-      border 0.3s;
-  }
-
-  .project-wrapper:hover {
-    box-shadow: -6px 5px 15px 5px var(--box-shadow);
   }
 
   .project-image {
     display: flex;
-    height: 17dvw;
+    /* height: 17dvw; */
     justify-content: center;
     width: 100%;
   }

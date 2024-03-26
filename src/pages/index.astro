@@ -106,7 +106,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    justify-items: center;
+    /* justify-items: center; */
     margin: 0 auto;
     padding: 0.5rem 0.25rem 0.75rem;
     width: 75%;
@@ -146,6 +146,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
     .project-cards {
       grid-template-columns: 1fr;
+      /* justify-items: stretch; */
       width: 100%;
     }
 

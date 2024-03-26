@@ -19,7 +19,9 @@ const otherProjects = await getCollection("projects", ({ data }) => {
     {
       featuredProjects
         .sort((a, b) => a.data.order - b.data.order)
-        .map((project) => <ProjectPreviewCard project={project} aboveFold={true} />)
+        .map((project) => (
+          <ProjectPreviewCard project={project} aboveFold={true} />
+        ))
     }
   </div>
   <h3>Other Fun Projects</h3>
@@ -42,7 +44,7 @@ const otherProjects = await getCollection("projects", ({ data }) => {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    justify-items: center;
+    /* justify-items: center; */
     margin: 0.25rem auto;
     padding: 0.25rem 0.125rem 0.75rem;
   }
@@ -51,6 +53,7 @@ const otherProjects = await getCollection("projects", ({ data }) => {
     .projects-wrapper {
       gap: 30px 0;
       grid-template-columns: 1fr;
+      /* justify-items: stretch; */
       margin: 0.25rem 0;
       padding-bottom: 0.25rem;
       width: auto;
