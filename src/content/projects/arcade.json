@@ -2,7 +2,7 @@
   "name": "Arcade",
   "headerImage": "../../assets/projects/arcade.png",
   "headerImageAlt": "A heading reads 'Welcome to the Arcade!' on a dark purple background. Below the heading are three tall rectangles, each with the name of a game, a screenshot of the game, and a small blurb with the game objective.",
-  "description": "The home for all the games I've built! Whether they were from my own mind or online courses, this is where I'll be crafting games and learning.",
+  "description": "A virtual arcade! View all the games available or select one to play (instructions are included). I built this in Astro so I could write each game in a different JavaScript framework and keep growing my knowledge!",
   "tech": ["Astro", "JS", "React", "HTML", "CSS"],
   "featured": true,
   "order": 1,
