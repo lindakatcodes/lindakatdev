@@ -15,15 +15,17 @@ const otherProjects = await getCollection("projects", ({ data }) => {
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <h2>Featured Projects</h2>
-  <div class="projects-wrapper">
+  <div class="featured-cards">
     {
       featuredProjects
         .sort((a, b) => a.data.order - b.data.order)
-        .map((project) => <ProjectPreviewCard project={project} aboveFold={true} />)
+        .map((project) => (
+          <ProjectPreviewCard project={project} aboveFold={true} />
+        ))
     }
   </div>
   <h3>Other Fun Projects</h3>
-  <div class="projects-wrapper">
+  <div class="other-cards">
     {
       otherProjects
         .sort((a, b) => a.data.order - b.data.order)
@@ -33,33 +35,32 @@ const otherProjects = await getCollection("projects", ({ data }) => {
 </MainLayout>
 
 <style>
-  h2,
-  h3 {
+  h2 {
     text-align: center;
   }
 
-  .projects-wrapper {
+  h3 {
+    font-family: var(--cursive-font);
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .featured-cards,
+  .other-cards {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    justify-items: center;
-    margin: 0.25rem auto;
-    padding: 0.25rem 0.125rem 0.75rem;
+    grid-template-columns: 1fr;
+    gap: var(--s40);
+    margin: 0.5rem auto 2rem;
+    max-inline-size: 90%;
   }
 
-  @media (max-width: 520px) {
-    .projects-wrapper {
-      gap: 30px 0;
-      grid-template-columns: 1fr;
-      margin: 0.25rem 0;
-      padding-bottom: 0.25rem;
-      width: auto;
-    }
-  }
-
-  @media (min-width: 520px) and (max-width: 1024px) {
-    .projects-wrapper {
+  @media (min-width: 520px) {
+    .featured-cards {
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .other-cards {
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     }
   }
 </style>

@@ -51,7 +51,11 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
               new Date(b.data.publishedDate).valueOf() -
               new Date(a.data.publishedDate).valueOf()
           )
-          .map((post) => <PostPreviewCard blogBit={post} />)
+          .map((post) => (
+            <div>
+              <PostPreviewCard blogBit={post} />
+            </div>
+          ))
       }
     </div>
     <div class="page-link">
@@ -104,23 +108,26 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   .project-cards {
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    justify-items: center;
-    margin: 0 auto;
-    padding: 0.5rem 0.25rem 0.75rem;
-    width: 75%;
-  }
-
-  #posts {
-    margin-bottom: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: var(--s40);
+    margin: 0.5rem auto 2rem;
+    width: 90%;
   }
 
   .post-blurbs {
     display: grid;
-    gap: 2rem;
-    margin: 0.5rem auto;
-    width: 50%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s40);
+    margin: 0.5rem auto 2rem;
+    width: 90%;
+  }
+
+  .post-blurbs > div {
+    grid-area: span 1 / span 2;
+  }
+
+  .post-blurbs div:last-child:nth-child(odd) {
+    grid-column: 2 / span 2;
   }
 
   /* Mobile */
@@ -137,7 +144,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
     .page-link {
       margin: 0 auto;
-      width: 70%;
+      width: 80%;
     }
 
     .social-wrapper {
@@ -148,22 +155,26 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       grid-template-columns: 1fr;
       width: 100%;
     }
+  }
 
+  @media (max-width: 768px) {
     .post-blurbs {
+      grid-template-columns: 1fr;
       width: 100%;
+    }
+
+    .post-blurbs > div {
+      grid-area: auto;
+    }
+
+    .post-blurbs div:last-child:nth-child(odd) {
+      grid-column: auto;
     }
   }
 
   @media (min-width: 1024px) {
     [astro-icon="script-name"] {
       max-width: 50%;
-    }
-  }
-
-  /* Large monitors */
-  @media (min-width: 1280px) {
-    .post-blurbs {
-      width: 40%;
     }
   }
 </style>

@@ -2,7 +2,7 @@
   "name": "Do I Own This",
   "headerImage": "../../assets/projects/do-i-own-this.png",
   "headerImageAlt": "A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Finally, a link to add something new, and a grid view three across and multiple down showing photos of nail polishes with their name below them.",
-  "description": "Do I Own This is a personal nail polish inventory tracking site. It's meant to hold information about your collection, so while you're out at a store you can easily see if you already own a polish or not. I built this site to both help my future self, and learn Vue.",
+  "description": "A nail polish inventory tracking site. Add and view your collection, make changes, search, and filter based on color or brand. This is the project I used to teach myself my first framework, Vue!",
   "tech": ["Vue", "VueX", "Firebase", "Auth0"],
   "featured": true,
   "order": 2,

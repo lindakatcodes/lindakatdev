@@ -1,8 +1,8 @@
 {
   "name": "Home Page",
   "headerImage": "../../assets/projects/start-page.png",
-  "headerImageAlt": "",
-  "description": "My own personal home page, filled with links I visit regularly. The greeting randomly selects an adjective from a list and updates morning/afternoon/evening depending on the time of day.",
+  "headerImageAlt": "A screen with a chocolate brown background. Centered at the top are the words 'Good afternoon Linda'. In a column below this is a search bar, a grid of squares, and some decorative colorful waves at the bottom. Each square in the grid is a link to a different webpage, with an abbreviation of the page name, the page name itself, and a border in green, pink, yellow, or purple.",
+  "description": "My own personal home page, filled with links I visit regularly. Links are color coded by category, and the greeting is semi-randomly generated. It's nice to see a little personal touch when you open a new tab to go to the docs...again!",
   "tech": ["HTML", "CSS", "Vue"],
   "featured": false,
   "order": 3,

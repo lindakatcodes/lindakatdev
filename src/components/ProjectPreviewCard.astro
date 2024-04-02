@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import CardWrapper from "./CardWrapper.astro";
 
 interface Props {
   aboveFold?: boolean;
@@ -8,115 +9,75 @@ interface Props {
 }
 
 const { aboveFold = false, project } = Astro.props;
+const loading = aboveFold ? "eager" : "lazy";
 ---
 
-<article class="project-wrapper">
-  <div class="project-image">
+<CardWrapper>
+  <article class="project-wrapper">
+    <Image
+      src={project.data.headerImage}
+      alt={project.data.headerImageAlt}
+      loading={loading}
+    />
+    <h4 class="project-title">{project.data.name}</h4>
+    <div class="project-tech">
+      {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
+    </div>
+    <p class="project-description">{project.data.description}</p>
+    <div class="project-links">
+      {
+        project.data.codeLink && (
+          <a
+            href={project.data.codeLink}
+            class="code"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Code
+          </a>
+        )
+      }
+      {
+        project.data.liveLink && (
+          <a
+            href={project.data.liveLink}
+            class="live"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Live
+          </a>
+        )
+      }
+    </div>
     {
-      aboveFold ? (
-        <Image
-          src={project.data.headerImage}
-          alt={project.data.headerImageAlt}
-          loading="eager"
-        />
-      ) : (
-        <Image
-          src={project.data.headerImage}
-          alt={project.data.headerImageAlt}
-        />
-      )
-    }
-  </div>
-  <h3 class="project-title">{project.data.name}</h3>
-  <div class="project-tech">
-    {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
-  </div>
-  <p class="project-description">{project.data.description}</p>
-  <div class="project-links">
-    {
-      project.data.demoLink && (
-        <a
-          href={project.data.demoLink}
-          class="demo"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Demo
+      project.data.hasCaseStudy && (
+        <a href={"/projects/" + project.id} class="case-study">
+          View Project Case Study
         </a>
       )
     }
-    {
-      project.data.codeLink && (
-        <a
-          href={project.data.codeLink}
-          class="code"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Code
-        </a>
-      )
-    }
-    {
-      project.data.liveLink && (
-        <a
-          href={project.data.liveLink}
-          class="live"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Live
-        </a>
-      )
-    }
-  </div>
-  {
-    project.data.hasCaseStudy && (
-      <a href={"/projects/" + project.id} class="case-study">
-        View Project Case Study
-      </a>
-    )
-  }
-</article>
+  </article>
+</CardWrapper>
 
 <style>
   .project-wrapper {
-    align-items: center;
-    border-radius: 8px;
-    box-shadow: none;
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
-    padding: 0.25rem 0.5rem 1rem;
-    width: 98%;
-    transition:
-      box-shadow 0.3s,
-      border 0.3s;
+    block-size: 100%;
+    padding: 0.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 1fr auto auto;
+    gap: var(--s8);
+    justify-items: center;
   }
 
-  .project-wrapper:hover {
-    box-shadow: -6px 5px 15px 5px var(--box-shadow);
-  }
-
-  .project-image {
-    display: flex;
-    height: 17dvw;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .project-image img {
-    height: 100%;
-    object-fit: contain;
-    object-position: center top;
-    overflow: hidden;
-    width: auto;
+  img {
+    max-width: 100%;
   }
 
   .project-title {
-    color: var(--text-main);
-    font-size: 1.4rem;
-    margin: 0.75% 0 1.5%;
+    font-size: var(--h6);
+    margin: 0;
     text-align: center;
   }
 
@@ -124,19 +85,15 @@ const { aboveFold = false, project } = Astro.props;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    font-family: var(--body-font);
-    font-size: 0.7rem;
-    font-weight: 600;
-    height: 10%;
     justify-content: center;
-    letter-spacing: 0.75px;
-    text-transform: uppercase;
-    width: 100%;
   }
 
   .project-tech p {
     color: var(--pink);
-    margin: 1% 1.75%;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: var(--b-sm);
+    margin: 0 var(--s8);
   }
 
   .project-tech p:nth-child(2n) {
@@ -152,30 +109,21 @@ const { aboveFold = false, project } = Astro.props;
   }
 
   .project-description {
-    font-size: 0.9rem;
-    height: 25%;
-    line-height: 1.1rem;
-    margin-top: 1%;
-    padding-left: 2%;
-    width: 100%;
+    font-size: 0.95rem;
+    margin: 0.25rem 0;
   }
 
   .project-links {
-    align-items: flex-end;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    margin: 2% 0;
-    width: 100%;
+    gap: var(--s8);
   }
 
-  .project-links a,
-  .case-study {
+  a {
     border-radius: 5px;
     color: var(--text-main);
-    font-weight: 700;
-    margin: 3%;
-    padding: 1% 2.5%;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
     text-decoration: none;
 
     transition:
@@ -183,17 +131,8 @@ const { aboveFold = false, project } = Astro.props;
       background 0.2s ease-in-out;
   }
 
-  .project-links a:hover,
-  .case-study:hover {
+  a:hover {
     color: var(--text-flip);
-  }
-
-  .demo {
-    border: 2px solid var(--pink);
-  }
-
-  .demo:hover {
-    background: var(--pink);
   }
 
   .code {
@@ -218,29 +157,5 @@ const { aboveFold = false, project } = Astro.props;
 
   .case-study:hover {
     background: var(--blue);
-  }
-
-  @media (max-width: 520px) {
-    .project-wrapper {
-      width: 95%;
-    }
-
-    .project-image {
-      height: auto;
-    }
-
-    .project-tech {
-      font-size: 0.85rem;
-    }
-
-    .project-description {
-      height: auto;
-    }
-  }
-
-  @media (min-width: 520px) and (max-width: 1024px) {
-    .project-description {
-      height: 38%;
-    }
   }
 </style>
