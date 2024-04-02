@@ -5,12 +5,14 @@ const activePath = Astro.url.pathname;
 
 <header transition:name="header">
   <nav>
-    <a
-      class:list={["gradient-text link home", { active: activePath === "/" }]}
-      href="/"
-    >
-      LT
-    </a>
+    <span class="home">
+      <a
+        class:list={["gradient-text link", { active: activePath === "/" }]}
+        href="/"
+      >
+        LT
+      </a>
+    </span>
     <a
       class:list={[
         "link projects",
@@ -40,42 +42,48 @@ const activePath = Astro.url.pathname;
   }
 
   nav {
-    align-items: center;
-    display: flex;
-    gap: 1.25rem;
-    height: var(--header-height);
-    justify-content: flex-end;
-    margin: 0 auto var(--s8);
     width: calc(100dvw - var(--s24));
+    height: var(--header-height);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
   }
 
   .link {
-    border-bottom: thick solid;
-    border-bottom-color: transparent;
     color: var(--text-main);
-    font-family: var(--cursive-font);
+    font-family: var(--accent-font);
     font-size: var(--h5);
-    padding: 0.5rem 0.5rem 0;
     text-decoration: none;
     text-shadow: -1px 1px 3px var(--bg-shadow);
+    text-underline-offset: 8px;
     transition: all 0.2s linear;
   }
 
+  .link:hover,
+  .link:focus {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+  }
+
   .home {
-    background-size: 25%;
-    border: none;
     flex-grow: 1;
-    font-family: var(--cursive-font);
+  }
+
+  .home a {
+    padding: 0 var(--s16) 0 var(--s8);
+    background-image: var(--gradient);
+    background-size: 4rem;
     font-size: var(--h3);
-    margin-left: 2px;
-    padding: 0 0.5rem;
+    line-height: 1.25;
     text-shadow: none;
   }
 
   .projects:hover,
   .projects:focus {
-    border-bottom-color: var(--purple);
     color: var(--purple);
+    text-decoration-color: var(--purple);
   }
 
   .projects-active {
@@ -84,8 +92,8 @@ const activePath = Astro.url.pathname;
 
   .blog:hover,
   .blog:focus {
-    border-bottom-color: var(--blue);
     color: var(--blue);
+    text-decoration-color: var(--blue);
   }
 
   .blog-active {
@@ -94,8 +102,8 @@ const activePath = Astro.url.pathname;
 
   .about:hover,
   .about:focus {
-    border-bottom-color: var(--pink);
     color: var(--pink);
+    text-decoration-color: var(--pink);
   }
 
   .about-active {
@@ -103,18 +111,12 @@ const activePath = Astro.url.pathname;
   }
 
   @media (max-width: 520px) {
-    nav {
-      gap: 0.5rem;
-    }
-
     .link {
       font-size: var(--h6);
     }
 
     .home {
-      font-size: 2.5rem;
-      margin-left: 0.25rem;
-      width: 3.5rem;
+      font-size: var(--h4);
     }
   }
 </style>

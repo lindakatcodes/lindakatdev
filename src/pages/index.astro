@@ -69,10 +69,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     padding: var(--s16) 0 calc(var(--s80) * 1.75);
   }
 
-  #intro {
-    padding-top: calc(var(--s40) * 1.75);
-  }
-
   [astro-icon="script-name"] {
     color: var(--text-main);
     margin: 0.5rem auto;
@@ -80,11 +76,16 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   .subtitle {
-    font-family: var(--serif-font);
-    font-size: var(--h5);
     margin: -1rem auto 1rem;
+    width: 23rem;
+    font-family: var(--heading-font);
+    font-size: var(--h4);
     text-align: center;
-    width: 25rem;
+  }
+
+  .social-wrapper {
+    margin: 2.5rem auto;
+    width: 40%;
   }
 
   .section-title {
@@ -101,16 +102,19 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     font-size: var(--b-lg);
   }
 
-  .social-wrapper {
-    margin: 3rem auto;
-    width: 40%;
+  .page-link a::before {
+    content: "» ";
+  }
+
+  .page-link a::after {
+    content: " «";
   }
 
   .project-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: var(--s40);
-    margin: 0.5rem auto 2rem;
+    margin: 0.5rem auto 3rem;
     width: 90%;
   }
 
@@ -118,7 +122,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--s40);
-    margin: 0.5rem auto 2rem;
+    margin: 0.5rem auto 3rem;
     width: 90%;
   }
 
