@@ -40,8 +40,7 @@ const otherProjects = await getCollection("projects", ({ data }) => {
   }
 
   h3 {
-    font-family: var(--accent-font);
-    font-weight: normal;
+    font-size: var(--h4);
     text-align: center;
   }
 
@@ -50,11 +49,15 @@ const otherProjects = await getCollection("projects", ({ data }) => {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--s40);
-    margin: 0.5rem auto 2rem;
+    margin: 0.5rem auto 3rem;
     max-inline-size: 90%;
   }
 
   @media (min-width: 520px) {
+    h3 {
+      font-size: var(--h3);
+    }
+
     .featured-cards {
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }

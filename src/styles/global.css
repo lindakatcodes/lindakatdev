@@ -82,7 +82,7 @@ span {
 }
 
 a {
-  color: var(--purple);
+  color: var(--text-main);
   font-family: var(--body-font);
   text-decoration-color: var(--green);
   text-decoration-line: underline;
@@ -93,6 +93,7 @@ a {
 
 a:hover,
 a:focus {
+  color: var(--purple);
   text-decoration-style: double;
 }
 

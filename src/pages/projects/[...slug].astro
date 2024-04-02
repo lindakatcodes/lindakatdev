@@ -18,7 +18,7 @@ const { entry } = Astro.props;
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <h2>{entry.data.name}</h2>
+  <h1>{entry.data.name}</h1>
   <article class="cs-wrapper">
     <Image
       src={entry.data.headerImage}
@@ -27,7 +27,7 @@ const { entry } = Astro.props;
       loading="eager"
     />
     <div class="purpose-text">
-      <h3>Purpose: Why This?</h3>
+      <h2>Purpose: Why This?</h2>
       <p>{entry.data.purpose}</p>
       <div class="cs-data">
         <p class="tech-title">Built With:</p>
@@ -124,26 +124,22 @@ const { entry } = Astro.props;
 </MainLayout>
 
 <style>
-  h2 {
-    font-size: 3rem;
+  h1 {
     margin: 1.5rem;
     text-align: center;
   }
 
+  h2,
   h3 {
-    font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
 
   h4 {
-    font-size: 1.15rem;
-    font-weight: bold;
     margin-bottom: 0.5rem;
     padding-left: 0.5rem;
   }
 
   p {
-    line-height: 1.5;
     margin-bottom: 1rem;
     padding: 0 0.5rem;
   }
@@ -169,16 +165,8 @@ const { entry } = Astro.props;
     grid-area: purpose;
   }
 
-  .purpose-text h3 {
-    color: var(--purple);
-  }
-
   .highlight-text {
     grid-area: highlight;
-  }
-
-  .highlight-text h3 {
-    color: var(--blue);
   }
 
   .highlight-image {
@@ -193,17 +181,9 @@ const { entry } = Astro.props;
     grid-area: challenge;
   }
 
-  .challenge-text h3 {
-    color: var(--pink);
-  }
-
   .wrapup {
     grid-area: lessons;
     padding: 0 3rem;
-  }
-
-  .wrapup h3 {
-    color: var(--green);
   }
 
   .wrapup ul {
@@ -240,9 +220,8 @@ const { entry } = Astro.props;
   }
 
   .tech-title {
-    font-family: var(--heading-font);
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: bold;
     grid-area: tech-title;
     margin-bottom: 0;
     text-align: center;
@@ -250,9 +229,8 @@ const { entry } = Astro.props;
   }
 
   .link-title {
-    font-family: var(--heading-font);
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: bold;
     grid-area: link-title;
     margin-bottom: 0;
     text-align: center;
@@ -347,7 +325,6 @@ const { entry } = Astro.props;
   .back-link {
     color: var(--purple);
     display: block;
-    font-family: var(--heading-font);
     font-size: 1.4rem;
     font-weight: bold;
     margin: 2% 0 4%;
@@ -362,7 +339,7 @@ const { entry } = Astro.props;
   }
 
   @media (max-width: 1024px) {
-    h2 {
+    h1 {
       font-size: 2.25rem;
     }
 
