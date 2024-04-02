@@ -17,25 +17,34 @@ const allBlogPosts = await getCollection("blog");
           (a, b) =>
             b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
         )
-        .map((blogPostEntry) => <PostPreviewCard blogBit={blogPostEntry} />)
+        .map((blogPostEntry) => (
+          <div>
+            <PostPreviewCard blogBit={blogPostEntry} />
+          </div>
+        ))
     }
   </div>
 </MainLayout>
 
 <style>
-  h2 {
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
   .posts-wrapper {
     display: grid;
     gap: var(--s64);
+    margin-bottom: 3rem;
   }
 
   @media (min-width: 768px) {
     .posts-wrapper {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s40);
+    }
+
+    .posts-wrapper > div {
+      grid-area: span 1 / span 2;
+    }
+
+    .posts-wrapper div:last-child:nth-child(odd) {
+      grid-column: 2 / span 2;
     }
   }
 </style>

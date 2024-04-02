@@ -21,3 +21,4 @@ pnpm-debug.log*
 
 .frontmatter/
 playwright-report/
+test-results/

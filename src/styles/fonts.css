@@ -1,13 +1,13 @@
 /* Initial font families */
 html {
   --body-font: sans-serif;
-  --cursive-font: "Brush Script MT", serif;
-  --serif-font: serif;
+  --accent-font: "Brush Script MT", serif;
+  --heading-font: serif;
 }
 
 /* Once web fonts are loaded */
 .fonts-loaded {
   --body-font: "Fira Sans", system-ui, sans-serif;
-  --cursive-font: "Birthstone", "Brush Script MT", serif;
-  --serif-font: "Source Serif 4", serif;
+  --accent-font: "Birthstone", "Brush Script MT", serif;
+  --heading-font: "Source Serif 4", serif;
 }

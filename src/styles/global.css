@@ -45,37 +45,32 @@ h4,
 h5,
 h6 {
   color: var(--text-main);
-  font-weight: 700;
+  font-family: var(--heading-font);
+  font-weight: bold;
   margin: 1rem auto;
 }
 
 h1 {
-  font-family: var(--cursive-font);
   font-size: var(--h1);
 }
 
 h2 {
-  font-family: var(--cursive-font);
   font-size: var(--h2);
 }
 
 h3 {
-  font-family: var(--serif-font);
   font-size: var(--h3);
 }
 
 h4 {
-  font-family: var(--serif-font);
   font-size: var(--h4);
 }
 
 h5 {
-  font-family: var(--serif-font);
   font-size: var(--h5);
 }
 
 h6 {
-  font-family: var(--serif-font);
   font-size: var(--h6);
 }
 
@@ -87,15 +82,18 @@ span {
 }
 
 a {
-  color: var(--purple);
+  color: var(--text-main);
   font-family: var(--body-font);
-  text-decoration: underline solid var(--green);
+  text-decoration-color: var(--green);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
   text-underline-offset: 2px;
   transition: all 0.2s;
 }
 
 a:hover,
 a:focus {
+  color: var(--purple);
   text-decoration-style: double;
 }
 
@@ -110,8 +108,8 @@ a:is(.gradient-text):hover, a:is(.gradient-text):focus {
 
 body {
   background-color: var(--background);
-  transition: all 0.3s ease-in-out;
   font-size: var(--b-md);
+  transition: all 0.3s ease-in-out;
 }
 
 ul {
@@ -153,15 +151,15 @@ ul li:nth-child(4n)::before {
 /* Global utilities */
 .divider {
   background: var(--gradient);
-  height: 6px;
+  height: var(--s4);
 }
 
 .shadow-under {
-  box-shadow: 0 4px 5px var(--bg-shadow);
+  box-shadow: 0 2px 4px var(--bg-shadow);
 }
 
 .shadow-over {
-  box-shadow: 0 -4px 5px var(--bg-shadow);
+  box-shadow: 0 -2px 4px var(--bg-shadow);
 }
 
 .gradient-text {

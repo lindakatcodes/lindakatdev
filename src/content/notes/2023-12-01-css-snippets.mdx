@@ -30,3 +30,17 @@ border-radius: 50%;
 /* or */
 border-radius: 20px 20px 40px 40px / 2em 3em;
 ```
+
+### Text Decoration
+
+Safari doesn't support `text-decoration-style` within the `text-decoration` shorthand. Honestly, even though it feels like you should be able to use the shorthand for the shared property and write out the others - it's best to just write them all out if you want them to look consistent. 
+
+The shorthand across the 3 big browsers should support:
+
+- `text-decoration-line` is underline / overline / line-through, or what type of line it is.
+- `text-decoration-color` is, well, the color of the line.
+
+The other 2 properties are:
+
+- `text-decoration-style` is the solid / double / dotted / dashed / wavy values you can set for your decoration.
+- `text-decoration-thickness` lets you set a stroke value for how thick the line is.

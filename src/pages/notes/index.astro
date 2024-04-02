@@ -41,7 +41,7 @@ const notes = await getCollection("notes");
   .intro {
     margin: 0 auto 3rem;
     text-align: center;
-    width: 55%;
+    width: 95%;
   }
 
   .intro p {
@@ -51,9 +51,14 @@ const notes = await getCollection("notes");
   .posts-wrapper {
     display: grid;
     gap: var(--s64);
+    margin-bottom: 3rem;
   }
 
   @media (min-width: 768px) {
+    .intro {
+      width: 55%;
+    }
+
     .posts-wrapper {
       grid-template-columns: 1fr 1fr 1fr;
     }
