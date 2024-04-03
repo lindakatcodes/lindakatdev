@@ -5,7 +5,7 @@ import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
@@ -19,7 +19,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <section id="intro">
-    <Icon name="script-name" title="Linda Thompson" />
+    <!-- <Icon name="script-name" title="Linda Thompson" /> -->
     <p class="subtitle gradient-text">
       Software engineer, career changer, & team builder
     </p>
@@ -69,7 +69,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     padding: var(--s16) 0 calc(var(--s80) * 1.75);
   }
 
-  [astro-icon="script-name"] {
+  [data-icon="script-name"] {
     color: var(--text-main);
     margin: 0.5rem auto;
     max-width: 95%;
@@ -177,7 +177,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   @media (min-width: 1024px) {
-    [astro-icon="script-name"] {
+    [data-icon="script-name"] {
       max-width: 50%;
     }
   }

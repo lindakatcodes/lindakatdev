@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 ---
 
 <div class="hire-cta">
@@ -14,8 +14,8 @@ import { Icon } from "astro-icon";
 </div>
 
 <style>
-  [astro-icon="chevrons-down"] {
-    fill: none;
+  [data-icon="chevrons-down"] {
+    fill: var(--text-main);
     width: var(--s16);
     stroke: var(--text-main);
   }

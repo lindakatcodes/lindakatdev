@@ -1,5 +1,5 @@
 ---
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 ---
 
 <button
@@ -26,7 +26,7 @@ import Icon from "astro-icon";
   }
 
   .theme-button svg {
-    fill: var(--text-main);
+    color: var(--text-main);
     height: 42px;
     left: 0;
     position: absolute;
@@ -36,7 +36,7 @@ import Icon from "astro-icon";
   }
 
   .theme-button svg:hover {
-    fill: var(--green);
+    color: var(--green);
   }
 
   @media (max-width: 520px) {
