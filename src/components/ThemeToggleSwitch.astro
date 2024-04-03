@@ -15,40 +15,28 @@ import { Icon } from "astro-icon/components";
 
 <style>
   .theme-button {
+    height: var(--s32);
+    width: var(--s32);
+    margin: 0.5rem;
+    display: block;
+    position: relative;
     background: none;
     border: none;
     cursor: pointer;
-    display: block;
-    height: 42px;
-    margin: 0.5rem;
-    position: relative;
-    width: 42px;
   }
 
   .theme-button svg {
-    color: var(--text-main);
-    height: 42px;
-    left: 0;
+    height: auto;
+    width: var(--s24);
     position: absolute;
-    top: 0;
-    width: 36px;
+    top: calc(50% - var(--s24) / 2);
+    left: calc(50% - var(--s24) / 2);
+    color: var(--text-main);
     z-index: 0;
   }
 
   .theme-button svg:hover {
     color: var(--green);
-  }
-
-  @media (max-width: 520px) {
-    .theme-button {
-      height: 28px;
-      width: 28px;
-    }
-
-    .theme-button svg {
-      height: 28px;
-      width: 24px;
-    }
   }
 </style>
 

@@ -152,7 +152,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     }
 
     .social-wrapper {
-      width: 85%;
+      width: 90%;
     }
 
     .project-cards {
@@ -162,6 +162,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   @media (max-width: 768px) {
+    .social-wrapper {
+      width: 60%;
+    }
+
     .post-blurbs {
       grid-template-columns: 1fr;
       width: 100%;
