@@ -6,14 +6,7 @@ import { remarkReadingTime } from "./src/util/remarkReadingTime.mjs";
 // https://astro.build/config
 export default defineConfig({
   site: "https://lindakat.com",
-  integrations: [
-    mdx(),
-    icon({
-      svgoOptions: {
-        plugins: [],
-      },
-    }),
-  ],
+  integrations: [mdx(), icon()],
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [remarkReadingTime],
