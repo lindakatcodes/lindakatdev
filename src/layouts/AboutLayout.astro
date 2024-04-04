@@ -1,0 +1,21 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
+---
+
+<MainLayout metadata={DEFAULT_METADATA}>
+  <div class="about-wrapper">
+    <slot />
+  </div>
+</MainLayout>
+
+<style is:global>
+  .about-wrapper .selfie {
+    margin: 1rem auto;
+    block-size: auto;
+    inline-size: 45dvw;
+    border: 2px solid var(--blue);
+    border-radius: 25px;
+    box-shadow: -7px 7px 16px 0px var(--bg-shadow);
+  }
+</style>

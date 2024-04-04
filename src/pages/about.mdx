@@ -1,0 +1,14 @@
+---
+layout: ../layouts/AboutLayout.astro
+title: About Linda
+---
+
+import profilePic from "@assets/profile-pic.jpg";
+import { Image } from "astro:assets";
+
+<Image
+  src={profilePic}
+  class="selfie"
+  alt="Woman with brown eyes, green glasses, and blue, purple, pink, and brown hair stares directly at you with a confident and friendly smirk."
+  loading="eager"
+/>
