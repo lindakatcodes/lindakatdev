@@ -6,9 +6,15 @@ title: About Linda
 import profilePic from "@assets/profile-pic.jpg";
 import { Image } from "astro:assets";
 
-<Image
-  src={profilePic}
-  class="selfie"
-  alt="Woman with brown eyes, green glasses, and blue, purple, pink, and brown hair stares directly at you with a confident and friendly smirk."
-  loading="eager"
-/>
+<section class="intro">
+  <Image
+    src={profilePic}
+    class="selfie"
+    alt="Woman with brown eyes, green glasses, and blue, purple, pink, and brown hair stares directly at you with a confident and friendly smirk."
+    loading="eager"
+  />
+
+<p class="gradient-text">Hey! I'm Linda,</p>
+<p class="gradient-text">& I compose</p>
+<p class="gradient-text"><span>delightful</span> websites.</p>
+</section>
