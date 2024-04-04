@@ -13,7 +13,7 @@ import { DEFAULT_METADATA } from "@util/constants";
   .about-wrapper .selfie {
     margin: 1rem auto;
     block-size: auto;
-    inline-size: 45dvw;
+    inline-size: clamp(125px, 45dvw, 275px);
     border: 2px solid var(--blue);
     border-radius: 25px;
     box-shadow: -7px 7px 16px 0px var(--bg-shadow);
@@ -21,12 +21,12 @@ import { DEFAULT_METADATA } from "@util/constants";
 
   .about-wrapper p {
     font-family: var(--heading-font);
-    font-size: var(--h6);
+    font-size: clamp(var(--h6), 8dvw, var(--h4));
     text-align: center;
   }
 
   .about-wrapper .gradient-text span {
     font-family: var(--accent-font);
-    font-size: var(--h4);
+    font-size: clamp(var(--h5), 9dvw, var(--h3));
   }
 </style>
