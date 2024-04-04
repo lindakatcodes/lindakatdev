@@ -173,22 +173,22 @@ ul li:nth-child(4n)::before {
 }
 
 /* External package styles */
-[astro-icon] {
+[data-icon] {
   fill: currentColor;
 }
 
-[data-theme="dark"] [astro-icon="sun"] {
+[data-theme="dark"] [data-icon="sun"] {
   visibility: hidden;
 }
 
-[data-theme="dark"] [astro-icon="moon"] {
+[data-theme="dark"] [data-icon="moon"] {
   visibility: visible;
 }
 
-[data-theme="light"] [astro-icon="sun"] {
+[data-theme="light"] [data-icon="sun"] {
   visibility: visible;
 }
 
-[data-theme="light"] [astro-icon="moon"] {
+[data-theme="light"] [data-icon="moon"] {
   visibility: hidden;
 }

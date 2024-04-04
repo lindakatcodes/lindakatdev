@@ -1,5 +1,5 @@
 ---
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 export type socialLink = {
   displayName: String;
@@ -71,8 +71,9 @@ const socialLinks: socialLink[] = [
   }
 
   .social-link svg {
-    fill: var(--text-main);
-    height: var(--s32);
+    color: var(--text-main);
+    width: var(--s24);
+    height: var(--s24);
   }
 
   .social-link p {
@@ -85,7 +86,7 @@ const socialLinks: socialLink[] = [
     text-decoration-color: var(--purple);
 
     & svg {
-      fill: var(--purple);
+      color: var(--purple);
     }
     & p {
       color: var(--purple);
@@ -96,7 +97,7 @@ const socialLinks: socialLink[] = [
     text-decoration-color: var(--green);
 
     & svg {
-      fill: var(--green);
+      color: var(--green);
     }
     & p {
       color: var(--green);
@@ -107,7 +108,7 @@ const socialLinks: socialLink[] = [
     text-decoration-color: var(--blue);
 
     & svg {
-      fill: var(--blue);
+      color: var(--blue);
     }
     & p {
       color: var(--blue);
@@ -118,7 +119,7 @@ const socialLinks: socialLink[] = [
     text-decoration-color: var(--purple);
 
     & svg {
-      fill: var(--purple);
+      color: var(--purple);
     }
     & p {
       color: var(--purple);
@@ -129,20 +130,20 @@ const socialLinks: socialLink[] = [
     text-decoration-color: var(--pink);
 
     & svg {
-      fill: var(--pink);
+      color: var(--pink);
     }
     & p {
       color: var(--pink);
     }
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 768px) {
     .socials {
       justify-content: space-between;
     }
 
     .social-link p {
-      font-size: 0.6rem;
+      font-size: 0.7rem;
     }
   }
 </style>

@@ -5,7 +5,7 @@ import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
@@ -69,10 +69,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     padding: var(--s16) 0 calc(var(--s80) * 1.75);
   }
 
-  [astro-icon="script-name"] {
+  [data-icon="script-name"] {
     color: var(--text-main);
     margin: 0.5rem auto;
-    max-width: 95%;
+    inline-size: 75%;
   }
 
   .subtitle {
@@ -85,7 +85,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   .social-wrapper {
     margin: 2.5rem auto;
-    width: 40%;
+    width: 60%;
   }
 
   .section-title {
@@ -152,7 +152,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     }
 
     .social-wrapper {
-      width: 85%;
+      width: 90%;
     }
 
     .project-cards {
@@ -162,6 +162,10 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   @media (max-width: 768px) {
+    [data-icon="script-name"] {
+      inline-size: 100%;
+    }
+
     .post-blurbs {
       grid-template-columns: 1fr;
       width: 100%;
@@ -177,8 +181,8 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   @media (min-width: 1024px) {
-    [astro-icon="script-name"] {
-      max-width: 50%;
+    [data-icon="script-name"] {
+      inline-size: 60%;
     }
   }
 </style>

@@ -111,11 +111,19 @@ const activePath = Astro.url.pathname;
   }
 
   @media (max-width: 520px) {
+    nav {
+      justify-content: space-evenly;
+    }
+
     .link {
       font-size: var(--h6);
     }
 
     .home {
+      flex-grow: 0;
+    }
+
+    .home a {
       font-size: var(--h4);
     }
   }
