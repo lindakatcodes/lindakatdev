@@ -19,14 +19,21 @@ import { DEFAULT_METADATA } from "@util/constants";
     box-shadow: -7px 7px 16px 0px var(--bg-shadow);
   }
 
-  .about-wrapper p {
+  .about-wrapper .intro p {
     font-family: var(--heading-font);
     font-size: clamp(var(--h6), 8dvw, var(--h4));
     text-align: center;
   }
 
-  .about-wrapper .gradient-text span {
+  .about-wrapper .intro .gradient-text span {
     font-family: var(--accent-font);
     font-size: clamp(var(--h5), 9dvw, var(--h3));
+  }
+
+  .about-wrapper .about p {
+    margin: 0.5rem auto;
+    padding: 0.25rem;
+    text-wrap: pretty;
+    max-inline-size: min(650px, 80dvw);
   }
 </style>
