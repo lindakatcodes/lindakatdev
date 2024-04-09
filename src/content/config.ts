@@ -72,8 +72,19 @@ const projectsCollection = defineCollection({
     ]),
 });
 
+const praisesCollection = defineCollection({
+  type: "data",
+  schema: () =>
+    z.object({
+      quote: z.array(z.string()),
+      name: z.string(),
+      srcLink: z.string(),
+    }),
+});
+
 export const collections = {
   blog: blogCollection,
-  projects: projectsCollection,
   notes: notesCollection,
+  praises: praisesCollection,
+  projects: projectsCollection,
 };

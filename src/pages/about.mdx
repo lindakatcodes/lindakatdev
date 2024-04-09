@@ -5,6 +5,10 @@ title: About Linda
 
 import profilePic from "@assets/profile-pic.jpg";
 import { Image } from "astro:assets";
+import PraiseCard from "@components/PraiseCard.astro";
+import { getCollection } from "astro:content";
+
+export const praises = await getCollection("praises");
 
 <section class="intro">
   <Image
@@ -25,3 +29,8 @@ import { Image } from "astro:assets";
   My path to software engineer wasn't exactly linear. Before diving into the world of web development, I spent years in a variety of roles – print shops, piano stores, even photo labs. These experiences turned me into a communication pro. I learned how to explain complex things clearly and listen patiently. Teamwork became second nature, as I juggled projects and collaborated with all sorts of personalities. Plus, those years of juggling tasks in different roles honed my project management skills – I became an organizational whiz, keeping projects on track and ensuring all the pieces clicked into place seamlessly.
 </section>
 
+<section class="praises">
+  {praises.map((praise) => (
+    <PraiseCard praise={praise}></PraiseCard>
+  ))}
+</section>
