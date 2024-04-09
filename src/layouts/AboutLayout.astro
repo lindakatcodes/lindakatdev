@@ -43,7 +43,9 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   .about-wrapper .praises-wrapper {
+    margin: 0 auto;
     display: grid;
-    gap: var(--s16);
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: var(--s24);
   }
 </style>
