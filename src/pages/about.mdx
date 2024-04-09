@@ -3,9 +3,18 @@ layout: ../layouts/AboutLayout.astro
 title: About Linda
 ---
 
+import bocaCamera from "@assets/about/boca-camera.jpg";
+import gen2Babes from "@assets/about/gen2-babes.jpg";
+import hsMarching from "@assets/about/hs-marching.jpg";
+import littlePiano from "@assets/about/little-piano.jpg";
+import ogBabes from "@assets/about/og-babes.jpg";
+import pipLwj from "@assets/about/pip-lwj.jpg";
+import steinwayPics from "@assets/about/steinway-pics.jpg";
+import tmoFirstSite from "@assets/about/tmo-first-site.jpg";
 import profilePic from "@assets/profile-pic.jpg";
-import { Image } from "astro:assets";
+
 import PraiseCard from "@components/PraiseCard.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 export const praises = await getCollection("praises");
@@ -27,6 +36,27 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
 <section class="about">
   I don't just write code, I craft user experiences. I have a keen eye for creating visually appealing and user-friendly interfaces, honed through years of photography. But my skills go beyond the aesthetic – my musical background translates to an intuitive understanding of flow, ensuring the sites I build feel smooth and effortless to navigate. It's this blend of creativity and logic that allows me to build websites that are not just functional, but truly delightful.
 
+  <h2>My Background</h2>
+
+  <div class="about-bg-imgs-wrapper">
+    <Image
+      src={littlePiano}
+      alt="A young brunette girl in a nice black dress sits on a piano bench at a grand piano playing a song during a recital."
+    />
+    <Image
+      src={hsMarching}
+      alt="A teenage girl in a red and white marching band uniform marches across the green football field while playing a piccolo."
+    />
+    <Image
+      src={steinwayPics}
+      alt="A collage of images of pianos, including some full shots and some close up details of strings and keys, a photo of a sign on a bright blue sky that says Steinway Piano, and a photo of an older man tuning a piano and smiling at the camera."
+    />
+    <Image
+      src={bocaCamera}
+      alt="A young woman in a bright dark pink tank top and black sunglasses smiles softly into the camera. She holds her own camera in her hands up under her chin, as if she's just finished taking a photo. The background behind her is green and tropical."
+    />
+  </div>
+
   My path to software engineer wasn't exactly linear. Before diving into the world of web development, I spent years in a variety of roles – print shops, piano stores, even photo labs. These experiences turned me into a communication pro. I learned how to explain complex things clearly and listen patiently. Teamwork became second nature, as I juggled projects and collaborated with all sorts of personalities. Plus, those years of juggling tasks in different roles honed my project management skills – I became an organizational whiz, keeping projects on track and ensuring all the pieces clicked into place seamlessly.
 </section>
 
@@ -38,3 +68,22 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
     ))}
   </div>
 </section>
+
+<div class="outro-imgs-wrapper">
+  <Image
+    src={ogBabes}
+    alt="A young woman beams with joy at the camera while holding three cats in her arms. All three cats are facing the camera and looking in different directions with their feet dangling."
+  />
+  <Image
+    src={pipLwj}
+    alt="A soft cat sleeps on a tan pillow on the left side of a laptop. The laptop has rainbow glowing keys and shows a programming stream on the screen."
+  />
+  <Image
+    src={tmoFirstSite}
+    alt="A soft cat sleeps on a multi-colored blanket on the right side of a laptop in a young woman's lap. The laptop has gray keys and shows a code editor and a portfolio page in progress on the screen."
+  />
+  <Image
+    src={gen2Babes}
+    alt="A woman sits on a tan couch with a laptop in her lap, feet crossed at the ankles. On her left on the couch lays a black and tan long-haired cat on top of a pink blanket. On the floor at her feet lays a tan and white dog, gazing at the camera."
+  />
+</div>

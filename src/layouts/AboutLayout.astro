@@ -10,6 +10,11 @@ import { DEFAULT_METADATA } from "@util/constants";
 </MainLayout>
 
 <style is:global>
+  .about-wrapper h2 {
+    font-size: clamp(var(--h6), 8dvw, var(--h4));
+    text-align: center;
+  }
+
   .about-wrapper .selfie {
     margin: 1rem auto;
     block-size: auto;
@@ -31,21 +36,64 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   .about-wrapper .about p {
+    max-inline-size: min(650px, 80dvw);
     margin: 0.5rem auto;
     padding: 0.25rem;
     text-wrap: pretty;
-    max-inline-size: min(650px, 80dvw);
   }
 
-  .about-wrapper .praises h2 {
-    font-size: clamp(var(--h6), 8dvw, var(--h4));
-    text-align: center;
+  .about-wrapper .about-bg-imgs-wrapper {
+    max-inline-size: min(800px, 80dvw);
+    margin: 0 auto 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s8);
+  }
+
+  .about-wrapper .about-bg-imgs-wrapper img {
+    inline-size: 100%;
+    border-radius: 3px;
+    border: 2px solid var(--text-main);
+    box-shadow: -2px 2px 4px 0px var(--bg-shadow);
   }
 
   .about-wrapper .praises-wrapper {
+    max-inline-size: min(800px, 80dvw);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--s24);
+  }
+
+  .about-wrapper .outro-imgs-wrapper {
+    max-inline-size: min(550px, 80dvw);
+    margin: 2rem auto 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-columns: 25dvw;
+    grid-auto-flow: column;
+    gap: var(--s8);
+  }
+
+  .about-wrapper .outro-imgs-wrapper img {
+    block-size: 100%;
+    inline-size: 100%;
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+    border-radius: 3px;
+    border: 2px solid var(--text-main);
+    box-shadow: -2px 2px 4px 0px var(--bg-shadow);
+  }
+
+  .about-wrapper .outro-imgs-wrapper img:first-child,
+  .about-wrapper .outro-imgs-wrapper img:last-child {
+    grid-row-end: span 2;
+  }
+
+  @media (min-width: 768px) {
+    .about-wrapper .praises-wrapper .wrapper:last-child:nth-child(odd) {
+      grid-column-end: span 2;
+    }
   }
 </style>
