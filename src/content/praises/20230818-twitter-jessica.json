@@ -1,8 +1,7 @@
 {
-  "quote": [
-    "Linda is one of my all time favorite people to work with. She will be an incredible asset to any company. ❤️"
-  ],
+  "quote": "Linda is one of my all time favorite people to work with. She will be an incredible asset to any company. ❤️",
   "name": "Jessica Wilkins",
+  "title": "Software Engineer",
   "srcLink": "https://twitter.com/codergirl1991/status/1692694700312920299",
-  "featured": true
+  "order": 6
 }

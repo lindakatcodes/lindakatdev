@@ -1,8 +1,7 @@
 {
-  "quote": [
-    "I would have Linda at my side any day on any project.  Don't let this opportunity to have her on your team pass away."
-  ],
+  "quote": "I would have Linda at my side any day on any project.",
   "name": "Nacho Vazquez",
+  "title": "Software Architect",
   "srcLink": "https://twitter.com/naxodev/status/1693028113083462119",
-  "featured": false
+  "order": 11
 }

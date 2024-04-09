@@ -1,11 +1,7 @@
 {
-  "quote": [
-    "Linda is an incredibly talented software engineer and just an overall great person to work with.",
-    "She is reliable, and thorough, so you can confidently give her a goal and the autonomy to achieve that goal, and be completely comfortable knowing it will be taken care of.",
-    "She has a humble curiosity, she's not afraid to ask question, get clarifications and organize a project or tasks in a way that sets up the project for success.",
-    "If you want to work with someone who has a friendly cheery attitude, wizard technical skills and strong work ethic, you better convince whoever needs to be convinced to hire Linda ...but you better do it fast, because chances are you are not the only one."
-  ],
+  "quote": "Linda is an incredibly talented software engineer and just an overall great person to work with. If you want to work with someone who has a friendly cheery attitude, wizard technical skills and strong work ethic, you better convince whoever needs to be convinced to hire Linda.",
   "name": "Adam Barrett",
+  "title": "Senior Software Engineer",
   "srcLink": "https://www.linkedin.com/in/lindakatcodes/details/recommendations/?detailScreenTabIndex=0",
-  "featured": false
+  "order": 5
 }

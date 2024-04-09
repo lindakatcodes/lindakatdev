@@ -9,6 +9,7 @@ import PraiseCard from "@components/PraiseCard.astro";
 import { getCollection } from "astro:content";
 
 export const praises = await getCollection("praises");
+export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.order);
 
 <section class="intro">
   <Image
@@ -32,7 +33,7 @@ export const praises = await getCollection("praises");
 <section class="praises">
   <h2>My Values in Action</h2>
   <div class="praises-wrapper">
-    {praises.map((praise) => (
+    {orderedPraises.map((praise) => (
       <PraiseCard praise={praise}></PraiseCard>
     ))}
   </div>

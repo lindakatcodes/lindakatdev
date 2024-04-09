@@ -1,12 +1,7 @@
 {
-  "quote": [
-    "Working together with Linda has truly been a remarkable experience. Her exceptional talent, meticulous attention to detail, and unwavering determination make her a standout engineer.",
-    "During her tenure at ThisDot, we had the privilege of working together on a project that showcased Linda's proactive approach to process refinement. Her insights significantly contributed to the team's efficiency, leading to the successful meeting of crucial deadlines.",
-    "Linda's role as an incredibly thorough code reviewer stands out as a testament to her commitment to quality. Her insightful questions consistently provide fresh perspectives that elevate the overall standard of our work.",
-    "Linda's capacity to proactively plan for future challenges while maintaining a cool head during high-pressure situations is truly commendable.",
-    "She is a rather quick learner, and has a very efficient work ethic. Linda's approach to crafting high-quality code is characterized by meticulous testing (unit, integration and e2e level) and comprehensive documentation practices. I would really like to work together with Linda in the future. Don't miss out on her!"
-  ],
+  "quote": "Working together with Linda has truly been a remarkable experience. Her exceptional talent, meticulous attention to detail, and unwavering determination make her a standout engineer. Her insights significantly contributed to the team's efficiency, leading to the successful meeting of crucial deadlines.",
   "name": "Balázs Tápai",
+  "title": "Senior Software Engineer",
   "srcLink": "https://www.linkedin.com/in/lindakatcodes/details/recommendations/?detailScreenTabIndex=0",
-  "featured": false
+  "order": 7
 }

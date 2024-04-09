@@ -76,9 +76,11 @@ const praisesCollection = defineCollection({
   type: "data",
   schema: () =>
     z.object({
-      quote: z.array(z.string()),
+      quote: z.string(),
       name: z.string(),
+      title: z.string(),
       srcLink: z.string(),
+      order: z.number(),
     }),
 });
 
