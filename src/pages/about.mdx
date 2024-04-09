@@ -18,9 +18,9 @@ export const praises = await getCollection("praises");
     loading="eager"
   />
 
-  <p class="gradient-text">Hey! I'm Linda,</p>
-  <p class="gradient-text">& I compose</p>
-  <p class="gradient-text"><span>delightful</span> websites.</p>
+  <h1 class="gradient-text">Hey! I'm Linda,</h1>
+  <h1 class="gradient-text">& I compose</h1>
+  <h1 class="gradient-text"><span>delightful</span> websites.</h1>
 </section>
 
 <section class="about">
@@ -30,7 +30,10 @@ export const praises = await getCollection("praises");
 </section>
 
 <section class="praises">
-  {praises.map((praise) => (
-    <PraiseCard praise={praise}></PraiseCard>
-  ))}
+  <h2>My Values in Action</h2>
+  <div class="praises-wrapper">
+    {praises.map((praise) => (
+      <PraiseCard praise={praise}></PraiseCard>
+    ))}
+  </div>
 </section>

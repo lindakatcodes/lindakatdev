@@ -19,15 +19,15 @@ import { DEFAULT_METADATA } from "@util/constants";
     box-shadow: -7px 7px 16px 0px var(--bg-shadow);
   }
 
-  .about-wrapper .intro p {
+  .about-wrapper .intro h1 {
     font-family: var(--heading-font);
-    font-size: clamp(var(--h6), 8dvw, var(--h4));
+    font-size: clamp(var(--h5), 10dvw, var(--h3));
     text-align: center;
   }
 
   .about-wrapper .intro .gradient-text span {
     font-family: var(--accent-font);
-    font-size: clamp(var(--h5), 9dvw, var(--h3));
+    font-size: clamp(var(--h5), 10dvw, var(--h3));
   }
 
   .about-wrapper .about p {
@@ -35,5 +35,15 @@ import { DEFAULT_METADATA } from "@util/constants";
     padding: 0.25rem;
     text-wrap: pretty;
     max-inline-size: min(650px, 80dvw);
+  }
+
+  .about-wrapper .praises h2 {
+    font-size: clamp(var(--h6), 8dvw, var(--h4));
+    text-align: center;
+  }
+
+  .about-wrapper .praises-wrapper {
+    display: grid;
+    gap: var(--s16);
   }
 </style>
