@@ -14,6 +14,7 @@ import tmoFirstSite from "@assets/about/tmo-first-site.jpg";
 import profilePic from "@assets/profile-pic.jpg";
 
 import PraiseCard from "@components/PraiseCard.astro";
+import { EMAIL } from "@util/constants";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
@@ -36,7 +37,7 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
 <section class="about">
   I'm a front-end engineer that values user experience and accessibility. I love the web and I build with its tools - HTML, CSS, and JavaScript. My background in music and photography give me a sharp eye for detail and a deep sense of rhythm. I've also developed excellent communication and project management skills over my career. Together, this blend of creative and logical skills allows me to craft experiences that are a joy to use.
 
-  <p class="cta">Let's build something delightful together: <span class="gradient-text">lindakt16\@gmail.com</span></p>
+  <p class="cta">Let's build something delightful together: <span class="gradient-text">{EMAIL}</span></p>
 
   <h2>My Career Journey</h2>
 

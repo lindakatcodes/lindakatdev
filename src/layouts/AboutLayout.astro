@@ -42,6 +42,28 @@ import { DEFAULT_METADATA } from "@util/constants";
     text-wrap: pretty;
   }
 
+  .about-wrapper .cta {
+    text-align: center;
+  }
+
+  .about-wrapper .cta span {
+    background-color: var(--purple);
+    background-image: none;
+    cursor: copy;
+    text-decoration: underline solid var(--blue);
+    transition: background 0.3s ease-in-out;
+  }
+
+  .about-wrapper .cta span:hover {
+    background-image: var(--gradient);
+    text-decoration-style: double;
+  }
+
+  .about-wrapper .about ul {
+    max-inline-size: min(650px, 80dvw);
+    margin: 0.5rem auto;
+  }
+
   .about-wrapper .about-bg-imgs-wrapper {
     max-inline-size: min(800px, 80dvw);
     margin: 0 auto 0.5rem;
