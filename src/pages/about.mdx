@@ -28,15 +28,17 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
     loading="eager"
   />
 
-  <h1 class="gradient-text">I'm Linda,</h1>
+  <h1 class="gradient-text">Hey! I'm Linda,</h1>
   <h1 class="gradient-text">& I compose</h1>
   <h1 class="gradient-text"><span>delightful</span> websites.</h1>
 </section>
 
 <section class="about">
-  I don't just write code, I craft user experiences. I have a keen eye for creating visually appealing and user-friendly interfaces, honed through years of photography. But my skills go beyond the aesthetic – my musical background translates to an intuitive understanding of flow, ensuring the sites I build feel smooth and effortless to navigate. It's this blend of creativity and logic that allows me to build websites that are not just functional, but truly delightful.
+  I'm a front-end engineer that values user experience and accessibility. I love the web and I build with its tools - HTML, CSS, and JavaScript. My background in music and photography give me a sharp eye for detail and a deep sense of rhythm. I've also developed excellent communication and project management skills over my career. Together, this blend of creative and logical skills allows me to craft experiences that are a joy to use.
 
-  <h2>My Background</h2>
+  <p class="cta">Let's build something delightful together: <span class="gradient-text">lindakt16\@gmail.com</span></p>
+
+  <h2>My Career Journey</h2>
 
   <figure>
     <div class="about-bg-imgs-wrapper">
@@ -60,11 +62,21 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
     <figcaption>Snapshots of my past: piano recitals, marching band, my best pics from Steinway, and me with my camera.</figcaption>
   </figure>
 
-  My path to software engineer wasn't exactly linear. Before diving into the world of web development, I spent years in a variety of roles – print shops, piano stores, even photo labs. These experiences turned me into a communication pro. I learned how to explain complex things clearly and listen patiently. Teamwork became second nature, as I juggled projects and collaborated with all sorts of personalities. Plus, those years of juggling tasks in different roles honed my project management skills – I became an organizational whiz, keeping projects on track and ensuring all the pieces clicked into place seamlessly.
+  The majority of my career has been in customer service and office admin roles. I've experienced diverse locations like photo labs, piano stores, and print shops. I pursued a degree in music education and spent a few years as a photographer. It's through this varied path I earned the skills and work ethic my team and managers love.
+
+  But making the passions work removed the joy, and the other roles I fell into and found unfulfilling. I craved a career that I chose, that would need my creative and analytical sides. So I embarked on a career change and taught myself to code. I kept working full time and spent my evenings following courses and building projects. It took years of perseverance but I landed my first software engineer role in the midst of the Covid pandemic, at the age of 39. I take immense pride in this achievement. You're never too old.
+
+  <h2>My Company Values</h2>
+
+  <ul>
+    <li><strong>Psychological safety</strong> - everyone feels safe to ask questions and receives constructive feedback</li>
+    <li><strong>Mid-sized</strong> - teams of 5-20 developers with collaborative growth mindsets</li>
+    <li><strong>Focus on impact</strong> - building products that make a positive difference in people's lives</li>
+  </ul>
 </section>
 
 <section class="praises">
-  <h2>My Values in Action</h2>
+  <h2>My Value in Action</h2>
   <div class="praises-wrapper">
     {orderedPraises.map((praise) => (
       <PraiseCard praise={praise}></PraiseCard>
