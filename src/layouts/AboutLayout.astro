@@ -15,6 +15,13 @@ import { DEFAULT_METADATA } from "@util/constants";
     text-align: center;
   }
 
+  .about-wrapper figcaption {
+    color: var(--text-main);
+    font-size: var(--b-sm);
+    text-align: center;
+    opacity: 0.8;
+  }
+
   .about-wrapper .selfie {
     margin: 1rem auto;
     block-size: auto;
@@ -30,7 +37,7 @@ import { DEFAULT_METADATA } from "@util/constants";
     text-align: center;
   }
 
-  .about-wrapper .intro .gradient-text span {
+  .about-wrapper .intro span {
     font-family: var(--accent-font);
     font-size: clamp(var(--h5), 10dvw, var(--h3));
   }
@@ -44,24 +51,6 @@ import { DEFAULT_METADATA } from "@util/constants";
 
   .about-wrapper .cta {
     text-align: center;
-  }
-
-  .about-wrapper .cta span {
-    background-color: var(--purple);
-    background-image: none;
-    cursor: copy;
-    text-decoration: underline solid var(--blue);
-    transition: background 0.3s ease-in-out;
-  }
-
-  .about-wrapper .cta span:hover {
-    background-image: var(--gradient);
-    text-decoration-style: double;
-  }
-
-  .about-wrapper .about ul {
-    max-inline-size: min(650px, 80dvw);
-    margin: 0.5rem auto;
   }
 
   .about-wrapper .about-bg-imgs-wrapper {
@@ -78,6 +67,18 @@ import { DEFAULT_METADATA } from "@util/constants";
     border: 2px solid var(--text-main);
     box-shadow: -2px 2px 4px 0px var(--bg-shadow);
     grid-column-end: span 2;
+  }
+
+  .about-wrapper .value {
+    max-inline-size: min(800px, 80dvw);
+    margin: 0.5rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .about-wrapper .value div {
+    flex-basis: 100%;
   }
 
   .about-wrapper .praises-wrapper {
@@ -114,16 +115,13 @@ import { DEFAULT_METADATA } from "@util/constants";
     grid-row-end: span 2;
   }
 
-  .about-wrapper figcaption {
-    color: var(--text-main);
-    font-size: var(--b-sm);
-    text-align: center;
-    opacity: 0.8;
-  }
-
   @media (min-width: 768px) {
     .about-wrapper .about-bg-imgs-wrapper img {
       grid-column-end: span 1;
+    }
+
+    .about-wrapper .value div {
+      flex-basis: 48%;
     }
 
     .about-wrapper .praises-wrapper .wrapper:last-child:nth-child(odd) {

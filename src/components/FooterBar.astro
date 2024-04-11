@@ -10,7 +10,7 @@ import { EMAIL } from "@util/constants";
     <p>Thanks for your time!</p>
     <p>
       Get in touch: <br />
-      <span class="email gradient-text"> {EMAIL}</span>
+      <a href={`mailto:${EMAIL}`} class="gradient-text"> {EMAIL}</a>
     </p>
   </div>
   <div class="footer-socials">
@@ -53,19 +53,6 @@ import { EMAIL } from "@util/constants";
     margin-top: 0;
   }
 
-  .email {
-    background-color: var(--purple);
-    background-image: none;
-    cursor: copy;
-    text-decoration: underline solid var(--blue);
-    transition: background 0.3s ease-in-out;
-  }
-
-  .email:hover {
-    background-image: var(--gradient);
-    text-decoration-style: double;
-  }
-
   .footer-socials {
     grid-area: socials;
     margin-right: var(--s24);
@@ -95,10 +82,6 @@ import { EMAIL } from "@util/constants";
       text-align: center;
     }
 
-    .email {
-      font-size: 0.9rem;
-    }
-
     .footer-socials {
       margin: 0 auto;
       width: 80%;
@@ -111,17 +94,3 @@ import { EMAIL } from "@util/constants";
     }
   }
 </style>
-
-<script>
-  const email = document.querySelector(".email");
-  email?.addEventListener("click", () => {
-    navigator.clipboard.writeText("hello@lindakat.com").then(
-      () => {
-        console.log("Successfully copied text!");
-      },
-      () => {
-        console.error("Sorry, could not copy text");
-      }
-    );
-  });
-</script>

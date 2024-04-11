@@ -35,11 +35,11 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
 </section>
 
 <section class="about">
-  I'm a front-end engineer that values user experience and accessibility. I love the web and I build with its tools - HTML, CSS, and JavaScript. My background in music and photography give me a sharp eye for detail and a deep sense of rhythm. I've also developed excellent communication and project management skills over my career. Together, this blend of creative and logical skills allows me to craft experiences that are a joy to use.
+  I'm a front-end engineer that values user experience and accessibility. I love the web and I build with its tools - HTML, CSS, and JavaScript. My background in music and photography give me a sharp eye for detail and a deep sense of rhythm. I've also developed excellent communication and project management skills over my career. Together, this blend of creativity and logic allows me to craft experiences that are a joy to use.
 
-  <p class="cta">Let's build something delightful together: <span class="gradient-text">{EMAIL}</span></p>
+  <p class="cta">Let's build something delightful together: <a href={`mailto:${EMAIL}`} class="gradient-text">{EMAIL}</a></p>
 
-  <h2>My Career Journey</h2>
+  <h2>My Background</h2>
 
   <figure>
     <div class="about-bg-imgs-wrapper">
@@ -63,17 +63,29 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
     <figcaption>Snapshots of my past: piano recitals, marching band, my best pics from Steinway, and me with my camera.</figcaption>
   </figure>
 
-  The majority of my career has been in customer service and office admin roles. I've experienced diverse locations like photo labs, piano stores, and print shops. I pursued a degree in music education and spent a few years as a photographer. It's through this varied path I earned the skills and work ethic my team and managers love.
+  The majority of my career has been in customer service and office admin roles. I've worked in photo labs, piano stores, and print shops. I pursued a degree in music education and spent a few years as a photographer. It's through this varied path I earned the skills and work ethic my team and managers love.
 
-  But making the passions work removed the joy, and the other roles I fell into and found unfulfilling. I craved a career that I chose, that would need my creative and analytical sides. So I embarked on a career change and taught myself to code. I kept working full time and spent my evenings following courses and building projects. It took years of perseverance but I landed my first software engineer role in the midst of the Covid pandemic, at the age of 39. I take immense pride in this achievement. You're never too old.
+  But making the passions work removed the joy, and the other roles I fell into and found unfulfilling. I craved a career that I chose, that would need my creative and analytical sides. So I embarked on a career change and taught myself to code. I kept working full time and spent my evenings following courses, building projects, and making new friends in the industry. It took years of perseverance but I landed my first software engineer role in the midst of the Covid pandemic, at the age of 39. I take immense pride in this achievement. You're never too old.
+</section>
 
-  <h2>My Company Values</h2>
-
-  <ul>
-    <li><strong>Psychological safety</strong> - everyone feels safe to ask questions and receives constructive feedback</li>
-    <li><strong>Mid-sized</strong> - teams of 5-20 developers with collaborative growth mindsets</li>
-    <li><strong>Focus on impact</strong> - building products that make a positive difference in people's lives</li>
-  </ul>
+<section class="value">
+<div>
+  <h2>What I've Made</h2>
+    <ul>
+      <li><strong>Boosted blogs</strong> - crafted a recommendation system with React for a popular blog to suggest relevent content after each post.</li>
+      <li><strong>Featured files</strong> - developed an Angular component that lets users access route-specific PDF and MP4 files, with NgRx for data access and Cypress for testing.</li>
+      <li><strong>Arcade awesomeness</strong> - gaming is my passion so I built an arcade with Astro to host mini games created in a variety of JavaScript frameworks.</li>
+    </ul>
+</div>
+<div>
+  <h2>What I Want</h2>
+    <ul>
+      <li><strong>Open communication</strong> - everyone feels safe to ask questions and raise concerns, and receives constructive feedback.</li>
+      <li><strong>Career growth</strong> - manager support for career goals and teams of 5-20 developers that enjoy learning from each other.</li>
+      <li><strong>JavaScript based</strong> - enjoy using all the varieties, though my current favorite is Astro.</li>
+      <li><strong>Focus on impact</strong> - supporting a product or service that improves everyday life for others.</li>
+    </ul>
+    </div>
 </section>
 
 <section class="praises">
