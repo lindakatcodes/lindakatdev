@@ -10,9 +10,18 @@ import { DEFAULT_METADATA } from "@util/constants";
 </MainLayout>
 
 <style is:global>
+  .about-wrapper section {
+    margin-bottom: var(--s40);
+  }
+
   .about-wrapper h2 {
     font-size: clamp(var(--h6), 8dvw, var(--h4));
     text-align: center;
+    margin-top: var(--s40);
+  }
+
+  .about-wrapper figure {
+    margin-bottom: 1rem;
   }
 
   .about-wrapper figcaption {
@@ -32,25 +41,21 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   .about-wrapper .intro h1 {
-    font-family: var(--heading-font);
-    font-size: clamp(var(--h5), 10dvw, var(--h3));
+    font-size: var(--h5);
     text-align: center;
   }
 
   .about-wrapper .intro span {
     font-family: var(--accent-font);
-    font-size: clamp(var(--h5), 10dvw, var(--h3));
+    font-size: var(--h3);
   }
 
-  .about-wrapper .about p {
-    max-inline-size: min(650px, 80dvw);
+  .about-wrapper .about p,
+  .about-wrapper .about ul {
+    max-inline-size: min(700px, 80dvw);
     margin: 0.5rem auto;
     padding: 0.25rem;
     text-wrap: pretty;
-  }
-
-  .about-wrapper .cta {
-    text-align: center;
   }
 
   .about-wrapper .about-bg-imgs-wrapper {
@@ -69,24 +74,12 @@ import { DEFAULT_METADATA } from "@util/constants";
     grid-column-end: span 2;
   }
 
-  .about-wrapper .value {
-    max-inline-size: min(800px, 80dvw);
-    margin: 0.5rem auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .about-wrapper .value div {
-    flex-basis: 100%;
-  }
-
   .about-wrapper .praises-wrapper {
     max-inline-size: min(800px, 80dvw);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--s24);
+    gap: var(--s32);
   }
 
   .about-wrapper .outro-imgs-wrapper {
@@ -116,12 +109,32 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   @media (min-width: 768px) {
-    .about-wrapper .about-bg-imgs-wrapper img {
-      grid-column-end: span 1;
+    .about-wrapper .intro {
+      display: flex;
+      align-items: center;
+      max-inline-size: min(800px, 80dvw);
+      margin: 0 auto;
     }
 
-    .about-wrapper .value div {
-      flex-basis: 48%;
+    .about-wrapper .selfie {
+      inline-size: clamp(125px, 45dvw, 260px);
+      order: 2;
+    }
+
+    .about-wrapper .intro h1 {
+      font-size: var(--h4);
+    }
+
+    .about-wrapper .intro span {
+      font-size: var(--h2);
+    }
+
+    .about-wrapper .cta {
+      text-align: center;
+    }
+
+    .about-wrapper .about-bg-imgs-wrapper img {
+      grid-column-end: span 1;
     }
 
     .about-wrapper .praises-wrapper .wrapper:last-child:nth-child(odd) {
