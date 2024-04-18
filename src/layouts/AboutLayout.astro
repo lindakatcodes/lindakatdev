@@ -25,6 +25,8 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   .about-wrapper figcaption {
+    max-inline-size: min(600px, 90dvw);
+    margin: 0 auto;
     color: var(--text-main);
     font-size: var(--b-sm);
     text-align: center;
@@ -40,15 +42,25 @@ import { DEFAULT_METADATA } from "@util/constants";
     box-shadow: -7px 7px 16px 0px var(--bg-shadow);
   }
 
-  .about-wrapper .intro h1 {
+  .about-wrapper .intro p {
+    font-family: var(--heading-font)
     font-size: var(--h5);
     text-align: center;
-    font-weight: normal;
+    margin: 1rem auto;
+    line-height: 1.4;
   }
 
   .about-wrapper .intro span {
     font-family: var(--accent-font);
     font-size: var(--h3);
+  }
+
+  .about-wrapper .intro span::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: -10px;
   }
 
   .about-wrapper .about p,
@@ -110,6 +122,10 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   @media (min-width: 768px) {
+    .about-wrapper figcaption {
+      max-inline-size: min(600px, 50dvw);
+    }
+
     .about-wrapper .intro {
       display: flex;
       align-items: center;
@@ -122,7 +138,7 @@ import { DEFAULT_METADATA } from "@util/constants";
       order: 2;
     }
 
-    .about-wrapper .intro h1 {
+    .about-wrapper .intro p {
       font-size: var(--h4);
     }
 
