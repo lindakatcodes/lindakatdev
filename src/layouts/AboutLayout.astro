@@ -12,20 +12,18 @@ import { DEFAULT_METADATA } from "@util/constants";
 <style is:global>
   .about-wrapper section {
     margin-bottom: var(--s40);
+    padding: 0.25rem;
+    text-wrap: pretty;
   }
 
-  .about-wrapper h2 {
-    font-size: clamp(var(--h6), 8dvw, var(--h4));
-    text-align: center;
-    margin-top: var(--s40);
-  }
-
-  .about-wrapper figure {
-    margin-bottom: 1rem;
+  .about-wrapper p,
+  .about-wrapper ul {
+    max-inline-size: min(700px, 85dvw);
+    margin: 0 auto 0.75rem;
   }
 
   .about-wrapper figcaption {
-    max-inline-size: min(600px, 90dvw);
+    /* max-inline-size: min(600px, 90dvw); */
     margin: 0 auto;
     color: var(--text-main);
     font-size: var(--b-sm);
@@ -43,11 +41,11 @@ import { DEFAULT_METADATA } from "@util/constants";
   }
 
   .about-wrapper .intro p {
-    font-family: var(--heading-font)
+    margin: var(--s40) auto 0;
+    font-family: var(--heading-font);
     font-size: var(--h5);
-    text-align: center;
-    margin: 1rem auto;
     line-height: 1.4;
+    text-align: center;
   }
 
   .about-wrapper .intro span {
@@ -63,41 +61,17 @@ import { DEFAULT_METADATA } from "@util/constants";
     margin-top: -10px;
   }
 
-  .about-wrapper .about p,
-  .about-wrapper .about ul {
-    max-inline-size: min(700px, 80dvw);
-    margin: 0.5rem auto;
-    padding: 0.25rem;
-    text-wrap: pretty;
-  }
-
-  .about-wrapper .about-bg-imgs-wrapper {
-    max-inline-size: min(800px, 80dvw);
-    margin: 0 auto 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--s8);
-  }
-
-  .about-wrapper .about-bg-imgs-wrapper img {
-    inline-size: 100%;
-    border-radius: 3px;
-    border: 2px solid var(--text-main);
-    box-shadow: -2px 2px 4px 0px var(--bg-shadow);
-    grid-column-end: span 2;
-  }
-
   .about-wrapper .praises-wrapper {
-    max-inline-size: min(800px, 80dvw);
+    max-inline-size: min(900px, 85dvw);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--s32);
   }
 
-  .about-wrapper .outro-imgs-wrapper {
-    max-inline-size: min(550px, 80dvw);
-    margin: 2rem auto 0.5rem;
+  .about-wrapper .trivia-imgs-wrapper {
+    /* max-inline-size: min(900px, 85dvw); */
+    margin: var(--s40) auto 0.5rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -106,7 +80,7 @@ import { DEFAULT_METADATA } from "@util/constants";
     gap: var(--s8);
   }
 
-  .about-wrapper .outro-imgs-wrapper img {
+  .about-wrapper .trivia-imgs-wrapper img {
     block-size: 100%;
     inline-size: 100%;
     grid-column-end: span 1;
@@ -116,21 +90,23 @@ import { DEFAULT_METADATA } from "@util/constants";
     box-shadow: -2px 2px 4px 0px var(--bg-shadow);
   }
 
-  .about-wrapper .outro-imgs-wrapper img:first-child,
-  .about-wrapper .outro-imgs-wrapper img:last-child {
+  .about-wrapper .trivia-imgs-wrapper img:first-child,
+  .about-wrapper .trivia-imgs-wrapper img:last-child {
     grid-row-end: span 2;
   }
 
-  @media (min-width: 768px) {
-    .about-wrapper figcaption {
-      max-inline-size: min(600px, 50dvw);
+  @media (min-width: 520px) {
+    .about-wrapper .praises-wrapper .wrapper:last-child:nth-child(odd) {
+      grid-column-end: span 2;
     }
+  }
 
+  @media (min-width: 768px) {
     .about-wrapper .intro {
+      max-inline-size: min(800px, 85dvw);
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      max-inline-size: min(800px, 80dvw);
-      margin: 0 auto;
     }
 
     .about-wrapper .selfie {
@@ -150,12 +126,24 @@ import { DEFAULT_METADATA } from "@util/constants";
       text-align: center;
     }
 
-    .about-wrapper .about-bg-imgs-wrapper img {
-      grid-column-end: span 1;
+    .about-wrapper .trivia {
+      max-inline-size: min(900px, 85dvw);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: var(--s24);
     }
 
-    .about-wrapper .praises-wrapper .wrapper:last-child:nth-child(odd) {
-      grid-column-end: span 2;
+    .about-wrapper .trivia ul {
+      flex-basis: 60%;
+    }
+
+    .about-wrapper .trivia figure {
+      flex-basis: 40%;
+    }
+
+    .about-wrapper .trivia-imgs-wrapper {
+      margin-top: 0;
     }
   }
 </style>
