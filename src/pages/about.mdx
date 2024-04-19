@@ -14,7 +14,12 @@ import { EMAIL } from "@util/constants";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
-export const praises = await getCollection("praises");
+export const praises = await getCollection("praises", ({ id }) => {
+  const filterOut = ["20230823-linkedin-rob", "20230818-linkedin-will", "20230818-twitter-jessica"];
+  if (!filterOut.includes(id)) {
+    return id;
+  }
+});
 export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.order);
 
 <section class="intro">
@@ -36,7 +41,7 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
 
 <section class="praises">
   <div class="praises-wrapper">
-    {orderedPraises.slice(0, 4).map((praise) => (
+    {orderedPraises.slice(0, 3).map((praise) => (
       <PraiseCard praise={praise}></PraiseCard>
     ))}
   </div>
@@ -74,7 +79,7 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
 
 <section class="praises">
   <div class="praises-wrapper">
-    {orderedPraises.slice(4).map((praise) => (
+    {orderedPraises.slice(3).map((praise) => (
       <PraiseCard praise={praise}></PraiseCard>
     ))}
   </div>
