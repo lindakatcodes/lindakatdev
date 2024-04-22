@@ -1,0 +1,148 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
+---
+
+<MainLayout metadata={DEFAULT_METADATA}>
+  <div class="about-wrapper">
+    <slot />
+  </div>
+</MainLayout>
+
+<style is:global>
+  .about-wrapper section {
+    margin-bottom: var(--s80);
+    padding: 0.25rem;
+    text-wrap: pretty;
+  }
+
+  .about-wrapper p,
+  .about-wrapper ul {
+    max-inline-size: min(700px, 85dvw);
+    margin: 0 auto 0.75rem;
+  }
+
+  .about-wrapper figcaption {
+    margin: 0 auto;
+    color: var(--text-main);
+    font-size: var(--b-sm);
+    text-align: center;
+    opacity: 0.8;
+  }
+
+  .about-wrapper .selfie {
+    margin: 1rem auto;
+    block-size: auto;
+    inline-size: clamp(125px, 45dvw, 275px);
+    border: 2px solid var(--blue);
+    border-radius: 25px;
+    box-shadow: -7px 7px 16px 0px var(--bg-shadow);
+  }
+
+  .about-wrapper .intro p {
+    margin: var(--s40) auto 0;
+    font-family: var(--heading-font);
+    font-size: var(--h5);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .about-wrapper .intro span {
+    font-family: var(--accent-font);
+    font-size: var(--h3);
+  }
+
+  .about-wrapper .intro span::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: -10px;
+  }
+
+  .about-wrapper .praises-wrapper {
+    max-inline-size: min(900px, 85dvw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--s32);
+  }
+
+  .about-wrapper .trivia-imgs-wrapper {
+    margin: var(--s40) auto 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-columns: 25dvw;
+    grid-auto-flow: column;
+    gap: var(--s8);
+  }
+
+  .about-wrapper .trivia-imgs-wrapper img {
+    block-size: 100%;
+    inline-size: 100%;
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+    border-radius: 3px;
+    border: 2px solid var(--text-main);
+    box-shadow: -2px 2px 4px 0px var(--bg-shadow);
+  }
+
+  .about-wrapper .trivia-imgs-wrapper img:first-child,
+  .about-wrapper .trivia-imgs-wrapper img:last-child {
+    grid-row-end: span 2;
+  }
+
+  @media (min-width: 520px) {
+    .about-wrapper .praises-wrapper .wrapper:last-child:nth-child(odd) {
+      grid-column-end: span 2;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .about-wrapper .intro {
+      max-inline-size: min(800px, 85dvw);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .about-wrapper .selfie {
+      inline-size: clamp(125px, 45dvw, 260px);
+      order: 2;
+    }
+
+    .about-wrapper .intro p {
+      font-size: var(--h4);
+    }
+
+    .about-wrapper .intro span {
+      font-size: var(--h2);
+    }
+
+    .about-wrapper .cta {
+      text-align: center;
+    }
+
+    .about-wrapper .trivia {
+      max-inline-size: min(900px, 85dvw);
+      margin: 0 auto var(--s80);
+      display: flex;
+      align-items: center;
+      gap: var(--s24);
+    }
+
+    .about-wrapper .trivia ul {
+      flex-basis: 60%;
+      margin-bottom: 0;
+    }
+
+    .about-wrapper .trivia figure {
+      flex-basis: 40%;
+    }
+
+    .about-wrapper .trivia-imgs-wrapper {
+      margin-top: 0;
+    }
+  }
+</style>

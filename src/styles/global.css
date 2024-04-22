@@ -48,6 +48,7 @@ h6 {
   font-family: var(--heading-font);
   font-weight: bold;
   margin: 1rem auto;
+  line-height: 1.45;
 }
 
 h1 {

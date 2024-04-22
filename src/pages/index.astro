@@ -1,12 +1,12 @@
 ---
-import HireCTA from "@components/HireCTA.astro";
 import PostPreviewCard from "@components/PostPreviewCard.astro";
+import PraiseCard from "@components/PraiseCard.astro";
 import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { Icon } from "astro-icon/components";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
@@ -15,6 +15,10 @@ const featuredProjects = await getCollection("projects", ({ data }) => {
 const featuredPosts = await getCollection("blog", ({ data }) => {
   return data.featured === true;
 });
+
+const robPraise = await getEntry("praises", "20230823-linkedin-rob");
+const willPraise = await getEntry("praises", "20230818-linkedin-will");
+const jessPraise = await getEntry("praises", "20230818-twitter-jessica");
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
@@ -26,7 +30,9 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     <div class="social-wrapper">
       <SocialsGrid />
     </div>
-    <HireCTA />
+  </section>
+  <section class="praise">
+    <PraiseCard praise={robPraise} />
   </section>
   <section id="projects">
     <h2 class="section-title">Projects I've Crafted</h2>
@@ -40,6 +46,9 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     <div class="page-link">
       <a href="/projects" class="gradient-text">More of my work</a>
     </div>
+  </section>
+  <section class="praise">
+    <PraiseCard praise={willPraise} />
   </section>
   <section id="posts">
     <h2 class="section-title">Words I've Shared</h2>
@@ -62,11 +71,14 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
       <a href="/blog" class="gradient-text">See all my posts</a>
     </div>
   </section>
+  <section class="praise">
+    <PraiseCard praise={jessPraise} />
+  </section>
 </MainLayout>
 
 <style>
   section {
-    padding: var(--s16) 0 calc(var(--s80) * 1.75);
+    padding: var(--s16) 0 var(--s80);
   }
 
   [data-icon="script-name"] {
@@ -85,7 +97,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 
   .social-wrapper {
     margin: 2.5rem auto;
-    width: 60%;
+    width: 50%;
   }
 
   .section-title {
@@ -110,11 +122,16 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     content: " «";
   }
 
+  .praise {
+    max-inline-size: min(750px, 85dvw);
+    margin: 0 auto;
+  }
+
   .project-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: var(--s40);
-    margin: 0.5rem auto 3rem;
+    margin: 0 auto var(--s40);
     width: 90%;
   }
 
@@ -122,7 +139,7 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--s40);
-    margin: 0.5rem auto 3rem;
+    margin: 0 auto var(--s40);
     width: 90%;
   }
 
