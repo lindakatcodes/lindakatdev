@@ -2,6 +2,10 @@
   "name": "lindakatdev",
   "type": "module",
   "version": "2.0.0",
+  "volta": {
+    "node": "22.11.0",
+    "npm": "10.9.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "dev:host": "astro dev --host",
