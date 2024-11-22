@@ -10,6 +10,7 @@ import tmoFirstSite from "@assets/about/tmo-first-site.jpg";
 import profilePic from "@assets/profile-pic.jpg";
 
 import PraiseCard from "@components/PraiseCard.astro";
+import SocialsGrid from "@components/SocialsGrid.astro";
 import { EMAIL } from "@util/constants";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
@@ -37,6 +38,8 @@ export const orderedPraises = praises.sort((p1, p2) => p1.data.order - p2.data.o
   I'm a front-end software engineer with an artistic background. I'm also a career changer with top-tier communication and organization skills. I build friendly, accessible designs and modern, maintainable JavaScript logic. My mix of creativity, empathy, critical thinking, and grit helps me craft sites that are a joy to use.
 
   <p class="cta">Let's build something delightful together: <a href={`mailto:${EMAIL}`} class="gradient-text">{EMAIL}</a></p>
+
+  <SocialsGrid />
 </section>
 
 <section class="praises">

@@ -9,14 +9,9 @@ export type socialLink = {
 
 const socialLinks: socialLink[] = [
   {
-    displayName: "Mastodon",
-    iconName: "mastodon",
-    link: "https://hachyderm.io/@lindakatcodes",
-  },
-  {
-    displayName: "X-Twitter",
-    iconName: "x-twitter",
-    link: "https://twitter.com/lindakatcodes",
+    displayName: "Bluesky",
+    iconName: "bluesky",
+    link: "https://bsky.app/profile/lindakat.com",
   },
   {
     displayName: "GitHub",
@@ -54,9 +49,8 @@ const socialLinks: socialLink[] = [
   .socials {
     align-items: center;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
-    row-gap: 1rem;
   }
 
   .social-link {
@@ -64,6 +58,7 @@ const socialLinks: socialLink[] = [
     display: flex;
     flex-direction: column;
     text-decoration-color: transparent;
+    margin: auto 1.25rem;
   }
 
   .social-link:hover {
@@ -83,13 +78,13 @@ const socialLinks: socialLink[] = [
   }
 
   .resume:hover {
-    text-decoration-color: var(--purple);
+    text-decoration-color: var(--pink);
 
     & svg {
-      color: var(--purple);
+      color: var(--pink);
     }
     & p {
-      color: var(--purple);
+      color: var(--pink);
     }
   }
 
@@ -105,17 +100,6 @@ const socialLinks: socialLink[] = [
   }
 
   .linkedin:hover {
-    text-decoration-color: var(--blue);
-
-    & svg {
-      color: var(--blue);
-    }
-    & p {
-      color: var(--blue);
-    }
-  }
-
-  .mastodon:hover {
     text-decoration-color: var(--purple);
 
     & svg {
@@ -126,14 +110,14 @@ const socialLinks: socialLink[] = [
     }
   }
 
-  .x-twitter:hover {
-    text-decoration-color: var(--pink);
+  .bluesky:hover {
+    text-decoration-color: var(--blue);
 
     & svg {
-      color: var(--pink);
+      color: var(--blue);
     }
     & p {
-      color: var(--pink);
+      color: var(--blue);
     }
   }
 
