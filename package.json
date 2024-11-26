@@ -20,9 +20,9 @@
     "test:safari": "npx playwright test --headed --browser=webkit"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.2.3",
-    "@astrojs/rss": "^4.0.5",
-    "astro": "^4.5.14",
+    "@astrojs/mdx": "^3.1.9",
+    "@astrojs/rss": "^4.0.9",
+    "astro": "^4.16.15",
     "astro-icon": "^1.1.0",
     "markdown-it": "^13.0.2",
     "mdast-util-to-string": "^4.0.0",
