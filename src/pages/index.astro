@@ -39,7 +39,7 @@ const jessPraise = await getEntry("praises", "20230818-twitter-jessica");
     <div class="project-cards">
       {
         featuredProjects
-          .sort((a, b) => a.data.order - b.data.order)
+          .sort((a, b) => b.data.order - a.data.order)
           .map((project) => <ProjectPreviewCard project={project} />)
       }
     </div>
