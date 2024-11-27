@@ -1,6 +1,6 @@
 {
   "name": "Game Timers",
-  "headerImage": "../../assets/projects/arcade.png",
+  "headerImage": "../../assets/projects/oh-timers.png",
   "headerImageAlt": "",
   "description": "A site to easily check when various timers reset in the game Once Human. Weekly and hourly resets occur in-game with times shown in different menus, so I made this to track the timers in a more accessible way.",
   "tech": ["Next", "Tailwind"],
