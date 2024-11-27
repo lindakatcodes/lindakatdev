@@ -1,0 +1,13 @@
+{
+  "name": "Game Timers",
+  "headerImage": "../../assets/projects/arcade.png",
+  "headerImageAlt": "",
+  "description": "A site to easily check when various timers reset in the game Once Human. Weekly and hourly resets occur in-game with times shown in different menus, so I made this to track the timers in a more accessible way.",
+  "tech": ["Next", "Tailwind"],
+  "featured": false,
+  "order": 3,
+  "demoLink": null,
+  "codeLink": "https://github.com/lindakatcodes/ohtimers",
+  "liveLink": "https://oncehumantimers.netlify.app/",
+  "hasCaseStudy": false
+}

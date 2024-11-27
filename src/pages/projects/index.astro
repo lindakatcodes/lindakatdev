@@ -18,7 +18,7 @@ const otherProjects = await getCollection("projects", ({ data }) => {
   <div class="featured-cards">
     {
       featuredProjects
-        .sort((a, b) => a.data.order - b.data.order)
+        .sort((a, b) => b.data.order - a.data.order)
         .map((project) => (
           <ProjectPreviewCard project={project} aboveFold={true} />
         ))
@@ -28,7 +28,7 @@ const otherProjects = await getCollection("projects", ({ data }) => {
   <div class="other-cards">
     {
       otherProjects
-        .sort((a, b) => a.data.order - b.data.order)
+        .sort((a, b) => b.data.order - a.data.order)
         .map((project) => <ProjectPreviewCard project={project} />)
     }
   </div>
