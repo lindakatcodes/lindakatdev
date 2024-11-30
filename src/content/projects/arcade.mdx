@@ -15,6 +15,7 @@
   layout: ../../layouts/CaseStudyLayout.astro
 ---
 import { Image } from "astro:assets";
+import CaseStudyStats from "@components/CaseStudyStats.astro";
 import headerImage from "../../assets/projects/arcade.png";
 import detailPhoto1 from "../../assets/projects/arcade-detail-1.png";
 import detailPhoto2 from "../../assets/projects/arcade-detail-2.png";
@@ -31,9 +32,9 @@ import detailPhoto2 from "../../assets/projects/arcade-detail-2.png";
 
 One of my all-time favorite pastimes is playing games. I was starting to collect a few different ones I’ve made during my learning journey, and decided it was time to give them their own home! Now I have a space to show off the games I’ve built and can easily add new games and continue to explore.
 
-{/* new component for built with and links here */}
+<CaseStudyStats techList={frontmatter.tech} demoLink={frontmatter.demoLink} codeLink={frontmatter.codeLink} liveLink={frontmatter.liveLink} />
 
-## My favorite parts
+## My favorite wins
 
 - I’ve really been leaning into Astro lately and it’s been a pleasure to build with. It’s a really nice mix of mostly vanilla HTML and JavaScript, with just enough JSX & Astro niceness to make building out templates and passing values to them easy. The extra bonus is that, since my games aren’t all made using the same flavor of JS, I can mix and match that in Astro and get to play with different frameworks and still show them all on the same site!
 - I didn’t really like the initial design I came up with, so spent some time brainstorming to figure out how I could make it better. I love what I ended up with! It feels fairly simple and sleek on the home page, and I really love the individual game machines themselves. They’re not perfect but it actually feels like an arcade machine. It makes me so happy. This is the part of CSS that I adore - having an idea and being able to break it down into boxes so I can craft it with code.
