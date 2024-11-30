@@ -3,6 +3,11 @@ import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"projects">;
+}
 
 export async function getStaticPaths() {
   const projectCaseStudies = await getCollection("projects", ({ data }) => {
@@ -15,14 +20,15 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const { Content } = await entry.render();
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <h1>{entry.data.name}</h1>
   <article class="cs-wrapper">
     <Image
-      src={entry.data.headerImage}
-      alt={entry.data.headerImageAlt}
+      src={entry.data.headerImage.image}
+      alt={entry.data.headerImage.imageAlt}
       class="purpose-image"
       loading="eager"
     />
@@ -76,7 +82,8 @@ const { entry } = Astro.props;
         </div>
       </div>
     </div>
-    <div class="highlight-text">
+    <Content />
+    <!-- <div class="highlight-text">
       <h3>Highlights: The Good Parts</h3>
       <ul>
         {entry.data.highlights.map((point: string) => <li>{point}</li>)}
@@ -118,7 +125,7 @@ const { entry } = Astro.props;
           </>
         )
       }
-    </div>
+    </div> -->
   </article>
   <a href="/projects" class="back-link">← Back to Projects</a>
 </MainLayout>

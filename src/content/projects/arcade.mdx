@@ -1,15 +1,19 @@
-{
-  "name": "Arcade",
-  "headerImage": "../../assets/projects/arcade.png",
-  "headerImageAlt": "A heading reads 'Welcome to the Arcade!' on a dark purple background. Below the heading are three tall rectangles, each with the name of a game, a screenshot of the game, and a small blurb with the game objective.",
-  "description": "A virtual arcade! View all the games available or select one to play (instructions are included). I built this in Astro so I could write each game in a different JavaScript framework and keep growing my knowledge!",
-  "tech": ["Astro", "React", "JS", "HTML", "CSS"],
-  "featured": true,
-  "order": 2,
-  "demoLink": null,
-  "codeLink": "https://github.com/lindakatcodes/arcade",
-  "liveLink": "https://lindakat-arcade.netlify.app/",
-  "hasCaseStudy": true,
+---
+  name: "Arcade"
+  headerImage: {
+    image: "../../assets/projects/arcade.png",
+    imageAlt: "A heading reads 'Welcome to the Arcade!' on a dark purple background. Below the heading are three tall rectangles, each with the name of a game, a screenshot of the game, and a small blurb with the game objective."
+  }
+  description: "A virtual arcade! View all the games available or select one to play (instructions are included). I built this in Astro so I could write each game in a different JavaScript framework and keep growing my knowledge!"
+  tech: ["Astro", "React", "JS", "HTML", "CSS"]
+  featured: true
+  order: 2
+  demoLink: null
+  codeLink: "https://github.com/lindakatcodes/arcade"
+  liveLink: "https://lindakat-arcade.netlify.app/"
+  hasCaseStudy: true
+---
+
   "purpose": "One of my all-time favorite pastimes is playing games. I was starting to collect a few different ones I’ve made during my learning journey, and decided it was time to give them their own home! Now I have a space to show off the games I’ve built and can easily add new games and continue to explore.",
   "highlights": [
     "I’ve really been leaning into Astro lately and it’s been a pleasure to build with. It’s a really nice mix of mostly vanilla HTML and JavaScript, with just enough JSX & Astro niceness to make building out templates and passing values to them easy. The extra bonus is that, since my games aren’t all made using the same flavor of JS, I can mix and match that in Astro and get to play with different frameworks and still show them all on the same site!",
@@ -33,4 +37,3 @@
     "I really want to make the site itself more mobile friendly, and the games as well. This is one of those areas that’s already 90% of the way there, but the remaining 10% is going to take some time.",
     "I want to upgrade my Snake game. I want to improve on how the snake moves and the collision detection, as well as making it possible to play on mobile (since right now it needs arrow keys to function)."
   ]
-}
