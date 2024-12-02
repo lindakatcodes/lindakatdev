@@ -12,29 +12,61 @@
   codeLink: "https://github.com/lindakatcodes/doIOwnThis"
   liveLink: "https://doiownthis.netlify.app/"
   hasCaseStudy: true
----  
-  
-  "purpose": "I made this site for two reasons - I'd always wanted it to exist, and it was time to learn a framework. I have over 100 nail polishes, and it's easy for me to forget what shades I already have when I'm out browsing at a store. I'd long dreamed of having a site where I could catalog my collection, so I could easily see what I have. After doing a bit of research, I decided to start my framework journey with Vue. I loved that it was open-source, and it felt like a nice mix of the best things from React and Angular. It was also listed multiple times as a nice choice for someone new to frameworks to work with, which sounded perfect.",
-  "highlights": [
-    "Styling this site was incredibly fun. I spent a long time testing colors for contrast against each other, ensuring they'd meet the WCAG standards. I'm especially proud of the link styling - on hover, the color highlight increases to cover more of the word. It's a visually appealing trick I picked up and slightly modified from Monica Powell.",
-    "Working with Firebase as a database was surprisingly smooth. The syntax was straightforward, and somehow it...just worked? It still mildly amazes me that it was so simple to get working and that there were very few issues with storing and fetching the data. Knowing this site would need a reliable database, Firebase has been an excellent choice!"
-  ],
-  "challenges": [
-    "The other draw to using Firebase was that it included an authentication option. However, I quickly ran into problems with social authentication. Somewhere along the way, any attempts to use a different account would log me into the original account. Ultimately, I turned the social authentication off and switched to the email and password flow, which has worked reliably. However, it also forces the user to create a new account, which isn't ideal.",
-    "My other big hurdle was learning how to manage state. In tutorials, this seemed like it should just work, but I quickly learned that wasn't the case. At one point, I got so frustrated I had to take a break for a few days and come back to it with fresh eyes. I watched a more in-depth tutorial series on working with Vuex and completely rewrote my state files. With these updated files, I was able to get my data passing much more reliably between pages. There's still a lot that doesn't quite click for me with this topic, but I've come a long way!"
-  ],
-  "detailImage1": "../../assets/projects/diot-detail-1.png",
-  "detailImage1Alt": "At the top left, a link in black text with a pink underline saying Back to All Items. In the center of the page, a hand holds a bottle of blue nail polish that says Zoya. Underneath the photo, there is data about the polish - the name Sia, brand Zoya, color group blue, and finish gloss.",
-  "detailImage2": "../../assets/projects/diot-detail-2.png",
-  "detailImage2Alt": "A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Underneath, there is welcome text, introducing the site and instructing the user to sign in to start their collection.",
-  "lessonIntro": "I gave myself a timeline of one month to build this project, which was a stretch for me at the time. Learning a new framework, building a site from scratch, and holding down a full-time job? It forced me to stay focused and work through my struggles. I'm incredibly proud to say I met my deadline, and I still use this site!",
-  "lessonWins": [
-    "Vuex - how to structure my files and reliably pass data from one page to the next",
-    "Vue - working with single file components is SO NICE, and I really enjoy how the templating works in Vue",
-    "Styling - it was so fun to pick out a color scheme, test it, and decide how to configure it across different pages"
-  ],
-  "lessonImprovements": [
-    "I want to go back and get the social authentication working. I'd also like to get the magic password links set up, so you don't have to create and store a single password. It still mildly bugs me that I couldn't get this working the way I wanted in time, and I'd love to go back and dig deep into this problem to find a working solution.",
-    "When creating my add item form, I wanted to be able to have a checkbox at the bottom so you could add another polish on page reload instead of going to the home page each time. However, it wasn't consistently adding all the polishes to the database. So I'd love to go back and figure out why and get a multi-add form working.",
-    "I also really want to expand this site so that it can track any item! I have the same memory problem with shirts and can see it being helpful for lots of collections. I'd love to have a way to set up what collections you want, selecting the details to track for each one. This would be a larger feature, but one I really want to expand upon so this site could be useful to more people."
-  ]
+  layout: ../../layouts/CaseStudyLayout.astro
+---
+
+import CaseStudyStats from "@components/CaseStudyStats.astro";
+import { Image } from "astro:assets";
+import detailPhoto1 from "../../assets/projects/diot-detail-1.png";
+import detailPhoto2 from "../../assets/projects/diot-detail-2.png";
+import headerImage from "../../assets/projects/do-i-own-this.png";
+
+# Case Study: Do I Own This
+
+---
+
+<Image
+  src={headerImage}
+  alt={frontmatter.headerImage.imageAlt}
+  loading="eager"
+/>
+
+I made this site for two reasons - I'd always wanted it to exist, and it was time to learn a framework. I have over 100 nail polishes, and it's easy for me to forget what shades I already have when I'm out browsing at a store. I'd long dreamed of having a site where I could catalog my collection, so I could easily see what I have. After doing a bit of research, I decided to start my framework journey with Vue. I loved that it was open-source, and it felt like a nice mix of the best things from React and Angular. It was also listed multiple times as a nice choice for someone new to frameworks to work with, which sounded perfect.
+
+<CaseStudyStats techList={frontmatter.tech} demoLink={frontmatter.demoLink} codeLink={frontmatter.codeLink} liveLink={frontmatter.liveLink} />
+
+## My favorite wins
+
+- Styling this site was incredibly fun. I spent a long time testing colors for contrast against each other, ensuring they'd meet the WCAG standards. I'm especially proud of the link styling - on hover, the color highlight increases to cover more of the word. It's a visually appealing trick I picked up and slightly modified from Monica Powell.
+- Working with Firebase as a database was surprisingly smooth. The syntax was straightforward, and somehow it...just worked? It still mildly amazes me that it was so simple to get working and that there were very few issues with storing and fetching the data. Knowing this site would need a reliable database, Firebase has been an excellent choice!
+
+<Image
+  src={detailPhoto1}
+  alt="At the top left, a link in black text with a pink underline saying Back to All Items. In the center of the page, a hand holds a bottle of blue nail polish that says Zoya. Underneath the photo, there is data about the polish - the name Sia, brand Zoya, color group blue, and finish gloss."
+/>
+
+## Overcoming challenges
+
+- The other draw to using Firebase was that it included an authentication option. However, I quickly ran into problems with social authentication. Somewhere along the way, any attempts to use a different account would log me into the original account. Ultimately, I turned the social authentication off and switched to the email and password flow, which has worked reliably. However, it also forces the user to create a new account, which isn't ideal.
+- My other big hurdle was learning how to manage state. In tutorials, this seemed like it should just work, but I quickly learned that wasn't the case. At one point, I got so frustrated I had to take a break for a few days and come back to it with fresh eyes. I watched a more in-depth tutorial series on working with Vuex and completely rewrote my state files. With these updated files, I was able to get my data passing much more reliably between pages. There's still a lot that doesn't quite click for me with this topic, but I've come a long way!
+
+<Image
+  src={detailPhoto2}
+  alt="A heading bar with Do I Own This on the left, and a greeting and sign out button on the right. Then, a filter bar, showing a drop down menu and a text box with a search button. Underneath, there is welcome text, introducing the site and instructing the user to sign in to start their collection."
+/>
+
+## Project wrapup
+
+I gave myself a timeline of one month to build this project, which was a stretch for me at the time. Learning a new framework, building a site from scratch, and holding down a full-time job? It forced me to stay focused and work through my struggles. I'm incredibly proud to say I met my deadline, and I still use this site!
+
+### My biggest takeaways
+
+- Vuex - how to structure my files and reliably pass data from one page to the next
+- Vue - working with single file components is SO NICE, and I really enjoy how the templating works in Vue
+- Styling - it was so fun to pick out a color scheme, test it, and decide how to configure it across different pages
+
+### Future improvement thoughts
+
+- I want to go back and get the social authentication working. I'd also like to get the magic password links set up, so you don't have to create and store a single password. It still mildly bugs me that I couldn't get this working the way I wanted in time, and I'd love to go back and dig deep into this problem to find a working solution.
+- When creating my add item form, I wanted to be able to have a checkbox at the bottom so you could add another polish on page reload instead of going to the home page each time. However, it wasn't consistently adding all the polishes to the database. So I'd love to go back and figure out why and get a multi-add form working.
+- I also really want to expand this site so that it can track any item! I have the same memory problem with shirts and can see it being helpful for lots of collections. I'd love to have a way to set up what collections you want, selecting the details to track for each one. This would be a larger feature, but one I really want to expand upon so this site could be useful to more people.

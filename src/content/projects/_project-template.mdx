@@ -1,0 +1,66 @@
+---
+  name: ""
+  headerImage: {
+    image: "../../assets/projects/",
+    imageAlt: ""
+  }
+  description: ""
+  tech: []
+  featured: false
+  order: 2
+  demoLink: null
+  codeLink: null
+  liveLink: null
+  hasCaseStudy: true
+  layout: ../../layouts/CaseStudyLayout.astro
+---
+
+import CaseStudyStats from "@components/CaseStudyStats.astro";
+import { Image } from "astro:assets";
+import detailPhoto1 from "../../assets/projects/**.png";
+import detailPhoto2 from "../../assets/projects/**.png";
+import headerImage from "../../assets/projects/**.png";
+
+# Case Study: 
+
+---
+
+<Image
+  src={headerImage}
+  alt={frontmatter.headerImage.imageAlt}
+  loading="eager"
+/>
+
+
+
+<CaseStudyStats techList={frontmatter.tech} demoLink={frontmatter.demoLink} codeLink={frontmatter.codeLink} liveLink={frontmatter.liveLink} />
+
+## My favorite wins
+
+- 
+
+<Image
+  src={detailPhoto1}
+  alt=""
+/>
+
+## Overcoming challenges
+
+- 
+
+<Image
+  src={detailPhoto2}
+  alt=""
+/>
+
+## Project wrapup
+
+
+
+### My biggest takeaways
+
+- 
+
+### Future improvement thoughts
+
+- 
