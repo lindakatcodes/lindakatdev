@@ -1,0 +1,230 @@
+---
+interface Props {
+  techList: string[];
+  demoLink: string;
+  codeLink: string;
+  liveLink: string;
+}
+
+const { techList, demoLink, codeLink, liveLink } = Astro.props;
+---
+
+<div class="cs-wrapper">
+  <div class="cs-corners"></div>
+  <div class="cs-data">
+    <p class="title tech-title">Built With:</p>
+    <div class="data tech-data">
+      {techList.map((name) => <p>{name}</p>)}
+    </div>
+    <div class="vertical-divider"></div>
+    <p class="title link-title">See it in action:</p>
+    <div class="data link-data">
+      {
+        demoLink && (
+          <a
+            href={demoLink}
+            target="_blank"
+            rel="noreferrer noopener"
+            class="link-demo"
+          >
+            Demo
+          </a>
+        )
+      }
+      {
+        codeLink && (
+          <a
+            href={codeLink}
+            target="_blank"
+            rel="noreferrer noopener"
+            class="link-code"
+          >
+            Codebase
+          </a>
+        )
+      }
+      {
+        liveLink && (
+          <a
+            href={liveLink}
+            target="_blank"
+            rel="noreferrer noopener"
+            class="link-live"
+          >
+            Live Site
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .title {
+    font-size: var(--h6);
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s16);
+  }
+
+  .cs-data {
+    display: grid;
+    grid-template-columns: 1fr var(--s32) 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "tech-title divider link-title"
+      "tech-list divider link-list";
+    align-items: center;
+    position: relative;
+  }
+
+  .tech-title {
+    grid-area: tech-title;
+  }
+
+  .link-title {
+    grid-area: link-title;
+  }
+
+  .vertical-divider {
+    grid-area: divider;
+    justify-self: center;
+    background: var(--gradient);
+    height: var(--s72);
+    width: var(--s4);
+  }
+
+  .tech-data {
+    grid-area: tech-list;
+  }
+
+  .tech-data p {
+    color: var(--pink);
+    font-size: var(--b-md);
+    text-transform: uppercase;
+  }
+
+  .tech-data p:nth-child(2n) {
+    color: var(--purple);
+  }
+
+  .tech-data p:nth-child(3n) {
+    color: var(--blue);
+  }
+
+  .tech-data p:nth-child(4n) {
+    color: var(--green);
+  }
+
+  .link-data {
+    grid-area: link-list;
+  }
+
+  .link-data a {
+    border-radius: var(--s4);
+    padding: var(--s4) var(--s8);
+    transition:
+      color 0.2s ease-in-out,
+      background 0.2s ease-in-out;
+  }
+
+  .link-data a:hover {
+    color: var(--text-flip);
+  }
+
+  .link-demo {
+    color: var(--blue);
+    text-decoration: underline solid var(--blue);
+  }
+
+  .link-demo:hover {
+    background: var(--blue);
+  }
+
+  .link-code {
+    color: var(--green);
+    text-decoration: underline solid var(--green);
+  }
+
+  .link-code:hover {
+    background: var(--green);
+  }
+
+  .link-live {
+    color: var(--purple);
+    text-decoration: underline solid var(--purple);
+  }
+
+  .link-live:hover {
+    background: var(--purple);
+  }
+
+  @media (max-width: 1024px) {
+    .cs-data {
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.5fr 1fr 1fr 1fr 0.5fr;
+      grid-template-areas:
+        "tech-title" "tech-list"
+        "divider"
+        "link-title" "link-list";
+    }
+
+    .vertical-divider {
+      height: var(--s4);
+      width: 60dvw;
+    }
+  }
+
+  .cs-wrapper {
+    background: transparent;
+    padding: var(--s24) 0;
+    position: relative;
+    margin: var(--s24) 0;
+  }
+
+  .cs-corners {
+    --border-block-size: calc(1.5 * var(--border-size));
+    --border-size: var(--s4);
+    --position-size: var(--s24);
+    border: var(--border-size) solid transparent;
+    border-radius: var(--s4);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+  }
+
+  /* Before covers top/bottom, After covers left/right */
+  .cs-corners:before {
+    border-bottom: var(--border-block-size) solid var(--background);
+    border-top: var(--border-block-size) solid var(--background);
+    bottom: calc(-1 * var(--border-size));
+    content: "";
+    left: var(--position-size);
+    position: absolute;
+    top: calc(-1 * var(--border-size));
+    width: calc(100% - (var(--position-size) * 2));
+  }
+
+  .cs-corners:after {
+    border-left: var(--border-block-size) solid var(--background);
+    border-right: var(--border-block-size) solid var(--background);
+    content: "";
+    height: calc(100% - (var(--position-size) * 2));
+    left: calc(-1 * var(--border-size));
+    position: absolute;
+    right: calc(-1 * var(--border-size));
+    top: var(--position-size);
+  }
+</style>

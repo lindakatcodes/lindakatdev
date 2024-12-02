@@ -15,8 +15,8 @@ const loading = aboveFold ? "eager" : "lazy";
 <CardWrapper>
   <article class="project-wrapper">
     <Image
-      src={project.data.headerImage}
-      alt={project.data.headerImageAlt}
+      src={project.data.headerImage.image}
+      alt={project.data.headerImage.imageAlt}
       loading={loading}
     />
     <h4 class="project-title">{project.data.name}</h4>
