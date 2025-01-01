@@ -1,0 +1,62 @@
+---
+interface Props {
+  images: Array<{
+    pic: ImageMetadata;
+    caption: string;
+    alt: string;
+  }>;
+}
+
+const { images } = Astro.props;
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+const oddLength = images.length % 2 === 1;
+---
+
+<div class="post-img-wrapper">
+  {
+    images.map((photo, idx) => (
+      <figure
+        class:list={[{ "span-2": idx === images.length - 1 && oddLength }]}
+      >
+        <Image src={photo.pic} alt={photo.alt} />
+        <figcaption>{photo.caption}</figcaption>
+      </figure>
+    ))
+  }
+</div>
+
+<style>
+  .post-img-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
+  .post-img-wrapper img {
+    border-radius: var(--s4);
+    box-shadow: -2px 2px 4px 0px var(--bg-shadow);
+  }
+
+  figcaption {
+    text-align: center;
+    color: var(--text-main);
+    opacity: 0.8;
+    font-size: var(--b-sm);
+  }
+
+  @media (min-width: 768px) {
+    .post-img-wrapper {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .post-img-wrapper img {
+      max-inline-size: 95%;
+    }
+
+    .span-2 {
+      grid-column: span 2;
+    }
+  }
+</style>
