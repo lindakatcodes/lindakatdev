@@ -39,7 +39,7 @@ const { metadata } = Astro.props;
   main {
     margin: 0 auto;
     width: 100%;
-    max-width: 70rem;
+    max-width: 80rem;
     padding: var(--s24);
   }
 </style>
@@ -49,7 +49,7 @@ const { metadata } = Astro.props;
     document.documentElement.classList.add("fonts-loaded");
   });
 
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:after-swap", () => {
     document.documentElement.classList.add("fonts-loaded");
   });
 </script>
