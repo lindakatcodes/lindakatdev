@@ -1,7 +1,8 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
+import CaseStudyLayout from "@layouts/CaseStudyLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -19,11 +20,13 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <Content />
+  <CaseStudyLayout>
+    <Content />
+  </CaseStudyLayout>
   <a href="/projects" class="back-link">← Back to Projects</a>
 </MainLayout>
 

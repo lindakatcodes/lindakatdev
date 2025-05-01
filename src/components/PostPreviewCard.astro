@@ -14,7 +14,7 @@ const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
   dateStyle: "medium",
 });
 const addFontClamp = title.length > 45;
-const postUrl = remoteLink ?? `/blog/${blogBit.slug}`;
+const postUrl = remoteLink ?? `/blog/${blogBit.id}`;
 const isLocal = remoteLink === undefined;
 const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
 ---

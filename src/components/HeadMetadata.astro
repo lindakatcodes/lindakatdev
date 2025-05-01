@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 const { metadata } = Astro.props;
 
 const fontUrl =
@@ -24,10 +24,10 @@ const fontUrl =
 <title>{metadata.title}</title>
 
 <link
-    rel="alternate"
-    type="application/rss+xml"
-    title="LindaKat Writes"
-    href={`${Astro.site}rss.xml`}
+  rel="alternate"
+  type="application/rss+xml"
+  title="LindaKat Writes"
+  href={`${Astro.site}rss.xml`}
 />
 
 <!--
@@ -55,4 +55,4 @@ const fontUrl =
   onload="this.media='all'"
 />
 
-<ViewTransitions />
+<ClientRouter />

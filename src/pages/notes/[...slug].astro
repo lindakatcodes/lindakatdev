@@ -3,18 +3,19 @@ import PostDetails from "@components/PostDetails.astro";
 import PaginationLinks from "@components/PaginationLinks.astro";
 import TableOfContents from "@components/TableOfContents.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import { getCollection } from "astro:content";
+import BlogPostLayout from "@layouts/BlogPostLayout.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const notes = await getCollection("notes");
   return notes.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const metadata = {
@@ -47,7 +48,9 @@ const postDetails = {
       <TableOfContents headings={headings} />
     </div>
     <div class="body">
-      <Content />
+      <BlogPostLayout>
+        <Content />
+      </BlogPostLayout>
     </div>
     <div class="links">
       <PaginationLinks main="#top" mainText="Back to top" />
