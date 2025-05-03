@@ -46,37 +46,34 @@ const postsToView = allPosts.filter((post) => {
             return 0;
           }
         })
-        .map((blogPostEntry) => <PostPreviewCard blogBit={blogPostEntry} />)
+        .map((blogPostEntry) => (
+          <div>
+            <PostPreviewCard blogBit={blogPostEntry} />
+          </div>
+        ))
     }
   </div>
 </MainLayout>
 
 <style>
-  h1 {
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
   .posts-wrapper {
-    margin: 0 auto;
-    width: 50%;
+    display: grid;
+    gap: var(--s64);
+    margin-bottom: 3rem;
   }
 
-  @media (max-width: 520px) {
+  @media (min-width: 768px) {
     .posts-wrapper {
-      width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s40);
     }
-  }
 
-  @media (min-width: 520px) and (max-width: 1024px) {
-    .posts-wrapper {
-      width: 85%;
+    .posts-wrapper > div {
+      grid-area: span 1 / span 2;
     }
-  }
 
-  @media (min-width: 1280px) {
-    .posts-wrapper {
-      width: 45%;
+    .posts-wrapper div:last-child:nth-child(odd) {
+      grid-column: 2 / span 2;
     }
   }
 </style>
