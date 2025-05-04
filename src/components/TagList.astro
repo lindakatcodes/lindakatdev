@@ -1,0 +1,46 @@
+---
+interface Props {
+  tags: string[];
+  collectionType: string;
+}
+
+const { tags, collectionType } = Astro.props;
+
+// sanitize the tags
+// map over each and build the path
+// return tag and path together
+
+const sanitizedTags = tags.map((tag) => tag.toLowerCase().split(" ").join("-"));
+
+const formattedTags = sanitizedTags.map((tag) => ({
+  tag,
+  path: `/${collectionType}/tags/${tag}`,
+}));
+---
+
+<div>
+  {formattedTags.map(({ tag, path }) => <a href={path}>{tag}</a>)}
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0 auto 1.5rem;
+    width: 90dvw;
+  }
+
+  a {
+    background-color: var(--bg-shadow);
+    border-radius: 5px;
+    padding: 0.25rem 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    div {
+      width: 60dvw;
+    }
+  }
+</style>

@@ -1,9 +1,16 @@
 ---
+import BlogCardsWrapper from "@components/BlogCardsWrapper.astro";
 import BlogIndexIntro from "@components/BlogIndexIntro.astro";
-import PostPreviewCard from "@components/PostPreviewCard.astro";
+import TagList from "@components/TagList.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+
+interface FilteredPosts {
+  tag: string;
+  taggedPosts: CollectionEntry<"blog">[];
+}
 
 export async function getStaticPaths() {
   const allBlogPosts = await getCollection("blog");
@@ -16,43 +23,34 @@ export async function getStaticPaths() {
     ),
   ];
 
-  return tags.map((tag) => ({
+  const filteredPostsByTag: FilteredPosts[] = [];
+
+  tags.forEach((tag) => {
+    const taggedPosts = allBlogPosts.filter((post) => {
+      const sanitizedTags = post.data.tags.map((tagName) =>
+        tagName.toLowerCase().split(" ").join("-")
+      );
+      return sanitizedTags.includes(tag);
+    });
+    filteredPostsByTag.push({
+      tag,
+      taggedPosts,
+    });
+  });
+
+  return filteredPostsByTag.map(({ tag, taggedPosts }) => ({
     params: { tag },
-    props: { allPosts: allBlogPosts },
+    props: { filteredPosts: taggedPosts, allTags: tags },
   }));
 }
 
-const { tag } = Astro.params;
-const { allPosts } = Astro.props;
-const postsToView = allPosts.filter((post) => {
-  const sanitizedTags = post.data.tags.map((tagName) =>
-    tagName.toLowerCase().split(" ").join("-")
-  );
-  return sanitizedTags.includes(tag);
-});
+const { filteredPosts, allTags } = Astro.props;
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <BlogIndexIntro />
-  <div class="posts-wrapper">
-    {
-      postsToView
-        .sort((a, b) => {
-          if (a.data.title < b.data.title) {
-            return -1;
-          } else if (a.data.title > b.data.title) {
-            return 1;
-          } else {
-            return 0;
-          }
-        })
-        .map((blogPostEntry) => (
-          <div>
-            <PostPreviewCard blogBit={blogPostEntry} />
-          </div>
-        ))
-    }
-  </div>
+  <TagList tags={allTags} />
+  <BlogCardsWrapper posts={filteredPosts} />
 </MainLayout>
 
 <style>

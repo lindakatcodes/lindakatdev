@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PostPreviewCard from "./PostPreviewCard.astro";
+import NotePreviewCard from "./NotePreviewCard.astro";
+
+interface Props {
+  posts: CollectionEntry<"blog" | "notes">[];
+}
+
+const { posts } = Astro.props;
+
+const sortedPosts = posts.sort((a, b) => {
+  if (a.collection === "blog" && b.collection === "blog") {
+    return b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf();
+  } else {
+    if (a.data.title < b.data.title) {
+      return -1;
+    } else if (a.data.title > b.data.title) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+});
+---
+
+<div class="posts-wrapper">
+  {
+    sortedPosts.map((post) => (
+      <div>
+        {post.collection === "blog" ? (
+          <PostPreviewCard blogBit={post} />
+        ) : (
+          <NotePreviewCard noteInfo={post} />
+        )}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .posts-wrapper {
+    display: grid;
+    gap: var(--s64);
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .posts-wrapper {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s40);
+    }
+
+    .posts-wrapper > div {
+      grid-area: span 1 / span 2;
+    }
+
+    .posts-wrapper div:last-child:nth-child(odd) {
+      grid-column: 2 / span 2;
+    }
+  }
+</style>

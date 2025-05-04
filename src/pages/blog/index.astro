@@ -1,60 +1,18 @@
 ---
+import BlogCardsWrapper from "@components/BlogCardsWrapper.astro";
 import BlogIndexIntro from "@components/BlogIndexIntro.astro";
-import PostPreviewCard from "@components/PostPreviewCard.astro";
+import TagList from "@components/TagList.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
 const allBlogPosts = await getCollection("blog");
 
-const tags = [
-  ...new Set(
-    allBlogPosts
-      .map((post) => post.data.tags)
-      .flat()
-      .map((tag) => tag.toLowerCase().split(" ").join("-"))
-  ),
-];
+const tags = [...new Set(allBlogPosts.flatMap((post) => post.data.tags))];
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <BlogIndexIntro />
-
-  <div class="posts-wrapper">
-    {
-      allBlogPosts
-        .sort(
-          (a, b) =>
-            b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
-        )
-        .map((blogPostEntry) => (
-          <div>
-            <PostPreviewCard blogBit={blogPostEntry} />
-          </div>
-        ))
-    }
-  </div>
+  <TagList tags={tags} collectionType="blog" />
+  <BlogCardsWrapper posts={allBlogPosts} />
 </MainLayout>
-
-<style>
-  .posts-wrapper {
-    display: grid;
-    gap: var(--s64);
-    margin-bottom: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .posts-wrapper {
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s40);
-    }
-
-    .posts-wrapper > div {
-      grid-area: span 1 / span 2;
-    }
-
-    .posts-wrapper div:last-child:nth-child(odd) {
-      grid-column: 2 / span 2;
-    }
-  }
-</style>

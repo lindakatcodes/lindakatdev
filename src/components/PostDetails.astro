@@ -1,4 +1,6 @@
 ---
+import TagList from "./TagList.astro";
+
 interface Props {
   postDetails: {
     title: string;
@@ -28,33 +30,37 @@ const gridColumns = noteSrc || minutesRead ? "1fr auto 1fr" : "auto";
 
 <div class="pd-wrapper">
   <h1 class="title">{title}</h1>
-  <div class="fun-facts">
-    {
-      isPost ? (
-        <Fragment>
-          <p class="date">{`📅 ${niceDate}`}</p>
-          <span>✦</span>
-          <p class="post-src-read">{`☕ ${minutesRead}`}</p>
+  {
+    isPost ? (
+      <Fragment>
+          <div class="fun-facts">
+            <p class="date">{`📅 ${niceDate}`}</p>
+            <span>✦</span>
+            <p class="post-src-read">{`☕ ${minutesRead}`}</p>
+          </div>
+          <div class="tags-wrapper">
+            <p>This post covers these topics:</p>
+            <TagList tags={tags} collectionType="blog" />
+          </div>
         </Fragment>
       ) : (
         <Fragment>
-          <p class="date">{`📅 ${niceDate}`}</p>
-          {noteSrc && (
-            <Fragment>
-              <span>✦</span>
-              <p class="post-src-read">{`📓 Source: ${noteSrc}`}</p>
-            </Fragment>
-          )}
+          <div class="fun-facts">
+            <p class="date">{`📅 ${niceDate}`}</p>
+            {noteSrc && (
+              <Fragment>
+                <span>✦</span>
+                <p class="post-src-read">{`📓 Source: ${noteSrc}`}</p>
+              </Fragment>
+            )}
+          </div>
+          <div class="tags-wrapper">
+            <p>This post covers these topics:</p>
+            <TagList tags={tags} collectionType="notes" />
+          </div>
         </Fragment>
       )
     }
-  </div>
-  <div class="tags-wrapper">
-    <p>This post covers these topics:</p>
-    <div>
-      {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
-    </div>
-  </div>
 </div>
 
 <style define:vars={{ gridColumns }}>
@@ -99,20 +105,5 @@ const gridColumns = noteSrc || minutesRead ? "1fr auto 1fr" : "auto";
   .tags-wrapper {
     text-align: center;
     width: 100%;
-  }
-
-  .tags-wrapper div {
-    display: flex;
-    justify-content: center;
-    margin: 0.5rem auto;
-    padding-left: 0;
-    width: 70%;
-  }
-
-  .tag-name {
-    background-color: var(--bg-shadow);
-    border-radius: 3px;
-    margin: 0 0.75rem;
-    padding: 0.375rem;
   }
 </style>
