@@ -44,11 +44,12 @@ export async function getStaticPaths() {
   }));
 }
 
+const { tag } = Astro.params;
 const { filteredPosts, allTags } = Astro.props;
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <BlogIndexIntro isBlog />
-  <TagList tags={allTags} collectionType="blog" />
+  <TagList tags={allTags} collectionType="blog" activeTag={tag} />
   <BlogCardsWrapper posts={filteredPosts} />
 </MainLayout>

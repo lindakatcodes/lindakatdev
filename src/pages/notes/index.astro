@@ -12,6 +12,6 @@ const tags = [...new Set(notes.flatMap((note) => note.data.tags))];
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <BlogIndexIntro isBlog={false} />
-  <TagList tags={tags} collectionType="notes" />
+  <TagList tags={tags} collectionType="notes" activeTag="all" />
   <BlogCardsWrapper posts={notes} />
 </MainLayout>

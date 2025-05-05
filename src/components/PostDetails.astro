@@ -33,34 +33,44 @@ const gridColumns = noteSrc || minutesRead ? "1fr auto 1fr" : "auto";
   {
     isPost ? (
       <Fragment>
-          <div class="fun-facts">
-            <p class="date">{`📅 ${niceDate}`}</p>
-            <span>✦</span>
-            <p class="post-src-read">{`☕ ${minutesRead}`}</p>
-          </div>
-          <div class="tags-wrapper">
-            <p>This post covers these topics:</p>
-            <TagList tags={tags} collectionType="blog" />
-          </div>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <div class="fun-facts">
-            <p class="date">{`📅 ${niceDate}`}</p>
-            {noteSrc && (
-              <Fragment>
-                <span>✦</span>
-                <p class="post-src-read">{`📓 Source: ${noteSrc}`}</p>
-              </Fragment>
-            )}
-          </div>
-          <div class="tags-wrapper">
-            <p>This post covers these topics:</p>
-            <TagList tags={tags} collectionType="notes" />
-          </div>
-        </Fragment>
-      )
-    }
+        <div class="fun-facts">
+          <p class="date">{`📅 ${niceDate}`}</p>
+          <span>✦</span>
+          <p class="post-src-read">{`☕ ${minutesRead}`}</p>
+        </div>
+        <div class="tags-wrapper">
+          <p>This post covers these topics:</p>
+          <TagList
+            tags={tags}
+            collectionType="blog"
+            activeTag=""
+            showAll={false}
+          />
+        </div>
+      </Fragment>
+    ) : (
+      <Fragment>
+        <div class="fun-facts">
+          <p class="date">{`📅 ${niceDate}`}</p>
+          {noteSrc && (
+            <Fragment>
+              <span>✦</span>
+              <p class="post-src-read">{`📓 Source: ${noteSrc}`}</p>
+            </Fragment>
+          )}
+        </div>
+        <div class="tags-wrapper">
+          <p>This post covers these topics:</p>
+          <TagList
+            tags={tags}
+            collectionType="notes"
+            activeTag=""
+            showAll={false}
+          />
+        </div>
+      </Fragment>
+    )
+  }
 </div>
 
 <style define:vars={{ gridColumns }}>
