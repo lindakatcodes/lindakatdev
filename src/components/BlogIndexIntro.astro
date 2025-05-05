@@ -1,31 +1,50 @@
 ---
+interface Props {
+  isBlog: boolean;
+}
 
+const { isBlog = true } = Astro.props;
 ---
 
 <div class="intro">
-  <h2>Welcome to the blog!</h2>
-  <p>
-    Here you'll find posts on what I'm <a href="/notes" class="learn"
-      >learning</a
-    >, things I find interesting, and my experiences creating my career path as
-    a software engineer.
-  </p>
-  <p class="rss">
-    Prefer to read through RSS? <a href="/rss.xml" class="gradient-text"
-      >Here's my feed!</a
-    >
-  </p>
+  {
+    isBlog ? (
+      <Fragment>
+        <h2>Linda's Blog</h2>
+        <p>
+          Musings on code, life,{" "}
+          <a href="/notes" class="learn">
+            growth,
+          </a>
+          and lived experiences
+        </p>
+        <p class="rss">
+          Prefer to read through RSS?{" "}
+          <a href="/rss.xml" class="gradient-text">
+            Here's my feed!
+          </a>
+        </p>
+      </Fragment>
+    ) : (
+      <Fragment>
+        <h2>Linda's Notes</h2>
+        <p>Saved snippets and coursework notes</p>
+      </Fragment>
+    )
+  }
 </div>
 
 <style>
   .intro {
-    width: 55%;
-    margin: 0 auto 1.5rem;
+    width: 95%;
+    margin: 0 auto 2rem;
     text-align: center;
+    text-wrap: balance;
   }
 
   p {
-    margin-bottom: 1.5rem;
+    font-style: italic;
+    margin-bottom: 0.25rem;
   }
 
   .learn {
@@ -38,18 +57,9 @@
     color: var(--purple);
   }
 
-  .rss {
-    margin: 0 auto 1.5rem;
-    width: 92%;
-  }
-
-  @media (max-width: 520px) {
+  @media (min-width: 768px) {
     .intro {
-      width: 95%;
-    }
-
-    .rss {
-      width: 80%;
+      width: 50%;
     }
   }
 </style>

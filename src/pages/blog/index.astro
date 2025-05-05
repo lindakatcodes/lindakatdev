@@ -12,7 +12,7 @@ const tags = [...new Set(allBlogPosts.flatMap((post) => post.data.tags))];
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <BlogIndexIntro />
+  <BlogIndexIntro isBlog />
   <TagList tags={tags} collectionType="blog" />
   <BlogCardsWrapper posts={allBlogPosts} />
 </MainLayout>

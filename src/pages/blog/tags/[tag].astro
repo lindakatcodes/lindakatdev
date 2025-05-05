@@ -48,30 +48,7 @@ const { filteredPosts, allTags } = Astro.props;
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <BlogIndexIntro />
-  <TagList tags={allTags} />
+  <BlogIndexIntro isBlog />
+  <TagList tags={allTags} collectionType="blog" />
   <BlogCardsWrapper posts={filteredPosts} />
 </MainLayout>
-
-<style>
-  .posts-wrapper {
-    display: grid;
-    gap: var(--s64);
-    margin-bottom: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .posts-wrapper {
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s40);
-    }
-
-    .posts-wrapper > div {
-      grid-area: span 1 / span 2;
-    }
-
-    .posts-wrapper div:last-child:nth-child(odd) {
-      grid-column: 2 / span 2;
-    }
-  }
-</style>
