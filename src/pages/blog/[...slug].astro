@@ -47,9 +47,13 @@ const postDetails = {
     <div class="info">
       <PostDetails postDetails={postDetails} />
     </div>
-    <div class="toc">
-      <TableOfContents headings={headings} />
-    </div>
+    {
+      headings.length > 0 && (
+        <div class="toc">
+          <TableOfContents headings={headings} />
+        </div>
+      )
+    }
     <div class="body">
       <BlogPostLayout>
         <Content />

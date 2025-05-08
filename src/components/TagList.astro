@@ -26,7 +26,7 @@ if (showAll) {
 <div>
   {
     formattedTags.map(({ tag, path }) => (
-      <a href={path} class={activeTag === tag ? "active" : ""}>
+      <a href={path} class={activeTag === tag ? "tag active" : "tag"}>
         {tag}
       </a>
     ))
@@ -43,7 +43,7 @@ if (showAll) {
     width: 90dvw;
   }
 
-  a {
+  .tag {
     background-color: var(--bg-shadow);
     border-radius: 5px;
     padding: 0.25rem 0.75rem;
