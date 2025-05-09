@@ -7,9 +7,8 @@ import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
 const allBlogPosts = await getCollection("blog", ({ data }) => {
-  const isLocal = data.remoteLink === undefined;
   const isLive = import.meta.env.DEV ? true : data.status === "Live";
-  return isLocal && isLive;
+  return isLive;
 });
 
 const tags = [...new Set(allBlogPosts.flatMap((post) => post.data.tags))];
