@@ -6,7 +6,10 @@ import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
 import { getCollection } from "astro:content";
 
-const notes = await getCollection("notes");
+const notes = await getCollection("notes", ({ data }) => {
+  const isLive = import.meta.env.DEV ? true : data.status === "Live";
+  return isLive;
+});
 const tags = [...new Set(notes.flatMap((note) => note.data.tags))];
 ---
 

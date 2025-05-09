@@ -7,7 +7,10 @@ import BlogPostLayout from "@layouts/BlogPostLayout.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const notes = await getCollection("notes");
+  const notes = await getCollection("notes", ({ data }) => {
+    const isLive = import.meta.env.DEV ? true : data.status === "Live";
+    return isLive;
+  });
   return notes.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },

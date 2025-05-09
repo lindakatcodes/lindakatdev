@@ -13,7 +13,10 @@ interface FilteredPosts {
 }
 
 export async function getStaticPaths() {
-  const allNotesPosts = await getCollection("notes");
+  const allNotesPosts = await getCollection("notes", ({ data }) => {
+    const isLive = import.meta.env.DEV ? true : data.status === "Live";
+    return isLive;
+  });
   const tags = [
     ...new Set(
       allNotesPosts
