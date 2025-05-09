@@ -174,7 +174,11 @@ ul li:nth-child(4n)::before {
 }
 
 /* These tag styles are here so the data theme is picked up to ensure the text color changes properly. The first selector is done through attributes to add specificity so the background color change is picked up over the scoped styles. */
-[class*="tag"][class*="active"] {
+.tag {
+  background-color: var(--bg-shadow);
+}
+
+.tag.active {
   background-color: var(--text-main);
   color: var(--bg-shadow);
 }
