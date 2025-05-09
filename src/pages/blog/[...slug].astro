@@ -8,7 +8,9 @@ import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection("blog", ({ data }) => {
-    return data.remoteLink === undefined;
+    const isLocal = data.remoteLink === undefined;
+    const isLive = import.meta.env.DEV ? true : data.status === "Live";
+    return isLocal && isLive;
   });
   return blogPosts.map((entry) => ({
     params: { slug: entry.id },

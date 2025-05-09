@@ -96,7 +96,7 @@
           "title": "Post Status",
           "name": "status",
           "type": "draft",
-          "default": "Garden"
+          "default": "Draft"
         },
         {
           "title": "Tags",
@@ -114,11 +114,7 @@
   "frontMatter.content.draftField": {
     "name": "status",
     "type": "choice",
-    "choices": [
-      "Live",
-      "Draft",
-      "Garden"
-    ]
+    "choices": ["Live", "Draft"]
   },
   "frontMatter.framework.id": "astro",
   "frontMatter.preview.host": "http://localhost:4321",
@@ -127,16 +123,12 @@
     {
       "title": "blog",
       "path": "[[workspace]]/src/content/blog",
-      "contentTypes": [
-        "blog"
-      ]
+      "contentTypes": ["blog"]
     },
     {
       "title": "notes",
       "path": "[[workspace]]/src/content/notes",
-      "contentTypes": [
-        "notes"
-      ]
+      "contentTypes": ["notes"]
     }
   ],
   "frontMatter.content.publicFolder": {
