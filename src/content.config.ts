@@ -18,7 +18,7 @@ const blogCollection = defineCollection({
       ogImage: image(),
       tags: z.array(z.string()),
       featured: z.boolean(),
-      status: z.enum(["Live", "Draft", "Garden"]),
+      status: z.enum(["Live", "Draft"]),
       remoteLink: z.string().url().optional(),
       remoteSrc: z.string().optional(),
     }),
@@ -32,7 +32,7 @@ const notesCollection = defineCollection({
       description: z.string(),
       dateUpdated: z.date(),
       tags: z.array(z.string()),
-      status: z.enum(["Live", "Draft", "Garden"]),
+      status: z.enum(["Live", "Draft"]),
       source: z.string().optional(),
     }),
 });

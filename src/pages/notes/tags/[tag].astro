@@ -1,0 +1,58 @@
+---
+import BlogCardsWrapper from "@components/BlogCardsWrapper.astro";
+import BlogIndexIntro from "@components/BlogIndexIntro.astro";
+import TagList from "@components/TagList.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+interface FilteredPosts {
+  tag: string;
+  taggedPosts: CollectionEntry<"notes">[];
+}
+
+export async function getStaticPaths() {
+  const allNotesPosts = await getCollection("notes", ({ data }) => {
+    const isLive = import.meta.env.DEV ? true : data.status === "Live";
+    return isLive;
+  });
+  const tags = [
+    ...new Set(
+      allNotesPosts
+        .map((post) => post.data.tags)
+        .flat()
+        .map((tag) => tag.toLowerCase().split(" ").join("-"))
+    ),
+  ];
+
+  const filteredPostsByTag: FilteredPosts[] = [];
+
+  tags.forEach((tag) => {
+    const taggedPosts = allNotesPosts.filter((post) => {
+      const sanitizedTags = post.data.tags.map((tagName) =>
+        tagName.toLowerCase().split(" ").join("-")
+      );
+      return sanitizedTags.includes(tag);
+    });
+    filteredPostsByTag.push({
+      tag,
+      taggedPosts,
+    });
+  });
+
+  return filteredPostsByTag.map(({ tag, taggedPosts }) => ({
+    params: { tag },
+    props: { filteredPosts: taggedPosts, allTags: tags },
+  }));
+}
+
+const { tag } = Astro.params;
+const { filteredPosts, allTags } = Astro.props;
+---
+
+<MainLayout metadata={DEFAULT_METADATA}>
+  <BlogIndexIntro isBlog={false} />
+  <TagList tags={allTags} collectionType="notes" activeTag={tag} />
+  <BlogCardsWrapper posts={filteredPosts} />
+</MainLayout>

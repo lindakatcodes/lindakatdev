@@ -1,0 +1,57 @@
+---
+interface Props {
+  tags: string[];
+  collectionType: string;
+  activeTag: string;
+  showAll?: boolean;
+}
+
+const { tags, collectionType, activeTag, showAll = true } = Astro.props;
+
+const sanitizedTags = tags.map((tag) => tag.toLowerCase().split(" ").join("-"));
+
+const formattedTags = sanitizedTags.map((tag) => ({
+  tag,
+  path: `/${collectionType}/tags/${tag}`,
+}));
+
+if (showAll) {
+  formattedTags.unshift({
+    tag: "all",
+    path: collectionType === "blog" ? "/blog" : "/notes",
+  });
+}
+---
+
+<div>
+  {
+    formattedTags.map(({ tag, path }) => (
+      <a href={path} class={activeTag === tag ? "tag active" : "tag"}>
+        {tag}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0 auto 2.5rem;
+    width: 90dvw;
+  }
+
+  .tag {
+    border-radius: 5px;
+    padding: 0.25rem 0.75rem;
+    transition: all 0.2s;
+  }
+
+  @media (min-width: 768px) {
+    div {
+      width: 60dvw;
+    }
+  }
+</style>

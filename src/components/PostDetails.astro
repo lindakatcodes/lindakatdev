@@ -1,4 +1,6 @@
 ---
+import TagList from "./TagList.astro";
+
 interface Props {
   postDetails: {
     title: string;
@@ -22,97 +24,56 @@ const {
 const niceDate = new Date(date).toLocaleDateString("en-us", {
   dateStyle: "medium",
 });
-
-const gridColumns = noteSrc || minutesRead ? "1fr auto 1fr" : "auto";
 ---
 
 <div class="pd-wrapper">
-  <h1 class="title">{title}</h1>
-  <div class="fun-facts">
-    {
-      isPost ? (
-        <Fragment>
-          <p class="date">{`📅 ${niceDate}`}</p>
-          <span>✦</span>
-          <p class="post-src-read">{`☕ ${minutesRead}`}</p>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <p class="date">{`📅 ${niceDate}`}</p>
-          {noteSrc && (
-            <Fragment>
-              <span>✦</span>
-              <p class="post-src-read">{`📓 Source: ${noteSrc}`}</p>
-            </Fragment>
-          )}
-        </Fragment>
-      )
-    }
-  </div>
-  <div class="tags-wrapper">
-    <p>This post covers these topics:</p>
-    <div>
-      {tags.map((tag: String) => <p class="tag-name">{tag}</p>)}
-    </div>
-  </div>
+  {
+    isPost ? (
+      <Fragment>
+        <p>{niceDate}</p>
+        <h1>{title}</h1>
+        <p>{minutesRead}</p>
+        <TagList
+          tags={tags}
+          collectionType="blog"
+          activeTag=""
+          showAll={false}
+        />
+      </Fragment>
+    ) : (
+      <Fragment>
+        <p>{niceDate}</p>
+        <h1>{title}</h1>
+        {noteSrc && <p>{`Resource: ${noteSrc}`}</p>}
+        <TagList
+          tags={tags}
+          collectionType="notes"
+          activeTag=""
+          showAll={false}
+        />
+      </Fragment>
+    )
+  }
 </div>
 
-<style define:vars={{ gridColumns }}>
-  .pd-wrapper {
-    margin: 0 auto 2rem;
+<style>
+  p {
+    opacity: 0.8;
   }
 
-  .title {
-    font-size: var(--h2);
-    margin: 1.25rem auto 0.5rem;
-    text-align: center;
+  p:last-of-type {
+    margin-bottom: var(--s16);
+  }
+
+  h1 {
+    margin-top: calc(var(--s16) * -1);
+    margin-bottom: calc(var(--s8) * -1);
     text-wrap: pretty;
   }
 
-  .fun-facts {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    margin: 0 auto var(--s8);
-    gap: 0.5rem;
-    width: 100%;
-    font-size: var(--b-sm);
-  }
-
-  @media (min-width: 768px) {
-    .fun-facts {
-      grid-template-columns: var(--gridColumns);
-      width: 50%;
+  @media (min-width: 1024px) {
+    .pd-wrapper {
+      text-align: center;
     }
-  }
-
-  .date {
-    text-align: center;
-  }
-
-  .post-src-read {
-    text-align: center;
-  }
-
-  .tags-wrapper {
-    text-align: center;
-    width: 100%;
-  }
-
-  .tags-wrapper div {
-    display: flex;
-    justify-content: center;
-    margin: 0.5rem auto;
-    padding-left: 0;
-    width: 70%;
-  }
-
-  .tag-name {
-    background-color: var(--bg-shadow);
-    border-radius: 3px;
-    margin: 0 0.75rem;
-    padding: 0.375rem;
   }
 </style>

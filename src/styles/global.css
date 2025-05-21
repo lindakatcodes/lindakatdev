@@ -173,6 +173,34 @@ ul li:nth-child(4n)::before {
   background-size: 100%;
 }
 
+/* These tag styles are here so the data theme is picked up to ensure the text color changes properly. The first selector is done through attributes to add specificity so the background color change is picked up over the scoped styles. */
+.tag {
+  background-color: var(--bg-shadow);
+}
+
+.tag.active {
+  background-color: var(--text-main);
+  color: var(--bg-shadow);
+}
+
+[data-theme="dark"] .tag.active {
+  text-decoration-color: var(--deep-green);
+}
+
+[data-theme="dark"] .tag.active:hover,
+[data-theme="dark"] .tag.active:focus {
+  color: var(--deep-purple);
+}
+
+[data-theme="light"] .tag.active {
+  text-decoration-color: var(--pastel-green);
+}
+
+[data-theme="light"] .tag.active:hover,
+[data-theme="light"] .tag.active:focus {
+  color: var(--pastel-purple);
+}
+
 /* External package styles */
 [data-icon] {
   fill: currentColor;
