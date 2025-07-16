@@ -5,32 +5,15 @@ const activePath = Astro.url.pathname;
 
 <header transition:name="header">
   <nav>
-    <span class="home">
-      <a
-        class:list={["gradient-text link", { active: activePath === "/" }]}
-        href="/"
-      >
-        LT
-      </a>
-    </span>
     <a
-      class:list={[
-        "link projects",
-        { "projects-active": activePath === "/projects" },
-      ]}
-      href="/projects">Projects</a
+      class:list={["gradient-text link home", { active: activePath === "/" }]}
+      href="/"
     >
-    <a
-      class:list={["link blog", { "blog-active": activePath === "/blog" }]}
-      href="/blog">Blog</a
-    >
-    <a
-      class:list={["link about", { "about-active": activePath === "/about" }]}
-      href="/about">About</a
-    >
+      LindaKat
+    </a>
     <ThemeToggleSwitch />
   </nav>
-  <div class="divider shadow-under"></div>
+  <!-- <div class="divider shadow-under"></div> -->
 </header>
 
 <style>
@@ -42,12 +25,9 @@ const activePath = Astro.url.pathname;
   }
 
   nav {
-    width: calc(100dvw - var(--s24));
-    height: var(--header-height);
-    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     gap: 1.25rem;
   }
 
@@ -57,8 +37,12 @@ const activePath = Astro.url.pathname;
     font-size: var(--h5);
     text-decoration: none;
     text-shadow: -1px 1px 3px var(--bg-shadow);
-    text-underline-offset: 8px;
+    text-underline-offset: 0.5rem;
     transition: all 0.2s linear;
+  }
+
+  .link:first-of-type {
+    margin-left: 0.5rem;
   }
 
   .link:hover,
@@ -69,62 +53,9 @@ const activePath = Astro.url.pathname;
 
   .home {
     flex-grow: 1;
-  }
-
-  .home a {
-    padding: 0 var(--s16) 0 var(--s8);
+    font-size: var(--h4);
     background-image: var(--gradient);
-    background-size: 4rem;
-    font-size: var(--h3);
-    line-height: 1.25;
     text-shadow: none;
-  }
-
-  .projects:hover,
-  .projects:focus {
-    color: var(--purple);
-    text-decoration-color: var(--purple);
-  }
-
-  .projects-active {
-    color: var(--purple);
-  }
-
-  .blog:hover,
-  .blog:focus {
-    color: var(--blue);
-    text-decoration-color: var(--blue);
-  }
-
-  .blog-active {
-    color: var(--blue);
-  }
-
-  .about:hover,
-  .about:focus {
-    color: var(--pink);
-    text-decoration-color: var(--pink);
-  }
-
-  .about-active {
-    color: var(--pink);
-  }
-
-  @media (max-width: 520px) {
-    nav {
-      justify-content: space-evenly;
-    }
-
-    .link {
-      font-size: var(--h6);
-    }
-
-    .home {
-      flex-grow: 0;
-    }
-
-    .home a {
-      font-size: var(--h4);
-    }
+    background-size: 8rem;
   }
 </style>

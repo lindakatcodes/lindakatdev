@@ -1,205 +1,127 @@
 ---
-import PostPreviewCard from "@components/PostPreviewCard.astro";
-import PraiseCard from "@components/PraiseCard.astro";
-import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
-import SocialsGrid from "@components/SocialsGrid.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import { DEFAULT_METADATA } from "@util/constants";
+import { DEFAULT_METADATA, EMAIL } from "@util/constants";
 import { Icon } from "astro-icon/components";
-import { getCollection, getEntry } from "astro:content";
-
-const featuredProjects = await getCollection("projects", ({ data }) => {
-  return data.featured === true;
-});
-
-const featuredPosts = await getCollection("blog", ({ data }) => {
-  return data.featured === true;
-});
-
-const robPraise = await getEntry("praises", "20230823-linkedin-rob");
-const willPraise = await getEntry("praises", "20230818-linkedin-will");
-const jessPraise = await getEntry("praises", "20230818-twitter-jessica");
+import linda from "@assets/linda.webp";
+import { Image } from "astro:assets";
+import SocialsGrid from "@components/SocialsGrid.astro";
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <section id="intro">
-    <Icon name="script-name" title="Linda Thompson" />
-    <p class="subtitle gradient-text">
-      Software engineer, career changer, & team builder
-    </p>
-    <div class="social-wrapper">
-      <SocialsGrid />
+  <section class="intro">
+    <h1>Hi, I'm so pleased to meet you! <br /> I'm Linda.</h1>
+    <div class="intro-photo">
+      <div class="photo-bg"></div>
+      <Image
+        priority={true}
+        src={linda}
+        alt="A woman with dark brown and purple hair in a gray tank top offers you a friendly and knowing smile."
+        layout="constrained"
+        class="photo"
+      />
     </div>
-  </section>
-  <section class="praise">
-    <PraiseCard praise={robPraise} />
-  </section>
-  <section id="projects">
-    <h2 class="section-title">Projects I've Crafted</h2>
-    <div class="project-cards">
-      {
-        featuredProjects
-          .sort((a, b) => b.data.order - a.data.order)
-          .map((project) => <ProjectPreviewCard project={project} />)
-      }
+    <div class="intro-blurb">
+      <p>
+        I'm a software engineer with an artistic background and a deep love for
+        games and puzzles. I build friendly, accessible designs and modern,
+        maintainable JavaScript logic, backed with stellar communication and
+        organizational skills. My blend of creativity, empathy, critical
+        thinking, and grit helps me craft sites that are delightful to use.
+      </p>
+
+      <button>Let's build something together</button>
     </div>
-    <div class="page-link">
-      <a href="/projects" class="gradient-text">More of my work</a>
-    </div>
-  </section>
-  <section class="praise">
-    <PraiseCard praise={willPraise} />
-  </section>
-  <section id="posts">
-    <h2 class="section-title">Words I've Shared</h2>
-    <div class="post-blurbs">
-      {
-        featuredPosts
-          .sort(
-            (a, b) =>
-              new Date(b.data.publishedDate).valueOf() -
-              new Date(a.data.publishedDate).valueOf()
-          )
-          .map((post) => (
-            <div>
-              <PostPreviewCard blogBit={post} />
-            </div>
-          ))
-      }
-    </div>
-    <div class="page-link">
-      <a href="/blog" class="gradient-text">See all my posts</a>
-    </div>
-  </section>
-  <section class="praise">
-    <PraiseCard praise={jessPraise} />
   </section>
 </MainLayout>
 
 <style>
-  section {
-    padding: var(--s16) 0 var(--s80);
+  .intro {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
   }
 
-  [data-icon="script-name"] {
-    color: var(--text-main);
-    margin: 0.5rem auto;
-    inline-size: 75%;
-  }
-
-  .subtitle {
-    margin: -1rem auto 1rem;
-    width: 23rem;
-    font-family: var(--heading-font);
-    font-size: var(--h4);
+  .intro h1 {
+    font-family: var(--accent-font);
+    font-weight: normal;
     text-align: center;
+    margin-bottom: 0;
+    line-height: 1.3;
+
+    @media (min-width: 1024px) {
+      grid-column: 1;
+      grid-row: 1;
+    }
   }
 
-  .social-wrapper {
-    margin: 2.5rem auto;
-    width: 50%;
+  .intro-photo {
+    display: grid;
+    justify-content: center;
+
+    @media (min-width: 1024px) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
   }
 
-  .section-title {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: calc(var(--h2) * 1.25);
-  }
-
-  .page-link {
-    text-align: center;
-  }
-
-  .page-link a {
-    font-size: var(--b-lg);
-  }
-
-  .page-link a::before {
-    content: "» ";
-  }
-
-  .page-link a::after {
-    content: " «";
-  }
-
-  .praise {
-    max-inline-size: min(750px, 85dvw);
+  .photo {
+    width: 60cqw;
     margin: 0 auto;
+    grid-column: 1;
+    grid-row: 1;
+
+    @media screen and (min-width: 768px) {
+      width: 40cqw;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: 30cqw;
+    }
   }
 
-  .project-cards {
+  .photo-bg {
+    border-radius: 29% 71% 56% 44% / 47% 53% 47% 53%;
+    background: var(--gradient);
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 3rem;
+  }
+
+  .intro-blurb {
+    width: 85cqw;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: var(--s40);
-    margin: 0 auto var(--s40);
-    width: 90%;
-  }
+    gap: 1rem;
 
-  .post-blurbs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--s40);
-    margin: 0 auto var(--s40);
-    width: 90%;
-  }
-
-  .post-blurbs > div {
-    grid-area: span 1 / span 2;
-  }
-
-  .post-blurbs div:last-child:nth-child(odd) {
-    grid-column: 2 / span 2;
-  }
-
-  /* Mobile */
-  @media (max-width: 520px) {
-    .subtitle {
-      font-size: var(--h6);
-      max-width: 85%;
-      width: auto;
-    }
-
-    .section-title {
-      font-size: var(--h3);
-    }
-
-    .page-link {
-      margin: 0 auto;
-      width: 80%;
-    }
-
-    .social-wrapper {
-      width: 90%;
-    }
-
-    .project-cards {
-      grid-template-columns: 1fr;
-      width: 100%;
+    @media (min-width: 1024px) {
+      width: 55cqw;
+      grid-column: 1;
+      grid-row: 2;
     }
   }
 
-  @media (max-width: 768px) {
-    [data-icon="script-name"] {
-      inline-size: 100%;
-    }
+  .intro-blurb button {
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    padding: 0.75rem;
+    color: var(--text-main);
+    font-size: var(--h5);
+    font-family: var(--accent-font);
+    box-shadow: -4px 6px 14px 0px var(--bg-shadow);
 
-    .post-blurbs {
-      grid-template-columns: 1fr;
-      width: 100%;
-    }
-
-    .post-blurbs > div {
-      grid-area: auto;
-    }
-
-    .post-blurbs div:last-child:nth-child(odd) {
-      grid-column: auto;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    [data-icon="script-name"] {
-      inline-size: 60%;
+    @media (min-width: 1024px) {
+      justify-self: center;
     }
   }
 </style>
