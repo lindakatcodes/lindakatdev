@@ -13,8 +13,9 @@
 /* Variables */
 :root {
   --b-sm: 14px;
-  --b-md: 18px;
-  --b-lg: 24px;
+  --b-md: 16px;
+  --b-lg: 18px;
+  --b-xl: 24px;
   --h6: 28px;
   --h5: 32px;
   --h4: 40px;
@@ -109,7 +110,7 @@ a:is(.gradient-text):hover, a:is(.gradient-text):focus {
 
 body {
   background-color: var(--background);
-  font-size: var(--b-md);
+  font-size: var(--b-lg);
   transition: all 0.3s ease-in-out;
 }
 
