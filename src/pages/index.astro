@@ -29,7 +29,20 @@ import SocialsGrid from "@components/SocialsGrid.astro";
         thinking, and grit helps me craft sites that are delightful to use.
       </p>
 
-      <button>Let's build something together</button>
+      <button popovertarget="contact-popover">
+        <p class="gradient-text">Let's build something together</p>
+      </button>
+    </div>
+    <div id="contact-popover" popover>
+      <p class="contact-title gradient-text">Wanna chat?</p>
+      <p class="contact-email">
+        <Icon name="email" />
+        Email:
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </p>
+      <div class="contact-socials">
+        <SocialsGrid />
+      </div>
     </div>
   </section>
 </MainLayout>
@@ -115,13 +128,62 @@ import SocialsGrid from "@components/SocialsGrid.astro";
     border: 2px solid transparent;
     border-radius: 4px;
     padding: 0.75rem;
-    color: var(--text-main);
-    font-size: var(--h5);
-    font-family: var(--accent-font);
     box-shadow: -4px 6px 14px 0px var(--bg-shadow);
+
+    p {
+      font-size: var(--h5);
+      font-family: var(--accent-font);
+    }
 
     @media (min-width: 1024px) {
       justify-self: center;
+    }
+  }
+
+  #contact-popover {
+    position-area: top;
+    container-type: inline-size;
+    width: 100cqw;
+    padding: 1rem 1.5rem;
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+
+    @media (min-width: 1024px) {
+      width: 35cqw;
+    }
+  }
+
+  .contact-title {
+    font-size: var(--h4);
+    font-family: var(--accent-font);
+    text-align: center;
+  }
+
+  .contact-email {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: var(--b-md);
+    margin: 0 auto 0.25rem;
+    width: fit-content;
+  }
+
+  .contact-email svg {
+    display: inline-block;
+    width: 1.125rem;
+  }
+
+  .contact-socials {
+    width: 75cqw;
+    margin: 0 auto;
+
+    @media (min-width: 520px) and (max-width: 1024px) {
+      width: 50cqw;
     }
   }
 </style>

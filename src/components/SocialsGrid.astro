@@ -9,19 +9,14 @@ export type socialLink = {
 
 const socialLinks: socialLink[] = [
   {
-    displayName: "Bluesky",
-    iconName: "bluesky",
-    link: "https://bsky.app/profile/lindakat.com",
+    displayName: "LinkedIn",
+    iconName: "linkedin",
+    link: "https://www.linkedin.com/in/lindakatcodes/",
   },
   {
     displayName: "GitHub",
     iconName: "github",
     link: "https://github.com/lindakatcodes",
-  },
-  {
-    displayName: "LinkedIn",
-    iconName: "linkedin",
-    link: "https://www.linkedin.com/in/lindakatcodes/",
   },
   {
     displayName: "Resume",
@@ -47,45 +42,43 @@ const socialLinks: socialLink[] = [
 
 <style>
   .socials {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: baseline;
+    gap: 0.75rem;
   }
 
   .social-link {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
     text-decoration-color: transparent;
-    margin: auto 1.25rem;
-  }
-
-  .social-link:hover {
-    text-decoration-style: solid;
+    margin-top: 0.5rem;
   }
 
   .social-link svg {
-    color: var(--text-main);
-    width: var(--s24);
-    height: var(--s24);
+    margin: 0 auto;
   }
 
   .social-link p {
-    color: var(--text-main);
     font-size: var(--b-sm);
-    margin-top: 0.125rem;
   }
 
-  .resume:hover {
-    text-decoration-color: var(--pink);
+  .linkedin svg {
+    width: 1.25rem;
+  }
+
+  .linkedin:hover {
+    text-decoration-color: var(--blue);
 
     & svg {
-      color: var(--pink);
+      color: var(--blue);
     }
     & p {
-      color: var(--pink);
+      color: var(--blue);
     }
+  }
+
+  .github svg {
+    width: 1.375rem;
   }
 
   .github:hover {
@@ -99,39 +92,19 @@ const socialLinks: socialLink[] = [
     }
   }
 
-  .linkedin:hover {
-    text-decoration-color: var(--purple);
-
-    & svg {
-      color: var(--purple);
-    }
-    & p {
-      color: var(--purple);
-    }
+  .resume svg {
+    width: 1.375rem;
+    height: 1.375rem;
   }
 
-  .bluesky:hover {
-    text-decoration-color: var(--blue);
+  .resume:hover {
+    text-decoration-color: var(--pink);
 
     & svg {
-      color: var(--blue);
+      color: var(--pink);
     }
     & p {
-      color: var(--blue);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .socials {
-      justify-content: space-between;
-    }
-
-    .social-link {
-      margin: auto 0.75rem;
-    }
-
-    .social-link p {
-      font-size: 0.7rem;
+      color: var(--pink);
     }
   }
 </style>
