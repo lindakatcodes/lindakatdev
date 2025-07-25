@@ -1,0 +1,47 @@
+---
+import { EMAIL } from "@util/constants";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  ctaTitle?: string;
+}
+
+const { ctaTitle = "Wanna chat?" } = Astro.props;
+---
+
+<div>
+  <p class="title gradient-text">{ctaTitle}</p>
+  <p class="email">
+    <Icon name="email" />
+    Email:
+    <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  </p>
+</div>
+
+<style>
+  div {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+    font-family: var(--accent-font);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .email {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: var(--b-md);
+    margin: 0 auto 0.25rem;
+    width: fit-content;
+  }
+
+  .email svg {
+    display: inline-block;
+    width: 1.125rem;
+  }
+</style>
