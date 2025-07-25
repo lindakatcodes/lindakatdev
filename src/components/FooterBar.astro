@@ -1,20 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
 import SocialsGrid from "./SocialsGrid.astro";
-import { EMAIL } from "@util/constants";
+import ContactEmail from "./ContactEmail.astro";
 ---
 
 <footer transition:name="footer">
   <div class="divider shadow-over"></div>
   <div class="contact-wrapper">
-    <div class="contact-details">
-      <p class="contact-title gradient-text">Wanna chat?</p>
-      <p class="contact-email">
-        <Icon name="email" />
-        Email:
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-      </p>
-    </div>
+    <ContactEmail />
     <div class="contact-socials">
       <SocialsGrid />
     </div>
@@ -29,30 +21,12 @@ import { EMAIL } from "@util/constants";
 
   .contact-wrapper {
     @media (min-width: 1024px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
+      & {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
     }
-  }
-
-  .contact-title {
-    font-size: var(--h4);
-    font-family: var(--accent-font);
-    text-align: center;
-  }
-
-  .contact-email {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: var(--b-lg);
-    margin: 0 auto 0.5rem;
-    width: fit-content;
-  }
-
-  .contact-email svg {
-    display: inline-block;
-    width: 1.125rem;
   }
 
   .contact-socials {
@@ -60,11 +34,15 @@ import { EMAIL } from "@util/constants";
     margin: 0 auto;
 
     @media (min-width: 520px) and (max-width: 1024px) {
-      width: 50cqw;
+      & {
+        width: 50cqw;
+      }
     }
 
     @media (min-width: 1024px) {
-      width: 30cqw;
+      & {
+        width: 30cqw;
+      }
     }
   }
 </style>
