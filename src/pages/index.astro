@@ -120,6 +120,7 @@ import SocialsGrid from "@components/SocialsGrid.astro";
   }
 
   .intro-blurb button {
+    anchor-name: --contact-anchor;
     background:
       linear-gradient(to bottom, var(--background), var(--background))
         padding-box,
@@ -128,7 +129,6 @@ import SocialsGrid from "@components/SocialsGrid.astro";
     border-radius: 4px;
     padding: 0.75rem;
     box-shadow: -4px 6px 14px 0px var(--bg-shadow);
-    anchor-name: --contact-anchor;
 
     p {
       font-size: var(--h5);
@@ -142,8 +142,9 @@ import SocialsGrid from "@components/SocialsGrid.astro";
 
   #contact-popover {
     position-anchor: --contact-anchor;
-    position-area: top;
     position: absolute;
+    position-area: block-start;
+    inset: auto;
     container-type: inline-size;
     width: 100cqw;
     padding: 1rem 1.5rem;
