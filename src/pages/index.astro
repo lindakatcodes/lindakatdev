@@ -9,7 +9,7 @@ import ContactEmail from "@components/ContactEmail.astro";
 
 <MainLayout metadata={DEFAULT_METADATA}>
   <section class="intro">
-    <h1>Hi, I'm so pleased to meet you! <br /> I'm Linda.</h1>
+    <h1>Hi, nice to meet you! <br /> I'm Linda.</h1>
     <div class="intro-photo">
       <div class="photo-bg"></div>
       <Image
@@ -22,10 +22,12 @@ import ContactEmail from "@components/ContactEmail.astro";
     </div>
     <div class="intro-blurb">
       <p>
-        I'm a software engineer with an artistic background and a deep love for
-        games and puzzles. I build friendly, accessible designs and modern,
-        maintainable JavaScript logic, backed with stellar communication and
-        organization skills.
+        I'm a software engineer that loves video games and logic puzzles. I
+        build accessible websites with semantic HTML, modern CSS, and
+        maintainable JavaScript. You'll love working with me thanks to my
+        stellar communication and organizational skills from my background in
+        retail and music. My goal is to build the best products possible for the
+        people that use them.
       </p>
 
       <div class="contact-cta">
@@ -41,7 +43,7 @@ import ContactEmail from "@components/ContactEmail.astro";
     container-type: inline-size;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem;
     justify-items: center;
     align-items: center;
 
@@ -55,10 +57,9 @@ import ContactEmail from "@components/ContactEmail.astro";
 
   .intro h1 {
     font-family: var(--accent-font);
-    font-weight: normal;
     text-align: center;
+    text-wrap: balance;
     margin-bottom: 0;
-    line-height: 1.2;
 
     @media (min-width: 1024px) {
       & {
@@ -124,7 +125,7 @@ import ContactEmail from "@components/ContactEmail.astro";
 
   .contact-cta {
     display: grid;
-    gap: 0.5rem;
     justify-content: center;
+    gap: 0.5rem;
   }
 </style>
