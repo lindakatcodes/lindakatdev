@@ -4,13 +4,20 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   ctaTitle?: string;
+  inFooter?: boolean;
 }
 
-const { ctaTitle = "Wanna chat?" } = Astro.props;
+const { ctaTitle = "Wanna chat?", inFooter = false } = Astro.props;
 ---
 
 <div>
-  <p class="title gradient-text">{ctaTitle}</p>
+  {
+    inFooter ? (
+      <p class="title gradient-text footer-bg">{ctaTitle}</p>
+    ) : (
+      <p class="title gradient-text">{ctaTitle}</p>
+    )
+  }
   <p class="email">
     <Icon name="email" />
     Email:
@@ -28,14 +35,17 @@ const { ctaTitle = "Wanna chat?" } = Astro.props;
     font-size: 2.25rem;
     font-family: var(--accent-font);
     text-align: center;
-    line-height: 1.2;
+
+    &.footer-bg {
+      background-size: 12rem;
+      background-position: center;
+    }
   }
 
   .email {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: var(--b-md);
     margin: 0 auto 0.25rem;
     width: fit-content;
   }
