@@ -6,4 +6,3 @@ export const DEFAULT_METADATA = {
 };
 
 export const EMAIL = "lindakt16@gmail.com";
-// export const EMAIL = "hello@lindakat.com";

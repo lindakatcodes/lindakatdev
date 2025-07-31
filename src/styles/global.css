@@ -29,6 +29,7 @@
 /* Global defaults */
 body {
   background-color: var(--background);
+  font-family: var(--body-font);
   font-size: var(--b-md);
   transition: all 0.3s ease-in-out;
 }
@@ -40,8 +41,9 @@ h4,
 h5,
 h6 {
   color: var(--text-main);
-  margin: 1rem auto;
+  font-family: var(--accent-font);
   font-weight: normal;
+  margin: 1rem auto;
 }
 
 h1 {

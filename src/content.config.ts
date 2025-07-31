@@ -69,9 +69,24 @@ const praisesCollection = defineCollection({
     }),
 });
 
+const valuesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.json", base: "./src/content/values" }),
+  schema: () =>
+    z.object({
+      order: z.number(),
+      value: z.string(),
+      iconColor: z.string(),
+      iconName: z.string(),
+      details: z.string(),
+      quote: z.string(),
+      quoteRef: z.string(),
+    }),
+});
+
 export const collections = {
   blog: blogCollection,
   notes: notesCollection,
   praises: praisesCollection,
   projects: projectsCollection,
+  values: valuesCollection,
 };

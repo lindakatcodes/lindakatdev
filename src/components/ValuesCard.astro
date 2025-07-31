@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  valueObj: CollectionEntry<"values">;
+}
+
+const { valueObj } = Astro.props;
+const value = valueObj.data;
+const iconBgColor = `var(--${value.iconColor})`;
+const gridArea = `card${value.order}`;
+---
+
+<div class="value-container">
+  <article>
+    <div class="icon">
+      <Icon name={value.iconName} />
+    </div>
+    <h3>{value.value}</h3>
+    <p class="details">{value.details}</p>
+    <div class="divider"></div>
+    <div class="quote-group">
+      <p class="quote">{`"${value.quote}"`}</p>
+      <p class="quote-ref">{`- ${value.quoteRef}`}</p>
+    </div>
+  </article>
+</div>
+
+<style define:vars={{ iconBgColor, gridArea }}>
+  .value-container {
+    padding: 1rem;
+    display: grid;
+    place-items: center;
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+
+    @media (min-width: 1024px) {
+      & {
+        align-items: start;
+        /* grid-area: var(--gridArea); */
+      }
+    }
+  }
+
+  article {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    background: var(--iconBgColor);
+  }
+
+  .icon svg {
+    width: 2rem;
+    color: var(--text-flip);
+  }
+
+  h3 {
+    font-family: var(--body-font);
+    font-size: var(--b-lg);
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+      font-size: var(--h6);
+    }
+  }
+
+  .details {
+    text-wrap: pretty;
+  }
+
+  .quote {
+    font-style: italic;
+    text-wrap: balance;
+  }
+
+  .quote-ref {
+    font-size: var(--b-sm);
+    text-align: right;
+  }
+</style>
