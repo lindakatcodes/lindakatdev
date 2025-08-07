@@ -72,7 +72,7 @@ const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
   }
 
   .intro h1 {
-    font-family: var(--accent-font);
+    font-size: 4.25rem;
     text-align: center;
     text-wrap: balance;
     margin-bottom: 0;
@@ -155,12 +155,5 @@ const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-
-    @media (min-width: 1024px) {
-      & {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-    }
   }
 </style>

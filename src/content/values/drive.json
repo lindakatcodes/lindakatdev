@@ -1,9 +1,17 @@
 {
   "order": 2,
-  "value": "Drives sustainable success",
+  "title": "Drives sustainable success",
   "iconColor": "green",
   "iconName": "star",
   "details": "I believe in creating products that are accessible to the largest group possible and always striving to be better than before. And I can balance that with meeting deadlines and not letting perfect get in the way of done. I'm tenacious in pushing for what's best and great at finding solutions to complex problems within budget.",
   "quote": "Linda is a developer who can push tickets and hit deliverables, but her secret weapon is that she finds ways to go above and beyond the ask in a way that isn't costly and adds layers of value to all facets of the business.",
-  "quoteRef": "Dustin Goodman, Engineering Manager"
+  "quoteRef": "Dustin Goodman, Engineering Manager",
+  "blogPath": "/blog/2023-year-review",
+  "blogTitle": "2023 year in review",
+  "caseStudy": {
+    "title": "Creating a recommended posts algorithm",
+    "challenge": "The company's marketing site had a fantastic set of blog posts, but the recommended posts shown at the end of each article was only based on recent blog posts, resulting in users often seeing the same small selection of posts. We wanted to make better use of the entire catalog of information and offer users a better selection to choose from.",
+    "approach": "",
+    "result": "increased reader time on site for the blog, which gets over 150k views per month."
+  }
 }
