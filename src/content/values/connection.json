@@ -1,9 +1,17 @@
 {
   "order": 4,
-  "value": "Inspires connection",
+  "title": "Inspires connection",
   "iconColor": "pink",
   "iconName": "heart",
   "details": "Coding is better with friends. You'd be hard pressed to find a better cheerleader, encourager, and kind communicator than me. I thrive when on teams where everyone checks in with each other and shares time and knowledge.",
   "quote": "Linda is the kind of teammate everyone wishes for: steady, always there to lend a hand, and constantly pushing herself beyond her limits.",
-  "quoteRef": "Dario Djuric, Sr. Software Engineer"
+  "quoteRef": "Dario Djuric, Sr. Software Engineer",
+  "blogPath": "/blog/my-that-experience",
+  "blogTitle": "My THAT Conference Experience",
+  "caseStudy": {
+    "title": "Boosting team morale and velocity",
+    "challenge": "",
+    "approach": "",
+    "result": "saved 16 hours of testing time catching and fixing a bug day of release. built components used across 3 applications."
+  }
 }

@@ -74,12 +74,20 @@ const valuesCollection = defineCollection({
   schema: () =>
     z.object({
       order: z.number(),
-      value: z.string(),
+      title: z.string(),
       iconColor: z.string(),
       iconName: z.string(),
       details: z.string(),
       quote: z.string(),
       quoteRef: z.string(),
+      blogPath: z.string(),
+      blogTitle: z.string(),
+      caseStudy: z.object({
+        title: z.string(),
+        challenge: z.string(),
+        approach: z.string(),
+        result: z.string(),
+      }),
     }),
 });
 
