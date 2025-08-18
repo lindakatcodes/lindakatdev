@@ -44,7 +44,7 @@ const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
   </section>
 
   <section class="value-add">
-    <h2>Why you should invest in me</h2>
+    <h2>Invest in me and add these values to your team</h2>
     <div class="skills-container">
       {orderedValues.map((value) => <ValuesCard valueObj={value} />)}
     </div>
@@ -145,7 +145,7 @@ const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
     gap: 0.5rem;
   }
 
-  .value-add h2 {
+  h2 {
     text-align: center;
     margin-bottom: 2rem;
   }
@@ -153,7 +153,6 @@ const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
   .skills-container {
     container-type: inline-size;
     display: grid;
-    grid-template-columns: 1fr;
     gap: 2rem;
 
     @media (min-width: 1024px) {
