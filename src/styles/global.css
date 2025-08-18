@@ -12,16 +12,16 @@
 
 /* Variables */
 :root {
-  /* Using the minor third scale for font sizes */
+  /* Using the major third scale for font sizes */
   --b-sm: 14px;
   --b-md: 16px;
-  --b-lg: 19.2px; /* 1.2rem */
-  --h6: 23.04px; /* 1.44rem */
-  --h5: 27.65px; /* 1.728rem */
-  --h4: 33.18px; /* 2.074rem */
-  --h3: 39.81px; /* 2.488rem */
-  --h2: 47.78px; /* 2.986rem */
-  --h1: 57.33px; /* 3.583rem */ 
+  --b-lg: 20px; /* 1.25rem */
+  --h6: 25px; /* 1.563rem */
+  --h5: 31.25px; /* 1.953rem */
+  --h4: 39.06px; /* 2.441rem */
+  --h3: 48.83px; /* 3.052rem */
+  --h2: 61.04px; /* 3.815rem */
+  --h1: 76.3px; /* 4.769rem */ 
   /* --header-height: var(--s64); */
   /* --scroll-height: calc(var(--header-height) + var(--s16)); */
 }
@@ -36,19 +36,13 @@ body {
 
 h1,
 h2,
-h3 {
-  color: var(--text-main);
-  font-family: var(--accent-font);
-  font-weight: normal;
-  margin: 1rem auto;
-}
-
+h3,
 h4,
 h5,
 h6 {
   color: var(--text-main);
-  font-family: var(--body-font);
-  font-weight: bold;
+  font-family: var(--accent-font);
+  font-weight: normal;
   margin: 1rem auto;
 }
 

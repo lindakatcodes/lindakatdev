@@ -1,17 +1,9 @@
 {
   "order": 1,
-  "title": "Creates order from chaos",
+  "value": "Creates order from chaos",
   "iconColor": "purple",
   "iconName": "crown",
   "details": "I'm fantastic at paying attention to all the details, gathering information from every source involved in a project, and bringing it all together to provide clarity for everyone and direction to keep us moving towards our goals.",
   "quote": "One of my favorite things about working with Linda is how she just intuitively knows all of the things that are necessary for a long-term project to be successful and is very thorough in making sure those things are in place.",
-  "quoteRef": "Jeremy Privett, Engineering Manager",
-  "blogPath": "https://www.thisdot.co/blog/how-to-make-your-first-pull-request-for-hacktoberfest",
-  "blogTitle": "How to make your first pull request for Hacktoberfest",
-  "caseStudy": {
-    "title": "Debugging and documenting a multi-service workflow",
-    "challenge": "Our client had multiple services they were using to input user data, keep track of it, and send that data off for analysis. The process was very manual and so very easy for things to get messy and updates to not happen as quickly or smoothly as they'd like. We were brought in in part to help automate this process and improve the experience for their users and themselves.",
-    "approach": "I really need to get down into the weeds to really gain a full understanding of a site's inner workings. So I dove into this project, writing out what the actual steps were that the code was doing, and asking questions in team meetings for how they wanted things to actually work. This let me keep improving on my understanding of the entire flow so I could see where the tangles and holes were so the team could work on improving the flow and filling gaps.",
-    "result": "I was able to improve our client's data reliability by 8% overall, causing less headaches for our client and better communication for their customers. I was also able to deliver them a thorough set of documentation for the entire process from a customer inputing their data through the full pipeline of services until the final output was given back to the customer. This helped provide a clear step by step guide when there were issues to know what had slipped and why, allowing us to fix any problems and get back on track faster."
-  }
+  "quoteRef": "Jeremy Privett, Engineering Manager"
 }
