@@ -9,6 +9,7 @@ interface Props {
 const { valueObj } = Astro.props;
 const value = valueObj.data;
 const iconBgColor = `var(--${value.iconColor})`;
+const gridArea = `card${value.order}`;
 ---
 
 <div class="value-container">
@@ -16,66 +17,42 @@ const iconBgColor = `var(--${value.iconColor})`;
     <div class="icon">
       <Icon name={value.iconName} />
     </div>
-    <h3>{value.title}</h3>
+    <h3>{value.value}</h3>
     <p class="details">{value.details}</p>
-    <div class="divider div1"></div>
+    <div class="divider"></div>
     <div class="quote-group">
       <p class="quote">{`"${value.quote}"`}</p>
       <p class="quote-ref">{`- ${value.quoteRef}`}</p>
     </div>
-    <div class="divider div2"></div>
-    <article class="study">
-      <h4>Case Study: {value.caseStudy.title}</h4>
-      <h5>The Challenge:</h5>
-      <p>{value.caseStudy.challenge}</p>
-      <h5>My approach:</h5>
-      <p>{value.caseStudy.approach}</p>
-      <h5>The Results:</h5>
-      <p>{value.caseStudy.result}</p>
-    </article>
-    <div class="divider div3"></div>
-    <div class="blog">
-      <h4>Related post:</h4>
-      <a href={value.blogPath}>{value.blogTitle}</a>
-    </div>
   </article>
 </div>
 
-<style define:vars={{ iconBgColor }}>
+<style define:vars={{ iconBgColor, gridArea }}>
   .value-container {
     padding: 1rem;
+    display: grid;
+    place-items: center;
     border: 2px solid transparent;
     border-radius: 0.25rem;
     background:
       linear-gradient(to bottom, var(--background), var(--background))
         padding-box,
       var(--gradient) border-box;
-  }
-
-  article {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-areas: "icon" "title" "details" "div1" "quote" "div2" "study" "div3" "blog";
 
     @media (min-width: 1024px) {
       & {
-        column-gap: 2.5rem;
-        grid-template-columns: 0.5fr 1fr;
-        grid-template-areas:
-          "icon study"
-          "title study"
-          "details study"
-          "div1 study"
-          "quote study"
-          "div2 study"
-          "blog study";
-        align-items: center;
+        align-items: start;
+        /* grid-area: var(--gridArea); */
       }
     }
   }
 
+  article {
+    display: grid;
+    gap: 0.75rem;
+  }
+
   .icon {
-    grid-area: icon;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
@@ -91,73 +68,28 @@ const iconBgColor = `var(--${value.iconColor})`;
   }
 
   h3 {
-    grid-area: title;
     font-family: var(--body-font);
+    font-size: var(--b-lg);
     font-weight: bold;
     text-align: center;
     margin: 0 auto;
+
+    @media (min-width: 1024px) {
+      font-size: var(--h6);
+    }
   }
 
   .details {
-    grid-area: details;
     text-wrap: pretty;
-  }
-
-  .quote-group {
-    grid-area: quote;
   }
 
   .quote {
     font-style: italic;
     text-wrap: balance;
-    color: var(--iconBgColor);
   }
 
   .quote-ref {
     font-size: var(--b-sm);
     text-align: right;
-    color: var(--iconBgColor);
-  }
-
-  .study {
-    grid-area: study;
-    gap: 0.5rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: "study";
-  }
-
-  .study h4,
-  .study h5 {
-    margin: 0.5rem 0;
-  }
-
-  .blog {
-    grid-area: blog;
-    display: grid;
-    justify-items: center;
-  }
-
-  .blog a {
-    font-size: var(--b-lg);
-    text-align: center;
-  }
-
-  .div1 {
-    grid-area: div1;
-  }
-
-  .div2 {
-    grid-area: div2;
-  }
-
-  .div3 {
-    grid-area: div3;
-    @media (min-width: 1024px) {
-      & {
-        height: 0;
-        visibility: hidden;
-      }
-    }
   }
 </style>

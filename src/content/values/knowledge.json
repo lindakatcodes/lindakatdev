@@ -1,17 +1,9 @@
 {
   "order": 3,
-  "title": "Always growing",
+  "value": "Always growing",
   "iconColor": "blue",
   "iconName": "lightbulb",
   "details": "I love getting to improve my skills and learn from my team. Seeking out constructive feedback and providing my own questions and insights to others helps me build my technical knowledge and keeps the team actively thinking about the work we're doing, so we're always striving to be better together.",
   "quote": "Linda's role as an incredibly thorough code reviewer stands out as a testament to her commitment to quality. Her insightful questions consistently provide fresh perspectives that elevate the overall standard of our work.",
-  "quoteRef": "Balázs Tápai, Sr. Software Engineer",
-  "blogPath": "https://www.thisdot.co/blog/leveling-up-your-work-through-architecture-design-and-time-estimation",
-  "blogTitle": "Leveling Up Your Work Through Architecture Design and Time Estimation",
-  "caseStudy": {
-    "title": "Building a link aggregation site with Redwood",
-    "challenge": "",
-    "approach": "",
-    "result": ""
-  }
+  "quoteRef": "Balázs Tápai, Sr. Software Engineer"
 }
