@@ -21,7 +21,7 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
 
 <CardWrapper>
   <a href={postUrl} class="pr-link">
-    <h3 class:list={["pr-title", { "title-clamp": addFontClamp }]}>{title}</h3>
+    <h4 class:list={["pr-title", { "title-clamp": addFontClamp }]}>{title}</h4>
     <div class="pr-flex">
       <p class="pr-date">
         {dateString}
@@ -42,16 +42,15 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
 <style>
   .pr-link {
     text-decoration: none;
-    padding: 0 var(--s16);
+    padding: 0 1rem;
     display: grid;
-    grid-template-rows: 2fr auto 1fr auto;
+    grid-template-rows: min-content repeat(3, auto);
     align-items: center;
-    gap: var(--s8);
+    gap: 0.5rem;
     min-block-size: 100%;
   }
 
   .pr-title {
-    font-size: var(--h4);
     margin: 0;
     text-align: center;
   }
@@ -61,8 +60,6 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
   }
 
   .pr-date {
-    color: var(--text-main);
-    font-family: var(--body-font);
     font-size: var(--b-sm);
     opacity: 0.8;
     text-transform: uppercase;
@@ -71,7 +68,7 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
   .pr-flex {
     display: flex;
     align-items: center;
-    gap: var(--s8);
+    gap: 0.5rem;
   }
 
   .pr-flex:has(.pr-date) {
@@ -86,7 +83,7 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
     height: 2px;
     flex-grow: 1;
     background-color: var(--text-main);
-    border-radius: var(--s4);
+    border-radius: 4px;
     opacity: 0.8;
   }
 
@@ -107,14 +104,5 @@ const readPostCTA = isLocal ? "Read post" : `Read on ${remoteSrc}`;
     font-size: var(--b-sm);
     text-transform: uppercase;
     opacity: 0.8;
-  }
-
-  @media (max-width: 520px) {
-    .pr-link {
-      grid-template-rows: auto;
-    }
-    .pr-title:not(.title-clamp) {
-      font-size: var(--h5);
-    }
   }
 </style>

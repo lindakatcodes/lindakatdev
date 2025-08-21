@@ -7,10 +7,22 @@ import SocialsGrid from "@components/SocialsGrid.astro";
 import ContactEmail from "@components/ContactEmail.astro";
 import { getCollection } from "astro:content";
 import ValuesCard from "@components/ValuesCard.astro";
+import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
+import PostPreviewCard from "@components/PostPreviewCard.astro";
 
 const values = await getCollection("values");
 
 const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
+
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+});
+
+const featuredPosts = await getCollection("blog", ({ data }) => {
+  return data.featured === true;
+});
+
+const featuredWork = [...featuredProjects, ...featuredPosts];
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
@@ -44,18 +56,23 @@ const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
   </section>
 
   <section class="value-add">
-    <h2>Invest in me and add these values to your team</h2>
+    <h2>Skills that shine</h2>
     <div class="skills-container">
       {orderedValues.map((value) => <ValuesCard valueObj={value} />)}
     </div>
   </section>
 
   <section class="experience">
-    <h2>Along with the experience to back them up</h2>
-    <!-- add a grid of featured projects and blogs here that mesh with the values listed and/or are most recent; do not need a link to view more, just show the items together 
-     projects: arcade, bnn (need to write)
-     blogs: that conf, architecture templates, maybe write a post with thing i did/learned in my first tech job?
-    -->
+    <h2>Experience that glows</h2>
+    {
+      featuredWork.map((item) => {
+        return item.collection === "projects" ? (
+          <ProjectPreviewCard project={item} />
+        ) : (
+          <PostPreviewCard blogBit={item} />
+        );
+      })
+    }
   </section>
 </MainLayout>
 
