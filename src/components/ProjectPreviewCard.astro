@@ -62,6 +62,7 @@ const loading = aboveFold ? "eager" : "lazy";
 
 <style>
   .project-wrapper {
+    container-type: inline-size;
     block-size: 100%;
     padding: 0.25rem;
     display: grid;
@@ -87,6 +88,7 @@ const loading = aboveFold ? "eager" : "lazy";
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 85cqw;
   }
 
   .project-tech p {
@@ -97,15 +99,15 @@ const loading = aboveFold ? "eager" : "lazy";
     margin: 0 0.5rem;
   }
 
-  .project-tech p:nth-child(2n) {
+  .project-tech p:nth-child(4n + 2) {
     color: var(--purple);
   }
 
-  .project-tech p:nth-child(3n) {
+  .project-tech p:nth-child(4n + 3) {
     color: var(--blue);
   }
 
-  .project-tech p:nth-child(4n) {
+  .project-tech p:nth-child(4n + 4) {
     color: var(--green);
   }
 
@@ -117,6 +119,7 @@ const loading = aboveFold ? "eager" : "lazy";
   .project-links {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     gap: 0.5rem;
   }
 
