@@ -21,8 +21,6 @@ const featuredProjects = await getCollection("projects", ({ data }) => {
 const featuredPosts = await getCollection("blog", ({ data }) => {
   return data.featured === true;
 });
-
-const featuredWork = [...featuredProjects, ...featuredPosts];
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
@@ -56,23 +54,24 @@ const featuredWork = [...featuredProjects, ...featuredPosts];
   </section>
 
   <section class="value-add">
-    <h2>Skills that shine</h2>
+    <h2>My core values</h2>
     <div class="skills-container">
       {orderedValues.map((value) => <ValuesCard valueObj={value} />)}
     </div>
   </section>
 
-  <section class="experience">
-    <h2>Experience that glows</h2>
-    {
-      featuredWork.map((item) => {
-        return item.collection === "projects" ? (
-          <ProjectPreviewCard project={item} />
-        ) : (
-          <PostPreviewCard blogBit={item} />
-        );
-      })
-    }
+  <section class="projects">
+    <h2>Project showcase</h2>
+    <div class="exp-cards">
+      {featuredProjects.map((item) => <ProjectPreviewCard project={item} />)}
+    </div>
+  </section>
+
+  <section class="writing">
+    <h2>Writing showcase</h2>
+    <div class="exp-cards">
+      {featuredPosts.map((item) => <PostPreviewCard blogBit={item} />)}
+    </div>
   </section>
 </MainLayout>
 
@@ -184,6 +183,18 @@ const featuredWork = [...featuredProjects, ...featuredPosts];
       & {
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+      }
+    }
+  }
+
+  .exp-cards {
+    container-type: inline-size;
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 1024px) {
+      & {
+        grid-template-columns: 1fr 1fr 1fr;
       }
     }
   }
