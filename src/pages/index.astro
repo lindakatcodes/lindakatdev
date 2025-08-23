@@ -96,7 +96,6 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   }
 
   .intro h1 {
-    font-size: 4.25rem;
     text-align: center;
     text-wrap: balance;
     margin-bottom: 0;
@@ -192,9 +191,45 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
     display: grid;
     gap: 2rem;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 768px) {
       & {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  .exp-cards > div {
+    @media (min-width: 768px) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-area: span 1 / span 1;
+      }
+    }
+  }
+
+  .exp-cards > div:last-child:nth-child(odd) {
+    @media (min-width: 768px) {
+      & {
+        grid-column: 2 / span 2;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-column: span 1;
       }
     }
   }
