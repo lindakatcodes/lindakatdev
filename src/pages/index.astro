@@ -1,26 +1,32 @@
 ---
+import linda from "@assets/linda.webp";
+import ContactEmail from "@components/ContactEmail.astro";
+import PostPreviewCard from "@components/PostPreviewCard.astro";
+import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
+import SocialsGrid from "@components/SocialsGrid.astro";
+import ValuesCard from "@components/ValuesCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import linda from "@assets/linda.webp";
 import { Image } from "astro:assets";
-import SocialsGrid from "@components/SocialsGrid.astro";
-import ContactEmail from "@components/ContactEmail.astro";
 import { getCollection } from "astro:content";
-import ValuesCard from "@components/ValuesCard.astro";
-import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
-import PostPreviewCard from "@components/PostPreviewCard.astro";
 
 const values = await getCollection("values");
-
 const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
 });
+const orderedProjects = featuredProjects.sort(
+  (p1, p2) =>
+    p2.data.lastPublishDate.getTime() - p1.data.lastPublishDate.getTime()
+);
 
 const featuredPosts = await getCollection("blog", ({ data }) => {
   return data.featured === true;
 });
+const orderedPosts = featuredPosts.sort(
+  (p1, p2) => p2.data.publishedDate.getTime() - p1.data.publishedDate.getTime()
+);
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
@@ -63,14 +69,14 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
   <section class="projects">
     <h2>Project showcase</h2>
     <div class="exp-cards">
-      {featuredProjects.map((item) => <ProjectPreviewCard project={item} />)}
+      {orderedProjects.map((item) => <ProjectPreviewCard project={item} />)}
     </div>
   </section>
 
   <section class="writing">
     <h2>Writing showcase</h2>
     <div class="exp-cards">
-      {featuredPosts.map((item) => <PostPreviewCard blogBit={item} />)}
+      {orderedPosts.map((item) => <PostPreviewCard blogBit={item} />)}
     </div>
   </section>
 </MainLayout>
