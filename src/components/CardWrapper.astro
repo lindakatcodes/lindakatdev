@@ -2,7 +2,7 @@
 
 ---
 
-<div class="container">
+<div class="card-container">
   <div class="corners"></div>
   <div class="card">
     <slot />
@@ -13,7 +13,7 @@
   /* Effect heavily based on this awesome codepen: https://codepen.io/notwaldorf/pen/EOOzqz */
 
   /* padding here only affects the slot */
-  .container {
+  .card-container {
     background: transparent;
     block-size: 100%;
     border: none;
@@ -24,10 +24,9 @@
     transition: all 0.2s;
   }
 
-  .container:hover,
-  .container:focus {
+  .card-container:hover,
+  .card-container:focus {
     box-shadow: 8px 12px 20px -4px var(--bg-shadow);
-    transform: scale(1.025);
 
     & .corners:before {
       top: 0;
