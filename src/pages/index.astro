@@ -2,6 +2,7 @@
 import linda from "@assets/linda.webp";
 import ContactEmail from "@components/ContactEmail.astro";
 import PostPreviewCard from "@components/PostPreviewCard.astro";
+import PraiseCard from "@components/PraiseCard.astro";
 import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import ValuesCard from "@components/ValuesCard.astro";
@@ -26,6 +27,11 @@ const featuredPosts = await getCollection("blog", ({ data }) => {
 });
 const orderedPosts = featuredPosts.sort(
   (p1, p2) => p2.data.publishedDate.getTime() - p1.data.publishedDate.getTime()
+);
+
+export const praises = await getCollection("praises");
+export const orderedPraises = praises.sort(
+  (p1, p2) => p1.data.order - p2.data.order
 );
 ---
 
@@ -77,6 +83,13 @@ const orderedPosts = featuredPosts.sort(
     <h2>Writing showcase</h2>
     <div class="exp-cards">
       {orderedPosts.map((item) => <PostPreviewCard blogBit={item} />)}
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Don't just take my word for it</h2>
+    <div class="praise-cards">
+      {orderedPraises.map((praise) => <PraiseCard praise={praise} />)}
     </div>
   </section>
 </MainLayout>
@@ -208,6 +221,23 @@ const orderedPosts = featuredPosts.sort(
       }
     }
   }
+
+  .praise-cards {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  }
 </style>
 
 <style is:global>
@@ -235,6 +265,36 @@ const orderedPosts = featuredPosts.sort(
     @media (min-width: 1280px) {
       & {
         grid-column: span 1;
+      }
+    }
+  }
+
+  .praise-cards > div {
+    @media (min-width: 1280px) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  .praise-cards > div:first-child {
+    @media (min-width: 768px) {
+      & {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-column: 1 / span 3;
+      }
+    }
+  }
+
+  .praise-cards > div:nth-child(2) {
+    @media (min-width: 1280px) {
+      & {
+        grid-column: 4 / span 3;
       }
     }
   }
