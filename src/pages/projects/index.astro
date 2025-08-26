@@ -6,64 +6,80 @@ import { getCollection } from "astro:content";
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
-});
+}).then((projects) =>
+  projects.sort(
+    (a, b) =>
+      b.data.lastPublishDate.getTime() - a.data.lastPublishDate.getTime()
+  )
+);
 
 const otherProjects = await getCollection("projects", ({ data }) => {
   return data.featured !== true;
-});
+}).then((projects) =>
+  projects.sort(
+    (a, b) =>
+      b.data.lastPublishDate.getTime() - a.data.lastPublishDate.getTime()
+  )
+);
+
+const allProjects = [...featuredProjects, ...otherProjects];
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <h2>Featured Projects</h2>
-  <div class="featured-cards">
+  <h1>Projects Showcase</h1>
+  <div class="project-cards">
     {
-      featuredProjects
-        .sort((a, b) => b.data.order - a.data.order)
-        .map((project) => (
-          <ProjectPreviewCard project={project} aboveFold={true} />
-        ))
-    }
-  </div>
-  <h3>Other Fun Projects</h3>
-  <div class="other-cards">
-    {
-      otherProjects
-        .sort((a, b) => b.data.order - a.data.order)
-        .map((project) => <ProjectPreviewCard project={project} />)
+      allProjects.map((project) => (
+        <ProjectPreviewCard project={project} aboveFold={true} />
+      ))
     }
   </div>
 </MainLayout>
 
 <style>
-  h2 {
+  h1 {
     text-align: center;
   }
 
-  h3 {
-    font-size: var(--h4);
-    text-align: center;
-  }
-
-  .featured-cards,
-  .other-cards {
+  .project-cards {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--s40);
-    margin: 0.5rem auto 3rem;
-    max-inline-size: 90%;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1640px) {
+      & {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  .project-cards > div {
+    @media (min-width: 768px) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
   }
 
-  @media (min-width: 520px) {
-    h3 {
-      font-size: var(--h3);
+  .project-cards > div:last-child:nth-child(odd) {
+    @media (min-width: 768px) {
+      & {
+        grid-column: 2 / span 2;
+      }
     }
 
-    .featured-cards {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .other-cards {
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    @media (min-width: 1640px) {
+      & {
+        grid-column: 3 / span 2;
+      }
     }
   }
 </style>

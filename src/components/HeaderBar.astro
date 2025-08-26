@@ -6,11 +6,23 @@ const activePath = Astro.url.pathname;
 <header transition:name="header">
   <nav>
     <a
-      class:list={["gradient-text link home", { active: activePath === "/" }]}
       href="/"
+      class:list={["gradient-text link home", { active: activePath === "/" }]}
     >
       LindaKat
     </a>
+    <a
+      href="/projects"
+      class:list={[
+        "link projects",
+        { "projects-active": activePath === "/projects" },
+      ]}>Projects</a
+    >
+    <a
+      href="/blog"
+      class:list={["link blog", { "blog-active": activePath === "/blog" }]}
+      >Blog</a
+    >
     <ThemeToggleSwitch />
   </nav>
   <div class="divider shadow-under"></div>
@@ -36,7 +48,7 @@ const activePath = Astro.url.pathname;
   .link {
     color: var(--text-main);
     font-family: var(--accent-font);
-    font-size: var(--h5);
+    font-size: var(--h4);
     text-decoration: none;
     text-shadow: -1px 1px 3px var(--bg-shadow);
     text-underline-offset: 0.5rem;
@@ -55,9 +67,28 @@ const activePath = Astro.url.pathname;
 
   .home {
     flex-grow: 1;
-    font-size: var(--h4);
     background-image: var(--gradient);
     text-shadow: none;
     background-size: 8rem;
+  }
+
+  .projects:hover,
+  .projects:focus {
+    color: var(--purple);
+    text-decoration-color: var(--blue);
+  }
+
+  .projects-active {
+    color: var(--purple);
+  }
+
+  .blog:hover,
+  .blog:focus {
+    color: var(--pink);
+    text-decoration-color: var(--green);
+  }
+
+  .blog-active {
+    color: var(--pink);
   }
 </style>
