@@ -27,6 +27,7 @@ COLOR THEME
   --purple: var(--pastel-purple, #D3A9EA);
   --text-main: var(--white, #EBEEEF);
   --text-flip: var(--background);
+  --link: var(--purple);
 
   --gradient: linear-gradient(
     60deg,
@@ -55,6 +56,7 @@ COLOR THEME
   --purple: var(--deep-purple, #54077D);
   --text-main: var(--black, #323334);
   --text-flip: var(--background);
+  --link: var(--pink);
 
   --gradient: linear-gradient(
     60deg,

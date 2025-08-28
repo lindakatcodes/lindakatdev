@@ -92,8 +92,7 @@ span {
 
 a {
   color: var(--text-main);
-  font-family: var(--body-font);
-  text-decoration-color: var(--green);
+  text-decoration-color: var(--blue);
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-underline-offset: 2px;
@@ -102,17 +101,8 @@ a {
 
 a:hover,
 a:focus {
-  color: var(--purple);
+  color: var(--link);
   text-decoration-style: double;
-}
-
-a:is(.gradient-text) {
-  background-color: var(--purple);
-  background-image: none;
-}
-
-a:is(.gradient-text):hover, a:is(.gradient-text):focus {
-  background-image: var(--gradient);
 }
 
 ul {
