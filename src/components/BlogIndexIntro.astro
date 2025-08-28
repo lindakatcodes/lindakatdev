@@ -10,22 +10,15 @@ const { isBlog = true } = Astro.props;
   {
     isBlog ? (
       <Fragment>
-        <h2>Linda's Blog</h2>
+        <h1>Writing Showcase</h1>
         <p>
-          Musings on code, life,{" "}
-          <a href="/notes" class="learn">
-            growth,
-          </a>
-          and lived experiences
-        </p>
-        <p class="rss">
           Prefer to read through RSS? <a href="/rss.xml">Here's my feed!</a>
         </p>
       </Fragment>
     ) : (
       <Fragment>
-        <h2>Linda's Notes</h2>
-        <p>Saved snippets and coursework notes</p>
+        <h1>Notes</h1>
+        <p>Saved snippets and coursework notes.</p>
       </Fragment>
     )
   }
@@ -33,29 +26,8 @@ const { isBlog = true } = Astro.props;
 
 <style>
   .intro {
-    width: 95%;
     margin: 0 auto 2rem;
     text-align: center;
     text-wrap: balance;
-  }
-
-  p {
-    margin-bottom: 0.25rem;
-  }
-
-  .learn {
-    color: var(--text-main);
-    text-decoration: none;
-    cursor: text;
-  }
-
-  .learn:hover {
-    color: var(--purple);
-  }
-
-  @media (min-width: 768px) {
-    .intro {
-      width: 50%;
-    }
   }
 </style>
