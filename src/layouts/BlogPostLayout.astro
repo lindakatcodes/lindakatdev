@@ -2,15 +2,16 @@
 
 ---
 
-<div class="post-content">
+<article class="post-content">
   <slot />
-</div>
+</article>
 
 <style is:global>
   /* markdown styles */
   .post-content {
+    container-type: inline-size;
     margin: 0 auto;
-    max-width: 60rem;
+    width: 100%;
   }
 
   .post-content p {
@@ -18,28 +19,33 @@
     margin: 1rem auto;
   }
 
+  .post-content h2,
+  .post-content h3,
+  .post-content h4 {
+    font-family: var(--body-font);
+    font-weight: bold;
+    scroll-margin-top: 4.375rem;
+  }
+
   .post-content h2 {
     color: var(--blue);
-    scroll-margin-top: var(--scroll-height);
   }
 
   .post-content h3 {
     color: var(--purple);
-    scroll-margin-top: var(--scroll-height);
   }
 
   .post-content h4 {
     color: var(--green);
-    scroll-margin-top: var(--scroll-height);
   }
 
   .post-content hr {
     background: var(--gradient);
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     height: 2px;
     margin: 0.25rem auto;
-    width: 55%;
+    width: 55cqw;
   }
 
   .post-content img {
@@ -47,36 +53,17 @@
     max-inline-size: 70%;
   }
 
-  .post-content a {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-color: var(--purple);
-    background-image: none;
-    background-repeat: repeat;
-    background-size: 100%;
-    color: var(--purple);
-    font-family: var(--body-font);
-    text-decoration: underline solid var(--green);
-    text-underline-offset: 2px;
-    transition: all 0.2s;
-  }
-
-  .post-content a:hover {
-    background-image: var(--gradient);
-    text-decoration-style: double;
-  }
-
   .post-content p code,
   .post-content li code {
     background-color: var(--bg-shadow);
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 0.25rem;
   }
 
   .post-content pre {
-    border-radius: 3px;
-    padding: 1.25em;
+    border-radius: 4px;
+    padding: 1.25rem;
+    max-width: 100cqw;
   }
 
   .post-content code {
@@ -87,17 +74,18 @@
 
   .post-content blockquote {
     background-image: var(--gradient);
-    border-radius: 5px;
-    padding: 2px;
+    border-radius: 4px;
+    padding: 0.125rem;
+    margin: 1rem auto;
   }
 
   .post-content blockquote > * {
     background-color: var(--bg-shadow);
-    border-radius: 3px;
+    border-radius: 2px;
     font-size: 1.2rem;
     font-weight: bold;
     margin: 0 auto;
-    padding: 2% 1% 2% 3%;
+    padding: 0.75rem;
     text-align: center;
   }
 
