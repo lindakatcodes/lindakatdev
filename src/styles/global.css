@@ -103,11 +103,15 @@ a:hover,
 a:focus {
   color: var(--link);
   text-decoration-style: double;
+
+  & span {
+    color: var(--link);
+  }
 }
 
 ul {
   list-style-type: none;
-  padding-left: 1.125rem;
+  padding-left: 2.125rem;
 }
 
 ul li {

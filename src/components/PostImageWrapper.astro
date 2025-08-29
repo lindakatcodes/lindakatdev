@@ -17,7 +17,12 @@ const oddLength = images.length % 2 === 1;
   {
     images.map((photo, idx) => (
       <figure
-        class:list={[{ "span-2": idx === images.length - 1 && oddLength }]}
+        class:list={[
+          {
+            "span-2": idx === images.length - 1 && oddLength,
+            "span-center": idx === 0 && images.length === 1,
+          },
+        ]}
       >
         <Image src={photo.pic} alt={photo.alt} />
         <figcaption>{photo.caption}</figcaption>
@@ -28,14 +33,31 @@ const oddLength = images.length % 2 === 1;
 
 <style>
   .post-img-wrapper {
+    container-type: inline-size;
+    width: 90%;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 1rem;
+    gap: 1rem;
+
+    @media (min-width: 1024px) {
+      & {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
   }
 
   .post-img-wrapper img {
-    border-radius: var(--s4);
+    border-radius: 4px;
     box-shadow: -2px 2px 4px 0px var(--bg-shadow);
+    width: 100cqw;
+
+    @media (min-width: 1024px) {
+      & {
+        max-width: 50cqw;
+        grid-column: span 2;
+      }
+    }
   }
 
   figcaption {
@@ -43,22 +65,25 @@ const oddLength = images.length % 2 === 1;
     color: var(--text-main);
     opacity: 0.8;
     font-size: var(--b-sm);
-    padding: 0 var(--s24);
+    padding: 0 1.5rem;
     text-wrap: pretty;
   }
 
-  @media (min-width: 768px) {
-    .post-img-wrapper {
-      grid-template-columns: 1fr 1fr;
-      align-items: start;
-    }
-
-    .post-img-wrapper img {
-      max-inline-size: 95%;
-    }
-
+  @media (min-width: 1024px) {
     .span-2 {
-      grid-column: span 2;
+      grid-column: span 4;
+
+      & img {
+        max-width: 100cqw;
+      }
+    }
+
+    .span-center {
+      grid-column: 2 / span 2;
+
+      & img {
+        max-width: 50cqw;
+      }
     }
   }
 </style>

@@ -13,6 +13,9 @@ status: Live
 type: blog
 ---
 
+import PostImageWrapper from "@components/PostImageWrapper.astro";
+import gizmo from "../../assets/blog/happy-gizmo.jpg";
+
 2023 was not the best year to me.
 
 It was a year of smaller amounts of growth, stagnation, and heartbreak. I've learned myself better and am starting to notice some mind shifts happening that are going to lead to great things down the road.
@@ -23,7 +26,13 @@ So let's dig into what happened and see what we can learn from it.
 
 The biggest life event this year was bringing Gizmo into our lives. He's completely changed our household, and it's already hard to imagine how things were without him. There's been a ton of hardship around adjusting to having a puppy and training him in the way we need him to be, but there's also been so much joy and happiness. He's so smart and sweet and his annoyances, while big to us, are not that terrible in the wider scheme of things. We really lucked out and found the best boy for our first dog as adults!
 
-![A photo of a young dog with brown and white fur and brown eyes, grinning up at the camera with his tounge hanging out the side of his mouth.](../../assets/blog/happy-gizmo.jpg)
+<PostImageWrapper images={[
+  {
+    pic: gizmo,
+    caption: "He loves his daily walks!",
+    alt: "A photo of a young dog with brown and white fur and brown eyes, grinning up at the camera with his tounge hanging out the side of his mouth.",
+  }
+]} />
 
 Other fun life wins from the year:
 
