@@ -1,9 +1,9 @@
 {
   "order": 3,
-  "value": "Strives for growth",
+  "value": "Elevates quality",
   "iconColor": "blue",
-  "iconName": "lightbulb",
-  "details": "I want to be a better developer, and you'll see this in my willingness to ask questions, improve context, and how I review code. I'm great at building context and ensuring we're building things the best way we can.",
+  "iconName": "gem",
+  "details": "I dive deep into every challenge, building a shared understanding through thoughtful questions and detailed code reviews. This attention to detail prevents minor mistakes from becoming major problems down the line, helping my teams deliver better products.",
   "quote": "Linda's role as an incredibly thorough code reviewer stands out as a testament to her commitment to quality. Her insightful questions consistently provide fresh perspectives that elevate the overall standard of our work.",
   "quoteRef": "Balázs Tápai, Sr. Software Engineer"
 }
