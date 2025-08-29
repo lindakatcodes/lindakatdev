@@ -67,8 +67,13 @@ const iconBgColor = `var(--${value.iconColor})`;
 
   .quote {
     font-style: italic;
-    text-wrap: balance;
     color: var(--iconBgColor);
+
+    @media (min-width: 1024px) {
+      & {
+        text-wrap: balance;
+      }
+    }
   }
 
   .quote-ref {

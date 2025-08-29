@@ -50,14 +50,17 @@ export const orderedPraises = praises.sort(
     </div>
     <div class="intro-blurb">
       <p>
-        I'm a software engineer that loves video games and logic puzzles. I
-        build accessible websites with semantic HTML, modern CSS, and
-        maintainable JavaScript. You'll love working with me thanks to my
-        stellar communication and organizational skills from my background in
-        retail and music. My goal is to build the best products possible for the
-        people that use them.
+        I’m a software engineer focused on crafting user interfaces and core
+        functionality for websites. I enjoy JavaScript and CSS, with Astro as my
+        framework of choice. When I need more dynamic experiences, I reach for
+        Vue, React, or Angular.
       </p>
-
+      <p>
+        My career has always been creatively focused, learning to coordinate and
+        communicate effectively in photo labs, piano stores, and print shops
+        before making the switch to a tech consultancy. I love working with
+        collaborative teams building high quality, accessible products.
+      </p>
       <div class="contact-cta">
         <ContactEmail ctaTitle="Let's build something together" />
         <SocialsGrid />
@@ -109,7 +112,7 @@ export const orderedPraises = praises.sort(
 
     @media (min-width: 1024px) {
       & {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 0.75fr;
       }
     }
   }
@@ -174,9 +177,10 @@ export const orderedPraises = praises.sort(
 
     @media (min-width: 1024px) {
       & {
-        width: 55cqw;
+        width: 50cqw;
         grid-column: 1;
         grid-row: 2;
+        text-align: justify;
       }
     }
   }
