@@ -23,7 +23,7 @@ const loading = aboveFold ? "eager" : "lazy";
     <div class="project-tech">
       {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
     </div>
-    <p class="project-description">{project.data.description}</p>
+    <p class="project-description">{project.data.blurb}</p>
     <div class="project-links">
       {
         project.data.codeLink && (
@@ -33,7 +33,7 @@ const loading = aboveFold ? "eager" : "lazy";
             target="_blank"
             rel="noreferrer noopener"
           >
-            Codebase
+            View Code
           </a>
         )
       }
@@ -45,38 +45,40 @@ const loading = aboveFold ? "eager" : "lazy";
             target="_blank"
             rel="noreferrer noopener"
           >
-            Live Site
+            View Site
           </a>
         )
       }
     </div>
-    {
+    <!-- {
       project.data.hasCaseStudy && (
         <a href={"/projects/" + project.id} class="case-study">
           Case Study
         </a>
       )
-    }
+    } -->
   </article>
 </CardWrapper>
 
 <style>
   .project-wrapper {
+    container-type: inline-size;
     block-size: 100%;
     padding: 0.25rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto 1fr auto auto;
-    gap: var(--s8);
+    grid-template-rows: min-content repeat(4, auto);
+    gap: 0.5rem;
     justify-items: center;
   }
 
   img {
-    max-width: 100%;
+    max-width: 100cqw;
+    max-height: 30cqh;
+    object-fit: contain;
   }
 
   .project-title {
-    font-size: var(--h6);
     margin: 0;
     text-align: center;
   }
@@ -86,6 +88,8 @@ const loading = aboveFold ? "eager" : "lazy";
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
+    max-width: 85cqw;
   }
 
   .project-tech p {
@@ -93,34 +97,35 @@ const loading = aboveFold ? "eager" : "lazy";
     text-transform: uppercase;
     font-weight: bold;
     font-size: var(--b-sm);
-    margin: 0 var(--s8);
+    margin: 0 0.5rem;
   }
 
-  .project-tech p:nth-child(2n) {
+  .project-tech p:nth-child(4n + 2) {
     color: var(--purple);
   }
 
-  .project-tech p:nth-child(3n) {
+  .project-tech p:nth-child(4n + 3) {
     color: var(--blue);
   }
 
-  .project-tech p:nth-child(4n) {
+  .project-tech p:nth-child(4n + 4) {
     color: var(--green);
   }
 
   .project-description {
-    font-size: 0.95rem;
+    font-size: var(--b-sm);
     margin: 0.25rem 0;
   }
 
   .project-links {
     display: flex;
     justify-content: center;
-    gap: var(--s8);
+    align-items: flex-end;
+    gap: 0.5rem;
   }
 
   a {
-    border-radius: 5px;
+    border-radius: 4px;
     color: var(--text-main);
     font-weight: bold;
     padding: 0.25rem 0.5rem;
@@ -151,11 +156,11 @@ const loading = aboveFold ? "eager" : "lazy";
     background: var(--purple);
   }
 
-  .case-study {
+  /* .case-study {
     border: 2px solid var(--blue);
   }
 
   .case-study:hover {
     background: var(--blue);
-  }
+  } */
 </style>

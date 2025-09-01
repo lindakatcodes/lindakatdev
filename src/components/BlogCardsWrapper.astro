@@ -40,23 +40,49 @@ const sortedPosts = posts.sort((a, b) => {
 
 <style>
   .posts-wrapper {
+    container-type: inline-size;
     display: grid;
-    gap: var(--s64);
+    gap: 2rem;
     margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
 
-  @media (min-width: 768px) {
-    .posts-wrapper {
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s40);
+  .posts-wrapper > div {
+    @media (min-width: 768px) {
+      & {
+        grid-area: span 1 / span 2;
+      }
     }
 
-    .posts-wrapper > div {
-      grid-area: span 1 / span 2;
+    @media (min-width: 1280px) {
+      & {
+        grid-area: span 1 / span 1;
+      }
+    }
+  }
+
+  .posts-wrapper div:last-child:nth-child(odd) {
+    @media (min-width: 768px) {
+      & {
+        grid-column: 2 / span 2;
+      }
     }
 
-    .posts-wrapper div:last-child:nth-child(odd) {
-      grid-column: 2 / span 2;
+    @media (min-width: 1280px) {
+      & {
+        grid-column: span 1;
+      }
     }
   }
 </style>

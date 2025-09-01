@@ -1,96 +1,48 @@
 ---
 import SocialsGrid from "./SocialsGrid.astro";
-import { EMAIL } from "@util/constants";
+import ContactEmail from "./ContactEmail.astro";
 ---
 
 <footer transition:name="footer">
   <div class="divider shadow-over"></div>
-  <div class="email-outro">
-    <p class="hey">Hey there!</p>
-    <p>Thanks for your time!</p>
-    <p>
-      Get in touch: <br />
-      <a href={`mailto:${EMAIL}`} class="gradient-text"> {EMAIL}</a>
-    </p>
+  <div class="contact-wrapper">
+    <ContactEmail inFooter />
+    <div class="contact-socials">
+      <SocialsGrid />
+    </div>
   </div>
-  <div class="footer-socials">
-    <SocialsGrid />
-  </div>
-  <p class="copyright">© 2020 - 2024 Linda Thompson</p>
 </footer>
 
 <style>
   footer {
-    align-items: center;
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      "divider divider"
-      "outro socials"
-      "copyright copyright";
+    container-type: inline-size;
+    margin-bottom: 1.5rem;
   }
 
-  .divider {
-    grid-area: divider;
-    width: 100%;
-  }
-
-  .email-outro {
-    grid-area: outro;
-    margin-left: var(--s24);
-  }
-
-  .hey {
-    color: var(--blue);
-    font-family: var(--accent-font);
-    font-size: var(--h5);
-    margin-bottom: initial;
-  }
-
-  p {
-    margin-bottom: 0.25rem;
-    margin-top: 0;
-  }
-
-  .footer-socials {
-    grid-area: socials;
-    margin-right: var(--s24);
-  }
-
-  .copyright {
-    font-size: 0.8rem;
-    grid-area: copyright;
-    margin-bottom: var(--s8);
-    text-align: center;
-  }
-
-  @media (max-width: 520px) {
-    footer {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr 1fr auto;
-      grid-template-areas:
-        "divider"
-        "outro"
-        "socials"
-        "copyright";
-    }
-
-    .email-outro {
-      font-size: 0.9rem;
-      margin-left: 0;
-      text-align: center;
-    }
-
-    .footer-socials {
-      margin: 0 auto;
-      width: 80%;
+  .contact-wrapper {
+    @media (min-width: 1024px) {
+      & {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
     }
   }
 
-  @media (min-width: 520px) and (max-width: 1024px) {
-    footer {
-      grid-template-columns: 0.75fr 1fr;
+  .contact-socials {
+    width: 75cqw;
+    margin: 0 auto;
+
+    @media (min-width: 520px) and (max-width: 1024px) {
+      & {
+        width: 50cqw;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      & {
+        width: 30cqw;
+      }
     }
   }
 </style>

@@ -1,0 +1,57 @@
+---
+import { EMAIL } from "@util/constants";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  ctaTitle?: string;
+  inFooter?: boolean;
+}
+
+const { ctaTitle = "Wanna chat?", inFooter = false } = Astro.props;
+---
+
+<div>
+  {
+    inFooter ? (
+      <p class="title gradient-text footer-bg">{ctaTitle}</p>
+    ) : (
+      <p class="title gradient-text">{ctaTitle}</p>
+    )
+  }
+  <p class="email">
+    <Icon name="email" />
+    Email:
+    <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  </p>
+</div>
+
+<style>
+  div {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: calc(var(--h5) + 0.5rem);
+    font-family: var(--accent-font);
+    text-align: center;
+
+    &.footer-bg {
+      background-size: 12rem;
+      background-position: center;
+    }
+  }
+
+  .email {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0 auto 0.25rem;
+    width: fit-content;
+  }
+
+  .email svg {
+    display: inline-block;
+    width: 1.125rem;
+  }
+</style>

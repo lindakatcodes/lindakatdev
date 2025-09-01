@@ -47,11 +47,12 @@ const projectsCollection = defineCollection({
       hasCaseStudy: z.boolean(),
       name: z.string(),
       headerImage: imageSchema({ image }),
-      description: z.string(),
+      blurb: z.string(),
       tech: z.array(z.string()),
       featured: z.boolean(),
-      order: z.number(),
-      demoLink: z.string().url().nullable(),
+      // order: z.number(),
+      lastPublishDate: z.date(),
+      // demoLink: z.string().url().nullable(),
       codeLink: z.string().url().nullable(),
       liveLink: z.string().url().nullable(),
     }),
@@ -69,9 +70,24 @@ const praisesCollection = defineCollection({
     }),
 });
 
+const valuesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.json", base: "./src/content/values" }),
+  schema: () =>
+    z.object({
+      order: z.number(),
+      value: z.string(),
+      iconColor: z.string(),
+      iconName: z.string(),
+      details: z.string(),
+      quote: z.string(),
+      quoteRef: z.string(),
+    }),
+});
+
 export const collections = {
   blog: blogCollection,
   notes: notesCollection,
   praises: praisesCollection,
   projects: projectsCollection,
+  values: valuesCollection,
 };

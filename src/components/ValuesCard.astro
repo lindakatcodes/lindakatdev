@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import CardWrapper from "./CardWrapper.astro";
+
+interface Props {
+  valueObj: CollectionEntry<"values">;
+}
+
+const { valueObj } = Astro.props;
+const value = valueObj.data;
+const iconBgColor = `var(--${value.iconColor})`;
+---
+
+<CardWrapper>
+  <article>
+    <div class="icon">
+      <Icon name={value.iconName} />
+    </div>
+    <h3>{value.value}</h3>
+    <p class="details">{value.details}</p>
+    <div class="divider"></div>
+    <div class="quote-group">
+      <p class="quote">{`"${value.quote}"`}</p>
+      <p class="quote-ref">{`- ${value.quoteRef}`}</p>
+    </div>
+  </article>
+</CardWrapper>
+
+<style define:vars={{ iconBgColor }}>
+  article {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.25rem;
+  }
+
+  .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    background: var(--iconBgColor);
+  }
+
+  .icon svg {
+    width: 2rem;
+    color: var(--text-flip);
+  }
+
+  h3 {
+    font-family: var(--body-font);
+    font-size: var(--b-lg);
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+      font-size: var(--h6);
+    }
+  }
+
+  .details {
+    text-wrap: pretty;
+  }
+
+  .quote {
+    font-style: italic;
+    color: var(--iconBgColor);
+
+    @media (min-width: 1024px) {
+      & {
+        text-wrap: balance;
+      }
+    }
+  }
+
+  .quote-ref {
+    font-size: var(--b-sm);
+    text-align: right;
+    color: var(--iconBgColor);
+  }
+</style>

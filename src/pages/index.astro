@@ -1,205 +1,305 @@
 ---
+import linda from "@assets/linda.webp";
+import ContactEmail from "@components/ContactEmail.astro";
 import PostPreviewCard from "@components/PostPreviewCard.astro";
 import PraiseCard from "@components/PraiseCard.astro";
 import ProjectPreviewCard from "@components/ProjectPreviewCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
+import ValuesCard from "@components/ValuesCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
-import { Icon } from "astro-icon/components";
-import { getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const values = await getCollection("values");
+const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
 
 const featuredProjects = await getCollection("projects", ({ data }) => {
   return data.featured === true;
 });
+const orderedProjects = featuredProjects.sort(
+  (p1, p2) =>
+    p2.data.lastPublishDate.getTime() - p1.data.lastPublishDate.getTime()
+);
 
 const featuredPosts = await getCollection("blog", ({ data }) => {
   return data.featured === true;
 });
+const orderedPosts = featuredPosts.sort(
+  (p1, p2) => p2.data.publishedDate.getTime() - p1.data.publishedDate.getTime()
+);
 
-const robPraise = await getEntry("praises", "20230823-linkedin-rob");
-const willPraise = await getEntry("praises", "20230818-linkedin-will");
-const jessPraise = await getEntry("praises", "20230818-twitter-jessica");
+export const praises = await getCollection("praises");
+export const orderedPraises = praises.sort(
+  (p1, p2) => p1.data.order - p2.data.order
+);
 ---
 
 <MainLayout metadata={DEFAULT_METADATA}>
-  <section id="intro">
-    <Icon name="script-name" title="Linda Thompson" />
-    <p class="subtitle gradient-text">
-      Software engineer, career changer, & team builder
-    </p>
-    <div class="social-wrapper">
-      <SocialsGrid />
+  <section class="intro">
+    <h1>Hi, nice to meet you! <br /> I'm Linda.</h1>
+    <div class="intro-photo">
+      <div class="photo-bg"></div>
+      <Image
+        priority
+        src={linda}
+        alt="A woman with dark brown and purple hair in a gray tank top offers you a friendly and knowing smile."
+        layout="constrained"
+        class="photo"
+      />
+    </div>
+    <div class="intro-blurb">
+      <p>
+        I’m a software engineer focused on crafting user interfaces and core
+        functionality for websites. I enjoy JavaScript and CSS, with Astro as my
+        framework of choice. When I need more dynamic experiences, I reach for
+        Vue, React, or Angular.
+      </p>
+      <p>
+        My career has always been creatively focused, learning to coordinate and
+        communicate effectively in photo labs, piano stores, and print shops
+        before making the switch to a tech consultancy. I love working with
+        collaborative teams building high quality, accessible products.
+      </p>
+      <div class="contact-cta">
+        <ContactEmail ctaTitle="Let's build something together" />
+        <SocialsGrid />
+      </div>
     </div>
   </section>
-  <section class="praise">
-    <PraiseCard praise={robPraise} />
-  </section>
-  <section id="projects">
-    <h2 class="section-title">Projects I've Crafted</h2>
-    <div class="project-cards">
-      {
-        featuredProjects
-          .sort((a, b) => b.data.order - a.data.order)
-          .map((project) => <ProjectPreviewCard project={project} />)
-      }
-    </div>
-    <div class="page-link">
-      <a href="/projects" class="gradient-text">More of my work</a>
+
+  <section class="value-add">
+    <h2>My core values</h2>
+    <div class="skills-container">
+      {orderedValues.map((value) => <ValuesCard valueObj={value} />)}
     </div>
   </section>
-  <section class="praise">
-    <PraiseCard praise={willPraise} />
-  </section>
-  <section id="posts">
-    <h2 class="section-title">Words I've Shared</h2>
-    <div class="post-blurbs">
-      {
-        featuredPosts
-          .sort(
-            (a, b) =>
-              new Date(b.data.publishedDate).valueOf() -
-              new Date(a.data.publishedDate).valueOf()
-          )
-          .map((post) => (
-            <div>
-              <PostPreviewCard blogBit={post} />
-            </div>
-          ))
-      }
-    </div>
-    <div class="page-link">
-      <a href="/blog" class="gradient-text">See all my posts</a>
+
+  <section class="projects">
+    <h2>Project showcase</h2>
+    <div class="exp-cards">
+      {orderedProjects.map((item) => <ProjectPreviewCard project={item} />)}
     </div>
   </section>
-  <section class="praise">
-    <PraiseCard praise={jessPraise} />
+
+  <section class="writing">
+    <h2>Writing showcase</h2>
+    <div class="exp-cards">
+      {orderedPosts.map((item) => <PostPreviewCard blogBit={item} />)}
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Don't just take my word for it</h2>
+    <div class="praise-cards">
+      {orderedPraises.map((praise) => <PraiseCard praise={praise} />)}
+    </div>
   </section>
 </MainLayout>
 
 <style>
   section {
-    padding: var(--s16) 0 var(--s80);
+    margin-bottom: 6rem;
   }
 
-  [data-icon="script-name"] {
-    color: var(--text-main);
-    margin: 0.5rem auto;
-    inline-size: 75%;
+  .intro {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      & {
+        grid-template-columns: 1fr 0.75fr;
+      }
+    }
   }
 
-  .subtitle {
-    margin: -1rem auto 1rem;
-    width: 23rem;
-    font-family: var(--heading-font);
-    font-size: var(--h4);
+  .intro h1 {
     text-align: center;
+    text-wrap: balance;
+    margin-bottom: 0;
+
+    @media (min-width: 1024px) {
+      & {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
+      }
+    }
   }
 
-  .social-wrapper {
-    margin: 2.5rem auto;
-    width: 50%;
+  .intro-photo {
+    display: grid;
+    justify-content: center;
+
+    @media (min-width: 1024px) {
+      & {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+      }
+    }
   }
 
-  .section-title {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: calc(var(--h2) * 1.25);
-  }
-
-  .page-link {
-    text-align: center;
-  }
-
-  .page-link a {
-    font-size: var(--b-lg);
-  }
-
-  .page-link a::before {
-    content: "» ";
-  }
-
-  .page-link a::after {
-    content: " «";
-  }
-
-  .praise {
-    max-inline-size: min(750px, 85dvw);
+  .photo {
+    width: 60cqw;
     margin: 0 auto;
+    grid-column: 1;
+    grid-row: 1;
+
+    @media screen and (min-width: 768px) {
+      & {
+        width: 40cqw;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      & {
+        width: 35cqw;
+      }
+    }
   }
 
-  .project-cards {
+  .photo-bg {
+    border-radius: 46% 54% 90% 10% / 63% 52% 48% 37%;
+    background: var(--gradient);
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 3rem;
+  }
+
+  .intro-blurb {
+    width: 85cqw;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: var(--s40);
-    margin: 0 auto var(--s40);
-    width: 90%;
+    gap: 1rem;
+
+    @media (min-width: 1024px) {
+      & {
+        width: 50cqw;
+        grid-column: 1;
+        grid-row: 2;
+        text-align: justify;
+      }
+    }
   }
 
-  .post-blurbs {
+  .contact-cta {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--s40);
-    margin: 0 auto var(--s40);
-    width: 90%;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
-  .post-blurbs > div {
-    grid-area: span 1 / span 2;
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
   }
 
-  .post-blurbs div:last-child:nth-child(odd) {
-    grid-column: 2 / span 2;
-  }
+  .skills-container {
+    container-type: inline-size;
+    display: grid;
+    gap: 2rem;
 
-  /* Mobile */
-  @media (max-width: 520px) {
-    .subtitle {
-      font-size: var(--h6);
-      max-width: 85%;
-      width: auto;
-    }
-
-    .section-title {
-      font-size: var(--h3);
-    }
-
-    .page-link {
-      margin: 0 auto;
-      width: 80%;
-    }
-
-    .social-wrapper {
-      width: 90%;
-    }
-
-    .project-cards {
-      grid-template-columns: 1fr;
-      width: 100%;
+    @media (min-width: 1024px) {
+      & {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   }
 
-  @media (max-width: 768px) {
-    [data-icon="script-name"] {
-      inline-size: 100%;
+  .exp-cards {
+    container-type: inline-size;
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
-    .post-blurbs {
-      grid-template-columns: 1fr;
-      width: 100%;
-    }
-
-    .post-blurbs > div {
-      grid-area: auto;
-    }
-
-    .post-blurbs div:last-child:nth-child(odd) {
-      grid-column: auto;
+    @media (min-width: 1280px) {
+      & {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   }
 
-  @media (min-width: 1024px) {
-    [data-icon="script-name"] {
-      inline-size: 60%;
+  .praise-cards {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  .exp-cards > div {
+    @media (min-width: 768px) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-area: span 1 / span 1;
+      }
+    }
+  }
+
+  .exp-cards > div:last-child:nth-child(odd) {
+    @media (min-width: 768px) {
+      & {
+        grid-column: 2 / span 2;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-column: span 1;
+      }
+    }
+  }
+
+  .praise-cards > div {
+    @media (min-width: 1280px) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  .praise-cards > div:first-child {
+    @media (min-width: 768px) {
+      & {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      & {
+        grid-column: 1 / span 3;
+      }
+    }
+  }
+
+  .praise-cards > div:nth-child(2) {
+    @media (min-width: 1280px) {
+      & {
+        grid-column: 4 / span 3;
+      }
     }
   }
 </style>

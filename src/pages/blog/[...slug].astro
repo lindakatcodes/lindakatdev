@@ -43,86 +43,68 @@ const postDetails = {
 
 <MainLayout metadata={metadata}>
   <section id="top">
-    <a href="/blog" class="back-link gradient-text">
+    <a href="/blog" class="back-link">
       <span>«</span> Back to the full blog list</a
     >
-    <div class="info">
-      <PostDetails postDetails={postDetails} />
-    </div>
-    {
-      headings.length > 0 && (
-        <div class="toc">
-          <TableOfContents headings={headings} />
-        </div>
-      )
-    }
+    <PostDetails postDetails={postDetails} />
     <div class="body">
+      {
+        headings.length > 0 && (
+          <aside class="toc">
+            <TableOfContents headings={headings} />
+          </aside>
+        )
+      }
       <BlogPostLayout>
         <Content />
       </BlogPostLayout>
     </div>
-    <div class="links">
-      <PaginationLinks main="#top" mainText="Back to top" />
-    </div>
+    <PaginationLinks main="#top" mainText="Back to top" />
   </section>
 </MainLayout>
 
 <style>
   section {
-    scroll-margin-top: var(--scroll-height);
+    scroll-margin-top: 4.375rem;
     display: grid;
-    grid-template-areas:
-      "back-link"
-      "info"
-      "toc"
-      "body"
-      "links";
+    gap: 1rem;
     justify-content: center;
-    gap: 0.5rem;
   }
 
   .back-link {
-    font-weight: bolder;
-    grid-area: back-link;
+    font-weight: bold;
 
     & span {
       font-size: var(--b-lg);
     }
   }
 
-  .info {
-    grid-area: info;
+  .body {
+    scrollbar-gutter: stable;
+    display: grid;
+    width: 90cqw;
+
+    @media (min-width: 1024px) {
+      & {
+        grid-template-columns: 1fr 0.5fr;
+        grid-template-rows: 1fr;
+        gap: 1rem;
+      }
+    }
   }
 
   .toc {
-    grid-area: toc;
-    justify-self: center;
-    margin-bottom: var(--s40);
+    margin-bottom: 2rem;
     scrollbar-gutter: stable;
-    min-inline-size: 100%;
-  }
+    width: 100%;
 
-  .body {
-    grid-area: body;
-    scrollbar-gutter: stable;
-  }
-
-  .links {
-    grid-area: links;
-  }
-
-  @media (min-width: 1024px) {
-    section {
-      grid-template-areas:
-        "back-link back-link"
-        "info info"
-        "body toc"
-        "links links";
-      grid-template-columns: 2fr 0.75fr;
-    }
-
-    .body {
-      padding: 0 1.5rem;
+    @media (min-width: 1024px) {
+      & {
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 0;
+        border-left: 2px solid var(--bg-shadow);
+      }
     }
   }
 </style>

@@ -12,7 +12,7 @@ const { prev, next, main, mainText } = Astro.props;
 <div class="pagination-wrapper">
   {
     prev ? (
-      <a href={prev} class="prev gradient-text">
+      <a href={prev} class="prev">
         <span>«</span> Previous
       </a>
     ) : (
@@ -21,7 +21,7 @@ const { prev, next, main, mainText } = Astro.props;
   }
   {
     main ? (
-      <a href={main} class="main gradient-text">
+      <a href={main} class="main">
         {mainText || "Back to full list"}
       </a>
     ) : (
@@ -30,7 +30,7 @@ const { prev, next, main, mainText } = Astro.props;
   }
   {
     next ? (
-      <a href={next} class="next gradient-text">
+      <a href={next} class="next">
         Next <span>»</span>
       </a>
     ) : (
