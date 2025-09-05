@@ -17,7 +17,7 @@ export async function GET(context) {
     items: blog.reverse().map((post) => ({
       title: post.data.title,
       pubDate: post.data.publishedDate,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.id}/`,
       description: post.data.description,
       content: sanitizeHtml(parser.render(post.body)),
     })),
