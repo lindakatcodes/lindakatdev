@@ -16,7 +16,7 @@ export interface Props {
 const { metadata } = Astro.props;
 ---
 
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <HeadMetadata metadata={metadata} />
   </head>
@@ -51,5 +51,10 @@ const { metadata } = Astro.props;
 
   document.addEventListener("astro:after-swap", () => {
     document.documentElement.classList.add("fonts-loaded");
+  });
+
+  document.addEventListener("astro:before-swap", (e) => {
+    e.newDocument.documentElement.dataset.theme =
+      localStorage.getItem("theme") || "dark";
   });
 </script>
