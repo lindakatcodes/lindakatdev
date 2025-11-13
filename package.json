@@ -22,7 +22,7 @@
   "dependencies": {
     "@astrojs/mdx": "^4.3.4",
     "@astrojs/rss": "^4.0.12",
-    "astro": "^5.13.5",
+    "astro": "^5.15.6",
     "astro-icon": "^1.1.0",
     "markdown-it": "^13.0.2",
     "mdast-util-to-string": "^4.0.0",
