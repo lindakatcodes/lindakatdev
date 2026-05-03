@@ -3,8 +3,7 @@
   "type": "module",
   "version": "2.0.0",
   "volta": {
-    "node": "22.11.0",
-    "npm": "10.9.0"
+    "node": "24.15.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -14,10 +13,7 @@
     "generate": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "prettier --write .",
-    "test:chrome": "npx playwright test --headed --browser=chromium",
-    "test:firefox": "npx playwright test --headed --browser=firefox",
-    "test:safari": "npx playwright test --headed --browser=webkit"
+    "lint": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
