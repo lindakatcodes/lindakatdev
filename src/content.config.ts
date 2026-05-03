@@ -13,6 +13,25 @@ const praisesCollection = defineCollection({
     }),
 });
 
+const projectsCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.json",
+    base: "./src/content/projects",
+  }),
+  schema: () =>
+    z.object({
+      name: z.string(),
+      image: z.string(),
+      imageAlt: z.string(),
+      about: z.string(),
+      tech: z.array(z.string()),
+      featured: z.boolean(),
+      lastPublishDate: z.date(),
+      codeLink: z.string().url().nullable(),
+      liveLink: z.string().url().nullable(),
+    }),
+});
+
 const valuesCollection = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/content/values" }),
   schema: () =>
@@ -29,5 +48,6 @@ const valuesCollection = defineCollection({
 
 export const collections = {
   praises: praisesCollection,
+  projects: projectsCollection,
   values: valuesCollection,
 };

@@ -1,0 +1,11 @@
+{
+  "name": "Arcade",
+  "image": "../../assets/projects/arcade.png",
+  "imageAlt": "A heading reads 'Welcome to the Arcade!' on a dark purple background. Below the heading are three tall rectangles, each with the name of a game, a screenshot of the game, and a small blurb with the game objective.",
+  "about": "I love games and wanted a place to collect all the ones I make, so created this arcade! Built in Astro so I can practice in different frameworks when I want to. Some are games I created following tutorials and some are ones I created on my own.",
+  "tech": ["Astro", "React", "JS", "HTML", "CSS"],
+  "featured": true,
+  "lastPublishDate": "2024-01-26",
+  "codeLink": "https://github.com/lindakatcodes/arcade",
+  "liveLink": "https://lindakat-arcade.netlify.app/"
+}

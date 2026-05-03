@@ -1,0 +1,11 @@
+{
+  "name": "CSS Drawings",
+  "image": "../../assets/projects/css-drawings.png",
+  "imageAlt": "A light blue background with the face of a cartoon tiger centered in the middle. The tiger has round ears, small eyes, and a big smile. His name is Hobbes, from the comic strip Calvin and Hobbes.",
+  "about": "I've loved the idea of drawing with HTML and CSS since I first discovered a set of email prompts showing how to get started. Some of these are from those prompts and some are my own ideas. Hobbes is my most liked pen on Codepen and I still love how cute he turned out!",
+  "tech": ["HTML", "CSS"],
+  "featured": false,
+  "lastPublishDate": "2022-05-07",
+  "codeLink": "https://codepen.io/collection/XOBRMd",
+  "liveLink": "https://codepen.io/lindakatcodes/pen/MpWPpN"
+}
