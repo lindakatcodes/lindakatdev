@@ -3,8 +3,7 @@
   "type": "module",
   "version": "2.0.0",
   "volta": {
-    "node": "22.11.0",
-    "npm": "10.9.0"
+    "node": "24.15.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -14,22 +13,14 @@
     "generate": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "prettier --write .",
-    "test:chrome": "npx playwright test --headed --browser=chromium",
-    "test:firefox": "npx playwright test --headed --browser=firefox",
-    "test:safari": "npx playwright test --headed --browser=webkit"
+    "lint": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.4",
-    "@astrojs/rss": "^4.0.12",
-    "astro": "^5.13.5",
-    "astro-icon": "^1.1.0",
-    "markdown-it": "^13.0.2",
-    "mdast-util-to-string": "^4.0.0",
-    "reading-time": "^1.5.0",
-    "sanitize-html": "^2.12.1"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.42.1"
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/rss": "^4.0.18",
+    "astro": "^6.2.1",
+    "astro-icon": "^1.1.5",
+    "markdown-it": "^14.1.1",
+    "sanitize-html": "^2.17.3"
   }
 }

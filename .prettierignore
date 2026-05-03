@@ -1,6 +1,4 @@
-_nuxt-archive
 .astro
-.frontmatter
 .vscode
 dist
 node_modules
