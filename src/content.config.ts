@@ -26,7 +26,7 @@ const projectsCollection = defineCollection({
       about: z.string(),
       tech: z.array(z.string()),
       featured: z.boolean(),
-      lastPublishDate: z.date(),
+      lastPublishDate: z.string(),
       codeLink: z.string().url().nullable(),
       liveLink: z.string().url().nullable(),
     }),
