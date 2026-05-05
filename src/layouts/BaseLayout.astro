@@ -1,0 +1,34 @@
+---
+import HeadMetadata from "@components/HeadMetadata.astro";
+import "@styles/global.css";
+
+export interface Props {
+  metadata: {
+    description: string;
+    imagePath: string;
+    title: string;
+    url: string;
+  };
+}
+
+const { metadata } = Astro.props;
+---
+
+<html lang="en" data-theme="dark">
+  <head><HeadMetadata metadata={metadata} /></head>
+  <body id="root">
+    <main class="content">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<script>
+  document.fonts.ready.then(() => {
+    document.documentElement.classList.add("fonts-loaded");
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    document.documentElement.classList.add("fonts-loaded");
+  });
+</script>
