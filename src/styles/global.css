@@ -81,3 +81,23 @@ a {
   background-repeat: repeat;
   background-size: 100%;
 }
+
+/* Theme styles that have to be global to work */
+[data-theme="dark"] .sun-and-moon {
+  & > .sun {
+    transform: scale(1.25);
+  }
+
+  & > .sun-beams {
+    opacity: 0;
+  }
+
+  & > .moon > circle {
+    transform: translateX(-7px);
+
+    @supports (cx: 1px) {
+      transform: translateX(0);
+      cx: 17px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 ---
-// import ThemeToggleSwitch from "./ThemeToggleSwitch.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 const activePath = Astro.url.pathname;
 ---
 
@@ -28,9 +28,90 @@ const activePath = Astro.url.pathname;
       class:list={["link about", { "about-active": activePath === "/about" }]}
       >About</a
     >
-    <!-- <ThemeToggleSwitch /> -->
+    <ThemeToggle />
   </nav>
   <div class="divider"></div>
 </header>
 
-<style></style>
+<style>
+  nav {
+    display: grid;
+    /* Stacked vertically on small screens */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 1rem;
+    padding: 0 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .link {
+    text-decoration: none;
+    font-size: var(--font-size-2xl);
+    font-family: var(--accent-font);
+
+    &:is(:hover, :focus-visible) {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-style: dotted;
+    }
+  }
+
+  .home {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    font-weight: bold;
+    font-size: var(--font-size-3xl);
+  }
+
+  .projects {
+    &:is(:hover, :focus-visible) {
+      color: var(--green);
+    }
+  }
+
+  .blog {
+    &:is(:hover, :focus-visible) {
+      color: var(--pink);
+    }
+  }
+
+  .about {
+    &:is(:hover, :focus-visible) {
+      color: var(--purple);
+    }
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      /* 
+        Col 1: Logo (auto-width)
+        Col 2: Flexible Spacer (1fr - pushes everything else right)
+        Col 3-6: Nav items and ThemeToggle (auto-width)
+      */
+      grid-template-columns: auto 1fr auto auto auto auto;
+      grid-template-rows: 1fr;
+      justify-items: start;
+    }
+
+    .home {
+      grid-column: 1;
+    }
+
+    .projects {
+      grid-column: 3;
+    }
+
+    .blog {
+      grid-column: 4;
+    }
+
+    .about {
+      grid-column: 5;
+    }
+
+    :global(.theme-toggle) {
+      grid-column: 6;
+    }
+  }
+</style>

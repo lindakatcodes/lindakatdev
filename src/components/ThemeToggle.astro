@@ -1,0 +1,140 @@
+<button
+  class="theme-toggle"
+  id="theme-toggle"
+  title="Toggles light & dark"
+  aria-label="auto"
+  aria-live="polite"
+>
+  <svg
+    class="sun-and-moon"
+    aria-hidden="true"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="sun"
+      cx="12"
+      cy="12"
+      r="6"
+      mask="url(#moon-mask)"
+      fill="currentColor"></circle>
+    <g class="sun-beams" stroke="currentColor">
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </g>
+    <mask class="moon" id="moon-mask">
+      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+      <circle cx="24" cy="10" r="6" fill="black"></circle>
+    </mask>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    --size: 2rem;
+    --icon-fill: var(--text-main);
+    --icon-fill-hover: var(--blue);
+
+    background: none;
+    border: none;
+    padding: 0;
+
+    inline-size: var(--size);
+    block-size: var(--size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+
+    outline-offset: 5px;
+
+    & > svg {
+      inline-size: 100%;
+      block-size: 100%;
+      stroke-linecap: round;
+    }
+
+    @media (hover: none) {
+      --size: 48px;
+    }
+  }
+
+  .sun-and-moon {
+    & > :is(.moon, .sun, .sun-beams) {
+      transform-origin: center center;
+    }
+
+    & > :is(.moon, .sun) {
+      fill: var(--icon-fill);
+    }
+
+    & > .sun-beams {
+      stroke: var(--icon-fill);
+      stroke-width: 2px;
+    }
+  }
+
+  .theme-toggle:is(:hover, :focus-visible) > .sun-and-moon {
+    & > :is(.moon, .sun) {
+      fill: var(--icon-fill-hover);
+    }
+
+    & > .sun-beams {
+      stroke: var(--icon-fill-hover);
+    }
+  }
+</style>
+
+<script>
+  function getThemeString(
+    localValue: string | null,
+    systemValue: MediaQueryList,
+  ): string {
+    if (localValue !== null) return localValue;
+    if (systemValue.matches) return "light";
+    return "dark";
+  }
+
+  function updatePageTheme(
+    currentTheme: string,
+    buttonEl: Element | null,
+  ): void {
+    const newAriaLabel = currentTheme === "dark" ? "dark" : "light";
+    buttonEl?.setAttribute("aria-label", newAriaLabel);
+    document.querySelector("html")?.setAttribute("data-theme", currentTheme);
+  }
+
+  const setColorTheme = () => {
+    const themeButton = document.querySelector("#theme-toggle");
+    const localStorageTheme = localStorage.getItem("theme");
+    const systemSettingLight = window.matchMedia(
+      "(prefers-color-scheme: light)",
+    );
+
+    let currentThemeSetting = getThemeString(
+      localStorageTheme,
+      systemSettingLight,
+    );
+    updatePageTheme(currentThemeSetting, themeButton);
+
+    themeButton?.addEventListener("click", (event) => {
+      const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      updatePageTheme(newTheme, themeButton);
+      currentThemeSetting = newTheme;
+    });
+  };
+
+  setColorTheme();
+
+  document.addEventListener("astro:after-swap", setColorTheme);
+</script>
