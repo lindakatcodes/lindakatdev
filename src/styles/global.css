@@ -12,6 +12,8 @@ html {
   --font-size-3xl: 2.441rem;
   --font-size-4xl: 3.052rem;
   --font-size-5xl: 3.815rem;
+
+  color-scheme: light dark;
 }
 
 /* Global defaults */
@@ -52,9 +54,12 @@ h6 {
 body {
   background-color: var(--background);
   font-size: var(--font-size-md);
-  color: var(--text-main);
   transition: all 0.3s ease-in-out;
   font-family: var(--body-font);
+}
+
+p, span, li, a {
+  color: var(--text-main);
 }
 
 /* Global utilities */

@@ -1,0 +1,36 @@
+---
+// import ThemeToggleSwitch from "./ThemeToggleSwitch.astro";
+const activePath = Astro.url.pathname;
+---
+
+<header>
+  <nav>
+    <a
+      href="/"
+      class:list={["gradient-text link home", { active: activePath === "/" }]}
+    >
+      LindaKat
+    </a>
+    <a
+      href="/projects"
+      class:list={[
+        "link projects",
+        { "projects-active": activePath === "/projects" },
+      ]}>Projects</a
+    >
+    <a
+      href="/blog"
+      class:list={["link blog", { "blog-active": activePath === "/blog" }]}
+      >Blog</a
+    >
+    <a
+      href="/about"
+      class:list={["link about", { "about-active": activePath === "/about" }]}
+      >About</a
+    >
+    <!-- <ThemeToggleSwitch /> -->
+  </nav>
+  <div class="divider"></div>
+</header>
+
+<style></style>
