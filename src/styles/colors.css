@@ -2,72 +2,76 @@
 COLOR THEME
 */
 
-:root {
-  --black: oklch(0.32 0.002 247.9);
-  --white: oklch(0.95 0.003 219.53);
-  --gray-light: oklch(0.81 0.004 219.54);
-  --gray-mid: oklch(0.35 0.007 248.02); /* #383B3E */
-  --gray-dark: oklch(0.27 0.002 247.91);
-  --pastel-blue: oklch(0.84 0.069 208.77);
-  --pastel-green: oklch(0.86 0.126 143.77);
-  --pastel-pink: oklch(0.8 0.078 5.76);
-  --pastel-purple: oklch(0.79 0.1 313.35);
-  --deep-blue: oklch(0.39 0.068 218.69);
-  --deep-green: oklch(0.4 0.126 141.35);
-  --deep-pink: oklch(0.38 0.136 1.28);
-  --deep-purple: oklch(0.35 0.172 308.25);
+@layer base {
+  :root {
+    --black: oklch(0.32 0.002 247.9);
+    --white: oklch(0.95 0.003 219.53);
+    --gray-light: oklch(0.81 0.004 219.54);
+    --gray-mid: oklch(0.35 0.007 248.02); /* #383B3E */
+    --gray-dark: oklch(0.27 0.002 247.91);
+    --pastel-blue: oklch(0.84 0.069 208.77);
+    --pastel-green: oklch(0.86 0.126 143.77);
+    --pastel-pink: oklch(0.8 0.078 5.76);
+    --pastel-purple: oklch(0.79 0.1 313.35);
+    --deep-blue: oklch(0.39 0.068 218.69);
+    --deep-green: oklch(0.4 0.126 141.35);
+    --deep-pink: oklch(0.38 0.136 1.28);
+    --deep-purple: oklch(0.35 0.172 308.25);
+  }
 }
 
-[data-theme="dark"] {
-  --background: var(--black, #323334);
-  --bg-shadow: var(--gray-dark, #252627);
-  --blue: var(--pastel-blue, #96D9E4);
-  --green: var(--pastel-green, #9CE59A);
-  --pink: var(--pastel-pink, #EAA9B6);
-  --purple: var(--pastel-purple, #D3A9EA);
-  --text-flip: var(--background);
-  --text-main: var(--white, #EBEEEF);
+@layer theme {
+  [data-theme="dark"] {
+    --background: var(--black, #323334);
+    --bg-shadow: var(--gray-dark, #252627);
+    --blue: var(--pastel-blue, #96d9e4);
+    --green: var(--pastel-green, #9ce59a);
+    --pink: var(--pastel-pink, #eaa9b6);
+    --purple: var(--pastel-purple, #d3a9ea);
+    --text-flip: var(--background);
+    --text-main: var(--white, #ebeeef);
 
-  --gradient: linear-gradient(
-    60deg,
-    hsl(348deg 61% 79%) 0%,
-    hsl(336deg 62% 79%) 9%,
-    hsl(321deg 57% 78%) 18%,
-    hsl(297deg 47% 77%) 27%,
-    hsl(262deg 70% 82%) 36%,
-    hsl(221deg 92% 82%) 45%,
-    hsl(204deg 86% 76%) 55%,
-    hsl(192deg 67% 74%) 64%,
-    hsl(182deg 58% 70%) 73%,
-    hsl(169deg 63% 69%) 82%,
-    hsl(152deg 64% 71%) 91%,
-    hsl(118deg 59% 75%) 100%
-  );
-}
+    --gradient: linear-gradient(
+      60deg,
+      hsl(348deg 61% 79%) 0%,
+      hsl(336deg 62% 79%) 9%,
+      hsl(321deg 57% 78%) 18%,
+      hsl(297deg 47% 77%) 27%,
+      hsl(262deg 70% 82%) 36%,
+      hsl(221deg 92% 82%) 45%,
+      hsl(204deg 86% 76%) 55%,
+      hsl(192deg 67% 74%) 64%,
+      hsl(182deg 58% 70%) 73%,
+      hsl(169deg 63% 69%) 82%,
+      hsl(152deg 64% 71%) 91%,
+      hsl(118deg 59% 75%) 100%
+    );
+  }
 
-[data-theme="light"] {
-  --background: var(--white);
-  --bg-shadow: var(--gray-light, #BDC0C1);
-  --blue: var(--deep-blue, #044C5C);
-  --green: var(--deep-green, #145809);
-  --pink: var(--deep-pink, #76133D);
-  --purple: var(--deep-purple, #54077D);
-  --text-flip: var(--background);
-  --text-main: var(--black);
+  [data-theme="light"] {
+    --background: var(--white);
+    --bg-shadow: var(--gray-light, #bdc0c1);
+    --blue: var(--deep-blue, #044c5c);
+    --green: var(--deep-green, #145809);
+    --pink: var(--deep-pink, #76133d);
+    --purple: var(--deep-purple, #54077d);
+    --text-flip: var(--background);
+    --text-main: var(--black);
 
-  --gradient: linear-gradient(
-    60deg,
-    hsl(335deg 72% 27%) 0%,
-    hsl(323deg 100% 23%) 9%,
-    hsl(312deg 100% 22%) 18%,
-    hsl(294deg 100% 22%) 27%,
-    hsl(259deg 62% 32%) 36%,
-    hsl(214deg 100% 27%) 45%,
-    hsl(205deg 100% 24%) 55%,
-    hsl(194deg 100% 20%) 64%,
-    hsl(187deg 100% 18%) 73%,
-    hsl(174deg 100% 17%) 82%,
-    hsl(154deg 100% 17%) 91%,
-    hsl(112deg 81% 19%) 100%
-  );
+    --gradient: linear-gradient(
+      60deg,
+      hsl(335deg 72% 27%) 0%,
+      hsl(323deg 100% 23%) 9%,
+      hsl(312deg 100% 22%) 18%,
+      hsl(294deg 100% 22%) 27%,
+      hsl(259deg 62% 32%) 36%,
+      hsl(214deg 100% 27%) 45%,
+      hsl(205deg 100% 24%) 55%,
+      hsl(194deg 100% 20%) 64%,
+      hsl(187deg 100% 18%) 73%,
+      hsl(174deg 100% 17%) 82%,
+      hsl(154deg 100% 17%) 91%,
+      hsl(112deg 81% 19%) 100%
+    );
+  }
 }

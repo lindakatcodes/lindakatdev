@@ -1,3 +1,4 @@
+@layer reset {
 /* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,
@@ -66,10 +67,9 @@ h6 {
   text-wrap: balance;
 }
 
-/*
-  10. Create a root stacking context
-*/
+/* 10. Create a root stacking context */
 #root,
 #__next {
   isolation: isolate;
+}
 }

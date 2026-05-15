@@ -1,13 +1,15 @@
-/* Initial font families */
-html {
-  --body-font: sans-serif;
-  --accent-font: "Brush Script MT", serif;
-  --heading-font: serif;
-}
+@layer base {
+  /* Initial font families */
+  html {
+    --body-font: sans-serif;
+    --accent-font: "Brush Script MT", serif;
+    --heading-font: serif;
+  }
 
-/* Once web fonts are loaded */
-.fonts-loaded {
-  --body-font: "Fira Sans", system-ui, sans-serif;
-  --accent-font: "Birthstone", "Brush Script MT", serif;
-  --heading-font: "Source Serif 4", serif;
+  /* Once web fonts are loaded */
+  .fonts-loaded {
+    --body-font: "Fira Sans", system-ui, sans-serif;
+    --accent-font: "Birthstone", "Brush Script MT", serif;
+    --heading-font: "Source Serif 4", serif;
+  }
 }

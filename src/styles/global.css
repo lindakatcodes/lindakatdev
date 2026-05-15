@@ -2,6 +2,8 @@
 @import "colors.css";
 @import "fonts.css";
 
+@layer reset, base, theme;
+
 /* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
   --xs (min-width: 520px);  32.5rem
   --sm (min-width: 768px);  48rem
@@ -10,107 +12,112 @@
   --xl (min-width: 1640px); 102.5rem
 */
 
-html {
-  --font-size-xs: 0.64rem;
-  --font-size-sm: 0.8rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.563rem;
-  --font-size-2xl: 1.953rem;
-  --font-size-3xl: 2.441rem;
-  --font-size-4xl: 3.052rem;
-  --font-size-5xl: 3.815rem;
-  --font-size-6xl: 4.75rem;
+@layer base {
+  html {
+    --font-size-xs: 0.64rem;
+    --font-size-sm: 0.8rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.563rem;
+    --font-size-2xl: 1.953rem;
+    --font-size-3xl: 2.441rem;
+    --font-size-4xl: 3.052rem;
+    --font-size-5xl: 3.815rem;
+    --font-size-6xl: 4.75rem;
 
-  color-scheme: light dark;
-}
-
-/* Global defaults */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--accent-font);
-  letter-spacing: 0.125rem;
-}
-
-
-h5,
-h6 {
-  font-family: var(--heading-font);
-  font-weight: bold;
-}
-
-h1 {
-  font-size: var(--font-size-5xl);
-}
-
-h2 {
-  font-size: var(--font-size-4xl);
-}
-
-h3 {
-  font-size: var(--font-size-3xl);
-}
-
-h4 {
-  font-size: var(--font-size-2xl);
-}
-
-h5 {
-  font-size: var(--font-size-xl);
-}
-
-h6 {
-  font-size: var(--font-size-lg);
-}
-
-body {
-  background-color: var(--background);
-  font-size: var(--font-size-md);
-  transition: all 0.3s ease-in-out;
-  font-family: var(--body-font);
-}
-
-p,
-span,
-li,
-a {
-  color: var(--text-main);
-}
-
-/* Global utilities */
-.divider {
-  background: var(--gradient);
-  height: 4px;
-}
-
-.gradient-text {
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: var(--text-main);
-  background-image: var(--gradient);
-  background-repeat: repeat;
-  background-size: 100%;
-}
-
-/* Theme styles that have to be global to work */
-[data-theme="dark"] .sun-and-moon {
-  & > .sun {
-    transform: scale(1.25);
+    color-scheme: light dark;
   }
 
-  & > .sun-beams {
-    opacity: 0;
+  /* Global defaults */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--accent-font);
+    letter-spacing: 0.125rem;
   }
 
-  & > .moon > circle {
-    transform: translateX(-7px);
+  h5,
+  h6 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+  }
 
-    @supports (cx: 1px) {
-      transform: translateX(0);
-      cx: 17px;
+  h1 {
+    font-size: var(--font-size-5xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-4xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h4 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h5 {
+    font-size: var(--font-size-xl);
+  }
+
+  h6 {
+    font-size: var(--font-size-lg);
+  }
+
+  body {
+    background-color: var(--background);
+    font-size: var(--font-size-md);
+    transition:
+      background-color 0.3s ease-in-out,
+      color 0.3s ease-in-out;
+    font-family: var(--body-font);
+  }
+
+  p,
+  span,
+  li,
+  a {
+    color: var(--text-main);
+  }
+
+  /* Global utilities */
+  .divider {
+    background: var(--gradient);
+    height: 4px;
+  }
+
+  .gradient-text {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-color: var(--text-main);
+    background-image: var(--gradient);
+    background-repeat: repeat;
+    background-size: 100%;
+  }
+}
+
+@layer theme {
+  /* Theme styles that have to be global to work */
+  [data-theme="dark"] .sun-and-moon {
+    & > .sun {
+      transform: scale(1.25);
+    }
+
+    & > .sun-beams {
+      opacity: 0;
+    }
+
+    & > .moon > circle {
+      transform: translateX(-7px);
+
+      @supports (cx: 1px) {
+        transform: translateX(0);
+        cx: 17px;
+      }
     }
   }
 }
