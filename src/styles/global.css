@@ -29,7 +29,12 @@ html {
 h1,
 h2,
 h3,
-h4,
+h4 {
+  font-family: var(--accent-font);
+  letter-spacing: 0.125rem;
+}
+
+
 h5,
 h6 {
   font-family: var(--heading-font);

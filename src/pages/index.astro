@@ -1,6 +1,12 @@
 ---
+import SocialsGrid from "@components/SocialsGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
+import { getCollection } from "astro:content";
+
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+});
 ---
 
 <BaseLayout metadata={DEFAULT_METADATA}>
@@ -10,6 +16,16 @@ import { DEFAULT_METADATA } from "@util/constants";
       A software sorceress, elevating teams through intentional design &
       inclusive code.
     </p>
+    <SocialsGrid />
+  </section>
+  <section class="projects">
+    <h2>Projects</h2>
+    <div class="project-cards">
+      <!-- {
+        featuredProjects
+          .map((project) => <ProjectPreviewCard project={project} />)
+      } -->
+    </div>
   </section>
 </BaseLayout>
 
@@ -37,9 +53,15 @@ import { DEFAULT_METADATA } from "@util/constants";
     }
   }
 
+  .projects {
+    & h2 {
+      text-align: center;
+    }
+  }
+
   @media (min-width: 48rem) {
     .splash {
-      gap: 0;
+      gap: 0.5rem;
     }
   }
 </style>
