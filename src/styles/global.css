@@ -2,6 +2,14 @@
 @import "colors.css";
 @import "fonts.css";
 
+/* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
+  --xs (min-width: 520px);  32.5rem
+  --sm (min-width: 768px);  48rem
+  --md (min-width: 1024px); 64rem
+  --lg (min-width: 1280px); 80rem
+  --xl (min-width: 1640px); 102.5rem
+*/
+
 html {
   --font-size-xs: 0.64rem;
   --font-size-sm: 0.8rem;

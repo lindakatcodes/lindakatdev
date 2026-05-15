@@ -5,9 +5,41 @@ import { DEFAULT_METADATA } from "@util/constants";
 
 <BaseLayout metadata={DEFAULT_METADATA}>
   <section class="splash">
-    <p class="subtitle">Hey there! I'm</p>
     <h1>Linda Thompson</h1>
-    <p>Elevating teams through intentional design & inclusive code.</p>
-    <p>Software sorceress, mother of pets, & cozy gamer.</p>
+    <p>
+      A software sorceress, elevating teams through intentional design &
+      inclusive code.
+    </p>
   </section>
 </BaseLayout>
+
+<style>
+  .splash {
+    min-block-size: 50vh;
+    padding: 4rem 2rem;
+    max-inline-size: 48rem;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+    margin: 0 auto;
+
+    & h1 {
+      font-family: var(--accent-font);
+      font-size: clamp(var(--font-size-6xl), 12vw, 6rem);
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    & p {
+      font-size: clamp(var(--font-size-md), 4vw, var(--font-size-lg));
+      max-inline-size: 36rem;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .splash {
+      gap: 0;
+    }
+  }
+</style>
