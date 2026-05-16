@@ -18,10 +18,10 @@ const projectsCollection = defineCollection({
     pattern: "**/*.json",
     base: "./src/content/projects",
   }),
-  schema: () =>
+  schema: ({ image }) =>
     z.object({
       name: z.string(),
-      image: z.string(),
+      image: image(),
       imageAlt: z.string(),
       about: z.string(),
       tech: z.array(z.string()),

@@ -1,4 +1,5 @@
 ---
+import ProjectCard from "@components/ProjectCard.astro";
 import SocialsGrid from "@components/SocialsGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants";
@@ -21,19 +22,28 @@ const featuredProjects = await getCollection("projects", ({ data }) => {
   <section class="projects">
     <h2>Projects</h2>
     <div class="project-cards">
-      <!-- {
-        featuredProjects
-          .map((project) => <ProjectPreviewCard project={project} />)
-      } -->
+      {featuredProjects.sort((a, b) => {
+        // sort by lastPublishDate descending (newest first)
+        const aTime = new Date(a.data.lastPublishDate).getTime();
+        const bTime = new Date(b.data.lastPublishDate).getTime();
+        return bTime - aTime;
+      }).map((project, i) => {
+        const width = i % 4 === 0 || i % 4 === 3 ? 'double' : 'single';
+        return <ProjectCard class=`${width}` project={project} />
+      })}
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  section {
+    margin-block-end: 8rem;
+    margin-inline: 2rem;
+  }
+
   .splash {
     min-block-size: 50vh;
-    padding-block: 4rem;
-    padding-inline: 2rem;
+    padding-block: 6rem;
     max-inline-size: 48rem;
     text-align: center;
     display: grid;
@@ -55,8 +65,19 @@ const featuredProjects = await getCollection("projects", ({ data }) => {
   }
 
   .projects {
+    container-type: inline-size;
     & h2 {
       text-align: center;
+    }
+
+    & .project-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+
+      @container (min-width: 48rem) {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   }
 
