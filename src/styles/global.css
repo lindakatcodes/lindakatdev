@@ -35,36 +35,38 @@
   h4 {
     font-family: var(--accent-font);
     letter-spacing: 0.125rem;
+    color: var(--text-main);
   }
 
   h5,
   h6 {
     font-family: var(--heading-font);
     font-weight: bold;
+    color: var(--text-main);
   }
 
   h1 {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-6xl);
   }
 
   h2 {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
   }
 
   h3 {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-4xl);
   }
 
   h4 {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-3xl);
   }
 
   h5 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
   }
 
   h6 {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
   }
 
   body {

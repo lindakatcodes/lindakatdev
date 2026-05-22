@@ -47,18 +47,15 @@ const socialLinks: socialLink[] = [
 
 <style>
   .socials {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    container: socials / inline-size;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: baseline;
+    gap: 0.75rem;
   }
 
   .social-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-block-start: 0.5rem;
     text-decoration-color: transparent;
   }
 
@@ -70,12 +67,12 @@ const socialLinks: socialLink[] = [
     color: var(--text-main);
     inline-size: 1.75rem;
     block-size: 1.75rem;
+    margin-inline: auto;
   }
 
   .social-link p {
     color: var(--text-main);
     font-size: var(--font-size-xs);
-    margin-top: 0.125rem;
   }
 
   .resume:hover {
@@ -119,17 +116,6 @@ const socialLinks: socialLink[] = [
     }
     & p {
       color: var(--blue);
-    }
-  }
-
-  @container socials (max-width: 48rem) {
-    .socials {
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .social-link p {
-      font-size: 0.7rem;
     }
   }
 </style>

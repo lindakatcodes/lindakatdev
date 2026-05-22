@@ -1,0 +1,48 @@
+---
+import SocialsGrid from "./SocialsGrid.astro";
+import ContactEmail from "./ContactEmail.astro";
+---
+
+<footer transition:name="footer">
+  <div class="divider"></div>
+  <div class="contact-wrapper">
+    <ContactEmail inFooter />
+    <div class="contact-socials">
+      <SocialsGrid />
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    container-type: inline-size;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-wrapper {
+    @media (min-width: 64rem) {
+      & {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+  }
+
+  .contact-socials {
+    width: 75cqw;
+    margin: 0 auto;
+
+    @media (min-width: 32.5rem) and (max-width: 64rem) {
+      & {
+        width: 50cqw;
+      }
+    }
+
+    @media (min-width: 64rem) {
+      & {
+        width: 30cqw;
+      }
+    }
+  }
+</style>

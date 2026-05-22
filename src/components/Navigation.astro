@@ -3,7 +3,7 @@ import ThemeToggle from "./ThemeToggle.astro";
 const activePath = Astro.url.pathname;
 ---
 
-<header>
+<header transition:name="header">
   <nav>
     <a
       href="/"
@@ -48,12 +48,6 @@ const activePath = Astro.url.pathname;
     text-decoration: none;
     font-size: var(--font-size-2xl);
     font-family: var(--accent-font);
-
-    &:is(:hover, :focus-visible) {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-style: dotted;
-    }
   }
 
   .home {
