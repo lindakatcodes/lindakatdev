@@ -36,6 +36,7 @@
     font-family: var(--accent-font);
     letter-spacing: 0.125rem;
     color: var(--text-main);
+    font-weight: 400;
   }
 
   h5,

@@ -30,18 +30,24 @@ import ContactEmail from "./ContactEmail.astro";
   }
 
   .contact-socials {
-    width: 75cqw;
+    inline-size: 60cqw;
     margin: 0 auto;
 
     @media (min-width: 32.5rem) and (max-width: 64rem) {
       & {
-        width: 50cqw;
+        inline-size: 50cqw;
       }
     }
 
     @media (min-width: 64rem) {
       & {
-        width: 30cqw;
+        inline-size: 30cqw;
+      }
+    }
+
+    @media (min-width: 80rem) {
+      & {
+        inline-size: 20cqw;
       }
     }
   }
