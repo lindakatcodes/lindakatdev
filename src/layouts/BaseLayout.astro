@@ -27,6 +27,16 @@ const { metadata } = Astro.props;
   </body>
 </html>
 
+<style>
+  main {
+    margin-inline: 1rem;
+
+    @media screen and (min-width: 48rem) {
+      margin-inline: 2rem;
+    }
+  }
+</style>
+
 <script>
   document.fonts.ready.then(() => {
     document.documentElement.classList.add("fonts-loaded");

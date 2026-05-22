@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  praise: CollectionEntry<"praises">;
+}
+
+const { praise } = Astro.props;
+const praiseData = praise.data;
+---
+
+<div class="wrapper">
+  <p class="decorator quotemark">❝</p>
+  <p class="quote">{praiseData.quote}</p>
+  <p class="decorator speaker">{praiseData.name}</p>
+  <p class="title">{praiseData.title}</p>
+  <a href={praiseData.srcLink}>
+    Full praise
+    <Icon name="external-link" class="link-icon" />
+  </a>
+</div>
+
+<style>
+  .wrapper {
+    container-type: inline-size;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto auto;
+    gap: 0.5rem;
+    background: var(--bg-shadow);
+    border-radius: 4px;
+    box-shadow: -2px 2px 4px 0px var(--bg-shadow);
+  }
+
+  .decorator {
+    inline-size: 90cqw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .decorator::before,
+  .decorator::after {
+    content: "";
+    block-size: 2px;
+    background: var(--gradient);
+    border-radius: 2px;
+  }
+
+  .quotemark {
+    font-size: 3rem;
+    line-height: 48px;
+  }
+
+  .quotemark::before,
+  .quotemark::after {
+    margin-block-end: 1.25rem;
+  }
+
+  .quote {
+    inline-size: 85cqw;
+    margin: 0 auto;
+    text-wrap: pretty;
+  }
+
+  .speaker {
+    margin-block-start: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .title {
+    margin-block-start: -0.5rem;
+    font-size: var(--font-size-sm);
+    text-align: center;
+  }
+
+  a {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    font-size: var(--font-size-sm);
+    padding-inline-end: 1rem;
+  }
+
+  .link-icon {
+    block-size: 0.75rem;
+    inline-size: 0.75rem;
+  }
+</style>

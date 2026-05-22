@@ -70,20 +70,20 @@
     font-size: var(--font-size-xl);
   }
 
-  body {
-    background-color: var(--background);
-    font-size: var(--font-size-md);
-    transition:
-      background-color 0.3s ease-in-out,
-      color 0.3s ease-in-out;
-    font-family: var(--body-font);
-  }
-
   p,
   span,
   li,
   a {
     color: var(--text-main);
+  }
+
+  body {
+    background-color: var(--background);
+    font-size: var(--font-size-md);
+    font-family: var(--body-font);
+    transition:
+      background-color 0.3s ease-in-out,
+      color 0.3s ease-in-out;
   }
 
   /* Global utilities */
