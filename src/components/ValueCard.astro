@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
+import CardWrapper from "./CardWrapper.astro";
 
 interface Props {
   valueObj: CollectionEntry<"values">;
@@ -11,29 +12,27 @@ const value = valueObj.data;
 const iconBgColor = `var(--${value.iconColor})`;
 ---
 
-<div class=`card-container`>
-  <div class="corners"></div>
-  <div class="card">
-    <article>
-      <div class="icon">
-        <Icon name={value.iconName} />
-      </div>
-      <h3>{value.value}</h3>
-      <p class="details">{value.details}</p>
-      <div class="divider"></div>
-      <div class="quote-group">
-        <p class="quote">{`"${value.quote}"`}</p>
-        <p class="quote-ref">{`- ${value.quoteRef}`}</p>
-      </div>
-    </article>
-  </div>
-</div>
+<CardWrapper>
+  <article>
+    <div class="icon">
+      <Icon name={value.iconName} />
+    </div>
+    <h3>{value.value}</h3>
+    <p class="details">{value.details}</p>
+    <div class="divider"></div>
+    <div class="quote-group">
+      <p class="quote">{`"${value.quote}"`}</p>
+      <p class="quote-ref">{`- ${value.quoteRef}`}</p>
+    </div>
+  </article>
+</CardWrapper>
 
 <style define:vars={{ iconBgColor }}>
   article {
     display: grid;
+    grid-template-rows: auto auto 1fr auto 1fr;
     gap: 0.75rem;
-    padding: 0.25rem;
+    padding: 1rem;
   }
 
   .icon {
@@ -52,7 +51,7 @@ const iconBgColor = `var(--${value.iconColor})`;
   }
 
   h3 {
-    font-family: var(--body-font);
+    font-family: var(--accent-font);
     font-size: var(--font-size-lg);
     font-weight: bold;
     text-align: center;
@@ -63,105 +62,18 @@ const iconBgColor = `var(--${value.iconColor})`;
     }
   }
 
-  .details {
+  p {
     text-wrap: pretty;
   }
 
   .quote {
     font-style: italic;
     color: var(--iconBgColor);
-
-    @media (min-width: 64rem) {
-      & {
-        text-wrap: balance;
-      }
-    }
   }
 
   .quote-ref {
     font-size: var(--font-size-sm);
     text-align: right;
     color: var(--iconBgColor);
-  }
-
-  /* padding here only affects the slot */
-  .card-container {
-    background: transparent;
-    block-size: 100%;
-    border: none;
-    box-shadow: none;
-    display: grid;
-    padding: 0.5rem;
-    position: relative;
-    /* transition: box-shadow 0.2s ease-in-out; */
-  }
-
-  /* .card-container:hover,
-  .card-container:focus {
-    box-shadow: 8px 12px 20px -4px var(--bg-shadow);
-
-    & .corners:before {
-      transform: scaleX(0);
-    }
-
-    & .corners:after {
-      transform: scaleY(0);
-    }
-  } */
-
-  /* keeps the card info in front of the corners background, and allows for font size adjustments based on the card size */
-  .card {
-    container-type: inline-size;
-    position: relative;
-  }
-
-  .corners {
-    --border-block-size: calc(1.5 * var(--border-size));
-    --border-size: 2px;
-    --position-size: 2rem;
-    border: var(--border-size) solid transparent;
-    border-radius: 4px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-
-    background:
-      linear-gradient(to bottom, var(--background), var(--background))
-        padding-box,
-      var(--gradient) border-box;
-  }
-
-  /* 
-    Before covers top/bottom, After covers left/right
-    The borders here should be solid and the same color as whatever the card is on - they're "blocking out" the corners border
-  */
-  .corners:before {
-    border-bottom: var(--border-block-size) solid var(--background);
-    border-top: var(--border-block-size) solid var(--background);
-    bottom: calc(-1 * var(--border-size));
-    content: "";
-    left: var(--position-size);
-    position: absolute;
-    top: calc(-1 * var(--border-size));
-    width: calc(100% - (var(--position-size) * 2));
-    /* transform: scaleX(1); */
-    /* transform-origin: center; */
-    /* transition: transform 0.2s ease-in-out; */
-  }
-
-  .corners:after {
-    border-left: var(--border-block-size) solid var(--background);
-    border-right: var(--border-block-size) solid var(--background);
-    content: "";
-    height: calc(100% - (var(--position-size) * 2));
-    left: calc(-1 * var(--border-size));
-    position: absolute;
-    right: calc(-1 * var(--border-size));
-    top: var(--position-size);
-    /* transform: scaleY(1); */
-    /* transform-origin: center; */
-    /* transition: transform 0.2s ease-in-out; */
   }
 </style>

@@ -44,21 +44,19 @@ const orderedProjects = featuredProjects.sort(
   .splash {
     min-block-size: 50vh;
     padding-block-start: 6rem;
-    max-inline-size: 48rem;
     text-align: center;
     display: grid;
     place-items: center;
     gap: 2rem;
 
     & h1 {
-      font-family: var(--accent-font);
-      font-size: clamp(var(--font-size-6xl), 12vw, 6rem);
+      font-size: clamp(var(--font-size-6xl), 12vw, 8rem);
       font-weight: normal;
-      line-height: 1;
+      line-height: 1.25;
     }
 
     & p {
-      font-size: clamp(var(--font-size-md), 4vw, var(--font-size-lg));
+      font-size: clamp(var(--font-size-md), 6vw, var(--font-size-xl));
       max-inline-size: 36rem;
     }
 

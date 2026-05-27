@@ -72,11 +72,11 @@ export const orderedPraises = praises.sort(
 <style>
   section {
     margin-block-end: 6rem;
-    /* padding-inline: 2rem; */
   }
 
   .intro {
     container-type: inline-size;
+    padding-block-start: 3rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -94,6 +94,7 @@ export const orderedPraises = praises.sort(
     text-align: center;
     text-wrap: balance;
     margin-block-end: 0;
+    line-height: 1.125;
 
     @media (min-width: 64rem) {
       & {

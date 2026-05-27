@@ -16,7 +16,7 @@
   html {
     --font-size-xs: 0.64rem;
     --font-size-sm: 0.8rem;
-    --font-size-md: 1rem;
+    --font-size-md: 18px;
     --font-size-lg: 1.25rem;
     --font-size-xl: 1.563rem;
     --font-size-2xl: 1.953rem;
@@ -33,7 +33,7 @@
   h2,
   h3,
   h4 {
-    font-family: var(--accent-font);
+    font-family: var(--heading-font);
     letter-spacing: 0.125rem;
     color: var(--text-main);
     font-weight: 400;
@@ -41,7 +41,7 @@
 
   h5,
   h6 {
-    font-family: var(--heading-font);
+    font-family: var(--accent-font);
     font-weight: bold;
     color: var(--text-main);
   }
