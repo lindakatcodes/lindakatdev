@@ -37,7 +37,7 @@ export function leafletLoader() {
           data: JSON.parse(
             JSON.stringify(post.value, (k, v) => {
               // ATProto CIDs automatically serialize to {"/": "..."} during stringify.
-              // We just map that "/" value to the "$link" key your Zod schema expects.
+              // We just map that "/" value to the "$link" key the Zod schema expects.
               if (k === "ref" && v?.["/"]) return { $link: v["/"] };
               return v;
             }),
