@@ -1,5 +1,6 @@
 import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
+import { leafletLoader } from "./leaflet-loader";
 
 const praisesCollection = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/content/praises" }),
@@ -46,8 +47,13 @@ const valuesCollection = defineCollection({
     }),
 });
 
+const blogCollection = defineCollection({
+  loader: leafletLoader(),
+});
+
 export const collections = {
   praises: praisesCollection,
   projects: projectsCollection,
   values: valuesCollection,
+  blog: blogCollection,
 };

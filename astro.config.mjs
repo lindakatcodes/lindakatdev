@@ -1,6 +1,6 @@
 import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,5 +8,11 @@ export default defineConfig({
   integrations: [mdx(), icon()],
   markdown: {
     syntaxHighlight: "prism",
+  },
+  env: {
+    schema: {
+      AT_HANDLE: envField.string({ context: "server", access: "public" }),
+      AT_PASSWORD: envField.string({ context: "server", access: "secret" }),
+    },
   },
 });
