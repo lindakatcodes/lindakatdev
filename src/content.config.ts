@@ -1,6 +1,5 @@
 import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
-import { leafletLoader } from "./leaflet-loader";
 
 const praisesCollection = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/content/praises" }),
@@ -48,7 +47,20 @@ const valuesCollection = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  loader: leafletLoader(),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      publishedDate: z.coerce.date(),
+      featured: z.boolean().default(false),
+      slug: z.string(),
+      tags: z.array(z.string()).optional(),
+      ogImage: image().optional(),
+      status: z.enum(["Live", "Draft"]),
+      type: z.string().default("blog"),
+      atUri: z.string().optional(),
+    }),
 });
 
 export const collections = {
