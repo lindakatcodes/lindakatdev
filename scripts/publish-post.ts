@@ -115,6 +115,10 @@ async function main() {
     ...(description ? { description } : {}),
     ...(tags && tags.length > 0 ? { tags } : {}),
     textContent: stripMarkdown(content),
+    content: {
+      $type: "site.standard.content.markdown",
+      text: content,
+    },
   };
 
   const result = await agent.com.atproto.repo.createRecord({
