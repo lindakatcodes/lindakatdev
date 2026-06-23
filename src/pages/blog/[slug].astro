@@ -18,89 +18,32 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const metadata = {
   description: entry.data.description,
-  imagePath: entry.data.ogImage?.src ?? "/default-og-image.png",
+  imagePath: entry.data.ogImage?.src ?? "",
   title: `${entry.data.title} | LindaKat Codes`,
   url: canonicalUrl.toString(),
 };
 
 const { title, publishedDate, tags } = entry.data;
+
+const niceDate = new Date(publishedDate).toLocaleDateString("en-us", {
+  dateStyle: "medium",
+});
 ---
 
 <BaseLayout metadata={metadata}>
-  <article>
-    <a href="/blog" class="back-link">« Back to blog</a>
-    <header>
-      <p class="post-date">
-        {
-          new Date(publishedDate).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
-        }
-      </p>
+  <section id="top">
+    <a href="/blog" class="back-link gradient-text">
+      <span>«</span> Back to the full blog list</a
+    >
+    <div class="info">
+      <p>{niceDate}</p>
       <h1>{title}</h1>
-      {
-        tags && tags.length > 0 && (
-          <ul class="tag-list">
-            {tags.map((tag) => (
-              <li class="tag">{tag}</li>
-            ))}
-          </ul>
-        )
-      }
-    </header>
-    <div class="post-body">
+    </div>
+
+    <div class="body">
       <Content />
     </div>
-  </article>
+  </section>
 </BaseLayout>
 
-<style>
-  article {
-    max-width: 70ch;
-    margin-inline: auto;
-    margin-block-end: 8rem;
-  }
-
-  .back-link {
-    display: inline-block;
-    margin-block-end: 1.5rem;
-    font-weight: bold;
-  }
-
-  header {
-    margin-block-end: 2rem;
-  }
-
-  .post-date {
-    font-size: var(--font-size-sm, 0.875rem);
-    opacity: 0.7;
-    margin: 0 0 0.25rem;
-  }
-
-  h1 {
-    font-size: var(--font-size-4xl, 2.25rem);
-    margin: 0 0 0.75rem;
-  }
-
-  .tag-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    font-size: var(--font-size-sm, 0.875rem);
-    padding: 0.125rem 0.5rem;
-    border-radius: 999px;
-    border: 1px solid currentColor;
-    opacity: 0.8;
-  }
-
-  .post-body {
-    line-height: 1.7;
-  }
-</style>
+<style></style>

@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CardWrapper from "./CardWrapper.astro";
+
+export interface Props {
+  postData: CollectionEntry<"blog">;
+}
+
+const { postData } = Astro.props;
+const { title, description, publishedDate } = postData.data;
+
+const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
+  dateStyle: "medium",
+});
+---
+
+<CardWrapper>
+  <a href=`/blog/${postData.id}`>
+    <h2>{title}</h2>
+    <div>
+      <p>
+        {dateString}
+      </p>
+      <div class="decoration"></div>
+    </div>
+    <p>{description}</p>
+    <div>
+      <p>Local</p>
+      <div class="decoration"></div>
+      <p>Read post<span> »</span></p>
+    </div>
+  </a>
+</CardWrapper>

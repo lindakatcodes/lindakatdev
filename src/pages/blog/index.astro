@@ -1,0 +1,36 @@
+---
+import BlogCard from "@components/BlogCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants.ts";
+import { getCollection } from "astro:content";
+
+const metadata = {
+  ...DEFAULT_METADATA,
+  title: "Blog | LindaKat Codes",
+  url: "https://lindakat.com/blog",
+};
+
+const allPosts = await getCollection("blog", ({ data }) => {
+  return import.meta.env.DEV ? true : data.status === "Live";
+});
+
+const posts = allPosts.sort(
+  (a, b) =>
+    new Date(b.data.publishedDate).getTime() -
+    new Date(a.data.publishedDate).getTime(),
+);
+---
+
+<BaseLayout metadata={metadata}>
+  <h1>Linda's Blog</h1>
+  <p>Musings on code, life, growth, and lived experiences.</p>
+  <p>
+    Prefer to read through RSS?{" "}
+    <a href="/rss.xml" class="gradient-text"> Here's my feed! </a>
+  </p>
+  <ul>
+    {posts.map((post) => <BlogCard postData={post} />)}
+  </ul>
+</BaseLayout>
+
+<style></style>
