@@ -1,33 +1,69 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import CardWrapper from "./CardWrapper.astro";
 
 export interface Props {
   postData: CollectionEntry<"blog">;
 }
 
 const { postData } = Astro.props;
-const { title, description, publishedDate } = postData.data;
-
-const dateString = new Date(publishedDate).toLocaleDateString("en-us", {
-  dateStyle: "medium",
-});
+const { title, description, tags = [] } = postData.data;
 ---
 
-<CardWrapper>
+<li>
   <a href=`/blog/${postData.id}`>
     <h2>{title}</h2>
-    <div>
-      <p>
-        {dateString}
-      </p>
-      <div class="decoration"></div>
-    </div>
-    <p>{description}</p>
-    <div>
-      <p>Local</p>
-      <div class="decoration"></div>
-      <p>Read post<span> »</span></p>
-    </div>
   </a>
-</CardWrapper>
+  <p>{description}</p>
+  <div class="tags">
+    {tags.map((tag) => <p>{tag}</p>)}
+  </div>
+  <a href=`/blog/${postData.id}`><p>Read more<span> »</span></p></a>
+</li>
+
+<style>
+  li {
+    display: grid;
+    grid-template-areas: "title" "desc" "tags" "details";
+    gap: 0.75rem;
+    margin-block-end: 3rem;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration-line: underline;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-color: var(--text-main);
+      background-image: var(--gradient);
+      background-repeat: repeat;
+      background-size: 100%;
+    }
+  }
+
+  h2 {
+    font-size: var(--font-size-4xl);
+    line-height: 3.5rem;
+  }
+
+  p {
+    display: inline;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    text-transform: uppercase;
+
+    & p {
+      padding: 0.125rem 0.25rem;
+      background: var(--text-main);
+      color: var(--text-flip);
+      font-size: var(--font-size-sm);
+      border-radius: 0.125rem;
+    }
+  }
+</style>

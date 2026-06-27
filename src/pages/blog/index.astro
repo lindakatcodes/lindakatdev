@@ -1,5 +1,6 @@
 ---
 import BlogCard from "@components/BlogCard.astro";
+import TagList from "@components/TagList.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { DEFAULT_METADATA } from "@util/constants.ts";
 import { getCollection } from "astro:content";
@@ -19,18 +20,36 @@ const posts = allPosts.sort(
     new Date(b.data.publishedDate).getTime() -
     new Date(a.data.publishedDate).getTime(),
 );
+
+const tags = [...new Set(allPosts.flatMap((post) => post.data.tags ?? []))];
 ---
 
 <BaseLayout metadata={metadata}>
-  <h1>Linda's Blog</h1>
-  <p>Musings on code, life, growth, and lived experiences.</p>
-  <p>
-    Prefer to read through RSS?{" "}
-    <a href="/rss.xml" class="gradient-text"> Here's my feed! </a>
-  </p>
+  <div>
+    <h1>Inside my Mind</h1>
+    <p>Sharing code, lessons learned, and lived experiences.</p>
+    <a href="/rss.xml" class="gradient-text"> Also available in RSS format! </a>
+  </div>
+  <TagList tags={tags} activeTag="all" />
   <ul>
     {posts.map((post) => <BlogCard postData={post} />)}
   </ul>
 </BaseLayout>
 
-<style></style>
+<style>
+  div {
+    text-align: center;
+    margin: 0 auto 5rem;
+  }
+
+  h1 {
+    font-size: var(--font-size-5xl);
+  }
+
+  ul {
+    padding-inline-start: 0;
+    margin: 0 auto 5rem;
+    list-style-type: none;
+    max-inline-size: 50rem;
+  }
+</style>
