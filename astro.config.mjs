@@ -9,10 +9,4 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "prism",
   },
-  env: {
-    schema: {
-      AT_HANDLE: envField.string({ context: "server", access: "public" }),
-      AT_PASSWORD: envField.string({ context: "server", access: "secret" }),
-    },
-  },
 });

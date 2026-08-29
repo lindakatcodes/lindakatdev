@@ -19,11 +19,6 @@ const activePath = Astro.url.pathname;
       ]}>Projects</a
     >
     <a
-      href="/blog"
-      class:list={["link blog", { "blog-active": activePath === "/blog" }]}
-      >Blog</a
-    >
-    <a
       href="/about"
       class:list={["link about", { "about-active": activePath === "/about" }]}
       >About</a
@@ -36,7 +31,7 @@ const activePath = Astro.url.pathname;
 <style>
   nav {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr auto;
     gap: 0.5rem;
     padding: 0.125rem 1rem;
@@ -63,12 +58,6 @@ const activePath = Astro.url.pathname;
     }
   }
 
-  .blog {
-    &:is(:hover, :focus-visible) {
-      color: var(--pink);
-    }
-  }
-
   .about {
     &:is(:hover, :focus-visible) {
       color: var(--purple);
@@ -80,9 +69,9 @@ const activePath = Astro.url.pathname;
       /* 
         Col 1: Logo (auto-width)
         Col 2: Flexible Spacer (1fr - pushes everything else right)
-        Col 3-6: Nav items and ThemeToggle (auto-width)
+        Col 3-5: Nav items and ThemeToggle (auto-width)
       */
-      grid-template-columns: auto 1fr auto auto auto auto;
+      grid-template-columns: auto 1fr auto auto auto;
       grid-template-rows: 1fr;
       justify-items: start;
       gap: 1rem;
@@ -96,16 +85,12 @@ const activePath = Astro.url.pathname;
       grid-column: 3;
     }
 
-    .blog {
+    .about {
       grid-column: 4;
     }
 
-    .about {
-      grid-column: 5;
-    }
-
     :global(.theme-toggle) {
-      grid-column: 6;
+      grid-column: 5;
     }
   }
 </style>
