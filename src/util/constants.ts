@@ -5,4 +5,4 @@ export const DEFAULT_METADATA = {
   url: "https://lindakat.com",
 };
 
-export const EMAIL = "lindakt16@gmail.com";
+export const EMAIL = "me@lindakat.com";
