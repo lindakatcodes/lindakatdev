@@ -20,7 +20,7 @@ export const orderedPraises = praises.sort(
 
 <BaseLayout metadata={DEFAULT_METADATA}>
   <section class="intro">
-    <h1>Hi, nice to meet you! <br /> I'm Linda.</h1>
+    <h1>Hi, nice to meet you! I'm Linda.</h1>
     <div class="intro-photo">
       <div class="photo-bg"></div>
       <Image
@@ -85,22 +85,23 @@ export const orderedPraises = praises.sort(
 
     @media (min-width: 64rem) {
       & {
-        grid-template-columns: 1fr 0.75fr;
+        grid-template-columns: 1fr auto;
       }
     }
   }
 
   .intro h1 {
-    text-align: center;
     text-wrap: balance;
     margin-block-end: 0;
     line-height: 1.125;
 
     @media (min-width: 64rem) {
       & {
-        grid-column: 1;
+        grid-column: 1 / span 2;
         grid-row: 1;
         align-self: end;
+        justify-self: start;
+        padding-inline-start: 2rem;
       }
     }
   }
@@ -155,7 +156,7 @@ export const orderedPraises = praises.sort(
 
     @media (min-width: 64rem) {
       & {
-        inline-size: 65cqw;
+        inline-size: 70cqw;
         grid-column: 1;
         grid-row: 2;
       }

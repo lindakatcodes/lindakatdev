@@ -90,7 +90,7 @@
   /* Global utilities */
   .divider {
     background: var(--gradient);
-    height: 4px;
+    height: 3px;
   }
 
   .gradient-text {
