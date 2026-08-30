@@ -1,0 +1,85 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
+---
+
+<BaseLayout metadata={DEFAULT_METADATA}>
+  <section>
+    <h1>Baseline CSS Links!</h1>
+    <p>
+      Thanks so much for attending my talk! Here's the links for the slides,
+      demo, and codebase. Have a magical time exploring and learning!
+    </p>
+    <ul class="link-list">
+      <li>
+        <a href="https://baseline-magic.netlify.app/" target="_blank">Slides</a>
+      </li>
+      <li>
+        <a href="https://sageandsundry.netlify.app/" target="_blank"
+          >Demo site</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://github.com/lindakatcodes/baseline-css-talk"
+          target="_blank">Codebase</a
+        >
+      </li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  section {
+    max-inline-size: 40rem;
+    padding-block-start: 2rem;
+    margin: 0 auto;
+    margin-block-end: 3rem;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    margin-block-end: 1.5rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    place-items: center;
+    block-size: 4rem;
+    background:
+      linear-gradient(to bottom, var(--background), var(--background))
+        padding-box,
+      var(--gradient) border-box;
+    border: 2px solid transparent;
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--gradient) border-box;
+      & a {
+        color: var(--text-flip);
+        font-weight: bold;
+      }
+    }
+  }
+
+  a {
+    text-underline-offset: 3px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }
+</style>
