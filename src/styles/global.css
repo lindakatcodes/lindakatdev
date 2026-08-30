@@ -37,6 +37,7 @@
     letter-spacing: 0.125rem;
     color: var(--text-main);
     font-weight: 400;
+    line-height: 1.25;
   }
 
   h5,
@@ -105,22 +106,19 @@
 
 @layer theme {
   /* Theme styles that have to be global to work */
-  [data-theme="dark"] .sun-and-moon {
-    & > .sun {
-      transform: scale(1.25);
-    }
+  [data-theme="dark"] .sunset {
+    opacity: 1;
+  }
 
-    & > .sun-beams {
-      opacity: 0;
-    }
+  [data-theme="dark"] .sunrise {
+    opacity: 0;
+  }
 
-    & > .moon > circle {
-      transform: translateX(-7px);
+  [data-theme="light"] .sunset {
+    opacity: 0;
+  }
 
-      @supports (cx: 1px) {
-        transform: translateX(0);
-        cx: 17px;
-      }
-    }
+  [data-theme="light"] .sunrise {
+    opacity: 1;
   }
 }

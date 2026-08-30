@@ -29,10 +29,11 @@ const orderedProjects = featuredProjects.sort(
     </div>
   </section>
   <section class="projects">
-    <h2>Projects</h2>
+    <h2>Featured Projects</h2>
     <div class="project-cards">
       {orderedProjects.map((project) => <ProjectCard project={project} />)}
     </div>
+    <a href="/projects" class="view-more">See more of my work</a>
   </section>
 </BaseLayout>
 
@@ -52,10 +53,9 @@ const orderedProjects = featuredProjects.sort(
     & h1 {
       font-size: clamp(var(--font-size-6xl), 12vw, 8rem);
       font-weight: normal;
-      line-height: 1.25;
     }
 
-    & p {
+    & > p {
       font-size: clamp(var(--font-size-md), 6vw, var(--font-size-xl));
       max-inline-size: 36rem;
     }
@@ -69,17 +69,39 @@ const orderedProjects = featuredProjects.sort(
 
   .projects {
     container-type: inline-size;
+
     & h2 {
       text-align: center;
+      margin-block-end: 2rem;
     }
 
     & .project-cards {
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
+      margin-block-end: 2rem;
 
       @container (min-width: 48rem) {
         grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    & .view-more {
+      display: block;
+      inline-size: fit-content;
+      margin-inline: auto;
+      font-size: var(--font-size-xl);
+      text-underline-offset: 4px;
+
+      &:hover {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-color: var(--text-main);
+        background-image: var(--gradient);
+        background-repeat: repeat;
+        background-size: 100%;
+        transition: background 0.3s ease-in-out;
       }
     }
   }

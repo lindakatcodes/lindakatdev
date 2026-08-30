@@ -56,10 +56,18 @@ const activePath = Astro.url.pathname;
     &:is(:hover, :focus-visible) {
       color: var(--green);
     }
+
+    &.projects-active {
+      color: var(--green);
+    }
   }
 
   .about {
     &:is(:hover, :focus-visible) {
+      color: var(--purple);
+    }
+
+    &.about-active {
       color: var(--purple);
     }
   }

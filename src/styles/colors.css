@@ -1,11 +1,58 @@
 /* 
 COLOR THEME
 */
+@property --background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #323334;
+}
+
+@property --bg-shadow {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #252627;
+}
+
+@property --blue {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #96d9e4;
+}
+
+@property --green {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #9ce59a;
+}
+
+@property --pink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #eaa9b6;
+}
+
+@property --purple {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #d3a9ea;
+}
+
+@property --text-flip {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #323334;
+}
+
+@property --text-main {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #dbdedf;
+}
 
 @layer base {
   :root {
     --black: oklch(0.32 0.002 247.9);
-    --white: oklch(0.95 0.003 219.53);
+    --white: oklch(0.898 0.003 220); /* #dbdedf */
     --gray-light: oklch(0.81 0.004 219.54);
     --gray-mid: oklch(0.35 0.007 248.02); /* #383B3E */
     --gray-dark: oklch(0.27 0.002 247.91);
@@ -13,8 +60,8 @@ COLOR THEME
     --pastel-green: oklch(0.86 0.126 143.77);
     --pastel-pink: oklch(0.8 0.078 5.76);
     --pastel-purple: oklch(0.79 0.1 313.35);
-    --deep-blue: oklch(0.39 0.068 218.69);
-    --deep-green: oklch(0.4 0.126 141.35);
+    --deep-blue: oklch(0.361 0.065 222.435);
+    --deep-green: oklch(0.379 0.125 142);
     --deep-pink: oklch(0.38 0.136 1.28);
     --deep-purple: oklch(0.35 0.172 308.25);
   }
@@ -29,7 +76,7 @@ COLOR THEME
     --pink: var(--pastel-pink, #eaa9b6);
     --purple: var(--pastel-purple, #d3a9ea);
     --text-flip: var(--background);
-    --text-main: var(--white, #ebeeef);
+    --text-main: var(--white, #dbdedf);
 
     --gradient: linear-gradient(
       60deg,
@@ -49,14 +96,14 @@ COLOR THEME
   }
 
   [data-theme="light"] {
-    --background: var(--white);
+    --background: var(--white, #dbdedf);
     --bg-shadow: var(--gray-light, #bdc0c1);
-    --blue: var(--deep-blue, #044c5c);
-    --green: var(--deep-green, #145809);
+    --blue: var(--deep-blue, #044556);
+    --green: var(--deep-green, #095102);
     --pink: var(--deep-pink, #76133d);
     --purple: var(--deep-purple, #54077d);
     --text-flip: var(--background);
-    --text-main: var(--black);
+    --text-main: var(--black, #323334);
 
     --gradient: linear-gradient(
       60deg,
