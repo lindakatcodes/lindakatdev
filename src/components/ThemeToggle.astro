@@ -1,0 +1,128 @@
+<button
+  class="theme-toggle"
+  id="theme-toggle"
+  title="Toggles light & dark"
+  aria-label="auto"
+  aria-live="polite"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="sunrise theme-icon"
+    aria-hidden="true"
+    ><path d="M12 2v8"></path><path d="m4.93 10.93 1.41 1.41"></path><path
+      d="M2 18h2"></path><path d="M20 18h2"></path><path
+      d="m19.07 10.93-1.41 1.41"></path><path d="M22 22H2"></path><path
+      d="m8 6 4-4 4 4"></path><path d="M16 18a4 4 0 0 0-8 0"></path></svg
+  >
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="sunset theme-icon"
+    aria-hidden="true"
+    ><path d="M12 10V2"></path><path d="m4.93 10.93 1.41 1.41"></path><path
+      d="M2 18h2"></path><path d="M20 18h2"></path><path
+      d="m19.07 10.93-1.41 1.41"></path><path d="M22 22H2"></path><path
+      d="m16 6-4 4-4-4"></path><path d="M16 18a4 4 0 0 0-8 0"></path></svg
+  >
+</button>
+
+<style>
+  .theme-toggle {
+    --size: 2rem;
+    --icon-fill: var(--text-main);
+    --icon-fill-hover: var(--blue);
+
+    background: none;
+    border: none;
+    padding: 0;
+    display: grid;
+    place-items: center;
+
+    inline-size: var(--size);
+    block-size: var(--size);
+    aspect-ratio: 1;
+
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+
+    outline-offset: 5px;
+
+    & > svg {
+      grid-area: 1 / 1;
+      inline-size: 75%;
+      block-size: 75%;
+    }
+  }
+
+  .theme-icon {
+    transition: opacity 0.3s ease;
+    color: var(--icon-fill);
+  }
+
+  .theme-toggle:is(:hover, :focus-visible) {
+    & .theme-icon {
+      color: var(--icon-fill-hover);
+    }
+  }
+</style>
+
+<script>
+  function getThemeString(
+    localValue: string | null,
+    systemValue: MediaQueryList,
+  ): string {
+    if (localValue !== null) return localValue;
+    if (systemValue.matches) return "light";
+    return "dark";
+  }
+
+  function updatePageTheme(
+    currentTheme: string,
+    buttonEl: Element | null,
+  ): void {
+    const newAriaLabel = currentTheme === "dark" ? "dark" : "light";
+    buttonEl?.setAttribute("aria-label", newAriaLabel);
+    document.querySelector("html")?.setAttribute("data-theme", currentTheme);
+  }
+
+  const setColorTheme = () => {
+    const themeButton = document.querySelector("#theme-toggle");
+    const localStorageTheme = localStorage.getItem("theme");
+    const systemSettingLight = window.matchMedia(
+      "(prefers-color-scheme: light)",
+    );
+
+    let currentThemeSetting = getThemeString(
+      localStorageTheme,
+      systemSettingLight,
+    );
+    updatePageTheme(currentThemeSetting, themeButton);
+
+    themeButton?.addEventListener("click", (event) => {
+      const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      updatePageTheme(newTheme, themeButton);
+      currentThemeSetting = newTheme;
+    });
+  };
+
+  setColorTheme();
+
+  document.addEventListener("astro:after-swap", setColorTheme);
+</script>

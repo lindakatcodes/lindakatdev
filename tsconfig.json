@@ -4,11 +4,12 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "paths": {
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@styles/*": ["src/styles/*"],
-      "@util/*": ["src/util/*"]
-    }
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@util/*": ["./src/util/*"]
+    },
+    "noImplicitAny": false
   }
 }

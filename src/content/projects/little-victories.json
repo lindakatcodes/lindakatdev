@@ -1,0 +1,11 @@
+{
+  "name": "Little Victories",
+  "image": "../../assets/projects/little-victories.png",
+  "imageAlt": "A light blue background has the title Little Victories in dark blue centered across the top. Most of the screen is taken up by a blurred image with a small lock icon in the middle of it noting the user has completed 0 of 15 tasks, and a caption encouraging them to complete tasks to unlock the image. At the bottom of the screen you can see the last task card in the path, with the task 'leave 3 detailed comments'.",
+  "about": "An app to make finding your next tech role a little more rewarding, by letting the tasks you complete reward you with pictures to form a gallery of your progress.",
+  "tech": ["Nuxt", "Pinia", "Turso", "Drizzle", "Unsplash"],
+  "featured": true,
+  "lastPublishDate": "2025-11-03",
+  "codeLink": "https://github.com/lindakatcodes/little-victories",
+  "liveLink": "https://little-victories.netlify.app/"
+}

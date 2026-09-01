@@ -1,0 +1,104 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+const activePath = Astro.url.pathname;
+---
+
+<header transition:name="header">
+  <nav>
+    <a
+      href="/"
+      class:list={["gradient-text link home", { active: activePath === "/" }]}
+    >
+      LindaKat
+    </a>
+    <a
+      href="/projects"
+      class:list={[
+        "link projects",
+        { "projects-active": activePath === "/projects" },
+      ]}>Projects</a
+    >
+    <a
+      href="/about"
+      class:list={["link about", { "about-active": activePath === "/about" }]}
+      >About</a
+    >
+    <ThemeToggle />
+  </nav>
+  <div class="divider"></div>
+</header>
+
+<style>
+  nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 0.5rem;
+    padding: 0.125rem 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .link {
+    text-decoration: none;
+    font-size: var(--font-size-2xl);
+    font-family: var(--heading-font);
+  }
+
+  .home {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    font-size: var(--font-size-3xl);
+    line-height: 1;
+  }
+
+  .projects {
+    &:is(:hover, :focus-visible) {
+      color: var(--green);
+    }
+
+    &.projects-active {
+      color: var(--green);
+    }
+  }
+
+  .about {
+    &:is(:hover, :focus-visible) {
+      color: var(--purple);
+    }
+
+    &.about-active {
+      color: var(--purple);
+    }
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      /* 
+        Col 1: Logo (auto-width)
+        Col 2: Flexible Spacer (1fr - pushes everything else right)
+        Col 3-5: Nav items and ThemeToggle (auto-width)
+      */
+      grid-template-columns: auto 1fr auto auto auto;
+      grid-template-rows: 1fr;
+      justify-items: start;
+      gap: 1rem;
+    }
+
+    .home {
+      grid-column: 1;
+    }
+
+    .projects {
+      grid-column: 3;
+    }
+
+    .about {
+      grid-column: 4;
+    }
+
+    :global(.theme-toggle) {
+      grid-column: 5;
+    }
+  }
+</style>

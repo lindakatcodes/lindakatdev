@@ -9,24 +9,24 @@ export type socialLink = {
 
 const socialLinks: socialLink[] = [
   {
-    displayName: "Bluesky",
-    iconName: "bluesky",
-    link: "https://bsky.app/profile/lindakat.com",
-  },
-  {
-    displayName: "GitHub",
+    displayName: "GITHUB",
     iconName: "github",
     link: "https://github.com/lindakatcodes",
   },
   {
-    displayName: "LinkedIn",
+    displayName: "BLUESKY",
+    iconName: "bluesky",
+    link: "https://bsky.app/profile/lindakat.com",
+  },
+  {
+    displayName: "LINKEDIN",
     iconName: "linkedin",
     link: "https://www.linkedin.com/in/lindakatcodes/",
   },
   {
-    displayName: "Resume",
+    displayName: "RESUME",
     iconName: "file-lines-regular",
-    link: "https://drive.google.com/file/d/15yXRMYir3tYiY2yAJJQl9wJVUITrAeym/view?usp=sharing",
+    link: "https://drive.google.com/file/d/1dYFQlCadZiM6RbYJg2_QOWGjIihBgYu3/view?usp=sharing",
   },
 ];
 ---
@@ -47,18 +47,16 @@ const socialLinks: socialLink[] = [
 
 <style>
   .socials {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: baseline;
+    gap: 0.75rem;
   }
 
   .social-link {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+    margin-block-start: 0.5rem;
     text-decoration-color: transparent;
-    margin: auto 1.25rem;
   }
 
   .social-link:hover {
@@ -67,14 +65,15 @@ const socialLinks: socialLink[] = [
 
   .social-link svg {
     color: var(--text-main);
-    width: var(--s24);
-    height: var(--s24);
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    margin-inline: auto;
   }
 
   .social-link p {
     color: var(--text-main);
-    font-size: var(--b-sm);
-    margin-top: 0.125rem;
+    font-size: var(--font-size-xs);
+    font-family: var(--accent-font);
   }
 
   .resume:hover {
@@ -118,20 +117,6 @@ const socialLinks: socialLink[] = [
     }
     & p {
       color: var(--blue);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .socials {
-      justify-content: space-between;
-    }
-
-    .social-link {
-      margin: auto 0.75rem;
-    }
-
-    .social-link p {
-      font-size: 0.7rem;
     }
   }
 </style>

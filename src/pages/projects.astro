@@ -1,0 +1,91 @@
+---
+import ProjectCard from "@components/ProjectCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants.ts";
+import { getCollection } from "astro:content";
+
+const featuredProjects = await getCollection("projects", ({ data }) => {
+  return data.featured === true;
+}).then((projects) =>
+  projects.sort(
+    (a, b) =>
+      new Date(b.data.lastPublishDate).getTime() -
+      new Date(a.data.lastPublishDate).getTime(),
+  ),
+);
+
+const otherProjects = await getCollection("projects", ({ data }) => {
+  return data.featured !== true;
+}).then((projects) =>
+  projects.sort(
+    (a, b) =>
+      new Date(b.data.lastPublishDate).getTime() -
+      new Date(a.data.lastPublishDate).getTime(),
+  ),
+);
+
+const allProjects = [...featuredProjects, ...otherProjects];
+---
+
+<BaseLayout metadata={DEFAULT_METADATA}>
+  <h1>Projects Showcase</h1>
+  <div class="project-cards">
+    {
+      allProjects.map((project) => (
+        <ProjectCard project={project} aboveFold={true} />
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    text-align: center;
+    font-size: var(--font-size-5xl);
+    margin-block-end: 2rem;
+    padding-block-start: 3rem;
+  }
+
+  .project-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-block-end: 8rem;
+
+    @media (min-width: 48rem) {
+      & {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 102.5rem) {
+      & {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  .project-cards > div {
+    @media (min-width: 48rem) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  .project-cards > div:last-child:nth-child(odd) {
+    @media (min-width: 48rem) {
+      & {
+        grid-column: 2 / span 2;
+      }
+    }
+
+    @media (min-width: 102.5rem) {
+      & {
+        grid-column: 3 / span 2;
+      }
+    }
+  }
+</style>

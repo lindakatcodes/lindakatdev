@@ -1,0 +1,223 @@
+@import "reset.css";
+@import "colors.css";
+@import "fonts.css";
+
+/* Media queries sadly cannot use css variables. Storing the expected values here as a reference.
+ --xs (min-width: 520px);
+ --sm (min-width: 768px);
+ --md (min-width: 1024px);
+ --lg (min-width: 1280px);
+ --xl (min-width: 1640px);
+*/
+
+/* Variables */
+:root {
+  --b-sm: 14px;
+  --b-md: 18px;
+  --b-lg: 24px;
+  --h6: 28px;
+  --h5: 32px;
+  --h4: 40px;
+  --h3: 48px;
+  --h2: 56px;
+  --h1: 68px;
+  --h0: 80px;
+  --s4: 4px;
+  --s8: 8px;
+  --s16: 16px;
+  --s24: 24px;
+  --s32: 32px;
+  --s40: 40px;
+  --s48: 48px;
+  --s56: 56px;
+  --s64: 64px;
+  --s72: 72px;
+  --s80: 80px;
+  --header-height: var(--s64);
+  --scroll-height: calc(var(--header-height) + var(--s16));
+}
+
+/* Global defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-main);
+  font-family: var(--heading-font);
+  font-weight: bold;
+  margin: 1rem auto;
+  line-height: 1.45;
+}
+
+h1 {
+  font-size: var(--h1);
+}
+
+h2 {
+  font-size: var(--h2);
+}
+
+h3 {
+  font-size: var(--h3);
+}
+
+h4 {
+  font-size: var(--h4);
+}
+
+h5 {
+  font-size: var(--h5);
+}
+
+h6 {
+  font-size: var(--h6);
+}
+
+p,
+li,
+span {
+  color: var(--text-main);
+  font-family: var(--body-font);
+}
+
+a {
+  color: var(--text-main);
+  font-family: var(--body-font);
+  text-decoration-color: var(--green);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+a:hover,
+a:focus {
+  color: var(--purple);
+  text-decoration-style: double;
+}
+
+a:is(.gradient-text) {
+  background-color: var(--purple);
+  background-image: none;
+}
+
+a:is(.gradient-text):hover, a:is(.gradient-text):focus {
+  background-image: var(--gradient);
+}
+
+body {
+  background-color: var(--background);
+  font-size: var(--b-md);
+  transition: all 0.3s ease-in-out;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 1.75rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  text-indent: -4.5%;
+}
+
+ul li::before {
+  color: var(--purple);
+  content: "»";
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 0.5rem;
+}
+
+ul li:nth-child(2n)::before {
+  color: var(--blue);
+}
+
+ul li:nth-child(3n)::before {
+  color: var(--pink);
+}
+
+ul li:nth-child(4n)::before {
+  color: var(--green);
+}
+
+@media (max-width: 520px) {
+  ul {
+    padding-left: 0.75rem;
+  }
+}
+
+/* Global utilities */
+.divider {
+  background: var(--gradient);
+  height: var(--s4);
+}
+
+.shadow-under {
+  box-shadow: 0 2px 4px var(--bg-shadow);
+}
+
+.shadow-over {
+  box-shadow: 0 -2px 4px var(--bg-shadow);
+}
+
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: var(--text-main);
+  background-image: var(--gradient);
+  background-repeat: repeat;
+  background-size: 100%;
+}
+
+/* These tag styles are here so the data theme is picked up to ensure the text color changes properly. The first selector is done through attributes to add specificity so the background color change is picked up over the scoped styles. */
+.tag {
+  background-color: var(--bg-shadow);
+}
+
+.tag.active {
+  background-color: var(--text-main);
+  color: var(--bg-shadow);
+}
+
+[data-theme="dark"] .tag.active {
+  text-decoration-color: var(--deep-green);
+}
+
+[data-theme="dark"] .tag.active:hover,
+[data-theme="dark"] .tag.active:focus {
+  color: var(--deep-purple);
+}
+
+[data-theme="light"] .tag.active {
+  text-decoration-color: var(--pastel-green);
+}
+
+[data-theme="light"] .tag.active:hover,
+[data-theme="light"] .tag.active:focus {
+  color: var(--pastel-purple);
+}
+
+/* External package styles */
+[data-icon] {
+  fill: currentColor;
+}
+
+[data-theme="dark"] [data-icon="sun"] {
+  visibility: hidden;
+}
+
+[data-theme="dark"] [data-icon="moon"] {
+  visibility: visible;
+}
+
+[data-theme="light"] [data-icon="sun"] {
+  visibility: visible;
+}
+
+[data-theme="light"] [data-icon="moon"] {
+  visibility: hidden;
+}

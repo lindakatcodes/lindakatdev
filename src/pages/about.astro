@@ -1,0 +1,239 @@
+---
+import linda from "@assets/linda-pose.webp";
+import ContactEmail from "@components/ContactEmail.astro";
+import PraiseCard from "@components/PraiseCard.astro";
+import SocialsGrid from "@components/SocialsGrid.astro";
+import ValueCard from "@components/ValueCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { DEFAULT_METADATA } from "@util/constants";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const values = await getCollection("values");
+const orderedValues = values.sort((v1, v2) => v1.data.order - v2.data.order);
+
+export const praises = await getCollection("praises");
+export const orderedPraises = praises.sort(
+  (p1, p2) => p1.data.order - p2.data.order,
+);
+---
+
+<BaseLayout metadata={DEFAULT_METADATA}>
+  <section class="intro">
+    <h1>Hi, nice to meet you! I'm Linda.</h1>
+    <div class="intro-photo">
+      <div class="photo-bg"></div>
+      <Image
+        priority
+        src={linda}
+        alt="Linda smiles openly directly at you. She has dark glasses and dark brown hair with pastel purple tips, and is wearing black jeans and a white t-shirt that has a friendly flower design."
+        class="photo"
+        layout="constrained"
+      />
+    </div>
+    <div class="intro-blurb">
+      <p>
+        I'm a software developer with the superpower to elevate teams. Managers
+        and teammates alike appreciate how I gather context, break down tasks
+        without losing site of the end goal, and communicate with the team to
+        help us all move forward together. You'll see this in my documentation,
+        code reviews, and software designs (senior developers love this about me
+        and have sent peers to learn from me, which I so appreciate).
+      </p>
+      <p>
+        What I really love is growing my technical expertise and crafting code.
+        I care deeply about accessibility and usability, keeping the end users
+        of what I create in mind constantly to ensure what I build works well
+        for everyone. This not only gives users a fantastic experience every
+        day, but it makes the companies I work with look amazing too.
+      </p>
+      <div class="contact-cta">
+        <ContactEmail ctaTitle="Let's build something together" />
+        <SocialsGrid />
+      </div>
+    </div>
+  </section>
+
+  <section class="value-add">
+    <h2>My core values</h2>
+    <div class="skills-container">
+      {orderedValues.map((value) => <ValueCard valueObj={value} />)}
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Don't just take my word for it</h2>
+    <div class="praise-cards">
+      {orderedPraises.map((praise) => <PraiseCard praise={praise} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  section {
+    margin-block-end: 8rem;
+  }
+
+  .intro {
+    container-type: inline-size;
+    padding-block-start: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    justify-items: center;
+    align-items: center;
+
+    @media (min-width: 64rem) {
+      & {
+        grid-template-columns: 1fr auto;
+      }
+    }
+  }
+
+  .intro h1 {
+    text-wrap: balance;
+    margin-block-end: 0;
+    line-height: 1.125;
+    text-align: center;
+
+    @media (min-width: 64rem) {
+      & {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+        align-self: end;
+        justify-self: start;
+        padding-inline-start: 2rem;
+      }
+    }
+  }
+
+  .intro-photo {
+    display: grid;
+    justify-content: center;
+
+    @media (min-width: 64rem) {
+      & {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+
+  .photo {
+    inline-size: 60cqw;
+    margin: 0 auto;
+    grid-column: 1;
+    grid-row: 1;
+    block-size: auto;
+
+    @media screen and (min-width: 768px) {
+      & {
+        width: 40cqw;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      & {
+        width: 35cqw;
+      }
+    }
+  }
+
+  .photo-bg {
+    border-radius: 43% 57% 37% 63% / 34% 64% 36% 66%;
+    background: var(--gradient);
+    grid-column: 1;
+    grid-row: 1;
+    margin-block-start: 2rem;
+  }
+
+  .intro-blurb {
+    display: grid;
+    gap: 1rem;
+
+    & > p {
+      margin-inline: 2rem;
+      text-wrap: balance;
+    }
+
+    @media (min-width: 64rem) {
+      & {
+        inline-size: 70cqw;
+        grid-column: 1;
+        grid-row: 2;
+      }
+    }
+  }
+
+  .contact-cta {
+    display: grid;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  h2 {
+    text-align: center;
+    margin-block-end: 2rem;
+  }
+
+  .skills-container {
+    container-type: inline-size;
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 64rem) {
+      & {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+
+  .praise-cards {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 48rem) {
+      & {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 80rem) {
+      & {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  .praise-cards > div {
+    @media (min-width: 80rem) {
+      & {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  .praise-cards > div:first-child {
+    @media (min-width: 48rem) {
+      & {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    @media (min-width: 80rem) {
+      & {
+        grid-column: 1 / span 3;
+      }
+    }
+  }
+
+  .praise-cards > div:nth-child(2) {
+    @media (min-width: 80rem) {
+      & {
+        grid-column: 4 / span 3;
+      }
+    }
+  }
+</style>

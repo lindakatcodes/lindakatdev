@@ -1,0 +1,154 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import CardWrapper from "./CardWrapper.astro";
+
+interface Props {
+  aboveFold?: boolean;
+  project: CollectionEntry<"projects">;
+}
+
+const { aboveFold = false, project } = Astro.props;
+const loading = aboveFold ? "eager" : "lazy";
+---
+
+<CardWrapper>
+  <article class="project-wrapper">
+    <Image
+      src={project.data.image}
+      alt={project.data.imageAlt}
+      loading={loading}
+    />
+    <h3 class="project-title">{project.data.name}</h3>
+    <div class="project-tech">
+      {project.data.tech.map((tech) => <p class="tech">{tech}</p>)}
+    </div>
+    <p class="project-description">{project.data.about}</p>
+    <div class="project-links">
+      {
+        project.data.codeLink && (
+          <a
+            href={project.data.codeLink}
+            class="code"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            View Code
+          </a>
+        )
+      }
+      {
+        project.data.liveLink && (
+          <a
+            href={project.data.liveLink}
+            class="live"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            View Site
+          </a>
+        )
+      }
+    </div>
+  </article>
+</CardWrapper>
+
+<style>
+  .project-wrapper {
+    container-type: inline-size;
+    block-size: 100%;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content auto auto 1fr auto;
+    gap: 0.5rem;
+    justify-items: center;
+  }
+
+  img {
+    max-width: 100cqw;
+    max-height: 30cqh;
+    object-fit: contain;
+  }
+
+  .project-title {
+    margin: 0;
+    text-align: center;
+  }
+
+  .project-tech {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    justify-content: center;
+    align-content: center;
+    max-width: 85cqw;
+  }
+
+  .project-tech p {
+    color: var(--pink);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: var(--accent-font);
+    font-size: var(--font-size-sm);
+    margin: 0 0.5rem;
+  }
+
+  .project-tech p:nth-child(4n + 2) {
+    color: var(--purple);
+  }
+
+  .project-tech p:nth-child(4n + 3) {
+    color: var(--blue);
+  }
+
+  .project-tech p:nth-child(4n + 4) {
+    color: var(--green);
+  }
+
+  .project-description {
+    text-wrap: pretty;
+    margin: 0.25rem 0.75rem;
+  }
+
+  .project-links {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  a {
+    border-radius: 4px;
+    color: var(--text-main);
+    font-weight: bold;
+    font-family: var(--accent-font);
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+
+    transition:
+      color 0.2s ease-in-out,
+      background 0.2s ease-in-out;
+  }
+
+  a:hover {
+    color: var(--text-flip);
+  }
+
+  .code {
+    border: 2px solid var(--green);
+  }
+
+  .code:hover {
+    background: var(--green);
+  }
+
+  .live {
+    border: 2px solid var(--purple);
+  }
+
+  .live:hover {
+    background: var(--purple);
+  }
+</style>
